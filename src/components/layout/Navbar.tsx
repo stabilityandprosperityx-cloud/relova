@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import RelovaLogo from "@/components/RelovaLogo";
 
 const navLinks = [
   { label: "Features", href: "/#features" },
