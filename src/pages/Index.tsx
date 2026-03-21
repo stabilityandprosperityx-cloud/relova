@@ -3,7 +3,7 @@ import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/landing/HeroSection";
 import HowItWorksSection from "@/components/landing/HowItWorksSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
-import ComparisonSection from "@/components/landing/ComparisonSection";
+import CountriesSection from "@/components/landing/CountriesSection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
 import CTASection from "@/components/landing/CTASection";
 
@@ -15,7 +15,7 @@ export default function Index() {
         <HeroSection />
         <HowItWorksSection />
         <FeaturesSection />
-        <ComparisonSection />
+        <CountriesSection />
         <TestimonialsSection />
         <CTASection />
       </main>
