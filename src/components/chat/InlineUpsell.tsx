@@ -22,11 +22,9 @@ export default function InlineUpsell({ questionsUsed, questionsLimit }: InlineUp
           {questionsUsed}/{questionsLimit} free questions used · Get a personalized plan
         </span>
       </div>
-      <Link to="/pricing">
-        <Button variant="hero" size="sm" className="text-[11px] h-7 px-3 shrink-0 rounded-md">
-          Unlock Pro
-        </Button>
-      </Link>
+      <Button variant="hero" size="sm" className="text-[11px] h-7 px-3 shrink-0 rounded-md" onClick={() => openPayment("pro")}>
+        Unlock Pro
+      </Button>
     </motion.div>
   );
 }
