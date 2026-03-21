@@ -1,0 +1,66 @@
+import { motion } from "framer-motion";
+
+const pathways = [
+  {
+    country: "Portugal",
+    description: "Naturalization path based on 5 years of legal residence. Multiple visa categories available for different profiles.",
+  },
+  {
+    country: "Georgia",
+    description: "Citizenship requirements and residency conditions explained clearly. One of the most accessible entry points globally.",
+  },
+  {
+    country: "UAE",
+    description: "Residency programs explained clearly — from freelance visas to investor permits and golden visa options.",
+  },
+];
+
+export default function LegalPathwaysSection() {
+  return (
+    <section className="py-28 md:py-36 border-t border-border/40">
+      <div className="container">
+        <motion.div
+          className="mb-16 max-w-[560px]"
+          initial={{ opacity: 0, y: 14, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <p className="text-[11px] text-muted-foreground/60 mb-5 uppercase tracking-[0.15em] font-medium">Legal pathways</p>
+          <h2 className="text-[1.75rem] md:text-[2.25rem] font-bold tracking-tight mb-4 leading-[1.1]">
+            Residency and citizenship, explained clearly
+          </h2>
+          <p className="text-[14px] text-muted-foreground leading-[1.65]">
+            Understand legal pathways country by country — without making false assumptions.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+          {pathways.map((p, i) => (
+            <motion.div
+              key={p.country}
+              className="p-7 rounded-xl border border-border/50 bg-card/50"
+              initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <h3 className="text-[18px] font-semibold mb-3 tracking-tight">{p.country}</h3>
+              <p className="text-[13px] text-muted-foreground leading-[1.7]">{p.description}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.p
+          className="mt-8 text-[11px] text-muted-foreground/40 max-w-[480px]"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          Relova provides informational guidance only. We do not provide legal advice or guarantee outcomes. Always consult a qualified professional.
+        </motion.p>
+      </div>
+    </section>
+  );
+}

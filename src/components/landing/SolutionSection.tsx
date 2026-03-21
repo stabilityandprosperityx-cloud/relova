@@ -1,0 +1,25 @@
+import { motion } from "framer-motion";
+
+export default function SolutionSection() {
+  return (
+    <section className="py-28 md:py-36 border-t border-border/40">
+      <div className="container">
+        <motion.div
+          className="max-w-[600px]"
+          initial={{ opacity: 0, y: 14, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <p className="text-[11px] text-muted-foreground/60 mb-5 uppercase tracking-[0.15em] font-medium">The solution</p>
+          <h2 className="text-[1.75rem] md:text-[2.25rem] font-bold tracking-tight mb-5 leading-[1.1]">
+            One system for your relocation journey
+          </h2>
+          <p className="text-[15px] text-muted-foreground leading-[1.7]">
+            Relova brings planning, legal clarity, and country-specific guidance into one product — so you can move with confidence, not confusion.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
