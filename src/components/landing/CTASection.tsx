@@ -15,9 +15,9 @@ export default function CTASection() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2 className="text-[2rem] md:text-[2.75rem] font-bold tracking-tight mb-5 leading-[1.05]">
-            <span className="text-gradient-hero">Start your next chapter</span>
+            Start your next chapter
             <br />
-            <span className="text-gradient-hero">with clarity.</span>
+            with clarity.
           </h2>
           <p className="text-muted-foreground text-[15px] mb-10 leading-relaxed">
             Join Relova and get a structured path to your new country.
