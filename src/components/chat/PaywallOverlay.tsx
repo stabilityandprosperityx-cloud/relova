@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Lock, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { openPayment } from "@/config/payments";
 
 export default function PaywallOverlay() {
   return (
