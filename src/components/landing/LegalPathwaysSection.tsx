@@ -39,7 +39,7 @@ export default function LegalPathwaysSection() {
           {pathways.map((p, i) => (
             <motion.div
               key={p.country}
-              className="p-7 rounded-xl border border-border/50 bg-card/50"
+              className="p-7 rounded-xl border border-border/40 bg-card/50 shadow-[0_2px_20px_-6px_hsl(0_0%_0%/0.25)]"
               initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
               viewport={{ once: true, amount: 0.2 }}
