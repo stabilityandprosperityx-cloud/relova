@@ -115,11 +115,22 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                <Link to="/chat">
-                  <Button variant={plan.variant} className="w-full gap-2" size="lg">
+                {plan.name === "Free" ? (
+                  <Link to="/chat">
+                    <Button variant={plan.variant} className="w-full gap-2" size="lg">
+                      {plan.cta}
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button
+                    variant={plan.variant}
+                    className="w-full gap-2"
+                    size="lg"
+                    onClick={() => openPayment(plan.name === "Pro" ? "pro" : "full")}
+                  >
                     {plan.cta} {plan.highlighted && <ArrowRight size={14} />}
                   </Button>
-                </Link>
+                )}
               </motion.div>
             ))}
           </div>
