@@ -5,8 +5,25 @@ import { Send, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
+import PaywallOverlay from "@/components/chat/PaywallOverlay";
+import InlineUpsell from "@/components/chat/InlineUpsell";
 
 type Message = { role: "user" | "assistant"; content: string };
+
+const FREE_LIMIT = 3;
+const STORAGE_KEY = "relova_questions_used";
+
+function getQuestionsUsed(): number {
+  try {
+    return parseInt(localStorage.getItem(STORAGE_KEY) || "0", 10);
+  } catch { return 0; }
+}
+
+function incrementQuestionsUsed(): number {
+  const next = getQuestionsUsed() + 1;
+  localStorage.setItem(STORAGE_KEY, String(next));
+  return next;
+}
 
 const suggestedPrompts = [
   "How do I get residency in Portugal?",
@@ -21,10 +38,12 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
 async function streamChat({
   messages,
+  tier,
   onDelta,
   onDone,
 }: {
   messages: Message[];
+  tier: string;
   onDelta: (text: string) => void;
   onDone: () => void;
 }) {
@@ -34,7 +53,7 @@ async function streamChat({
       "Content-Type": "application/json",
       Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
     },
-    body: JSON.stringify({ messages }),
+    body: JSON.stringify({ messages, tier }),
   });
 
   if (!resp.ok) {
@@ -98,14 +117,18 @@ export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [questionsUsed, setQuestionsUsed] = useState(getQuestionsUsed);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  const isLimited = questionsUsed >= FREE_LIMIT;
+  const tier = "free"; // TODO: replace with real user tier from auth
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
   const send = async (text: string) => {
-    if (!text.trim() || isLoading) return;
+    if (!text.trim() || isLoading || isLimited) return;
     const userMsg: Message = { role: "user", content: text.trim() };
     const newMessages = [...messages, userMsg];
     setMessages(newMessages);
@@ -127,8 +150,13 @@ export default function Chat() {
     try {
       await streamChat({
         messages: newMessages,
+        tier,
         onDelta: (chunk) => upsertAssistant(chunk),
-        onDone: () => setIsLoading(false),
+        onDone: () => {
+          setIsLoading(false);
+          const used = incrementQuestionsUsed();
+          setQuestionsUsed(used);
+        },
       });
     } catch (e) {
       console.error(e);
@@ -136,6 +164,9 @@ export default function Chat() {
       toast.error(e instanceof Error ? e.message : "Something went wrong");
     }
   };
+
+  // Count user messages for upsell display
+  const userMessageCount = messages.filter(m => m.role === "user").length;
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -168,36 +199,50 @@ export default function Chat() {
                     </button>
                   ))}
                 </div>
+                {questionsUsed > 0 && (
+                  <p className="text-[11px] text-muted-foreground/50 mt-6">
+                    {questionsUsed}/{FREE_LIMIT} free questions used
+                  </p>
+                )}
               </motion.div>
             ) : (
               <div className="space-y-6">
                 <AnimatePresence mode="popLayout">
-                  {messages.map((msg, i) => (
-                    <motion.div
-                      key={i}
-                      className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                      <div
-                        className={`max-w-[85%] rounded-xl px-5 py-4 text-sm leading-relaxed ${
-                          msg.role === "user"
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-card border border-border"
-                        }`}
-                      >
-                        {msg.role === "assistant" ? (
-                          <div className="prose prose-sm prose-invert max-w-none [&_h2]:text-base [&_h2]:font-semibold [&_h2]:mt-4 [&_h2]:mb-2 [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:mt-3 [&_h3]:mb-1 [&_p]:text-muted-foreground [&_li]:text-muted-foreground [&_strong]:text-foreground">
-                            <ReactMarkdown>{msg.content}</ReactMarkdown>
+                  {messages.map((msg, i) => {
+                    const isLastAssistant = msg.role === "assistant" && i === messages.length - 1 && !isLoading;
+                    return (
+                      <div key={i}>
+                        <motion.div
+                          className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                          <div
+                            className={`max-w-[85%] rounded-xl px-5 py-4 text-sm leading-relaxed ${
+                              msg.role === "user"
+                                ? "bg-primary text-primary-foreground"
+                                : "bg-card border border-border"
+                            }`}
+                          >
+                            {msg.role === "assistant" ? (
+                              <div className="prose prose-sm prose-invert max-w-none [&_h2]:text-base [&_h2]:font-semibold [&_h2]:mt-4 [&_h2]:mb-2 [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:mt-3 [&_h3]:mb-1 [&_p]:text-muted-foreground [&_li]:text-muted-foreground [&_strong]:text-foreground">
+                                <ReactMarkdown>{msg.content}</ReactMarkdown>
+                              </div>
+                            ) : (
+                              msg.content
+                            )}
                           </div>
-                        ) : (
-                          msg.content
+                        </motion.div>
+                        {/* Inline upsell after assistant responses for free users */}
+                        {isLastAssistant && tier === "free" && questionsUsed < FREE_LIMIT && (
+                          <InlineUpsell questionsUsed={questionsUsed} questionsLimit={FREE_LIMIT} />
                         )}
                       </div>
-                    </motion.div>
-                  ))}
+                    );
+                  })}
                 </AnimatePresence>
+
                 {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
                   <motion.div className="flex justify-start" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                     <div className="bg-card border border-border rounded-xl px-5 py-4">
@@ -209,6 +254,10 @@ export default function Chat() {
                     </div>
                   </motion.div>
                 )}
+
+                {/* Paywall after limit reached */}
+                {isLimited && !isLoading && <PaywallOverlay />}
+
                 <div ref={bottomRef} />
               </div>
             )}
@@ -217,18 +266,27 @@ export default function Chat() {
 
         <div className="border-t border-border bg-background/80 backdrop-blur-xl">
           <div className="container max-w-3xl py-4">
-            <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="flex items-center gap-3">
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about visas, taxes, housing, documents..."
-                className="flex-1 bg-card border border-border rounded-xl px-4 py-3 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-                disabled={isLoading}
-              />
-              <Button type="submit" size="icon" className="h-11 w-11 rounded-xl shrink-0" disabled={!input.trim() || isLoading}>
-                <Send size={16} />
-              </Button>
-            </form>
+            {isLimited ? (
+              <div className="text-center py-2">
+                <p className="text-sm text-muted-foreground">
+                  You've used all {FREE_LIMIT} free questions.{" "}
+                  <a href="/pricing" className="text-primary hover:underline">Upgrade to continue →</a>
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="flex items-center gap-3">
+                <input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Ask about visas, taxes, housing, documents..."
+                  className="flex-1 bg-card border border-border rounded-xl px-4 py-3 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
+                  disabled={isLoading}
+                />
+                <Button type="submit" size="icon" className="h-11 w-11 rounded-xl shrink-0" disabled={!input.trim() || isLoading}>
+                  <Send size={16} />
+                </Button>
+              </form>
+            )}
             <p className="text-[11px] text-muted-foreground/60 text-center mt-2">
               Relova provides guidance, not legal advice. Always consult a licensed professional.
             </p>
