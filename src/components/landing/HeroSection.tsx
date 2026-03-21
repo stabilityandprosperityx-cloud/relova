@@ -1,14 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import RelovaLogo from "@/components/RelovaLogo";
+import { useRef } from "react";
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const glowY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
-    <section className="relative pt-40 pb-28 md:pt-52 md:pb-40 bg-radial-glow overflow-hidden">
-      {/* Soft radial light behind headline */}
-      <div className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[radial-gradient(ellipse_at_center,hsl(200_60%_52%/0.07)_0%,transparent_70%)] pointer-events-none" />
+    <section ref={sectionRef} className="relative pt-40 pb-28 md:pt-52 md:pb-40 bg-radial-glow overflow-hidden">
+      {/* Parallax radial light behind headline */}
+      <motion.div
+        className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[radial-gradient(ellipse_at_center,hsl(200_60%_52%/0.07)_0%,transparent_70%)] pointer-events-none"
+        style={{ y: glowY, opacity: glowOpacity }}
+      />
       <div className="container relative z-10">
         <motion.div
           className="mb-10"
