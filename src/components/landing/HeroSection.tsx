@@ -6,7 +6,9 @@ import RelovaLogo from "@/components/RelovaLogo";
 
 export default function HeroSection() {
   return (
-    <section className="relative pt-40 pb-28 md:pt-52 md:pb-40 bg-radial-glow">
+    <section className="relative pt-40 pb-28 md:pt-52 md:pb-40 bg-radial-glow overflow-hidden">
+      {/* Soft radial light behind headline */}
+      <div className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[radial-gradient(ellipse_at_center,hsl(200_60%_52%/0.07)_0%,transparent_70%)] pointer-events-none" />
       <div className="container relative z-10">
         <motion.div
           className="mb-10"
@@ -23,9 +25,9 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            Move smarter.
+            <span className="text-gradient-hero">Move smarter.</span>
             <br />
-            Settle faster.
+            <span className="text-gradient-hero">Settle faster.</span>
           </motion.h1>
 
           <motion.p
