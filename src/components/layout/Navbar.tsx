@@ -14,13 +14,13 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-2xl">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-2xl">
       <div className="container flex h-14 items-center justify-between">
-        <Link to="/" className="text-[15px] font-semibold tracking-[-0.03em]">
+        <Link to="/" className="text-[15px] font-bold tracking-[-0.04em] text-foreground">
           relova
         </Link>
 
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -36,12 +36,12 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-5">
           <button className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">
             Log in
           </button>
           <Link to="/chat">
-            <Button size="sm" className="h-8 text-[13px] px-4 rounded-lg">
+            <Button size="sm" className="h-8 text-[13px] px-5 rounded-lg font-medium">
               Get started
             </Button>
           </Link>
@@ -53,7 +53,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-border bg-background p-4 space-y-1">
+        <div className="md:hidden border-t border-border/30 bg-background p-4 space-y-1">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -64,7 +64,7 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <div className="pt-3 border-t border-border mt-3 space-y-2">
+          <div className="pt-3 border-t border-border/30 mt-3 space-y-2">
             <button className="block text-sm text-muted-foreground">Log in</button>
             <Link to="/chat" onClick={() => setOpen(false)}>
               <Button size="sm" className="w-full h-8 text-[13px]">Get started</Button>
