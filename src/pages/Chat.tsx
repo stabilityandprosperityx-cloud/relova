@@ -7,10 +7,13 @@ import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import PaywallOverlay from "@/components/chat/PaywallOverlay";
 import InlineUpsell from "@/components/chat/InlineUpsell";
+import AuthModal from "@/components/auth/AuthModal";
+import { useAuth } from "@/contexts/AuthContext";
 
 type Message = { role: "user" | "assistant"; content: string };
 
 const FREE_LIMIT = 3;
+const ANON_LIMIT = 1;
 const STORAGE_KEY = "relova_questions_used";
 
 function getQuestionsUsed(): number {
@@ -114,14 +117,19 @@ async function streamChat({
 }
 
 export default function Chat() {
+  const { user } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [questionsUsed, setQuestionsUsed] = useState(getQuestionsUsed);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  const isLimited = questionsUsed >= FREE_LIMIT;
-  const tier = "free"; // TODO: replace with real user tier from auth
+  const isAnon = !user;
+  const anonLimitReached = isAnon && questionsUsed >= ANON_LIMIT;
+  const freeLimitReached = !isAnon && questionsUsed >= FREE_LIMIT;
+  const isLimited = anonLimitReached || freeLimitReached;
+  const tier = "free";
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -165,9 +173,6 @@ export default function Chat() {
     }
   };
 
-  // Count user messages for upsell display
-  const userMessageCount = messages.filter(m => m.role === "user").length;
-
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
@@ -201,7 +206,9 @@ export default function Chat() {
                 </div>
                 {questionsUsed > 0 && (
                   <p className="text-[11px] text-muted-foreground/50 mt-6">
-                    {questionsUsed}/{FREE_LIMIT} free questions used
+                    {isAnon
+                      ? `${questionsUsed}/${ANON_LIMIT} free preview question used`
+                      : `${questionsUsed}/${FREE_LIMIT} free questions used`}
                   </p>
                 )}
               </motion.div>
@@ -234,8 +241,14 @@ export default function Chat() {
                             )}
                           </div>
                         </motion.div>
-                        {/* Inline upsell after assistant responses for free users */}
-                        {isLastAssistant && tier === "free" && questionsUsed < FREE_LIMIT && (
+
+                        {/* After first answer for anon users → auth prompt */}
+                        {isLastAssistant && isAnon && anonLimitReached && (
+                          <SignupPrompt onOpen={() => setShowAuthModal(true)} />
+                        )}
+
+                        {/* Inline upsell for logged-in free users */}
+                        {isLastAssistant && !isAnon && tier === "free" && questionsUsed < FREE_LIMIT && (
                           <InlineUpsell questionsUsed={questionsUsed} questionsLimit={FREE_LIMIT} />
                         )}
                       </div>
@@ -255,8 +268,8 @@ export default function Chat() {
                   </motion.div>
                 )}
 
-                {/* Paywall after limit reached */}
-                {isLimited && !isLoading && <PaywallOverlay />}
+                {/* Paywall for logged-in users who hit the free limit */}
+                {freeLimitReached && !isLoading && <PaywallOverlay />}
 
                 <div ref={bottomRef} />
               </div>
@@ -268,10 +281,19 @@ export default function Chat() {
           <div className="container max-w-3xl py-4">
             {isLimited ? (
               <div className="text-center py-2">
-                <p className="text-sm text-muted-foreground">
-                  You've used all {FREE_LIMIT} free questions.{" "}
-                  <a href="/pricing" className="text-primary hover:underline">Upgrade to continue →</a>
-                </p>
+                {anonLimitReached ? (
+                  <p className="text-sm text-muted-foreground">
+                    Sign up to continue asking questions.{" "}
+                    <button className="text-primary hover:underline" onClick={() => setShowAuthModal(true)}>
+                      Create account →
+                    </button>
+                  </p>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    You've used all {FREE_LIMIT} free questions.{" "}
+                    <a href="/pricing" className="text-primary hover:underline">Upgrade to continue →</a>
+                  </p>
+                )}
               </div>
             ) : (
               <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="flex items-center gap-3">
@@ -293,6 +315,32 @@ export default function Chat() {
           </div>
         </div>
       </div>
+
+      <AuthModal
+        open={showAuthModal}
+        onOpenChange={setShowAuthModal}
+        title="Continue your relocation plan"
+        subtitle="Create an account to keep going and get personalized answers"
+      />
     </div>
+  );
+}
+
+function SignupPrompt({ onOpen }: { onOpen: () => void }) {
+  return (
+    <motion.div
+      className="flex flex-col items-center text-center py-8 px-6"
+      initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
+      transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <h3 className="text-lg font-bold tracking-tight mb-1">Continue your relocation plan</h3>
+      <p className="text-sm text-muted-foreground mb-6 max-w-sm">
+        Create an account to keep going and get personalized answers
+      </p>
+      <Button onClick={onOpen} className="text-[13px] h-10 px-6">
+        Create free account
+      </Button>
+    </motion.div>
   );
 }
