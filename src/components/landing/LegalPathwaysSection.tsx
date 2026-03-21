@@ -6,8 +6,8 @@ const pathways = [
     description: "Naturalization path based on 5 years of legal residence. Multiple visa categories available for different profiles.",
   },
   {
-    country: "Georgia",
-    description: "Citizenship requirements and residency conditions explained clearly. One of the most accessible entry points globally.",
+    country: "Australia",
+    description: "Permanent residency required before citizenship. Typically 4 years of residence, with language and residency requirements. Points-based skilled migration system.",
   },
   {
     country: "UAE",

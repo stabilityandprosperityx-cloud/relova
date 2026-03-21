@@ -53,37 +53,40 @@ Based on the most common pathways:
 3. Apply for NIF (Portuguese tax number)
 
 Would you like me to create a personalized checklist for your situation?`,
-  "what documents do i need in georgia?": `## Documents for Georgia Relocation
+  "what documents do i need in australia?": `## Documents for Australia Relocation
 
-Georgia is one of the easiest countries to relocate to. Here's what you need:
+Australia has a structured immigration system. Here's what you'll need:
 
-### For Entry (Most Nationalities)
-- Valid passport (6+ months remaining)
-- That's it — **no visa needed** for 1-year stay for 95+ nationalities
+### Skills Assessment
+- **Qualification documents** — degree certificates, transcripts
+- **Employment references** — detailed letters from employers (duties, dates, hours)
+- **Skills assessment** — from the relevant authority (e.g. ACS for IT, Engineers Australia)
 
-### For Long-Term Stay
-1. **Passport** — valid for duration of stay
-2. **Proof of income** — bank statements or employment contract
-3. **Health insurance** — international coverage recommended
-4. **Address registration** — register within 10 days of finding housing
+### Visa Application (Skilled Migration)
+1. **Valid passport** — at least 6 months remaining
+2. **English language test** — IELTS, PTE, or TOEFL (minimum scores vary by visa)
+3. **Police clearances** — from every country lived in 12+ months
+4. **Health examination** — through a Bupa Medical Visa Services panel physician
+5. **Proof of funds** — bank statements showing financial capacity
+6. **Skills assessment outcome** — positive result from assessing authority
 
-### For "Remotely from Georgia" Program
-- Proof of $2,000/month income
-- Employment/freelance contract
-- Passport photos
-- Application form (online)
+### Points Test (for 189/190 visas)
+- Age, English level, work experience, qualifications
+- Minimum 65 points required
+- State nomination adds 5 points (190 visa)
 
-### For Virtual Zone (0% Tax on International Income)
-- Company registration documents
-- Business plan outline
-- Passport copy
+### After Visa Grant
+- **Medicare enrolment** — for permanent residents
+- **Tax File Number (TFN)** — apply online via ATO
+- **Superannuation** — employer sets up on arrival
+- **Bank account** — can open before arrival with some banks (CBA, NAB)
 
 ### Pro Tips
-- Most documents do NOT need apostille for Georgia
-- Process is very fast — often same-day
-- Bank account can be opened in 30 minutes at BOG or TBC
+- Processing times vary significantly — plan for 6–18 months
+- Use ImmiAccount to track your application
+- State nomination requirements change frequently — check regularly
 
-Want me to create a step-by-step timeline for your move to Georgia?`,
+Want me to help you assess your points score or find the right visa pathway?`,
 };
 
 function getResponse(input: string): string {

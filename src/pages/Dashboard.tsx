@@ -95,7 +95,7 @@ export default function Dashboard() {
                         <div className="text-2xl font-bold">{country.name}</div>
                         <div className="text-sm text-muted-foreground">{country.tagline}</div>
                       </div>
-                      <span className="text-3xl">{country.code === "PT" ? "🇵🇹" : country.code === "AE" ? "🇦🇪" : country.code === "GE" ? "🇬🇪" : "🇦🇷"}</span>
+                      <span className="text-3xl">{country.code === "PT" ? "🇵🇹" : country.code === "AE" ? "🇦🇪" : country.code === "AU" ? "🇦🇺" : "🇦🇷"}</span>
                     </div>
                     <div className="flex flex-wrap gap-2 mb-5">
                       {country.highlights.map((h) => (

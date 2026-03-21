@@ -12,7 +12,7 @@ const testimonials = [
     role: "Founder · Buenos Aires → Dubai",
   },
   {
-    quote: "We relocated our family of four to Georgia. Relova handled the complexity so we could focus on the move itself.",
+    quote: "We relocated our family of four to Australia. Relova handled the complexity so we could focus on the move itself.",
     name: "Anika Patel",
     role: "Remote engineer · London → Barcelona",
   },
