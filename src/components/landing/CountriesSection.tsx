@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 
 const countries = [
   { name: "Portugal", slug: "portugal" },
-  { name: "UAE", slug: "uae" },
-  { name: "Georgia", slug: "georgia" },
   { name: "Spain", slug: "spain" },
+  { name: "UAE", slug: "uae" },
+  { name: "USA", slug: "usa" },
+  { name: "Canada", slug: "canada" },
+  { name: "Germany", slug: "germany" },
   { name: "Thailand", slug: "thailand" },
-  { name: "Argentina", slug: "argentina" },
   { name: "Mexico", slug: "mexico" },
   { name: "Estonia", slug: "estonia" },
   { name: "Indonesia", slug: "indonesia" },
-  { name: "Germany", slug: "germany" },
-  { name: "Canada", slug: "canada" },
   { name: "Singapore", slug: "singapore" },
+  { name: "Argentina", slug: "argentina" },
 ];
 
 export default function CountriesSection() {
