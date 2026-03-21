@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import RelovaLogo from "@/components/RelovaLogo";
 
 export default function HeroSection() {
   return (
