@@ -25,9 +25,9 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            Move smarter.
+            <span className="text-gradient-hero">Move smarter.</span>
             <br />
-            Settle faster.
+            <span className="text-gradient-hero">Settle faster.</span>
           </motion.h1>
 
           <motion.p

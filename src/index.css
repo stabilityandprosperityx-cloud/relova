@@ -99,6 +99,10 @@
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, hsl(200 60% 52%), hsl(168 40% 48%));
   }
+  .text-gradient-hero {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(160deg, hsl(0 0% 100%) 30%, hsl(210 20% 72%) 100%);
+  }
   .bg-grid {
     background-image:
       linear-gradient(to right, hsl(var(--border) / 0.04) 1px, transparent 1px),
