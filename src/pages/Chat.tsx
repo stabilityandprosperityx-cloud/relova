@@ -8,7 +8,7 @@ type Message = { role: "user" | "assistant"; content: string };
 
 const suggestedPrompts = [
   "How do I get residency in Portugal?",
-  "What documents do I need in Georgia?",
+  "What documents do I need in Australia?",
   "Compare UAE vs Portugal for a remote worker",
   "What's the cheapest country to live as a nomad?",
 ];
