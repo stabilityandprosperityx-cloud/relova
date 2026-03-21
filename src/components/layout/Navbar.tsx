@@ -17,8 +17,9 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-2xl">
       <div className="container flex h-14 items-center justify-between">
-        <Link to="/" className="text-[15px] font-bold tracking-[-0.04em] text-foreground">
-          relova
+        <Link to="/" className="flex items-center gap-2.5 text-foreground">
+          <RelovaLogo size={22} />
+          <span className="text-[15px] font-bold tracking-[-0.04em]">relova</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-7">

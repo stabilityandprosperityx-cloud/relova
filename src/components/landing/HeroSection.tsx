@@ -8,6 +8,14 @@ export default function HeroSection() {
   return (
     <section className="relative pt-40 pb-28 md:pt-52 md:pb-40 bg-radial-glow">
       <div className="container relative z-10">
+        <motion.div
+          className="mb-10"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <RelovaLogo size={48} className="text-primary" />
+        </motion.div>
         <div className="max-w-[720px]">
           <motion.h1
             className="text-[3rem] sm:text-[4rem] md:text-[5rem] font-extrabold leading-[0.92] tracking-[-0.04em] mb-7"
