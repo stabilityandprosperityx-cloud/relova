@@ -15,16 +15,16 @@ export default function CTASection() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2 className="text-[2rem] md:text-[2.75rem] font-bold tracking-tight mb-5 leading-[1.05]">
-            Your new country
+            Start your next chapter
             <br />
-            is waiting.
+            with clarity.
           </h2>
           <p className="text-muted-foreground text-[15px] mb-10 leading-relaxed">
-            Get a personalized relocation plan in minutes. Free to start.
+            Join Relova and get a structured path to your new country.
           </p>
           <Link to="/chat">
             <Button variant="hero" size="lg" className="gap-2.5 text-[14px] h-12 px-7 rounded-[10px]">
-              Start your relocation plan <ArrowRight size={15} strokeWidth={2.5} />
+              Join early access <ArrowRight size={15} strokeWidth={2.5} />
             </Button>
           </Link>
         </motion.div>

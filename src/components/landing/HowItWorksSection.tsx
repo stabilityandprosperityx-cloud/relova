@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 
 const steps = [
-  { number: "01", title: "Tell us your situation", description: "Passport, destination, goals. Two minutes." },
-  { number: "02", title: "Get your relocation plan", description: "Visas, documents, timelines — personalized to you." },
-  { number: "03", title: "Move with confidence", description: "Follow clear steps. Ask questions anytime." },
+  { number: "01", title: "Choose a country", description: "Explore destinations and compare what matters to you." },
+  { number: "02", title: "Ask Relova AI", description: "Get structured answers about visas, documents, and legal steps." },
+  { number: "03", title: "Follow a clearer path", description: "Move forward with a plan — not guesswork." },
 ];
 
 export default function HowItWorksSection() {

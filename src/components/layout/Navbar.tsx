@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
+  { label: "Features", href: "/#features" },
   { label: "Countries", href: "/dashboard" },
-  { label: "Chat", href: "/chat" },
   { label: "Pricing", href: "/pricing" },
 ];
 
@@ -38,11 +38,11 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-5">
           <button className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">
-            Log in
+            Login
           </button>
           <Link to="/chat">
             <Button size="sm" className="h-8 text-[13px] px-5 rounded-lg font-medium">
-              Get started
+              Get early access
             </Button>
           </Link>
         </div>
@@ -65,9 +65,9 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="pt-3 border-t border-border/30 mt-3 space-y-2">
-            <button className="block text-sm text-muted-foreground">Log in</button>
+            <button className="block text-sm text-muted-foreground">Login</button>
             <Link to="/chat" onClick={() => setOpen(false)}>
-              <Button size="sm" className="w-full h-8 text-[13px]">Get started</Button>
+              <Button size="sm" className="w-full h-8 text-[13px]">Get early access</Button>
             </Link>
           </div>
         </div>

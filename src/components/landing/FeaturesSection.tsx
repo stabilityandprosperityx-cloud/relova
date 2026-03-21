@@ -1,17 +1,38 @@
 import { motion } from "framer-motion";
+import { MessageSquare, Globe, FileText, Shield, Briefcase, Home } from "lucide-react";
 
 const features = [
   {
-    title: "Clarity, not information",
-    description: "Turn confusion into a clear action plan. Know exactly what to do, in what order, and why.",
+    icon: MessageSquare,
+    title: "AI Relocation Advisor",
+    description: "Ask questions about moving and get structured, country-specific answers.",
   },
   {
-    title: "Your path, not generic advice",
-    description: "Every plan is built from your passport, budget, and goals. No templates, no guessing.",
+    icon: Globe,
+    title: "Country Guides",
+    description: "Compare countries, costs, legal realities, and lifestyle — side by side.",
   },
   {
-    title: "Real decisions, not endless research",
-    description: "Stop reading forums at 2 AM. Get answers that move you forward — instantly.",
+    icon: FileText,
+    title: "Documents & Visas",
+    description: "Understand required documents and process steps for your destination.",
+  },
+  {
+    icon: Shield,
+    title: "Residency & Citizenship Paths",
+    description: "See the legal pathway more clearly, country by country.",
+  },
+  {
+    icon: Briefcase,
+    title: "Jobs & Opportunities",
+    description: "Explore work opportunities in your destination country.",
+    comingSoon: true,
+  },
+  {
+    icon: Home,
+    title: "Housing & Community",
+    description: "Find housing options and connect with local communities.",
+    comingSoon: true,
   },
 ];
 
@@ -26,20 +47,25 @@ export default function FeaturesSection() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          Why Relova
+          Features
         </motion.p>
 
-        <div className="grid md:grid-cols-3 gap-12 md:gap-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}
+              className="relative p-7 rounded-xl border border-border/50 bg-card/50 hover:bg-card/80 transition-colors duration-300"
               initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h3 className="text-[20px] font-semibold mb-3 tracking-tight">{feature.title}</h3>
-              <p className="text-[14px] text-muted-foreground leading-[1.7]">{feature.description}</p>
+              {feature.comingSoon && (
+                <span className="absolute top-5 right-5 text-[10px] text-muted-foreground/50 font-medium uppercase tracking-[0.1em]">Coming soon</span>
+              )}
+              <feature.icon size={20} className="text-primary mb-5" strokeWidth={1.8} />
+              <h3 className="text-[16px] font-semibold mb-2.5 tracking-tight">{feature.title}</h3>
+              <p className="text-[13px] text-muted-foreground leading-[1.65]">{feature.description}</p>
             </motion.div>
           ))}
         </div>
