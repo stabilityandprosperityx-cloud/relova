@@ -43,8 +43,8 @@ export default function RelovaLogo({ size = 28, pulse = true, glow = false, clas
           r={ringR}
           stroke="currentColor"
           strokeWidth={strokeW}
-          animate={{ opacity: [0.4, 0.55, 0.4] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ opacity: [0.35, 0.55, 0.35] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
         />
       ) : (
         <circle cx={cx} cy={cy} r={ringR} stroke="currentColor" strokeWidth={strokeW} opacity={0.5} />
