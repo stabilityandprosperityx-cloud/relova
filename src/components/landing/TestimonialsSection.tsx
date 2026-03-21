@@ -14,7 +14,7 @@ const testimonials = [
   {
     quote: "We relocated our family of four to Georgia. Relova handled the complexity so we could focus on the move itself.",
     name: "Anika Patel",
-    role: "Remote engineer · London → Tbilisi",
+    role: "Remote engineer · London → Barcelona",
   },
 ];
 
