@@ -1,23 +1,58 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Check } from "lucide-react";
+import { Check, ArrowRight, Sparkles } from "lucide-react";
 
 const plans = [
   {
     name: "Free",
-    description: "Basic access to explore Relova.",
-    features: ["Limited AI questions", "Country overview pages", "Basic document checklists"],
+    price: "$0",
+    period: "forever",
+    description: "Explore what Relova can do.",
+    features: [
+      "3 AI questions total",
+      "General relocation answers",
+      "Basic country overviews",
+    ],
     cta: "Get started",
+    variant: "outline" as const,
     highlighted: false,
+    badge: null,
   },
   {
     name: "Pro",
-    price: "Early access pricing",
-    description: "Full access to everything Relova offers.",
-    features: ["Unlimited AI questions", "Deeper country guidance", "Legal pathway overviews", "Personalized action plans", "Priority support"],
-    cta: "Join early access",
+    price: "$19",
+    period: "/month",
+    description: "Personalized guidance for your move.",
+    features: [
+      "Unlimited AI questions",
+      "Personalized answers",
+      "Country comparisons",
+      "Residency & citizenship overview",
+      "Save conversations",
+    ],
+    cta: "Start with Pro",
+    variant: "hero" as const,
     highlighted: true,
+    badge: "Most popular",
+  },
+  {
+    name: "Full",
+    price: "$49",
+    period: "/month",
+    description: "Your complete relocation system.",
+    features: [
+      "Everything in Pro",
+      "Full step-by-step relocation plan",
+      "Document checklists",
+      "Timeline & milestones",
+      "Tax & strategy guidance",
+      "Priority AI responses",
+    ],
+    cta: "Get Full Plan",
+    variant: "outline" as const,
+    highlighted: false,
+    badge: null,
   },
 ];
 
@@ -25,28 +60,49 @@ export default function PricingSection() {
   return (
     <section id="pricing" className="py-28 md:py-36 border-t border-border/40">
       <div className="container">
-        <motion.p
-          className="text-[11px] text-muted-foreground/60 mb-12 uppercase tracking-[0.15em] font-medium"
+        <motion.div
+          className="mb-16"
           initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          Pricing
-        </motion.p>
+          <p className="text-[11px] text-muted-foreground/60 mb-4 uppercase tracking-[0.15em] font-medium">
+            Pricing
+          </p>
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">
+            Choose your level of clarity
+          </h2>
+          <p className="text-muted-foreground text-sm max-w-md">
+            Start free. Upgrade when you're ready to move with confidence.
+          </p>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-[800px]">
+        <div className="grid md:grid-cols-3 gap-5 max-w-[960px]">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
-              className={`p-8 rounded-xl border ${plan.highlighted ? "border-primary/30 bg-primary/[0.03]" : "border-border/50 bg-card/50"}`}
+              className={`relative p-7 rounded-xl border transition-shadow ${
+                plan.highlighted
+                  ? "border-primary/30 bg-primary/[0.03] shadow-[0_0_40px_-12px_hsl(var(--primary)/0.15)]"
+                  : "border-border/50 bg-card/50"
+              }`}
               initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h3 className="text-[20px] font-semibold tracking-tight mb-1">{plan.name}</h3>
-              {plan.price && <p className="text-[13px] text-primary font-medium mb-3">{plan.price}</p>}
+              {plan.badge && (
+                <span className="absolute -top-2.5 left-7 px-2.5 py-0.5 rounded-full bg-primary text-primary-foreground text-[10px] font-medium tracking-wide">
+                  {plan.badge}
+                </span>
+              )}
+
+              <h3 className="text-lg font-semibold tracking-tight mb-1">{plan.name}</h3>
+              <div className="flex items-baseline gap-1 mb-2">
+                <span className="text-3xl font-bold tabular-nums">{plan.price}</span>
+                <span className="text-xs text-muted-foreground">{plan.period}</span>
+              </div>
               <p className="text-[13px] text-muted-foreground mb-6">{plan.description}</p>
 
               <ul className="space-y-2.5 mb-8">
@@ -60,10 +116,11 @@ export default function PricingSection() {
 
               <Link to="/chat">
                 <Button
-                  variant={plan.highlighted ? "hero" : "outline"}
-                  className="w-full h-10 text-[13px] rounded-lg"
+                  variant={plan.variant}
+                  className="w-full h-10 text-[13px] rounded-lg gap-1.5"
                 >
                   {plan.cta}
+                  {plan.highlighted && <ArrowRight size={13} />}
                 </Button>
               </Link>
             </motion.div>
