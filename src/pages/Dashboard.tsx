@@ -21,11 +21,11 @@ const countries = [
     highlights: ["Golden Visa", "0% income tax", "Free zones"],
   },
   {
-    code: "GE",
-    name: "Georgia",
-    slug: "georgia",
-    tagline: "Low-cost, high-freedom",
-    highlights: ["1-year visa-free", "1% tax for IT", "€600/mo avg. cost"],
+    code: "AU",
+    name: "Australia",
+    slug: "australia",
+    tagline: "High quality of life, strong economy",
+    highlights: ["Skilled visas", "Points-based system", "AUD $2k/mo avg. cost"],
   },
   {
     code: "AR",
