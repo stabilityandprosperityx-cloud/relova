@@ -14,7 +14,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <RelovaLogo size={48} className="text-primary" />
+          <RelovaLogo size={48} className="text-primary" glow />
         </motion.div>
         <div className="max-w-[720px]">
           <motion.h1
