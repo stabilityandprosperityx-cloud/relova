@@ -10,34 +10,51 @@ const plans = [
     name: "Free",
     price: "$0",
     period: "forever",
-    description: "Explore countries and get basic guidance",
+    description: "Explore what Relova can do.",
     features: [
-      "5 AI questions per day",
-      "Country dashboards",
-      "Cost of living data",
-      "Basic visa information",
+      "3 AI questions total",
+      "General relocation answers",
+      "Basic country overviews",
     ],
     cta: "Get Started",
     variant: "outline" as const,
     highlighted: false,
+    badge: null,
   },
   {
     name: "Pro",
     price: "$19",
     period: "/month",
-    description: "Full relocation support with AI",
+    description: "Personalized guidance for your move.",
     features: [
-      "Unlimited AI conversations",
-      "Personalized relocation plans",
-      "Step-by-step checklists",
-      "Tax optimization guidance",
-      "Document preparation help",
-      "Priority marketplace access",
-      "Export plans as PDF",
+      "Unlimited AI questions",
+      "Personalized answers",
+      "Country comparisons",
+      "Residency & citizenship overview",
+      "Save conversations",
     ],
-    cta: "Start your relocation plan",
+    cta: "Start with Pro",
     variant: "hero" as const,
     highlighted: true,
+    badge: "Most popular",
+  },
+  {
+    name: "Full",
+    price: "$49",
+    period: "/month",
+    description: "Your complete relocation system.",
+    features: [
+      "Everything in Pro",
+      "Full step-by-step relocation plan",
+      "Document checklists",
+      "Timeline & milestones",
+      "Tax & strategy guidance",
+      "Priority AI responses",
+    ],
+    cta: "Get Full Plan",
+    variant: "outline" as const,
+    highlighted: false,
+    badge: null,
   },
 ];
 
@@ -46,7 +63,7 @@ export default function Pricing() {
     <div className="min-h-screen bg-background">
       <Navbar />
       <main className="pt-28 pb-16">
-        <div className="container max-w-4xl">
+        <div className="container max-w-5xl">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
@@ -54,27 +71,29 @@ export default function Pricing() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Simple, transparent pricing
+              Choose your level of clarity
             </h1>
             <p className="text-muted-foreground text-lg max-w-md mx-auto">
-              Start free. Upgrade when you're ready to get serious about your move.
+              Start free. Upgrade when you're ready to move with confidence.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {plans.map((plan, i) => (
               <motion.div
                 key={plan.name}
                 className={`relative p-8 rounded-xl border bg-card ${
-                  plan.highlighted ? "border-primary/30 glow-sm" : "border-border"
+                  plan.highlighted
+                    ? "border-primary/30 shadow-[0_0_40px_-12px_hsl(var(--primary)/0.15)]"
+                    : "border-border"
                 }`}
                 initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
-                transition={{ duration: 0.6, delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.6, delay: 0.1 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
               >
-                {plan.highlighted && (
+                {plan.badge && (
                   <span className="absolute -top-3 left-8 px-3 py-0.5 rounded-full bg-primary text-primary-foreground text-xs font-medium">
-                    Most popular
+                    {plan.badge}
                   </span>
                 )}
                 <div className="mb-6">
