@@ -8,6 +8,7 @@ const countries = [
   { name: "USA", slug: "usa" },
   { name: "Canada", slug: "canada" },
   { name: "Germany", slug: "germany" },
+  { name: "Australia", slug: "australia" },
   { name: "Thailand", slug: "thailand" },
   { name: "Mexico", slug: "mexico" },
   { name: "Estonia", slug: "estonia" },

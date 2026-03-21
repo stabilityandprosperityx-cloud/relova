@@ -21,11 +21,11 @@ const countries = [
     highlights: ["Golden Visa", "0% income tax", "Free zones"],
   },
   {
-    code: "GE",
-    name: "Georgia",
-    slug: "georgia",
-    tagline: "Low-cost, high-freedom",
-    highlights: ["1-year visa-free", "1% tax for IT", "€600/mo avg. cost"],
+    code: "AU",
+    name: "Australia",
+    slug: "australia",
+    tagline: "High quality of life, strong economy",
+    highlights: ["Skilled visas", "Points-based system", "AUD $2k/mo avg. cost"],
   },
   {
     code: "AR",
@@ -95,7 +95,7 @@ export default function Dashboard() {
                         <div className="text-2xl font-bold">{country.name}</div>
                         <div className="text-sm text-muted-foreground">{country.tagline}</div>
                       </div>
-                      <span className="text-3xl">{country.code === "PT" ? "🇵🇹" : country.code === "AE" ? "🇦🇪" : country.code === "GE" ? "🇬🇪" : "🇦🇷"}</span>
+                      <span className="text-3xl">{country.code === "PT" ? "🇵🇹" : country.code === "AE" ? "🇦🇪" : country.code === "AU" ? "🇦🇺" : "🇦🇷"}</span>
                     </div>
                     <div className="flex flex-wrap gap-2 mb-5">
                       {country.highlights.map((h) => (
