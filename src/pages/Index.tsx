@@ -4,9 +4,11 @@ import HeroSection from "@/components/landing/HeroSection";
 import ProblemSection from "@/components/landing/ProblemSection";
 import SolutionSection from "@/components/landing/SolutionSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
+import ComparisonSection from "@/components/landing/ComparisonSection";
 import LegalPathwaysSection from "@/components/landing/LegalPathwaysSection";
 import HowItWorksSection from "@/components/landing/HowItWorksSection";
 import CountriesSection from "@/components/landing/CountriesSection";
+import PlanBuilderSection from "@/components/landing/PlanBuilderSection";
 import DemoSection from "@/components/landing/DemoSection";
 import PricingSection from "@/components/landing/PricingSection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
@@ -21,9 +23,11 @@ export default function Index() {
         <ProblemSection />
         <SolutionSection />
         <FeaturesSection />
+        <ComparisonSection />
         <LegalPathwaysSection />
         <HowItWorksSection />
         <CountriesSection />
+        <PlanBuilderSection />
         <DemoSection />
         <PricingSection />
         <TestimonialsSection />

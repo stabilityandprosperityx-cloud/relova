@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 
 const countries = [
   { name: "Portugal", slug: "portugal" },
-  { name: "UAE", slug: "uae" },
-  { name: "Georgia", slug: "georgia" },
   { name: "Spain", slug: "spain" },
+  { name: "UAE", slug: "uae" },
+  { name: "USA", slug: "usa" },
+  { name: "Canada", slug: "canada" },
+  { name: "Germany", slug: "germany" },
   { name: "Thailand", slug: "thailand" },
-  { name: "Argentina", slug: "argentina" },
   { name: "Mexico", slug: "mexico" },
   { name: "Estonia", slug: "estonia" },
   { name: "Indonesia", slug: "indonesia" },
-  { name: "Germany", slug: "germany" },
-  { name: "Canada", slug: "canada" },
   { name: "Singapore", slug: "singapore" },
+  { name: "Argentina", slug: "argentina" },
 ];
 
 export default function CountriesSection() {
@@ -28,9 +28,12 @@ export default function CountriesSection() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="text-[13px] text-muted-foreground mb-4 uppercase tracking-wider font-medium">Coverage</p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Move anywhere
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
+            Move anywhere in the world
           </h2>
+          <p className="text-[15px] text-muted-foreground/70 max-w-[520px] leading-relaxed">
+            Relova supports relocation planning for any country — not limited to a few destinations.
+          </p>
         </motion.div>
 
         <motion.div
