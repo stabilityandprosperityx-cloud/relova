@@ -9,7 +9,7 @@ import CTASection from "@/components/landing/CTASection";
 
 export default function Index() {
   return (
-    <div className="min-h-screen bg-background dark">
+    <div className="min-h-screen bg-background">
       <Navbar />
       <main>
         <HeroSection />
