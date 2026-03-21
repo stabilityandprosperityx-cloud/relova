@@ -4,9 +4,8 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Dashboard", href: "/dashboard" },
-  { label: "Countries", href: "/countries" },
-  { label: "AI Chat", href: "/chat" },
+  { label: "Countries", href: "/dashboard" },
+  { label: "Chat", href: "/chat" },
   { label: "Pricing", href: "/pricing" },
 ];
 
@@ -15,56 +14,61 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
-      <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 font-semibold text-lg tracking-tight">
-          <div className="h-7 w-7 rounded-lg bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground text-xs font-bold">R</span>
-          </div>
-          RelocateAI
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-2xl">
+      <div className="container flex h-14 items-center justify-between">
+        <Link to="/" className="text-[15px] font-semibold tracking-[-0.03em]">
+          relova
         </Link>
 
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
-            <Link key={link.href} to={link.href}>
-              <Button
-                variant="ghost"
-                size="sm"
-                className={location.pathname === link.href ? "text-foreground" : "text-muted-foreground"}
-              >
-                {link.label}
-              </Button>
+            <Link
+              key={link.href}
+              to={link.href}
+              className={`text-[13px] transition-colors ${
+                location.pathname === link.href
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {link.label}
             </Link>
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="text-muted-foreground">
+        <div className="hidden md:flex items-center gap-4">
+          <button className="text-[13px] text-muted-foreground hover:text-foreground transition-colors">
             Log in
-          </Button>
-          <Button size="sm">Get Started</Button>
+          </button>
+          <Link to="/chat">
+            <Button size="sm" className="h-8 text-[13px] px-4 rounded-lg">
+              Get started
+            </Button>
+          </Link>
         </div>
 
-        {/* Mobile toggle */}
-        <button className="md:hidden p-2 text-muted-foreground" onClick={() => setOpen(!open)}>
-          {open ? <X size={20} /> : <Menu size={20} />}
+        <button className="md:hidden p-1.5 text-muted-foreground" onClick={() => setOpen(!open)}>
+          {open ? <X size={18} /> : <Menu size={18} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-border bg-background p-4 space-y-2">
+        <div className="md:hidden border-t border-border bg-background p-4 space-y-1">
           {navLinks.map((link) => (
-            <Link key={link.href} to={link.href} onClick={() => setOpen(false)}>
-              <Button variant="ghost" className="w-full justify-start text-muted-foreground">
-                {link.label}
-              </Button>
+            <Link
+              key={link.href}
+              to={link.href}
+              onClick={() => setOpen(false)}
+              className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {link.label}
             </Link>
           ))}
-          <div className="pt-2 border-t border-border space-y-2">
-            <Button variant="ghost" className="w-full justify-start text-muted-foreground">Log in</Button>
-            <Button className="w-full">Get Started</Button>
+          <div className="pt-3 border-t border-border mt-3 space-y-2">
+            <button className="block text-sm text-muted-foreground">Log in</button>
+            <Link to="/chat" onClick={() => setOpen(false)}>
+              <Button size="sm" className="w-full h-8 text-[13px]">Get started</Button>
+            </Link>
           </div>
         </div>
       )}
