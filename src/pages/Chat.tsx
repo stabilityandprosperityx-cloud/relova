@@ -3,6 +3,8 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Send, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import ReactMarkdown from "react-markdown";
+import { toast } from "sonner";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -11,123 +13,134 @@ const suggestedPrompts = [
   "What documents do I need in Australia?",
   "Compare UAE vs Portugal for a remote worker",
   "What's the cheapest country to live as a nomad?",
+  "Best country for tax optimization?",
+  "How to get EU citizenship through investment?",
 ];
 
-const mockResponses: Record<string, string> = {
-  default: `Great question! Here's what I can help you with:
+const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
-**Residency & Visas** — I can walk you through visa options for 30+ countries based on your passport, income, and goals.
+async function streamChat({
+  messages,
+  onDelta,
+  onDone,
+}: {
+  messages: Message[];
+  onDelta: (text: string) => void;
+  onDone: () => void;
+}) {
+  const resp = await fetch(CHAT_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+    },
+    body: JSON.stringify({ messages }),
+  });
 
-**Tax Planning** — Understand how your tax obligations change when you relocate, including double taxation treaties.
+  if (!resp.ok) {
+    const errorData = await resp.json().catch(() => ({}));
+    if (resp.status === 429) throw new Error("Rate limit exceeded. Please wait a moment.");
+    if (resp.status === 402) throw new Error("AI credits exhausted. Please add funds.");
+    throw new Error(errorData.error || "Failed to get response");
+  }
 
-**Cost of Living** — Get detailed breakdowns of expenses in your target city.
+  if (!resp.body) throw new Error("No response body");
 
-**Document Preparation** — Know exactly what paperwork you need, translated and apostilled.
+  const reader = resp.body.getReader();
+  const decoder = new TextDecoder();
+  let textBuffer = "";
+  let streamDone = false;
 
-Ask me anything specific about your relocation!`,
-  "how do i get residency in portugal?": `## Portugal Residency Options
+  while (!streamDone) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    textBuffer += decoder.decode(value, { stream: true });
 
-Based on the most common pathways:
-
-### 1. D7 Visa (Passive Income)
-- **Duration:** 2 years, renewable → permanent residency at 5 years
-- **Requirements:** €760/month passive income (pension, dividends, rental)
-- **Timeline:** 2-4 months processing
-- **Best for:** Retirees, investors with passive income
-
-### 2. Digital Nomad Visa
-- **Duration:** 1 year
-- **Requirements:** €3,040/month income from remote work
-- **Timeline:** 30-60 days
-- **Best for:** Remote employees and freelancers
-
-### 3. Golden Visa
-- **Duration:** 5 years → citizenship
-- **Requirements:** €500k+ fund investment
-- **Timeline:** 6-8 months
-- **Best for:** Investors seeking EU citizenship
-
-### Next Steps
-1. Determine your income type (passive vs. active)
-2. Gather apostilled documents
-3. Apply for NIF (Portuguese tax number)
-
-Would you like me to create a personalized checklist for your situation?`,
-  "what documents do i need in australia?": `## Documents for Australia Relocation
-
-Australia has a structured immigration system. Here's what you'll need:
-
-### Skills Assessment
-- **Qualification documents** — degree certificates, transcripts
-- **Employment references** — detailed letters from employers (duties, dates, hours)
-- **Skills assessment** — from the relevant authority (e.g. ACS for IT, Engineers Australia)
-
-### Visa Application (Skilled Migration)
-1. **Valid passport** — at least 6 months remaining
-2. **English language test** — IELTS, PTE, or TOEFL (minimum scores vary by visa)
-3. **Police clearances** — from every country lived in 12+ months
-4. **Health examination** — through a Bupa Medical Visa Services panel physician
-5. **Proof of funds** — bank statements showing financial capacity
-6. **Skills assessment outcome** — positive result from assessing authority
-
-### Points Test (for 189/190 visas)
-- Age, English level, work experience, qualifications
-- Minimum 65 points required
-- State nomination adds 5 points (190 visa)
-
-### After Visa Grant
-- **Medicare enrolment** — for permanent residents
-- **Tax File Number (TFN)** — apply online via ATO
-- **Superannuation** — employer sets up on arrival
-- **Bank account** — can open before arrival with some banks (CBA, NAB)
-
-### Pro Tips
-- Processing times vary significantly — plan for 6–18 months
-- Use ImmiAccount to track your application
-- State nomination requirements change frequently — check regularly
-
-Want me to help you assess your points score or find the right visa pathway?`,
-};
-
-function getResponse(input: string): string {
-  const lower = input.toLowerCase().trim();
-  for (const key of Object.keys(mockResponses)) {
-    if (key !== "default" && lower.includes(key.slice(0, 20))) {
-      return mockResponses[key];
+    let newlineIndex: number;
+    while ((newlineIndex = textBuffer.indexOf("\n")) !== -1) {
+      let line = textBuffer.slice(0, newlineIndex);
+      textBuffer = textBuffer.slice(newlineIndex + 1);
+      if (line.endsWith("\r")) line = line.slice(0, -1);
+      if (line.startsWith(":") || line.trim() === "") continue;
+      if (!line.startsWith("data: ")) continue;
+      const jsonStr = line.slice(6).trim();
+      if (jsonStr === "[DONE]") { streamDone = true; break; }
+      try {
+        const parsed = JSON.parse(jsonStr);
+        const content = parsed.choices?.[0]?.delta?.content as string | undefined;
+        if (content) onDelta(content);
+      } catch {
+        textBuffer = line + "\n" + textBuffer;
+        break;
+      }
     }
   }
-  return mockResponses.default;
+
+  if (textBuffer.trim()) {
+    for (let raw of textBuffer.split("\n")) {
+      if (!raw) continue;
+      if (raw.endsWith("\r")) raw = raw.slice(0, -1);
+      if (raw.startsWith(":") || raw.trim() === "") continue;
+      if (!raw.startsWith("data: ")) continue;
+      const jsonStr = raw.slice(6).trim();
+      if (jsonStr === "[DONE]") continue;
+      try {
+        const parsed = JSON.parse(jsonStr);
+        const content = parsed.choices?.[0]?.delta?.content as string | undefined;
+        if (content) onDelta(content);
+      } catch { /* ignore */ }
+    }
+  }
+  onDone();
 }
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isTyping]);
+  }, [messages, isLoading]);
 
-  const send = (text: string) => {
-    if (!text.trim()) return;
+  const send = async (text: string) => {
+    if (!text.trim() || isLoading) return;
     const userMsg: Message = { role: "user", content: text.trim() };
-    setMessages((prev) => [...prev, userMsg]);
+    const newMessages = [...messages, userMsg];
+    setMessages(newMessages);
     setInput("");
-    setIsTyping(true);
+    setIsLoading(true);
 
-    setTimeout(() => {
-      const response = getResponse(text);
-      setMessages((prev) => [...prev, { role: "assistant", content: response }]);
-      setIsTyping(false);
-    }, 800 + Math.random() * 600);
+    let assistantSoFar = "";
+    const upsertAssistant = (chunk: string) => {
+      assistantSoFar += chunk;
+      setMessages((prev) => {
+        const last = prev[prev.length - 1];
+        if (last?.role === "assistant") {
+          return prev.map((m, i) => (i === prev.length - 1 ? { ...m, content: assistantSoFar } : m));
+        }
+        return [...prev, { role: "assistant", content: assistantSoFar }];
+      });
+    };
+
+    try {
+      await streamChat({
+        messages: newMessages,
+        onDelta: (chunk) => upsertAssistant(chunk),
+        onDone: () => setIsLoading(false),
+      });
+    } catch (e) {
+      console.error(e);
+      setIsLoading(false);
+      toast.error(e instanceof Error ? e.message : "Something went wrong");
+    }
   };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
       <div className="flex-1 flex flex-col pt-16">
-        {/* Messages area */}
         <div className="flex-1 overflow-y-auto">
           <div className="container max-w-3xl py-8">
             {messages.length === 0 ? (
@@ -176,18 +189,7 @@ export default function Chat() {
                       >
                         {msg.role === "assistant" ? (
                           <div className="prose prose-sm prose-invert max-w-none [&_h2]:text-base [&_h2]:font-semibold [&_h2]:mt-4 [&_h2]:mb-2 [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:mt-3 [&_h3]:mb-1 [&_p]:text-muted-foreground [&_li]:text-muted-foreground [&_strong]:text-foreground">
-                            {msg.content.split("\n").map((line, li) => {
-                              if (line.startsWith("## ")) return <h2 key={li}>{line.slice(3)}</h2>;
-                              if (line.startsWith("### ")) return <h3 key={li}>{line.slice(4)}</h3>;
-                              if (line.startsWith("- **")) {
-                                const [bold, rest] = line.slice(4).split("**");
-                                return <p key={li}><strong>{bold}</strong>{rest}</p>;
-                              }
-                              if (line.startsWith("- ")) return <p key={li} className="pl-4">• {line.slice(2)}</p>;
-                              if (line.match(/^\d+\.\s/)) return <p key={li} className="pl-4">{line}</p>;
-                              if (line.trim() === "") return <br key={li} />;
-                              return <p key={li}>{line.replace(/\*\*(.*?)\*\*/g, (_, t) => t)}</p>;
-                            })}
+                            <ReactMarkdown>{msg.content}</ReactMarkdown>
                           </div>
                         ) : (
                           msg.content
@@ -196,12 +198,8 @@ export default function Chat() {
                     </motion.div>
                   ))}
                 </AnimatePresence>
-                {isTyping && (
-                  <motion.div
-                    className="flex justify-start"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                  >
+                {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
+                  <motion.div className="flex justify-start" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                     <div className="bg-card border border-border rounded-xl px-5 py-4">
                       <div className="flex gap-1.5">
                         <span className="h-2 w-2 rounded-full bg-muted-foreground/40 animate-pulse" />
@@ -217,26 +215,22 @@ export default function Chat() {
           </div>
         </div>
 
-        {/* Input */}
         <div className="border-t border-border bg-background/80 backdrop-blur-xl">
           <div className="container max-w-3xl py-4">
-            <form
-              onSubmit={(e) => { e.preventDefault(); send(input); }}
-              className="flex items-center gap-3"
-            >
+            <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="flex items-center gap-3">
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about visas, taxes, housing, documents..."
                 className="flex-1 bg-card border border-border rounded-xl px-4 py-3 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent"
-                disabled={isTyping}
+                disabled={isLoading}
               />
-              <Button type="submit" size="icon" className="h-11 w-11 rounded-xl shrink-0" disabled={!input.trim() || isTyping}>
+              <Button type="submit" size="icon" className="h-11 w-11 rounded-xl shrink-0" disabled={!input.trim() || isLoading}>
                 <Send size={16} />
               </Button>
             </form>
             <p className="text-[11px] text-muted-foreground/60 text-center mt-2">
-              RelocateAI provides guidance, not legal advice. Always consult a licensed professional.
+              Relova provides guidance, not legal advice. Always consult a licensed professional.
             </p>
           </div>
         </div>
