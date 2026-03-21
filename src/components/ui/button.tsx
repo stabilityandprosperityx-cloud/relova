@@ -9,14 +9,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 active:scale-[0.97] transition-all",
+        default: "bg-primary text-primary-foreground hover:bg-primary/85 active:scale-[0.97] transition-all font-medium",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:scale-[0.97] transition-all",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground active:scale-[0.97] transition-all",
+        outline: "border border-border bg-transparent hover:bg-muted active:scale-[0.97] transition-all",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 active:scale-[0.97] transition-all",
-        ghost: "hover:bg-accent hover:text-accent-foreground active:scale-[0.97] transition-all",
+        ghost: "hover:bg-muted active:scale-[0.97] transition-all",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-accent text-accent-foreground hover:bg-accent/90 active:scale-[0.97] transition-all shadow-lg shadow-accent/20 font-semibold",
-        "hero-outline": "border border-muted-foreground/30 text-foreground hover:bg-secondary active:scale-[0.97] transition-all",
+        hero: "bg-primary text-primary-foreground hover:bg-primary/85 active:scale-[0.97] transition-all font-semibold shadow-lg shadow-primary/15",
+        "hero-outline": "border border-border text-foreground hover:bg-muted active:scale-[0.97] transition-all font-medium",
       },
       size: {
         default: "h-10 px-4 py-2",

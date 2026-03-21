@@ -5,26 +5,26 @@ import { motion } from "framer-motion";
 
 export default function CTASection() {
   return (
-    <section className="py-32 md:py-40 border-t border-border">
+    <section className="py-36 md:py-44 border-t border-border/40">
       <div className="container">
         <motion.div
-          className="max-w-lg"
+          className="max-w-[520px]"
           initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 leading-[1.1]">
+          <h2 className="text-[2rem] md:text-[2.75rem] font-bold tracking-tight mb-5 leading-[1.05]">
             Your new country
             <br />
             is waiting.
           </h2>
-          <p className="text-muted-foreground text-[15px] mb-8">
+          <p className="text-muted-foreground text-[15px] mb-10 leading-relaxed">
             Get a personalized relocation plan in minutes. Free to start.
           </p>
           <Link to="/chat">
-            <Button size="lg" className="gap-2 text-[14px] h-11 px-6 rounded-lg">
-              Start your relocation plan <ArrowRight size={15} />
+            <Button variant="hero" size="lg" className="gap-2.5 text-[14px] h-12 px-7 rounded-[10px]">
+              Start your relocation plan <ArrowRight size={15} strokeWidth={2.5} />
             </Button>
           </Link>
         </motion.div>
