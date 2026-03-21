@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Lock, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { openPayment } from "@/config/payments";
 
 export default function PaywallOverlay() {
   return (
@@ -21,16 +21,12 @@ export default function PaywallOverlay() {
         Unlock personalized answers, step-by-step guidance, and your full relocation roadmap.
       </p>
       <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs">
-        <Link to="/pricing" className="flex-1">
-          <Button variant="hero" className="w-full gap-1.5 text-[13px]">
-            Upgrade to Pro — $19 <ArrowRight size={13} />
-          </Button>
-        </Link>
-        <Link to="/pricing" className="flex-1">
-          <Button variant="outline" className="w-full text-[13px]">
-            Full Plan — $49
-          </Button>
-        </Link>
+        <Button variant="hero" className="w-full gap-1.5 text-[13px] flex-1" onClick={() => openPayment("pro")}>
+          Upgrade to Pro — $19 <ArrowRight size={13} />
+        </Button>
+        <Button variant="outline" className="w-full text-[13px] flex-1" onClick={() => openPayment("full")}>
+          Full Plan — $49
+        </Button>
       </div>
     </motion.div>
   );

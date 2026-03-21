@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Check, ArrowRight, Sparkles } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
+import { openPayment } from "@/config/payments";
 
 const plans = [
   {
@@ -114,15 +115,22 @@ export default function PricingSection() {
                 ))}
               </ul>
 
-              <Link to="/chat">
+              {plan.name === "Free" ? (
+                <Link to="/chat">
+                  <Button variant={plan.variant} className="w-full h-10 text-[13px] rounded-lg gap-1.5">
+                    {plan.cta}
+                  </Button>
+                </Link>
+              ) : (
                 <Button
                   variant={plan.variant}
                   className="w-full h-10 text-[13px] rounded-lg gap-1.5"
+                  onClick={() => openPayment(plan.name === "Pro" ? "pro" : "full")}
                 >
                   {plan.cta}
                   {plan.highlighted && <ArrowRight size={13} />}
                 </Button>
-              </Link>
+              )}
             </motion.div>
           ))}
         </div>
