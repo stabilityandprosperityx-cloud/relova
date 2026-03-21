@@ -58,10 +58,10 @@ export default function RelovaLogo({ size = 28, pulse = true, glow = false, clas
           fill="currentColor"
           filter={glow ? "url(#dot-glow)" : undefined}
           animate={{
-            r: [dotR, dotR * 1.35, dotR],
-            opacity: [0.85, 1, 0.85],
+            r: [dotR, dotR * 1.4, dotR],
+            opacity: [0.8, 1, 0.8],
           }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />
       ) : (
         <circle cx={cx} cy={cy} r={dotR} fill="currentColor" />
