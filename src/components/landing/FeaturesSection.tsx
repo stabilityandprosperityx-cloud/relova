@@ -54,7 +54,7 @@ export default function FeaturesSection() {
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}
-              className="relative p-7 rounded-xl border border-border/50 bg-card/50 hover:bg-card/80 transition-colors duration-300"
+              className="relative p-7 rounded-xl border border-border/40 bg-card/50 hover:bg-card/80 shadow-[0_2px_20px_-6px_hsl(0_0%_0%/0.25)] transition-all duration-300"
               initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
               viewport={{ once: true, amount: 0.2 }}
