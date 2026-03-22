@@ -31,7 +31,7 @@ export default function AuthModal({
   const handleGoogle = async () => {
     setLoading(true);
     const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
+      redirect_uri: window.location.origin + "/dashboard",
     });
     if (result.error) {
       toast.error("Google sign in failed");
