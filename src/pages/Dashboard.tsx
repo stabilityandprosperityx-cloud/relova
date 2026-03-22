@@ -79,6 +79,7 @@ export default function Dashboard() {
         activeTab={tab}
         onTabChange={setTab}
         userEmail={user.email || ""}
+        userPlan={profile?.plan || "free"}
       />
 
       {/* Main content */}
