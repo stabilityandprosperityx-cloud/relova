@@ -100,7 +100,7 @@ export default function Dashboard() {
               {tab === "plan" && <DashboardPlan profile={profile} />}
               {tab === "checklist" && <DashboardChecklist profile={profile} />}
               {tab === "chat" && <DashboardChat profile={profile} />}
-              {tab === "documents" && <DashboardDocuments />}
+              {tab === "documents" && <DashboardDocuments userPlan={profile?.plan || "free"} />}
             </>
           )}
         </div>
