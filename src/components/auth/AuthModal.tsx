@@ -65,6 +65,7 @@ export default function AuthModal({
       toast.error(error.message);
     } else {
       onOpenChange(false);
+      navigate("/dashboard", { replace: true });
     }
   };
 
