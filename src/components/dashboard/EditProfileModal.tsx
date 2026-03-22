@@ -118,19 +118,23 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
           <div>
             <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Citizenship</label>
             <input
-              placeholder="Search..."
-              value={search1 || citizenship}
+              placeholder="Search countries..."
+              value={focus1 ? search1 : (citizenship || search1)}
+              onFocus={() => { setFocus1(true); setSearch1(citizenship || ""); }}
+              onBlur={() => setTimeout(() => setFocus1(false), 150)}
               onChange={(e) => { setSearch1(e.target.value); setCitizenship(""); }}
               className="w-full bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] placeholder:text-[#9CA3AF]/40 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/50"
             />
-            {search1 && !citizenship && (
+            {focus1 && search1 && (
               <div className="max-h-32 overflow-y-auto mt-1 rounded-lg border border-white/[0.06] bg-[#111]">
-                {filtered1.slice(0, 8).map(c => (
-                  <button key={c} onClick={() => { setCitizenship(c); setSearch1(""); }}
+                {filtered1.length > 0 ? filtered1.slice(0, 8).map(c => (
+                  <button key={c} onClick={() => { setCitizenship(c); setSearch1(""); setFocus1(false); }}
                     className="w-full text-left px-3 py-1.5 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground">
                     {c}
                   </button>
-                ))}
+                )) : (
+                  <div className="px-3 py-2 text-[12px] text-[#9CA3AF]/50">No countries found</div>
+                )}
               </div>
             )}
           </div>
