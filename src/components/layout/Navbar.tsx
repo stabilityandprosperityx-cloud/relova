@@ -52,15 +52,20 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-5">
             {user ? (
               <>
-                <span className="text-[13px] text-muted-foreground truncate max-w-[140px]">
-                  {user.email}
-                </span>
                 <button
                   onClick={signOut}
                   className="text-[13px] text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
                 >
                   <LogOut size={13} /> Log out
                 </button>
+                <Link to="/dashboard">
+                  <Button
+                    size="sm"
+                    className="h-8 text-[13px] px-5 rounded-lg font-medium bg-[hsl(199,89%,61%)] hover:bg-[hsl(199,89%,51%)] text-white"
+                  >
+                    Dashboard →
+                  </Button>
+                </Link>
               </>
             ) : (
               <>
