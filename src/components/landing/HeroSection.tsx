@@ -219,8 +219,8 @@ export default function HeroSection() {
           <div className="max-w-[540px]">
             <motion.h1
               className="text-[3rem] sm:text-[4rem] md:text-[4.5rem] font-extrabold leading-[0.92] tracking-[-0.04em] mb-7"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
               <span className="text-gradient-hero">Know where to move.</span>
