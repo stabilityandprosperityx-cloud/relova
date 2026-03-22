@@ -38,14 +38,14 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="pt-0 pb-28 md:pb-36">
+    <section className="pt-0 pb-[60px] md:pb-[80px]">
       <div className="container">
         <motion.p
           className="text-[11px] text-muted-foreground/60 mb-12 uppercase tracking-[0.15em] font-medium"
-          initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           Features
         </motion.p>
@@ -55,10 +55,10 @@ export default function FeaturesSection() {
             <motion.div
               key={feature.title}
               className="relative p-7 rounded-xl border border-border/40 bg-card/50 hover:bg-card/80 shadow-[0_2px_20px_-6px_hsl(0_0%_0%/0.25)] transition-all duration-300"
-              initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.4, delay: i * 0.06, ease: "easeOut" }}
             >
               {feature.comingSoon && (
                 <span className="absolute top-5 right-5 text-[10px] text-muted-foreground/50 font-medium uppercase tracking-[0.1em]">Coming soon</span>
