@@ -219,8 +219,8 @@ export default function HeroSection() {
           <div className="max-w-[540px]">
             <motion.h1
               className="text-[3rem] sm:text-[4rem] md:text-[4.5rem] font-extrabold leading-[0.92] tracking-[-0.04em] mb-7"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
               <span className="text-gradient-hero">Know where to move.</span>
@@ -230,8 +230,8 @@ export default function HeroSection() {
 
             <motion.p
               className="text-[16px] md:text-[18px] text-muted-foreground leading-[1.65] max-w-[460px] mb-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
             >
               Get a clear country decision and a step-by-step relocation plan — tailored to your life.
@@ -239,8 +239,8 @@ export default function HeroSection() {
 
             <motion.div
               className="flex flex-wrap items-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
             >
               <Link to="/chat">
@@ -259,8 +259,8 @@ export default function HeroSection() {
           {/* Right — Product preview */}
           <motion.div
             className="md:mt-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
           >
             <ProductPreview />

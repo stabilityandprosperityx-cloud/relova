@@ -13,8 +13,8 @@ export default function ProblemSection() {
       <div className="container">
         <motion.h2
           className="text-[1.75rem] md:text-[2.25rem] font-bold tracking-tight mb-16 leading-[1.1]"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
@@ -26,8 +26,8 @@ export default function ProblemSection() {
             <motion.div
               key={point.title}
               className="space-y-2.5"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: i * 0.07, ease: "easeOut" }}
             >

@@ -24,8 +24,8 @@ export default function TestimonialsSection() {
       <div className="container">
         <motion.p
           className="text-[11px] text-muted-foreground/60 mb-14 uppercase tracking-[0.15em] font-medium"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
@@ -36,8 +36,8 @@ export default function TestimonialsSection() {
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
             >

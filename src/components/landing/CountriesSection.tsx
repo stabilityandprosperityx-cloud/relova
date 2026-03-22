@@ -23,8 +23,8 @@ export default function CountriesSection() {
       <div className="container">
         <motion.div
           className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
@@ -39,8 +39,8 @@ export default function CountriesSection() {
 
         <motion.div
           className="flex flex-wrap gap-2"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
         >

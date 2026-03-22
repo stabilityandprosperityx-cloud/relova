@@ -60,11 +60,11 @@ const plans = [
 export default function PricingSection() {
   return (
     <section id="pricing" className="py-[60px] md:py-[80px] border-t border-border/40">
-      <div className="container">
+      <div className="container max-w-[1200px] mx-auto">
         <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="mb-16 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
@@ -74,7 +74,7 @@ export default function PricingSection() {
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">
             Choose your level of clarity
           </h2>
-          <p className="text-muted-foreground text-sm max-w-md">
+          <p className="text-muted-foreground text-sm max-w-md mx-auto">
             Start free. Upgrade when you're ready to move with confidence.
           </p>
         </motion.div>
@@ -88,8 +88,8 @@ export default function PricingSection() {
                   ? "border-primary/30 bg-primary/[0.03] shadow-[0_0_40px_-12px_hsl(var(--primary)/0.15)]"
                   : "border-border/50 bg-card/50"
               }`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: i * 0.07, ease: "easeOut" }}
             >
