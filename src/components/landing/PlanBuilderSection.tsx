@@ -64,7 +64,7 @@ export default function PlanBuilderSection() {
             Plan builder
           </p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Get your relocation plan
+            Get your personalized relocation plan
           </h2>
         </motion.div>
 
