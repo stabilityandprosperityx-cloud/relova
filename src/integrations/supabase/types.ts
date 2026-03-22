@@ -14,7 +14,173 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      chat_messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      relocation_steps: {
+        Row: {
+          description: string | null
+          estimated_days: number
+          id: string
+          step_number: number
+          title: string
+          visa_type: string
+        }
+        Insert: {
+          description?: string | null
+          estimated_days?: number
+          id?: string
+          step_number: number
+          title: string
+          visa_type: string
+        }
+        Update: {
+          description?: string | null
+          estimated_days?: number
+          id?: string
+          step_number?: number
+          title?: string
+          visa_type?: string
+        }
+        Relationships: []
+      }
+      user_documents: {
+        Row: {
+          document_name: string
+          file_url: string | null
+          id: string
+          status: string
+          uploaded_at: string
+          user_id: string
+        }
+        Insert: {
+          document_name: string
+          file_url?: string | null
+          id?: string
+          status?: string
+          uploaded_at?: string
+          user_id: string
+        }
+        Update: {
+          document_name?: string
+          file_url?: string | null
+          id?: string
+          status?: string
+          uploaded_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_profiles: {
+        Row: {
+          citizenship: string | null
+          created_at: string
+          goal: string | null
+          id: string
+          monthly_budget: number | null
+          target_country: string | null
+          user_id: string
+          visa_type: string | null
+        }
+        Insert: {
+          citizenship?: string | null
+          created_at?: string
+          goal?: string | null
+          id?: string
+          monthly_budget?: number | null
+          target_country?: string | null
+          user_id: string
+          visa_type?: string | null
+        }
+        Update: {
+          citizenship?: string | null
+          created_at?: string
+          goal?: string | null
+          id?: string
+          monthly_budget?: number | null
+          target_country?: string | null
+          user_id?: string
+          visa_type?: string | null
+        }
+        Relationships: []
+      }
+      user_steps: {
+        Row: {
+          completed_at: string | null
+          id: string
+          status: string
+          step_id: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          id?: string
+          status?: string
+          step_id: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          id?: string
+          status?: string
+          step_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_steps_step_id_fkey"
+            columns: ["step_id"]
+            isOneToOne: false
+            referencedRelation: "relocation_steps"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      visa_documents: {
+        Row: {
+          description: string | null
+          document_name: string
+          id: string
+          is_required: boolean
+          visa_type: string
+        }
+        Insert: {
+          description?: string | null
+          document_name: string
+          id?: string
+          is_required?: boolean
+          visa_type: string
+        }
+        Update: {
+          description?: string | null
+          document_name?: string
+          id?: string
+          is_required?: boolean
+          visa_type?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
