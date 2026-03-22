@@ -237,6 +237,8 @@ export default function HeroSection() {
               Get a clear country decision and a step-by-step relocation plan — tailored to your life.
             </motion.p>
 
+            <TrustCounter />
+
             <motion.div
               className="flex flex-wrap items-center gap-4"
               initial={{ opacity: 0 }}
