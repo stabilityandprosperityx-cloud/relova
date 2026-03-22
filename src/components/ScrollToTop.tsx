@@ -8,5 +8,13 @@ export default function ScrollToTop() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+  // Also scroll to top on initial mount (page refresh)
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
   return null;
 }
