@@ -185,7 +185,7 @@ export default function PlanBuilderSection() {
           </div>
 
           {/* Or ask anything */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-start">
             <div className="rounded-xl border border-border/50 bg-card p-7 md:p-10 shadow-[0_2px_24px_-8px_hsl(0_0%_0%/0.2)]">
               <p className="text-[12px] text-muted-foreground uppercase tracking-wider font-medium mb-5">
                 Or ask anything

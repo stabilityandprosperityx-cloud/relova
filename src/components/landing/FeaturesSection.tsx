@@ -26,13 +26,11 @@ const features = [
     icon: Briefcase,
     title: "Jobs & Opportunities",
     description: "Explore work opportunities in your destination country.",
-    comingSoon: true,
   },
   {
     icon: Home,
     title: "Housing & Community",
     description: "Find housing options and connect with local communities.",
-    comingSoon: true,
   },
 ];
 
