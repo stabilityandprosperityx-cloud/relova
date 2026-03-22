@@ -21,8 +21,8 @@ export default function LegalPathwaysSection() {
       <div className="container">
         <motion.div
           className="mb-16 max-w-[560px]"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
@@ -40,8 +40,8 @@ export default function LegalPathwaysSection() {
             <motion.div
               key={p.country}
               className="p-7 rounded-xl border border-border/40 bg-card/50 shadow-[0_2px_20px_-6px_hsl(0_0%_0%/0.25)]"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
             >
