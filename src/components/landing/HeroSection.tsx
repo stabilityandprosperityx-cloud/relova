@@ -230,8 +230,8 @@ export default function HeroSection() {
 
             <motion.p
               className="text-[16px] md:text-[18px] text-muted-foreground leading-[1.65] max-w-[460px] mb-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
             >
               Get a clear country decision and a step-by-step relocation plan — tailored to your life.
