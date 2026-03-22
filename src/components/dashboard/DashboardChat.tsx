@@ -7,10 +7,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
-import type { UserProfile } from "@/pages/Dashboard";
+import { useNavigate } from "react-router-dom";
+import type { UserProfile, UserPlan } from "@/pages/Dashboard";
 
 type Message = { role: "user" | "assistant"; content: string };
 
+const FREE_LIMIT = 3;
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
 async function streamChat({ messages, tier, systemContext, onDelta, onDone }: {
@@ -63,11 +65,18 @@ interface Props {
 
 export default function DashboardChat({ profile }: Props) {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [historyLoading, setHistoryLoading] = useState(true);
+  const [questionsUsed, setQuestionsUsed] = useState(profile?.questions_used || 0);
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  const plan: UserPlan = profile?.plan || "free";
+  const isFree = plan === "free";
+  const limitReached = isFree && questionsUsed >= FREE_LIMIT;
+  const remaining = FREE_LIMIT - questionsUsed;
 
   // Load chat history
   useEffect(() => {
@@ -115,7 +124,7 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
   };
 
   const send = async (text: string) => {
-    if (!text.trim() || isLoading || !user) return;
+    if (!text.trim() || isLoading || !user || limitReached) return;
     const userMsg: Message = { role: "user", content: text.trim() };
     const newMessages = [...messages, userMsg];
     setMessages(newMessages);
@@ -138,13 +147,21 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
     try {
       await streamChat({
         messages: newMessages,
-        tier: "pro",
+        tier: plan,
         systemContext: buildSystemContext(),
         onDelta: upsertAssistant,
         onDone: async () => {
           setIsLoading(false);
           if (assistantSoFar) {
             await saveMessage({ role: "assistant", content: assistantSoFar });
+          }
+          if (isFree) {
+            const newCount = questionsUsed + 1;
+            setQuestionsUsed(newCount);
+            await supabase
+              .from("user_profiles")
+              .update({ questions_used: newCount })
+              .eq("user_id", user.id);
           }
         },
       });
@@ -201,23 +218,63 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
         <div ref={bottomRef} />
       </div>
 
-      <div className="pt-4 border-t border-white/[0.06] mt-4">
-        <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="flex items-center gap-2">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about your relocation..."
-            className="flex-1 bg-white/[0.04] border border-white/[0.06] rounded-xl px-4 py-3 text-[13px] placeholder:text-[#9CA3AF]/40 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/50"
-            disabled={isLoading}
-          />
-          <Button type="submit" size="icon" className="h-11 w-11 rounded-xl shrink-0 bg-[#38BDF8] hover:bg-[#38BDF8]/80" disabled={!input.trim() || isLoading}>
-            <Send size={14} />
-          </Button>
-        </form>
-        <p className="text-[10px] text-[#9CA3AF]/40 text-center mt-2">
-          Relova provides guidance, not legal advice.
-        </p>
-      </div>
+      {/* Upgrade banner / limit reached */}
+      {limitReached ? (
+        <div className="pt-4 border-t border-white/[0.06] mt-4 text-center space-y-3 py-6">
+          <p className="text-[13px] text-[#9CA3AF]">
+            You've used all {FREE_LIMIT} free questions. Upgrade to Pro for unlimited answers.
+          </p>
+          <div className="flex gap-3 justify-center">
+            <Button
+              size="sm"
+              className="text-[12px] bg-[#38BDF8] hover:bg-[#38BDF8]/80"
+              onClick={() => navigate("/pricing")}
+            >
+              Start with Pro $19 →
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              className="text-[12px] border-white/[0.08] bg-transparent hover:bg-white/[0.04]"
+              onClick={() => navigate("/pricing")}
+            >
+              Get Full Plan $49 →
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <div className="pt-4 border-t border-white/[0.06] mt-4">
+          <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="flex items-center gap-2">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask about your relocation..."
+              className="flex-1 bg-white/[0.04] border border-white/[0.06] rounded-xl px-4 py-3 text-[13px] placeholder:text-[#9CA3AF]/40 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/50"
+              disabled={isLoading}
+            />
+            <Button type="submit" size="icon" className="h-11 w-11 rounded-xl shrink-0 bg-[#38BDF8] hover:bg-[#38BDF8]/80" disabled={!input.trim() || isLoading}>
+              <Send size={14} />
+            </Button>
+          </form>
+          {isFree && remaining > 0 && (
+            <p className="text-[11px] text-[#9CA3AF]/60 text-center mt-2">
+              {remaining} free question{remaining !== 1 ? "s" : ""} remaining
+              {remaining <= 2 && (
+                <span className="text-[#38BDF8]/60">
+                  {remaining === 2
+                    ? " · Pro users get unlimited personalized answers"
+                    : " · Upgrade to keep your relocation plan going"}
+                </span>
+              )}
+            </p>
+          )}
+          {!isFree && (
+            <p className="text-[10px] text-[#9CA3AF]/40 text-center mt-2">
+              Relova provides guidance, not legal advice.
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 }

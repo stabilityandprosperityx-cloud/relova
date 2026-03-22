@@ -13,6 +13,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export type DashboardTab = "overview" | "plan" | "checklist" | "chat" | "documents";
 
+export type UserPlan = "free" | "pro" | "full";
+
 export interface UserProfile {
   user_id: string;
   citizenship: string | null;
@@ -20,6 +22,9 @@ export interface UserProfile {
   visa_type: string | null;
   goal: string | null;
   monthly_budget: number | null;
+  plan: UserPlan;
+  questions_used: number;
+  plan_expires_at: string | null;
 }
 
 export default function Dashboard() {
@@ -74,6 +79,7 @@ export default function Dashboard() {
         activeTab={tab}
         onTabChange={setTab}
         userEmail={user.email || ""}
+        userPlan={profile?.plan || "free"}
       />
 
       {/* Main content */}
@@ -94,7 +100,7 @@ export default function Dashboard() {
               {tab === "plan" && <DashboardPlan profile={profile} />}
               {tab === "checklist" && <DashboardChecklist profile={profile} />}
               {tab === "chat" && <DashboardChat profile={profile} />}
-              {tab === "documents" && <DashboardDocuments />}
+              {tab === "documents" && <DashboardDocuments userPlan={profile?.plan || "free"} />}
             </>
           )}
         </div>

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, Circle, CircleDot, Download, Link2 } from "lucide-react";
 import { toast } from "sonner";
 import type { UserProfile } from "@/pages/Dashboard";
+import LockedOverlay from "./LockedOverlay";
 
 interface StepWithStatus {
   id: string;
@@ -25,6 +26,7 @@ export default function DashboardPlan({ profile }: Props) {
   const { user } = useAuth();
   const [steps, setSteps] = useState<StepWithStatus[]>([]);
   const [loading, setLoading] = useState(true);
+  const isLocked = (profile?.plan || "free") !== "full";
 
   const fetchSteps = async () => {
     if (!user || !profile?.visa_type) { setLoading(false); return; }
@@ -51,11 +53,9 @@ export default function DashboardPlan({ profile }: Props) {
   useEffect(() => { fetchSteps(); }, [user, profile]);
 
   const cycleStatus = async (step: StepWithStatus) => {
-    if (!user) return;
+    if (!user || isLocked) return;
     const nextStatus = step.status === "todo" ? "active" : step.status === "active" ? "done" : "todo";
     const completedAt = nextStatus === "done" ? new Date().toISOString() : null;
-
-    // Optimistic update
     setSteps(prev => prev.map(s => s.id === step.id ? { ...s, status: nextStatus as any } : s));
 
     if (step.user_step_id) {
@@ -92,45 +92,48 @@ export default function DashboardPlan({ profile }: Props) {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between flex-wrap gap-3">
-        <h1 className="text-2xl font-bold tracking-tight">My Plan</h1>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={exportPdf} className="gap-2 text-[12px] border-white/[0.08] bg-transparent hover:bg-white/[0.04]">
-            <Download size={14} /> Export
-          </Button>
-          <Button variant="outline" size="sm" onClick={shareLink} className="gap-2 text-[12px] border-white/[0.08] bg-transparent hover:bg-white/[0.04]">
-            <Link2 size={14} /> Share
-          </Button>
-        </div>
-      </div>
-
-      <div className="space-y-1">
-        {steps.map((step) => (
-          <div
-            key={step.id}
-            className="flex items-start gap-4 rounded-xl border border-white/[0.06] bg-white/[0.03] p-4 hover:bg-white/[0.05] transition-colors"
-          >
-            <button onClick={() => cycleStatus(step)} className="mt-0.5 shrink-0 active:scale-[0.9] transition-transform">
-              {step.status === "done" ? (
-                <CheckCircle2 size={20} className="text-[#38BDF8]" />
-              ) : step.status === "active" ? (
-                <CircleDot size={20} className="text-[#38BDF8]" />
-              ) : (
-                <Circle size={20} className="text-[#9CA3AF]/30" />
-              )}
-            </button>
-            <div className="flex-1 min-w-0">
-              <div className={`text-[13px] font-medium ${step.status === "done" ? "line-through text-[#9CA3AF]" : ""}`}>
-                {step.step_number}. {step.title}
-              </div>
-              {step.description && (
-                <div className="text-[11px] text-[#9CA3AF] mt-0.5">{step.description}</div>
-              )}
-            </div>
-            <span className="text-[11px] text-[#9CA3AF]/60 shrink-0 tabular-nums">{step.estimated_days}d</span>
+    <div className="space-y-6 relative">
+      {isLocked && <LockedOverlay planRequired="full" />}
+      <div className={isLocked ? "pointer-events-none" : ""}>
+        <div className="flex items-center justify-between flex-wrap gap-3">
+          <h1 className="text-2xl font-bold tracking-tight">My Plan</h1>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" onClick={exportPdf} className="gap-2 text-[12px] border-white/[0.08] bg-transparent hover:bg-white/[0.04]">
+              <Download size={14} /> Export
+            </Button>
+            <Button variant="outline" size="sm" onClick={shareLink} className="gap-2 text-[12px] border-white/[0.08] bg-transparent hover:bg-white/[0.04]">
+              <Link2 size={14} /> Share
+            </Button>
           </div>
-        ))}
+        </div>
+
+        <div className="space-y-1 mt-6">
+          {steps.map((step) => (
+            <div
+              key={step.id}
+              className="flex items-start gap-4 rounded-xl border border-white/[0.06] bg-white/[0.03] p-4 hover:bg-white/[0.05] transition-colors"
+            >
+              <button onClick={() => cycleStatus(step)} className="mt-0.5 shrink-0 active:scale-[0.9] transition-transform">
+                {step.status === "done" ? (
+                  <CheckCircle2 size={20} className="text-[#38BDF8]" />
+                ) : step.status === "active" ? (
+                  <CircleDot size={20} className="text-[#38BDF8]" />
+                ) : (
+                  <Circle size={20} className="text-[#9CA3AF]/30" />
+                )}
+              </button>
+              <div className="flex-1 min-w-0">
+                <div className={`text-[13px] font-medium ${step.status === "done" ? "line-through text-[#9CA3AF]" : ""}`}>
+                  {step.step_number}. {step.title}
+                </div>
+                {step.description && (
+                  <div className="text-[11px] text-[#9CA3AF] mt-0.5">{step.description}</div>
+                )}
+              </div>
+              <span className="text-[11px] text-[#9CA3AF]/60 shrink-0 tabular-nums">{step.estimated_days}d</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
