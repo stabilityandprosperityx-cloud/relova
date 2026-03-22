@@ -118,7 +118,9 @@ async function streamChat({
 
 export default function Chat() {
   const { user } = useAuth();
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([
+    { role: "assistant", content: "👋 Where are you currently based, and where are you thinking of moving? Tell me your situation and I'll find your best path." }
+  ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [questionsUsed, setQuestionsUsed] = useState(getQuestionsUsed);
