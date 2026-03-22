@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,6 +22,7 @@ export default function AuthModal({
   title = "Continue your relocation plan",
   subtitle = "Create an account to keep going and get personalized answers",
 }: AuthModalProps) {
+  const navigate = useNavigate();
   const [mode, setMode] = useState<"choice" | "email-signup" | "email-login">("choice");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +31,7 @@ export default function AuthModal({
   const handleGoogle = async () => {
     setLoading(true);
     const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
+      redirect_uri: window.location.origin + "/dashboard",
     });
     if (result.error) {
       toast.error("Google sign in failed");
@@ -63,6 +65,7 @@ export default function AuthModal({
       toast.error(error.message);
     } else {
       onOpenChange(false);
+      navigate("/dashboard", { replace: true });
     }
   };
 
