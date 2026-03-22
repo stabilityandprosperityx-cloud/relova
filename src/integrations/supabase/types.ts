@@ -99,6 +99,9 @@ export type Database = {
           goal: string | null
           id: string
           monthly_budget: number | null
+          plan: string
+          plan_expires_at: string | null
+          questions_used: number
           target_country: string | null
           user_id: string
           visa_type: string | null
@@ -109,6 +112,9 @@ export type Database = {
           goal?: string | null
           id?: string
           monthly_budget?: number | null
+          plan?: string
+          plan_expires_at?: string | null
+          questions_used?: number
           target_country?: string | null
           user_id: string
           visa_type?: string | null
@@ -119,6 +125,9 @@ export type Database = {
           goal?: string | null
           id?: string
           monthly_budget?: number | null
+          plan?: string
+          plan_expires_at?: string | null
+          questions_used?: number
           target_country?: string | null
           user_id?: string
           visa_type?: string | null
