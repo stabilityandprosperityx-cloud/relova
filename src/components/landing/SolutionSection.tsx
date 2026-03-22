@@ -13,10 +13,10 @@ export default function SolutionSection() {
         >
           <p className="text-[11px] text-muted-foreground/60 mb-5 uppercase tracking-[0.15em] font-medium">The solution</p>
           <h2 className="text-[1.75rem] md:text-[2.25rem] font-bold tracking-tight mb-5 leading-[1.1]">
-            One system for your relocation journey
+            From decision to relocation — in one system
           </h2>
           <p className="text-[15px] text-muted-foreground leading-[1.7]">
-            Relova brings planning, legal clarity, and country-specific guidance into one product — so you can move with confidence, not confusion.
+            Relova helps you choose the right country and gives you a clear, step-by-step path to move — without confusion or guesswork.
           </p>
         </motion.div>
       </div>

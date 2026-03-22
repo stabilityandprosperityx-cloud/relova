@@ -64,7 +64,7 @@ export default function PlanBuilderSection() {
             Plan builder
           </p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-            Get your relocation plan
+            Get your personalized relocation plan
           </h2>
         </motion.div>
 
@@ -151,7 +151,7 @@ export default function PlanBuilderSection() {
 
             <Link to="/chat">
               <Button variant="hero" size="lg" className="w-full gap-2.5 text-[14px] h-12 rounded-[10px] mt-2">
-                Get my plan <ArrowRight size={15} strokeWidth={2.5} />
+                Build my plan <ArrowRight size={15} strokeWidth={2.5} />
               </Button>
             </Link>
           </div>

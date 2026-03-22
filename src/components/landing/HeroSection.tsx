@@ -37,9 +37,9 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="text-gradient-hero">Move smarter.</span>
+            <span className="text-gradient-hero">Know where to move.</span>
             <br />
-            <span className="text-gradient-hero">Settle faster.</span>
+            <span className="text-gradient-hero">Know how to do it.</span>
           </motion.h1>
 
           <motion.p
@@ -48,7 +48,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
             transition={{ duration: 0.7, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
           >
-            Relova helps people move abroad with more clarity — from choosing a country to understanding documents, legal pathways, and next steps.
+            Get a clear country decision and a step-by-step relocation plan — tailored to your life.
           </motion.p>
 
           <motion.div
@@ -59,12 +59,12 @@ export default function HeroSection() {
           >
             <Link to="/chat">
               <Button variant="hero" size="lg" className="gap-2.5 text-[14px] h-12 px-7 rounded-[10px]">
-                Get early access <ArrowRight size={15} strokeWidth={2.5} />
+                Get my plan <ArrowRight size={15} strokeWidth={2.5} />
               </Button>
             </Link>
             <Link to="/chat">
               <Button variant="hero-outline" size="lg" className="text-[14px] h-12 px-7 rounded-[10px]">
-                Try the demo
+                Explore countries
               </Button>
             </Link>
           </motion.div>
@@ -83,21 +83,22 @@ export default function HeroSection() {
               <p className="text-[11px] text-muted-foreground/60 mb-5 font-medium uppercase tracking-[0.15em]">Relova AI</p>
               <div className="space-y-5">
                 <div className="bg-muted/50 dark:bg-muted/30 rounded-xl px-5 py-3.5 max-w-[85%]">
-                  <p className="text-[13px] text-muted-foreground">How can I move to Portugal as a freelancer?</p>
+                  <p className="text-[13px] text-muted-foreground">Where should I move based on my income and goals?</p>
                 </div>
                 <div className="bg-primary/8 dark:bg-primary/10 rounded-xl px-5 py-3.5">
                   <p className="text-[13px] text-foreground/85 leading-[1.7]">
-                    Portugal offers the <span className="text-primary font-medium">D7 Passive Income Visa</span> or the <span className="text-primary font-medium">Digital Nomad Visa</span>. Based on your profile, here's a structured path forward.
+                    Based on your profile, <span className="text-primary font-medium">Portugal</span> is a strong option. You qualify for the <span className="text-primary font-medium">D7 or Digital Nomad visa</span>. Here's the most efficient path forward.
                   </p>
+                  <p className="text-[12px] text-muted-foreground/60 mt-2 font-mono">Estimated timeline: 3–5 months</p>
                 </div>
               </div>
             </div>
 
             {/* Plan side */}
             <div className="md:col-span-2 p-7 md:p-10">
-              <p className="text-[11px] text-muted-foreground/60 mb-5 font-medium uppercase tracking-[0.15em]">Your path</p>
+              <p className="text-[11px] text-muted-foreground/60 mb-5 font-medium uppercase tracking-[0.15em]">Your personalized relocation plan</p>
               <div className="space-y-3.5">
-                {["Choose visa type", "Gather key documents", "Apply for NIF number", "Open bank account", "Submit application"].map((step, i) => (
+                {["Select the right visa for your situation", "Prepare required documents (with exact checklist)", "Get your tax number (NIF)", "Open a bank account", "Submit your application"].map((step, i) => (
                   <div key={step} className="flex items-start gap-3.5">
                     <div className={`mt-0.5 h-5 w-5 rounded-full flex items-center justify-center text-[10px] font-semibold shrink-0 ${i < 2 ? "bg-primary/20 text-primary" : "bg-muted text-muted-foreground/60"}`}>
                       {i < 2 ? "✓" : i + 1}
