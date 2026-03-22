@@ -85,6 +85,44 @@ function useTypingLoop() {
   return { phase, currentText, visibleSteps };
 }
 
+function TrustCounter() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const [count, setCount] = useState(0);
+  const target = 1200;
+
+  useEffect(() => {
+    if (!isInView) return;
+    const duration = 2000;
+    const start = performance.now();
+    let raf: number;
+    const step = (now: number) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [isInView]);
+
+  return (
+    <motion.div
+      ref={ref}
+      className="flex items-center gap-2 mb-8"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
+    >
+      <span className="text-[14px] tracking-wide" style={{ color: "#38BDF8" }}>★★★★★</span>
+      <span className="text-[14px]" style={{ color: "#9CA3AF" }}>
+        Trusted by <span className="font-semibold text-foreground tabular-nums">{count}+</span> people planning their move
+      </span>
+    </motion.div>
+  );
+}
+
 function ProductPreview() {
   const { phase, currentText, visibleSteps } = useTypingLoop();
   const showAI = phase !== "user";
