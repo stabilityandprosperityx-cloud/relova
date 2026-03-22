@@ -49,6 +49,9 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       visa_type: visaType,
       goal,
       monthly_budget: budget,
+      plan: "free",
+      questions_used: 0,
+      plan_expires_at: null,
     };
 
     // 1. Save profile
