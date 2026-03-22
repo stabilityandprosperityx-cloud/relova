@@ -23,7 +23,7 @@ interface StepWithStatus {
   status: "todo" | "active" | "done";
 }
 
-export default function DashboardOverview({ profile, onNavigate }: Props) {
+export default function DashboardOverview({ profile, onNavigate, onEditProfile }: Props) {
   const { user } = useAuth();
   const [steps, setSteps] = useState<StepWithStatus[]>([]);
   const [lastAiMessage, setLastAiMessage] = useState<string | null>(null);
