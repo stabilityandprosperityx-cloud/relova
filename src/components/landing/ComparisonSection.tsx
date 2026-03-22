@@ -5,22 +5,22 @@ const rows = [
   {
     label: "Information",
     others: "Scattered blogs, outdated info",
-    relova: "Structured, AI-powered guidance",
+    relova: "Clear, personalized relocation path",
   },
   {
     label: "Legal clarity",
     others: "Unclear steps",
-    relova: "Clear step-by-step pathways",
+    relova: "Exact steps based on your situation",
   },
   {
     label: "Countries",
     others: "Limited / fragmented",
-    relova: "Global coverage (any country)",
+    relova: "Any country, not just a few options",
   },
   {
     label: "Personalization",
     others: "Generic",
-    relova: "Personalized answers",
+    relova: "Tailored to your life, not generic advice",
   },
 ];
 

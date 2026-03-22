@@ -29,19 +29,19 @@ export default function DemoSection() {
           <div className="p-6 space-y-5">
             {/* User message */}
             <div className="bg-muted/50 dark:bg-muted/30 rounded-xl px-5 py-3.5 max-w-[80%]">
-              <p className="text-[13px] text-muted-foreground">How can I move to Portugal?</p>
+              <p className="text-[13px] text-muted-foreground">Where should I move based on my income and goals?</p>
             </div>
 
             {/* AI response */}
             <div className="bg-primary/5 dark:bg-primary/8 rounded-xl px-5 py-4">
               <p className="text-[13px] text-foreground/85 leading-[1.75] mb-4">
-                Here's a structured overview for relocating to Portugal:
+                Based on your profile, Portugal is a strong option. Here's the most efficient path forward:
               </p>
               <div className="space-y-2.5">
                 <div className="flex items-start gap-3">
                   <span className="text-[11px] font-mono text-primary/70 mt-0.5 shrink-0">01</span>
                   <p className="text-[13px] text-foreground/75 leading-[1.6]">
-                    <span className="font-medium text-foreground/90">Determine your visa type</span> — D7, Digital Nomad, or D2 depending on your income source.
+                    <span className="font-medium text-foreground/90">Select your visa type</span> — D7, Digital Nomad, or D2 depending on your income source.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
@@ -57,6 +57,7 @@ export default function DemoSection() {
                   </p>
                 </div>
               </div>
+              <p className="text-[12px] text-muted-foreground/60 mt-4 font-mono">Estimated timeline: 3–5 months</p>
             </div>
           </div>
         </motion.div>

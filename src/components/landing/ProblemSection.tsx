@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 
 const painPoints = [
-  { title: "Scattered information", description: "Answers spread across forums, blogs, and outdated government sites." },
-  { title: "Unclear legal steps", description: "Visa rules change constantly. It's hard to know what's current." },
-  { title: "Document confusion", description: "Which documents, in what order, translated or not — nobody tells you clearly." },
-  { title: "No single system", description: "There's no one place that guides the entire process from start to finish." },
+  { title: "Information is fragmented", description: "You're jumping between forums, blogs, and outdated sources." },
+  { title: "Legal steps are unclear", description: "Requirements change — and no one explains the full path." },
+  { title: "Documents are overwhelming", description: "What to prepare, in what order — it's never clear." },
+  { title: "No clear system", description: "There's no place that guides you from decision to relocation." },
 ];
 
 export default function ProblemSection() {
@@ -18,7 +18,7 @@ export default function ProblemSection() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          Moving abroad is confusing
+          Most people choose the wrong country
         </motion.h2>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">

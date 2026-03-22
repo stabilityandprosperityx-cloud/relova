@@ -4,23 +4,23 @@ import { MessageSquare, Globe, FileText, Shield, Briefcase, Home } from "lucide-
 const features = [
   {
     icon: MessageSquare,
-    title: "AI Relocation Advisor",
-    description: "Ask questions about moving and get structured, country-specific answers.",
+    title: "Find the right country",
+    description: "Based on your income, goals, and lifestyle.",
   },
   {
     icon: Globe,
-    title: "Country Guides",
-    description: "Compare countries, costs, legal realities, and lifestyle — side by side.",
+    title: "Build your relocation plan",
+    description: "Step-by-step, tailored to your situation.",
   },
   {
     icon: FileText,
-    title: "Documents & Visas",
-    description: "Understand required documents and process steps for your destination.",
+    title: "Understand the legal path",
+    description: "Clear visa options and requirements — no confusion.",
   },
   {
     icon: Shield,
-    title: "Residency & Citizenship Paths",
-    description: "See the legal pathway more clearly, country by country.",
+    title: "Compare countries",
+    description: "Costs, taxes, and lifestyle — side by side.",
   },
   {
     icon: Briefcase,
