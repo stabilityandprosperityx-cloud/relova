@@ -10,6 +10,7 @@ import HowItWorksSection from "@/components/landing/HowItWorksSection";
 import CountriesSection from "@/components/landing/CountriesSection";
 import PlanBuilderSection from "@/components/landing/PlanBuilderSection";
 import DemoSection from "@/components/landing/DemoSection";
+import FAQSection from "@/components/landing/FAQSection";
 import PricingSection from "@/components/landing/PricingSection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
 import CTASection from "@/components/landing/CTASection";
@@ -29,6 +30,7 @@ export default function Index() {
         <CountriesSection />
         <PlanBuilderSection />
         <DemoSection />
+        <FAQSection />
         <PricingSection />
         <TestimonialsSection />
         <CTASection />
