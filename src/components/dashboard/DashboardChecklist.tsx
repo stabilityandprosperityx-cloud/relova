@@ -21,6 +21,8 @@ export default function DashboardChecklist({ profile }: Props) {
   const { user } = useAuth();
   const [docs, setDocs] = useState<DocWithStatus[]>([]);
   const [loading, setLoading] = useState(true);
+  const isPro = (profile?.plan || "free") === "pro";
+  const isViewOnly = isPro; // pro can view but not toggle
 
   const fetchDocs = async () => {
     if (!user || !profile?.visa_type) { setLoading(false); return; }
@@ -48,12 +50,10 @@ export default function DashboardChecklist({ profile }: Props) {
   useEffect(() => { fetchDocs(); }, [user, profile]);
 
   const toggleDoc = async (doc: DocWithStatus) => {
-    if (!user) return;
+    if (!user || isViewOnly) return;
     if (doc.status === "uploaded") {
-      // Remove user_document
       await supabase.from("user_documents").delete().eq("user_id", user.id).eq("document_name", doc.document_name);
     } else {
-      // Add user_document
       await supabase.from("user_documents").insert({ user_id: user.id, document_name: doc.document_name, status: "uploaded" });
     }
     fetchDocs();
@@ -76,6 +76,11 @@ export default function DashboardChecklist({ profile }: Props) {
         <span className="px-2.5 py-1 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] text-[11px] font-medium">
           {profile.visa_type?.replace("_", " ")} Visa
         </span>
+        {isViewOnly && (
+          <span className="px-2.5 py-1 rounded-md bg-white/[0.06] text-[#9CA3AF] text-[11px]">
+            View only · Upgrade to Full to manage
+          </span>
+        )}
       </div>
 
       {allRequiredDone && (
@@ -93,7 +98,8 @@ export default function DashboardChecklist({ profile }: Props) {
           >
             <button
               onClick={() => toggleDoc(doc)}
-              className="shrink-0 active:scale-[0.9] transition-transform"
+              className={`shrink-0 transition-transform ${isViewOnly ? "cursor-default" : "active:scale-[0.9]"}`}
+              disabled={isViewOnly}
             >
               <div className={`h-5 w-5 rounded border-2 flex items-center justify-center transition-colors ${
                 doc.status === "uploaded"
