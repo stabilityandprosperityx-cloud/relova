@@ -82,6 +82,7 @@ export default function Dashboard() {
         onTabChange={setTab}
         userEmail={user.email || ""}
         userPlan={profile?.plan || "free"}
+        onEditProfile={() => setShowEditProfile(true)}
       />
 
       {/* Main content */}
