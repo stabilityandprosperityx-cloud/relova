@@ -11,6 +11,7 @@ import ReactMarkdown from "react-markdown";
 interface Props {
   profile: UserProfile | null;
   onNavigate: (tab: DashboardTab) => void;
+  onEditProfile: () => void;
 }
 
 interface StepWithStatus {
@@ -22,7 +23,7 @@ interface StepWithStatus {
   status: "todo" | "active" | "done";
 }
 
-export default function DashboardOverview({ profile, onNavigate }: Props) {
+export default function DashboardOverview({ profile, onNavigate, onEditProfile }: Props) {
   const { user } = useAuth();
   const [steps, setSteps] = useState<StepWithStatus[]>([]);
   const [lastAiMessage, setLastAiMessage] = useState<string | null>(null);
@@ -117,7 +118,12 @@ export default function DashboardOverview({ profile, onNavigate }: Props) {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-2xl font-bold tracking-tight">Overview</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold tracking-tight">Overview</h1>
+        <Button variant="ghost" size="sm" className="text-[12px] text-[#9CA3AF] hover:text-foreground gap-1.5" onClick={onEditProfile}>
+          Edit profile
+        </Button>
+      </div>
 
       {/* Metric cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

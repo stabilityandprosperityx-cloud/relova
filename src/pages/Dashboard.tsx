@@ -8,6 +8,7 @@ import DashboardChecklist from "@/components/dashboard/DashboardChecklist";
 import DashboardChat from "@/components/dashboard/DashboardChat";
 import DashboardDocuments from "@/components/dashboard/DashboardDocuments";
 import OnboardingModal from "@/components/dashboard/OnboardingModal";
+import EditProfileModal from "@/components/dashboard/EditProfileModal";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -34,6 +35,7 @@ export default function Dashboard() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [profileLoading, setProfileLoading] = useState(true);
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showEditProfile, setShowEditProfile] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -96,7 +98,7 @@ export default function Dashboard() {
             </div>
           ) : (
             <>
-              {tab === "overview" && <DashboardOverview profile={profile} onNavigate={setTab} />}
+              {tab === "overview" && <DashboardOverview profile={profile} onNavigate={setTab} onEditProfile={() => setShowEditProfile(true)} />}
               {tab === "plan" && <DashboardPlan profile={profile} />}
               {tab === "checklist" && <DashboardChecklist profile={profile} />}
               {tab === "chat" && <DashboardChat profile={profile} />}
@@ -107,9 +109,14 @@ export default function Dashboard() {
       </main>
 
       {showOnboarding && user && (
-        <OnboardingModal
-          userId={user.id}
-          onComplete={handleOnboardingComplete}
+        <OnboardingModal userId={user.id} onComplete={handleOnboardingComplete} />
+      )}
+
+      {showEditProfile && profile && (
+        <EditProfileModal
+          profile={profile}
+          onSave={(updated) => { setProfile(updated); setShowEditProfile(false); }}
+          onClose={() => setShowEditProfile(false)}
         />
       )}
     </div>
