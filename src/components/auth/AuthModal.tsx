@@ -22,6 +22,7 @@ export default function AuthModal({
   title = "Continue your relocation plan",
   subtitle = "Create an account to keep going and get personalized answers",
 }: AuthModalProps) {
+  const navigate = useNavigate();
   const [mode, setMode] = useState<"choice" | "email-signup" | "email-login">("choice");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
