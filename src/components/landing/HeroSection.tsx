@@ -123,7 +123,7 @@ function ProductPreview() {
               transition={{ duration: 0.35 }}
             >
               {/* Intro typing */}
-              {(phase === "intro" || phase !== "user") && (
+              {showAI && (
                 <p className="text-[12px] md:text-[13px] text-foreground/85 leading-[1.7]">
                   {phase === "intro" ? currentText : AI_INTRO}
                   {phase === "intro" && (
