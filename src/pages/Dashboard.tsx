@@ -109,9 +109,14 @@ export default function Dashboard() {
       </main>
 
       {showOnboarding && user && (
-        <OnboardingModal
-          userId={user.id}
-          onComplete={handleOnboardingComplete}
+        <OnboardingModal userId={user.id} onComplete={handleOnboardingComplete} />
+      )}
+
+      {showEditProfile && profile && (
+        <EditProfileModal
+          profile={profile}
+          onSave={(updated) => { setProfile(updated); setShowEditProfile(false); }}
+          onClose={() => setShowEditProfile(false)}
         />
       )}
     </div>
