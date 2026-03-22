@@ -34,6 +34,8 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
   const [saving, setSaving] = useState(false);
   const [search1, setSearch1] = useState("");
   const [search2, setSearch2] = useState("");
+  const [focus1, setFocus1] = useState(false);
+  const [focus2, setFocus2] = useState(false);
 
   const filtered1 = allCountries.filter(c => c.toLowerCase().includes(search1.toLowerCase()));
   const filtered2 = allCountries.filter(c => c.toLowerCase().includes(search2.toLowerCase()));
