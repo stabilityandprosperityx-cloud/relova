@@ -106,8 +106,14 @@ export default function Navbar() {
             <div className="pt-3 border-t border-border/30 mt-3 space-y-2">
               {user ? (
                 <>
-                  <p className="text-sm text-muted-foreground truncate">{user.email}</p>
-                  <button onClick={signOut} className="block text-sm text-muted-foreground">
+                  <Link
+                    to="/dashboard"
+                    onClick={() => setOpen(false)}
+                    className="block py-2 text-sm font-medium text-[hsl(199,89%,61%)]"
+                  >
+                    Dashboard →
+                  </Link>
+                  <button onClick={() => { signOut(); setOpen(false); }} className="block py-2 text-sm text-muted-foreground">
                     Log out
                   </button>
                 </>

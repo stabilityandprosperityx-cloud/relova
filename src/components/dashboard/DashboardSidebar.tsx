@@ -1,4 +1,6 @@
-import { LayoutGrid, ListChecks, CheckSquare, MessageCircle, FileText, LogOut, Lock } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { LayoutGrid, ListChecks, CheckSquare, MessageCircle, FileText, LogOut, Lock, ArrowLeft, User } from "lucide-react";
 import RelovaLogo from "@/components/RelovaLogo";
 import { useAuth } from "@/contexts/AuthContext";
 import type { DashboardTab, UserPlan } from "@/pages/Dashboard";
@@ -18,10 +20,12 @@ interface Props {
   onTabChange: (tab: DashboardTab) => void;
   userEmail: string;
   userPlan: UserPlan;
+  onEditProfile?: () => void;
 }
 
-export default function DashboardSidebar({ activeTab, onTabChange, userEmail, userPlan }: Props) {
+export default function DashboardSidebar({ activeTab, onTabChange, userEmail, userPlan, onEditProfile }: Props) {
   const { signOut } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isLocked = (minPlan: UserPlan) => planRank[userPlan] < planRank[minPlan];
 
@@ -29,9 +33,18 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
     <>
       {/* Desktop sidebar */}
       <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-[220px] flex-col bg-[#0a0a0a] border-r border-white/[0.06] z-40">
-        <div className="px-5 py-6 flex items-center gap-2.5">
-          <RelovaLogo size={22} pulse={false} />
-          <span className="text-[15px] font-semibold tracking-tight text-foreground">relova</span>
+        <div className="px-5 py-6">
+          <div className="flex items-center gap-2.5">
+            <RelovaLogo size={22} pulse={false} />
+            <span className="text-[15px] font-semibold tracking-tight text-foreground">relova</span>
+          </div>
+          <Link
+            to="/"
+            className="flex items-center gap-1.5 mt-3 text-[11px] text-[#9CA3AF]/60 hover:text-[#9CA3AF] transition-colors"
+          >
+            <ArrowLeft size={12} />
+            Back to site
+          </Link>
         </div>
 
         <nav className="flex-1 px-3 space-y-0.5">
@@ -60,12 +73,12 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
 
         <div className="px-3 pb-4 space-y-2">
           {userPlan !== "full" && (
-            <a
-              href="/pricing"
+            <Link
+              to="/pricing"
               className="block w-full text-center px-3 py-2 rounded-lg bg-[#38BDF8]/10 text-[#38BDF8] text-[11px] font-medium hover:bg-[#38BDF8]/20 transition-colors"
             >
               Upgrade plan ↑
-            </a>
+            </Link>
           )}
           <button
             onClick={signOut}
@@ -98,6 +111,40 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
             </button>
           );
         })}
+        {/* Profile / more menu */}
+        <div className="relative">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg text-[#9CA3AF] transition-colors"
+          >
+            <User size={18} />
+          </button>
+          {mobileMenuOpen && (
+            <div className="absolute bottom-full right-0 mb-2 w-40 bg-[#141414] border border-white/[0.08] rounded-lg shadow-lg overflow-hidden">
+              {onEditProfile && (
+                <button
+                  onClick={() => { onEditProfile(); setMobileMenuOpen(false); }}
+                  className="w-full text-left px-4 py-2.5 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground transition-colors"
+                >
+                  Edit profile
+                </button>
+              )}
+              <Link
+                to="/"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-2.5 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground transition-colors"
+              >
+                ← Back to site
+              </Link>
+              <button
+                onClick={() => { signOut(); setMobileMenuOpen(false); }}
+                className="w-full text-left px-4 py-2.5 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground transition-colors border-t border-white/[0.06]"
+              >
+                Log out
+              </button>
+            </div>
+          )}
+        </div>
       </nav>
     </>
   );
