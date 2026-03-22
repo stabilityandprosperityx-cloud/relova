@@ -8,6 +8,7 @@ import DashboardChecklist from "@/components/dashboard/DashboardChecklist";
 import DashboardChat from "@/components/dashboard/DashboardChat";
 import DashboardDocuments from "@/components/dashboard/DashboardDocuments";
 import OnboardingModal from "@/components/dashboard/OnboardingModal";
+import EditProfileModal from "@/components/dashboard/EditProfileModal";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 
