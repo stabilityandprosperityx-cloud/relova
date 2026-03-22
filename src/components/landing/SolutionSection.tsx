@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function SolutionSection() {
   return (
-    <section className="py-28 md:py-36 border-t border-border/40">
+    <section className="pt-28 md:pt-36 pb-8 md:pb-12 border-t border-border/40">
       <div className="container">
         <motion.div
           className="max-w-[600px]"
