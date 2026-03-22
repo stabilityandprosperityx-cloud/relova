@@ -30,13 +30,17 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const filteredCountries1 = allCountries.filter(c => c.toLowerCase().includes(search1.toLowerCase()));
   const filteredCountries2 = allCountries.filter(c => c.toLowerCase().includes(search2.toLowerCase()));
 
+  const determineVisaType = (country: string, userGoal: string): string => {
+    if (country === "Portugal") {
+      return userGoal === "remote_work" || userGoal === "lifestyle" ? "Digital_Nomad" : "D7";
+    }
+    // Default fallback for countries without specific visa data yet
+    return "D7";
+  };
+
   const handleSave = async () => {
     setSaving(true);
-    // Determine visa type based on target country and goal
-    let visaType = "D7"; // default
-    if (targetCountry === "Portugal") {
-      visaType = goal === "remote_work" || goal === "lifestyle" ? "Digital_Nomad" : "D7";
-    }
+    const visaType = determineVisaType(targetCountry, goal);
 
     const profile: UserProfile = {
       user_id: userId,
@@ -47,14 +51,38 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       monthly_budget: budget,
     };
 
-    const { error } = await supabase.from("user_profiles").insert({
-      ...profile,
-    });
-
+    // 1. Save profile
+    const { error } = await supabase.from("user_profiles").insert({ ...profile });
     if (error) {
       toast.error("Failed to save profile: " + error.message);
       setSaving(false);
       return;
+    }
+
+    // 2. Fetch relocation_steps template for this visa type
+    const { data: templateSteps } = await supabase
+      .from("relocation_steps")
+      .select("id, step_number")
+      .eq("visa_type", visaType)
+      .order("step_number");
+
+    if (templateSteps && templateSteps.length > 0) {
+      // 3. Create user_steps for each template step
+      const userStepsToInsert = templateSteps.map((s: any, i: number) => ({
+        user_id: userId,
+        step_id: s.id,
+        status: i === 0 ? "active" : "todo", // first step is active
+        completed_at: null,
+      }));
+
+      const { error: stepsError } = await supabase
+        .from("user_steps")
+        .insert(userStepsToInsert);
+
+      if (stepsError) {
+        console.error("Failed to populate steps:", stepsError.message);
+        // Non-blocking — profile is saved, steps can be retried
+      }
     }
 
     onComplete(profile);
