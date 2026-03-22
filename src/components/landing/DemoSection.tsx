@@ -27,8 +27,15 @@ export default function DemoSection() {
           </div>
 
           <div className="p-6 space-y-5">
+            {/* AI opening message */}
+            <div className="bg-primary/5 dark:bg-primary/8 rounded-xl px-5 py-3.5">
+              <p className="text-[13px] text-foreground/85 leading-[1.75]">
+                👋 Where are you currently based, and where are you thinking of moving? Tell me your situation and I'll find your best path.
+              </p>
+            </div>
+
             {/* User message */}
-            <div className="bg-muted/50 dark:bg-muted/30 rounded-xl px-5 py-3.5 max-w-[80%]">
+            <div className="bg-muted/50 dark:bg-muted/30 rounded-xl px-5 py-3.5 max-w-[80%] ml-auto">
               <p className="text-[13px] text-muted-foreground">Where should I move based on my income and goals?</p>
             </div>
 
