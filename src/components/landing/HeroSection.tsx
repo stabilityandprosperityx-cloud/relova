@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import RelovaLogo from "@/components/RelovaLogo";
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const AI_STEPS = [
   "Step 1 — Choose visa type",
@@ -122,7 +122,6 @@ function ProductPreview() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35 }}
             >
-              {/* Intro typing */}
               {showAI && (
                 <p className="text-[12px] md:text-[13px] text-foreground/85 leading-[1.7]">
                   {phase === "intro" ? currentText : AI_INTRO}
@@ -132,7 +131,6 @@ function ProductPreview() {
                 </p>
               )}
 
-              {/* Options */}
               {["options", "bridge", "steps", "timeline", "done"].includes(phase) && (
                 <div className="space-y-1 pl-1">
                   {AI_OPTIONS.map((opt, i) => (
@@ -150,7 +148,6 @@ function ProductPreview() {
                 </div>
               )}
 
-              {/* Bridge typing */}
               {["bridge", "steps", "timeline", "done"].includes(phase) && (
                 <p className="text-[12px] md:text-[13px] text-foreground/70 leading-[1.7] pt-1">
                   {phase === "bridge" ? currentText : AI_BRIDGE}
@@ -160,7 +157,6 @@ function ProductPreview() {
                 </p>
               )}
 
-              {/* Steps */}
               {["steps", "timeline", "done"].includes(phase) && (
                 <div className="space-y-1.5 pl-1">
                   {AI_STEPS.slice(0, visibleSteps).map((step, i) => (
@@ -178,7 +174,6 @@ function ProductPreview() {
                 </div>
               )}
 
-              {/* Timeline */}
               {["timeline", "done"].includes(phase) && (
                 <motion.p
                   className="text-[11px] font-mono text-muted-foreground/50 pt-1"
@@ -204,19 +199,10 @@ function ProductPreview() {
 }
 
 export default function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const glowY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const glowOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
   return (
-    <section ref={sectionRef} className="relative pt-40 pb-28 md:pt-52 md:pb-40 bg-radial-glow overflow-hidden">
-      <motion.div
+    <section className="relative pt-40 pb-20 md:pt-52 md:pb-20 bg-radial-glow overflow-hidden">
+      <div
         className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[radial-gradient(ellipse_at_center,hsl(200_60%_52%/0.07)_0%,transparent_70%)] pointer-events-none"
-        style={{ y: glowY, opacity: glowOpacity }}
       />
       <div className="container relative z-10">
         <motion.div
@@ -233,9 +219,9 @@ export default function HeroSection() {
           <div className="max-w-[540px]">
             <motion.h1
               className="text-[3rem] sm:text-[4rem] md:text-[4.5rem] font-extrabold leading-[0.92] tracking-[-0.04em] mb-7"
-              initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
               <span className="text-gradient-hero">Know where to move.</span>
               <br />
@@ -244,18 +230,18 @@ export default function HeroSection() {
 
             <motion.p
               className="text-[16px] md:text-[18px] text-muted-foreground leading-[1.65] max-w-[460px] mb-10"
-              initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
-              transition={{ duration: 0.7, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
             >
               Get a clear country decision and a step-by-step relocation plan — tailored to your life.
             </motion.p>
 
             <motion.div
               className="flex flex-wrap items-center gap-4"
-              initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
-              transition={{ duration: 0.7, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
             >
               <Link to="/chat">
                 <Button variant="hero" size="lg" className="gap-2.5 text-[14px] h-12 px-7 rounded-[10px]">
@@ -273,9 +259,9 @@ export default function HeroSection() {
           {/* Right — Product preview */}
           <motion.div
             className="md:mt-4"
-            initial={{ opacity: 0, y: 28, filter: "blur(6px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
-            transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
           >
             <ProductPreview />
           </motion.div>

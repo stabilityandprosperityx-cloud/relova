@@ -19,14 +19,14 @@ const countries = [
 
 export default function CountriesSection() {
   return (
-    <section className="py-24 md:py-32 border-t border-border">
+    <section className="py-[60px] md:py-[80px] border-t border-border">
       <div className="container">
         <motion.div
           className="mb-12"
-          initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <p className="text-[13px] text-muted-foreground mb-4 uppercase tracking-wider font-medium">Coverage</p>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">
@@ -39,10 +39,10 @@ export default function CountriesSection() {
 
         <motion.div
           className="flex flex-wrap gap-2"
-          initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
         >
           {countries.map((country) => (
             <Link

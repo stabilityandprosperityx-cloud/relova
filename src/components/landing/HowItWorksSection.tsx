@@ -8,14 +8,14 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="py-28 md:py-36 border-t border-border/40">
+    <section className="py-[60px] md:py-[80px] border-t border-border/40">
       <div className="container">
         <motion.p
           className="text-[11px] text-muted-foreground/60 mb-12 uppercase tracking-[0.15em] font-medium"
-          initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           How it works
         </motion.p>
@@ -24,10 +24,10 @@ export default function HowItWorksSection() {
           {steps.map((step, i) => (
             <motion.div
               key={step.number}
-              initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
             >
               <span className="text-[12px] font-mono text-primary/70 font-medium">{step.number}</span>
               <h3 className="text-[22px] font-semibold mt-3 mb-3 tracking-tight">{step.title}</h3>

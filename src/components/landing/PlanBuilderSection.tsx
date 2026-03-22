@@ -47,14 +47,14 @@ export default function PlanBuilderSection() {
             : "$10K+/mo";
 
   return (
-    <section className="py-24 md:py-32 border-t border-border/40">
+    <section className="py-[60px] md:py-[80px] border-t border-border/40">
       <div className="container">
         <motion.div
           className="mb-14"
-          initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <p className="text-[13px] text-muted-foreground mb-4 uppercase tracking-wider font-medium">
             Plan builder
@@ -66,10 +66,10 @@ export default function PlanBuilderSection() {
 
         <motion.div
           className="grid md:grid-cols-2 gap-8 md:gap-12"
-          initial={{ opacity: 0, y: 18, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
         >
           {/* Form */}
           <div className="rounded-xl border border-border/50 bg-card p-7 md:p-10 space-y-7 shadow-[0_2px_24px_-8px_hsl(0_0%_0%/0.2)]">

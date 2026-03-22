@@ -20,14 +20,14 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-28 md:py-36 border-t border-border/40">
+    <section className="py-[60px] md:py-[80px] border-t border-border/40">
       <div className="container">
         <motion.p
           className="text-[11px] text-muted-foreground/60 mb-14 uppercase tracking-[0.15em] font-medium"
-          initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           From people who moved
         </motion.p>
@@ -36,10 +36,10 @@ export default function TestimonialsSection() {
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
             >
               <p className="text-[15px] leading-[1.7] text-foreground/80 mb-8">"{t.quote}"</p>
               <div>

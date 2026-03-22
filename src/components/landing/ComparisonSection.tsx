@@ -26,14 +26,14 @@ const rows = [
 
 export default function ComparisonSection() {
   return (
-    <section className="py-24 md:py-32 border-t border-border/40">
+    <section className="py-[60px] md:py-[80px] border-t border-border/40">
       <div className="container">
         <motion.div
           className="mb-14"
-          initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
         >
           <p className="text-[13px] text-muted-foreground mb-4 uppercase tracking-wider font-medium">
             Comparison
@@ -45,10 +45,10 @@ export default function ComparisonSection() {
 
         <motion.div
           className="overflow-hidden rounded-xl border border-border/50"
-          initial={{ opacity: 0, y: 18, filter: "blur(4px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0)" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
         >
           {/* Header */}
           <div className="grid grid-cols-[1fr_1fr_1fr] md:grid-cols-[1.4fr_1fr_1fr] bg-muted/30">
