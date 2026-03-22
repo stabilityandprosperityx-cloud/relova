@@ -1,0 +1,1 @@
+CREATE POLICY "Users can delete own steps" ON public.user_steps FOR DELETE TO authenticated USING (user_id = auth.uid());

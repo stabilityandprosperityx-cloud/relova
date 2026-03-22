@@ -11,6 +11,7 @@ import ReactMarkdown from "react-markdown";
 interface Props {
   profile: UserProfile | null;
   onNavigate: (tab: DashboardTab) => void;
+  onEditProfile: () => void;
 }
 
 interface StepWithStatus {
