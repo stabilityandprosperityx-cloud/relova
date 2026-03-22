@@ -1,32 +1,12 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check, ChevronsUpDown, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Link } from "react-router-dom";
-
-const citizenships = [
-  "United States",
-  "United Kingdom",
-  "Germany",
-  "France",
-  "India",
-  "Brazil",
-  "Canada",
-  "Australia",
-  "Russia",
-  "Turkey",
-  "South Africa",
-  "Other",
-];
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { allCountries } from "@/data/allCountries";
 
 const goals = [
   { value: "work", label: "Move for work" },
@@ -38,6 +18,22 @@ const goals = [
 export default function PlanBuilderSection() {
   const [budget, setBudget] = useState([50]);
   const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
+  const [citizenship, setCitizenship] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [open, setOpen] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const filteredCountries = allCountries.filter((c) =>
+    c.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  useEffect(() => {
+    if (open) {
+      setTimeout(() => searchInputRef.current?.focus(), 100);
+    } else {
+      setSearchQuery("");
+    }
+  }, [open]);
 
   const budgetLabel =
     budget[0] < 20
@@ -82,18 +78,50 @@ export default function PlanBuilderSection() {
               <label className="text-[12px] text-muted-foreground uppercase tracking-wider font-medium">
                 Current citizenship
               </label>
-              <Select>
-                <SelectTrigger className="h-11 rounded-lg bg-background border-border/60 text-[14px]">
-                  <SelectValue placeholder="Select your citizenship" />
-                </SelectTrigger>
-                <SelectContent>
-                  {citizenships.map((c) => (
-                    <SelectItem key={c} value={c.toLowerCase().replace(/\s+/g, "-")}>
-                      {c}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                  <button
+                    className="flex h-11 w-full items-center justify-between rounded-lg border border-border/60 bg-background px-3 py-2 text-[14px] ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                  >
+                    <span className={citizenship ? "text-foreground" : "text-muted-foreground"}>
+                      {citizenship || "Select your citizenship"}
+                    </span>
+                    <ChevronsUpDown className="h-4 w-4 opacity-50 shrink-0" />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0" align="start">
+                  <div className="flex items-center border-b border-border/40 px-3">
+                    <Search className="h-4 w-4 shrink-0 opacity-50 mr-2" />
+                    <input
+                      ref={searchInputRef}
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search country..."
+                      className="flex h-10 w-full bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground"
+                    />
+                  </div>
+                  <div className="max-h-[240px] overflow-y-auto overscroll-contain p-1">
+                    {filteredCountries.length === 0 ? (
+                      <p className="py-4 text-center text-sm text-muted-foreground">No country found</p>
+                    ) : (
+                      filteredCountries.map((c) => (
+                        <button
+                          key={c}
+                          onClick={() => { setCitizenship(c); setOpen(false); }}
+                          className="relative flex w-full cursor-default select-none items-center rounded-sm py-2 pl-8 pr-2 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
+                        >
+                          {citizenship === c && (
+                            <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+                              <Check className="h-4 w-4" />
+                            </span>
+                          )}
+                          {c}
+                        </button>
+                      ))
+                    )}
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
 
             {/* Budget */}
