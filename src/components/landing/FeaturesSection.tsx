@@ -38,7 +38,7 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="py-28 md:py-36 border-t border-border/40">
+    <section className="pt-0 pb-28 md:pb-36">
       <div className="container">
         <motion.p
           className="text-[11px] text-muted-foreground/60 mb-12 uppercase tracking-[0.15em] font-medium"
