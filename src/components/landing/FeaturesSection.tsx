@@ -26,13 +26,11 @@ const features = [
     icon: Briefcase,
     title: "Jobs & Opportunities",
     description: "Explore work opportunities in your destination country.",
-    comingSoon: true,
   },
   {
     icon: Home,
     title: "Housing & Community",
     description: "Find housing options and connect with local communities.",
-    comingSoon: true,
   },
 ];
 
@@ -60,9 +58,6 @@ export default function FeaturesSection() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: i * 0.06, ease: "easeOut" }}
             >
-              {feature.comingSoon && (
-                <span className="absolute top-5 right-5 text-[10px] text-muted-foreground/50 font-medium uppercase tracking-[0.1em]">Coming soon</span>
-              )}
               <feature.icon size={20} className="text-primary mb-5" strokeWidth={1.8} />
               <h3 className="text-[16px] font-semibold mb-2.5 tracking-tight">{feature.title}</h3>
               <p className="text-[13px] text-muted-foreground leading-[1.65]">{feature.description}</p>
