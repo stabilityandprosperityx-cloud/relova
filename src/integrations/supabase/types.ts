@@ -99,6 +99,8 @@ export type Database = {
           goal: string | null
           id: string
           monthly_budget: number | null
+          paddle_customer_id: string | null
+          paddle_subscription_id: string | null
           plan: string
           plan_expires_at: string | null
           questions_used: number
@@ -112,6 +114,8 @@ export type Database = {
           goal?: string | null
           id?: string
           monthly_budget?: number | null
+          paddle_customer_id?: string | null
+          paddle_subscription_id?: string | null
           plan?: string
           plan_expires_at?: string | null
           questions_used?: number
@@ -125,6 +129,8 @@ export type Database = {
           goal?: string | null
           id?: string
           monthly_budget?: number | null
+          paddle_customer_id?: string | null
+          paddle_subscription_id?: string | null
           plan?: string
           plan_expires_at?: string | null
           questions_used?: number
