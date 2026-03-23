@@ -125,6 +125,30 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
         </Button>
       </div>
 
+      {/* Profile summary */}
+      <div className="flex items-center gap-3 flex-wrap">
+        {profile.citizenship && (
+          <span className="px-2.5 py-1 rounded-md bg-white/[0.06] text-[#9CA3AF] text-[11px] font-medium">
+            🛂 {profile.citizenship}
+          </span>
+        )}
+        {profile.target_country && (
+          <span className="px-2.5 py-1 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] text-[11px] font-medium">
+            📍 {profile.target_country}
+          </span>
+        )}
+        {profile.visa_type && (
+          <span className="px-2.5 py-1 rounded-md bg-white/[0.06] text-[#9CA3AF] text-[11px] font-medium">
+            📋 {profile.visa_type.replace(/_/g, " ")} Visa
+          </span>
+        )}
+        {profile.goal && (
+          <span className="px-2.5 py-1 rounded-md bg-white/[0.06] text-[#9CA3AF] text-[11px] font-medium">
+            🎯 {profile.goal}
+          </span>
+        )}
+      </div>
+
       {/* Metric cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5">
