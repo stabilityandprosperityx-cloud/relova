@@ -12,9 +12,9 @@ const footerLinks = [
   {
     title: "Resources",
     links: [
-      { label: "Blog", href: "#" },
-      { label: "Help center", href: "#" },
-      { label: "Contact", href: "#" },
+      { label: "Blog", href: "/blog" },
+      { label: "Help center", href: "/help" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
