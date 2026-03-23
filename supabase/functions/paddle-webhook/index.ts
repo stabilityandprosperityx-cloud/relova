@@ -96,30 +96,13 @@ Deno.serve(async (req) => {
       const subscriptionId = data.id;
       const priceId = data.items?.[0]?.price?.id;
       const plan = PRICE_TO_PLAN[priceId] || "pro";
-      const customerEmail = data.customer?.email;
+      const userId = data.custom_data?.userId;
 
-      if (!customerEmail) {
-        console.error("No customer email in webhook payload");
-        return jsonResponse({ error: "Missing customer email" }, 400);
+      if (!userId) {
+        console.error("No userId in custom_data");
+        return jsonResponse({ error: "Missing userId in custom_data" }, 400);
       }
 
-      // Find user by email
-      const { data: authData, error: authError } =
-        await supabase.auth.admin.listUsers();
-
-      if (authError) {
-        console.error("Error listing users:", authError);
-        return jsonResponse({ error: "Internal error" }, 500);
-      }
-
-      const user = authData.users.find((u: any) => u.email === customerEmail);
-
-      if (!user) {
-        console.error("No user found for email:", customerEmail);
-        return jsonResponse({ error: "User not found" }, 404);
-      }
-
-      // Update user profile
       const { error: updateError } = await supabase
         .from("user_profiles")
         .update({
@@ -127,14 +110,14 @@ Deno.serve(async (req) => {
           paddle_customer_id: customerId,
           paddle_subscription_id: subscriptionId,
         })
-        .eq("user_id", user.id);
+        .eq("user_id", userId);
 
       if (updateError) {
         console.error("Error updating profile:", updateError);
         return jsonResponse({ error: "Update failed" }, 500);
       }
 
-      console.log(`Updated user ${user.id} to plan: ${plan}`);
+      console.log(`Updated user ${userId} to plan: ${plan}`);
     }
 
     if (eventType === "subscription.canceled") {
