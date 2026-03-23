@@ -15,20 +15,27 @@ let initialized = false;
 
 export function initPaddle() {
   if (initialized || !window.Paddle) return;
-  window.Paddle.Initialize({
-    token: PADDLE_CLIENT_TOKEN,
-  });
-  initialized = true;
+  try {
+    window.Paddle.Initialize({
+      token: PADDLE_CLIENT_TOKEN,
+      environment: "production",
+    });
+    initialized = true;
+    console.log("Paddle initialized successfully");
+  } catch (e) {
+    console.error("Paddle initialization failed:", e);
+  }
 }
 
 export function openPaddleCheckout(plan: "pro" | "full", userEmail?: string) {
   if (!window.Paddle) {
-    console.error("Paddle.js not loaded");
+    console.error("Paddle.js not loaded — ensure the script tag is in index.html");
     return;
   }
   initPaddle();
 
   const itemsList = [{ priceId: PADDLE_PRICES[plan], quantity: 1 }];
+  console.log("Opening Paddle checkout for", plan, "with price", PADDLE_PRICES[plan]);
 
   window.Paddle.Checkout.open({
     items: itemsList,
