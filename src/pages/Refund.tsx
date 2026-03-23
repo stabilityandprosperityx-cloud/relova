@@ -22,8 +22,7 @@ const sections = [
   {
     title: "REFUND ELIGIBILITY",
     content: [
-      "We offer a 7-day money-back guarantee on all paid plans. If you are not satisfied with your purchase, contact us within 7 days of your initial payment for a full refund.",
-      "After 7 days, refunds are not available except where required by applicable law (for example, EU consumer protection laws may provide additional rights).",
+      "If you are not satisfied, contact us within 14 days of purchase for a full refund. No questions asked.",
     ],
   },
   {
@@ -31,12 +30,6 @@ const sections = [
     content: [
       "Email support@relova.ai with: your account email, date of purchase, and reason for refund request.",
       "We will process eligible refunds within 5–10 business days. Refunds are returned to the original payment method.",
-    ],
-  },
-  {
-    title: "EXCEPTIONS",
-    content: [
-      "Refunds are not available for: partial months of service, accounts found to have violated our Terms of Service, or the Free plan (no charge applies).",
     ],
   },
   {
