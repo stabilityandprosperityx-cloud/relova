@@ -9,6 +9,7 @@ import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import type { UserProfile, UserPlan } from "@/pages/Dashboard";
+import ChatActionButtons from "./ChatActionButtons";
 
 type Message = { role: "user" | "assistant"; content: string };
 
