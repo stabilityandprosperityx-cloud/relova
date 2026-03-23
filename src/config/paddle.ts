@@ -29,12 +29,13 @@ export function initPaddle() {
 
 export function openPaddleCheckout(plan: "pro" | "full", userEmail?: string) {
   if (!window.Paddle) {
-    console.error("Paddle.js not loaded");
+    console.error("Paddle.js not loaded — ensure the script tag is in index.html");
     return;
   }
   initPaddle();
 
   const itemsList = [{ priceId: PADDLE_PRICES[plan], quantity: 1 }];
+  console.log("Opening Paddle checkout for", plan, "with price", PADDLE_PRICES[plan]);
 
   window.Paddle.Checkout.open({
     items: itemsList,
