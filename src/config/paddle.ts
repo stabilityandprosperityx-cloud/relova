@@ -18,7 +18,6 @@ export function initPaddle() {
   try {
     window.Paddle.Initialize({
       token: PADDLE_CLIENT_TOKEN,
-      environment: "production",
     });
     initialized = true;
     console.log("Paddle initialized successfully");
