@@ -2,8 +2,15 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Lock, ArrowRight } from "lucide-react";
 import { openPayment } from "@/config/payments";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function PaywallOverlay() {
+  const { user } = useAuth();
+
+  const handlePayment = (plan: "pro" | "full") => {
+    openPayment(plan, user?.email ?? undefined, user?.id);
+  };
+
   return (
     <motion.div
       className="flex flex-col items-center justify-center text-center py-12 px-6"
@@ -21,10 +28,10 @@ export default function PaywallOverlay() {
         Unlock personalized answers, step-by-step guidance, and your full relocation roadmap.
       </p>
       <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs">
-        <Button variant="hero" className="w-full gap-1.5 text-[13px] flex-1" onClick={() => openPayment("pro")}>
+        <Button variant="hero" className="w-full gap-1.5 text-[13px] flex-1" onClick={() => handlePayment("pro")}>
           Upgrade to Pro — $19 <ArrowRight size={13} />
         </Button>
-        <Button variant="outline" className="w-full text-[13px] flex-1" onClick={() => openPayment("full")}>
+        <Button variant="outline" className="w-full text-[13px] flex-1" onClick={() => handlePayment("full")}>
           Full Plan — $49
         </Button>
       </div>
