@@ -4,38 +4,33 @@ const sections = [
   {
     title: "OVERVIEW",
     content: [
-      "At Relova AI, we want you to be satisfied with your subscription. This policy explains our refund terms.",
+      "Relova AI payments are processed by Paddle.com, our Merchant of Record. Paddle handles all payments, refunds, and customer billing on our behalf.",
     ],
   },
   {
-    title: "SUBSCRIPTION BILLING",
+    title: "14-DAY MONEY-BACK GUARANTEE",
     content: [
-      "Pro and Full plans are billed monthly in advance. Your subscription automatically renews each month until cancelled.",
+      "You are entitled to a full refund within 14 days of your purchase date, no questions asked.",
+      "To request a refund, contact us at: support@relova.ai",
+      "Or contact Paddle directly at: paddle.net",
     ],
   },
   {
-    title: "CANCELLATION",
+    title: "SUBSCRIPTIONS",
     content: [
-      "You may cancel your subscription at any time from your account dashboard. After cancellation, you retain access to paid features until the end of your current billing period. No further charges will be made after cancellation.",
+      "You may cancel your subscription at any time. After cancellation, you retain access to your plan until the end of the current billing period. No further charges will be made after cancellation.",
     ],
   },
   {
-    title: "REFUND ELIGIBILITY",
+    title: "REFUND PROCESSING",
     content: [
-      "If you are not satisfied, contact us within 14 days of purchase for a full refund. No questions asked.",
-    ],
-  },
-  {
-    title: "HOW TO REQUEST A REFUND",
-    content: [
-      "Email support@relova.ai with: your account email, date of purchase, and reason for refund request.",
-      "We will process eligible refunds within 5–10 business days. Refunds are returned to the original payment method.",
+      "Approved refunds are returned to the original payment method within 5-10 business days.",
     ],
   },
   {
     title: "CONTACT",
     content: [
-      "For refund requests or questions:",
+      "For billing questions or refund requests:",
       "Email: support@relova.ai",
     ],
   },
