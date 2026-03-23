@@ -196,9 +196,14 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
                   : "bg-white/[0.04] border border-white/[0.06]"
               }`}>
                 {msg.role === "assistant" ? (
-                  <div className="prose prose-sm prose-invert max-w-none [&_p]:text-[#9CA3AF] [&_li]:text-[#9CA3AF] [&_strong]:text-foreground [&_p]:text-[13px] [&_li]:text-[13px]">
-                    <ReactMarkdown>{msg.content}</ReactMarkdown>
-                  </div>
+                  <>
+                    <div className="prose prose-sm prose-invert max-w-none [&_p]:text-[#9CA3AF] [&_li]:text-[#9CA3AF] [&_strong]:text-foreground [&_p]:text-[13px] [&_li]:text-[13px]">
+                      <ReactMarkdown>{msg.content}</ReactMarkdown>
+                    </div>
+                    {!isLoading && (
+                      <ChatActionButtons content={msg.content} visaType={profile?.visa_type || null} />
+                    )}
+                  </>
                 ) : msg.content}
               </div>
             </motion.div>
