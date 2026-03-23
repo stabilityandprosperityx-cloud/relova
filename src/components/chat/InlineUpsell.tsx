@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
 import { openPayment } from "@/config/payments";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface InlineUpsellProps {
   questionsUsed: number;
@@ -9,6 +10,8 @@ interface InlineUpsellProps {
 }
 
 export default function InlineUpsell({ questionsUsed, questionsLimit }: InlineUpsellProps) {
+  const { user } = useAuth();
+
   return (
     <motion.div
       className="flex items-center justify-between gap-3 px-4 py-3 rounded-lg border border-primary/15 bg-primary/[0.03] mt-2"
@@ -22,7 +25,7 @@ export default function InlineUpsell({ questionsUsed, questionsLimit }: InlineUp
           {questionsUsed}/{questionsLimit} free questions used · Get a personalized plan
         </span>
       </div>
-      <Button variant="hero" size="sm" className="text-[11px] h-7 px-3 shrink-0 rounded-md" onClick={() => openPayment("pro")}>
+      <Button variant="hero" size="sm" className="text-[11px] h-7 px-3 shrink-0 rounded-md" onClick={() => openPayment("pro", user?.email ?? undefined, user?.id)}>
         Unlock Pro
       </Button>
     </motion.div>

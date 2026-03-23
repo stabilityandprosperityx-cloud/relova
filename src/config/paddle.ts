@@ -26,7 +26,7 @@ export function initPaddle() {
   }
 }
 
-export function openPaddleCheckout(plan: "pro" | "full", userEmail?: string) {
+export function openPaddleCheckout(plan: "pro" | "full", userEmail?: string, userId?: string) {
   if (!window.Paddle) {
     console.error("Paddle.js not loaded — ensure the script tag is in index.html");
     return;
@@ -39,5 +39,6 @@ export function openPaddleCheckout(plan: "pro" | "full", userEmail?: string) {
   window.Paddle.Checkout.open({
     items: itemsList,
     ...(userEmail ? { customer: { email: userEmail } } : {}),
+    ...(userId ? { customData: { userId } } : {}),
   });
 }

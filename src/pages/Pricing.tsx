@@ -5,6 +5,7 @@ import { Check, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { openPayment } from "@/config/payments";
+import { useAuth } from "@/contexts/AuthContext";
 
 const plans = [
   {
@@ -60,6 +61,12 @@ const plans = [
 ];
 
 export default function Pricing() {
+  const { user } = useAuth();
+
+  const handlePayment = (plan: "pro" | "full") => {
+    openPayment(plan, user?.email ?? undefined, user?.id);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -126,7 +133,7 @@ export default function Pricing() {
                     variant={plan.variant}
                     className="w-full gap-2"
                     size="lg"
-                    onClick={() => openPayment(plan.name === "Pro" ? "pro" : "full")}
+                    onClick={() => handlePayment(plan.name === "Pro" ? "pro" : "full")}
                   >
                     {plan.cta} {plan.highlighted && <ArrowRight size={14} />}
                   </Button>
@@ -141,7 +148,7 @@ export default function Pricing() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            Cancel anytime. No questions asked. 7-day money-back guarantee.
+            Cancel anytime. No questions asked. 14-day money-back guarantee.
           </motion.p>
         </div>
       </main>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check, ArrowRight } from "lucide-react";
 import { openPayment } from "@/config/payments";
+import { useAuth } from "@/contexts/AuthContext";
 
 const plans = [
   {
@@ -58,6 +59,12 @@ const plans = [
 ];
 
 export default function PricingSection() {
+  const { user } = useAuth();
+
+  const handlePayment = (plan: "pro" | "full") => {
+    openPayment(plan, user?.email ?? undefined, user?.id);
+  };
+
   return (
     <section id="pricing" className="py-[60px] md:py-[80px] border-t border-border/40">
       <div className="container max-w-[1200px] mx-auto">
@@ -125,7 +132,7 @@ export default function PricingSection() {
                 <Button
                   variant={plan.variant}
                   className="w-full h-10 text-[13px] rounded-lg gap-1.5"
-                  onClick={() => openPayment(plan.name === "Pro" ? "pro" : "full")}
+                  onClick={() => handlePayment(plan.name === "Pro" ? "pro" : "full")}
                 >
                   {plan.cta}
                   {plan.highlighted && <ArrowRight size={13} />}
