@@ -90,8 +90,8 @@ export default function Dashboard() {
         onEditProfile={() => setShowEditProfile(true)}
       />
 
-      <main className="flex-1 md:ml-[220px] pb-20 md:pb-0">
-        <div className="max-w-5xl mx-auto px-4 md:px-8 py-8">
+      <main className="flex-1 md:ml-[220px] pb-24 md:pb-0">
+        <div className="max-w-5xl mx-auto px-5 md:px-8 py-6 md:py-8">
           {profileLoading ? (
             <div className="space-y-4">
               <Skeleton className="h-8 w-48" />

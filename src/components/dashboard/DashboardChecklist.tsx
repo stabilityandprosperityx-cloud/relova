@@ -97,11 +97,11 @@ export default function DashboardChecklist({ profile }: Props) {
         </div>
       )}
 
-      <div className="space-y-1">
+      <div className="space-y-3">
         {docs.map((doc) => (
           <div
             key={doc.id}
-            className="flex items-center gap-4 rounded-xl border border-white/[0.06] bg-white/[0.03] p-4 hover:bg-white/[0.05] transition-colors"
+            className="flex items-center gap-3 md:gap-4 rounded-xl border border-white/[0.06] bg-white/[0.03] p-4 hover:bg-white/[0.05] transition-colors min-h-[56px]"
           >
             <button
               onClick={() => toggleDoc(doc)}

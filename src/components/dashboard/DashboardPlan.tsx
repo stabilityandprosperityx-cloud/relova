@@ -107,11 +107,11 @@ export default function DashboardPlan({ profile }: Props) {
           </div>
         </div>
 
-        <div className="space-y-1 mt-6">
+        <div className="space-y-3 mt-6">
           {steps.map((step) => (
             <div
               key={step.id}
-              className="flex items-start gap-4 rounded-xl border border-white/[0.06] bg-white/[0.03] p-4 hover:bg-white/[0.05] transition-colors"
+              className="flex items-start gap-3 md:gap-4 rounded-xl border border-white/[0.06] bg-white/[0.03] p-4 md:p-4 hover:bg-white/[0.05] transition-colors"
             >
               <button onClick={() => cycleStatus(step)} className="mt-0.5 shrink-0 active:scale-[0.9] transition-transform">
                 {step.status === "done" ? (
