@@ -46,7 +46,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
   const handleSave = async () => {
     setSaving(true);
-    const visaType = determineVisaType(targetCountry, goal);
+    const visaType = determineVisaType(targetCountry, selectedGoals.join(","));
 
     const profile: UserProfile = {
       user_id: userId,
