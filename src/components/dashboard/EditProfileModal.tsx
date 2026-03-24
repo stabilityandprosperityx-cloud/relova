@@ -34,7 +34,9 @@ function determineVisaType(country: string, _userGoal: string): string {
 export default function EditProfileModal({ profile, onSave, onClose }: Props) {
   const [citizenship, setCitizenship] = useState(profile.citizenship || "");
   const [targetCountry, setTargetCountry] = useState(profile.target_country || "");
-  const [goal, setGoal] = useState(profile.goal || "");
+  const [selectedGoals, setSelectedGoals] = useState<string[]>(
+    profile.goal ? profile.goal.split(",").filter(Boolean) : []
+  );
   const [budget, setBudget] = useState(profile.monthly_budget || 5000);
   const [saving, setSaving] = useState(false);
   const [search1, setSearch1] = useState("");
@@ -46,13 +48,14 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
   const filtered2 = allCountries.filter(c => c.toLowerCase().includes(search2.toLowerCase()));
 
   const handleSave = async () => {
-    if (!citizenship || !targetCountry || !goal) {
+    if (!citizenship || !targetCountry || selectedGoals.length === 0) {
       toast.error("Please fill all fields");
       return;
     }
 
     setSaving(true);
-    const newVisaType = determineVisaType(targetCountry, goal);
+    const goalStr = selectedGoals.join(",");
+    const newVisaType = determineVisaType(targetCountry, goalStr);
     const visaChanged = newVisaType !== profile.visa_type;
 
     const { error } = await supabase
@@ -60,7 +63,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
       .update({
         citizenship,
         target_country: targetCountry,
-        goal,
+        goal: goalStr,
         monthly_budget: budget,
         visa_type: newVisaType,
       })
@@ -72,12 +75,8 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
       return;
     }
 
-    // If visa type changed, reset user_steps to new template
     if (visaChanged) {
-      // Delete old steps
       await supabase.from("user_steps").delete().eq("user_id", profile.user_id);
-
-      // Fetch new template
       const { data: templateSteps } = await supabase
         .from("relocation_steps")
         .select("id, step_number")
@@ -100,7 +99,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
       ...profile,
       citizenship,
       target_country: targetCountry,
-      goal,
+      goal: goalStr,
       monthly_budget: budget,
       visa_type: newVisaType,
     };
@@ -111,7 +110,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-      <div className="w-full max-w-md mx-4 rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-8 relative">
+      <div className="w-full max-w-md mx-4 rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-8 relative max-h-[90vh] overflow-y-auto">
         <button onClick={onClose} className="absolute top-4 right-4 text-[#9CA3AF]/60 hover:text-[#9CA3AF] transition-colors">
           <X size={18} />
         </button>
@@ -119,7 +118,6 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
         <h2 className="text-lg font-semibold mb-6">Edit profile</h2>
 
         <div className="space-y-5">
-          {/* Citizenship */}
           <div>
             <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Citizenship</label>
             <input
@@ -144,7 +142,6 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
             )}
           </div>
 
-          {/* Target country */}
           <div>
             <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Target country</label>
             <input
@@ -169,14 +166,19 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
             )}
           </div>
 
-          {/* Goal */}
           <div>
-            <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Goal</label>
+            <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">
+              Goals <span className="normal-case tracking-normal">(select all that apply)</span>
+            </label>
             <div className="grid grid-cols-2 gap-2">
               {goals.map(g => (
-                <button key={g.id} onClick={() => setGoal(g.id)}
+                <button key={g.id} onClick={() => {
+                    setSelectedGoals(prev =>
+                      prev.includes(g.id) ? prev.filter(x => x !== g.id) : [...prev, g.id]
+                    );
+                  }}
                   className={`rounded-lg border p-2.5 text-[12px] font-medium text-center transition-all active:scale-[0.97] ${
-                    goal === g.id
+                    selectedGoals.includes(g.id)
                       ? "border-[#38BDF8] bg-[#38BDF8]/10 text-[#38BDF8]"
                       : "border-white/[0.06] bg-white/[0.03] text-[#9CA3AF] hover:text-foreground hover:bg-white/[0.05]"
                   }`}>
@@ -186,7 +188,6 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
             </div>
           </div>
 
-          {/* Budget */}
           <div>
             <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Monthly budget</label>
             <div className="text-center mb-2">

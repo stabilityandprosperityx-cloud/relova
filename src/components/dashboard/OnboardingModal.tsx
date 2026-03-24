@@ -25,7 +25,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const [step, setStep] = useState(1);
   const [citizenship, setCitizenship] = useState("");
   const [targetCountry, setTargetCountry] = useState("");
-  const [goal, setGoal] = useState("");
+  const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
   const [budget, setBudget] = useState(3000);
   const [saving, setSaving] = useState(false);
   const [search1, setSearch1] = useState("");
@@ -46,14 +46,14 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
   const handleSave = async () => {
     setSaving(true);
-    const visaType = determineVisaType(targetCountry, goal);
+    const visaType = determineVisaType(targetCountry, selectedGoals.join(","));
 
     const profile: UserProfile = {
       user_id: userId,
       citizenship,
       target_country: targetCountry,
       visa_type: visaType,
-      goal,
+      goal: selectedGoals.join(","),
       monthly_budget: budget,
       plan: "free",
       questions_used: 0,
@@ -161,14 +161,19 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
         {step === 3 && (
           <div className="space-y-4">
-            <h2 className="text-lg font-semibold text-center">What's your main goal?</h2>
+            <h2 className="text-lg font-semibold text-center">What are your goals?</h2>
+            <p className="text-[12px] text-[#9CA3AF] text-center">Select all that apply</p>
             <div className="grid grid-cols-2 gap-3 pt-2">
               {goals.map(g => (
                 <button
                   key={g.id}
-                  onClick={() => { setGoal(g.id); setStep(4); }}
+                  onClick={() => {
+                    setSelectedGoals(prev =>
+                      prev.includes(g.id) ? prev.filter(x => x !== g.id) : [...prev, g.id]
+                    );
+                  }}
                   className={`rounded-xl border p-4 text-[13px] font-medium text-center transition-all active:scale-[0.97] ${
-                    goal === g.id
+                    selectedGoals.includes(g.id)
                       ? "border-[#38BDF8] bg-[#38BDF8]/10 text-[#38BDF8]"
                       : "border-white/[0.06] bg-white/[0.03] text-[#9CA3AF] hover:text-foreground hover:bg-white/[0.05]"
                   }`}
@@ -177,6 +182,13 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                 </button>
               ))}
             </div>
+            <Button
+              className="w-full h-11 bg-[#38BDF8] hover:bg-[#38BDF8]/80 text-white mt-4"
+              onClick={() => setStep(4)}
+              disabled={selectedGoals.length === 0}
+            >
+              Continue →
+            </Button>
           </div>
         )}
 
