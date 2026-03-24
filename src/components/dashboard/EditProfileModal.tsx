@@ -46,7 +46,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
   const filtered2 = allCountries.filter(c => c.toLowerCase().includes(search2.toLowerCase()));
 
   const handleSave = async () => {
-    if (!citizenship || !targetCountry || !goal) {
+    if (!citizenship || !targetCountry || selectedGoals.length === 0) {
       toast.error("Please fill all fields");
       return;
     }
