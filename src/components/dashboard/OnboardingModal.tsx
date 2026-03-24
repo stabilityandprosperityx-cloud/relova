@@ -6,10 +6,14 @@ import { toast } from "sonner";
 import type { UserProfile } from "@/pages/Dashboard";
 
 const goals = [
-  { id: "tax_optimization", label: "Tax optimization" },
-  { id: "lifestyle", label: "Remote lifestyle" },
-  { id: "citizenship", label: "Get citizenship" },
-  { id: "remote_work", label: "Move for work" },
+  { id: "safety", label: "Safety" },
+  { id: "money", label: "Money" },
+  { id: "better_life", label: "Better Life" },
+  { id: "freedom", label: "Freedom" },
+  { id: "family", label: "Family" },
+  { id: "reset", label: "Reset" },
+  { id: "growth", label: "Growth" },
+  { id: "environment", label: "Environment" },
 ];
 
 interface Props {
@@ -22,7 +26,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const [citizenship, setCitizenship] = useState("");
   const [targetCountry, setTargetCountry] = useState("");
   const [goal, setGoal] = useState("");
-  const [budget, setBudget] = useState(5000);
+  const [budget, setBudget] = useState(3000);
   const [saving, setSaving] = useState(false);
   const [search1, setSearch1] = useState("");
   const [search2, setSearch2] = useState("");
@@ -30,12 +34,14 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const filteredCountries1 = allCountries.filter(c => c.toLowerCase().includes(search1.toLowerCase()));
   const filteredCountries2 = allCountries.filter(c => c.toLowerCase().includes(search2.toLowerCase()));
 
-  const determineVisaType = (country: string, userGoal: string): string => {
-    if (country === "Portugal") {
-      return userGoal === "remote_work" || userGoal === "lifestyle" ? "Digital_Nomad" : "D7";
-    }
-    // Default fallback for countries without specific visa data yet
-    return "D7";
+  const determineVisaType = (country: string, _userGoal: string): string => {
+    // Return null/TBD — visa type should be determined by AI or user later
+    // Only set specific visa types for countries we have data for
+    if (country === "Portugal") return "D7";
+    if (country === "Spain") return "Non_Lucrative";
+    if (country === "UAE") return "Golden_Visa";
+    if (country === "Thailand") return "LTR";
+    return "TBD";
   };
 
   const handleSave = async () => {
@@ -178,21 +184,23 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
           <div className="space-y-6">
             <h2 className="text-lg font-semibold text-center">What's your monthly budget?</h2>
             <div className="text-center">
-              <span className="text-3xl font-bold tabular-nums">${budget.toLocaleString()}</span>
+              <span className="text-3xl font-bold tabular-nums">
+                {budget >= 50000 ? "$50,000+" : `$${budget.toLocaleString()}`}
+              </span>
               <span className="text-[#9CA3AF] text-sm">/mo</span>
             </div>
             <input
               type="range"
-              min={1000}
-              max={20000}
+              min={0}
+              max={50000}
               step={500}
               value={budget}
               onChange={(e) => setBudget(Number(e.target.value))}
               className="w-full accent-[#38BDF8]"
             />
             <div className="flex justify-between text-[11px] text-[#9CA3AF]">
-              <span>$1,000</span>
-              <span>$20,000</span>
+              <span>$0</span>
+              <span>$50,000+</span>
             </div>
             <Button
               className="w-full h-11 bg-[#38BDF8] hover:bg-[#38BDF8]/80 text-white"

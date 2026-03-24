@@ -46,7 +46,9 @@ export default function DashboardDocuments({ userPlan }: Props) {
     if (!file || !user || isLocked) return;
 
     setUploading(true);
-    const path = `${user.id}/${Date.now()}_${file.name}`;
+    // Sanitize filename to avoid "Invalid key" errors with non-Latin characters
+    const sanitizedName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    const path = `${user.id}/${Date.now()}_${sanitizedName}`;
     const { error: uploadError } = await supabase.storage
       .from("user-documents")
       .upload(path, file);
@@ -111,9 +113,9 @@ export default function DashboardDocuments({ userPlan }: Props) {
           <p className="text-[13px] font-medium text-foreground">
             {uploading ? "Uploading..." : "Upload a document"}
           </p>
-          <p className="text-[11px] text-[#9CA3AF] mt-1">PDF, JPG, PNG · AI will verify it meets your visa requirements</p>
+          <p className="text-[11px] text-[#9CA3AF] mt-1">PDF, JPG, PNG, HEIC, DOCX and more · AI will verify it meets your visa requirements</p>
         </button>
-        <input ref={fileInputRef} type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={handleUpload} className="hidden" />
+        <input ref={fileInputRef} type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,.docx,.doc,.xlsx,.xls,.txt,.webp" onChange={handleUpload} className="hidden" />
 
         {docs.length === 0 ? (
           <p className="text-[13px] text-[#9CA3AF] text-center py-8">No documents uploaded yet.</p>

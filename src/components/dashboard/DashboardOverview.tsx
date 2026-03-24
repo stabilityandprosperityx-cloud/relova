@@ -137,9 +137,14 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
             📍 {profile.target_country}
           </span>
         )}
-        {profile.visa_type && (
+        {profile.visa_type && profile.visa_type !== "TBD" && (
           <span className="px-2.5 py-1 rounded-md bg-white/[0.06] text-[#9CA3AF] text-[11px] font-medium">
             📋 {profile.visa_type.replace(/_/g, " ")} Visa
+          </span>
+        )}
+        {profile.visa_type === "TBD" && (
+          <span className="px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-400 text-[11px] font-medium">
+            📋 Visa TBD
           </span>
         )}
         {profile.goal && (

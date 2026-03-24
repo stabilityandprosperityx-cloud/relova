@@ -7,10 +7,14 @@ import { X } from "lucide-react";
 import type { UserProfile } from "@/pages/Dashboard";
 
 const goals = [
-  { id: "tax_optimization", label: "Tax optimization" },
-  { id: "lifestyle", label: "Remote lifestyle" },
-  { id: "citizenship", label: "Get citizenship" },
-  { id: "remote_work", label: "Move for work" },
+  { id: "safety", label: "Safety" },
+  { id: "money", label: "Money" },
+  { id: "better_life", label: "Better Life" },
+  { id: "freedom", label: "Freedom" },
+  { id: "family", label: "Family" },
+  { id: "reset", label: "Reset" },
+  { id: "growth", label: "Growth" },
+  { id: "environment", label: "Environment" },
 ];
 
 interface Props {
@@ -19,11 +23,12 @@ interface Props {
   onClose: () => void;
 }
 
-function determineVisaType(country: string, userGoal: string): string {
-  if (country === "Portugal") {
-    return userGoal === "remote_work" || userGoal === "lifestyle" ? "Digital_Nomad" : "D7";
-  }
-  return "D7";
+function determineVisaType(country: string, _userGoal: string): string {
+  if (country === "Portugal") return "D7";
+  if (country === "Spain") return "Non_Lucrative";
+  if (country === "UAE") return "Golden_Visa";
+  if (country === "Thailand") return "LTR";
+  return "TBD";
 }
 
 export default function EditProfileModal({ profile, onSave, onClose }: Props) {
@@ -185,10 +190,12 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
           <div>
             <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Monthly budget</label>
             <div className="text-center mb-2">
-              <span className="text-xl font-bold tabular-nums">${budget.toLocaleString()}</span>
+              <span className="text-xl font-bold tabular-nums">
+                {budget >= 50000 ? "$50,000+" : `$${budget.toLocaleString()}`}
+              </span>
               <span className="text-[#9CA3AF] text-sm">/mo</span>
             </div>
-            <input type="range" min={1000} max={20000} step={500} value={budget}
+            <input type="range" min={0} max={50000} step={500} value={budget}
               onChange={(e) => setBudget(Number(e.target.value))}
               className="w-full accent-[#38BDF8]" />
           </div>

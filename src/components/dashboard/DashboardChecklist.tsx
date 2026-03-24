@@ -73,9 +73,16 @@ export default function DashboardChecklist({ profile }: Props) {
     <div className="space-y-6">
       <div className="flex items-center gap-3 flex-wrap">
         <h1 className="text-2xl font-bold tracking-tight">Document checklist</h1>
-        <span className="px-2.5 py-1 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] text-[11px] font-medium">
-          {profile.visa_type?.replace("_", " ")} Visa
-        </span>
+        {profile.visa_type && profile.visa_type !== "TBD" && (
+          <span className="px-2.5 py-1 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] text-[11px] font-medium">
+            {profile.visa_type.replace(/_/g, " ")} Visa
+          </span>
+        )}
+        {profile.target_country && (
+          <span className="px-2.5 py-1 rounded-md bg-white/[0.06] text-[#9CA3AF] text-[11px] font-medium">
+            📍 {profile.target_country}
+          </span>
+        )}
         {isViewOnly && (
           <span className="px-2.5 py-1 rounded-md bg-white/[0.06] text-[#9CA3AF] text-[11px]">
             View only · Upgrade to Full to manage
