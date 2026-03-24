@@ -25,7 +25,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const [step, setStep] = useState(1);
   const [citizenship, setCitizenship] = useState("");
   const [targetCountry, setTargetCountry] = useState("");
-  const [goal, setGoal] = useState("");
+  const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
   const [budget, setBudget] = useState(3000);
   const [saving, setSaving] = useState(false);
   const [search1, setSearch1] = useState("");
