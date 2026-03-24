@@ -100,7 +100,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
       ...profile,
       citizenship,
       target_country: targetCountry,
-      goal,
+      goal: selectedGoals.join(","),
       monthly_budget: budget,
       visa_type: newVisaType,
     };
