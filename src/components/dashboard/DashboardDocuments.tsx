@@ -102,7 +102,7 @@ export default function DashboardDocuments({ userPlan, onBack }: Props) {
 
   return (
     <div className="space-y-6 relative">
-      {isLocked && showPaywall && <LockedOverlay onClose={() => setShowPaywall(false)} />}
+      {isLocked && showPaywall && <LockedOverlay onClose={() => { setShowPaywall(false); onBack?.(); }} />}
       <div className={isLocked ? "pointer-events-none" : ""}>
         <h1 className="text-2xl font-bold tracking-tight">Documents</h1>
 
