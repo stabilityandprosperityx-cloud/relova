@@ -184,21 +184,23 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
           <div className="space-y-6">
             <h2 className="text-lg font-semibold text-center">What's your monthly budget?</h2>
             <div className="text-center">
-              <span className="text-3xl font-bold tabular-nums">${budget.toLocaleString()}</span>
+              <span className="text-3xl font-bold tabular-nums">
+                {budget >= 50000 ? "$50,000+" : `$${budget.toLocaleString()}`}
+              </span>
               <span className="text-[#9CA3AF] text-sm">/mo</span>
             </div>
             <input
               type="range"
-              min={1000}
-              max={20000}
+              min={0}
+              max={50000}
               step={500}
               value={budget}
               onChange={(e) => setBudget(Number(e.target.value))}
               className="w-full accent-[#38BDF8]"
             />
             <div className="flex justify-between text-[11px] text-[#9CA3AF]">
-              <span>$1,000</span>
-              <span>$20,000</span>
+              <span>$0</span>
+              <span>$50,000+</span>
             </div>
             <Button
               className="w-full h-11 bg-[#38BDF8] hover:bg-[#38BDF8]/80 text-white"
