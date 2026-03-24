@@ -23,11 +23,12 @@ interface Props {
   onClose: () => void;
 }
 
-function determineVisaType(country: string, userGoal: string): string {
-  if (country === "Portugal") {
-    return userGoal === "remote_work" || userGoal === "lifestyle" ? "Digital_Nomad" : "D7";
-  }
-  return "D7";
+function determineVisaType(country: string, _userGoal: string): string {
+  if (country === "Portugal") return "D7";
+  if (country === "Spain") return "Non_Lucrative";
+  if (country === "UAE") return "Golden_Visa";
+  if (country === "Thailand") return "LTR";
+  return "TBD";
 }
 
 export default function EditProfileModal({ profile, onSave, onClose }: Props) {
