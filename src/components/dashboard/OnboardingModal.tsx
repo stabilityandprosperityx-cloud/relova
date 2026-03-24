@@ -34,12 +34,14 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const filteredCountries1 = allCountries.filter(c => c.toLowerCase().includes(search1.toLowerCase()));
   const filteredCountries2 = allCountries.filter(c => c.toLowerCase().includes(search2.toLowerCase()));
 
-  const determineVisaType = (country: string, userGoal: string): string => {
-    if (country === "Portugal") {
-      return userGoal === "remote_work" || userGoal === "lifestyle" ? "Digital_Nomad" : "D7";
-    }
-    // Default fallback for countries without specific visa data yet
-    return "D7";
+  const determineVisaType = (country: string, _userGoal: string): string => {
+    // Return null/TBD — visa type should be determined by AI or user later
+    // Only set specific visa types for countries we have data for
+    if (country === "Portugal") return "D7";
+    if (country === "Spain") return "Non_Lucrative";
+    if (country === "UAE") return "Golden_Visa";
+    if (country === "Thailand") return "LTR";
+    return "TBD";
   };
 
   const handleSave = async () => {
