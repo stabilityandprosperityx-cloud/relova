@@ -52,7 +52,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
     }
 
     setSaving(true);
-    const newVisaType = determineVisaType(targetCountry, goal);
+    const newVisaType = determineVisaType(targetCountry, selectedGoals.join(","));
     const visaChanged = newVisaType !== profile.visa_type;
 
     const { error } = await supabase
