@@ -92,7 +92,9 @@ export default function DashboardChat({ profile }: Props) {
       if (data && data.length > 0) {
         setMessages(data as Message[]);
       } else if (profile) {
-        const greeting = `Welcome back! You're moving to ${profile.target_country || "your destination"} — ask me anything about visas, documents, or your next steps.`;
+        const greeting = profile.target_country
+          ? `Your path to ${profile.target_country} is set. Ask me anything about your next steps, visa process, or documents.`
+          : `Welcome! Your relocation advisor is ready. Ask me about visas, documents, or your next steps.`;
         setMessages([{ role: "assistant", content: greeting }]);
       }
       setHistoryLoading(false);
@@ -178,7 +180,7 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
 
   return (
     <div className="flex flex-col h-[calc(100vh-8rem)]">
-      <h1 className="text-2xl font-bold tracking-tight mb-4">AI Chat</h1>
+      <h1 className="text-2xl font-bold tracking-tight mb-4">Your Relocation Advisor</h1>
 
       <div className="flex-1 overflow-y-auto space-y-4 pr-1">
         <AnimatePresence mode="popLayout">

@@ -26,6 +26,11 @@ export interface UserProfile {
   plan: UserPlan;
   questions_used: number;
   plan_expires_at: string | null;
+  family_status?: string | null;
+  timeline?: string | null;
+  constraints?: string | null;
+  match_score?: number | null;
+  recommended_country?: string | null;
 }
 
 export default function Dashboard() {
@@ -85,16 +90,14 @@ export default function Dashboard() {
         onEditProfile={() => setShowEditProfile(true)}
       />
 
-      {/* Main content */}
       <main className="flex-1 md:ml-[220px] pb-20 md:pb-0">
         <div className="max-w-5xl mx-auto px-4 md:px-8 py-8">
           {profileLoading ? (
             <div className="space-y-4">
               <Skeleton className="h-8 w-48" />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Skeleton className="h-28" />
-                <Skeleton className="h-28" />
-                <Skeleton className="h-28" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Skeleton className="h-40" />
+                <Skeleton className="h-40" />
               </div>
             </div>
           ) : (

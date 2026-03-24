@@ -4,17 +4,31 @@ import { Button } from "@/components/ui/button";
 import { allCountries } from "@/data/allCountries";
 import { toast } from "sonner";
 import { X } from "lucide-react";
+import { generatePlan, generateChecklist } from "@/lib/planGenerator";
 import type { UserProfile } from "@/pages/Dashboard";
 
 const goals = [
-  { id: "safety", label: "Safety" },
-  { id: "money", label: "Money" },
-  { id: "better_life", label: "Better Life" },
-  { id: "freedom", label: "Freedom" },
-  { id: "family", label: "Family" },
-  { id: "reset", label: "Reset" },
-  { id: "growth", label: "Growth" },
-  { id: "environment", label: "Environment" },
+  { id: "safety", label: "🛡️ Safety" },
+  { id: "money", label: "💰 Money" },
+  { id: "better_life", label: "✨ Better Life" },
+  { id: "freedom", label: "🕊️ Freedom" },
+  { id: "family", label: "👨‍👩‍👧 Family" },
+  { id: "reset", label: "🔄 Reset" },
+  { id: "growth", label: "📈 Growth" },
+  { id: "environment", label: "🌿 Environment" },
+];
+
+const familyOptions = [
+  { id: "single", label: "Single" },
+  { id: "couple", label: "Couple" },
+  { id: "family", label: "Family with kids" },
+];
+
+const timelineOptions = [
+  { id: "ready_now", label: "Ready now" },
+  { id: "3_6_months", label: "3-6 months" },
+  { id: "within_year", label: "Within a year" },
+  { id: "exploring", label: "Just exploring" },
 ];
 
 interface Props {
@@ -23,11 +37,17 @@ interface Props {
   onClose: () => void;
 }
 
-function determineVisaType(country: string, _userGoal: string): string {
+function determineVisaType(country: string): string {
   if (country === "Portugal") return "D7";
   if (country === "Spain") return "Non_Lucrative";
   if (country === "UAE") return "Golden_Visa";
   if (country === "Thailand") return "LTR";
+  if (country === "Georgia") return "Visa_Free";
+  if (country === "Estonia") return "Digital_Nomad";
+  if (country === "Mexico") return "Temporary_Resident";
+  if (country === "Argentina") return "Rentista";
+  if (country === "Montenegro") return "Temporary_Residence";
+  if (country === "Turkey") return "Residence_Permit";
   return "TBD";
 }
 
@@ -38,6 +58,8 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
     profile.goal ? profile.goal.split(",").filter(Boolean) : []
   );
   const [budget, setBudget] = useState(profile.monthly_budget || 5000);
+  const [familyStatus, setFamilyStatus] = useState(profile.family_status || "single");
+  const [timeline, setTimeline] = useState(profile.timeline || "exploring");
   const [saving, setSaving] = useState(false);
   const [search1, setSearch1] = useState("");
   const [search2, setSearch2] = useState("");
@@ -55,7 +77,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
 
     setSaving(true);
     const goalStr = selectedGoals.join(",");
-    const newVisaType = determineVisaType(targetCountry, goalStr);
+    const newVisaType = determineVisaType(targetCountry);
     const visaChanged = newVisaType !== profile.visa_type;
 
     const { error } = await supabase
@@ -66,6 +88,8 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
         goal: goalStr,
         monthly_budget: budget,
         visa_type: newVisaType,
+        family_status: familyStatus,
+        timeline,
       })
       .eq("user_id", profile.user_id);
 
@@ -76,22 +100,34 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
     }
 
     if (visaChanged) {
+      // Clear old steps and regenerate
       await supabase.from("user_steps").delete().eq("user_id", profile.user_id);
-      const { data: templateSteps } = await supabase
-        .from("relocation_steps")
-        .select("id, step_number")
-        .eq("visa_type", newVisaType)
-        .order("step_number");
 
-      if (templateSteps && templateSteps.length > 0) {
-        await supabase.from("user_steps").insert(
-          templateSteps.map((s: any, i: number) => ({
-            user_id: profile.user_id,
-            step_id: s.id,
-            status: i === 0 ? "active" : "todo",
-            completed_at: null,
-          }))
-        );
+      const plan = generatePlan(targetCountry, newVisaType, familyStatus);
+      let stepNumber = 1;
+      for (const phase of plan) {
+        for (const s of phase.steps) {
+          const { data: newStep } = await supabase
+            .from("relocation_steps")
+            .insert({
+              visa_type: newVisaType,
+              title: `[${phase.name}] ${s.title}`,
+              description: s.description,
+              step_number: stepNumber,
+              estimated_days: s.estimatedDays,
+            })
+            .select("id")
+            .single();
+          if (newStep) {
+            await supabase.from("user_steps").insert({
+              user_id: profile.user_id,
+              step_id: newStep.id,
+              status: stepNumber === 1 ? "active" : "todo",
+              completed_at: null,
+            });
+          }
+          stepNumber++;
+        }
       }
     }
 
@@ -102,6 +138,8 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
       goal: goalStr,
       monthly_budget: budget,
       visa_type: newVisaType,
+      family_status: familyStatus,
+      timeline,
     };
 
     toast.success("Profile updated");
@@ -118,6 +156,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
         <h2 className="text-lg font-semibold mb-6">Edit profile</h2>
 
         <div className="space-y-5">
+          {/* Citizenship */}
           <div>
             <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Citizenship</label>
             <input
@@ -142,6 +181,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
             )}
           </div>
 
+          {/* Target country */}
           <div>
             <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Target country</label>
             <input
@@ -166,6 +206,24 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
             )}
           </div>
 
+          {/* Family status */}
+          <div>
+            <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Family status</label>
+            <div className="grid grid-cols-3 gap-2">
+              {familyOptions.map(f => (
+                <button key={f.id} onClick={() => setFamilyStatus(f.id)}
+                  className={`rounded-lg border p-2.5 text-[12px] font-medium text-center transition-all ${
+                    familyStatus === f.id
+                      ? "border-[#38BDF8] bg-[#38BDF8]/10 text-[#38BDF8]"
+                      : "border-white/[0.06] bg-white/[0.03] text-[#9CA3AF] hover:text-foreground"
+                  }`}>
+                  {f.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Goals */}
           <div>
             <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">
               Goals <span className="normal-case tracking-normal">(select all that apply)</span>
@@ -188,6 +246,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
             </div>
           </div>
 
+          {/* Budget */}
           <div>
             <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Monthly budget</label>
             <div className="text-center mb-2">
@@ -199,6 +258,23 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
             <input type="range" min={0} max={50000} step={500} value={budget}
               onChange={(e) => setBudget(Number(e.target.value))}
               className="w-full accent-[#38BDF8]" />
+          </div>
+
+          {/* Timeline */}
+          <div>
+            <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Timeline</label>
+            <div className="grid grid-cols-2 gap-2">
+              {timelineOptions.map(t => (
+                <button key={t.id} onClick={() => setTimeline(t.id)}
+                  className={`rounded-lg border p-2.5 text-[12px] font-medium text-center transition-all ${
+                    timeline === t.id
+                      ? "border-[#38BDF8] bg-[#38BDF8]/10 text-[#38BDF8]"
+                      : "border-white/[0.06] bg-white/[0.03] text-[#9CA3AF] hover:text-foreground"
+                  }`}>
+                  {t.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           <Button className="w-full h-11 bg-[#38BDF8] hover:bg-[#38BDF8]/80 text-white" onClick={handleSave} disabled={saving}>
