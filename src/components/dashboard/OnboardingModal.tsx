@@ -53,7 +53,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       citizenship,
       target_country: targetCountry,
       visa_type: visaType,
-      goal,
+      goal: selectedGoals.join(","),
       monthly_budget: budget,
       plan: "free",
       questions_used: 0,
