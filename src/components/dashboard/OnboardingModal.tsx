@@ -6,10 +6,14 @@ import { toast } from "sonner";
 import type { UserProfile } from "@/pages/Dashboard";
 
 const goals = [
-  { id: "tax_optimization", label: "Tax optimization" },
-  { id: "lifestyle", label: "Remote lifestyle" },
-  { id: "citizenship", label: "Get citizenship" },
-  { id: "remote_work", label: "Move for work" },
+  { id: "safety", label: "Safety" },
+  { id: "money", label: "Money" },
+  { id: "better_life", label: "Better Life" },
+  { id: "freedom", label: "Freedom" },
+  { id: "family", label: "Family" },
+  { id: "reset", label: "Reset" },
+  { id: "growth", label: "Growth" },
+  { id: "environment", label: "Environment" },
 ];
 
 interface Props {
