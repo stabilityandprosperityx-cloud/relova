@@ -26,6 +26,7 @@ export default function DashboardPlan({ profile }: Props) {
   const { user } = useAuth();
   const [steps, setSteps] = useState<StepWithStatus[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showPaywall, setShowPaywall] = useState(true);
   const isLocked = (profile?.plan || "free") !== "full";
 
   const fetchSteps = async () => {
@@ -93,7 +94,7 @@ export default function DashboardPlan({ profile }: Props) {
 
   return (
     <div className="space-y-6 relative">
-      {isLocked && <LockedOverlay onClose={() => {}} />}
+      {isLocked && showPaywall && <LockedOverlay onClose={() => setShowPaywall(false)} />}
       <div className={isLocked ? "pointer-events-none" : ""}>
          <div className="flex items-center justify-between flex-wrap gap-3">
           <h1 className="text-xl md:text-2xl font-bold tracking-tight">My Plan</h1>

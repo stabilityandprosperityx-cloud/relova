@@ -26,6 +26,7 @@ export default function DashboardDocuments({ userPlan }: Props) {
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [showPaywall, setShowPaywall] = useState(true);
   const isLocked = userPlan !== "full";
 
   const fetchDocs = async () => {
@@ -100,7 +101,7 @@ export default function DashboardDocuments({ userPlan }: Props) {
 
   return (
     <div className="space-y-6 relative">
-      {isLocked && <LockedOverlay onClose={() => {}} />}
+      {isLocked && showPaywall && <LockedOverlay onClose={() => setShowPaywall(false)} />}
       <div className={isLocked ? "pointer-events-none" : ""}>
         <h1 className="text-2xl font-bold tracking-tight">Documents</h1>
 
