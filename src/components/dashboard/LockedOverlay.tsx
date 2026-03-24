@@ -79,7 +79,7 @@ export default function LockedOverlay({ onClose }: Props) {
             "You may lose time and money",
           ].map((item) => (
             <div key={item} className="flex items-start gap-2.5">
-              <AlertTriangle size={14} className="text-yellow-500 mt-0.5 shrink-0" />
+              <AlertTriangle size={14} className="text-destructive mt-0.5 shrink-0" />
               <span className="text-sm text-muted-foreground">{item}</span>
             </div>
           ))}

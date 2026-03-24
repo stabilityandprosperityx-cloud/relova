@@ -93,7 +93,7 @@ export default function DashboardPlan({ profile }: Props) {
 
   return (
     <div className="space-y-6 relative">
-      {isLocked && <LockedOverlay planRequired="full" />}
+      {isLocked && <LockedOverlay onClose={() => {}} />}
       <div className={isLocked ? "pointer-events-none" : ""}>
          <div className="flex items-center justify-between flex-wrap gap-3">
           <h1 className="text-xl md:text-2xl font-bold tracking-tight">My Plan</h1>
