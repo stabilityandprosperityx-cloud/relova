@@ -26,6 +26,7 @@ export default function DashboardPlan({ profile }: Props) {
   const { user } = useAuth();
   const [steps, setSteps] = useState<StepWithStatus[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showPaywall, setShowPaywall] = useState(true);
   const isLocked = (profile?.plan || "free") !== "full";
 
   const fetchSteps = async () => {
