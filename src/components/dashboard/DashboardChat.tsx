@@ -79,7 +79,6 @@ export default function DashboardChat({ profile }: Props) {
   const limitReached = isFree && questionsUsed >= FREE_LIMIT;
   const remaining = FREE_LIMIT - questionsUsed;
 
-  // Load chat history
   useEffect(() => {
     if (!user) return;
     const load = async () => {
@@ -179,8 +178,8 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-8rem)]">
-      <h1 className="text-2xl font-bold tracking-tight mb-4">Your Relocation Advisor</h1>
+    <div className="flex flex-col h-[calc(100vh-8rem)] md:h-[calc(100vh-8rem)]">
+      <h1 className="text-xl md:text-2xl font-bold tracking-tight mb-4">Your Relocation Advisor</h1>
 
       <div className="flex-1 overflow-y-auto space-y-4 pr-1">
         <AnimatePresence mode="popLayout">
@@ -192,14 +191,14 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className={`max-w-[85%] rounded-xl px-4 py-3 text-[13px] leading-relaxed ${
+              <div className={`max-w-[90%] md:max-w-[85%] rounded-xl px-4 py-3 text-[13px] leading-relaxed ${
                 msg.role === "user"
-                  ? "bg-[#38BDF8] text-white"
+                  ? "bg-primary text-primary-foreground"
                   : "bg-white/[0.04] border border-white/[0.06]"
               }`}>
                 {msg.role === "assistant" ? (
                   <>
-                    <div className="prose prose-sm prose-invert max-w-none [&_p]:text-[#9CA3AF] [&_li]:text-[#9CA3AF] [&_strong]:text-foreground [&_p]:text-[13px] [&_li]:text-[13px]">
+                    <div className="prose prose-sm prose-invert max-w-none [&_p]:text-muted-foreground [&_li]:text-muted-foreground [&_strong]:text-foreground [&_p]:text-[13px] [&_li]:text-[13px]">
                       <ReactMarkdown>{msg.content}</ReactMarkdown>
                     </div>
                     {!isLoading && (
@@ -216,9 +215,9 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
           <div className="flex justify-start">
             <div className="bg-white/[0.04] border border-white/[0.06] rounded-xl px-4 py-3">
               <div className="flex gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#9CA3AF]/40 animate-pulse" />
-                <span className="h-1.5 w-1.5 rounded-full bg-[#9CA3AF]/40 animate-pulse [animation-delay:150ms]" />
-                <span className="h-1.5 w-1.5 rounded-full bg-[#9CA3AF]/40 animate-pulse [animation-delay:300ms]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/40 animate-pulse" />
+                <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/40 animate-pulse [animation-delay:150ms]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/40 animate-pulse [animation-delay:300ms]" />
               </div>
             </div>
           </div>
@@ -226,16 +225,16 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
         <div ref={bottomRef} />
       </div>
 
-      {/* Upgrade banner / limit reached */}
+      {/* Input area — padded on mobile */}
       {limitReached ? (
-        <div className="pt-4 border-t border-white/[0.06] mt-4 text-center space-y-3 py-6">
-          <p className="text-[13px] text-[#9CA3AF]">
+        <div className="pt-4 border-t border-white/[0.06] mt-4 text-center space-y-3 py-6 px-1">
+          <p className="text-[13px] text-muted-foreground">
             You've used all {FREE_LIMIT} free questions. Upgrade to Pro for unlimited answers.
           </p>
-          <div className="flex gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button
               size="sm"
-              className="text-[12px] bg-[#38BDF8] hover:bg-[#38BDF8]/80"
+              className="text-[12px] bg-primary hover:bg-primary/80 h-12 sm:h-auto w-full sm:w-auto"
               onClick={() => navigate("/pricing")}
             >
               Start with Pro $19 →
@@ -243,7 +242,7 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
             <Button
               size="sm"
               variant="outline"
-              className="text-[12px] border-white/[0.08] bg-transparent hover:bg-white/[0.04]"
+              className="text-[12px] border-white/[0.08] bg-transparent hover:bg-white/[0.04] h-12 sm:h-auto w-full sm:w-auto"
               onClick={() => navigate("/pricing")}
             >
               Get Full Plan $49 →
@@ -251,24 +250,24 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
           </div>
         </div>
       ) : (
-        <div className="pt-4 border-t border-white/[0.06] mt-4">
+        <div className="pt-4 border-t border-white/[0.06] mt-4 pb-2">
           <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="flex items-center gap-2">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about your relocation..."
-              className="flex-1 bg-white/[0.04] border border-white/[0.06] rounded-xl px-4 py-3 text-[13px] placeholder:text-[#9CA3AF]/40 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/50"
+              className="flex-1 bg-white/[0.04] border border-white/[0.06] rounded-xl px-4 py-3.5 text-[13px] placeholder:text-muted-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary/50"
               disabled={isLoading}
             />
-            <Button type="submit" size="icon" className="h-11 w-11 rounded-xl shrink-0 bg-[#38BDF8] hover:bg-[#38BDF8]/80" disabled={!input.trim() || isLoading}>
+            <Button type="submit" size="icon" className="h-12 w-12 rounded-xl shrink-0 bg-primary hover:bg-primary/80" disabled={!input.trim() || isLoading}>
               <Send size={14} />
             </Button>
           </form>
           {isFree && remaining > 0 && (
-            <p className="text-[11px] text-[#9CA3AF]/60 text-center mt-2">
+            <p className="text-[11px] text-muted-foreground/60 text-center mt-2">
               {remaining} free question{remaining !== 1 ? "s" : ""} remaining
               {remaining <= 2 && (
-                <span className="text-[#38BDF8]/60">
+                <span className="text-primary/60">
                   {remaining === 2
                     ? " · Pro users get unlimited personalized answers"
                     : " · Upgrade to keep your relocation plan going"}
@@ -277,7 +276,7 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
             </p>
           )}
           {!isFree && (
-            <p className="text-[10px] text-[#9CA3AF]/40 text-center mt-2">
+            <p className="text-[10px] text-muted-foreground/40 text-center mt-2">
               Relova provides guidance, not legal advice.
             </p>
           )}

@@ -72,7 +72,7 @@ export default function DashboardChecklist({ profile }: Props) {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3 flex-wrap">
-        <h1 className="text-2xl font-bold tracking-tight">Document checklist</h1>
+        <h1 className="text-xl md:text-2xl font-bold tracking-tight">Document checklist</h1>
         {profile.visa_type && profile.visa_type !== "TBD" && (
           <span className="px-2.5 py-1 rounded-md bg-[#38BDF8]/10 text-[#38BDF8] text-[11px] font-medium">
             {profile.visa_type.replace(/_/g, " ")} Visa
@@ -97,11 +97,11 @@ export default function DashboardChecklist({ profile }: Props) {
         </div>
       )}
 
-      <div className="space-y-1">
+      <div className="space-y-3">
         {docs.map((doc) => (
           <div
             key={doc.id}
-            className="flex items-center gap-4 rounded-xl border border-white/[0.06] bg-white/[0.03] p-4 hover:bg-white/[0.05] transition-colors"
+            className="flex items-center gap-3 md:gap-4 rounded-xl border border-white/[0.06] bg-white/[0.03] p-4 hover:bg-white/[0.05] transition-colors min-h-[56px]"
           >
             <button
               onClick={() => toggleDoc(doc)}
