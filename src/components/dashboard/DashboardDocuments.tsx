@@ -26,6 +26,7 @@ export default function DashboardDocuments({ userPlan }: Props) {
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [showPaywall, setShowPaywall] = useState(true);
   const isLocked = userPlan !== "full";
 
   const fetchDocs = async () => {
