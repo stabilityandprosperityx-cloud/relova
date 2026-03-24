@@ -23,7 +23,7 @@ interface Props {
   onBack?: () => void;
 }
 
-export default function DashboardPlan({ profile }: Props) {
+export default function DashboardPlan({ profile, onBack }: Props) {
   const { user } = useAuth();
   const [steps, setSteps] = useState<StepWithStatus[]>([]);
   const [loading, setLoading] = useState(true);
