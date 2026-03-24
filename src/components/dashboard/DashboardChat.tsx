@@ -92,7 +92,9 @@ export default function DashboardChat({ profile }: Props) {
       if (data && data.length > 0) {
         setMessages(data as Message[]);
       } else if (profile) {
-        const greeting = `Welcome back! You're moving to ${profile.target_country || "your destination"} — ask me anything about visas, documents, or your next steps.`;
+        const greeting = profile.target_country
+          ? `Your path to ${profile.target_country} is set. Ask me anything about your next steps, visa process, or documents.`
+          : `Welcome! Your relocation advisor is ready. Ask me about visas, documents, or your next steps.`;
         setMessages([{ role: "assistant", content: greeting }]);
       }
       setHistoryLoading(false);
