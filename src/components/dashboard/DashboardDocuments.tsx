@@ -18,9 +18,10 @@ interface UserDoc {
 
 interface Props {
   userPlan: UserPlan;
+  onBack?: () => void;
 }
 
-export default function DashboardDocuments({ userPlan }: Props) {
+export default function DashboardDocuments({ userPlan, onBack }: Props) {
   const { user } = useAuth();
   const [docs, setDocs] = useState<UserDoc[]>([]);
   const [loading, setLoading] = useState(true);
