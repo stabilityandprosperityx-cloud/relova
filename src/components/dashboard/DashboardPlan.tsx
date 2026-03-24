@@ -20,6 +20,7 @@ interface StepWithStatus {
 
 interface Props {
   profile: UserProfile | null;
+  onBack?: () => void;
 }
 
 export default function DashboardPlan({ profile }: Props) {
