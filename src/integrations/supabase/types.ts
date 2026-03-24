@@ -95,46 +95,61 @@ export type Database = {
       user_profiles: {
         Row: {
           citizenship: string | null
+          constraints: string | null
           created_at: string
+          family_status: string | null
           goal: string | null
           id: string
+          match_score: number | null
           monthly_budget: number | null
           paddle_customer_id: string | null
           paddle_subscription_id: string | null
           plan: string
           plan_expires_at: string | null
           questions_used: number
+          recommended_country: string | null
           target_country: string | null
+          timeline: string | null
           user_id: string
           visa_type: string | null
         }
         Insert: {
           citizenship?: string | null
+          constraints?: string | null
           created_at?: string
+          family_status?: string | null
           goal?: string | null
           id?: string
+          match_score?: number | null
           monthly_budget?: number | null
           paddle_customer_id?: string | null
           paddle_subscription_id?: string | null
           plan?: string
           plan_expires_at?: string | null
           questions_used?: number
+          recommended_country?: string | null
           target_country?: string | null
+          timeline?: string | null
           user_id: string
           visa_type?: string | null
         }
         Update: {
           citizenship?: string | null
+          constraints?: string | null
           created_at?: string
+          family_status?: string | null
           goal?: string | null
           id?: string
+          match_score?: number | null
           monthly_budget?: number | null
           paddle_customer_id?: string | null
           paddle_subscription_id?: string | null
           plan?: string
           plan_expires_at?: string | null
           questions_used?: number
+          recommended_country?: string | null
           target_country?: string | null
+          timeline?: string | null
           user_id?: string
           visa_type?: string | null
         }
