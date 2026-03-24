@@ -46,7 +46,9 @@ export default function DashboardDocuments({ userPlan }: Props) {
     if (!file || !user || isLocked) return;
 
     setUploading(true);
-    const path = `${user.id}/${Date.now()}_${file.name}`;
+    // Sanitize filename to avoid "Invalid key" errors with non-Latin characters
+    const sanitizedName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    const path = `${user.id}/${Date.now()}_${sanitizedName}`;
     const { error: uploadError } = await supabase.storage
       .from("user-documents")
       .upload(path, file);

@@ -190,10 +190,12 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
           <div>
             <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Monthly budget</label>
             <div className="text-center mb-2">
-              <span className="text-xl font-bold tabular-nums">${budget.toLocaleString()}</span>
+              <span className="text-xl font-bold tabular-nums">
+                {budget >= 50000 ? "$50,000+" : `$${budget.toLocaleString()}`}
+              </span>
               <span className="text-[#9CA3AF] text-sm">/mo</span>
             </div>
-            <input type="range" min={1000} max={20000} step={500} value={budget}
+            <input type="range" min={0} max={50000} step={500} value={budget}
               onChange={(e) => setBudget(Number(e.target.value))}
               className="w-full accent-[#38BDF8]" />
           </div>

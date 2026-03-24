@@ -92,7 +92,7 @@ export default function DashboardChat({ profile }: Props) {
       if (data && data.length > 0) {
         setMessages(data as Message[]);
       } else if (profile) {
-        const greeting = `Welcome back! You're working on your ${profile.visa_type?.replace("_", " ")} visa for ${profile.target_country}. I have your full profile — just ask me anything about your next steps.`;
+        const greeting = `Welcome back! You're moving to ${profile.target_country || "your destination"} — ask me anything about visas, documents, or your next steps.`;
         setMessages([{ role: "assistant", content: greeting }]);
       }
       setHistoryLoading(false);
