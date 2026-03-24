@@ -95,8 +95,8 @@ export default function DashboardPlan({ profile }: Props) {
     <div className="space-y-6 relative">
       {isLocked && <LockedOverlay planRequired="full" />}
       <div className={isLocked ? "pointer-events-none" : ""}>
-        <div className="flex items-center justify-between flex-wrap gap-3">
-          <h1 className="text-2xl font-bold tracking-tight">My Plan</h1>
+         <div className="flex items-center justify-between flex-wrap gap-3">
+          <h1 className="text-xl md:text-2xl font-bold tracking-tight">My Plan</h1>
           <div className="flex gap-2">
             <Button variant="outline" size="sm" onClick={exportPdf} className="gap-2 text-[12px] border-white/[0.08] bg-transparent hover:bg-white/[0.04]">
               <Download size={14} /> Export
