@@ -42,7 +42,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
           >
-            Get a clear relocation decision based on your passport, income, and goals.
+            Find out where you can actually move — based on real visa rules, income requirements, and legal constraints.
           </motion.p>
 
           {/* Two columns: Avoid / Your plan */}
