@@ -178,7 +178,7 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
 
   return (
     <div className="flex flex-col h-[calc(100vh-8rem)]">
-      <h1 className="text-2xl font-bold tracking-tight mb-4">AI Chat</h1>
+      <h1 className="text-2xl font-bold tracking-tight mb-4">Your Relocation Advisor</h1>
 
       <div className="flex-1 overflow-y-auto space-y-4 pr-1">
         <AnimatePresence mode="popLayout">
