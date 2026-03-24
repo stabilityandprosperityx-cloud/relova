@@ -18,9 +18,10 @@ interface UserDoc {
 
 interface Props {
   userPlan: UserPlan;
+  onBack?: () => void;
 }
 
-export default function DashboardDocuments({ userPlan }: Props) {
+export default function DashboardDocuments({ userPlan, onBack }: Props) {
   const { user } = useAuth();
   const [docs, setDocs] = useState<UserDoc[]>([]);
   const [loading, setLoading] = useState(true);
@@ -101,7 +102,7 @@ export default function DashboardDocuments({ userPlan }: Props) {
 
   return (
     <div className="space-y-6 relative">
-      {isLocked && showPaywall && <LockedOverlay onClose={() => setShowPaywall(false)} />}
+      {isLocked && showPaywall && <LockedOverlay onClose={() => { setShowPaywall(false); onBack?.(); }} />}
       <div className={isLocked ? "pointer-events-none" : ""}>
         <h1 className="text-2xl font-bold tracking-tight">Documents</h1>
 

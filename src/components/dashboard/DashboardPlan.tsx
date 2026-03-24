@@ -20,9 +20,10 @@ interface StepWithStatus {
 
 interface Props {
   profile: UserProfile | null;
+  onBack?: () => void;
 }
 
-export default function DashboardPlan({ profile }: Props) {
+export default function DashboardPlan({ profile, onBack }: Props) {
   const { user } = useAuth();
   const [steps, setSteps] = useState<StepWithStatus[]>([]);
   const [loading, setLoading] = useState(true);
@@ -94,7 +95,7 @@ export default function DashboardPlan({ profile }: Props) {
 
   return (
     <div className="space-y-6 relative">
-      {isLocked && showPaywall && <LockedOverlay onClose={() => setShowPaywall(false)} />}
+      {isLocked && showPaywall && <LockedOverlay onClose={() => { setShowPaywall(false); onBack?.(); }} />}
       <div className={isLocked ? "pointer-events-none" : ""}>
          <div className="flex items-center justify-between flex-wrap gap-3">
           <h1 className="text-xl md:text-2xl font-bold tracking-tight">My Plan</h1>
