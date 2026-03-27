@@ -324,9 +324,83 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
             <span className="text-[12px] text-muted-foreground">{readyCount} / {totalCount} ready</span>
           </div>
 
-          <Progress value={progressPct} className="h-1.5 bg-white/[0.06] mb-4" />
+          {/* ─── Journey Line ─── */}
+          <div className="relative my-5">
+            {/* Track */}
+            <div className="h-[2px] w-full rounded-full bg-white/[0.06] relative overflow-hidden">
+              {/* Filled portion */}
+              <motion.div
+                className="absolute inset-y-0 left-0 rounded-full"
+                style={{
+                  background: "linear-gradient(90deg, hsl(var(--primary)), hsl(190 80% 60%))",
+                }}
+                initial={{ width: 0 }}
+                animate={{ width: `${progressPct}%` }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+              />
+              {/* Energy flow */}
+              <div
+                className="absolute inset-0 rounded-full opacity-60"
+                style={{
+                  background: "linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.6) 50%, transparent 100%)",
+                  backgroundSize: "200% 100%",
+                  animation: "energyFlow 3s ease-in-out infinite",
+                  width: `${progressPct}%`,
+                }}
+              />
+            </div>
 
-          <div className="flex items-start gap-3">
+            {/* Start point */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-[3px]">
+              <div className="w-[8px] h-[8px] rounded-full bg-primary border border-primary/40" />
+            </div>
+
+            {/* Current position */}
+            {progressPct > 0 && progressPct < 100 && (
+              <motion.div
+                className="absolute top-1/2 -translate-y-1/2"
+                initial={{ left: "0%" }}
+                animate={{ left: `${progressPct}%` }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                style={{ marginLeft: "-6px" }}
+              >
+                <div className="relative">
+                  <div className="w-[12px] h-[12px] rounded-full bg-primary shadow-[0_0_12px_3px_hsl(var(--primary)/0.4)]" />
+                  <div className="absolute inset-0 w-[12px] h-[12px] rounded-full bg-primary/40 animate-ping" style={{ animationDuration: "2.5s" }} />
+                </div>
+              </motion.div>
+            )}
+
+            {/* End point */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[3px]">
+              <div className={`w-[8px] h-[8px] rounded-full border ${progressPct >= 100 ? "bg-primary border-primary/40" : "bg-white/[0.06] border-white/[0.08]"}`} />
+            </div>
+
+            {/* Labels */}
+            <div className="flex justify-between mt-3">
+              <span className="text-[10px] text-muted-foreground/50 font-medium">Start</span>
+              <span className="text-[10px] text-muted-foreground/50 font-medium">Stable life</span>
+            </div>
+          </div>
+
+          {/* Subtitle */}
+          <p className="text-[10px] text-muted-foreground/40 text-center mb-4">From uncertainty → stability</p>
+
+          {/* Phase indicator */}
+          {(() => {
+            const identityDocs = requiredDocs.filter(d => d.category === "identity");
+            const financialDocs = requiredDocs.filter(d => d.category === "financial");
+            const identityReady = identityDocs.every(d => d.uploadedDoc);
+            const financialReady = financialDocs.every(d => d.uploadedDoc);
+            const currentPhase = !identityReady ? "Identity verification" : !financialReady ? "Financial proof" : "Legal documents";
+            return (
+              <p className="text-[11px] text-center text-muted-foreground/60">
+                You are currently in: <span className="text-primary/80 font-medium">{currentPhase}</span>
+              </p>
+            );
+          })()}
+
+          <div className="flex items-start gap-3 mt-5">
             <div className="flex-1">
               <h1 className="text-xl md:text-2xl font-bold tracking-tight">Document checklist</h1>
               <p className="text-[13px] text-muted-foreground mt-1">
