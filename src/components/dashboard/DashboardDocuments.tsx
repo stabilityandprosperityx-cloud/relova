@@ -240,14 +240,13 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
       return;
     }
 
-    const { data: urlData } = supabase.storage.from("user-documents").getPublicUrl(path);
     const docName = activeUploadDoc || file.name;
 
     await supabase.from("user_documents").insert({
       user_id: user.id,
       document_name: docName,
       status: "pending",
-      file_url: urlData.publicUrl,
+      file_url: path, // Store the storage path, not public URL
     });
 
     toast.success("Uploaded successfully. AI is analyzing your document.", {
