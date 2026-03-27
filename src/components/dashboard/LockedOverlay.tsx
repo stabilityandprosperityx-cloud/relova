@@ -13,8 +13,10 @@ export default function LockedOverlay({ onClose }: Props) {
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
-  }, []);
+    const handleEsc = (e: KeyboardEvent) => { if (e.key === "Escape") onClose?.(); };
+    window.addEventListener("keydown", handleEsc);
+    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", handleEsc); };
+  }, [onClose]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-5">
