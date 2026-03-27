@@ -223,48 +223,57 @@ export default function DashboardPlan({ profile, onBack, onNavigate }: Props) {
             <span className="text-[12px] text-muted-foreground">{doneCount} / {totalSteps} completed</span>
           </div>
 
-          {/* Horizontal progress path */}
-          <div className="relative flex items-center py-6 px-2">
-            {/* Background line */}
-            <div className="absolute left-6 right-6 h-[2px] bg-white/[0.08] top-1/2 -translate-y-1/2" />
-            {/* Filled line */}
-            <motion.div
-              className="absolute left-6 h-[2px] bg-primary top-1/2 -translate-y-1/2"
-              initial={{ width: "0%" }}
-              animate={{ width: `${Math.min(progressPct, 100) * 0.92}%` }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              style={{ maxWidth: "calc(100% - 48px)" }}
-            />
-            {progressPct >= 95 && (
+          {/* Journey Line */}
+          <div className="relative my-5 h-[12px] flex items-center">
+            {/* Track */}
+            <div className="absolute left-[6px] right-[6px] h-[2px] rounded-full bg-white/[0.06]">
               <motion.div
-                className="absolute left-6 h-[2px] top-1/2 -translate-y-1/2 shadow-[0_0_12px_2px_hsl(var(--primary)/0.5)]"
-                initial={{ width: "0%" }}
-                animate={{ width: `${Math.min(progressPct, 100) * 0.92}%` }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                style={{ maxWidth: "calc(100% - 48px)" }}
+                className="absolute inset-y-0 left-0 rounded-full"
+                style={{ background: "linear-gradient(90deg, hsl(var(--primary)), hsl(190 80% 60%))" }}
+                initial={{ width: 0 }}
+                animate={{ width: `${progressPct}%` }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
               />
-            )}
-
-            {/* Start dot */}
-            <div className="relative z-10 flex flex-col items-center gap-1.5">
-              <div className={`w-3 h-3 rounded-full ${progressPct > 0 ? "bg-primary" : "bg-white/20"} transition-colors`} />
-              <span className="text-[10px] text-muted-foreground whitespace-nowrap">Start</span>
+              <div
+                className="absolute inset-y-0 left-0 rounded-full opacity-60"
+                style={{
+                  background: "linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.6) 50%, transparent 100%)",
+                  backgroundSize: "200% 100%",
+                  animation: "energyFlow 3s ease-in-out infinite",
+                  width: `${progressPct}%`,
+                }}
+              />
             </div>
-
-            <div className="flex-1" />
-
-            {/* End dot — glowing ring */}
-            <div className="relative z-10 flex flex-col items-center gap-1.5">
-              <div className="relative">
-                <div className={`w-5 h-5 rounded-full border-2 ${progressPct >= 100 ? "border-primary bg-primary/20" : "border-white/20 bg-transparent"} flex items-center justify-center transition-all`}>
-                  <div className={`w-2.5 h-2.5 rounded-full ${progressPct >= 100 ? "bg-primary shadow-[0_0_12px_3px_hsl(var(--primary)/0.5)]" : "bg-white/10"} transition-all`} />
+            {/* Start dot */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
+              <div className="w-[8px] h-[8px] rounded-full bg-primary shadow-[0_0_6px_1px_hsl(var(--primary)/0.3)]" />
+            </div>
+            {/* Current position */}
+            {progressPct > 0 && progressPct < 100 && (
+              <motion.div
+                className="absolute top-1/2 -translate-y-1/2 z-10"
+                initial={{ left: "6px" }}
+                animate={{ left: `calc(6px + (100% - 12px) * ${progressPct / 100})` }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                style={{ marginLeft: "-6px" }}
+              >
+                <div className="relative">
+                  <div className="w-[12px] h-[12px] rounded-full bg-primary shadow-[0_0_12px_3px_hsl(var(--primary)/0.4)]" />
+                  <div className="absolute inset-0 w-[12px] h-[12px] rounded-full bg-primary/40 animate-ping" style={{ animationDuration: "2.5s" }} />
                 </div>
-              </div>
-              <span className="text-[10px] text-muted-foreground whitespace-nowrap">Stable life</span>
+              </motion.div>
+            )}
+            {/* End dot */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
+              <div className={`w-[8px] h-[8px] rounded-full ${progressPct >= 100 ? "bg-primary shadow-[0_0_6px_1px_hsl(var(--primary)/0.3)]" : "bg-white/[0.08] border border-white/[0.12]"}`} />
             </div>
           </div>
+          <div className="flex justify-between">
+            <span className="text-[10px] text-muted-foreground/50 font-medium">Start</span>
+            <span className="text-[10px] text-muted-foreground/50 font-medium">Stable life</span>
+          </div>
 
-          <p className="text-[11px] text-muted-foreground/60 text-center mt-1">From uncertainty → stability</p>
+          <p className="text-[10px] text-muted-foreground/40 text-center mb-1">From uncertainty → stability</p>
 
           {/* You are here */}
           <div className="mt-4 rounded-lg bg-primary/[0.06] border border-primary/10 p-3 text-center">
