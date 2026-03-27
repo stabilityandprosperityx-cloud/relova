@@ -380,15 +380,15 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
                           className={`rounded-xl border border-white/[0.05] bg-white/[0.02] p-4 md:px-5 md:py-4 group/card transition-colors ${
                             hasUpload ? "hover:bg-white/[0.04] cursor-pointer" : ""
                           }`}
-                          onClick={hasUpload ? () => setPreviewDoc({ doc: doc.uploadedDoc!, aiStatus: doc.aiStatus, usedFor: doc.usedFor }) : undefined}
+                          onClick={hasUpload ? () => setPreviewDoc({ doc: doc.uploadedDoc!, aiStatus: doc.aiStatus, usedFor: doc.usedFor, signedUrl: signedUrls[doc.uploadedDoc!.id] || null }) : undefined}
                         >
                           <div className="flex items-start gap-3">
                             {/* Thumbnail / Icon */}
                             <div className="mt-0.5 shrink-0">
-                              {hasUpload && doc.uploadedDoc!.file_url && isImageUrl(doc.uploadedDoc!.file_url) ? (
+                              {hasUpload && doc.uploadedDoc!.file_url && isImageUrl(doc.uploadedDoc!.file_url) && signedUrls[doc.uploadedDoc!.id] ? (
                                 <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-white/[0.06] bg-white/[0.03]">
                                   <img
-                                    src={doc.uploadedDoc!.file_url}
+                                    src={signedUrls[doc.uploadedDoc!.id]}
                                     alt={doc.document_name}
                                     className="w-full h-full object-cover"
                                   />
@@ -467,7 +467,7 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
                                     variant="ghost"
                                     size="sm"
                                     className="text-[11px] text-muted-foreground/50 hover:text-foreground h-7 px-2 opacity-0 group-hover/card:opacity-100 transition-opacity"
-                                    onClick={() => setPreviewDoc({ doc: doc.uploadedDoc!, aiStatus: doc.aiStatus, usedFor: doc.usedFor })}
+                                    onClick={() => setPreviewDoc({ doc: doc.uploadedDoc!, aiStatus: doc.aiStatus, usedFor: doc.usedFor, signedUrl: signedUrls[doc.uploadedDoc!.id] || null })}
                                   >
                                     <Eye size={12} className="mr-1" /> View
                                   </Button>
