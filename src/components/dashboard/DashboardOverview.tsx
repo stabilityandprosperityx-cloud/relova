@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, AlertTriangle, Clock, ChevronRight, Lightbulb, MapPin, Shield, Zap } from "lucide-react";
+import { motion } from "framer-motion";
 import type { UserProfile, DashboardTab } from "@/pages/Dashboard";
 import { countryDatabase } from "@/lib/countryMatching";
 
