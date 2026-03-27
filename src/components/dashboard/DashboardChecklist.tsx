@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Progress } from "@/components/ui/progress";
+
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { CheckCircle2, ChevronDown, Clock, Sparkles, Loader2 } from "lucide-react";
@@ -224,14 +224,74 @@ export default function DashboardChecklist({ profile }: Props) {
         <p className="text-muted-foreground text-sm">Complete each step to move forward</p>
       </div>
 
-      {/* Overall progress */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <span className="text-sm text-muted-foreground">{completed} of {total} completed</span>
-          <span className="text-xs text-muted-foreground">{progressPct}%</span>
+      {/* ─── Journey Line (same as Overview) ─── */}
+      <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
+        <div className="flex items-center justify-between mb-1">
+          <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Your journey</p>
+          <span className="text-[12px] text-muted-foreground">{completed} / {total} completed</span>
         </div>
-        <Progress value={progressPct} className="h-1.5" />
-      </div>
+
+        <div className="relative my-5 h-[12px] flex items-center">
+          {/* Track */}
+          <div className="absolute left-[6px] right-[6px] h-[2px] rounded-full bg-white/[0.06]">
+            <motion.div
+              className="absolute inset-y-0 left-0 rounded-full"
+              style={{ background: "linear-gradient(90deg, hsl(var(--primary)), hsl(190 80% 60%))" }}
+              initial={{ width: 0 }}
+              animate={{ width: `${progressPct}%` }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+            />
+            <div
+              className="absolute inset-y-0 left-0 rounded-full opacity-60"
+              style={{
+                background: "linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.6) 50%, transparent 100%)",
+                backgroundSize: "200% 100%",
+                animation: "energyFlow 3s ease-in-out infinite",
+                width: `${progressPct}%`,
+              }}
+            />
+          </div>
+          {/* Start dot */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
+            <div className="w-[8px] h-[8px] rounded-full bg-primary shadow-[0_0_6px_1px_hsl(var(--primary)/0.3)]" />
+          </div>
+          {/* Current position */}
+          {progressPct > 0 && progressPct < 100 && (
+            <motion.div
+              className="absolute top-1/2 -translate-y-1/2 z-10"
+              initial={{ left: "6px" }}
+              animate={{ left: `calc(6px + (100% - 12px) * ${progressPct / 100})` }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              style={{ marginLeft: "-6px" }}
+            >
+              <div className="relative">
+                <div className="w-[12px] h-[12px] rounded-full bg-primary shadow-[0_0_12px_3px_hsl(var(--primary)/0.4)]" />
+                <div className="absolute inset-0 w-[12px] h-[12px] rounded-full bg-primary/40 animate-ping" style={{ animationDuration: "2.5s" }} />
+              </div>
+            </motion.div>
+          )}
+          {/* End dot */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
+            <div className={`w-[8px] h-[8px] rounded-full ${progressPct >= 100 ? "bg-primary shadow-[0_0_6px_1px_hsl(var(--primary)/0.3)]" : "bg-white/[0.08] border border-white/[0.12]"}`} />
+          </div>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-[10px] text-muted-foreground/50 font-medium">Start</span>
+          <span className="text-[10px] text-muted-foreground/50 font-medium">Stable life</span>
+        </div>
+
+        <p className="text-[10px] text-muted-foreground/40 text-center mt-3 mb-2">From uncertainty → stability</p>
+
+        {(() => {
+          const firstIncomplete = grouped.find(g => g.steps.some(s => !s.isDone));
+          const phaseName = firstIncomplete ? firstIncomplete.label : "Complete";
+          return (
+            <p className="text-[11px] text-center text-muted-foreground/60">
+              You are currently in: <span className="text-primary/80 font-medium">{phaseName} phase</span>
+            </p>
+          );
+        })()}
+      </section>
 
       {/* Phases — each is its own independent container */}
       <div className="space-y-6">
