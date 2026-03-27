@@ -66,6 +66,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const [matches, setMatches] = useState<CountryMatch[]>([]);
   const [showMatches, setShowMatches] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
+  const [showResult, setShowResult] = useState(false);
   const [pendingProfile, setPendingProfile] = useState<UserProfile | null>(null);
 
   const filtered1 = allCountries.filter(c => c.toLowerCase().includes(search1.toLowerCase()));
