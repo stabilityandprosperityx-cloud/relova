@@ -324,23 +324,19 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
             <span className="text-[12px] text-muted-foreground">{readyCount} / {totalCount} ready</span>
           </div>
 
-          {/* ─── Journey Line ─── */}
-          <div className="relative my-5">
+          {/* ─── Journey Line (unified with Overview) ─── */}
+          <div className="relative my-5 h-[12px] flex items-center">
             {/* Track */}
-            <div className="h-[2px] w-full rounded-full bg-white/[0.06] relative overflow-hidden">
-              {/* Filled portion */}
+            <div className="absolute left-[6px] right-[6px] h-[2px] rounded-full bg-white/[0.06]">
               <motion.div
                 className="absolute inset-y-0 left-0 rounded-full"
-                style={{
-                  background: "linear-gradient(90deg, hsl(var(--primary)), hsl(190 80% 60%))",
-                }}
+                style={{ background: "linear-gradient(90deg, hsl(var(--primary)), hsl(190 80% 60%))" }}
                 initial={{ width: 0 }}
                 animate={{ width: `${progressPct}%` }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
               />
-              {/* Energy flow */}
               <div
-                className="absolute inset-0 rounded-full opacity-60"
+                className="absolute inset-y-0 left-0 rounded-full opacity-60"
                 style={{
                   background: "linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.6) 50%, transparent 100%)",
                   backgroundSize: "200% 100%",
@@ -349,18 +345,16 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
                 }}
               />
             </div>
-
-            {/* Start point */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-[3px]">
-              <div className="w-[8px] h-[8px] rounded-full bg-primary border border-primary/40" />
+            {/* Start dot */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
+              <div className="w-[8px] h-[8px] rounded-full bg-primary shadow-[0_0_6px_1px_hsl(var(--primary)/0.3)]" />
             </div>
-
             {/* Current position */}
             {progressPct > 0 && progressPct < 100 && (
               <motion.div
-                className="absolute top-1/2 -translate-y-1/2"
-                initial={{ left: "0%" }}
-                animate={{ left: `${progressPct}%` }}
+                className="absolute top-1/2 -translate-y-1/2 z-10"
+                initial={{ left: "6px" }}
+                animate={{ left: `calc(6px + (100% - 12px) * ${progressPct / 100})` }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 style={{ marginLeft: "-6px" }}
               >
@@ -370,17 +364,14 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
                 </div>
               </motion.div>
             )}
-
-            {/* End point */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[3px]">
-              <div className={`w-[8px] h-[8px] rounded-full border ${progressPct >= 100 ? "bg-primary border-primary/40" : "bg-white/[0.06] border-white/[0.08]"}`} />
+            {/* End dot */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
+              <div className={`w-[8px] h-[8px] rounded-full ${progressPct >= 100 ? "bg-primary shadow-[0_0_6px_1px_hsl(var(--primary)/0.3)]" : "bg-white/[0.08] border border-white/[0.12]"}`} />
             </div>
-
-            {/* Labels */}
-            <div className="flex justify-between mt-3">
-              <span className="text-[10px] text-muted-foreground/50 font-medium">Start</span>
-              <span className="text-[10px] text-muted-foreground/50 font-medium">Stable life</span>
-            </div>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-[10px] text-muted-foreground/50 font-medium">Start</span>
+            <span className="text-[10px] text-muted-foreground/50 font-medium">Stable life</span>
           </div>
 
           {/* Subtitle */}
