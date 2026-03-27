@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, AlertTriangle, Clock, ChevronRight, Lightbulb, MapPin, Shield, Zap } from "lucide-react";
+import { motion } from "framer-motion";
 import type { UserProfile, DashboardTab } from "@/pages/Dashboard";
 import { countryDatabase } from "@/lib/countryMatching";
 
@@ -166,16 +166,62 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
         </Button>
       </section>
 
-      {/* ─── 2. PROGRESS BLOCK ─── */}
+      {/* ─── 2. PROGRESS BLOCK — Journey Line ─── */}
       <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-1">
           <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Progress</p>
           <span className="text-[12px] text-muted-foreground">
             Step {Math.min(currentStepNum, totalSteps)} of {totalSteps || "–"}
           </span>
         </div>
 
-        <Progress value={progressPct} className="h-1.5 bg-white/[0.06] mb-4" />
+        {/* Journey Line */}
+        <div className="relative my-5">
+          <div className="h-[2px] w-full rounded-full bg-white/[0.06] relative overflow-hidden">
+            <motion.div
+              className="absolute inset-y-0 left-0 rounded-full"
+              style={{ background: "linear-gradient(90deg, hsl(var(--primary)), hsl(190 80% 60%))" }}
+              initial={{ width: 0 }}
+              animate={{ width: `${progressPct}%` }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+            />
+            <div
+              className="absolute inset-0 rounded-full opacity-60"
+              style={{
+                background: "linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.6) 50%, transparent 100%)",
+                backgroundSize: "200% 100%",
+                animation: "energyFlow 3s ease-in-out infinite",
+                width: `${progressPct}%`,
+              }}
+            />
+          </div>
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-[3px]">
+            <div className="w-[8px] h-[8px] rounded-full bg-primary border border-primary/40" />
+          </div>
+          {progressPct > 0 && progressPct < 100 && (
+            <motion.div
+              className="absolute top-1/2 -translate-y-1/2"
+              initial={{ left: "0%" }}
+              animate={{ left: `${progressPct}%` }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              style={{ marginLeft: "-6px" }}
+            >
+              <div className="relative">
+                <div className="w-[12px] h-[12px] rounded-full bg-primary shadow-[0_0_12px_3px_hsl(var(--primary)/0.4)]" />
+                <div className="absolute inset-0 w-[12px] h-[12px] rounded-full bg-primary/40 animate-ping" style={{ animationDuration: "2.5s" }} />
+              </div>
+            </motion.div>
+          )}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[3px]">
+            <div className={`w-[8px] h-[8px] rounded-full border ${progressPct >= 100 ? "bg-primary border-primary/40" : "bg-white/[0.06] border-white/[0.08]"}`} />
+          </div>
+          <div className="flex justify-between mt-3">
+            <span className="text-[10px] text-muted-foreground/50 font-medium">Start</span>
+            <span className="text-[10px] text-muted-foreground/50 font-medium">Stable life</span>
+          </div>
+        </div>
+
+        <p className="text-[10px] text-muted-foreground/40 text-center mb-4">From uncertainty → stability</p>
 
         {nextStep && (
           <button
