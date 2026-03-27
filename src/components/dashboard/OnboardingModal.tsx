@@ -182,8 +182,15 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       });
     }
 
-    onComplete(profile);
+    setPendingProfile(profile);
+    setShowLoading(true);
   };
+
+  const handleLoadingFinished = useCallback(() => {
+    if (pendingProfile) {
+      onComplete(pendingProfile);
+    }
+  }, [pendingProfile, onComplete]);
 
   const nextStep = () => {
     if (mode === "help" && step === currentSteps.length - 1) {
