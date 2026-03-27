@@ -157,21 +157,21 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
 
         <div className="space-y-5">
           {/* Citizenship */}
-          <div>
+          <div className="relative">
             <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Citizenship</label>
             <input
               placeholder="Search countries..."
-              value={focus1 ? search1 : (citizenship || search1)}
+              value={focus1 ? search1 : (citizenship || "")}
               onFocus={() => { setFocus1(true); setSearch1(citizenship || ""); }}
-              onBlur={() => setTimeout(() => setFocus1(false), 150)}
+              onBlur={() => setTimeout(() => setFocus1(false), 250)}
               onChange={(e) => { setSearch1(e.target.value); setCitizenship(""); }}
               className="w-full bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] placeholder:text-[#9CA3AF]/40 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/50"
             />
-            {focus1 && search1 && (
-              <div className="max-h-32 overflow-y-auto mt-1 rounded-lg border border-white/[0.06] bg-[#111]">
-                {filtered1.length > 0 ? filtered1.slice(0, 8).map(c => (
-                  <button key={c} onClick={() => { setCitizenship(c); setSearch1(""); setFocus1(false); }}
-                    className="w-full text-left px-3 py-1.5 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground">
+            {focus1 && (
+              <div className="absolute left-0 right-0 z-50 max-h-48 overflow-y-auto mt-1 rounded-lg border border-white/[0.06] bg-[#111]">
+                {filtered1.length > 0 ? filtered1.slice(0, 12).map(c => (
+                  <button key={c} onMouseDown={(e) => e.preventDefault()} onClick={() => { setCitizenship(c); setSearch1(""); setFocus1(false); }}
+                    className="w-full text-left px-3 py-2 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground">
                     {c}
                   </button>
                 )) : (
@@ -182,21 +182,21 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
           </div>
 
           {/* Target country */}
-          <div>
+          <div className="relative">
             <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Target country</label>
             <input
               placeholder="Search countries..."
-              value={focus2 ? search2 : (targetCountry || search2)}
+              value={focus2 ? search2 : (targetCountry || "")}
               onFocus={() => { setFocus2(true); setSearch2(targetCountry || ""); }}
-              onBlur={() => setTimeout(() => setFocus2(false), 150)}
+              onBlur={() => setTimeout(() => setFocus2(false), 250)}
               onChange={(e) => { setSearch2(e.target.value); setTargetCountry(""); }}
               className="w-full bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] placeholder:text-[#9CA3AF]/40 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/50"
             />
-            {focus2 && search2 && (
-              <div className="max-h-32 overflow-y-auto mt-1 rounded-lg border border-white/[0.06] bg-[#111]">
-                {filtered2.length > 0 ? filtered2.slice(0, 8).map(c => (
-                  <button key={c} onClick={() => { setTargetCountry(c); setSearch2(""); setFocus2(false); }}
-                    className="w-full text-left px-3 py-1.5 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground">
+            {focus2 && (
+              <div className="absolute left-0 right-0 z-50 max-h-48 overflow-y-auto mt-1 rounded-lg border border-white/[0.06] bg-[#111]">
+                {filtered2.length > 0 ? filtered2.slice(0, 12).map(c => (
+                  <button key={c} onMouseDown={(e) => e.preventDefault()} onClick={() => { setTargetCountry(c); setSearch2(""); setFocus2(false); }}
+                    className="w-full text-left px-3 py-2 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground">
                     {c}
                   </button>
                 )) : (
