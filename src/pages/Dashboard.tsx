@@ -6,7 +6,7 @@ import OnboardingModal from "@/components/dashboard/OnboardingModal";
 import EditProfileModal from "@/components/dashboard/EditProfileModal";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
-import { motion, AnimatePresence } from "framer-motion";
+
 
 export type DashboardTab = "overview" | "plan" | "checklist" | "chat" | "documents";
 
