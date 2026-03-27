@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { allCountries } from "@/data/allCountries";
@@ -7,6 +7,7 @@ import { matchCountries, type CountryMatch, type UserCriteria } from "@/lib/coun
 import { generatePlan, generateChecklist } from "@/lib/planGenerator";
 import type { UserProfile } from "@/pages/Dashboard";
 import { ArrowRight, MapPin, Compass } from "lucide-react";
+import LoadingTransition from "./LoadingTransition";
 
 const goals = [
   { id: "safety", label: "🛡️ Safety" },
@@ -63,6 +64,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const [search2, setSearch2] = useState("");
   const [matches, setMatches] = useState<CountryMatch[]>([]);
   const [showMatches, setShowMatches] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
+  const [pendingProfile, setPendingProfile] = useState<UserProfile | null>(null);
 
   const filtered1 = allCountries.filter(c => c.toLowerCase().includes(search1.toLowerCase()));
   const filtered2 = allCountries.filter(c => c.toLowerCase().includes(search2.toLowerCase()));
@@ -179,8 +182,15 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       });
     }
 
-    onComplete(profile);
+    setPendingProfile(profile);
+    setShowLoading(true);
   };
+
+  const handleLoadingFinished = useCallback(() => {
+    if (pendingProfile) {
+      onComplete(pendingProfile);
+    }
+  }, [pendingProfile, onComplete]);
 
   const nextStep = () => {
     if (mode === "help" && step === currentSteps.length - 1) {
@@ -193,6 +203,11 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     }
     setStep(step + 1);
   };
+
+  // Loading transition screen
+  if (showLoading) {
+    return <LoadingTransition onFinished={handleLoadingFinished} />;
+  }
 
   // Mode selection screen
   if (mode === null) {
