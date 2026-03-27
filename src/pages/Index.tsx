@@ -22,6 +22,7 @@ export default function Index() {
       <Navbar />
       <main className="relative z-10">
         <HeroSection />
+        <ProductTourSection />
         <ProblemSection />
         <SolutionSection />
         <FeaturesSection />
