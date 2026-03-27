@@ -245,7 +245,7 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
               className="text-[12px] border-white/[0.08] bg-transparent hover:bg-white/[0.04] h-12 sm:h-auto w-full sm:w-auto"
               onClick={() => navigate("/pricing")}
             >
-              Get Full Plan $49 →
+              Get Full Plan $49/mo →
             </Button>
           </div>
         </div>

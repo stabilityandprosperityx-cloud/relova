@@ -88,10 +88,12 @@ export default function LockedOverlay({ onClose }: Props) {
         </div>
 
         {/* Price */}
-        <p className="text-center text-sm text-muted-foreground mb-4">
-          <span className="text-xl font-bold text-foreground">$49</span>{" "}
-          one-time
-        </p>
+        <div className="text-center mb-4">
+          <p className="text-sm text-muted-foreground">
+            <span className="text-xl font-bold text-foreground">$49</span>/month
+          </p>
+          <p className="text-xs text-muted-foreground/70 mt-1">Cancel anytime</p>
+        </div>
 
         {/* CTA */}
         <Button
