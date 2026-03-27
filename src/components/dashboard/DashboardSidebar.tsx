@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { LayoutGrid, ListChecks, CheckSquare, MessageCircle, FileText, LogOut, Lock, ArrowLeft, User } from "lucide-react";
+import { LayoutGrid, ListChecks, CheckSquare, MessageCircle, FileText, LogOut, Lock, ArrowLeft, User, Sparkles } from "lucide-react";
 import RelovaLogo from "@/components/RelovaLogo";
 import { useAuth } from "@/contexts/AuthContext";
 import type { DashboardTab, UserPlan } from "@/pages/Dashboard";
 
-const navItems: { id: DashboardTab; label: string; icon: typeof LayoutGrid; minPlan: UserPlan }[] = [
+const navItems: { id: DashboardTab; label: string; icon: typeof LayoutGrid; minPlan: UserPlan; highlight?: boolean }[] = [
   { id: "overview", label: "Overview", icon: LayoutGrid, minPlan: "free" },
+  { id: "chat", label: "Your Advisor", icon: MessageCircle, minPlan: "free", highlight: true },
   { id: "plan", label: "Your Plan", icon: ListChecks, minPlan: "full" },
   { id: "checklist", label: "Checklist", icon: CheckSquare, minPlan: "pro" },
-  { id: "chat", label: "Your Advisor", icon: MessageCircle, minPlan: "free" },
   { id: "documents", label: "Documents", icon: FileText, minPlan: "full" },
 ];
 
@@ -60,11 +60,19 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
                     ? "text-[#9CA3AF]/30 cursor-not-allowed"
                     : active
                     ? "bg-[#38BDF820] text-[#38BDF8]"
+                    : item.highlight
+                    ? "text-[#38BDF8]/70 hover:text-[#38BDF8] hover:bg-[#38BDF8]/[0.06]"
                     : "text-[#9CA3AF] hover:text-foreground hover:bg-white/[0.04]"
                 }`}
               >
                 <item.icon size={16} />
                 {item.label}
+                {item.highlight && !active && !locked && (
+                  <span className="ml-auto flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#38BDF8]/10 text-[10px] text-[#38BDF8]/80 font-medium">
+                    <Sparkles size={10} />
+                    AI
+                  </span>
+                )}
                 {locked && <Lock size={12} className="ml-auto text-[#9CA3AF]/30" />}
               </button>
             );
