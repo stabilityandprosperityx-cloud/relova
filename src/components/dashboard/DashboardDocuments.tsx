@@ -134,11 +134,19 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
     const urls: Record<string, string> = {};
     await Promise.all(
       docsWithFiles.map(async (doc) => {
-        // file_url stores the storage path (e.g. "userId/timestamp_file.pdf")
-        const storagePath = doc.file_url!;
+        let storagePath = doc.file_url!;
+        // Handle legacy full URLs: extract path after bucket name
+        if (storagePath.startsWith("http")) {
+          const match = storagePath.match(/user-documents\/(.+)$/);
+          if (match) {
+            storagePath = match[1];
+          } else {
+            return; // Can't extract path
+          }
+        }
         const { data, error } = await supabase.storage
           .from("user-documents")
-          .createSignedUrl(storagePath, 3600); // 1 hour
+          .createSignedUrl(storagePath, 3600);
         if (data?.signedUrl && !error) {
           urls[doc.id] = data.signedUrl;
         }
