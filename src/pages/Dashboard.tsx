@@ -119,17 +119,7 @@ export default function Dashboard() {
               </div>
             </div>
           ) : (
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={location.pathname}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.15 }}
-              >
                 <Outlet context={{ profile, setProfile, onEditProfile: () => setShowEditProfile(true), onNavigate: handleTabChange }} />
-              </motion.div>
-            </AnimatePresence>
           )}
         </div>
       </main>
