@@ -122,8 +122,38 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
   const [activeUploadDoc, setActiveUploadDoc] = useState<string | null>(null);
   const [showPaywall, setShowPaywall] = useState(true);
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({ identity: true });
-  const [previewDoc, setPreviewDoc] = useState<{ doc: UserDoc; aiStatus: string | null; usedFor: string } | null>(null);
+  const [previewDoc, setPreviewDoc] = useState<{ doc: UserDoc; aiStatus: string | null; usedFor: string; signedUrl: string | null } | null>(null);
+  const [signedUrls, setSignedUrls] = useState<Record<string, string>>({});
   const isLocked = (profile?.plan || "free") !== "full";
+
+  // Generate signed URLs for all uploaded docs
+  const refreshSignedUrls = async (docs: UserDoc[]) => {
+    const docsWithFiles = docs.filter(d => d.file_url);
+    if (docsWithFiles.length === 0) { setSignedUrls({}); return; }
+
+    const urls: Record<string, string> = {};
+    await Promise.all(
+      docsWithFiles.map(async (doc) => {
+        let storagePath = doc.file_url!;
+        // Handle legacy full URLs: extract path after bucket name
+        if (storagePath.startsWith("http")) {
+          const match = storagePath.match(/user-documents\/(.+)$/);
+          if (match) {
+            storagePath = match[1];
+          } else {
+            return; // Can't extract path
+          }
+        }
+        const { data, error } = await supabase.storage
+          .from("user-documents")
+          .createSignedUrl(storagePath, 3600);
+        if (data?.signedUrl && !error) {
+          urls[doc.id] = data.signedUrl;
+        }
+      })
+    );
+    setSignedUrls(urls);
+  };
 
   const fetchData = async () => {
     if (!user) return;
@@ -131,8 +161,10 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
       supabase.from("user_documents").select("*").eq("user_id", user.id).order("uploaded_at", { ascending: false }),
       supabase.from("visa_documents").select("*").eq("visa_type", profile?.visa_type || "TBD"),
     ]);
-    setUserDocs((docsRes.data || []) as UserDoc[]);
+    const fetchedDocs = (docsRes.data || []) as UserDoc[];
+    setUserDocs(fetchedDocs);
     setVisaDocs(visaRes.data || []);
+    await refreshSignedUrls(fetchedDocs);
     setLoading(false);
   };
 
@@ -216,14 +248,13 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
       return;
     }
 
-    const { data: urlData } = supabase.storage.from("user-documents").getPublicUrl(path);
     const docName = activeUploadDoc || file.name;
 
     await supabase.from("user_documents").insert({
       user_id: user.id,
       document_name: docName,
       status: "pending",
-      file_url: urlData.publicUrl,
+      file_url: path, // Store the storage path, not public URL
     });
 
     toast.success("Uploaded successfully. AI is analyzing your document.", {
@@ -272,6 +303,7 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
         open={!!previewDoc}
         onOpenChange={(open) => !open && setPreviewDoc(null)}
         doc={previewDoc?.doc || null}
+        signedUrl={previewDoc?.signedUrl || null}
         aiStatus={previewDoc?.aiStatus || null}
         usedFor={previewDoc?.usedFor || ""}
         onReplace={() => previewDoc && triggerUploadFor(previewDoc.doc.document_name)}
@@ -357,15 +389,15 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
                           className={`rounded-xl border border-white/[0.05] bg-white/[0.02] p-4 md:px-5 md:py-4 group/card transition-colors ${
                             hasUpload ? "hover:bg-white/[0.04] cursor-pointer" : ""
                           }`}
-                          onClick={hasUpload ? () => setPreviewDoc({ doc: doc.uploadedDoc!, aiStatus: doc.aiStatus, usedFor: doc.usedFor }) : undefined}
+                          onClick={hasUpload ? () => setPreviewDoc({ doc: doc.uploadedDoc!, aiStatus: doc.aiStatus, usedFor: doc.usedFor, signedUrl: signedUrls[doc.uploadedDoc!.id] || null }) : undefined}
                         >
                           <div className="flex items-start gap-3">
                             {/* Thumbnail / Icon */}
                             <div className="mt-0.5 shrink-0">
-                              {hasUpload && doc.uploadedDoc!.file_url && isImageUrl(doc.uploadedDoc!.file_url) ? (
+                              {hasUpload && doc.uploadedDoc!.file_url && isImageUrl(doc.uploadedDoc!.file_url) && signedUrls[doc.uploadedDoc!.id] ? (
                                 <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-white/[0.06] bg-white/[0.03]">
                                   <img
-                                    src={doc.uploadedDoc!.file_url}
+                                    src={signedUrls[doc.uploadedDoc!.id]}
                                     alt={doc.document_name}
                                     className="w-full h-full object-cover"
                                   />
@@ -444,7 +476,7 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
                                     variant="ghost"
                                     size="sm"
                                     className="text-[11px] text-muted-foreground/50 hover:text-foreground h-7 px-2 opacity-0 group-hover/card:opacity-100 transition-opacity"
-                                    onClick={() => setPreviewDoc({ doc: doc.uploadedDoc!, aiStatus: doc.aiStatus, usedFor: doc.usedFor })}
+                                    onClick={() => setPreviewDoc({ doc: doc.uploadedDoc!, aiStatus: doc.aiStatus, usedFor: doc.usedFor, signedUrl: signedUrls[doc.uploadedDoc!.id] || null })}
                                   >
                                     <Eye size={12} className="mr-1" /> View
                                   </Button>
