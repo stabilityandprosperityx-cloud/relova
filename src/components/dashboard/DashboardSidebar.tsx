@@ -60,11 +60,19 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
                     ? "text-[#9CA3AF]/30 cursor-not-allowed"
                     : active
                     ? "bg-[#38BDF820] text-[#38BDF8]"
+                    : item.highlight
+                    ? "text-[#38BDF8]/70 hover:text-[#38BDF8] hover:bg-[#38BDF8]/[0.06]"
                     : "text-[#9CA3AF] hover:text-foreground hover:bg-white/[0.04]"
                 }`}
               >
                 <item.icon size={16} />
                 {item.label}
+                {item.highlight && !active && !locked && (
+                  <span className="ml-auto flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#38BDF8]/10 text-[10px] text-[#38BDF8]/80 font-medium">
+                    <Sparkles size={10} />
+                    AI
+                  </span>
+                )}
                 {locked && <Lock size={12} className="ml-auto text-[#9CA3AF]/30" />}
               </button>
             );
