@@ -189,10 +189,9 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   };
 
   const handleLoadingFinished = useCallback(() => {
-    if (pendingProfile) {
-      onComplete(pendingProfile);
-    }
-  }, [pendingProfile, onComplete]);
+    setShowLoading(false);
+    setShowResult(true);
+  }, []);
 
   const nextStep = () => {
     if (mode === "help" && step === currentSteps.length - 1) {
