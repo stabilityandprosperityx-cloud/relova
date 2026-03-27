@@ -4,11 +4,12 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Upload, X, CheckCircle2, AlertCircle, Clock, FileText, Sparkles, ChevronDown, Link2 } from "lucide-react";
+import { Upload, X, CheckCircle2, AlertCircle, Clock, FileText, Sparkles, ChevronDown, Link2, Image, Eye } from "lucide-react";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import LockedOverlay from "./LockedOverlay";
+import DocumentPreviewModal from "./DocumentPreviewModal";
 import type { UserProfile } from "@/pages/Dashboard";
 
 interface UserDoc {
@@ -69,7 +70,7 @@ function getUsedFor(name: string): string {
 function getAiStatus(doc: UserDoc | null): string | null {
   if (!doc) return null;
   if (doc.status === "verified") return "Looks valid";
-  if (doc.status === "pending") return "Analyzing...";
+  if (doc.status === "pending") return "AI is analyzing your document…";
   if (doc.status === "uploaded") return "Needs review";
   return "Needs attention";
 }
@@ -89,6 +90,28 @@ function getRelatedTask(name: string): string | null {
   return null;
 }
 
+function isImageUrl(url: string): boolean {
+  return /\.(jpg|jpeg|png|webp|heic|heif)(\?|$)/i.test(url);
+}
+
+function getFileExtension(url: string): string {
+  const match = url.match(/\.(\w+)(\?|$)/);
+  return match ? match[1].toUpperCase() : "FILE";
+}
+
+function getStatusConfig(status: string) {
+  switch (status) {
+    case "verified":
+      return { icon: CheckCircle2, label: "✔ Uploaded", color: "text-primary", bg: "bg-primary/10" };
+    case "pending":
+      return { icon: Sparkles, label: "🤖 AI analyzing", color: "text-blue-400", bg: "bg-blue-500/10" };
+    case "uploaded":
+      return { icon: Clock, label: "⚠ Needs review", color: "text-amber-400", bg: "bg-amber-500/10" };
+    default:
+      return { icon: AlertCircle, label: "⚠ Needs attention", color: "text-amber-400", bg: "bg-amber-500/10" };
+  }
+}
+
 export default function DashboardDocuments({ profile, onBack }: Props) {
   const { user } = useAuth();
   const [userDocs, setUserDocs] = useState<UserDoc[]>([]);
@@ -99,6 +122,7 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
   const [activeUploadDoc, setActiveUploadDoc] = useState<string | null>(null);
   const [showPaywall, setShowPaywall] = useState(true);
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({ identity: true });
+  const [previewDoc, setPreviewDoc] = useState<{ doc: UserDoc; aiStatus: string | null; usedFor: string } | null>(null);
   const isLocked = (profile?.plan || "free") !== "full";
 
   const fetchData = async () => {
@@ -114,9 +138,7 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
 
   useEffect(() => { fetchData(); }, [user, profile]);
 
-  // Build required documents list
   const requiredDocs: RequiredDoc[] = useMemo(() => {
-    // Start with visa-specific docs
     const docs: RequiredDoc[] = (visaDocs || []).map((vd: any) => {
       const matched = userDocs.find(ud =>
         ud.document_name.toLowerCase().includes(vd.document_name.toLowerCase().split(" ")[0])
@@ -133,7 +155,6 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
       };
     });
 
-    // Add user-uploaded docs that don't match any visa doc
     const matchedIds = new Set(docs.filter(d => d.uploadedDoc).map(d => d.uploadedDoc!.id));
     for (const ud of userDocs) {
       if (!matchedIds.has(ud.id)) {
@@ -150,7 +171,6 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
       }
     }
 
-    // If no visa docs exist, show default required list
     if (visaDocs.length === 0 && userDocs.length === 0) {
       const defaults = [
         { name: "Valid passport", desc: "Must be valid for 6+ months", cat: "identity", req: true },
@@ -206,12 +226,16 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
       file_url: urlData.publicUrl,
     });
 
+    toast.success("Uploaded successfully. AI is analyzing your document.", {
+      duration: 4000,
+      icon: <Sparkles size={14} className="text-primary" />,
+    });
+
     setTimeout(async () => {
       await supabase.from("user_documents").update({ status: "uploaded" }).eq("user_id", user.id).eq("document_name", docName);
       fetchData();
     }, 2000);
 
-    toast.success("Document uploaded");
     setUploading(null);
     setActiveUploadDoc(null);
     fetchData();
@@ -242,6 +266,17 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
     <div className="space-y-8 relative">
       {isLocked && showPaywall && <LockedOverlay onClose={() => { setShowPaywall(false); onBack?.(); }} />}
       <input ref={fileInputRef} type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,.docx,.doc,.xlsx,.xls,.txt,.webp" onChange={handleUpload} className="hidden" />
+
+      {/* Preview Modal */}
+      <DocumentPreviewModal
+        open={!!previewDoc}
+        onOpenChange={(open) => !open && setPreviewDoc(null)}
+        doc={previewDoc?.doc || null}
+        aiStatus={previewDoc?.aiStatus || null}
+        usedFor={previewDoc?.usedFor || ""}
+        onReplace={() => previewDoc && triggerUploadFor(previewDoc.doc.document_name)}
+        onDelete={() => previewDoc && deleteDoc(previewDoc.doc)}
+      />
 
       <div className={isLocked ? "pointer-events-none" : ""}>
 
@@ -302,7 +337,6 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
                       </div>
                       <p className="text-[12px] text-muted-foreground/60">{cat.description}</p>
                     </div>
-                    {/* Mini progress */}
                     <div className="w-16 shrink-0">
                       <Progress value={catDocs.length > 0 ? (catReady / catDocs.length) * 100 : 0} className="h-1 bg-white/[0.06]" />
                     </div>
@@ -315,21 +349,44 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
                     {catDocs.map((doc) => {
                       const hasUpload = !!doc.uploadedDoc;
                       const relatedTask = getRelatedTask(doc.document_name);
+                      const statusConfig = hasUpload ? getStatusConfig(doc.uploadedDoc!.status) : null;
 
                       return (
                         <div
                           key={doc.id}
-                          className="rounded-xl border border-white/[0.05] bg-white/[0.02] p-4 md:px-5 md:py-4"
+                          className={`rounded-xl border border-white/[0.05] bg-white/[0.02] p-4 md:px-5 md:py-4 group/card transition-colors ${
+                            hasUpload ? "hover:bg-white/[0.04] cursor-pointer" : ""
+                          }`}
+                          onClick={hasUpload ? () => setPreviewDoc({ doc: doc.uploadedDoc!, aiStatus: doc.aiStatus, usedFor: doc.usedFor }) : undefined}
                         >
                           <div className="flex items-start gap-3">
-                            {/* Status icon */}
+                            {/* Thumbnail / Icon */}
                             <div className="mt-0.5 shrink-0">
-                              {hasUpload && doc.uploadedDoc!.status === "verified" ? (
-                                <CheckCircle2 size={18} className="text-primary" />
-                              ) : hasUpload ? (
-                                <Clock size={18} className="text-amber-400" />
+                              {hasUpload && doc.uploadedDoc!.file_url && isImageUrl(doc.uploadedDoc!.file_url) ? (
+                                <div className="relative w-10 h-10 rounded-lg overflow-hidden border border-white/[0.06] bg-white/[0.03]">
+                                  <img
+                                    src={doc.uploadedDoc!.file_url}
+                                    alt={doc.document_name}
+                                    className="w-full h-full object-cover"
+                                  />
+                                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/card:opacity-100 transition-opacity flex items-center justify-center">
+                                    <Eye size={14} className="text-white" />
+                                  </div>
+                                </div>
+                              ) : hasUpload && doc.uploadedDoc!.file_url ? (
+                                <div className="relative w-10 h-10 rounded-lg border border-white/[0.06] bg-white/[0.03] flex flex-col items-center justify-center">
+                                  <FileText size={16} className="text-muted-foreground/40" />
+                                  <span className="text-[7px] text-muted-foreground/30 font-medium mt-0.5">
+                                    {getFileExtension(doc.uploadedDoc!.file_url)}
+                                  </span>
+                                  <div className="absolute inset-0 rounded-lg bg-black/40 opacity-0 group-hover/card:opacity-100 transition-opacity flex items-center justify-center">
+                                    <Eye size={14} className="text-white" />
+                                  </div>
+                                </div>
                               ) : (
-                                <AlertCircle size={18} className="text-muted-foreground/30" />
+                                <div className="w-10 h-10 rounded-lg border border-dashed border-white/[0.08] bg-white/[0.02] flex items-center justify-center">
+                                  <AlertCircle size={16} className="text-muted-foreground/20" />
+                                </div>
                               )}
                             </div>
 
@@ -348,20 +405,16 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
 
                               {/* Status badge */}
                               <div className="flex items-center gap-3 mt-2 flex-wrap">
-                                <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium ${
-                                  hasUpload && doc.uploadedDoc!.status === "verified"
-                                    ? "bg-primary/10 text-primary"
-                                    : hasUpload
-                                    ? "bg-amber-500/10 text-amber-400"
-                                    : "bg-white/[0.04] text-muted-foreground/50"
-                                }`}>
-                                  {hasUpload
-                                    ? doc.uploadedDoc!.status === "verified" ? "Uploaded" : "Needs review"
-                                    : "Missing"
-                                  }
-                                </span>
+                                {hasUpload && statusConfig ? (
+                                  <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium ${statusConfig.bg} ${statusConfig.color}`}>
+                                    {statusConfig.label}
+                                  </span>
+                                ) : (
+                                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-white/[0.04] text-muted-foreground/50">
+                                    Missing
+                                  </span>
+                                )}
 
-                                {/* Used for */}
                                 <span className="text-[10px] text-muted-foreground/40 flex items-center gap-1">
                                   <Link2 size={9} /> {doc.usedFor}
                                 </span>
@@ -384,9 +437,17 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
                             </div>
 
                             {/* Action */}
-                            <div className="flex items-center gap-1.5 shrink-0">
+                            <div className="flex items-center gap-1.5 shrink-0" onClick={(e) => e.stopPropagation()}>
                               {hasUpload ? (
                                 <>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="text-[11px] text-muted-foreground/50 hover:text-foreground h-7 px-2 opacity-0 group-hover/card:opacity-100 transition-opacity"
+                                    onClick={() => setPreviewDoc({ doc: doc.uploadedDoc!, aiStatus: doc.aiStatus, usedFor: doc.usedFor })}
+                                  >
+                                    <Eye size={12} className="mr-1" /> View
+                                  </Button>
                                   <Button
                                     variant="ghost"
                                     size="sm"
@@ -411,7 +472,7 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
                                   disabled={uploading === doc.document_name}
                                 >
                                   <Upload size={12} />
-                                  {uploading === doc.document_name ? "Uploading..." : "Upload"}
+                                  {uploading === doc.document_name ? "Uploading…" : "Upload"}
                                 </Button>
                               )}
                             </div>
