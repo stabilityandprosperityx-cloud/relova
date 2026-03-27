@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { allCountries } from "@/data/allCountries";
@@ -7,6 +7,7 @@ import { matchCountries, type CountryMatch, type UserCriteria } from "@/lib/coun
 import { generatePlan, generateChecklist } from "@/lib/planGenerator";
 import type { UserProfile } from "@/pages/Dashboard";
 import { ArrowRight, MapPin, Compass } from "lucide-react";
+import LoadingTransition from "./LoadingTransition";
 
 const goals = [
   { id: "safety", label: "🛡️ Safety" },
