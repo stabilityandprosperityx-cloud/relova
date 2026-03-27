@@ -204,6 +204,11 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     setStep(step + 1);
   };
 
+  // Loading transition screen
+  if (showLoading) {
+    return <LoadingTransition onFinished={handleLoadingFinished} />;
+  }
+
   // Mode selection screen
   if (mode === null) {
     return (
