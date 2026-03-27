@@ -210,6 +210,34 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     return <LoadingTransition onFinished={handleLoadingFinished} />;
   }
 
+  // Result screen — shown after loading, before dashboard
+  if (showResult && pendingProfile) {
+    return (
+      <ResultScreen
+        profile={pendingProfile}
+        onContinue={() => onComplete(pendingProfile)}
+        onSeeOtherMatches={() => {
+          setShowResult(false);
+          setShowLoading(false);
+          setShowMatches(true);
+          // Re-run matching if needed
+          if (matches.length === 0) {
+            const criteria = {
+              citizenship,
+              familyStatus,
+              monthlyIncome: income,
+              goals: selectedGoals,
+              constraints: selectedConstraints,
+              timeline,
+            };
+            const results = matchCountries(criteria);
+            setMatches(results);
+          }
+        }}
+      />
+    );
+  }
+
   // Mode selection screen
   if (mode === null) {
     return (
