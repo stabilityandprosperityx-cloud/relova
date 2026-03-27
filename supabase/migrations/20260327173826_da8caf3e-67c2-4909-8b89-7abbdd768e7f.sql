@@ -1,0 +1,1 @@
+UPDATE user_profiles SET plan = 'full' WHERE user_id = '4329517c-8ece-431d-9453-88b5bb079da2'
