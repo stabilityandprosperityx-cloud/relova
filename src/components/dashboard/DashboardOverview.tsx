@@ -64,7 +64,7 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
 
   if (!profile) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] px-5">
+      <div className="flex flex-col items-center pt-8 md:pt-12 px-5">
         <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-6 md:p-8 text-center max-w-md w-full">
           <h2 className="text-lg font-semibold mb-2">Set up your relocation profile</h2>
           <p className="text-sm text-muted-foreground mb-6">Tell us about your situation and we'll create a personalized plan.</p>
