@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import ResultScreen from "./ResultScreen";
 import { Button } from "@/components/ui/button";
 import { allCountries } from "@/data/allCountries";
 import { toast } from "sonner";
