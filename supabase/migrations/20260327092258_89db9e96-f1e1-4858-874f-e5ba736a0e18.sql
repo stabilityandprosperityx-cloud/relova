@@ -1,0 +1,1 @@
+UPDATE user_profiles SET plan = 'full', plan_expires_at = NULL WHERE user_id = 'b66f041f-083f-45b9-9854-3c4da4b05b4a';
