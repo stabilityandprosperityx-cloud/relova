@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { LayoutGrid, ListChecks, CheckSquare, MessageCircle, FileText, LogOut, Lock, ArrowLeft, User } from "lucide-react";
+import { LayoutGrid, ListChecks, CheckSquare, MessageCircle, FileText, LogOut, Lock, ArrowLeft, User, Sparkles } from "lucide-react";
 import RelovaLogo from "@/components/RelovaLogo";
 import { useAuth } from "@/contexts/AuthContext";
 import type { DashboardTab, UserPlan } from "@/pages/Dashboard";
 
-const navItems: { id: DashboardTab; label: string; icon: typeof LayoutGrid; minPlan: UserPlan }[] = [
+const navItems: { id: DashboardTab; label: string; icon: typeof LayoutGrid; minPlan: UserPlan; highlight?: boolean }[] = [
   { id: "overview", label: "Overview", icon: LayoutGrid, minPlan: "free" },
+  { id: "chat", label: "Your Advisor", icon: MessageCircle, minPlan: "free", highlight: true },
   { id: "plan", label: "Your Plan", icon: ListChecks, minPlan: "full" },
   { id: "checklist", label: "Checklist", icon: CheckSquare, minPlan: "pro" },
-  { id: "chat", label: "Your Advisor", icon: MessageCircle, minPlan: "free" },
   { id: "documents", label: "Documents", icon: FileText, minPlan: "full" },
 ];
 
