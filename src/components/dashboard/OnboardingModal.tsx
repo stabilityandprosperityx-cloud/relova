@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import ResultScreen from "./ResultScreen";
 import { Button } from "@/components/ui/button";
 import { allCountries } from "@/data/allCountries";
 import { toast } from "sonner";
@@ -65,6 +66,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const [matches, setMatches] = useState<CountryMatch[]>([]);
   const [showMatches, setShowMatches] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
+  const [showResult, setShowResult] = useState(false);
   const [pendingProfile, setPendingProfile] = useState<UserProfile | null>(null);
 
   const filtered1 = allCountries.filter(c => c.toLowerCase().includes(search1.toLowerCase()));
@@ -187,10 +189,9 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   };
 
   const handleLoadingFinished = useCallback(() => {
-    if (pendingProfile) {
-      onComplete(pendingProfile);
-    }
-  }, [pendingProfile, onComplete]);
+    setShowLoading(false);
+    setShowResult(true);
+  }, []);
 
   const nextStep = () => {
     if (mode === "help" && step === currentSteps.length - 1) {
@@ -207,6 +208,34 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   // Loading transition screen
   if (showLoading) {
     return <LoadingTransition onFinished={handleLoadingFinished} />;
+  }
+
+  // Result screen — shown after loading, before dashboard
+  if (showResult && pendingProfile) {
+    return (
+      <ResultScreen
+        profile={pendingProfile}
+        onContinue={() => onComplete(pendingProfile)}
+        onSeeOtherMatches={() => {
+          setShowResult(false);
+          setShowLoading(false);
+          setShowMatches(true);
+          // Re-run matching if needed
+          if (matches.length === 0) {
+            const criteria = {
+              citizenship,
+              familyStatus,
+              monthlyIncome: income,
+              goals: selectedGoals,
+              constraints: selectedConstraints,
+              timeline,
+            };
+            const results = matchCountries(criteria);
+            setMatches(results);
+          }
+        }}
+      />
+    );
   }
 
   // Mode selection screen
