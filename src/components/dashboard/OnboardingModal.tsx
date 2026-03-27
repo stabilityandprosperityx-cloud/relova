@@ -241,8 +241,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   // Mode selection screen
   if (mode === null) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-        <div className="w-full max-w-lg mx-4 rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-8">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-6">
+        <div className="w-full max-w-lg mx-4 rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-8 max-h-[90vh] overflow-y-auto">
           <h2 className="text-xl font-bold text-center mb-2">Let's find your path</h2>
           <p className="text-[13px] text-[#9CA3AF] text-center mb-8">Choose how you'd like to start</p>
 
@@ -337,8 +337,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-      <div className="w-full max-w-md mx-4 rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-6">
+      <div className="w-full max-w-md mx-4 rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-8 max-h-[90vh] overflow-y-auto">
         {/* Progress bar */}
         <div className="flex justify-center gap-2 mb-8">
           {Array.from({ length: totalSteps }).map((_, s) => (
@@ -357,7 +357,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
               className="w-full bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] placeholder:text-[#9CA3AF]/40 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/50"
               autoFocus
             />
-            <div className="h-48 overflow-y-auto space-y-0.5 rounded-lg">
+            <div className="max-h-[40vh] overflow-y-auto space-y-0.5 rounded-lg">
               {filtered1.map(c => (
                 <button key={c} onClick={() => { setCitizenship(c); setStep(step + 1); }}
                   className={`w-full text-left px-3 py-2 rounded-lg text-[13px] transition-colors ${
@@ -381,7 +381,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
               className="w-full bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] placeholder:text-[#9CA3AF]/40 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/50"
               autoFocus
             />
-            <div className="h-48 overflow-y-auto space-y-0.5 rounded-lg">
+            <div className="max-h-[40vh] overflow-y-auto space-y-0.5 rounded-lg">
               {filtered2.map(c => (
                 <button key={c} onClick={() => { setTargetCountry(c); setStep(step + 1); }}
                   className={`w-full text-left px-3 py-2 rounded-lg text-[13px] transition-colors ${
