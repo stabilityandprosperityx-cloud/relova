@@ -103,7 +103,7 @@ export default function Dashboard() {
           ) : (
             <>
               {tab === "overview" && <DashboardOverview profile={profile} onNavigate={setTab} onEditProfile={() => setShowEditProfile(true)} />}
-              {tab === "plan" && <DashboardPlan profile={profile} onBack={() => setTab("overview")} />}
+              {tab === "plan" && <DashboardPlan profile={profile} onBack={() => setTab("overview")} onNavigate={setTab} />}
               {tab === "checklist" && <DashboardChecklist profile={profile} />}
               {tab === "chat" && <DashboardChat profile={profile} />}
               {tab === "documents" && <DashboardDocuments userPlan={profile?.plan || "free"} onBack={() => setTab("overview")} />}
