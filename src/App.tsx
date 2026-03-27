@@ -6,6 +6,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
+import DashboardOverviewPage from "./pages/dashboard/DashboardOverviewPage.tsx";
+import DashboardAdvisorPage from "./pages/dashboard/DashboardAdvisorPage.tsx";
+import DashboardPlanPage from "./pages/dashboard/DashboardPlanPage.tsx";
+import DashboardChecklistPage from "./pages/dashboard/DashboardChecklistPage.tsx";
+import DashboardDocumentsPage from "./pages/dashboard/DashboardDocumentsPage.tsx";
 import Countries from "./pages/Countries.tsx";
 import Chat from "./pages/Chat.tsx";
 import CountryPage from "./pages/CountryPage.tsx";
@@ -31,7 +36,13 @@ const App = () => (
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route index element={<DashboardOverviewPage />} />
+              <Route path="advisor" element={<DashboardAdvisorPage />} />
+              <Route path="plan" element={<DashboardPlanPage />} />
+              <Route path="checklist" element={<DashboardChecklistPage />} />
+              <Route path="documents" element={<DashboardDocumentsPage />} />
+            </Route>
             <Route path="/countries" element={<Countries />} />
             <Route path="/countries/:slug" element={<CountryPage />} />
             <Route path="/chat" element={<Chat />} />

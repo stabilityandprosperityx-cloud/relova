@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
-import DashboardOverview from "@/components/dashboard/DashboardOverview";
-import DashboardPlan from "@/components/dashboard/DashboardPlan";
-import DashboardChecklist from "@/components/dashboard/DashboardChecklist";
-import DashboardChat from "@/components/dashboard/DashboardChat";
-import DashboardDocuments from "@/components/dashboard/DashboardDocuments";
 import OnboardingModal from "@/components/dashboard/OnboardingModal";
 import EditProfileModal from "@/components/dashboard/EditProfileModal";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
+import { motion, AnimatePresence } from "framer-motion";
 
 export type DashboardTab = "overview" | "plan" | "checklist" | "chat" | "documents";
 
@@ -33,14 +29,36 @@ export interface UserProfile {
   recommended_country?: string | null;
 }
 
+const routeToTab: Record<string, DashboardTab> = {
+  "/dashboard": "overview",
+  "/dashboard/advisor": "chat",
+  "/dashboard/plan": "plan",
+  "/dashboard/checklist": "checklist",
+  "/dashboard/documents": "documents",
+};
+
+const tabToRoute: Record<DashboardTab, string> = {
+  overview: "/dashboard",
+  chat: "/dashboard/advisor",
+  plan: "/dashboard/plan",
+  checklist: "/dashboard/checklist",
+  documents: "/dashboard/documents",
+};
+
 export default function Dashboard() {
   const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
-  const [tab, setTab] = useState<DashboardTab>("overview");
+  const location = useLocation();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [profileLoading, setProfileLoading] = useState(true);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [showEditProfile, setShowEditProfile] = useState(false);
+
+  const activeTab = routeToTab[location.pathname] || "overview";
+
+  const handleTabChange = (tab: DashboardTab) => {
+    navigate(tabToRoute[tab]);
+  };
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -83,8 +101,8 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-foreground flex">
       <DashboardSidebar
-        activeTab={tab}
-        onTabChange={setTab}
+        activeTab={activeTab}
+        onTabChange={handleTabChange}
         userEmail={user.email || ""}
         userPlan={profile?.plan || "free"}
         onEditProfile={() => setShowEditProfile(true)}
@@ -101,13 +119,17 @@ export default function Dashboard() {
               </div>
             </div>
           ) : (
-            <>
-              {tab === "overview" && <DashboardOverview profile={profile} onNavigate={setTab} onEditProfile={() => setShowEditProfile(true)} />}
-              {tab === "plan" && <DashboardPlan profile={profile} onBack={() => setTab("overview")} onNavigate={setTab} />}
-              {tab === "checklist" && <DashboardChecklist profile={profile} />}
-              {tab === "chat" && <DashboardChat profile={profile} />}
-              {tab === "documents" && <DashboardDocuments profile={profile} onBack={() => setTab("overview")} />}
-            </>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={location.pathname}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
+              >
+                <Outlet context={{ profile, setProfile, onEditProfile: () => setShowEditProfile(true), onNavigate: handleTabChange }} />
+              </motion.div>
+            </AnimatePresence>
           )}
         </div>
       </main>
