@@ -271,7 +271,7 @@ export default function Chat() {
                 )}
 
                 {/* Paywall for logged-in users who hit the free limit */}
-                {freeLimitReached && !isLoading && <PaywallOverlay />}
+                {freeLimitReached && !isLoading && showPaywall && <PaywallOverlay onClose={() => setShowPaywall(false)} />}
 
                 <div ref={bottomRef} />
               </div>
