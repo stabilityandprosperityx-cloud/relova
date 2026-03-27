@@ -122,8 +122,30 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
   const [activeUploadDoc, setActiveUploadDoc] = useState<string | null>(null);
   const [showPaywall, setShowPaywall] = useState(true);
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({ identity: true });
-  const [previewDoc, setPreviewDoc] = useState<{ doc: UserDoc; aiStatus: string | null; usedFor: string } | null>(null);
+  const [previewDoc, setPreviewDoc] = useState<{ doc: UserDoc; aiStatus: string | null; usedFor: string; signedUrl: string | null } | null>(null);
+  const [signedUrls, setSignedUrls] = useState<Record<string, string>>({});
   const isLocked = (profile?.plan || "free") !== "full";
+
+  // Generate signed URLs for all uploaded docs
+  const refreshSignedUrls = async (docs: UserDoc[]) => {
+    const docsWithFiles = docs.filter(d => d.file_url);
+    if (docsWithFiles.length === 0) { setSignedUrls({}); return; }
+
+    const urls: Record<string, string> = {};
+    await Promise.all(
+      docsWithFiles.map(async (doc) => {
+        // file_url stores the storage path (e.g. "userId/timestamp_file.pdf")
+        const storagePath = doc.file_url!;
+        const { data, error } = await supabase.storage
+          .from("user-documents")
+          .createSignedUrl(storagePath, 3600); // 1 hour
+        if (data?.signedUrl && !error) {
+          urls[doc.id] = data.signedUrl;
+        }
+      })
+    );
+    setSignedUrls(urls);
+  };
 
   const fetchData = async () => {
     if (!user) return;
@@ -131,8 +153,10 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
       supabase.from("user_documents").select("*").eq("user_id", user.id).order("uploaded_at", { ascending: false }),
       supabase.from("visa_documents").select("*").eq("visa_type", profile?.visa_type || "TBD"),
     ]);
-    setUserDocs((docsRes.data || []) as UserDoc[]);
+    const fetchedDocs = (docsRes.data || []) as UserDoc[];
+    setUserDocs(fetchedDocs);
     setVisaDocs(visaRes.data || []);
+    await refreshSignedUrls(fetchedDocs);
     setLoading(false);
   };
 
