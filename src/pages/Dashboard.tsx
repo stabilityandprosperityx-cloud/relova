@@ -74,7 +74,7 @@ export default function Dashboard() {
 
   if (authLoading || !user) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0a0a0a] pt-20 md:pt-24 flex justify-center">
         <Skeleton className="h-8 w-32" />
       </div>
     );
@@ -91,7 +91,7 @@ export default function Dashboard() {
       />
 
       <main className="flex-1 md:ml-[220px] pb-24 md:pb-0">
-        <div className="max-w-5xl mx-auto px-5 md:px-8 py-6 md:py-8">
+        <div className="max-w-5xl mx-auto px-5 md:px-8 pt-6 md:pt-10 pb-6 md:pb-8">
           {profileLoading ? (
             <div className="space-y-4">
               <Skeleton className="h-8 w-48" />
