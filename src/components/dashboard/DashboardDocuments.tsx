@@ -295,6 +295,7 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
         open={!!previewDoc}
         onOpenChange={(open) => !open && setPreviewDoc(null)}
         doc={previewDoc?.doc || null}
+        signedUrl={previewDoc?.signedUrl || null}
         aiStatus={previewDoc?.aiStatus || null}
         usedFor={previewDoc?.usedFor || ""}
         onReplace={() => previewDoc && triggerUploadFor(previewDoc.doc.document_name)}

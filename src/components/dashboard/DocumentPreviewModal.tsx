@@ -15,6 +15,7 @@ interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   doc: UserDoc | null;
+  signedUrl: string | null;
   aiStatus: string | null;
   usedFor: string;
   onReplace: () => void;
@@ -22,15 +23,19 @@ interface Props {
 }
 
 function isImageUrl(url: string): boolean {
-  return /\.(jpg|jpeg|png|webp|heic|heif)(\?|$)/i.test(url);
+  // Check the path part before query params for extension
+  const pathPart = url.split("?")[0];
+  return /\.(jpg|jpeg|png|webp|heic|heif)$/i.test(pathPart);
 }
 
 function isPdfUrl(url: string): boolean {
-  return /\.pdf(\?|$)/i.test(url);
+  const pathPart = url.split("?")[0];
+  return /\.pdf$/i.test(pathPart);
 }
 
 function getFileExtension(url: string): string {
-  const match = url.match(/\.(\w+)(\?|$)/);
+  const pathPart = url.split("?")[0];
+  const match = pathPart.match(/\.(\w+)$/);
   return match ? match[1].toUpperCase() : "FILE";
 }
 
@@ -47,17 +52,19 @@ function getStatusConfig(status: string) {
   }
 }
 
-export default function DocumentPreviewModal({ open, onOpenChange, doc, aiStatus, usedFor, onReplace, onDelete }: Props) {
+export default function DocumentPreviewModal({ open, onOpenChange, doc, signedUrl, aiStatus, usedFor, onReplace, onDelete }: Props) {
   const [imgError, setImgError] = useState(false);
 
   if (!doc) return null;
 
   const statusConfig = getStatusConfig(doc.status);
   const StatusIcon = statusConfig.icon;
-  const hasUrl = !!doc.file_url;
-  const isImage = hasUrl && !imgError && isImageUrl(doc.file_url!);
-  const isPdf = hasUrl && isPdfUrl(doc.file_url!);
-  const ext = hasUrl ? getFileExtension(doc.file_url!) : "FILE";
+  // Use signedUrl for all preview/download operations
+  const viewUrl = signedUrl;
+  const hasUrl = !!viewUrl;
+  const isImage = hasUrl && !imgError && isImageUrl(doc.file_url || "");
+  const isPdf = hasUrl && isPdfUrl(doc.file_url || "");
+  const ext = doc.file_url ? getFileExtension(doc.file_url) : "FILE";
 
   return (
     <Dialog open={open} onOpenChange={(v) => { if (!v) setImgError(false); onOpenChange(v); }}>
@@ -66,14 +73,14 @@ export default function DocumentPreviewModal({ open, onOpenChange, doc, aiStatus
         <div className="relative bg-white/[0.02] border-b border-white/[0.06] flex items-center justify-center min-h-[240px] flex-1 overflow-hidden">
           {isImage ? (
             <img
-              src={doc.file_url!}
+              src={viewUrl!}
               alt={doc.document_name}
               className="max-w-full max-h-[50vh] object-contain p-4"
               onError={() => setImgError(true)}
             />
           ) : isPdf ? (
             <iframe
-              src={doc.file_url!}
+              src={viewUrl!}
               title={doc.document_name}
               className="w-full h-[50vh] border-0"
             />
@@ -90,7 +97,7 @@ export default function DocumentPreviewModal({ open, onOpenChange, doc, aiStatus
                 variant="outline"
                 size="sm"
                 className="text-[11px] border-white/[0.08] bg-transparent hover:bg-white/[0.04] gap-2"
-                onClick={() => window.open(doc.file_url!, "_blank")}
+                onClick={() => window.open(viewUrl!, "_blank")}
               >
                 <ExternalLink size={12} /> Open in new tab
               </Button>
@@ -100,7 +107,7 @@ export default function DocumentPreviewModal({ open, onOpenChange, doc, aiStatus
               <div className="w-20 h-20 rounded-2xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center">
                 <FileText size={32} className="text-muted-foreground/20" />
               </div>
-              <p className="text-[12px] text-muted-foreground/40">No file uploaded</p>
+              <p className="text-[12px] text-muted-foreground/40">Preview not available</p>
             </div>
           )}
         </div>
@@ -145,7 +152,7 @@ export default function DocumentPreviewModal({ open, onOpenChange, doc, aiStatus
                 className="text-[11px] border-white/[0.08] bg-transparent hover:bg-white/[0.04] gap-1.5 flex-1"
                 asChild
               >
-                <a href={doc.file_url!} download target="_blank" rel="noopener noreferrer">
+                <a href={viewUrl!} download target="_blank" rel="noopener noreferrer">
                   <Download size={12} /> Download
                 </a>
               </Button>
