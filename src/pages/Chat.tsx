@@ -125,6 +125,7 @@ export default function Chat() {
   const [isLoading, setIsLoading] = useState(false);
   const [questionsUsed, setQuestionsUsed] = useState(getQuestionsUsed);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showPaywall, setShowPaywall] = useState(true);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const isAnon = !user;
