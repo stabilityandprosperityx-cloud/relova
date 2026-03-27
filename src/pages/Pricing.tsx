@@ -148,7 +148,7 @@ export default function Pricing() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            Cancel anytime. No questions asked. 14-day money-back guarantee.
+            Cancel anytime. No questions asked.
           </motion.p>
         </div>
       </main>
