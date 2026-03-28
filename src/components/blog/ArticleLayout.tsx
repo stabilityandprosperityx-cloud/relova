@@ -10,6 +10,8 @@ interface ArticleLayoutProps {
   categoryPath: string;
   title: string;
   subtitle?: string;
+  metaTitle?: string;
+  metaDescription?: string;
   children: React.ReactNode;
 }
 
