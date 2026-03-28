@@ -12,6 +12,7 @@ interface ArticleLayoutProps {
   subtitle?: string;
   metaTitle?: string;
   metaDescription?: string;
+  heroVisual?: React.ReactNode;
   children: React.ReactNode;
 }
 
