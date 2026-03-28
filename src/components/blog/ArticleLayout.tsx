@@ -23,6 +23,7 @@ export default function ArticleLayout({
   subtitle,
   metaTitle,
   metaDescription,
+  heroVisual,
   children,
 }: ArticleLayoutProps) {
   useEffect(() => {
@@ -68,6 +69,9 @@ export default function ArticleLayout({
               </p>
             )}
           </header>
+
+          {/* Hero visual */}
+          {heroVisual}
 
           {/* Article body — prose styling */}
           <div className="prose-relova">{children}</div>
