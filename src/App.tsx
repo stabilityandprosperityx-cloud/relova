@@ -20,6 +20,9 @@ import Terms from "./pages/Terms.tsx";
 import Privacy from "./pages/Privacy.tsx";
 import Refund from "./pages/Refund.tsx";
 import Blog from "./pages/Blog.tsx";
+import MoveToPortugal from "./pages/blog/MoveToPortugal.tsx";
+import PortugalVsSpain from "./pages/blog/PortugalVsSpain.tsx";
+import BestCountries2026 from "./pages/blog/BestCountries2026.tsx";
 import Help from "./pages/Help.tsx";
 import Contact from "./pages/Contact.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
@@ -51,6 +54,9 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/refund" element={<Refund />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/guides/move-to-portugal" element={<MoveToPortugal />} />
+            <Route path="/compare/portugal-vs-spain" element={<PortugalVsSpain />} />
+            <Route path="/best/best-countries-2026" element={<BestCountries2026 />} />
             <Route path="/help" element={<Help />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
