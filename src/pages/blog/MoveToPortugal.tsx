@@ -1,4 +1,6 @@
 import ArticleLayout from "@/components/blog/ArticleLayout";
+import BlogHeroVisual from "@/components/blog/BlogHeroVisual";
+import ProcessFlow from "@/components/blog/ProcessFlow";
 
 export default function MoveToPortugal() {
   return (
@@ -9,6 +11,7 @@ export default function MoveToPortugal() {
       subtitle="Visa options, costs, timelines, and a clear path from decision to arrival."
       metaTitle="How to Move to Portugal in 2026 — Visa, Cost & Step-by-Step Guide | Relova"
       metaDescription="Complete guide to relocating to Portugal: visa types, cost of living, timeline, documents, and step-by-step process for 2026."
+      heroVisual={<BlogHeroVisual variant="journey" />}
     >
       <h2>Why Portugal?</h2>
       <p>
@@ -156,24 +159,16 @@ export default function MoveToPortugal() {
       </ul>
 
       <h2>Step-by-Step Process</h2>
-      <p>
-        <strong>1. Choose your visa type.</strong> Match your income source and situation to the right category.
-      </p>
-      <p>
-        <strong>2. Get your NIF.</strong> This is Portugal's tax identification number. You can apply online or through a fiscal representative.
-      </p>
-      <p>
-        <strong>3. Gather documents.</strong> Apostille your criminal record, get health insurance, and prepare financial statements.
-      </p>
-      <p>
-        <strong>4. Apply at the consulate.</strong> Submit your application at the Portuguese consulate in your home country. Processing takes 4–12 weeks.
-      </p>
-      <p>
-        <strong>5. Arrive and register.</strong> Once in Portugal, register at your local SEF/AIMA office, get your residence permit, and open a bank account.
-      </p>
-      <p>
-        <strong>6. Settle in.</strong> Register for social security (NISS), find permanent housing, and start building your life.
-      </p>
+      <ProcessFlow
+        steps={[
+          { label: "Choose your visa type", detail: "Match your income source and situation to the right category." },
+          { label: "Get your NIF", detail: "Portugal's tax ID number. Apply online or through a fiscal representative." },
+          { label: "Gather documents", detail: "Apostille criminal record, get health insurance, prepare financial statements." },
+          { label: "Apply at the consulate", detail: "Submit at the Portuguese consulate in your home country. Processing: 4–12 weeks." },
+          { label: "Arrive and register", detail: "Register at SEF/AIMA, get residence permit, open a bank account." },
+          { label: "Settle in", detail: "Register for social security (NISS), find permanent housing, start your life." },
+        ]}
+      />
 
       <h2>Tax Considerations</h2>
       <p>

@@ -1,4 +1,5 @@
 import ArticleLayout from "@/components/blog/ArticleLayout";
+import BlogHeroVisual from "@/components/blog/BlogHeroVisual";
 
 export default function BestCountries2026() {
   return (
@@ -9,6 +10,7 @@ export default function BestCountries2026() {
       subtitle="Our ranked list based on visa accessibility, cost of living, safety, and quality of life."
       metaTitle="10 Best Countries to Move to in 2026 — Ranked & Compared | Relova"
       metaDescription="Discover the best countries to relocate to in 2026. Ranked by visa ease, cost of living, safety, taxes, and path to residency."
+      heroVisual={<BlogHeroVisual variant="ranking" />}
     >
       <h2>How We Ranked</h2>
       <p>
