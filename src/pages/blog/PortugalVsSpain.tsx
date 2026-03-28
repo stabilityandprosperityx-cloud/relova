@@ -1,4 +1,5 @@
 import ArticleLayout from "@/components/blog/ArticleLayout";
+import BlogHeroVisual from "@/components/blog/BlogHeroVisual";
 
 export default function PortugalVsSpain() {
   return (
@@ -9,6 +10,7 @@ export default function PortugalVsSpain() {
       subtitle="A detailed comparison of visas, cost of living, taxes, lifestyle, and path to residency."
       metaTitle="Portugal vs Spain — Which Country Is Better to Move to in 2026? | Relova"
       metaDescription="Compare Portugal and Spain for relocation: visa options, cost of living, taxes, healthcare, and quality of life side by side."
+      heroVisual={<BlogHeroVisual variant="compare" />}
     >
       <h2>Overview</h2>
       <p>
