@@ -20,8 +20,23 @@ export default function ArticleLayout({
   categoryPath,
   title,
   subtitle,
+  metaTitle,
+  metaDescription,
   children,
 }: ArticleLayoutProps) {
+  useEffect(() => {
+    if (metaTitle) document.title = metaTitle;
+    if (metaDescription) {
+      let meta = document.querySelector('meta[name="description"]') as HTMLMetaElement;
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.name = "description";
+        document.head.appendChild(meta);
+      }
+      meta.content = metaDescription;
+    }
+    return () => { document.title = "Relova — Relocation Made Simple"; };
+  }, [metaTitle, metaDescription]);
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -59,17 +74,16 @@ export default function ArticleLayout({
           {/* CTA Block */}
           <div className="mt-16 rounded-xl border border-border/40 bg-muted/30 p-8 md:p-10 text-center">
             <h2 className="text-xl font-semibold mb-2">
-              Ready to start your relocation?
+              Get your personalized relocation plan
             </h2>
             <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
-              Get a personalized plan with visa requirements, timelines, and
-              step-by-step guidance.
+              Find the best country, required documents, and your step-by-step plan.
             </p>
-            <Link to="/chat">
+            <a href="https://relova.ai">
               <Button className="h-10 px-8 text-sm font-medium">
-                Build my plan →
+                Start with Relova →
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Back link */}
