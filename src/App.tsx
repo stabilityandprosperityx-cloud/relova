@@ -54,6 +54,9 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/refund" element={<Refund />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/guides/move-to-portugal" element={<MoveToPortugal />} />
+            <Route path="/compare/portugal-vs-spain" element={<PortugalVsSpain />} />
+            <Route path="/best/best-countries-2026" element={<BestCountries2026 />} />
             <Route path="/help" element={<Help />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
