@@ -1,10 +1,15 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Mail, Clock } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function Contact() {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Contact — Relova"
+        description="Contact the Relova team for product questions or support. We help with AI relocation planning accounts, billing, and feedback—reach us at support@relova.ai."
+      />
       <Navbar />
       <main className="pt-14">
         <div className="container max-w-[720px] py-20 px-6">

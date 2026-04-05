@@ -15,10 +15,15 @@ import FAQSection from "@/components/landing/FAQSection";
 import PricingSection from "@/components/landing/PricingSection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
 import CTASection from "@/components/landing/CTASection";
+import SEO from "@/components/SEO";
 
 export default function Index() {
   return (
     <div className="min-h-screen bg-background bg-noise bg-grid">
+      <SEO
+        title="Relova — Know where to move. Know how to do it."
+        description="AI relocation planning: visas, documents, and housing tailored to your passport, budget, and goals. Turn international moves into a clear, step-by-step plan."
+      />
       <Navbar />
       <main className="relative z-10">
         <HeroSection />

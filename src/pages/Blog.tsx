@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import SEO from "@/components/SEO";
 
 interface ArticleCard {
   title: string;
@@ -70,6 +71,10 @@ function Section({ label, articles }: { label: string; articles: ArticleCard[] }
 export default function Blog() {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Blog — Relova"
+        description="Relocation guides, country comparisons, and curated lists from Relova. Learn how to move abroad with clear, practical advice for visas, costs, and timelines."
+      />
       <Navbar />
       <main className="pt-14">
         <div className="container max-w-[740px] py-16 px-6 md:py-24">

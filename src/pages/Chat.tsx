@@ -9,6 +9,7 @@ import PaywallOverlay from "@/components/chat/PaywallOverlay";
 import InlineUpsell from "@/components/chat/InlineUpsell";
 import AuthModal from "@/components/auth/AuthModal";
 import { useAuth } from "@/contexts/AuthContext";
+import SEO from "@/components/SEO";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -178,6 +179,10 @@ export default function Chat() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      <SEO
+        title="AI Relocation Chat — Relova"
+        description="Ask Relova’s AI about visas, documents, taxes, and where to move. Get personalized relocation answers built for international moves—not generic travel tips."
+      />
       <Navbar />
       <div className="flex-1 flex flex-col pt-16">
         <div className="flex-1 overflow-y-auto">

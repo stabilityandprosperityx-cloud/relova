@@ -1,20 +1,23 @@
 declare global {
   interface Window {
-    Paddle?: any;
+    Paddle?: {
+      Initialize: (opts: { token: string }) => void;
+      Checkout: { open: (opts: Record<string, unknown>) => void };
+    };
   }
 }
 
-const PADDLE_CLIENT_TOKEN = "live_f2580841fc56eea826c1082622d";
+const PADDLE_CLIENT_TOKEN = import.meta.env.VITE_PADDLE_CLIENT_TOKEN ?? "";
 
 export const PADDLE_PRICES = {
-  pro: "pri_01kmcrz3x9v1ya2ak025nbpn1g",
-  full: "pri_01kmcs3ffsnfr0gn8qkkqnptkz",
+  pro: import.meta.env.VITE_PADDLE_PRO_PRICE_ID ?? "",
+  full: import.meta.env.VITE_PADDLE_FULL_PRICE_ID ?? "",
 } as const;
 
 let initialized = false;
 
 export function initPaddle() {
-  if (initialized || !window.Paddle) return;
+  if (initialized || !window.Paddle || !PADDLE_CLIENT_TOKEN) return;
   try {
     window.Paddle.Initialize({
       token: PADDLE_CLIENT_TOKEN,
@@ -31,10 +34,15 @@ export function openPaddleCheckout(plan: "pro" | "full", userEmail?: string, use
     console.error("Paddle.js not loaded — ensure the script tag is in index.html");
     return;
   }
+  const priceId = PADDLE_PRICES[plan];
+  if (!priceId) {
+    console.error("Paddle price ID missing — set VITE_PADDLE_PRO_PRICE_ID / VITE_PADDLE_FULL_PRICE_ID");
+    return;
+  }
   initPaddle();
 
-  const itemsList = [{ priceId: PADDLE_PRICES[plan], quantity: 1 }];
-  console.log("Opening Paddle checkout for", plan, "with price", PADDLE_PRICES[plan]);
+  const itemsList = [{ priceId, quantity: 1 }];
+  console.log("Opening Paddle checkout for", plan, "with price", priceId);
 
   window.Paddle.Checkout.open({
     items: itemsList,

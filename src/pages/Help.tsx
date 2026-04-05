@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import SEO from "@/components/SEO";
 import {
   Accordion,
   AccordionContent,
@@ -33,6 +34,10 @@ const faqs = [
 export default function Help() {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Help Center — Relova"
+        description="FAQs about Relova: how our AI relocation planner works, saving plans, accuracy, and how we differ from general chatbots. Not legal advice—always verify with a professional."
+      />
       <Navbar />
       <main className="pt-14">
         <div className="container max-w-[720px] py-20 px-6">

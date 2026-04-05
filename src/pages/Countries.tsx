@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, DollarSign, Home, Briefcase } from "lucide-react";
 import { motion } from "framer-motion";
 import { countryData } from "@/data/countries";
+import SEO from "@/components/SEO";
 
 const countryOrder = ["portugal", "spain", "uae", "usa", "canada", "germany", "australia", "thailand", "mexico", "estonia", "indonesia", "singapore", "argentina"];
 
@@ -18,6 +19,10 @@ const quickStats = [
 export default function Countries() {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Countries — Relova"
+        description="Explore destinations with Relova: compare visas, cost of living, taxes, and pathways. AI-powered relocation planning for Portugal, Spain, UAE, and dozens more."
+      />
       <Navbar />
       <main className="pt-24 pb-16">
         <div className="container">

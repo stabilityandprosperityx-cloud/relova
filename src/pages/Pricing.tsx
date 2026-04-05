@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { openPayment } from "@/config/payments";
 import { useAuth } from "@/contexts/AuthContext";
+import SEO from "@/components/SEO";
 
 const plans = [
   {
@@ -69,6 +70,10 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Pricing — Relova"
+        description="Relova plans for AI relocation planning: free exploration, Pro for unlimited guidance, and Full for deep plans. Choose the right tier for your move."
+      />
       <Navbar />
       <main className="pt-28 pb-16">
         <div className="container max-w-5xl">

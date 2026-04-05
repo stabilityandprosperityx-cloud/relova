@@ -26,8 +26,42 @@ import BestCountries2026 from "./pages/blog/BestCountries2026.tsx";
 import Help from "./pages/Help.tsx";
 import Contact from "./pages/Contact.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import { usePageTracking } from "./hooks/usePageTracking.ts";
 
 const queryClient = new QueryClient();
+
+function AppRoutes() {
+  usePageTracking();
+  return (
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route index element={<DashboardOverviewPage />} />
+          <Route path="advisor" element={<DashboardAdvisorPage />} />
+          <Route path="plan" element={<DashboardPlanPage />} />
+          <Route path="checklist" element={<DashboardChecklistPage />} />
+          <Route path="documents" element={<DashboardDocumentsPage />} />
+        </Route>
+        <Route path="/countries" element={<Countries />} />
+        <Route path="/countries/:slug" element={<CountryPage />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/refund" element={<Refund />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/guides/move-to-portugal" element={<MoveToPortugal />} />
+        <Route path="/compare/portugal-vs-spain" element={<PortugalVsSpain />} />
+        <Route path="/best/best-countries-2026" element={<BestCountries2026 />} />
+        <Route path="/help" element={<Help />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -36,31 +70,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/dashboard" element={<Dashboard />}>
-              <Route index element={<DashboardOverviewPage />} />
-              <Route path="advisor" element={<DashboardAdvisorPage />} />
-              <Route path="plan" element={<DashboardPlanPage />} />
-              <Route path="checklist" element={<DashboardChecklistPage />} />
-              <Route path="documents" element={<DashboardDocumentsPage />} />
-            </Route>
-            <Route path="/countries" element={<Countries />} />
-            <Route path="/countries/:slug" element={<CountryPage />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/refund" element={<Refund />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/guides/move-to-portugal" element={<MoveToPortugal />} />
-            <Route path="/compare/portugal-vs-spain" element={<PortugalVsSpain />} />
-            <Route path="/best/best-countries-2026" element={<BestCountries2026 />} />
-            <Route path="/help" element={<Help />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AppRoutes />
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
