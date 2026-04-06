@@ -4,6 +4,7 @@ import { LayoutGrid, ListChecks, CheckSquare, MessageCircle, FileText, LogOut, L
 import RelovaLogo from "@/components/RelovaLogo";
 import { useAuth } from "@/contexts/AuthContext";
 import type { DashboardTab, UserPlan } from "@/pages/Dashboard";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 
 const navItems: { id: DashboardTab; label: string; icon: typeof LayoutGrid; minPlan: UserPlan; highlight?: boolean }[] = [
   { id: "overview", label: "Overview", icon: LayoutGrid, minPlan: "free" },
@@ -25,7 +26,7 @@ interface Props {
 
 export default function DashboardSidebar({ activeTab, onTabChange, userEmail, userPlan, onEditProfile }: Props) {
   const { signOut } = useAuth();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
 
   const isLocked = (minPlan: UserPlan) => planRank[userPlan] < planRank[minPlan];
 
@@ -103,15 +104,16 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
       </aside>
 
       {/* Mobile bottom tab bar */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#0a0a0a] border-t border-white/[0.06] z-40 flex justify-around px-2 py-2">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#0a0a0a] border-t border-white/[0.06] z-40 flex justify-around items-end px-1 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
         {navItems.map((item) => {
           const active = activeTab === item.id;
           const locked = isLocked(item.minPlan);
           return (
             <button
               key={item.id}
+              type="button"
               onClick={() => !locked && onTabChange(item.id)}
-              className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
+              className={`flex min-w-0 flex-1 flex-col items-center gap-0.5 px-1 py-1 rounded-lg transition-colors ${
                 locked ? "text-[#9CA3AF]/20" : active ? "text-[#38BDF8]" : "text-[#9CA3AF]"
               }`}
             >
@@ -119,40 +121,68 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
             </button>
           );
         })}
-        {/* Profile / more menu */}
-        <div className="relative">
+        <Sheet open={mobileSheetOpen} onOpenChange={setMobileSheetOpen}>
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg text-[#9CA3AF] transition-colors"
+            type="button"
+            onClick={() => setMobileSheetOpen(true)}
+            className="flex min-w-0 flex-1 flex-col items-center gap-0.5 px-1 py-1 rounded-lg text-[#9CA3AF] transition-colors hover:text-foreground"
+            aria-label="Open account menu"
           >
             <User size={18} />
+            <span className="text-[9px] font-medium leading-none opacity-80">Menu</span>
           </button>
-          {mobileMenuOpen && (
-            <div className="absolute bottom-full right-0 mb-2 w-40 bg-[#141414] border border-white/[0.08] rounded-lg shadow-lg overflow-hidden">
+          <SheetContent
+            side="bottom"
+            className="rounded-t-2xl border-white/[0.08] bg-[#0a0a0a] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
+          >
+            <SheetHeader className="space-y-1 text-left">
+              <SheetTitle className="text-base text-foreground">Account</SheetTitle>
+              <p className="truncate text-[12px] font-normal text-[#9CA3AF]">{userEmail}</p>
+              <p className="text-[11px] capitalize text-[#38BDF8]/70">{userPlan} plan</p>
+            </SheetHeader>
+            <div className="mt-6 flex flex-col gap-0">
+              {userPlan !== "full" && (
+                <Link
+                  to="/pricing"
+                  onClick={() => setMobileSheetOpen(false)}
+                  className="rounded-lg px-3 py-3 text-center text-[14px] font-medium text-[#38BDF8] transition-colors hover:bg-[#38BDF8]/10"
+                >
+                  Upgrade plan
+                </Link>
+              )}
               {onEditProfile && (
                 <button
-                  onClick={() => { onEditProfile(); setMobileMenuOpen(false); }}
-                  className="w-full text-left px-4 py-2.5 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground transition-colors"
+                  type="button"
+                  onClick={() => {
+                    onEditProfile();
+                    setMobileSheetOpen(false);
+                  }}
+                  className="w-full rounded-lg px-3 py-3 text-left text-[14px] text-[#9CA3AF] transition-colors hover:bg-white/[0.04] hover:text-foreground"
                 >
                   Edit profile
                 </button>
               )}
               <Link
                 to="/"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2.5 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground transition-colors"
+                onClick={() => setMobileSheetOpen(false)}
+                className="rounded-lg px-3 py-3 text-[14px] text-[#9CA3AF] transition-colors hover:bg-white/[0.04] hover:text-foreground"
               >
                 ← Back to site
               </Link>
               <button
-                onClick={() => { signOut(); setMobileMenuOpen(false); }}
-                className="w-full text-left px-4 py-2.5 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground transition-colors border-t border-white/[0.06]"
+                type="button"
+                onClick={() => {
+                  void signOut();
+                  setMobileSheetOpen(false);
+                }}
+                className="mt-2 flex w-full items-center gap-2 border-t border-white/[0.08] px-3 py-4 text-left text-[14px] font-medium text-foreground transition-colors hover:bg-white/[0.04]"
               >
+                <LogOut size={16} className="text-[#9CA3AF]" />
                 Log out
               </button>
             </div>
-          )}
-        </div>
+          </SheetContent>
+        </Sheet>
       </nav>
     </>
   );

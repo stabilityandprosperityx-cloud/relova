@@ -7,6 +7,7 @@ import { Slider } from "@/components/ui/slider";
 import { Link } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { allCountries } from "@/data/allCountries";
+import { filterCountryList } from "@/lib/filterCountries";
 
 const goals = [
   { value: "work", label: "Move for work" },
@@ -23,16 +24,16 @@ export default function PlanBuilderSection() {
   const [open, setOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const filteredCountries = allCountries.filter((c) =>
-    c.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredCountries = filterCountryList(allCountries, searchQuery);
 
   useEffect(() => {
     if (open) {
-      setTimeout(() => searchInputRef.current?.focus(), 100);
-    } else {
-      setSearchQuery("");
+      const id = requestAnimationFrame(() => {
+        searchInputRef.current?.focus();
+      });
+      return () => cancelAnimationFrame(id);
     }
+    setSearchQuery("");
   }, [open]);
 
   const budgetLabel =
@@ -89,11 +90,20 @@ export default function PlanBuilderSection() {
                     <ChevronsUpDown className="h-4 w-4 opacity-50 shrink-0" />
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0" align="start">
+                <PopoverContent
+                  className="w-[var(--radix-popover-trigger-width)] p-0"
+                  align="start"
+                  onOpenAutoFocus={(e) => e.preventDefault()}
+                >
                   <div className="flex items-center border-b border-border/40 px-3">
                     <Search className="h-4 w-4 shrink-0 opacity-50 mr-2" />
                     <input
                       ref={searchInputRef}
+                      type="search"
+                      name="plan-builder-citizenship"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      spellCheck={false}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Search country..."

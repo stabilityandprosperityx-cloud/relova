@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import ResultScreen from "./ResultScreen";
 import { Button } from "@/components/ui/button";
 import { allCountries } from "@/data/allCountries";
+import { filterCountryList } from "@/lib/filterCountries";
 import { toast } from "sonner";
 import { matchCountries, type CountryMatch, type UserCriteria } from "@/lib/countryMatching";
 import { generatePlan, generateChecklist } from "@/lib/planGenerator";
@@ -69,8 +70,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const [showResult, setShowResult] = useState(false);
   const [pendingProfile, setPendingProfile] = useState<UserProfile | null>(null);
 
-  const filtered1 = allCountries.filter(c => c.toLowerCase().includes(search1.toLowerCase()));
-  const filtered2 = allCountries.filter(c => c.toLowerCase().includes(search2.toLowerCase()));
+  const filtered1 = filterCountryList(allCountries, search1);
+  const filtered2 = filterCountryList(allCountries, search2);
 
   // Mode A steps: citizenship → target → family → income → goals → timeline → save
   // Mode B steps: citizenship → family → income → goals → constraints → timeline → show matches → save
@@ -351,6 +352,11 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-center">What's your passport?</h2>
             <input
+              type="text"
+              name="onboarding-citizenship-search"
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck={false}
               placeholder="Search countries..."
               value={search1}
               onChange={(e) => setSearch1(e.target.value)}
@@ -375,6 +381,11 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-center">Where do you want to move?</h2>
             <input
+              type="text"
+              name="onboarding-target-search"
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck={false}
               placeholder="Search countries..."
               value={search2}
               onChange={(e) => setSearch2(e.target.value)}
