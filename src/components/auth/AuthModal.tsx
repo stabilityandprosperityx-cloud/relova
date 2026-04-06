@@ -4,8 +4,9 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
 import { toast } from "sonner";
+
+const GOOGLE_OAUTH_REDIRECT = "https://relova.ai/dashboard";
 import { Mail, Loader2 } from "lucide-react";
 import RelovaLogo from "@/components/RelovaLogo";
 
@@ -30,13 +31,17 @@ export default function AuthModal({
 
   const handleGoogle = async () => {
     setLoading(true);
-    const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin + "/dashboard",
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: GOOGLE_OAUTH_REDIRECT,
+      },
     });
-    if (result.error) {
-      toast.error("Google sign in failed");
+    if (error) {
+      toast.error(error.message || "Google sign in failed");
+      setLoading(false);
     }
-    setLoading(false);
+    // On success the browser is redirected away; no need to clear loading.
   };
 
   const handleEmailSignUp = async () => {

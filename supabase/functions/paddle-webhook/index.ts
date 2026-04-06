@@ -24,8 +24,9 @@ async function verifySignature(
   // Parse ts=...;h1=...
   const parts: Record<string, string> = {};
   for (const pair of signature.split(";")) {
-    const [k, v] = pair.split("=");
-    if (k && v) parts[k] = v;
+    const [k, ...rest] = pair.split("=");
+    const v = rest.join("=");
+    if (k?.trim() && v) parts[k.trim()] = v.trim();
   }
 
   const ts = parts["ts"];
@@ -49,13 +50,47 @@ async function verifySignature(
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
 
-  return computed === h1;
+  return computed.toLowerCase() === h1.toLowerCase();
 }
 
 const PRICE_TO_PLAN: Record<string, string> = {
   pri_01kmcrz3x9v1ya2ak025nbpn1g: "pro",
   pri_01kmcs3ffsnfr0gn8qkkqnptkz: "full",
 };
+
+type SubscriptionItem = {
+  price?: { id?: string };
+  price_id?: string;
+};
+
+function priceIdFromSubscription(data: {
+  items?: SubscriptionItem[];
+}): string | undefined {
+  const items = data.items;
+  if (!Array.isArray(items) || items.length === 0) return undefined;
+  for (const item of items) {
+    const nested = item.price?.id;
+    if (typeof nested === "string" && nested.length > 0) return nested;
+    if (typeof item.price_id === "string" && item.price_id.length > 0) {
+      return item.price_id;
+    }
+  }
+  return undefined;
+}
+
+/** Paddle webhooks use custom_data; keys may be camelCase or snake_case. */
+function userIdFromCustomData(
+  customData: Record<string, unknown> | null | undefined
+): string | undefined {
+  if (!customData || typeof customData !== "object") return undefined;
+  const raw =
+    customData.userId ??
+    customData.user_id ??
+    (customData as { UserId?: unknown }).UserId;
+  if (raw === undefined || raw === null) return undefined;
+  const s = String(raw).trim();
+  return s.length > 0 ? s : undefined;
+}
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -78,7 +113,10 @@ Deno.serve(async (req) => {
       return jsonResponse({ error: "Invalid signature" }, 401);
     }
 
-    const event = JSON.parse(rawBody);
+    const event = JSON.parse(rawBody) as {
+      event_type?: string;
+      data?: Record<string, unknown>;
+    };
     const eventType = event.event_type;
     console.log("Paddle event:", eventType);
 
@@ -91,38 +129,72 @@ Deno.serve(async (req) => {
       eventType === "subscription.activated" ||
       eventType === "subscription.updated"
     ) {
-      const data = event.data;
-      const customerId = data.customer_id;
-      const subscriptionId = data.id;
-      const priceId = data.items?.[0]?.price?.id;
-      const plan = PRICE_TO_PLAN[priceId] || "pro";
-      const userId = data.custom_data?.userId;
+      const data = event.data ?? {};
+      const customerId = data.customer_id as string | undefined;
+      const subscriptionId = data.id as string | undefined;
+      const priceId = priceIdFromSubscription(
+        data as { items?: SubscriptionItem[] }
+      );
+      const plan = priceId ? PRICE_TO_PLAN[priceId] : undefined;
+
+      if (!plan) {
+        console.error("Unknown or missing subscription price id:", priceId);
+        return jsonResponse(
+          {
+            error: "Unknown price id",
+            priceId: priceId ?? null,
+          },
+          400
+        );
+      }
+
+      const customData = data.custom_data as Record<string, unknown> | undefined;
+      const userId = userIdFromCustomData(customData);
 
       if (!userId) {
-        console.error("No userId in custom_data");
+        console.error(
+          "No user id in custom_data; keys present:",
+          customData ? Object.keys(customData) : []
+        );
         return jsonResponse({ error: "Missing userId in custom_data" }, 400);
       }
 
-      const { error: updateError } = await supabase
+      // Table is public.user_profiles (plan + user_id), not "profiles".
+      const { data: updatedRows, error: updateError } = await supabase
         .from("user_profiles")
         .update({
           plan,
           paddle_customer_id: customerId,
           paddle_subscription_id: subscriptionId,
         })
-        .eq("user_id", userId);
+        .eq("user_id", userId)
+        .select("user_id");
 
       if (updateError) {
         console.error("Error updating profile:", updateError);
         return jsonResponse({ error: "Update failed" }, 500);
       }
 
+      if (!updatedRows?.length) {
+        console.error(
+          "No user_profiles row matched user_id (checkout customData must match auth user id):",
+          userId
+        );
+        return jsonResponse(
+          {
+            error: "No profile row for user_id",
+            userId,
+          },
+          404
+        );
+      }
+
       console.log(`Updated user ${userId} to plan: ${plan}`);
     }
 
     if (eventType === "subscription.canceled") {
-      const data = event.data;
-      const subscriptionId = data.id;
+      const data = event.data ?? {};
+      const subscriptionId = data.id as string | undefined;
 
       const { error } = await supabase
         .from("user_profiles")
