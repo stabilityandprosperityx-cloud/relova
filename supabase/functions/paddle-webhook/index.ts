@@ -1,3 +1,8 @@
+/**
+ * Paddle billing webhooks — no Supabase `Authorization` header required.
+ * Set `[functions.paddle-webhook] verify_jwt = false` in `supabase/config.toml`.
+ * Security: verify `paddle-signature` with `PADDLE_WEBHOOK_SECRET` only.
+ */
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 
 const corsHeaders = {
