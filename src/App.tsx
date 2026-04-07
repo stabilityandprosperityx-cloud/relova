@@ -12,6 +12,7 @@ import DashboardAdvisorPage from "./pages/dashboard/DashboardAdvisorPage.tsx";
 import DashboardPlanPage from "./pages/dashboard/DashboardPlanPage.tsx";
 import DashboardChecklistPage from "./pages/dashboard/DashboardChecklistPage.tsx";
 import DashboardDocumentsPage from "./pages/dashboard/DashboardDocumentsPage.tsx";
+import DashboardCountriesPage from "./pages/dashboard/DashboardCountriesPage.tsx";
 import Countries from "./pages/Countries.tsx";
 import Chat from "./pages/Chat.tsx";
 import CountryPage from "./pages/CountryPage.tsx";
@@ -52,6 +53,7 @@ function AppRoutes() {
           <Route path="plan" element={<DashboardPlanPage />} />
           <Route path="checklist" element={<DashboardChecklistPage />} />
           <Route path="documents" element={<DashboardDocumentsPage />} />
+          <Route path="countries" element={<DashboardCountriesPage />} />
         </Route>
         <Route path="/countries" element={<Countries />} />
         <Route path="/countries/:slug" element={<CountryPage />} />

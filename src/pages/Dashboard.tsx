@@ -8,7 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 
 
-export type DashboardTab = "overview" | "plan" | "checklist" | "chat" | "documents";
+export type DashboardTab = "overview" | "plan" | "checklist" | "chat" | "documents" | "countries";
 
 export type UserPlan = "free" | "pro" | "full";
 
@@ -35,6 +35,7 @@ const routeToTab: Record<string, DashboardTab> = {
   "/dashboard/plan": "plan",
   "/dashboard/checklist": "checklist",
   "/dashboard/documents": "documents",
+  "/dashboard/countries": "countries",
 };
 
 const tabToRoute: Record<DashboardTab, string> = {
@@ -43,6 +44,7 @@ const tabToRoute: Record<DashboardTab, string> = {
   plan: "/dashboard/plan",
   checklist: "/dashboard/checklist",
   documents: "/dashboard/documents",
+  countries: "/dashboard/countries",
 };
 
 export default function Dashboard() {

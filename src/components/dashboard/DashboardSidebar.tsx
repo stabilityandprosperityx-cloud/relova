@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { LayoutGrid, ListChecks, CheckSquare, MessageCircle, FileText, LogOut, Lock, ArrowLeft, User, Sparkles } from "lucide-react";
+import { LayoutGrid, ListChecks, CheckSquare, MessageCircle, FileText, LogOut, Lock, ArrowLeft, User, Sparkles, Globe } from "lucide-react";
 import RelovaLogo from "@/components/RelovaLogo";
 import { useAuth } from "@/contexts/AuthContext";
 import type { DashboardTab, UserPlan } from "@/pages/Dashboard";
@@ -12,6 +12,7 @@ const navItems: { id: DashboardTab; label: string; icon: typeof LayoutGrid; minP
   { id: "plan", label: "Your Plan", icon: ListChecks, minPlan: "full" },
   { id: "checklist", label: "Checklist", icon: CheckSquare, minPlan: "pro" },
   { id: "documents", label: "Documents", icon: FileText, minPlan: "full" },
+  { id: "countries", label: "Countries", icon: Globe, minPlan: "free" },
 ];
 
 const planRank: Record<UserPlan, number> = { free: 0, pro: 1, full: 2 };
