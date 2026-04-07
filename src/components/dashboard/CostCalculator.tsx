@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 type FamilyStatus = "single" | "couple" | "family";
 
 type CostEntry = {
@@ -203,23 +205,112 @@ const familyLabel = (status: FamilyStatus) =>
   status === "single" ? "Single" : status === "couple" ? "Couple" : "Family";
 
 export const CostCalculator = ({ country, familyStatus, monthlyIncome }: CostCalculatorProps) => {
-  const _income = monthlyIncome;
-  const entry = COST_DATA[country];
+  const [selectedCountry, setSelectedCountry] = useState<string>(country);
+  const [selectedFamily, setSelectedFamily] = useState<FamilyStatus>(
+    (familyStatus as FamilyStatus) || "single",
+  );
+  const [selectedIncome, setSelectedIncome] = useState<number>(monthlyIncome || 0);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  useEffect(() => {
+    setSelectedCountry(country);
+    setSelectedFamily(((["single", "couple", "family"] as const).includes(familyStatus as FamilyStatus)
+      ? familyStatus
+      : "single") as FamilyStatus);
+    setSelectedIncome(monthlyIncome || 0);
+  }, [country, familyStatus, monthlyIncome]);
+
+  const entry = COST_DATA[selectedCountry];
 
   if (!entry) {
     return (
       <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
-        <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium mb-3">Estimated relocation budget</p>
-        <p className="text-[13px] text-muted-foreground">
-          Cost estimate not yet available for {country}. Ask your advisor for a personalized breakdown.
-        </p>
+        <div className="flex items-start justify-between gap-2 mb-1">
+          <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">
+            Estimated relocation budget
+          </p>
+          {!isEditing ? (
+            <button
+              type="button"
+              onClick={() => {
+                setIsEditing(true);
+                if (!(selectedCountry in COST_DATA)) {
+                  setSelectedCountry(Object.keys(COST_DATA)[0]);
+                }
+              }}
+              className="text-[11px] text-primary/80 hover:text-primary shrink-0"
+            >
+              Customize →
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setIsEditing(false)}
+              className="text-[11px] text-primary/80 hover:text-primary shrink-0"
+            >
+              Done ✓
+            </button>
+          )}
+        </div>
+        {isEditing ? (
+          <p className="text-[13px] text-foreground/85 mb-3">Customize your estimate</p>
+        ) : (
+          <p className="text-[13px] text-muted-foreground mb-3">
+            Cost estimate not yet available for {country}. Ask your advisor for a personalized breakdown.
+          </p>
+        )}
+        {isEditing && (
+          <div className="mt-3 mb-4 p-3 rounded-lg bg-white/[0.03] border border-white/[0.05] space-y-3">
+            <select
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
+              className="bg-white/[0.06] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] text-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 w-full"
+            >
+              {Object.keys(COST_DATA).map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+            <div className="flex flex-wrap gap-2">
+              {(["single", "couple", "family"] as const).map((f) => (
+                <button
+                  key={f}
+                  type="button"
+                  onClick={() => setSelectedFamily(f)}
+                  className={
+                    selectedFamily === f
+                      ? "px-3 py-1.5 rounded-lg text-[12px] font-medium bg-primary/20 text-primary border border-primary/30"
+                      : "px-3 py-1.5 rounded-lg text-[12px] font-medium bg-white/[0.04] text-muted-foreground border border-white/[0.06] hover:bg-white/[0.08]"
+                  }
+                >
+                  {familyLabel(f)}
+                </button>
+              ))}
+            </div>
+            <div>
+              <p className="text-[12px] text-muted-foreground mb-1">
+                Monthly income: ${money(selectedIncome)}
+              </p>
+              <input
+                type="range"
+                min={500}
+                max={50000}
+                step={500}
+                value={selectedIncome < 500 ? 500 : selectedIncome}
+                onChange={(e) => setSelectedIncome(Number(e.target.value))}
+                className="w-full accent-primary"
+              />
+            </div>
+          </div>
+        )}
       </section>
     );
   }
 
-  const rentFactor = familyStatus === "single" ? 1 : familyStatus === "couple" ? 1.3 : 1.7;
-  const insuranceFactor = familyStatus === "single" ? 1 : familyStatus === "couple" ? 1.2 : 1.6;
-  const emergencyFactor = familyStatus === "single" ? 1 : familyStatus === "couple" ? 1.2 : 1.5;
+  const rentFactor = selectedFamily === "single" ? 1 : selectedFamily === "couple" ? 1.3 : 1.7;
+  const insuranceFactor = selectedFamily === "single" ? 1 : selectedFamily === "couple" ? 1.2 : 1.6;
+  const emergencyFactor = selectedFamily === "single" ? 1 : selectedFamily === "couple" ? 1.2 : 1.5;
 
   const visaMin = entry.visaFeeMin;
   const visaMax = entry.visaFeeMax;
@@ -235,12 +326,110 @@ export const CostCalculator = ({ country, familyStatus, monthlyIncome }: CostCal
   const totalMax = visaMax + apostilleMax + rentMax + insuranceMax + emergency;
   const totalMid = midpoint(totalMin, totalMax);
 
+  const totalMidpoint = totalMid;
+  const monthsOfIncome =
+    selectedIncome > 0 ? Math.round((totalMidpoint / selectedIncome) * 10) / 10 : 0;
+  const affordabilityPct =
+    selectedIncome > 0 ? Math.round((totalMidpoint / selectedIncome) * 100) : 0;
+
+  let budgetMessage = "";
+  let budgetColor = "";
+  if (selectedIncome > 0 && entry) {
+    if (monthsOfIncome <= 0.5) {
+      budgetMessage = "Your monthly income covers this move 2x over. Very affordable.";
+      budgetColor = "text-green-400";
+    } else if (monthsOfIncome <= 1) {
+      budgetMessage = "This move costs less than 1 month of your income. Comfortable.";
+      budgetColor = "text-green-400";
+    } else if (monthsOfIncome <= 2) {
+      budgetMessage = `This move costs about ${monthsOfIncome} months of your income. Manageable.`;
+      budgetColor = "text-amber-400";
+    } else if (monthsOfIncome <= 3) {
+      budgetMessage = `This move costs about ${monthsOfIncome} months of your income. Start saving now.`;
+      budgetColor = "text-amber-400";
+    } else {
+      budgetMessage = `This move costs over ${monthsOfIncome} months of your income. Consider a lower-cost destination.`;
+      budgetColor = "text-red-400";
+    }
+  }
+
   return (
     <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
-      <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium mb-1">Estimated relocation budget</p>
-      <p className="text-[13px] text-foreground/85 mb-3">
-        Moving to {country} · {entry.visaType} · {familyLabel(familyStatus)}
-      </p>
+      <div className="flex items-start justify-between gap-2 mb-1">
+        <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">
+          Estimated relocation budget
+        </p>
+        {!isEditing ? (
+          <button
+            type="button"
+            onClick={() => setIsEditing(true)}
+            className="text-[11px] text-primary/80 hover:text-primary shrink-0"
+          >
+            Customize →
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setIsEditing(false)}
+            className="text-[11px] text-primary/80 hover:text-primary shrink-0"
+          >
+            Done ✓
+          </button>
+        )}
+      </div>
+      {isEditing ? (
+        <p className="text-[13px] text-foreground/85 mb-3">Customize your estimate</p>
+      ) : (
+        <p className="text-[13px] text-foreground/85 mb-3">
+          Moving to {selectedCountry} · {entry.visaType} · {familyLabel(selectedFamily)}
+        </p>
+      )}
+
+      {isEditing && (
+        <div className="mt-3 mb-4 p-3 rounded-lg bg-white/[0.03] border border-white/[0.05] space-y-3">
+          <select
+            value={selectedCountry}
+            onChange={(e) => setSelectedCountry(e.target.value)}
+            className="bg-white/[0.06] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] text-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 w-full"
+          >
+            {Object.keys(COST_DATA).map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+          <div className="flex flex-wrap gap-2">
+            {(["single", "couple", "family"] as const).map((f) => (
+              <button
+                key={f}
+                type="button"
+                onClick={() => setSelectedFamily(f)}
+                className={
+                  selectedFamily === f
+                    ? "px-3 py-1.5 rounded-lg text-[12px] font-medium bg-primary/20 text-primary border border-primary/30"
+                    : "px-3 py-1.5 rounded-lg text-[12px] font-medium bg-white/[0.04] text-muted-foreground border border-white/[0.06] hover:bg-white/[0.08]"
+                }
+              >
+                {familyLabel(f)}
+              </button>
+            ))}
+          </div>
+          <div>
+            <p className="text-[12px] text-muted-foreground mb-1">
+              Monthly income: ${money(selectedIncome)}
+            </p>
+            <input
+              type="range"
+              min={500}
+              max={50000}
+              step={500}
+              value={selectedIncome < 500 ? 500 : selectedIncome}
+              onChange={(e) => setSelectedIncome(Number(e.target.value))}
+              className="w-full accent-primary"
+            />
+          </div>
+        </div>
+      )}
 
       <p className="text-[12px] text-muted-foreground italic mb-5">{entry.notes}</p>
 
@@ -294,6 +483,20 @@ export const CostCalculator = ({ country, familyStatus, monthlyIncome }: CostCal
           </div>
         </div>
       </div>
+
+      {selectedIncome > 0 && entry && (
+        <div
+          className="mt-4 pt-4 border-t border-white/[0.08]"
+          data-affordability-pct={affordabilityPct}
+        >
+          <p className="text-[12px] font-medium text-foreground/90 mb-1">💡 Your budget analysis</p>
+          <p className={`text-[13px] leading-relaxed ${budgetColor}`}>{budgetMessage}</p>
+          <p className="text-[11px] text-muted-foreground/60 mt-1">
+            Your income: ${money(selectedIncome)}/mo · Move cost: ${money(totalMidpoint)} · Ratio:{" "}
+            {monthsOfIncome} months
+          </p>
+        </div>
+      )}
 
       <p className="text-[11px] text-muted-foreground mt-5">
         ⓘ Based on verified 2025–2026 data. Costs vary by nationality, city, and individual situation. Always verify with official sources.
