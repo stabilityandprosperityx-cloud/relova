@@ -125,6 +125,7 @@ export default function VisaLetterGenerator({ profile, onBack }: Props) {
     const citizenship = profile?.citizenship || "applicant's home country";
     const monthlyIncome = profile?.monthly_budget || "sufficient";
     const familyStatus = profile?.family_status || "single";
+    const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
 
     const prompt = `You are an expert immigration consultant. Write a professional visa cover letter for a ${visaType} application to ${country}.
 
@@ -157,7 +158,7 @@ ADDITIONAL CONTEXT: ${form.additionalNotes || "None"}
 REQUIREMENTS:
 - Write a formal cover letter addressed to "The Visa Officer, Embassy of ${country}"
 - Length: 400-550 words
-- Format: Professional business letter with proper header, date placeholder [DATE], and signature block
+- Format: Professional business letter. Use this exact date at the top: ${today}. Include proper header and signature block.
 - Include: Introduction, purpose of relocation, financial stability proof, ties to home country, documents list, closing
 - Tailor specifically to ${visaType} requirements for ${country}
 - Tone: Formal, respectful, confident
@@ -219,27 +220,49 @@ REQUIREMENTS:
   };
 
   const handlePrint = () => {
+    const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+    const letterWithDate = generatedLetter.replace("[DATE]", today);
+    
     const printWindow = window.open("", "_blank");
     if (!printWindow) return;
-    printWindow.document.write(`
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>Visa Cover Letter — ${profile?.target_country || ""}</title>
-          <style>
-            body { font-family: Georgia, serif; font-size: 12pt; line-height: 1.6; margin: 2.5cm; color: #000; }
-            pre { white-space: pre-wrap; font-family: Georgia, serif; font-size: 12pt; line-height: 1.6; }
-            @media print { body { margin: 2cm; } }
-          </style>
-        </head>
-        <body>
-          <pre>${generatedLetter}</pre>
-        </body>
-      </html>
-    `);
+    printWindow.document.write(`<!DOCTYPE html>
+<html>
+  <head>
+    <title>Visa Cover Letter — ${profile?.target_country || ""}</title>
+    <style>
+      @page {
+        margin: 2.5cm;
+        size: A4;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        line-height: 1.8;
+        color: #000;
+        background: #fff;
+      }
+      .letter {
+        max-width: 100%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      @media print {
+        html, body { height: 100%; }
+        .no-print { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="letter">${letterWithDate.replace(/\n/g, "<br>")}</div>
+  </body>
+</html>`);
     printWindow.document.close();
     printWindow.focus();
-    setTimeout(() => { printWindow.print(); }, 500);
+    setTimeout(() => {
+      printWindow.print();
+      printWindow.close();
+    }, 500);
   };
 
   // ─── FORM STATE ───
