@@ -215,7 +215,14 @@ REQUIREMENTS:
         .replace(/\*(.*?)\*/g, "<em>$1</em>")
         .replace(/#{1,6}\s/g, "")
         .replace(/^---+$/gm, "");
-      setGeneratedLetter(cleanText);
+      // Force bold on date line (first line) and Subject line
+      const lines = cleanText.split("\n");
+      const formatted = lines.map((line, i) => {
+        if (i === 0 && line.trim()) return `<strong>${line}</strong>`;
+        if (line.trim().startsWith("Subject:")) return `<strong>${line}</strong>`;
+        return line;
+      }).join("\n");
+      setGeneratedLetter(formatted);
       setStep("result");
     } catch (e) {
       console.error("Letter generation error:", e);
@@ -233,33 +240,50 @@ REQUIREMENTS:
     const html = `<!DOCTYPE html>
 <html>
   <head>
-    <title>Visa Cover Letter — ${profile?.target_country || ""}</title>
+    <title>Visa Cover Letter</title>
     <style>
-      @page { margin: 2.5cm; size: A4; }
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body {
+      @page {
+        size: A4;
+        margin: 2.5cm;
+        @top-center { content: none; }
+        @bottom-center { content: none; }
+        @top-left { content: none; }
+        @bottom-left { content: none; }
+        @top-right { content: none; }
+        @bottom-right { content: none; }
+      }
+      html, body {
         font-family: "Times New Roman", Times, serif;
         font-size: 12pt;
         line-height: 1.8;
         color: #000;
         background: #fff;
+        margin: 0;
+        padding: 0;
       }
-      .letter { white-space: pre-wrap; word-wrap: break-word; }
+      .letter {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      strong { font-weight: bold; }
+      em { font-style: italic; }
     </style>
   </head>
   <body>
     <div class="letter">${letterWithDate.replace(/\n/g, "<br>")}</div>
-    <script>window.onload = function() { window.print(); }<\/script>
+    <script>
+      window.onload = function() {
+        setTimeout(function() { window.print(); }, 300);
+      };
+    <\/script>
   </body>
 </html>`;
 
-    const blob = new Blob([html], { type: "text/html" });
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
     const url = URL.createObjectURL(blob);
-    const printWindow = window.open(url, "_blank");
-    if (printWindow) {
-      printWindow.onafterprint = () => {
-        URL.revokeObjectURL(url);
-      };
+    const w = window.open(url, "_blank");
+    if (w) {
+      w.onafterprint = () => { URL.revokeObjectURL(url); w.close(); };
     }
   };
 
