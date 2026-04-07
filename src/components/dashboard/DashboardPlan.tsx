@@ -73,7 +73,12 @@ export default function DashboardPlan({ profile, onBack, onNavigate }: Props) {
   const [steps, setSteps] = useState<StepWithStatus[]>([]);
   const [loading, setLoading] = useState(true);
   const [showPaywall, setShowPaywall] = useState(true);
+  const [moveDate, setMoveDate] = useState<string>(profile?.move_date || "");
   const isLocked = (profile?.plan || "free") !== "full";
+
+  useEffect(() => {
+    setMoveDate(profile?.move_date || "");
+  }, [profile?.move_date]);
 
   useEffect(() => {
     if (!user || !profile?.visa_type) { setLoading(false); return; }
@@ -148,6 +153,59 @@ export default function DashboardPlan({ profile, onBack, onNavigate }: Props) {
   const hasBetterOption = recommended && recommended !== profile?.target_country;
   const altData = hasBetterOption ? countryDatabase.find(c => c.name === recommended) : null;
 
+  const getTimelineActions = (daysUntilMove: number) => {
+    if (daysUntilMove > 90) {
+      return {
+        thisWeek: ["Research visa requirements for your passport", "Check apostille requirements for your documents"],
+        thisMonth: ["Start collecting required documents", "Get criminal background check (takes 4-8 weeks)", "Research neighborhoods and cost of living"],
+        comingUp: ["Book flights and initial accommodation", "Open bank account abroad", "Apply for visa"]
+      };
+    } else if (daysUntilMove > 60) {
+      return {
+        thisWeek: ["Submit visa application if not done", "Get documents apostilled"],
+        thisMonth: ["Book flights", "Arrange temporary housing for first month", "Notify your bank about international use"],
+        comingUp: ["Pack essentials", "Set up international health insurance", "Arrange mail forwarding"]
+      };
+    } else if (daysUntilMove > 30) {
+      return {
+        thisWeek: ["Confirm visa status", "Book flights if not done", "Arrange temporary housing"],
+        thisMonth: ["Cancel local subscriptions", "Notify tax authorities", "Set up international health insurance"],
+        comingUp: ["Pack", "Transfer money to international account", "Say goodbyes"]
+      };
+    } else if (daysUntilMove > 14) {
+      return {
+        thisWeek: ["Confirm all bookings", "Pack non-essentials", "Transfer funds to destination account"],
+        thisMonth: ["Wrap up remaining tasks", "Collect all original documents", "Download offline maps"],
+        comingUp: ["Arrive and register address within required timeframe", "Open local bank account", "Apply for residence permit"]
+      };
+    } else {
+      return {
+        thisWeek: ["Final packing", "Confirm visa and travel documents are accessible", "Charge all devices"],
+        thisMonth: ["You are almost there — focus on arrival tasks"],
+        comingUp: ["Register address", "Open local bank account", "Apply for residence permit", "Get local SIM card"]
+      };
+    }
+  };
+
+  const daysUntilMove = useMemo(() => {
+    if (!moveDate) return null;
+    const today = new Date();
+    const move = new Date(`${moveDate}T00:00:00`);
+    const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    return Math.ceil((move.getTime() - todayStart.getTime()) / (1000 * 60 * 60 * 24));
+  }, [moveDate]);
+
+  const timelineActions = daysUntilMove !== null && daysUntilMove >= 0 ? getTimelineActions(daysUntilMove) : null;
+  const timelineProgress = daysUntilMove !== null
+    ? Math.max(0, Math.min(100, Math.round(((120 - daysUntilMove) / 120) * 100)))
+    : 0;
+
+  const saveMoveDate = async (selectedDate: string) => {
+    setMoveDate(selectedDate);
+    if (!profile?.user_id) return;
+    await supabase.from("user_profiles").update({ move_date: selectedDate }).eq("user_id", profile.user_id);
+  };
+
   if (!profile?.visa_type) {
     return <p className="text-muted-foreground text-sm">Complete onboarding to see your plan.</p>;
   }
@@ -210,6 +268,85 @@ export default function DashboardPlan({ profile, onBack, onNavigate }: Props) {
             Continue your plan <ArrowRight size={14} className="ml-1.5" />
           </Button>
         </motion.section>
+
+        {/* ─── MOVE TIMELINE ─── */}
+        <section className="mt-8 rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
+          <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium mb-4">Your move timeline</p>
+
+          {!moveDate ? (
+            <div className="space-y-4">
+              <p className="text-[13px] text-muted-foreground">
+                When are you planning to move? Set a date to get a week-by-week action plan.
+              </p>
+              <input
+                type="date"
+                value={moveDate}
+                onChange={(e) => saveMoveDate(e.target.value)}
+                className="bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] text-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 [color-scheme:dark]"
+              />
+            </div>
+          ) : (
+            <div>
+              {daysUntilMove !== null && daysUntilMove >= 0 ? (
+                <>
+                  <div className="flex items-end justify-between gap-3">
+                    <div>
+                      <p className="text-4xl font-bold text-primary">{daysUntilMove} days</p>
+                      <p className="text-[12px] text-muted-foreground mt-1">until your move</p>
+                    </div>
+                    <button
+                      onClick={() => setMoveDate("")}
+                      className="text-[11px] text-primary/70 hover:text-primary transition-colors"
+                    >
+                      Change date
+                    </button>
+                  </div>
+
+                  <Progress value={timelineProgress} className="mt-4" />
+
+                  {timelineActions && (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
+                      <div className="rounded-lg bg-white/[0.04] p-4">
+                        <p className="text-[11px] font-semibold text-amber-400 uppercase tracking-wider mb-2">This week</p>
+                        <ul className="space-y-1.5">
+                          {timelineActions.thisWeek.map((item, idx) => (
+                            <li key={idx} className="text-[12px] text-muted-foreground leading-relaxed">• {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="rounded-lg bg-white/[0.04] p-4">
+                        <p className="text-[11px] font-semibold text-primary uppercase tracking-wider mb-2">This month</p>
+                        <ul className="space-y-1.5">
+                          {timelineActions.thisMonth.map((item, idx) => (
+                            <li key={idx} className="text-[12px] text-muted-foreground leading-relaxed">• {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="rounded-lg bg-white/[0.04] p-4">
+                        <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider mb-2">Coming up</p>
+                        <ul className="space-y-1.5">
+                          {timelineActions.comingUp.map((item, idx) => (
+                            <li key={idx} className="text-[12px] text-muted-foreground leading-relaxed">• {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="space-y-3">
+                  <p className="text-[13px] text-muted-foreground">Your move date has passed — update it to continue planning.</p>
+                  <input
+                    type="date"
+                    value={moveDate}
+                    onChange={(e) => saveMoveDate(e.target.value)}
+                    className="bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] text-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 [color-scheme:dark]"
+                  />
+                </div>
+              )}
+            </div>
+          )}
+        </section>
 
         {/* ─── VISUAL PROGRESS PATH ─── */}
         <motion.section
