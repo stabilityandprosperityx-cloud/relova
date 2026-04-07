@@ -81,26 +81,35 @@ export default function DashboardChecklist({ profile }: Props) {
   const fetchSteps = useCallback(async () => {
     if (!user || !profile?.visa_type) { setLoading(false); return; }
 
-    const { data: relSteps } = await supabase
-      .from("relocation_steps")
-      .select("id, title, description, estimated_days, step_number")
-      .eq("visa_type", profile.visa_type!)
-      .order("step_number", { ascending: true });
+    const { data: userStepsData } = await supabase
+      .from("user_steps")
+      .select("step_id, status, relocation_steps(id, title, description, estimated_days, step_number)")
+      .eq("user_id", user.id);
+
+    let relSteps = (userStepsData || [])
+      .map((s: any) => s.relocation_steps)
+      .filter(Boolean);
+
+    // Fallback: support freshly initialized checklists before any user_steps rows exist.
+    if (!relSteps || relSteps.length === 0) {
+      const { data: relStepsByVisa } = await supabase
+        .from("relocation_steps")
+        .select("id, title, description, estimated_days, step_number")
+        .eq("visa_type", profile.visa_type!)
+        .order("step_number", { ascending: true });
+      relSteps = relStepsByVisa || [];
+    }
 
     if (!relSteps || relSteps.length === 0) {
       setHasDbSteps(false);
       setLoading(false);
       return;
     }
+    relSteps.sort((a: any, b: any) => (a.step_number || 0) - (b.step_number || 0));
     setHasDbSteps(true);
 
-    const { data: userSteps } = await supabase
-      .from("user_steps")
-      .select("step_id, status")
-      .eq("user_id", user.id);
-
     const doneIds = new Set(
-      (userSteps || []).filter((s: any) => s.status === "done").map((s: any) => s.step_id)
+      (userStepsData || []).filter((s: any) => s.status === "done").map((s: any) => s.step_id)
     );
 
     // Deduplicate by cleaned title
