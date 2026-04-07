@@ -3,13 +3,16 @@ import { Button } from "@/components/ui/button";
 import { openPaddleCheckout } from "@/config/paddle";
 import { useAuth } from "@/contexts/AuthContext";
 import { useEffect } from "react";
+import type { UserProfile } from "@/pages/Dashboard";
 
 interface Props {
   onClose?: () => void;
+  profile?: UserProfile | null;
 }
 
-export default function LockedOverlayPro({ onClose }: Props) {
+export default function LockedOverlayPro({ onClose, profile }: Props) {
   const { user } = useAuth();
+  const profileWithMoveDate = profile as (UserProfile & { move_date?: string | null }) | null;
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -43,9 +46,13 @@ export default function LockedOverlayPro({ onClose }: Props) {
             Pro plan includes:
           </p>
           {[
-            "Unlimited AI Advisor questions",
-            "Personalized relocation checklist",
-            "Move timeline with deadlines",
+            "Unlimited AI Advisor — no question limits",
+            profile?.target_country
+              ? `Your ${profile.target_country} checklist — ready to start`
+              : "Personalized relocation checklist",
+            profileWithMoveDate?.move_date
+              ? `Move timeline — ${Math.max(0, Math.ceil((new Date(profileWithMoveDate.move_date).getTime() - Date.now()) / 86400000))} days until your move`
+              : "Move timeline with week-by-week actions",
             "Cost calculator for 70+ countries",
           ].map((item) => (
             <div key={item} className="flex items-start gap-2.5">
