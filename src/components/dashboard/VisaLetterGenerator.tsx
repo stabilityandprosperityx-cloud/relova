@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Download, Sparkles, RefreshCw } from "lucide-react";
 import type { UserProfile } from "@/pages/Dashboard";
@@ -45,28 +45,66 @@ const PURPOSES = [
 ];
 
 export default function VisaLetterGenerator({ profile, onBack }: Props) {
-  const [step, setStep] = useState<"form" | "generating" | "result">("form");
-  const [generatedLetter, setGeneratedLetter] = useState("");
+  const STORAGE_KEY = "relova_visa_letter_form";
+
+  const [step, setStep] = useState<"form" | "generating" | "result">(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY + "_step");
+      return (saved as "form" | "generating" | "result") || "form";
+    } catch {}
+    return "form";
+  });
+
+  const [generatedLetter, setGeneratedLetter] = useState(() => {
+    try {
+      return localStorage.getItem(STORAGE_KEY + "_letter") || "";
+    } catch {}
+    return "";
+  });
   const [error, setError] = useState("");
 
   const profileWithExtras = profile as (UserProfile & { income_source?: string | null; move_date?: string | null }) | null;
 
-  const [form, setForm] = useState<FormData>({
-    fullName: "",
-    dateOfBirth: "",
-    currentAddress: "",
-    employer: "",
-    jobTitle: "",
-    employmentYears: "",
-    incomeSource: profileWithExtras?.income_source || "Employment (salary)",
-    plannedEntryDate: profileWithExtras?.move_date || "",
-    plannedAddress: "",
-    purposeOfMove: "Better quality of life",
-    hasPropertyHome: false,
-    hasFamilyHome: false,
-    employerStaysHome: false,
-    additionalNotes: "",
+  const [form, setForm] = useState<FormData>(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return {
+      fullName: "",
+      dateOfBirth: "",
+      currentAddress: "",
+      employer: "",
+      jobTitle: "",
+      employmentYears: "",
+      incomeSource: "Employment (salary)",
+      plannedEntryDate: profileWithExtras?.move_date || "",
+      plannedAddress: "",
+      purposeOfMove: "Better quality of life",
+      hasPropertyHome: false,
+      hasFamilyHome: false,
+      employerStaysHome: false,
+      additionalNotes: "",
+    };
   });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(form));
+    } catch {}
+  }, [form]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY + "_step", step === "generating" ? "form" : step);
+    } catch {}
+  }, [step]);
+
+  useEffect(() => {
+    try {
+      if (generatedLetter) localStorage.setItem(STORAGE_KEY + "_letter", generatedLetter);
+    } catch {}
+  }, [generatedLetter]);
 
   const update = (field: keyof FormData, value: string | boolean) =>
     setForm((prev) => ({ ...prev, [field]: value }));
