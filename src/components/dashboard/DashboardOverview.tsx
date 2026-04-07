@@ -7,6 +7,7 @@ import { ArrowRight, AlertTriangle, Clock, ChevronRight, Lightbulb, MapPin, Shie
 import { motion } from "framer-motion";
 import type { UserProfile, DashboardTab } from "@/pages/Dashboard";
 import { countryDatabase } from "@/lib/countryMatching";
+import { CostCalculator } from "@/components/dashboard/CostCalculator";
 
 interface Props {
   profile: UserProfile | null;
@@ -262,6 +263,7 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
           ))}
         </div>
       </section>
+      <CostCalculator country={(profile.target_country || "").trim().toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())} familyStatus={((profile.family_status || "single").toLowerCase() as "single" | "couple" | "family")} monthlyIncome={Number(profile.monthly_budget || 0)} />
 
       {/* ─── Bottom row: Risks + Stability comparison ─── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
