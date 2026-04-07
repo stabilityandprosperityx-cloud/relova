@@ -4,12 +4,13 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Upload, X, CheckCircle2, AlertCircle, Clock, FileText, Sparkles, ChevronDown, Link2, Image, Eye } from "lucide-react";
+import { Upload, X, CheckCircle2, AlertCircle, Clock, FileText, Sparkles, ChevronDown, Link2, Image, Eye, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import LockedOverlay from "./LockedOverlay";
 import DocumentPreviewModal from "./DocumentPreviewModal";
+import VisaLetterGenerator from "./VisaLetterGenerator";
 import type { UserProfile } from "@/pages/Dashboard";
 
 interface UserDoc {
@@ -122,6 +123,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate }: Prop
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [activeUploadDoc, setActiveUploadDoc] = useState<string | null>(null);
   const [showPaywall, setShowPaywall] = useState(true);
+  const [showLetterGenerator, setShowLetterGenerator] = useState(false);
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({ identity: true });
   const [previewDoc, setPreviewDoc] = useState<{ doc: UserDoc; aiStatus: string | null; usedFor: string; signedUrl: string | null } | null>(null);
   const [signedUrls, setSignedUrls] = useState<Record<string, string>>({});
@@ -294,6 +296,10 @@ export default function DashboardDocuments({ profile, onBack, onNavigate }: Prop
     return <div className="space-y-4"><Skeleton className="h-32" /><Skeleton className="h-48" /><Skeleton className="h-48" /></div>;
   }
 
+  if (showLetterGenerator) {
+    return <VisaLetterGenerator profile={profile} onBack={() => setShowLetterGenerator(false)} />;
+  }
+
   return (
     <div className="space-y-8 relative">
       {isLocked && showPaywall && <LockedOverlay onClose={() => { setShowPaywall(false); onBack?.(); }} profile={profile} />}
@@ -409,6 +415,26 @@ export default function DashboardDocuments({ profile, onBack, onNavigate }: Prop
             </Button>
           </div>
         </motion.section>
+
+        {!isLocked && (
+          <div
+            className="rounded-xl border border-primary/20 bg-primary/[0.04] p-5 cursor-pointer hover:bg-primary/[0.07] transition-colors"
+            onClick={() => setShowLetterGenerator(true)}
+          >
+            <div className="flex items-center gap-4">
+              <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <Sparkles size={18} className="text-primary" />
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold text-[14px]">Visa Cover Letter Generator</p>
+                <p className="text-[12px] text-muted-foreground mt-0.5">
+                  AI-generated cover letter for your {profile?.visa_type?.replace(/_/g, " ")} application — save $300+ on lawyers
+                </p>
+              </div>
+              <ArrowRight size={16} className="text-primary shrink-0" />
+            </div>
+          </div>
+        )}
 
         {/* ─── DOCUMENT CATEGORIES ─── */}
         {CATEGORIES.map((cat, catIndex) => {
