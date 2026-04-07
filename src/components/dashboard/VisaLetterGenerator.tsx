@@ -184,6 +184,7 @@ REQUIREMENTS:
       });
 
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      console.log("Edge function response status:", response.status);
 
       // Read streaming response
       const reader = response.body?.getReader();
@@ -202,7 +203,7 @@ REQUIREMENTS:
               if (data === "[DONE]") continue;
               try {
                 const parsed = JSON.parse(data);
-                const delta = parsed.delta?.text || parsed.choices?.[0]?.delta?.content || "";
+                const delta = parsed.choices?.[0]?.delta?.content || parsed.delta?.text || "";
                 fullText += delta;
               } catch {}
             }
@@ -214,7 +215,8 @@ REQUIREMENTS:
       setGeneratedLetter(fullText);
       setStep("result");
     } catch (e) {
-      setError("Generation failed. Please try again.");
+      console.error("Letter generation error:", e);
+      setError(`Generation failed: ${e instanceof Error ? e.message : "Unknown error"}. Please try again.`);
       setStep("form");
     }
   };
