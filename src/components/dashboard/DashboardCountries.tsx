@@ -115,18 +115,6 @@ export default function DashboardCountries({
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {filtered.map((country, i) => {
           const isUserCountry = country.name === profile?.target_country;
-          const riskColor =
-            country.crimeLevel === "low" && country.visaEase !== "hard"
-              ? "text-green-400"
-              : country.crimeLevel === "high" || country.visaEase === "hard"
-                ? "text-red-400"
-                : "text-amber-400";
-          const riskLabel =
-            country.crimeLevel === "low" && country.visaEase !== "hard"
-              ? "Low"
-              : country.crimeLevel === "high" || country.visaEase === "hard"
-                ? "High"
-                : "Medium";
 
           return (
             <motion.div
@@ -153,13 +141,15 @@ export default function DashboardCountries({
                     )}
                   </div>
                   <p className="text-[11px] text-muted-foreground/70 mt-0.5 truncate">{country.topVisa}</p>
-                  <div className="flex items-center gap-3 mt-2">
+                  <div className="flex items-center gap-3 mt-2 flex-wrap">
                     <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
                       <Clock size={10} /> {country.stabilityMonths} mo
                     </span>
-                    <span className={`text-[11px] font-medium ${riskColor}`}>{riskLabel} risk</span>
                     <span className="text-[11px] text-muted-foreground capitalize">
-                      {country.costLevel} cost
+                      {country.climate === "warm" ? "🌞 Warm" : country.climate === "cold" ? "❄️ Cold" : "🌤 Moderate"}
+                    </span>
+                    <span className="text-[11px] text-muted-foreground capitalize">
+                      {country.costLevel === "low" ? "💚 Low cost" : country.costLevel === "high" ? "🔴 High cost" : "🟡 Medium cost"}
                     </span>
                   </div>
                 </div>
@@ -189,19 +179,6 @@ function CountryDetail({
   onBack: () => void;
   onNavigate?: (tab: DashboardTab) => void;
 }) {
-  const riskColor =
-    country.crimeLevel === "low" && country.visaEase !== "hard"
-      ? "text-green-400"
-      : country.crimeLevel === "high" || country.visaEase === "hard"
-        ? "text-red-400"
-        : "text-amber-400";
-  const riskLabel =
-    country.crimeLevel === "low" && country.visaEase !== "hard"
-      ? "Low"
-      : country.crimeLevel === "high" || country.visaEase === "hard"
-        ? "High"
-        : "Medium";
-
   const citizenshipLabel =
     country.citizenshipYears != null ? `${country.citizenshipYears} years` : "No path";
 
@@ -224,14 +201,19 @@ function CountryDetail({
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-5">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-5">
           <div className="rounded-lg bg-white/[0.04] p-3">
             <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">Stability</p>
             <p className="font-bold">{country.stabilityMonths} mo</p>
           </div>
           <div className="rounded-lg bg-white/[0.04] p-3">
-            <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">Risk</p>
-            <p className={`font-bold ${riskColor}`}>{riskLabel}</p>
+            <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">Language</p>
+            <p className={`font-bold ${
+              country.languageBarrier === "low" ? "text-green-400" :
+              country.languageBarrier === "high" ? "text-red-400" : "text-amber-400"
+            }`}>
+              {country.languageBarrier === "low" ? "Easy" : country.languageBarrier === "high" ? "Hard" : "Moderate"}
+            </p>
           </div>
           <div className="rounded-lg bg-white/[0.04] p-3">
             <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">Cost level</p>
@@ -240,6 +222,10 @@ function CountryDetail({
           <div className="rounded-lg bg-white/[0.04] p-3">
             <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">Citizenship</p>
             <p className="font-bold">{citizenshipLabel}</p>
+          </div>
+          <div className="rounded-lg bg-white/[0.04] p-3">
+            <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">Climate</p>
+            <p className="font-bold capitalize">{country.climate}</p>
           </div>
         </div>
       </div>
