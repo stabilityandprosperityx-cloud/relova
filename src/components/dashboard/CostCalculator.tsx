@@ -188,6 +188,306 @@ const COST_DATA: Record<string, CostEntry> = {
     visaType: "Friendly Nations Visa",
     notes: "Dollar economy. No tax on foreign income. Easy residency for many nationalities. Panama City modern infrastructure."
   },
+
+  // ─── EUROPE — MISSING ───
+  Austria: {
+    visaFeeMin: 160, visaFeeMax: 250,
+    apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 900,
+    rentFirstMonthMin: 1100, rentFirstMonthMax: 1800,
+    insurance3MonthsMin: 300, insurance3MonthsMax: 550,
+    emergencyBuffer: 600,
+    visaType: "Red-White-Red Card",
+    notes: "German language required. Vienna rent: €1,100–1,800/mo. High quality of life. Health insurance mandatory."
+  },
+  Netherlands: {
+    visaFeeMin: 200, visaFeeMax: 350,
+    apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 800,
+    rentFirstMonthMin: 1500, rentFirstMonthMax: 2500,
+    insurance3MonthsMin: 350, insurance3MonthsMax: 600,
+    emergencyBuffer: 700,
+    visaType: "Highly Skilled Migrant Visa",
+    notes: "Amsterdam is most expensive: €1,800–2,500/mo. Rotterdam/Utrecht cheaper at €1,200–1,600/mo. Mandatory health insurance ~€150/mo."
+  },
+  France: {
+    visaFeeMin: 99, visaFeeMax: 200,
+    apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 900,
+    rentFirstMonthMin: 1000, rentFirstMonthMax: 2000,
+    insurance3MonthsMin: 300, insurance3MonthsMax: 550,
+    emergencyBuffer: 600,
+    visaType: "Talent Passport / Long-Stay Visa",
+    notes: "Paris rent: €1,400–2,200/mo. Lyon/Marseille cheaper at €800–1,200/mo. French language required for integration."
+  },
+  Poland: {
+    visaFeeMin: 135, visaFeeMax: 200,
+    apostilleAndTranslationsMin: 250, apostilleAndTranslationsMax: 500,
+    rentFirstMonthMin: 700, rentFirstMonthMax: 1200,
+    insurance3MonthsMin: 200, insurance3MonthsMax: 380,
+    emergencyBuffer: 400,
+    visaType: "Temporary Residence Permit (Karta Pobytu)",
+    notes: "Warsaw rent: €800–1,200/mo. Krakow/Wroclaw cheaper at €600–900/mo. Fast-growing economy, low cost of living."
+  },
+  Romania: {
+    visaFeeMin: 80, visaFeeMax: 150,
+    apostilleAndTranslationsMin: 200, apostilleAndTranslationsMax: 450,
+    rentFirstMonthMin: 500, rentFirstMonthMax: 900,
+    insurance3MonthsMin: 150, insurance3MonthsMax: 300,
+    emergencyBuffer: 300,
+    visaType: "Digital Nomad Visa / Long-stay Visa",
+    notes: "Bucharest rent: €500–900/mo. Very affordable EU country. Digital nomad visa launched 2024."
+  },
+  Bulgaria: {
+    visaFeeMin: 60, visaFeeMax: 100,
+    apostilleAndTranslationsMin: 200, apostilleAndTranslationsMax: 400,
+    rentFirstMonthMin: 400, rentFirstMonthMax: 700,
+    insurance3MonthsMin: 120, insurance3MonthsMax: 250,
+    emergencyBuffer: 300,
+    visaType: "Digital Nomad Visa / Long-stay Visa",
+    notes: "Sofia rent: €400–700/mo. Cheapest EU country. Digital nomad program launched 2025. Black Sea coast popular."
+  },
+  Albania: {
+    visaFeeMin: 0, visaFeeMax: 50,
+    apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 300,
+    rentFirstMonthMin: 350, rentFirstMonthMax: 600,
+    insurance3MonthsMin: 100, insurance3MonthsMax: 200,
+    emergencyBuffer: 250,
+    visaType: "Visa-free Stay (1 year for many nationalities)",
+    notes: "Tirana rent: €350–600/mo. Very affordable. 1-year visa-free for many passports. EU candidate country."
+  },
+  Estonia: {
+    visaFeeMin: 100, visaFeeMax: 180,
+    apostilleAndTranslationsMin: 300, apostilleAndTranslationsMax: 600,
+    rentFirstMonthMin: 700, rentFirstMonthMax: 1200,
+    insurance3MonthsMin: 200, insurance3MonthsMax: 380,
+    emergencyBuffer: 400,
+    visaType: "Digital Nomad Visa",
+    notes: "Tallinn rent: €700–1,200/mo. Pioneer digital nomad visa program. Most digital country in EU. Cold climate."
+  },
+  Malta: {
+    visaFeeMin: 280, visaFeeMax: 350,
+    apostilleAndTranslationsMin: 350, apostilleAndTranslationsMax: 600,
+    rentFirstMonthMin: 900, rentFirstMonthMax: 1500,
+    insurance3MonthsMin: 250, insurance3MonthsMax: 450,
+    emergencyBuffer: 450,
+    visaType: "Nomad Residence Permit",
+    notes: "English official language. Valletta/Sliema rent: €900–1,500/mo. Requires €3,500/mo income. Mediterranean lifestyle."
+  },
+  Cyprus: {
+    visaFeeMin: 70, visaFeeMax: 140,
+    apostilleAndTranslationsMin: 300, apostilleAndTranslationsMax: 600,
+    rentFirstMonthMin: 800, rentFirstMonthMax: 1400,
+    insurance3MonthsMin: 250, insurance3MonthsMax: 450,
+    emergencyBuffer: 400,
+    visaType: "Digital Nomad Visa",
+    notes: "Nicosia/Limassol rent: €800–1,400/mo. English widely spoken. Requires €3,500/mo income. Reopened March 2025."
+  },
+  Switzerland: {
+    visaFeeMin: 150, visaFeeMax: 300,
+    apostilleAndTranslationsMin: 500, apostilleAndTranslationsMax: 1000,
+    rentFirstMonthMin: 2000, rentFirstMonthMax: 3500,
+    insurance3MonthsMin: 500, insurance3MonthsMax: 900,
+    emergencyBuffer: 1000,
+    visaType: "Work Permit Type B",
+    notes: "Most expensive country in Europe. Zurich/Geneva rent: €2,000–3,500/mo. Highest salaries in world. Employer sponsorship required."
+  },
+  Norway: {
+    visaFeeMin: 600, visaFeeMax: 800,
+    apostilleAndTranslationsMin: 450, apostilleAndTranslationsMax: 800,
+    rentFirstMonthMin: 1500, rentFirstMonthMax: 2500,
+    insurance3MonthsMin: 350, insurance3MonthsMax: 600,
+    emergencyBuffer: 700,
+    visaType: "Skilled Worker Visa",
+    notes: "Oslo rent: €1,500–2,500/mo. High salaries offset high costs. Job offer required. Excellent welfare system."
+  },
+  Sweden: {
+    visaFeeMin: 250, visaFeeMax: 400,
+    apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 700,
+    rentFirstMonthMin: 1200, rentFirstMonthMax: 2000,
+    insurance3MonthsMin: 300, insurance3MonthsMax: 500,
+    emergencyBuffer: 600,
+    visaType: "Work Permit",
+    notes: "Stockholm rent: €1,200–2,000/mo. High taxes but excellent public services. Job offer required."
+  },
+  Denmark: {
+    visaFeeMin: 350, visaFeeMax: 500,
+    apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 700,
+    rentFirstMonthMin: 1400, rentFirstMonthMax: 2200,
+    insurance3MonthsMin: 300, insurance3MonthsMax: 550,
+    emergencyBuffer: 700,
+    visaType: "Pay Limit Scheme / Positive List",
+    notes: "Copenhagen rent: €1,400–2,200/mo. High taxes. Job offer required. One of world happiest countries."
+  },
+  Ireland: {
+    visaFeeMin: 100, visaFeeMax: 200,
+    apostilleAndTranslationsMin: 350, apostilleAndTranslationsMax: 650,
+    rentFirstMonthMin: 1500, rentFirstMonthMax: 2500,
+    insurance3MonthsMin: 300, insurance3MonthsMax: 550,
+    emergencyBuffer: 700,
+    visaType: "Critical Skills Employment Permit",
+    notes: "Dublin rent: €1,800–2,500/mo. Severe housing shortage. English speaking. Tech hub. Job offer required."
+  },
+
+  // ─── MIDDLE EAST ───
+  Bahrain: {
+    visaFeeMin: 50, visaFeeMax: 150,
+    apostilleAndTranslationsMin: 300, apostilleAndTranslationsMax: 600,
+    rentFirstMonthMin: 800, rentFirstMonthMax: 1600,
+    insurance3MonthsMin: 250, insurance3MonthsMax: 450,
+    emergencyBuffer: 500,
+    visaType: "Digital Nomad Visa",
+    notes: "Manama rent: €800–1,600/mo. No income tax. Smaller and cheaper than Dubai. English widely spoken."
+  },
+
+  // ─── ASIA ───
+  Japan: {
+    visaFeeMin: 100, visaFeeMax: 200,
+    apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 900,
+    rentFirstMonthMin: 800, rentFirstMonthMax: 1600,
+    insurance3MonthsMin: 250, insurance3MonthsMax: 500,
+    emergencyBuffer: 500,
+    visaType: "Digital Nomad Visa / Highly Skilled Professional",
+    notes: "Tokyo rent: €1,000–1,800/mo. Osaka/Kyoto cheaper at €700–1,200/mo. Language barrier very high. World-class safety."
+  },
+  Singapore: {
+    visaFeeMin: 150, visaFeeMax: 300,
+    apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 800,
+    rentFirstMonthMin: 2500, rentFirstMonthMax: 4000,
+    insurance3MonthsMin: 400, insurance3MonthsMax: 700,
+    emergencyBuffer: 1000,
+    visaType: "Employment Pass / EntrePass",
+    notes: "Most expensive city in Asia. Rent: €2,500–4,000/mo. English official language. World's best infrastructure. Job offer required."
+  },
+  "South Korea": {
+    visaFeeMin: 60, visaFeeMax: 150,
+    apostilleAndTranslationsMin: 350, apostilleAndTranslationsMax: 700,
+    rentFirstMonthMin: 700, rentFirstMonthMax: 1400,
+    insurance3MonthsMin: 200, insurance3MonthsMax: 400,
+    emergencyBuffer: 450,
+    visaType: "Workcation Visa / Digital Nomad Visa",
+    notes: "Seoul rent: €700–1,400/mo. Blazing internet. K-culture hub. Language barrier high outside Seoul."
+  },
+  Indonesia: {
+    visaFeeMin: 100, visaFeeMax: 200,
+    apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 350,
+    rentFirstMonthMin: 500, rentFirstMonthMax: 1000,
+    insurance3MonthsMin: 150, insurance3MonthsMax: 300,
+    emergencyBuffer: 300,
+    visaType: "Social/Cultural Visa B211A",
+    notes: "Bali rent: €500–1,000/mo. Canggu/Seminyak more expensive. Healthcare limited outside Bali. Tropical lifestyle."
+  },
+  Vietnam: {
+    visaFeeMin: 50, visaFeeMax: 100,
+    apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 300,
+    rentFirstMonthMin: 400, rentFirstMonthMax: 800,
+    insurance3MonthsMin: 120, insurance3MonthsMax: 250,
+    emergencyBuffer: 250,
+    visaType: "E-visa (90 days)",
+    notes: "Ho Chi Minh/Hanoi rent: €400–800/mo. Very affordable. No long-term visa solution yet. Visa runs still common."
+  },
+  Philippines: {
+    visaFeeMin: 50, visaFeeMax: 150,
+    apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 300,
+    rentFirstMonthMin: 400, rentFirstMonthMax: 900,
+    insurance3MonthsMin: 120, insurance3MonthsMax: 250,
+    emergencyBuffer: 300,
+    visaType: "Digital Nomad Visa (launched 2025)",
+    notes: "Manila/Cebu rent: €400–900/mo. English widely spoken. New digital nomad visa launched April 2025."
+  },
+
+  // ─── AMERICAS ───
+  "Costa Rica": {
+    visaFeeMin: 100, visaFeeMax: 200,
+    apostilleAndTranslationsMin: 250, apostilleAndTranslationsMax: 500,
+    rentFirstMonthMin: 700, rentFirstMonthMax: 1400,
+    insurance3MonthsMin: 200, insurance3MonthsMax: 400,
+    emergencyBuffer: 400,
+    visaType: "Rentista Visa",
+    notes: "San José rent: €700–1,200/mo. Beach areas €900–1,400/mo. Requires $2,500/mo income. Stable democracy. Pura vida lifestyle."
+  },
+  Uruguay: {
+    visaFeeMin: 50, visaFeeMax: 150,
+    apostilleAndTranslationsMin: 200, apostilleAndTranslationsMax: 400,
+    rentFirstMonthMin: 600, rentFirstMonthMax: 1200,
+    insurance3MonthsMin: 180, insurance3MonthsMax: 350,
+    emergencyBuffer: 400,
+    visaType: "Temporary Residence",
+    notes: "Montevideo rent: €600–1,200/mo. Most stable country in South America. Straightforward residency process."
+  },
+  Argentina: {
+    visaFeeMin: 0, visaFeeMax: 100,
+    apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 350,
+    rentFirstMonthMin: 400, rentFirstMonthMax: 900,
+    insurance3MonthsMin: 120, insurance3MonthsMax: 280,
+    emergencyBuffer: 300,
+    visaType: "Rentista Visa",
+    notes: "Buenos Aires rent: €400–900/mo (in USD). Economic instability — use USD. 2-year path to citizenship. Vibrant culture."
+  },
+  Brazil: {
+    visaFeeMin: 80, visaFeeMax: 180,
+    apostilleAndTranslationsMin: 200, apostilleAndTranslationsMax: 450,
+    rentFirstMonthMin: 500, rentFirstMonthMax: 1000,
+    insurance3MonthsMin: 150, insurance3MonthsMax: 320,
+    emergencyBuffer: 350,
+    visaType: "Digital Nomad Visa (1 year renewable)",
+    notes: "São Paulo/Rio rent: €500–1,000/mo. Florianópolis popular with nomads. Portuguese required. Safety varies by area."
+  },
+  Canada: {
+    visaFeeMin: 150, visaFeeMax: 350,
+    apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 800,
+    rentFirstMonthMin: 1500, rentFirstMonthMax: 2500,
+    insurance3MonthsMin: 350, insurance3MonthsMax: 600,
+    emergencyBuffer: 800,
+    visaType: "Express Entry (points-based PR)",
+    notes: "Toronto/Vancouver rent: €1,800–2,500/mo. Calgary/Montreal cheaper at €1,200–1,700/mo. Competitive immigration. Cold winters."
+  },
+
+  // ─── AFRICA & ISLANDS ───
+  "South Africa": {
+    visaFeeMin: 100, visaFeeMax: 200,
+    apostilleAndTranslationsMin: 200, apostilleAndTranslationsMax: 450,
+    rentFirstMonthMin: 400, rentFirstMonthMax: 900,
+    insurance3MonthsMin: 150, insurance3MonthsMax: 320,
+    emergencyBuffer: 350,
+    visaType: "Critical Skills Visa",
+    notes: "Cape Town/Johannesburg rent: €400–900/mo. Affordable lifestyle. Safety concerns vary by area. Excellent weather."
+  },
+  Morocco: {
+    visaFeeMin: 0, visaFeeMax: 80,
+    apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 350,
+    rentFirstMonthMin: 350, rentFirstMonthMax: 700,
+    insurance3MonthsMin: 100, insurance3MonthsMax: 220,
+    emergencyBuffer: 300,
+    visaType: "Residence Permit (Carte de Séjour)",
+    notes: "Marrakech/Casablanca rent: €350–700/mo. Very affordable. Close to Europe. French widely spoken."
+  },
+  Mauritius: {
+    visaFeeMin: 0, visaFeeMax: 100,
+    apostilleAndTranslationsMin: 250, apostilleAndTranslationsMax: 500,
+    rentFirstMonthMin: 800, rentFirstMonthMax: 1500,
+    insurance3MonthsMin: 200, insurance3MonthsMax: 400,
+    emergencyBuffer: 450,
+    visaType: "Premium Visa (1 year renewable)",
+    notes: "Port Louis area rent: €800–1,500/mo. English/French spoken. Tropical island. No income tax on foreign earnings."
+  },
+
+  // ─── PACIFIC ───
+  Australia: {
+    visaFeeMin: 200, visaFeeMax: 400,
+    apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 800,
+    rentFirstMonthMin: 1400, rentFirstMonthMax: 2500,
+    insurance3MonthsMin: 350, insurance3MonthsMax: 650,
+    emergencyBuffer: 800,
+    visaType: "Skilled Worker Visa (subclass 189/190)",
+    notes: "Sydney/Melbourne rent: €1,600–2,500/mo. Brisbane/Perth cheaper at €1,200–1,800/mo. Points-based immigration. English speaking."
+  },
+  "New Zealand": {
+    visaFeeMin: 200, visaFeeMax: 400,
+    apostilleAndTranslationsMin: 350, apostilleAndTranslationsMax: 700,
+    rentFirstMonthMin: 1200, rentFirstMonthMax: 2000,
+    insurance3MonthsMin: 300, insurance3MonthsMax: 550,
+    emergencyBuffer: 700,
+    visaType: "Skilled Migrant Category",
+    notes: "Auckland rent: €1,400–2,000/mo. Wellington/Christchurch cheaper. English speaking. Beautiful nature. Points-based system."
+  },
 };
 
 type CostCalculatorProps = {
