@@ -34,6 +34,7 @@ interface RequiredDoc {
 interface Props {
   profile: UserProfile | null;
   onBack?: () => void;
+  onNavigate?: (tab: string) => void;
 }
 
 const CATEGORIES = [
@@ -112,7 +113,7 @@ function getStatusConfig(status: string) {
   }
 }
 
-export default function DashboardDocuments({ profile, onBack }: Props) {
+export default function DashboardDocuments({ profile, onBack, onNavigate }: Props) {
   const { user } = useAuth();
   const [userDocs, setUserDocs] = useState<UserDoc[]>([]);
   const [visaDocs, setVisaDocs] = useState<any[]>([]);
@@ -528,7 +529,12 @@ export default function DashboardDocuments({ profile, onBack }: Props) {
                               {/* Related task */}
                               {relatedTask && (
                                 <div className="mt-2">
-                                  <span className="text-[10px] text-muted-foreground/40">Required for: {relatedTask}</span>
+                                  <button
+                                    onClick={(e) => { e.stopPropagation(); onNavigate?.("checklist"); }}
+                                    className="text-[10px] text-primary/60 hover:text-primary/80 transition-colors"
+                                  >
+                                    Required for: {relatedTask} →
+                                  </button>
                                 </div>
                               )}
                             </div>

@@ -105,15 +105,50 @@ export default function DashboardChat({ profile }: Props) {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
-  const buildSystemContext = () => {
-    if (!profile) return undefined;
-    return `You are Relova AI. This user profile:
+  const buildSystemContext = async (): Promise<string | undefined> => {
+    if (!profile || !user) return undefined;
+
+    // Fetch user's current progress
+    const { data: userStepsData } = await supabase
+      .from("user_steps")
+      .select("status, step_id")
+      .eq("user_id", user.id);
+
+    const totalSteps = userStepsData?.length || 0;
+    const doneSteps = userStepsData?.filter((s: any) => s.status === "done").length || 0;
+    const currentStep = userStepsData?.find((s: any) => s.status === "active");
+
+    let currentStepTitle = "Getting started";
+    if (currentStep) {
+      const { data: stepData } = await supabase
+        .from("relocation_steps")
+        .select("title")
+        .eq("id", currentStep.step_id)
+        .single();
+      if (stepData) {
+        currentStepTitle = stepData.title.replace(/\[.*?\]\s*/, "");
+      }
+    }
+
+    const progressPct = totalSteps > 0 ? Math.round((doneSteps / totalSteps) * 100) : 0;
+
+    return `You are Relova AI — a personalized relocation advisor. User profile:
 citizenship: ${profile.citizenship || "unknown"}
 target country: ${profile.target_country || "unknown"}
-visa type: ${profile.visa_type || "unknown"}
+visa type: ${profile.visa_type?.replace(/_/g, " ") || "unknown"}
 goal: ${profile.goal || "unknown"}
 monthly budget: $${profile.monthly_budget || "unknown"}
-Tailor ALL advice specifically to their citizenship and visa type. Reference their exact situation. Never give generic answers.`;
+family status: ${profile.family_status || "single"}
+
+Current progress: ${doneSteps}/${totalSteps} steps completed (${progressPct}%)
+Current step they are working on: ${currentStepTitle}
+
+INSTRUCTIONS:
+- Tailor ALL advice to their exact citizenship, target country, and visa type
+- Reference their current step when relevant
+- If they ask what to do next, refer to their current step
+- Never give generic answers — always personalize
+- You are NOT a lawyer — always add disclaimer for legal/visa advice`;
   };
 
   const saveMessage = async (msg: Message) => {
@@ -147,10 +182,11 @@ Tailor ALL advice specifically to their citizenship and visa type. Reference the
     };
 
     try {
+      const systemContext = await buildSystemContext();
       await streamChat({
         messages: newMessages,
         tier: plan,
-        systemContext: buildSystemContext(),
+        systemContext,
         onDelta: upsertAssistant,
         onDone: async () => {
           setIsLoading(false);
