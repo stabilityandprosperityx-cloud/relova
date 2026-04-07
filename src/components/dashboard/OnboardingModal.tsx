@@ -82,17 +82,91 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const currentStepName = step < currentSteps.length ? currentSteps[step] : "results";
 
   const determineVisaType = (country: string): string => {
-    if (country === "Portugal") return "D7";
-    if (country === "Spain") return "Non_Lucrative";
-    if (country === "UAE") return "Golden_Visa";
-    if (country === "Thailand") return "LTR";
-    if (country === "Georgia") return "Visa_Free";
-    if (country === "Estonia") return "Digital_Nomad";
-    if (country === "Mexico") return "Temporary_Resident";
-    if (country === "Argentina") return "Rentista";
-    if (country === "Montenegro") return "Temporary_Residence";
-    if (country === "Turkey") return "Residence_Permit";
-    return "TBD";
+    const visaMap: Record<string, string> = {
+      // EUROPE — Digital Nomad & Residence Visas
+      "Portugal":        "D8_Digital_Nomad",        // D8 for remote workers (D7 for passive income)
+      "Spain":           "Digital_Nomad",            // Ley de Startups Digital Nomad Visa (2023)
+      "Germany":         "Freelance_Visa",           // Freiberufler visa or Job Seeker Visa
+      "Italy":           "Digital_Nomad",            // Remote Worker Visa launched April 2024
+      "Greece":          "Digital_Nomad",            // Digital Nomad Visa, requires €3,500/mo
+      "Croatia":         "Digital_Nomad",            // Extended to 18 months as of Aug 2025
+      "Czech Republic":  "Long_Term_Residence",      // Long-term residence visa / Zivno (trade license)
+      "Hungary":         "White_Card",               // Guest Investor / White Card visa
+      "Malta":           "Nomad_Residence_Permit",   // Nomad Residence Permit, requires €3,500/mo
+      "Cyprus":          "Digital_Nomad",            // Digital Nomad Visa, requires €3,500/mo
+      "Estonia":         "Digital_Nomad",            // Estonia Digital Nomad Visa (pioneer program)
+      "Netherlands":     "Highly_Skilled_Migrant",   // Kennismigrant / DAFT visa
+      "France":          "Talent_Passport",          // Passeport Talent for skilled workers
+      "Austria":         "Red_White_Red_Card",       // Red-White-Red Card for skilled workers
+      "Poland":          "Temporary_Residence",      // Temporary residence permit (karta pobytu)
+      "Bulgaria":        "Digital_Nomad",            // New Digital Nomad program launched 2025
+      "Serbia":          "Temporary_Residence",      // Easy temporary residence, visa-free for many
+      "Montenegro":      "Temporary_Residence",      // Temporary residence permit, apply on arrival
+      "Albania":         "Visa_Free",                // Visa-free up to 1 year for many nationalities
+      "Switzerland":     "Work_Permit_B",            // Work permit type B (employer required)
+      "Norway":          "Skilled_Worker",           // Skilled Worker Visa
+      "Sweden":          "Work_Permit",              // Work permit via Migrationsverket
+      "Denmark":         "Pay_Limit_Scheme",         // Pay Limit Scheme or Positive List
+      "Finland":         "Work_Permit",              // Work permit (residence permit for employed)
+      "Ireland":         "Critical_Skills",          // Critical Skills Employment Permit
+      "Belgium":         "Single_Permit",            // Single permit for work and residence
+      "Romania":         "Digital_Nomad",            // Digital Nomad Visa launched 2024
+      "Slovakia":        "Temporary_Residence",      // Temporary residence permit
+      "Slovenia":        "Temporary_Residence",      // Temporary residence for work/self-employment
+
+      // MIDDLE EAST
+      "UAE":             "Freelance_Permit",         // Freelance permit via free zone + residence visa
+      "Turkey":          "Residence_Permit",         // Short-stay or residence permit (ikamet)
+      "Israel":          "Work_Visa",                // B/2 visa → work authorization
+      "Saudi Arabia":    "Work_Visa",                // Work visa (requires employer sponsorship)
+      "Qatar":           "Work_Visa",                // Work visa (requires employer sponsorship)
+      "Bahrain":         "Digital_Nomad",            // Digital nomad visa launched 2021
+
+      // CAUCASUS & CENTRAL ASIA
+      "Georgia":         "Visa_Free",                // Visa-free up to 1 year for 95+ countries
+      "Armenia":         "Visa_Free",                // Visa-free for many nationalities
+      "Kazakhstan":      "Temporary_Residence",      // Temporary residence permit
+      "Uzbekistan":      "Temporary_Stay",           // Temporary stay registration
+
+      // ASIA
+      "Thailand":        "DTV",                      // Destination Thailand Visa (5yr, remote workers)
+      "Bali / Indonesia":"Social_Visa",              // E33G Social/Cultural Visa or B211A
+      "Indonesia":       "Social_Visa",              // E33G Social/Cultural Visa
+      "Vietnam":         "E_Visa",                   // E-visa (90 days), business visa runs common
+      "Malaysia":        "DE_Rantau",                // DE Rantau Nomad Pass
+      "Japan":           "Digital_Nomad",            // Digital Nomad Visa launched March 2024
+      "Singapore":       "Employment_Pass",          // Employment Pass or EntrePass
+      "South Korea":     "Workcation_Visa",          // F-1-D Workation Visa
+      "Philippines":     "Digital_Nomad",            // Official Digital Nomad Visa launched 2025
+      "Taiwan":          "Gold_Card",                // Employment Gold Card (for high-skill workers)
+      "Hong Kong":       "Quality_Migrant",          // Quality Migrant Admission Scheme
+
+      // AMERICAS
+      "Mexico":          "Temporary_Resident",       // Residente Temporal (1-4 years)
+      "Colombia":        "Digital_Nomad",            // Nómada Digital visa, requires $900/mo
+      "Brazil":          "Digital_Nomad",            // Digital Nomad Visa (1yr renewable)
+      "Argentina":       "Rentista",                 // Rentista or Pensionado visa
+      "Panama":          "Friendly_Nations",         // Friendly Nations Visa
+      "Costa Rica":      "Rentista",                 // Rentista visa, requires $2,500/mo
+      "Ecuador":         "Professional_Visa",        // Professional or Rentier visa
+      "Chile":           "Temporary_Residence",      // Temporary residence visa
+      "Uruguay":         "Temporary_Residence",      // Temporary residence (easy process)
+      "Canada":          "Express_Entry",            // Express Entry (points-based)
+      "United States":   "Work_Visa",                // H-1B or O-1 (no digital nomad visa)
+
+      // AFRICA & ISLANDS
+      "South Africa":    "Critical_Skills",          // Critical Skills Visa
+      "Morocco":         "Residence_Permit",         // Residence permit (carte de séjour)
+      "Mauritius":       "Premium_Visa",             // Premium Travel Visa (1yr renewable)
+      "Cape Verde":      "Digital_Nomad",            // Remote Work Visa
+      "Seychelles":      "Workcation",               // Workcation permit
+
+      // PACIFIC & OTHER
+      "Australia":       "Skilled_Nominated",        // Skilled Nominated visa (subclass 190)
+      "New Zealand":     "Skilled_Migrant",          // Skilled Migrant Category
+    };
+
+    return visaMap[country] || "Temporary_Residence";
   };
 
   const handleModeB_Match = () => {
