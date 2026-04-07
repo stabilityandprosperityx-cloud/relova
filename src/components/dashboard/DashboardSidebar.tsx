@@ -9,8 +9,8 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 const navItems: { id: DashboardTab; label: string; icon: typeof LayoutGrid; minPlan: UserPlan; highlight?: boolean }[] = [
   { id: "overview", label: "Overview", icon: LayoutGrid, minPlan: "free" },
   { id: "chat", label: "Your Advisor", icon: MessageCircle, minPlan: "free", highlight: true },
-  { id: "plan", label: "Your Plan", icon: ListChecks, minPlan: "full" },
   { id: "checklist", label: "Checklist", icon: CheckSquare, minPlan: "pro" },
+  { id: "plan", label: "Your Plan", icon: ListChecks, minPlan: "full" },
   { id: "documents", label: "Documents", icon: FileText, minPlan: "full" },
   { id: "countries", label: "Countries", icon: Globe, minPlan: "free" },
 ];

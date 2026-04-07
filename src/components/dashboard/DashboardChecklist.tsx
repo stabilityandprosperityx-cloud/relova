@@ -9,6 +9,7 @@ import { CheckCircle2, ChevronDown, Clock, Sparkles, Loader2 } from "lucide-reac
 import { generatePlan } from "@/lib/planGenerator";
 import { motion } from "framer-motion";
 import type { UserProfile } from "@/pages/Dashboard";
+import LockedOverlayPro from "./LockedOverlayPro";
 
 interface StepItem {
   id: string;
@@ -68,6 +69,8 @@ function parseStep(raw: string): { phase: string; title: string } {
 
 export default function DashboardChecklist({ profile }: Props) {
   const { user } = useAuth();
+  const [showPaywall, setShowPaywall] = useState(true);
+  const isLocked = (profile?.plan || "free") === "free";
   const [steps, setSteps] = useState<StepItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
@@ -218,6 +221,8 @@ export default function DashboardChecklist({ profile }: Props) {
 
   return (
     <div className="space-y-10">
+      {isLocked && showPaywall && <LockedOverlayPro onClose={() => setShowPaywall(false)} />}
+      <div className={isLocked ? "pointer-events-none select-none blur-[2px]" : ""}>
       {/* Header */}
       <div className="space-y-1.5">
         <h1 className="text-xl md:text-2xl font-semibold tracking-tight">Your relocation checklist</h1>
@@ -425,6 +430,7 @@ export default function DashboardChecklist({ profile }: Props) {
           </Button>
         </div>
       )}
+      </div>
     </div>
   );
 }

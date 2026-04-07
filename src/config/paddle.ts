@@ -10,8 +10,8 @@ declare global {
 const PADDLE_CLIENT_TOKEN = import.meta.env.VITE_PADDLE_CLIENT_TOKEN ?? "";
 
 export const PADDLE_PRICES = {
-  pro: import.meta.env.VITE_PADDLE_PRO_PRICE_ID ?? "",
-  full: import.meta.env.VITE_PADDLE_FULL_PRICE_ID ?? "",
+  pro: import.meta.env.VITE_PADDLE_PRO_PRICE_ID ?? "pri_01kmcrz3x9v1ya2ak025nbpn1g",
+  full: import.meta.env.VITE_PADDLE_FULL_PRICE_ID ?? "pri_01kmcs3ffsnfr0gn8qkkqnptkz",
 } as const;
 
 let initialized = false;
