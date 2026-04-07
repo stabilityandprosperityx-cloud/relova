@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Download, Sparkles, RefreshCw } from "lucide-react";
 import type { UserProfile } from "@/pages/Dashboard";
+import { supabase } from "@/integrations/supabase/client";
+
+const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
 interface Props {
   profile: UserProfile | null;
@@ -164,19 +167,51 @@ REQUIREMENTS:
 - End with "Yours sincerely," followed by the applicant's full name`;
 
     try {
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
+      const { data: { session } } = await supabase.auth.getSession();
+      const token = session?.access_token;
+
+      const response = await fetch(CHAT_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
           messages: [{ role: "user", content: prompt }],
+          tier: "full",
+          systemContext: "You are an expert immigration consultant who writes professional visa cover letters. Write only the letter itself with no additional commentary.",
         }),
       });
-      const data = await response.json();
-      const text = data.content?.map((c: { type: string; text?: string }) => c.type === "text" ? c.text : "").join("") || "";
-      if (!text) throw new Error("Empty response");
-      setGeneratedLetter(text);
+
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      // Read streaming response
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+      let fullText = "";
+
+      if (reader) {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split("\n");
+          for (const line of lines) {
+            if (line.startsWith("data: ")) {
+              const data = line.slice(6).trim();
+              if (data === "[DONE]") continue;
+              try {
+                const parsed = JSON.parse(data);
+                const delta = parsed.delta?.text || parsed.choices?.[0]?.delta?.content || "";
+                fullText += delta;
+              } catch {}
+            }
+          }
+        }
+      }
+
+      if (!fullText) throw new Error("Empty response");
+      setGeneratedLetter(fullText);
       setStep("result");
     } catch (e) {
       setError("Generation failed. Please try again.");
