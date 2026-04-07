@@ -210,7 +210,12 @@ REQUIREMENTS:
       }
 
       if (!fullText) throw new Error("Empty response");
-      setGeneratedLetter(fullText);
+      const cleanText = fullText
+        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+        .replace(/\*(.*?)\*/g, "<em>$1</em>")
+        .replace(/#{1,6}\s/g, "")
+        .replace(/^---+$/gm, "");
+      setGeneratedLetter(cleanText);
       setStep("result");
     } catch (e) {
       console.error("Letter generation error:", e);
@@ -243,7 +248,7 @@ REQUIREMENTS:
     </style>
   </head>
   <body>
-    <div class="letter">${letterWithDate.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}</div>
+    <div class="letter">${letterWithDate.replace(/\n/g, "<br>")}</div>
     <script>window.onload = function() { window.print(); }<\/script>
   </body>
 </html>`;
@@ -478,9 +483,10 @@ REQUIREMENTS:
       </div>
 
       <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-6">
-        <pre className="whitespace-pre-wrap font-sans text-[13px] leading-relaxed text-foreground/90">
-          {generatedLetter}
-        </pre>
+        <div
+          className="whitespace-pre-wrap font-sans text-[13px] leading-relaxed text-foreground/90"
+          dangerouslySetInnerHTML={{ __html: generatedLetter.replace(/\n/g, "<br>") }}
+        />
       </div>
 
       <div className="rounded-lg bg-amber-500/10 border border-amber-500/20 px-4 py-3 text-[12px] text-amber-400/80">
