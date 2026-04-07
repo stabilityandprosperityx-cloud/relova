@@ -220,20 +220,17 @@ REQUIREMENTS:
   };
 
   const handlePrint = () => {
-    const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+    const today = new Date().toLocaleDateString("en-GB", {
+      day: "numeric", month: "long", year: "numeric"
+    });
     const letterWithDate = generatedLetter.replace("[DATE]", today);
-    
-    const printWindow = window.open("", "_blank");
-    if (!printWindow) return;
-    printWindow.document.write(`<!DOCTYPE html>
+
+    const html = `<!DOCTYPE html>
 <html>
   <head>
     <title>Visa Cover Letter — ${profile?.target_country || ""}</title>
     <style>
-      @page {
-        margin: 2.5cm;
-        size: A4;
-      }
+      @page { margin: 2.5cm; size: A4; }
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body {
         font-family: "Times New Roman", Times, serif;
@@ -242,27 +239,23 @@ REQUIREMENTS:
         color: #000;
         background: #fff;
       }
-      .letter {
-        max-width: 100%;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-      }
-      @media print {
-        html, body { height: 100%; }
-        .no-print { display: none; }
-      }
+      .letter { white-space: pre-wrap; word-wrap: break-word; }
     </style>
   </head>
   <body>
-    <div class="letter">${letterWithDate.replace(/\n/g, "<br>")}</div>
+    <div class="letter">${letterWithDate.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}</div>
+    <script>window.onload = function() { window.print(); }<\/script>
   </body>
-</html>`);
-    printWindow.document.close();
-    printWindow.focus();
-    setTimeout(() => {
-      printWindow.print();
-      printWindow.close();
-    }, 500);
+</html>`;
+
+    const blob = new Blob([html], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const printWindow = window.open(url, "_blank");
+    if (printWindow) {
+      printWindow.onafterprint = () => {
+        URL.revokeObjectURL(url);
+      };
+    }
   };
 
   // ─── FORM STATE ───
