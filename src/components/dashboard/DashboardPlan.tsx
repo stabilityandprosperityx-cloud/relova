@@ -216,7 +216,7 @@ export default function DashboardPlan({ profile, onBack, onNavigate }: Props) {
 
   return (
     <div className="space-y-8 relative">
-      {isLocked && showPaywall && <LockedOverlay onClose={() => { setShowPaywall(false); onBack?.(); }} />}
+      {isLocked && showPaywall && <LockedOverlay onClose={() => { setShowPaywall(false); onBack?.(); }} profile={profile} />}
 
       <div className={isLocked ? "pointer-events-none" : ""}>
 

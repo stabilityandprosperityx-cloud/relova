@@ -221,7 +221,7 @@ export default function DashboardChecklist({ profile }: Props) {
 
   return (
     <div className="space-y-10">
-      {isLocked && showPaywall && <LockedOverlayPro onClose={() => setShowPaywall(false)} />}
+      {isLocked && showPaywall && <LockedOverlayPro onClose={() => setShowPaywall(false)} profile={profile} />}
       <div className={isLocked ? "pointer-events-none select-none blur-[2px]" : ""}>
       {/* Header */}
       <div className="space-y-1.5">

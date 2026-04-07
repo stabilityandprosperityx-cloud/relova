@@ -296,7 +296,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate }: Prop
 
   return (
     <div className="space-y-8 relative">
-      {isLocked && showPaywall && <LockedOverlay onClose={() => { setShowPaywall(false); onBack?.(); }} />}
+      {isLocked && showPaywall && <LockedOverlay onClose={() => { setShowPaywall(false); onBack?.(); }} profile={profile} />}
       <input ref={fileInputRef} type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.heif,.docx,.doc,.xlsx,.xls,.txt,.webp" onChange={handleUpload} className="hidden" />
 
       {/* Preview Modal */}
