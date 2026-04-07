@@ -286,10 +286,10 @@ export const CostCalculator = ({ country, familyStatus, monthlyIncome }: CostCal
 
         <div className="h-px bg-white/[0.08] my-2" />
 
-        <div className="grid grid-cols-[1fr_auto] gap-3">
-          <span className="text-[14px] font-semibold">Total estimate</span>
+        <div className="grid grid-cols-[1fr_auto] gap-3 rounded-lg border-l-2 border-primary bg-primary/[0.06] px-3 py-2">
+          <span className="text-[14px] font-semibold text-foreground">💰 Total estimate</span>
           <div className="text-right">
-            <p className="text-[14px] font-semibold">${money(totalMid)}</p>
+            <p className="text-[15px] font-semibold text-white">${money(totalMid)}</p>
             <p className="text-[11px] text-muted-foreground">(${money(totalMin)}–${money(totalMax)})</p>
           </div>
         </div>
