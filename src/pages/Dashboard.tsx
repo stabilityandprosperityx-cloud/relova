@@ -4,6 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import OnboardingModal from "@/components/dashboard/OnboardingModal";
 import EditProfileModal from "@/components/dashboard/EditProfileModal";
+import FeedbackWidget from "@/components/dashboard/FeedbackWidget";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -137,6 +138,7 @@ export default function Dashboard() {
           onClose={() => setShowEditProfile(false)}
         />
       )}
+      <FeedbackWidget />
     </div>
   );
 }
