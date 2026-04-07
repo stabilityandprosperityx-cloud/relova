@@ -161,7 +161,13 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
 
         <Button
           className="w-full md:w-auto shadow-[0_0_28px_-4px_hsl(var(--primary)/0.35)]"
-          onClick={() => onNavigate("plan")}
+          onClick={() => {
+            if ((profile?.plan || "free") === "free") {
+              onNavigate("checklist");
+            } else {
+              onNavigate("plan");
+            }
+          }}
         >
           Continue your plan <ArrowRight size={14} className="ml-1.5" />
         </Button>
@@ -230,7 +236,13 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
 
         {nextStep && (
           <button
-            onClick={() => onNavigate("plan")}
+            onClick={() => {
+              if ((profile?.plan || "free") === "free") {
+                onNavigate("checklist");
+              } else {
+                onNavigate("plan");
+              }
+            }}
             className="w-full flex items-center gap-3 rounded-lg bg-white/[0.04] hover:bg-white/[0.07] p-3 transition-colors text-left group"
           >
             <div className="w-7 h-7 rounded-md bg-primary/10 flex items-center justify-center shrink-0">

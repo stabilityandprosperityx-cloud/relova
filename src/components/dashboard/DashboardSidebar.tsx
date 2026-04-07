@@ -5,6 +5,8 @@ import RelovaLogo from "@/components/RelovaLogo";
 import { useAuth } from "@/contexts/AuthContext";
 import type { DashboardTab, UserPlan } from "@/pages/Dashboard";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import LockedOverlay from "./LockedOverlay";
+import LockedOverlayPro from "./LockedOverlayPro";
 
 const navItems: { id: DashboardTab; label: string; icon: typeof LayoutGrid; minPlan: UserPlan; highlight?: boolean }[] = [
   { id: "overview", label: "Overview", icon: LayoutGrid, minPlan: "free" },
@@ -28,6 +30,7 @@ interface Props {
 export default function DashboardSidebar({ activeTab, onTabChange, userEmail, userPlan, onEditProfile }: Props) {
   const { signOut } = useAuth();
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
+  const [lockedModal, setLockedModal] = useState<"pro" | "full" | null>(null);
 
   const isLocked = (minPlan: UserPlan) => planRank[userPlan] < planRank[minPlan];
 
@@ -56,7 +59,13 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
             return (
               <button
                 key={item.id}
-                onClick={() => !locked && onTabChange(item.id)}
+                onClick={() => {
+                  if (locked) {
+                    setLockedModal(item.minPlan === "pro" ? "pro" : "full");
+                  } else {
+                    onTabChange(item.id);
+                  }
+                }}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-colors ${
                   locked
                     ? "text-[#9CA3AF]/30 cursor-not-allowed"
@@ -113,7 +122,13 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
             <button
               key={item.id}
               type="button"
-              onClick={() => !locked && onTabChange(item.id)}
+              onClick={() => {
+                if (locked) {
+                  setLockedModal(item.minPlan === "pro" ? "pro" : "full");
+                } else {
+                  onTabChange(item.id);
+                }
+              }}
               className={`flex min-w-0 flex-1 flex-col items-center gap-0.5 px-1 py-1 rounded-lg transition-colors ${
                 locked ? "text-[#9CA3AF]/20" : active ? "text-[#38BDF8]" : "text-[#9CA3AF]"
               }`}
@@ -185,6 +200,8 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
           </SheetContent>
         </Sheet>
       </nav>
+      {lockedModal === "pro" && <LockedOverlayPro onClose={() => setLockedModal(null)} />}
+      {lockedModal === "full" && <LockedOverlay onClose={() => setLockedModal(null)} />}
     </>
   );
 }
