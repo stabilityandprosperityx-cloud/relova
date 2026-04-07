@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import type { UserProfile, DashboardTab } from "@/pages/Dashboard";
 import { countryDatabase } from "@/lib/countryMatching";
 import { CostCalculator } from "@/components/dashboard/CostCalculator";
+import LockedOverlayPro from "./LockedOverlayPro";
 
 interface Props {
   profile: UserProfile | null;
@@ -47,6 +48,7 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
   const { user } = useAuth();
   const [steps, setSteps] = useState<StepWithStatus[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showProPaywall, setShowProPaywall] = useState(false);
 
   useEffect(() => {
     if (!user || !profile) { setLoading(false); return; }
@@ -162,7 +164,10 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
         <Button
           className="w-full md:w-auto shadow-[0_0_28px_-4px_hsl(var(--primary)/0.35)]"
           onClick={() => {
-            if ((profile?.plan || "free") === "free") {
+            const plan = profile?.plan || "free";
+            if (plan === "free") {
+              setShowProPaywall(true);
+            } else if (plan === "pro") {
               onNavigate("checklist");
             } else {
               onNavigate("plan");
@@ -237,7 +242,10 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
         {nextStep && (
           <button
             onClick={() => {
-              if ((profile?.plan || "free") === "free") {
+              const plan = profile?.plan || "free";
+              if (plan === "free") {
+                setShowProPaywall(true);
+              } else if (plan === "pro") {
                 onNavigate("checklist");
               } else {
                 onNavigate("plan");
@@ -346,6 +354,12 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
           </Button>
         </section>
       </div>
+      {showProPaywall && (
+        <LockedOverlayPro
+          onClose={() => setShowProPaywall(false)}
+          profile={profile}
+        />
+      )}
     </div>
   );
 }
