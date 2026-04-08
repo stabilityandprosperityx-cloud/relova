@@ -61,6 +61,8 @@ async function verifySignature(
 const PRICE_TO_PLAN: Record<string, string> = {
   pri_01kmcrz3x9v1ya2ak025nbpn1g: "pro",
   pri_01kmcs3ffsnfr0gn8qkkqnptkz: "full",
+  pri_01knntsw2jrs7fvdysgrvp33gf: "pro",
+  pri_01knntwgba19kgzp0ja68a7xt8: "full",
 };
 
 type SubscriptionItem = {
@@ -195,6 +197,45 @@ Deno.serve(async (req) => {
       }
 
       console.log(`Updated user ${userId} to plan: ${plan}`);
+    }
+
+    // One-time lifetime purchase
+    if (eventType === "transaction.completed") {
+      const data = event.data ?? {};
+      const customData = data.custom_data as Record<string, unknown> | undefined;
+      const userId = userIdFromCustomData(customData);
+
+      if (!userId) {
+        console.error("transaction.completed: no userId in custom_data");
+        return jsonResponse({ error: "Missing userId" }, 400);
+      }
+
+      // Find price ID from transaction items
+      const items = (data.items ?? []) as Array<{ price?: { id?: string }; price_id?: string }>;
+      let priceId: string | undefined;
+      for (const item of items) {
+        priceId = item.price?.id ?? item.price_id;
+        if (priceId) break;
+      }
+
+      const plan = priceId ? PRICE_TO_PLAN[priceId] : undefined;
+
+      if (!plan) {
+        console.log("transaction.completed: not a Relova plan price, skipping", priceId);
+        return jsonResponse({ received: true });
+      }
+
+      const { error } = await supabase
+        .from("user_profiles")
+        .update({ plan })
+        .eq("user_id", userId);
+
+      if (error) {
+        console.error("transaction.completed: update failed", error);
+        return jsonResponse({ error: "Update failed" }, 500);
+      }
+
+      console.log(`Lifetime purchase: updated user ${userId} to plan: ${plan}`);
     }
 
     if (eventType === "subscription.canceled") {
