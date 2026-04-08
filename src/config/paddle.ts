@@ -12,6 +12,8 @@ const PADDLE_CLIENT_TOKEN = import.meta.env.VITE_PADDLE_CLIENT_TOKEN ?? "";
 export const PADDLE_PRICES = {
   pro: import.meta.env.VITE_PADDLE_PRO_PRICE_ID ?? "pri_01kmcrz3x9v1ya2ak025nbpn1g",
   full: import.meta.env.VITE_PADDLE_FULL_PRICE_ID ?? "pri_01kmcs3ffsnfr0gn8qkkqnptkz",
+  pro_lifetime: "pri_01knntsw2jrs7fvdysgrvp33gf",
+  full_lifetime: "pri_01knntwgba19kgzp0ja68a7xt8",
 } as const;
 
 let initialized = false;
@@ -29,7 +31,7 @@ export function initPaddle() {
   }
 }
 
-export function openPaddleCheckout(plan: "pro" | "full", userEmail?: string, userId?: string) {
+export function openPaddleCheckout(plan: "pro" | "full" | "pro_lifetime" | "full_lifetime", userEmail?: string, userId?: string) {
   if (!window.Paddle) {
     console.error("Paddle.js not loaded — ensure the script tag is in index.html");
     return;
