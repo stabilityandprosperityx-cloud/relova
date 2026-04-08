@@ -30,9 +30,8 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <span className="text-gradient-hero">Your next country.</span>
-            <br />
-            <span className="text-gradient-hero">Your clearest path there.</span>
+            <span className="text-gradient-hero block whitespace-nowrap">Your next country.</span>
+            <span className="text-gradient-hero block mt-2 whitespace-nowrap text-[1.5rem] sm:text-[2rem] md:text-[2.75rem]">Your clearest path there.</span>
           </motion.h1>
 
           {/* Subheadline */}
