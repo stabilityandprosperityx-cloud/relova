@@ -4,54 +4,29 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "How accurate is the information?",
+    question: "Is the information accurate and up to date?",
     answer:
-      "Relova is updated regularly with current visa rules, income requirements, and residency timelines. For final legal decisions, always verify with official government sources or a licensed professional.",
+      "Relova AI is trained on current visa rules, tax laws, and residency requirements. For final legal decisions, always verify with a licensed professional.",
   },
   {
     question: "What if my country isn't listed?",
     answer:
-      "We cover 70 countries with detailed data. For any other country, the AI Advisor can still answer questions and guide you — it's not limited to the list.",
+      "Relova supports any country in the world — not just the ones shown. Just ask.",
   },
   {
     question: "How is this different from ChatGPT?",
     answer:
-      "ChatGPT gives generic answers. Relova knows your passport, budget, family situation, and goals — and builds a structured, step-by-step plan specific to your case. It also generates real documents like visa cover letters.",
+      "Relova is purpose-built for relocation. It understands visa categories, tax structures, citizenship timelines — and asks the right questions to give you a personalized plan, not generic information.",
   },
   {
-    question: "How long does it take to get my plan?",
+    question: "Can I save my relocation plan?",
     answer:
-      "The onboarding takes about 4 minutes. Your personalized plan, checklist, and cost breakdown are ready immediately after.",
-  },
-  {
-    question: "Do I need to know which country I want?",
-    answer:
-      "No. You can start with a question like 'where should I move?' and Relova will help you figure it out based on your passport, income, goals, and preferences.",
-  },
-  {
-    question: "I already know my destination — can Relova still help?",
-    answer:
-      "Absolutely. Skip the discovery phase and go straight to your visa checklist, step-by-step plan, cost breakdown, and cover letter for your chosen country.",
+      "Yes — create a free account to save your conversation and continue where you left off.",
   },
   {
     question: "Is this legal advice?",
     answer:
-      "No. Relova provides structured information and planning tools. For complex cases or final decisions, we recommend consulting a qualified immigration lawyer.",
-  },
-  {
-    question: "What documents does Relova help with?",
-    answer:
-      "Relova generates visa cover letters, provides document checklists per visa type, and gives you a timeline for gathering and submitting everything.",
-  },
-  {
-    question: "Can I use this for my whole family?",
-    answer:
-      "Yes. Set your family status during onboarding and Relova adjusts cost estimates, visa requirements, and the relocation plan for your situation.",
-  },
-  {
-    question: "What if visa rules change after I start my plan?",
-    answer:
-      "Immigration rules change frequently. We update our data regularly, but always cross-check with official embassy or government websites before submitting any application.",
+      "No. Relova provides structured guidance and information. Always consult a qualified immigration lawyer for your final decisions.",
   },
 ];
 

@@ -3,6 +3,18 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
+const AVOID_ITEMS = [
+  "Choosing the wrong country",
+  "Wasting time and money",
+  "Getting stuck in legal dead-ends",
+];
+
+const PLAN_ITEMS = [
+  "Best country for your situation",
+  "Step-by-step relocation path",
+  "Real risks and costs",
+];
+
 export default function HeroSection() {
   return (
     <section className="relative pt-28 pb-16 md:pt-48 md:pb-24 bg-radial-glow overflow-hidden">
@@ -18,9 +30,9 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <span className="text-gradient-hero">Your next country.</span>
+            <span className="text-gradient-hero">Know where to move.</span>
             <br />
-            <span className="text-gradient-hero">Your clearest path there.</span>
+            <span className="text-gradient-hero">Know exactly what to do next.</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -30,8 +42,42 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
           >
-            Enter your passport and destination — get a personalized visa checklist, relocation plan, and cost breakdown in minutes.
+            Find out where you can actually move — based on real visa rules, income requirements, and legal constraints.
           </motion.p>
+
+          {/* Two columns on desktop, stacked on mobile */}
+          <motion.div
+            className="flex flex-col sm:grid sm:grid-cols-2 gap-8 sm:gap-10 mb-10 text-left max-w-[520px] mx-auto"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
+          >
+            {/* Avoid */}
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.15em] text-destructive/70 font-semibold mb-4">Avoid</p>
+              <ul className="space-y-3.5">
+                {AVOID_ITEMS.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-destructive/50 text-[10px] mt-[3px] shrink-0">✕</span>
+                    <span className="text-[13px] text-muted-foreground leading-[1.5]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Your plan includes */}
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.15em] text-primary/70 font-semibold mb-4">Your plan includes</p>
+              <ul className="space-y-3.5">
+                {PLAN_ITEMS.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-primary/60 text-[10px] mt-[3px] shrink-0">✓</span>
+                    <span className="text-[13px] text-foreground/80 leading-[1.5]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
 
           {/* CTA Buttons — full width on mobile */}
           <motion.div
@@ -40,14 +86,14 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
           >
-            <Link to="/dashboard" className="w-full sm:w-auto">
+            <Link to="/chat" className="w-full sm:w-auto">
               <Button variant="hero" size="lg" className="gap-2.5 text-[14px] h-[52px] sm:h-12 px-7 rounded-[10px] w-full sm:w-auto">
-                Get my plan — it's free <ArrowRight size={15} strokeWidth={2.5} />
+                Find my best country <ArrowRight size={15} strokeWidth={2.5} />
               </Button>
             </Link>
-            <Link to="/#product-tour" className="w-full sm:w-auto">
+            <Link to="/countries" className="w-full sm:w-auto">
               <Button variant="hero-outline" size="lg" className="text-[14px] h-[52px] sm:h-12 px-7 rounded-[10px] w-full sm:w-auto">
-                See how it works
+                Explore countries
               </Button>
             </Link>
           </motion.div>
@@ -59,7 +105,9 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.35, ease: "easeOut" }}
           >
-            70 countries · Free to start · No credit card
+            Most people lose 3–12 months choosing the wrong country.
+            <br />
+            Relova shows your best path instantly.
           </motion.p>
         </div>
       </div>
