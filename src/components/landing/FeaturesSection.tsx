@@ -1,36 +1,36 @@
 import { motion } from "framer-motion";
-import { MessageSquare, Globe, FileText, Shield, Briefcase, Home } from "lucide-react";
+import { MessageSquare, ClipboardCheck, Map, FileText, Globe, Calculator } from "lucide-react";
 
 const features = [
   {
     icon: MessageSquare,
-    title: "Find the right country",
-    description: "Based on your income, goals, and lifestyle.",
+    title: "AI relocation advisor",
+    description: "Unlimited personalized answers based on your passport, budget, and goals.",
   },
   {
-    icon: Globe,
-    title: "Build your relocation plan",
-    description: "Step-by-step, tailored to your situation.",
+    icon: ClipboardCheck,
+    title: "Personalized checklist",
+    description: "Get a tailored checklist with clear next steps and progress tracking.",
+  },
+  {
+    icon: Map,
+    title: "Step-by-step move plan",
+    description: "See deadlines and milestones in one timeline from prep to relocation.",
   },
   {
     icon: FileText,
-    title: "Understand the legal path",
-    description: "Clear visa options and requirements — no confusion.",
+    title: "Documents & visa letter",
+    description: "Manage required documents and generate a visa cover letter draft.",
   },
   {
-    icon: Shield,
-    title: "Compare countries",
-    description: "Costs, taxes, and lifestyle — side by side.",
+    icon: Globe,
+    title: "Countries explorer",
+    description: "Compare 70+ destinations with visas, stability, climate, and language context.",
   },
   {
-    icon: Briefcase,
-    title: "Jobs & Opportunities",
-    description: "Explore work opportunities in your destination country.",
-  },
-  {
-    icon: Home,
-    title: "Housing & Community",
-    description: "Find housing options and connect with local communities.",
+    icon: Calculator,
+    title: "Relocation cost calculator",
+    description: "Estimate monthly living costs and budget fit for your destination.",
   },
 ];
 
