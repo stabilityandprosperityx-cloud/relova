@@ -30,9 +30,9 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <span className="text-gradient-hero">Know where to move.</span>
+            <span className="text-gradient-hero">Your next country.</span>
             <br />
-            <span className="text-gradient-hero">Know exactly what to do next.</span>
+            <span className="text-gradient-hero">Your clearest path there.</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -42,7 +42,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
           >
-            Find out where you can actually move — based on real visa rules, income requirements, and legal constraints.
+            Enter your passport and destination — get a personalized visa checklist, relocation plan, and cost breakdown in minutes.
           </motion.p>
 
           {/* Two columns on desktop, stacked on mobile */}
