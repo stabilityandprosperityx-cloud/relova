@@ -1,18 +1,15 @@
 import { motion } from "framer-motion";
 
 const pathways = [
-  {
-    country: "Portugal",
-    description: "Naturalization path based on 5 years of legal residence. Multiple visa categories available for different profiles.",
-  },
-  {
-    country: "Australia",
-    description: "Permanent residency required before citizenship. Typically 4 years of residence, with language and residency requirements. Points-based skilled migration system.",
-  },
-  {
-    country: "UAE",
-    description: "Residency programs explained clearly — from freelance visas to investor permits and golden visa options.",
-  },
+  { flag: "🇵🇹", country: "Portugal", visa: "D7 / Digital Nomad", income: "$1,500/mo", residency: "5 years", difficulty: "Easy" },
+  { flag: "🇪🇸", country: "Spain", visa: "Non-Lucrative / DN", income: "$2,300/mo", residency: "5 years", difficulty: "Medium" },
+  { flag: "🇦🇪", country: "UAE", visa: "Freelance / Golden", income: "$0 / inv.", residency: "2–10 years", difficulty: "Easy" },
+  { flag: "🇩🇪", country: "Germany", visa: "Freelance / Job Seeker", income: "$1,400/mo", residency: "5 years", difficulty: "Hard" },
+  { flag: "🇹🇭", country: "Thailand", visa: "LTR / SMART Visa", income: "$2,000/mo", residency: "No path", difficulty: "Easy" },
+  { flag: "🇬🇪", country: "Georgia", visa: "Remotely from Georgia", income: "$0", residency: "1 year", difficulty: "Very Easy" },
+  { flag: "🇲🇽", country: "Mexico", visa: "Temporary Residency", income: "$1,620/mo", residency: "4 years", difficulty: "Easy" },
+  { flag: "🇨🇦", country: "Canada", visa: "Express Entry / PR", income: "Skills-based", residency: "3 years", difficulty: "Medium" },
+  { flag: "🇺🇸", country: "USA", visa: "O-1 / EB-1 / EB-5", income: "Skills / inv.", residency: "5+ years", difficulty: "Very Hard" },
 ];
 
 export default function LegalPathwaysSection() {
@@ -35,7 +32,7 @@ export default function LegalPathwaysSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid md:grid-cols-3 gap-4">
           {pathways.map((p, i) => (
             <motion.div
               key={p.country}
@@ -45,8 +42,32 @@ export default function LegalPathwaysSection() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
             >
-              <h3 className="text-[18px] font-semibold mb-3 tracking-tight">{p.country}</h3>
-              <p className="text-[13px] text-muted-foreground leading-[1.7]">{p.description}</p>
+              <div className="text-3xl mb-2">{p.flag}</div>
+              <h3 className="text-[16px] font-semibold mb-3 tracking-tight">{p.country}</h3>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-[11px] text-muted-foreground/50">Visa</span>
+                  <span className="text-[11px] text-foreground/80 font-medium">{p.visa}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[11px] text-muted-foreground/50">Min. income</span>
+                  <span className="text-[11px] text-foreground/80 font-medium">{p.income}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[11px] text-muted-foreground/50">Residency</span>
+                  <span className="text-[11px] text-foreground/80 font-medium">{p.residency}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-[11px] text-muted-foreground/50">Difficulty</span>
+                  <span className={`text-[11px] font-medium ${
+                    p.difficulty === "Very Easy" || p.difficulty === "Easy"
+                      ? "text-emerald-400"
+                      : p.difficulty === "Medium"
+                      ? "text-yellow-400"
+                      : "text-red-400"
+                  }`}>{p.difficulty}</span>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
