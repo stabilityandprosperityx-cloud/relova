@@ -62,6 +62,9 @@ export default function CountryPage() {
           {/* Cost of Living */}
           <motion.section className="mb-12" initial={{ opacity: 0, y: 16, filter: "blur(4px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0)" }} transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}>
             <h2 className="text-xl font-semibold mb-5">Cost of Living</h2>
+            <p className="text-sm text-muted-foreground mb-4 max-w-2xl leading-relaxed">
+              Estimates for a comfortable single-person lifestyle. Varies by city and habits.
+            </p>
             <div className="rounded-xl border border-border overflow-hidden">
               {country.costOfLiving.map((c, i) => (
                 <div key={c.item} className={`flex justify-between items-center p-4 bg-card ${i < country.costOfLiving.length - 1 ? "border-b border-border" : ""}`}>

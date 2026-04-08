@@ -20,38 +20,38 @@ const COST_DATA: Record<string, CostEntry> = {
   Portugal: {
     visaFeeMin: 150, visaFeeMax: 310,
     apostilleAndTranslationsMin: 300, apostilleAndTranslationsMax: 1000,
-    rentFirstMonthMin: 900, rentFirstMonthMax: 1400,
+    rentFirstMonthMin: 850, rentFirstMonthMax: 1300,
     insurance3MonthsMin: 300, insurance3MonthsMax: 500,
     emergencyBuffer: 500,
     visaType: "D7 Passive Income / D8 Digital Nomad Visa",
-    notes: "Visa fee: €110 consular + €41 VFS + ~€170 residence permit. Apostilles vary greatly by country. Rent: Lisbon €900–1,200, Porto €700–1,000, smaller cities cheaper."
+    notes: "2026 comfortable living ~€1,500–2,000/mo single (Lisbon €1,750+, Porto €1,300–1,600). Visa fee: €110 consular + €41 VFS + ~€170 residence permit. Apostilles vary by country."
   },
   Spain: {
     visaFeeMin: 80, visaFeeMax: 160,
     apostilleAndTranslationsMin: 500, apostilleAndTranslationsMax: 1500,
-    rentFirstMonthMin: 900, rentFirstMonthMax: 1500,
+    rentFirstMonthMin: 950, rentFirstMonthMax: 1550,
     insurance3MonthsMin: 300, insurance3MonthsMax: 600,
     emergencyBuffer: 500,
     visaType: "Non-Lucrative Visa (NLV)",
-    notes: "Min income required: ~€2,400/month. No remote work allowed on NLV. Sworn translations into Spanish required for all foreign documents. Rent: Madrid/Barcelona €1,200–1,800, Valencia/Seville €800–1,200."
+    notes: "2026 comfortable living ~€1,500–2,200/mo (Madrid/Barcelona €2,000+, Valencia/Seville ~€1,400). Min income NLV ~€2,400/mo. Sworn translations required. No remote work on NLV."
   },
   Germany: {
     visaFeeMin: 75, visaFeeMax: 100,
     apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 800,
-    rentFirstMonthMin: 1200, rentFirstMonthMax: 2000,
+    rentFirstMonthMin: 1100, rentFirstMonthMax: 2000,
     insurance3MonthsMin: 350, insurance3MonthsMax: 600,
     emergencyBuffer: 700,
     visaType: "Freelance Visa / Job Seeker Visa",
-    notes: "High bureaucracy. German language strongly recommended. Rent in Munich/Frankfurt is highest in EU. Health insurance mandatory and expensive."
+    notes: "2026 comfortable living ~€2,000–2,800/mo (Berlin ~€2,200, Munich €2,800+). German language strongly recommended. Health insurance mandatory and expensive."
   },
   Greece: {
     visaFeeMin: 75, visaFeeMax: 75,
     apostilleAndTranslationsMin: 300, apostilleAndTranslationsMax: 600,
-    rentFirstMonthMin: 600, rentFirstMonthMax: 1000,
+    rentFirstMonthMin: 650, rentFirstMonthMax: 1050,
     insurance3MonthsMin: 200, insurance3MonthsMax: 400,
     emergencyBuffer: 350,
     visaType: "Digital Nomad Visa",
-    notes: "Requires €3,500/month income. 12-month renewable visa. Rent: Athens €700–1,100, islands more expensive in summer."
+    notes: "Requires €3,500/mo income. 2026 comfortable living ~€1,300–1,800/mo (Athens €1,500–1,800). Islands pricier in peak season."
   },
   Croatia: {
     visaFeeMin: 50, visaFeeMax: 80,
@@ -83,11 +83,11 @@ const COST_DATA: Record<string, CostEntry> = {
   "Czech Republic": {
     visaFeeMin: 100, visaFeeMax: 200,
     apostilleAndTranslationsMin: 300, apostilleAndTranslationsMax: 600,
-    rentFirstMonthMin: 800, rentFirstMonthMax: 1300,
+    rentFirstMonthMin: 850, rentFirstMonthMax: 1250,
     insurance3MonthsMin: 250, insurance3MonthsMax: 400,
     emergencyBuffer: 400,
     visaType: "Long-term Residence Visa",
-    notes: "Affordable EU country. Prague has strong expat community. English widely spoken in cities. Rent: Prague €900–1,300."
+    notes: "2026 comfortable living ~€1,500–1,900/mo (Prague €1,700–1,900). Strong expat community; English common in Prague."
   },
   Hungary: {
     visaFeeMin: 60, visaFeeMax: 110,
@@ -101,20 +101,20 @@ const COST_DATA: Record<string, CostEntry> = {
   Italy: {
     visaFeeMin: 100, visaFeeMax: 130,
     apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 900,
-    rentFirstMonthMin: 900, rentFirstMonthMax: 1600,
+    rentFirstMonthMin: 1000, rentFirstMonthMax: 1700,
     insurance3MonthsMin: 280, insurance3MonthsMax: 500,
     emergencyBuffer: 500,
     visaType: "Elective Residency Visa",
-    notes: "Slow bureaucracy. Requires passive income. Beautiful quality of life. Rent: Milan €1,200–1,800, Rome €900–1,400, southern Italy much cheaper."
+    notes: "2026 comfortable living ~€1,800–2,500/mo (Rome/Milan €2,200+, smaller cities ~€1,600). Slow bureaucracy; passive income required."
   },
   UAE: {
     visaFeeMin: 1400, visaFeeMax: 3500,
     apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 800,
-    rentFirstMonthMin: 2000, rentFirstMonthMax: 4000,
+    rentFirstMonthMin: 2200, rentFirstMonthMax: 4200,
     insurance3MonthsMin: 400, insurance3MonthsMax: 700,
     emergencyBuffer: 1000,
     visaType: "Freelance Permit + Residence Visa",
-    notes: "Freelance permit via free zone: AED 7,500–20,000 (~$2,000–5,500). 0% income tax. High cost of living in Dubai. Rent: Dubai €2,000–4,000/month for 1BR."
+    notes: "2026 ~$3,000–5,000/mo (Dubai Marina $4,500+, JLT/Discovery Gardens $2,500–3,500). Single comfortable often $3,000–4,000/mo. Freelance permit AED 7,500–20,000. 0% income tax."
   },
   Turkey: {
     visaFeeMin: 50, visaFeeMax: 100,
@@ -128,11 +128,11 @@ const COST_DATA: Record<string, CostEntry> = {
   Georgia: {
     visaFeeMin: 0, visaFeeMax: 20,
     apostilleAndTranslationsMin: 100, apostilleAndTranslationsMax: 250,
-    rentFirstMonthMin: 500, rentFirstMonthMax: 800,
+    rentFirstMonthMin: 450, rentFirstMonthMax: 750,
     insurance3MonthsMin: 120, insurance3MonthsMax: 220,
     emergencyBuffer: 300,
     visaType: "Visa-free Stay (up to 1 year for most passports)",
-    notes: "Truly visa-free for 1 year for 95+ countries. Low taxes (1% for small business). Growing expat scene. Rent: Tbilisi €500–800."
+    notes: "2026 ~$900–1,200/mo comfortable (Tbilisi $1,000–1,200). Visa-free 1 year for 95+ countries. 1% small-business tax. Among the cheapest hubs in Europe."
   },
   Armenia: {
     visaFeeMin: 0, visaFeeMax: 30,
@@ -146,38 +146,38 @@ const COST_DATA: Record<string, CostEntry> = {
   Thailand: {
     visaFeeMin: 90, visaFeeMax: 300,
     apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 400,
-    rentFirstMonthMin: 400, rentFirstMonthMax: 1000,
+    rentFirstMonthMin: 500, rentFirstMonthMax: 950,
     insurance3MonthsMin: 150, insurance3MonthsMax: 350,
     emergencyBuffer: 300,
     visaType: "DTV (Destination Thailand Visa) — 5 years",
-    notes: "DTV requires ~$14,500 savings or proof of remote income. Fee varies by embassy (~$90–300). Rent: Chiang Mai €300–500, Bangkok €600–1,000, Phuket €600–1,200."
+    notes: "2026 ~$1,200–1,800/mo comfortable; Bangkok central 1BR ~$500–700; budget $800–1,000 outside Bangkok. DTV: savings or remote income proof; fee ~$90–300 by embassy."
   },
   Malaysia: {
     visaFeeMin: 150, visaFeeMax: 250,
     apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 350,
-    rentFirstMonthMin: 500, rentFirstMonthMax: 1000,
+    rentFirstMonthMin: 550, rentFirstMonthMax: 1000,
     insurance3MonthsMin: 150, insurance3MonthsMax: 300,
     emergencyBuffer: 300,
     visaType: "DE Rantau Nomad Pass",
-    notes: "Requires RM24,000/month (~$5,000). English widely spoken. Kuala Lumpur affordable. Rent: KL €500–900."
+    notes: "2026 ~$1,200–1,700/mo (Kuala Lumpur $1,200–1,600). DE Rantau has high income threshold — verify current RM requirement. English widely spoken."
   },
   Mexico: {
     visaFeeMin: 56, visaFeeMax: 150,
     apostilleAndTranslationsMin: 200, apostilleAndTranslationsMax: 600,
-    rentFirstMonthMin: 600, rentFirstMonthMax: 1200,
+    rentFirstMonthMin: 700, rentFirstMonthMax: 1250,
     insurance3MonthsMin: 150, insurance3MonthsMax: 350,
     emergencyBuffer: 350,
     visaType: "Temporary Residence Visa",
-    notes: "Consular fee $56 USD. Residence card fee doubled in 2026: ~$600 USD/year. Popular destinations: Mexico City, Oaxaca, Playa del Carmen, Mérida. Rent varies widely."
+    notes: "2026 ~$1,200–1,800/mo (Mexico City ~$1,300, Playa del Carmen ~$1,500). Consular fee $56; residence card ~$600/yr (2026). Hotspots: CDMX, Oaxaca, Playa, Mérida."
   },
   Colombia: {
     visaFeeMin: 200, visaFeeMax: 270,
     apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 400,
-    rentFirstMonthMin: 400, rentFirstMonthMax: 900,
+    rentFirstMonthMin: 450, rentFirstMonthMax: 900,
     insurance3MonthsMin: 120, insurance3MonthsMax: 280,
     emergencyBuffer: 280,
     visaType: "Digital Nomad Visa (Nómada Digital)",
-    notes: "Requires $900/month income. Medellín top nomad city. Affordable lifestyle. Rent: Medellín €400–700, Bogotá €500–900."
+    notes: "2026 ~$1,000–1,500/mo (Medellín $1,000–1,300, Bogotá $1,200–1,500). Visa often ~$900/mo income proof — confirm with consulate."
   },
   Panama: {
     visaFeeMin: 250, visaFeeMax: 400,
@@ -193,38 +193,38 @@ const COST_DATA: Record<string, CostEntry> = {
   Austria: {
     visaFeeMin: 160, visaFeeMax: 250,
     apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 900,
-    rentFirstMonthMin: 1100, rentFirstMonthMax: 1800,
+    rentFirstMonthMin: 1100, rentFirstMonthMax: 1850,
     insurance3MonthsMin: 300, insurance3MonthsMax: 550,
     emergencyBuffer: 600,
     visaType: "Red-White-Red Card",
-    notes: "German language required. Vienna rent: €1,100–1,800/mo. High quality of life. Health insurance mandatory."
+    notes: "2026 ~€2,000–2,600/mo (Vienna €2,200–2,500). German required for integration. Health insurance mandatory."
   },
   Netherlands: {
     visaFeeMin: 200, visaFeeMax: 350,
     apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 800,
-    rentFirstMonthMin: 1500, rentFirstMonthMax: 2500,
+    rentFirstMonthMin: 1600, rentFirstMonthMax: 2700,
     insurance3MonthsMin: 350, insurance3MonthsMax: 600,
     emergencyBuffer: 700,
     visaType: "Highly Skilled Migrant Visa",
-    notes: "Amsterdam is most expensive: €1,800–2,500/mo. Rotterdam/Utrecht cheaper at €1,200–1,600/mo. Mandatory health insurance ~€150/mo."
+    notes: "2026 ~€2,500–3,200/mo (Amsterdam €3,000+). Rotterdam/Utrecht below Amsterdam. Mandatory health insurance ~€150/mo."
   },
   France: {
     visaFeeMin: 99, visaFeeMax: 200,
     apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 900,
-    rentFirstMonthMin: 1000, rentFirstMonthMax: 2000,
+    rentFirstMonthMin: 1050, rentFirstMonthMax: 2000,
     insurance3MonthsMin: 300, insurance3MonthsMax: 550,
     emergencyBuffer: 600,
     visaType: "Talent Passport / Long-Stay Visa",
-    notes: "Paris rent: €1,400–2,200/mo. Lyon/Marseille cheaper at €800–1,200/mo. French language required for integration."
+    notes: "2026 ~€2,000–2,800/mo (Paris €2,800+, Lyon/Bordeaux ~€2,000). French required for integration."
   },
   Poland: {
     visaFeeMin: 135, visaFeeMax: 200,
     apostilleAndTranslationsMin: 250, apostilleAndTranslationsMax: 500,
-    rentFirstMonthMin: 700, rentFirstMonthMax: 1200,
+    rentFirstMonthMin: 650, rentFirstMonthMax: 1100,
     insurance3MonthsMin: 200, insurance3MonthsMax: 380,
     emergencyBuffer: 400,
     visaType: "Temporary Residence Permit (Karta Pobytu)",
-    notes: "Warsaw rent: €800–1,200/mo. Krakow/Wroclaw cheaper at €600–900/mo. Fast-growing economy, low cost of living."
+    notes: "2026 ~€1,200–1,600/mo (Warsaw €1,400–1,600). Kraków/Wrocław often below Warsaw."
   },
   Romania: {
     visaFeeMin: 80, visaFeeMax: 150,
@@ -256,11 +256,11 @@ const COST_DATA: Record<string, CostEntry> = {
   Estonia: {
     visaFeeMin: 100, visaFeeMax: 180,
     apostilleAndTranslationsMin: 300, apostilleAndTranslationsMax: 600,
-    rentFirstMonthMin: 700, rentFirstMonthMax: 1200,
+    rentFirstMonthMin: 750, rentFirstMonthMax: 1200,
     insurance3MonthsMin: 200, insurance3MonthsMax: 380,
     emergencyBuffer: 400,
     visaType: "Digital Nomad Visa",
-    notes: "Tallinn rent: €700–1,200/mo. Pioneer digital nomad visa program. Most digital country in EU. Cold climate."
+    notes: "2026 ~€1,400–1,900/mo (Tallinn €1,600–1,900). Digital nomad pioneer; cold winters."
   },
   Malta: {
     visaFeeMin: 280, visaFeeMax: 350,
@@ -341,56 +341,56 @@ const COST_DATA: Record<string, CostEntry> = {
   Japan: {
     visaFeeMin: 100, visaFeeMax: 200,
     apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 900,
-    rentFirstMonthMin: 800, rentFirstMonthMax: 1600,
+    rentFirstMonthMin: 900, rentFirstMonthMax: 1700,
     insurance3MonthsMin: 250, insurance3MonthsMax: 500,
     emergencyBuffer: 500,
     visaType: "Digital Nomad Visa / Highly Skilled Professional",
-    notes: "Tokyo rent: €1,000–1,800/mo. Osaka/Kyoto cheaper at €700–1,200/mo. Language barrier very high. World-class safety."
+    notes: "2026 ~$2,000–3,000/mo (Tokyo $2,500–3,500; Osaka ~15% cheaper). Language barrier high; excellent safety."
   },
   Singapore: {
     visaFeeMin: 150, visaFeeMax: 300,
     apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 800,
-    rentFirstMonthMin: 2500, rentFirstMonthMax: 4000,
+    rentFirstMonthMin: 2600, rentFirstMonthMax: 4200,
     insurance3MonthsMin: 400, insurance3MonthsMax: 700,
     emergencyBuffer: 1000,
     visaType: "Employment Pass / EntrePass",
-    notes: "Most expensive city in Asia. Rent: €2,500–4,000/mo. English official language. World's best infrastructure. Job offer required."
+    notes: "2026 ~$4,000–6,000/mo comfortable single — among the priciest cities in Asia. English official; top infrastructure. Employment Pass needs job offer."
   },
   "South Korea": {
     visaFeeMin: 60, visaFeeMax: 150,
     apostilleAndTranslationsMin: 350, apostilleAndTranslationsMax: 700,
-    rentFirstMonthMin: 700, rentFirstMonthMax: 1400,
+    rentFirstMonthMin: 800, rentFirstMonthMax: 1450,
     insurance3MonthsMin: 200, insurance3MonthsMax: 400,
     emergencyBuffer: 450,
     visaType: "Workcation Visa / Digital Nomad Visa",
-    notes: "Seoul rent: €700–1,400/mo. Blazing internet. K-culture hub. Language barrier high outside Seoul."
+    notes: "2026 ~$2,000–2,800/mo (Seoul $2,200–2,800). Fast internet; language barrier outside Seoul."
   },
   Indonesia: {
     visaFeeMin: 100, visaFeeMax: 200,
     apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 350,
-    rentFirstMonthMin: 500, rentFirstMonthMax: 1000,
+    rentFirstMonthMin: 550, rentFirstMonthMax: 1100,
     insurance3MonthsMin: 150, insurance3MonthsMax: 300,
     emergencyBuffer: 300,
     visaType: "Social/Cultural Visa B211A",
-    notes: "Bali rent: €500–1,000/mo. Canggu/Seminyak more expensive. Healthcare limited outside Bali. Tropical lifestyle."
+    notes: "2026 Bali ~$1,200–2,000/mo (Canggu $1,500+, Ubud/Sanur ~$1,200). Healthcare thin outside major hubs."
   },
   Vietnam: {
     visaFeeMin: 50, visaFeeMax: 100,
     apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 300,
-    rentFirstMonthMin: 400, rentFirstMonthMax: 800,
+    rentFirstMonthMin: 380, rentFirstMonthMax: 780,
     insurance3MonthsMin: 120, insurance3MonthsMax: 250,
     emergencyBuffer: 250,
     visaType: "E-visa (90 days)",
-    notes: "Ho Chi Minh/Hanoi rent: €400–800/mo. Very affordable. No long-term visa solution yet. Visa runs still common."
+    notes: "2026 ~$1,000–1,500/mo (HCMC $1,200–1,600, Hanoi $900–1,300). Long-stay rules change — confirm latest visa options."
   },
   Philippines: {
     visaFeeMin: 50, visaFeeMax: 150,
     apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 300,
-    rentFirstMonthMin: 400, rentFirstMonthMax: 900,
+    rentFirstMonthMin: 350, rentFirstMonthMax: 800,
     insurance3MonthsMin: 120, insurance3MonthsMax: 250,
     emergencyBuffer: 300,
     visaType: "Digital Nomad Visa (launched 2025)",
-    notes: "Manila/Cebu rent: €400–900/mo. English widely spoken. New digital nomad visa launched April 2025."
+    notes: "2026 ~$800–1,400/mo (Manila $1,000–1,400, Cebu $800–1,100). English widely spoken."
   },
 
   // ─── AMERICAS ───
@@ -415,29 +415,29 @@ const COST_DATA: Record<string, CostEntry> = {
   Argentina: {
     visaFeeMin: 0, visaFeeMax: 100,
     apostilleAndTranslationsMin: 150, apostilleAndTranslationsMax: 350,
-    rentFirstMonthMin: 400, rentFirstMonthMax: 900,
+    rentFirstMonthMin: 400, rentFirstMonthMax: 800,
     insurance3MonthsMin: 120, insurance3MonthsMax: 280,
     emergencyBuffer: 300,
     visaType: "Rentista Visa",
-    notes: "Buenos Aires rent: €400–900/mo (in USD). Economic instability — use USD. 2-year path to citizenship. Vibrant culture."
+    notes: "2026 ~$800–1,200/mo Buenos Aires; costs swing with FX — think in USD. Vibrant culture; plan for inflation volatility."
   },
   Brazil: {
     visaFeeMin: 80, visaFeeMax: 180,
     apostilleAndTranslationsMin: 200, apostilleAndTranslationsMax: 450,
-    rentFirstMonthMin: 500, rentFirstMonthMax: 1000,
+    rentFirstMonthMin: 600, rentFirstMonthMax: 1100,
     insurance3MonthsMin: 150, insurance3MonthsMax: 320,
     emergencyBuffer: 350,
     visaType: "Digital Nomad Visa (1 year renewable)",
-    notes: "São Paulo/Rio rent: €500–1,000/mo. Florianópolis popular with nomads. Portuguese required. Safety varies by area."
+    notes: "2026 ~$1,200–1,800/mo (São Paulo $1,600–2,000, Florianópolis ~$1,200). Portuguese helps; safety varies by neighborhood."
   },
   Canada: {
     visaFeeMin: 150, visaFeeMax: 350,
     apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 800,
-    rentFirstMonthMin: 1500, rentFirstMonthMax: 2500,
+    rentFirstMonthMin: 1700, rentFirstMonthMax: 2900,
     insurance3MonthsMin: 350, insurance3MonthsMax: 600,
     emergencyBuffer: 800,
     visaType: "Express Entry (points-based PR)",
-    notes: "Toronto/Vancouver rent: €1,800–2,500/mo. Calgary/Montreal cheaper at €1,200–1,700/mo. Competitive immigration. Cold winters."
+    notes: "2026 ~CAD $3,000–4,500/mo single (Toronto/Vancouver $4,000+; Montreal ~$2,800). Figures shown in USD in calculator — convert mentally. Cold winters."
   },
 
   // ─── AFRICA & ISLANDS ───
@@ -473,20 +473,20 @@ const COST_DATA: Record<string, CostEntry> = {
   Australia: {
     visaFeeMin: 200, visaFeeMax: 400,
     apostilleAndTranslationsMin: 400, apostilleAndTranslationsMax: 800,
-    rentFirstMonthMin: 1400, rentFirstMonthMax: 2500,
+    rentFirstMonthMin: 1500, rentFirstMonthMax: 2600,
     insurance3MonthsMin: 350, insurance3MonthsMax: 650,
     emergencyBuffer: 800,
     visaType: "Skilled Worker Visa (subclass 189/190)",
-    notes: "Sydney/Melbourne rent: €1,600–2,500/mo. Brisbane/Perth cheaper at €1,200–1,800/mo. Points-based immigration. English speaking."
+    notes: "2026 ~AUD $3,500–4,500/mo single (~USD $2,200–2,900). Sydney AUD $4,000+; Brisbane/Adelaide AUD $3,200–3,500. Calculator uses USD for line items."
   },
   "New Zealand": {
     visaFeeMin: 200, visaFeeMax: 400,
     apostilleAndTranslationsMin: 350, apostilleAndTranslationsMax: 700,
-    rentFirstMonthMin: 1200, rentFirstMonthMax: 2000,
+    rentFirstMonthMin: 1300, rentFirstMonthMax: 2100,
     insurance3MonthsMin: 300, insurance3MonthsMax: 550,
     emergencyBuffer: 700,
     visaType: "Skilled Migrant Category",
-    notes: "Auckland rent: €1,400–2,000/mo. Wellington/Christchurch cheaper. English speaking. Beautiful nature. Points-based system."
+    notes: "2026 ~NZD $3,500–4,500/mo (~USD $2,100–2,700). Auckland highest; Wellington/Christchurch lower. English speaking; points-based immigration."
   },
 
   // ─── UK ───
@@ -504,11 +504,11 @@ const COST_DATA: Record<string, CostEntry> = {
   "United States": {
     visaFeeMin: 500, visaFeeMax: 2000,
     apostilleAndTranslationsMin: 500, apostilleAndTranslationsMax: 1200,
-    rentFirstMonthMin: 1800, rentFirstMonthMax: 4000,
+    rentFirstMonthMin: 2000, rentFirstMonthMax: 4200,
     insurance3MonthsMin: 600, insurance3MonthsMax: 1500,
     emergencyBuffer: 1500,
     visaType: "H-1B / O-1 / EB-1 Work Visa",
-    notes: "Most complex immigration system. H-1B requires employer + lottery. O-1 for extraordinary ability. NYC/SF rent: $2,500–4,500/mo. Austin/Miami cheaper at $1,800–2,800/mo. Health insurance NOT included in visa."
+    notes: "2026 comfortable living ~$3,500–6,000/mo (NYC/SF $5,000+; Austin/Denver ~$3,500). H-1B needs employer + lottery. Health insurance extra — not in visa fees."
   },
 
   // ─── EUROPE — WESTERN ───
@@ -793,6 +793,9 @@ export const CostCalculator = ({ country, familyStatus, monthlyIncome }: CostCal
             </div>
           </div>
         )}
+        <p className="text-[11px] text-muted-foreground mt-5 leading-relaxed">
+          Estimates for a comfortable single-person lifestyle. Varies by city and habits.
+        </p>
       </section>
     );
   }
@@ -987,8 +990,8 @@ export const CostCalculator = ({ country, familyStatus, monthlyIncome }: CostCal
         </div>
       )}
 
-      <p className="text-[11px] text-muted-foreground mt-5">
-        ⓘ Based on verified 2025–2026 data. Costs vary by nationality, city, and individual situation. Always verify with official sources.
+      <p className="text-[11px] text-muted-foreground mt-5 leading-relaxed">
+        Estimates for a comfortable single-person lifestyle. Varies by city and habits. Line-item totals are in USD unless noted in the country notes above. Cross-check with official sources before you budget.
       </p>
     </section>
   );

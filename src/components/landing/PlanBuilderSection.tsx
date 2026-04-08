@@ -151,6 +151,9 @@ export default function PlanBuilderSection() {
                 step={1}
                 className="py-1"
               />
+              <p className="text-[11px] text-muted-foreground/80 leading-relaxed">
+                Estimates for a comfortable single-person lifestyle. Varies by city and habits.
+              </p>
             </div>
 
             {/* Goal */}

@@ -14,7 +14,7 @@ export const countryData: Record<string, CountryData> = {
   portugal: {
     name: "Portugal", flag: "🇵🇹", code: "PT",
     tagline: "Europe's top destination for digital nomads and retirees",
-    highlights: ["D7 Visa", "NHR tax regime", "€1,200/mo avg. cost"],
+    highlights: ["D7 Visa", "NHR tax regime", "€1,500–2,000/mo (Lisbon €1,750+, Porto €1,300–1,600)"],
     visaOptions: [
       { name: "D7 Passive Income Visa", duration: "2 years (renewable)", requirements: "Proof of €760/mo passive income" },
       { name: "Digital Nomad Visa", duration: "1 year", requirements: "€3,040/mo income, remote employment" },
@@ -28,11 +28,13 @@ export const countryData: Record<string, CountryData> = {
       { label: "VAT", value: "23%" },
     ],
     costOfLiving: [
-      { item: "1BR Apartment (Lisbon)", cost: "€900 – €1,400/mo" },
-      { item: "Groceries", cost: "€250 – €350/mo" },
-      { item: "Utilities", cost: "€100 – €150/mo" },
-      { item: "Dining out", cost: "€10 – €20/meal" },
-      { item: "Public transport", cost: "€40/mo pass" },
+      { item: "Comfortable living (single, typical)", cost: "€1,500 – €2,000/mo" },
+      { item: "1BR Apartment (Lisbon)", cost: "€900 – €1,350/mo" },
+      { item: "1BR Apartment (Porto)", cost: "€650 – €950/mo" },
+      { item: "Groceries", cost: "€250 – €380/mo" },
+      { item: "Utilities", cost: "€100 – €160/mo" },
+      { item: "Dining out", cost: "€10 – €22/meal" },
+      { item: "Public transport", cost: "€35 – €45/mo pass" },
     ],
     checklist: [
       "Apply for NIF (tax number) — can be done remotely",
@@ -48,7 +50,7 @@ export const countryData: Record<string, CountryData> = {
   spain: {
     name: "Spain", flag: "🇪🇸", code: "ES",
     tagline: "Rich culture, strong infrastructure, and growing tech scene",
-    highlights: ["Digital Nomad Visa", "Beckham Law", "€1,400/mo avg. cost"],
+    highlights: ["Digital Nomad Visa", "Beckham Law", "€1,500–2,200/mo (Madrid/Barcelona €2,000+, Valencia/Seville ~€1,400)"],
     visaOptions: [
       { name: "Digital Nomad Visa", duration: "1 year (renewable to 3)", requirements: "€2,520/mo income, remote work for non-Spanish company" },
       { name: "Non-Lucrative Visa", duration: "1 year (renewable)", requirements: "€2,400/mo passive income, no work in Spain" },
@@ -62,12 +64,13 @@ export const countryData: Record<string, CountryData> = {
       { label: "VAT (IVA)", value: "21%" },
     ],
     costOfLiving: [
-      { item: "1BR Apartment (Madrid)", cost: "€900 – €1,500/mo" },
-      { item: "1BR Apartment (Barcelona)", cost: "€1,000 – €1,600/mo" },
-      { item: "Groceries", cost: "€250 – €400/mo" },
-      { item: "Utilities", cost: "€120 – €170/mo" },
-      { item: "Dining out", cost: "€12 – €25/meal" },
-      { item: "Public transport", cost: "€40 – €55/mo pass" },
+      { item: "Comfortable living (single, typical)", cost: "€1,500 – €2,200/mo" },
+      { item: "1BR Apartment (Madrid / Barcelona)", cost: "€1,100 – €1,700/mo" },
+      { item: "1BR Apartment (Valencia / Seville)", cost: "€700 – €1,000/mo" },
+      { item: "Groceries", cost: "€250 – €420/mo" },
+      { item: "Utilities", cost: "€120 – €180/mo" },
+      { item: "Dining out", cost: "€12 – €28/meal" },
+      { item: "Public transport", cost: "€40 – €60/mo pass" },
     ],
     checklist: [
       "Obtain NIE (foreigner identification number)",
@@ -83,7 +86,7 @@ export const countryData: Record<string, CountryData> = {
   uae: {
     name: "United Arab Emirates", flag: "🇦🇪", code: "AE",
     tagline: "Tax-free hub for business and investment",
-    highlights: ["Golden Visa", "0% income tax", "Free zones"],
+    highlights: ["Golden Visa", "0% income tax", "$3,000–5,000/mo (Dubai Marina $4,500+, JLT/DG $2,500–3,500)"],
     visaOptions: [
       { name: "Golden Visa", duration: "10 years", requirements: "AED 2M+ investment or specialized talent" },
       { name: "Green Visa", duration: "5 years", requirements: "Freelancers, investors, skilled workers" },
@@ -97,11 +100,13 @@ export const countryData: Record<string, CountryData> = {
       { label: "Free Zone Tax", value: "0% (qualifying activities)" },
     ],
     costOfLiving: [
-      { item: "1BR Apartment (Dubai)", cost: "$1,500 – $2,500/mo" },
-      { item: "Groceries", cost: "$400 – $600/mo" },
-      { item: "Utilities", cost: "$150 – $200/mo" },
-      { item: "Dining out", cost: "$15 – $40/meal" },
-      { item: "Metro", cost: "$80/mo pass" },
+      { item: "Comfortable living (single expat)", cost: "$3,000 – $4,000/mo" },
+      { item: "1BR Apartment (Dubai Marina area)", cost: "$2,200 – $3,200/mo" },
+      { item: "1BR Apartment (JLT / Discovery Gardens)", cost: "$1,400 – $2,200/mo" },
+      { item: "Groceries", cost: "$400 – $650/mo" },
+      { item: "Utilities", cost: "$150 – $220/mo" },
+      { item: "Dining out", cost: "$15 – $45/meal" },
+      { item: "Metro", cost: "$70 – $100/mo pass" },
     ],
     checklist: [
       "Choose free zone or mainland setup",
@@ -117,7 +122,7 @@ export const countryData: Record<string, CountryData> = {
   usa: {
     name: "United States", flag: "🇺🇸", code: "US",
     tagline: "World's largest economy with diverse immigration pathways",
-    highlights: ["H-1B Visa", "EB-5 Investor", "$2,500/mo avg. cost"],
+    highlights: ["H-1B Visa", "EB-5 Investor", "$3,500–6,000/mo (NYC/SF $5,000+, Austin/Denver ~$3,500)"],
     visaOptions: [
       { name: "H-1B Specialty Occupation", duration: "3 years (renewable to 6)", requirements: "Bachelor's degree + employer sponsor, lottery system" },
       { name: "L-1 Intracompany Transfer", duration: "1–3 years (renewable)", requirements: "1 year employment at foreign branch of US company" },
@@ -133,12 +138,13 @@ export const countryData: Record<string, CountryData> = {
       { label: "Sales Tax", value: "0% – 10.25% (state + local)" },
     ],
     costOfLiving: [
-      { item: "1BR Apartment (NYC)", cost: "$2,500 – $4,000/mo" },
-      { item: "1BR Apartment (Austin)", cost: "$1,200 – $1,800/mo" },
-      { item: "Groceries", cost: "$400 – $700/mo" },
-      { item: "Health Insurance", cost: "$300 – $600/mo" },
-      { item: "Dining out", cost: "$15 – $40/meal" },
-      { item: "Public transport", cost: "$80 – $130/mo" },
+      { item: "Comfortable living (single, city-dependent)", cost: "$3,500 – $6,000/mo" },
+      { item: "1BR Apartment (NYC / SF)", cost: "$3,200 – $5,200/mo" },
+      { item: "1BR Apartment (Austin / Denver)", cost: "$1,600 – $2,400/mo" },
+      { item: "Groceries", cost: "$400 – $750/mo" },
+      { item: "Health Insurance", cost: "$300 – $650/mo" },
+      { item: "Dining out", cost: "$15 – $45/meal" },
+      { item: "Public transport", cost: "$80 – $140/mo" },
     ],
     checklist: [
       "Determine visa category and eligibility",
@@ -154,7 +160,7 @@ export const countryData: Record<string, CountryData> = {
   canada: {
     name: "Canada", flag: "🇨🇦", code: "CA",
     tagline: "Immigration-friendly with clear pathways to permanent residency",
-    highlights: ["Express Entry", "PNP programs", "CAD $2,000/mo avg. cost"],
+    highlights: ["Express Entry", "PNP programs", "CAD $3,000–4,500/mo (Toronto/Vancouver $4,000+, Montreal ~$2,800)"],
     visaOptions: [
       { name: "Express Entry (Federal Skilled Worker)", duration: "Permanent", requirements: "CRS score 450+, work experience, language proficiency" },
       { name: "Provincial Nominee Program (PNP)", duration: "Permanent", requirements: "Nomination from a province, varies by program" },
@@ -170,12 +176,13 @@ export const countryData: Record<string, CountryData> = {
       { label: "Capital Gains", value: "50% of gain included in income" },
     ],
     costOfLiving: [
-      { item: "1BR Apartment (Toronto)", cost: "CAD $2,000 – $2,800/mo" },
-      { item: "1BR Apartment (Montreal)", cost: "CAD $1,200 – $1,800/mo" },
-      { item: "Groceries", cost: "CAD $350 – $500/mo" },
-      { item: "Utilities", cost: "CAD $150 – $250/mo" },
-      { item: "Dining out", cost: "CAD $18 – $35/meal" },
-      { item: "Public transport", cost: "CAD $100 – $160/mo" },
+      { item: "Comfortable living (single, typical)", cost: "CAD $3,000 – $4,500/mo" },
+      { item: "1BR Apartment (Toronto / Vancouver)", cost: "CAD $2,200 – $3,200/mo" },
+      { item: "1BR Apartment (Montreal)", cost: "CAD $1,100 – $1,700/mo" },
+      { item: "Groceries", cost: "CAD $350 – $550/mo" },
+      { item: "Utilities", cost: "CAD $150 – $280/mo" },
+      { item: "Dining out", cost: "CAD $18 – $38/meal" },
+      { item: "Public transport", cost: "CAD $100 – $170/mo" },
     ],
     checklist: [
       "Check eligibility with CRS score calculator (Express Entry)",
@@ -192,7 +199,7 @@ export const countryData: Record<string, CountryData> = {
   germany: {
     name: "Germany", flag: "🇩🇪", code: "DE",
     tagline: "Europe's economic powerhouse with strong worker protections",
-    highlights: ["Job Seeker Visa", "EU Blue Card", "€1,300/mo avg. cost"],
+    highlights: ["Job Seeker Visa", "EU Blue Card", "€2,000–2,800/mo (Berlin ~€2,200, Munich €2,800+)"],
     visaOptions: [
       { name: "EU Blue Card", duration: "4 years (→ permanent at 21–33 months)", requirements: "University degree, job offer ≥ €45,300/yr (€41,042 shortage occupations)" },
       { name: "Job Seeker Visa", duration: "6 months", requirements: "University degree, €11k+ in savings, no work allowed" },
@@ -206,12 +213,13 @@ export const countryData: Record<string, CountryData> = {
       { label: "VAT (MwSt)", value: "19% (7% reduced)" },
     ],
     costOfLiving: [
-      { item: "1BR Apartment (Berlin)", cost: "€900 – €1,400/mo" },
-      { item: "1BR Apartment (Munich)", cost: "€1,200 – €1,800/mo" },
-      { item: "Groceries", cost: "€250 – €350/mo" },
-      { item: "Utilities", cost: "€200 – €300/mo" },
-      { item: "Dining out", cost: "€12 – €25/meal" },
-      { item: "Public transport", cost: "€49/mo (Deutschlandticket)" },
+      { item: "Comfortable living (single, typical)", cost: "€2,000 – €2,800/mo" },
+      { item: "1BR Apartment (Berlin)", cost: "€1,000 – €1,500/mo" },
+      { item: "1BR Apartment (Munich)", cost: "€1,300 – €2,000/mo" },
+      { item: "Groceries", cost: "€250 – €380/mo" },
+      { item: "Utilities", cost: "€200 – €320/mo" },
+      { item: "Dining out", cost: "€12 – €28/meal" },
+      { item: "Public transport", cost: "€49 – €58/mo (Deutschlandticket)" },
     ],
     checklist: [
       "Get qualifications recognized (anabin database or ZAB)",
@@ -227,7 +235,7 @@ export const countryData: Record<string, CountryData> = {
   australia: {
     name: "Australia", flag: "🇦🇺", code: "AU",
     tagline: "High quality of life with strong immigration pathways",
-    highlights: ["Skilled visas", "Points-based system", "AUD $2k/mo avg. cost"],
+    highlights: ["Skilled visas", "Points-based system", "AUD $3,500–4,500/mo single (~USD $2,200–2,900)"],
     visaOptions: [
       { name: "Skilled Independent (189)", duration: "Permanent", requirements: "Points-tested, no sponsor needed, occupation on skilled list" },
       { name: "Skilled Nominated (190)", duration: "Permanent", requirements: "State/territory nomination, 65+ points" },
@@ -243,12 +251,13 @@ export const countryData: Record<string, CountryData> = {
       { label: "Superannuation", value: "11.5% employer contribution (mandatory)" },
     ],
     costOfLiving: [
-      { item: "1BR Apartment (Sydney)", cost: "AUD $2,200 – $3,200/mo" },
-      { item: "1BR Apartment (Melbourne)", cost: "AUD $1,600 – $2,400/mo" },
-      { item: "Groceries", cost: "AUD $400 – $600/mo" },
-      { item: "Utilities", cost: "AUD $200 – $300/mo" },
-      { item: "Dining out", cost: "AUD $20 – $40/meal" },
-      { item: "Public transport", cost: "AUD $150 – $200/mo" },
+      { item: "Comfortable living (single, typical)", cost: "AUD $3,500 – $4,500/mo" },
+      { item: "1BR Apartment (Sydney)", cost: "AUD $2,600 – $3,800/mo" },
+      { item: "1BR Apartment (Brisbane / Adelaide)", cost: "AUD $1,800 – $2,600/mo" },
+      { item: "Groceries", cost: "AUD $400 – $650/mo" },
+      { item: "Utilities", cost: "AUD $200 – $320/mo" },
+      { item: "Dining out", cost: "AUD $20 – $45/meal" },
+      { item: "Public transport", cost: "AUD $150 – $220/mo" },
     ],
     checklist: [
       "Assess visa eligibility via SkillSelect (skills assessment)",
@@ -266,7 +275,7 @@ export const countryData: Record<string, CountryData> = {
   thailand: {
     name: "Thailand", flag: "🇹🇭", code: "TH",
     tagline: "Affordable tropical living with growing digital nomad infrastructure",
-    highlights: ["LTR Visa", "Low cost of living", "$800/mo avg. cost"],
+    highlights: ["LTR Visa", "Tropical hubs", "$1,200–1,800/mo comfortable (Bangkok 1BR central $500–700)"],
     visaOptions: [
       { name: "Long-Term Resident (LTR) Visa", duration: "10 years", requirements: "Remote worker earning $80k+/yr or $250k+ investment" },
       { name: "SMART Visa", duration: "Up to 4 years", requirements: "Highly skilled professional in targeted industry" },
@@ -282,12 +291,14 @@ export const countryData: Record<string, CountryData> = {
       { label: "LTR Visa Tax Rate", value: "17% flat (qualifying remote workers)" },
     ],
     costOfLiving: [
-      { item: "1BR Apartment (Bangkok)", cost: "$400 – $800/mo" },
-      { item: "1BR Apartment (Chiang Mai)", cost: "$250 – $500/mo" },
-      { item: "Groceries", cost: "$150 – $250/mo" },
-      { item: "Utilities", cost: "$50 – $100/mo" },
-      { item: "Dining out (street food)", cost: "$1.50 – $4/meal" },
-      { item: "Public transport (BTS/MRT)", cost: "$30 – $50/mo" },
+      { item: "Comfortable living (single, typical)", cost: "$1,200 – $1,800/mo" },
+      { item: "Budget living (outside Bangkok)", cost: "$800 – $1,000/mo" },
+      { item: "1BR Apartment (Bangkok, central)", cost: "$500 – $700/mo" },
+      { item: "1BR Apartment (Chiang Mai)", cost: "$350 – $550/mo" },
+      { item: "Groceries", cost: "$150 – $280/mo" },
+      { item: "Utilities", cost: "$50 – $110/mo" },
+      { item: "Dining out (street food)", cost: "$1.50 – $5/meal" },
+      { item: "Public transport (BTS/MRT)", cost: "$30 – $55/mo" },
     ],
     checklist: [
       "Determine visa type based on income and goals",
@@ -303,7 +314,7 @@ export const countryData: Record<string, CountryData> = {
   mexico: {
     name: "Mexico", flag: "🇲🇽", code: "MX",
     tagline: "Vibrant culture, close to the US, and easy residency options",
-    highlights: ["Temporary Resident Visa", "Low cost", "$900/mo avg. cost"],
+    highlights: ["Temporary Resident Visa", "US proximity", "$1,200–1,800/mo (CDMX ~$1,300, Playa ~$1,500)"],
     visaOptions: [
       { name: "Temporary Resident Visa", duration: "1–4 years", requirements: "Monthly income ~$2,500 or savings ~$42,000" },
       { name: "Permanent Resident Visa", duration: "Permanent", requirements: "4 years as temporary resident, or family ties, or $210k+ investment" },
@@ -317,12 +328,13 @@ export const countryData: Record<string, CountryData> = {
       { label: "VAT (IVA)", value: "16%" },
     ],
     costOfLiving: [
-      { item: "1BR Apartment (Mexico City)", cost: "$500 – $1,000/mo" },
-      { item: "1BR Apartment (Playa del Carmen)", cost: "$600 – $1,200/mo" },
-      { item: "Groceries", cost: "$150 – $300/mo" },
-      { item: "Utilities", cost: "$40 – $80/mo" },
-      { item: "Dining out", cost: "$5 – $15/meal" },
-      { item: "Public transport (Metro)", cost: "$15/mo" },
+      { item: "Comfortable living (single, typical)", cost: "$1,200 – $1,800/mo" },
+      { item: "1BR Apartment (Mexico City)", cost: "$650 – $1,100/mo" },
+      { item: "1BR Apartment (Playa del Carmen)", cost: "$800 – $1,400/mo" },
+      { item: "Groceries", cost: "$150 – $320/mo" },
+      { item: "Utilities", cost: "$40 – $90/mo" },
+      { item: "Dining out", cost: "$5 – $18/meal" },
+      { item: "Public transport (Metro)", cost: "$12 – $20/mo" },
     ],
     checklist: [
       "Apply for temporary or permanent resident visa at Mexican consulate",
@@ -338,7 +350,7 @@ export const countryData: Record<string, CountryData> = {
   estonia: {
     name: "Estonia", flag: "🇪🇪", code: "EE",
     tagline: "Digital-first society with e-Residency and startup-friendly policies",
-    highlights: ["e-Residency", "Digital Nomad Visa", "€1,100/mo avg. cost"],
+    highlights: ["e-Residency", "Digital Nomad Visa", "€1,400–1,900/mo (Tallinn €1,600–1,900)"],
     visaOptions: [
       { name: "Digital Nomad Visa", duration: "1 year", requirements: "€3,504/mo income (6-month average), remote work" },
       { name: "e-Residency", duration: "Ongoing (not a visa)", requirements: "€100–120 application fee, no residency rights" },
@@ -352,10 +364,11 @@ export const countryData: Record<string, CountryData> = {
       { label: "VAT", value: "22%" },
     ],
     costOfLiving: [
-      { item: "1BR Apartment (Tallinn)", cost: "€600 – €1,000/mo" },
-      { item: "Groceries", cost: "€200 – €350/mo" },
-      { item: "Utilities", cost: "€150 – €250/mo" },
-      { item: "Dining out", cost: "€10 – €20/meal" },
+      { item: "Comfortable living (single, typical)", cost: "€1,400 – €1,900/mo" },
+      { item: "1BR Apartment (Tallinn)", cost: "€700 – €1,100/mo" },
+      { item: "Groceries", cost: "€200 – €380/mo" },
+      { item: "Utilities", cost: "€150 – €260/mo" },
+      { item: "Dining out", cost: "€10 – €22/meal" },
       { item: "Public transport", cost: "Free in Tallinn for residents" },
     ],
     checklist: [
@@ -372,7 +385,7 @@ export const countryData: Record<string, CountryData> = {
   indonesia: {
     name: "Indonesia", flag: "🇮🇩", code: "ID",
     tagline: "Tropical living in Bali and beyond with new digital nomad options",
-    highlights: ["B211A Visa", "Second Home Visa", "$700/mo avg. cost"],
+    highlights: ["B211A Visa", "Second Home Visa", "$1,200–2,000/mo Bali (Canggu $1,500+, Ubud/Sanur ~$1,200)"],
     visaOptions: [
       { name: "B211A Remote Worker Visa", duration: "6 months (renewable)", requirements: "Proof of remote employment, $2,000/mo income" },
       { name: "Second Home Visa (D2H)", duration: "5–10 years", requirements: "$130k+ in Indonesian bank or property" },
@@ -386,12 +399,14 @@ export const countryData: Record<string, CountryData> = {
       { label: "VAT", value: "11%" },
     ],
     costOfLiving: [
-      { item: "1BR (Bali, Canggu/Seminyak)", cost: "$400 – $900/mo" },
-      { item: "1BR Apartment (Jakarta)", cost: "$300 – $700/mo" },
-      { item: "Groceries", cost: "$100 – $200/mo" },
-      { item: "Utilities", cost: "$40 – $80/mo" },
-      { item: "Dining out (local warung)", cost: "$1.50 – $5/meal" },
-      { item: "Scooter rental", cost: "$50 – $70/mo" },
+      { item: "Comfortable living (single, Bali typical)", cost: "$1,200 – $2,000/mo" },
+      { item: "1BR (Canggu / Seminyak)", cost: "$900 – $1,600/mo" },
+      { item: "1BR (Ubud / Sanur)", cost: "$600 – $1,000/mo" },
+      { item: "1BR Apartment (Jakarta)", cost: "$400 – $800/mo" },
+      { item: "Groceries", cost: "$100 – $220/mo" },
+      { item: "Utilities", cost: "$40 – $90/mo" },
+      { item: "Dining out (local warung)", cost: "$1.50 – $6/meal" },
+      { item: "Scooter rental", cost: "$50 – $80/mo" },
     ],
     checklist: [
       "Choose visa type based on budget and duration",
@@ -407,7 +422,7 @@ export const countryData: Record<string, CountryData> = {
   singapore: {
     name: "Singapore", flag: "🇸🇬", code: "SG",
     tagline: "Asia's premier financial hub with world-class infrastructure",
-    highlights: ["Employment Pass", "Low tax rates", "$2,500/mo avg. cost"],
+    highlights: ["Employment Pass", "Low tax rates", "$4,000–6,000/mo (among the most expensive in Asia)"],
     visaOptions: [
       { name: "Employment Pass (EP)", duration: "2 years (renewable)", requirements: "Job offer, min. $5,000/mo salary, degree or experience" },
       { name: "S Pass", duration: "2 years (renewable)", requirements: "Mid-skilled role, min. $3,150/mo, employer quota" },
@@ -423,12 +438,13 @@ export const countryData: Record<string, CountryData> = {
       { label: "Dividend Tax", value: "0%" },
     ],
     costOfLiving: [
-      { item: "1BR Apartment (Central)", cost: "SGD $2,500 – $4,000/mo" },
-      { item: "1BR (Outside Central)", cost: "SGD $1,500 – $2,500/mo" },
-      { item: "Groceries", cost: "SGD $400 – $600/mo" },
-      { item: "Utilities", cost: "SGD $150 – $250/mo" },
-      { item: "Dining out (hawker center)", cost: "SGD $4 – $8/meal" },
-      { item: "Public transport (MRT)", cost: "SGD $100 – $150/mo" },
+      { item: "Comfortable living (single, typical)", cost: "SGD $4,000 – $6,000/mo" },
+      { item: "1BR Apartment (Central)", cost: "SGD $2,800 – $4,500/mo" },
+      { item: "1BR (Outside Central)", cost: "SGD $2,000 – $3,200/mo" },
+      { item: "Groceries", cost: "SGD $400 – $650/mo" },
+      { item: "Utilities", cost: "SGD $150 – $280/mo" },
+      { item: "Dining out (hawker center)", cost: "SGD $4 – $10/meal" },
+      { item: "Public transport (MRT)", cost: "SGD $100 – $160/mo" },
     ],
     checklist: [
       "Secure job offer from Singapore-based company",
@@ -444,7 +460,7 @@ export const countryData: Record<string, CountryData> = {
   argentina: {
     name: "Argentina", flag: "🇦🇷", code: "AR",
     tagline: "Affordable destination with vibrant culture",
-    highlights: ["Digital Nomad Visa", "Low cost of living", "Vibrant culture"],
+    highlights: ["Digital Nomad Visa", "$800–1,200/mo (Buenos Aires; FX varies)", "Vibrant culture"],
     visaOptions: [
       { name: "Digital Nomad Visa", duration: "6 months (renewable)", requirements: "Remote employment, $1,500/mo" },
       { name: "Rentista Visa", duration: "1 year (renewable)", requirements: "Proof of passive income" },
@@ -458,11 +474,12 @@ export const countryData: Record<string, CountryData> = {
       { label: "Wealth Tax", value: "0.5% – 1.75% on assets" },
     ],
     costOfLiving: [
-      { item: "1BR Apartment (Buenos Aires)", cost: "$400 – $700/mo" },
-      { item: "Groceries", cost: "$150 – $250/mo" },
-      { item: "Utilities", cost: "$40 – $70/mo" },
-      { item: "Dining out", cost: "$5 – $15/meal" },
-      { item: "Metro (SUBE card)", cost: "$15/mo" },
+      { item: "Comfortable living (single, typical)", cost: "$800 – $1,200/mo" },
+      { item: "1BR Apartment (Buenos Aires)", cost: "$450 – $800/mo" },
+      { item: "Groceries", cost: "$150 – $280/mo" },
+      { item: "Utilities", cost: "$40 – $80/mo" },
+      { item: "Dining out", cost: "$5 – $18/meal" },
+      { item: "Metro (SUBE card)", cost: "$12 – $18/mo" },
     ],
     checklist: [
       "Apply for DNI (national ID) upon arrival",

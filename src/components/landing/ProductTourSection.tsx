@@ -165,10 +165,10 @@ function Screen4() {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2 mb-3">
-        {[["Rent", "$950"], ["Food", "$380"], ["Insurance", "$120"]].map(([k, v]) => (
+        {[["Rent", "€700–1,100"], ["Food", "€280–400"], ["Insurance", "€70–120"]].map(([k, v]) => (
           <div key={k} className={`${cardBg} p-3 text-center`}>
             <p className="text-[9px] text-white/30 uppercase tracking-wider mb-1">{k}</p>
-            <p className={`text-[15px] font-bold ${labelCyan}`}>{v}</p>
+            <p className={`text-[13px] font-bold ${labelCyan} leading-tight`}>{v}</p>
             <p className="text-[9px] text-white/30">/mo</p>
           </div>
         ))}
@@ -176,16 +176,19 @@ function Screen4() {
       <div className={`${cardBg} p-3 mb-3`}>
         <div className="flex justify-between items-center mb-1.5">
           <span className="text-[11px] text-white/50">Visa fees (one-time)</span>
-          <span className="text-[11px] text-white/70">~$350</span>
+          <span className="text-[11px] text-white/70">~€250–350</span>
         </div>
         <div className="flex justify-between items-center mb-1.5">
           <span className="text-[11px] text-white/50">Total monthly</span>
-          <span className="text-[14px] font-bold text-white">$1,820</span>
+          <span className="text-[13px] font-bold text-white leading-tight">€1,500–2,000/mo</span>
         </div>
         <div className="flex justify-between items-center">
           <span className="text-[11px] text-white/50">vs your budget ($3,000)</span>
           <span className="text-[11px] text-emerald-400 font-medium">✓ Comfortable</span>
         </div>
+        <p className="text-[9px] text-white/35 mt-2 leading-relaxed">
+          Estimates for a comfortable single-person lifestyle. Varies by city and habits.
+        </p>
       </div>
       <div className={`${cardBg} p-3`}>
         <p className="text-[10px] text-white/40 mb-2">Family status</p>
@@ -346,7 +349,7 @@ function Screen9() {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2 mb-3">
-        {[["STABILITY", "4-8 mo", labelCyan], ["COST", "$1,820/mo", "text-emerald-400"], ["STEPS", "3 / 51", "text-white/60"]].map(([k, v, c]) => (
+        {[["STABILITY", "4-8 mo", labelCyan], ["COST", "€1.5–2k/mo", "text-emerald-400"], ["STEPS", "3 / 51", "text-white/60"]].map(([k, v, c]) => (
           <div key={k} className={`${cardBg} p-2 text-center`}>
             <p className="text-[8px] text-white/30 uppercase tracking-wider">{k}</p>
             <p className={`text-[11px] font-semibold mt-0.5 ${c}`}>{v}</p>

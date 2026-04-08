@@ -30,7 +30,8 @@ const features = [
   {
     icon: Calculator,
     title: "Relocation cost calculator",
-    description: "Estimate monthly living costs and budget fit for your destination.",
+    description:
+      "Estimate monthly living costs and budget fit for your destination. Estimates for a comfortable single-person lifestyle; varies by city and habits.",
   },
 ];
 

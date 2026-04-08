@@ -16,6 +16,9 @@ export default function BestCountries2026() {
       <p>
         We scored each country across six factors: visa accessibility, cost of living, safety, internet quality, tax friendliness, and path to permanent residency. Each factor is weighted equally. Data is sourced from government portals, Numbeo, and the Global Peace Index.
       </p>
+      <p>
+        Estimates for a comfortable single-person lifestyle. Varies by city and habits.
+      </p>
 
       <h2>The Top 10</h2>
       <table>
@@ -96,12 +99,15 @@ export default function BestCountries2026() {
         Portugal remains the top destination for 2026. Multiple visa types (D7, D8, D2), a fast path to EU citizenship (5 years), affordable living outside Lisbon, and a large English-speaking expat community make it unbeatable for most profiles.
       </p>
       <p>
-        The D8 digital nomad visa requires ~€3,040/mo in income. Cost of living starts around €1,000/mo in smaller cities.
+        The D8 digital nomad visa requires ~€3,040/mo in income. For 2026, plan roughly €1,500–2,000/mo for a comfortable single lifestyle (Lisbon €1,750+, Porto €1,300–1,600).
       </p>
 
       <h2>2. Spain</h2>
       <p>
         Spain's digital nomad visa (launched 2023) and the Beckham Law tax incentive make it increasingly attractive. Healthcare is excellent, and cities like Valencia offer great quality of life at moderate costs.
+      </p>
+      <p>
+        For 2026, budget roughly €1,500–2,200/mo for a comfortable single (Madrid/Barcelona €2,000+; Valencia/Seville often closer to ~€1,400).
       </p>
       <p>
         The main downside: citizenship takes 10 years (vs 5 in Portugal).
@@ -112,12 +118,12 @@ export default function BestCountries2026() {
         Georgia offers one of the easiest entry points globally. Citizens of 95+ countries can stay visa-free for 1 year. The "Remotely from Georgia" program welcomes digital workers. Income tax is just 1% for small businesses.
       </p>
       <p>
-        Tbilisi is affordable (€600–€900/mo total), has fast internet, and a growing tech scene. The trade-off: no path to EU residency.
+        Tbilisi runs about $1,000–1,200/mo for a comfortable single budget ($900–1,200 country-wide), with fast internet and a growing tech scene. The trade-off: no path to EU residency.
       </p>
 
       <h2>4. Montenegro</h2>
       <p>
-        Montenegro is an EU candidate country, meaning today's residents may benefit from future EU membership. Living costs are low (€800–€1,200/mo), and the country offers a temporary residence permit for remote workers.
+        Montenegro is an EU candidate country, meaning today's residents may benefit from future EU membership. Living costs stay well below Western Europe (often roughly €900–1,400/mo depending on coast vs. Podgorica), and the country offers a temporary residence permit for remote workers.
       </p>
       <p>
         Beautiful coastline, low crime, and easy access to the rest of Europe.
@@ -125,7 +131,7 @@ export default function BestCountries2026() {
 
       <h2>5. Thailand</h2>
       <p>
-        Thailand introduced the Long-Term Resident (LTR) visa and the Digital Nomad Visa in recent years. With monthly costs as low as €700–€1,000, excellent food, and tropical weather, it's a top pick for budget-conscious relocators.
+        Thailand introduced the Long-Term Resident (LTR) visa and the Digital Nomad Visa in recent years. For 2026, budget about $1,200–1,800/mo for a comfortable single lifestyle (Bangkok central 1BR often $500–700; tighter budgets possible outside Bangkok at $800–1,000).
       </p>
       <p>
         Bangkok and Chiang Mai have strong coworking scenes and fast internet.
@@ -136,7 +142,7 @@ export default function BestCountries2026() {
         Mexico's Temporary Resident visa is straightforward for those earning $2,500+/mo. No visa needed for stays under 180 days for most nationalities. Mexico City and Playa del Carmen have large expat communities.
       </p>
       <p>
-        Cost of living ranges from €800–€1,500/mo depending on location.
+        Cost of living for a comfortable single is typically $1,200–1,800/mo (Mexico City ~$1,300; Playa del Carmen ~$1,500).
       </p>
 
       <h2>7. Croatia</h2>
@@ -146,17 +152,17 @@ export default function BestCountries2026() {
 
       <h2>8. UAE (Dubai)</h2>
       <p>
-        Dubai's Remote Work Visa and Golden Visa programs attract high earners with zero income tax. Monthly costs are higher (€2,500–€4,000+), but the infrastructure, safety, and connectivity are world-class.
+        Dubai's Remote Work Visa and Golden Visa programs attract high earners with zero income tax. Monthly costs are higher ($3,000–5,000/mo all-in for many singles; Marina $4,500+, JLT/Discovery Gardens $2,500–3,500), but the infrastructure, safety, and connectivity are world-class.
       </p>
 
       <h2>9. Malaysia</h2>
       <p>
-        Malaysia's DE Rantau visa targets digital nomads and tech workers. Kuala Lumpur offers modern infrastructure at Southeast Asian prices (€800–€1,200/mo). English is widely spoken.
+        Malaysia's DE Rantau visa targets digital nomads and tech workers. Kuala Lumpur pairs modern infrastructure with roughly $1,200–1,700/mo for a comfortable single ($1,200–1,600 typical in KL). English is widely spoken.
       </p>
 
       <h2>10. Czech Republic</h2>
       <p>
-        Prague is one of Central Europe's most livable cities. The Zivno visa allows freelancers to operate legally. Living costs are €1,200–€1,800/mo. Strong public transport and healthcare systems.
+        Prague is one of Central Europe's most livable cities. The Zivno visa allows freelancers to operate legally. For 2026, plan about €1,500–1,900/mo comfortable (Prague €1,700–1,900). Strong public transport and healthcare systems.
       </p>
 
       <h2>How to Choose</h2>
