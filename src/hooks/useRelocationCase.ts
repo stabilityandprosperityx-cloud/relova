@@ -38,7 +38,7 @@ export function useRelocationCase(profile: UserProfile | null): RelocationCase {
   const load = useCallback(async () => {
     if (!user || !profile?.visa_type) { setData(d => ({ ...d, loading: false })); return; }
     const [{ data: allSteps }, { data: userSteps }] = await Promise.all([
-      supabase.from("relocation_steps").select("id, title, description, estimated_days, step_number").eq("visa_type", profile.visa_type).order("step_number"),
+      supabase.from("relocation_steps").select("id, title, description, estimated_days, step_number").eq("visa_type", profile.visa_type).eq("country", (profile as any).target_country || "").order("step_number"),
       supabase.from("user_steps").select("step_id, status").eq("user_id", user.id),
     ]);
     const doneIds = new Set((userSteps || []).filter((s: any) => s.status === "done").map((s: any) => s.step_id));

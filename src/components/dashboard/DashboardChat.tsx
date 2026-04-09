@@ -250,7 +250,7 @@ INSTRUCTIONS:
                       <ReactMarkdown>{msg.content}</ReactMarkdown>
                     </div>
                     {!isLoading && (
-                      <ChatActionButtons content={msg.content} visaType={profile?.visa_type || null} onNavigate={onNavigate} />
+                      <ChatActionButtons content={msg.content} visaType={profile?.visa_type || null} onNavigate={onNavigate} country={profile?.target_country || null} />
                     )}
                   </>
                 ) : msg.content}

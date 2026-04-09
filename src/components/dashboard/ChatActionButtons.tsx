@@ -15,6 +15,7 @@ interface Props {
   content: string;
   visaType: string | null;
   onNavigate?: (tab: string) => void;
+  country?: string | null;
 }
 
 function extractActions(content: string): ActionItem[] {
@@ -49,7 +50,7 @@ function extractActions(content: string): ActionItem[] {
   return actions;
 }
 
-export default function ChatActionButtons({ content, visaType, onNavigate }: Props) {
+export default function ChatActionButtons({ content, visaType, onNavigate, country }: Props) {
   const { user } = useAuth();
   const [applied, setApplied] = useState(false);
   const [applying, setApplying] = useState(false);
@@ -89,7 +90,7 @@ export default function ChatActionButtons({ content, visaType, onNavigate }: Pro
         if (existingStep?.id) {
           stepId = existingStep.id;
         } else {
-          const { data: newStep, error } = await supabase.from("relocation_steps").insert({ visa_type: visaType, title: step.title, step_number: nextNumber, estimated_days: 7 }).select("id").maybeSingle();
+          const { data: newStep, error } = await supabase.from("relocation_steps").insert({ visa_type: visaType, country: country || "", title: step.title, step_number: nextNumber, estimated_days: 7 }).select("id").maybeSingle();
           if (!error && newStep?.id) { stepId = newStep.id; nextNumber++; }
         }
         if (stepId) {
@@ -138,7 +139,7 @@ export default function ChatActionButtons({ content, visaType, onNavigate }: Pro
       stepId = existingStep.id;
     } else {
       const nextNum = (existingSteps?.[0]?.step_number || 0) + 1;
-      const { data: newStep, error } = await supabase.from("relocation_steps").insert({ visa_type: visaType, title, step_number: nextNum, estimated_days: 7 }).select("id").maybeSingle();
+      const { data: newStep, error } = await supabase.from("relocation_steps").insert({ visa_type: visaType, country: country || "", title, step_number: nextNum, estimated_days: 7 }).select("id").maybeSingle();
       if (!error && newStep?.id) stepId = newStep.id;
     }
     if (stepId) {
