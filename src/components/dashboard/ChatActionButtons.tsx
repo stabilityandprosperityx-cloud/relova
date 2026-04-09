@@ -14,6 +14,7 @@ interface ActionItem {
 interface Props {
   content: string;
   visaType: string | null;
+  onNavigate?: (tab: string) => void;
 }
 
 function extractActions(content: string): ActionItem[] {
@@ -28,7 +29,7 @@ function extractActions(content: string): ActionItem[] {
     const key = clean.toLowerCase();
 
     // Detect step/plan items
-    if (/step\s*\d|phase\s*\d|→.*apply|→.*register|→.*open|→.*get|→.*obtain|→.*submit|\[\s*\]|✅|☑|☐|📋/i.test(trimmed)) {
+    if (/step\s*\d|phase\s*\d|шаг\s*\d|фаза\s*\d|→.*apply|→.*register|→.*open|→.*get|→.*obtain|→.*submit|получить|подать|зарегистрировать|открыть|оформить|записаться|\[\s*\]|✅|☑|☐|📋/i.test(trimmed)) {
       const title = clean.replace(/^(step\s*\d+[:\.]?\s*)/i, "").replace(/^\[[\s xX]?\]\s*/, "").replace(/^[✅☑☐📋]\s*/u, "").trim();
       if (title.length > 5 && title.length < 200 && !seen.has(title.toLowerCase())) {
         seen.add(title.toLowerCase());
@@ -37,7 +38,7 @@ function extractActions(content: string): ActionItem[] {
     }
 
     // Detect document items
-    if (/passport|birth\s*certificate|proof\s*of|bank\s*statement|tax\s*return|insurance|transcript|diploma|criminal\s*record|nif|visa\s*application|photo|letter|contract|cv|resume/i.test(trimmed)) {
+    if (/passport|паспорт|birth\s*certificate|свидетельство|proof\s*of|справка|bank\s*statement|выписка|налог|insurance|страховк|diploma|диплом|несудимост|nif|виза|photo|фото|letter|письмо|договор|резюме|cv|resume/i.test(trimmed)) {
       if (clean.length > 3 && clean.length < 200 && !seen.has(key)) {
         seen.add(key);
         actions.push({ type: "document", title: clean });
@@ -48,7 +49,7 @@ function extractActions(content: string): ActionItem[] {
   return actions;
 }
 
-export default function ChatActionButtons({ content, visaType }: Props) {
+export default function ChatActionButtons({ content, visaType, onNavigate }: Props) {
   const { user } = useAuth();
   const [applied, setApplied] = useState(false);
   const [applying, setApplying] = useState(false);
@@ -187,62 +188,16 @@ export default function ChatActionButtons({ content, visaType }: Props) {
       {/* Success feedback */}
       <AnimatePresence>
         {showResult && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="text-[11px] text-muted-foreground/70 text-center"
-          >
-            Your checklist and documents have been updated. Check your Plan and Documents tabs.
+          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }}>
+            <button onClick={() => onNavigate?.("checklist")} className="w-full text-[11px] text-primary/70 hover:text-primary transition-colors text-center py-1">Added to your plan. Go to Checklist →</button>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Secondary actions: individual items */}
       {!applied && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="flex flex-wrap gap-1.5"
-        >
-          {steps.slice(0, 4).map((action, i) => {
-            const key = `step:${action.title}`;
-            const isAdded = addedItems.has(key);
-            const shortTitle = action.title.length > 35 ? action.title.slice(0, 35) + "…" : action.title;
-            return (
-              <Button
-                key={`s-${i}`}
-                size="sm"
-                variant="outline"
-                disabled={isAdded}
-                onClick={() => addSingleChecklist(action.title)}
-                className="h-7 text-[10px] gap-1 border-white/[0.08] text-muted-foreground hover:text-foreground hover:bg-white/[0.04] bg-transparent"
-              >
-                {isAdded ? <CheckCircle2 size={10} className="text-emerald-400" /> : <ListChecks size={10} />}
-                {shortTitle}
-              </Button>
-            );
-          })}
-          {docs.slice(0, 4).map((action, i) => {
-            const key = `document:${action.title}`;
-            const isAdded = addedItems.has(key);
-            const shortTitle = action.title.length > 35 ? action.title.slice(0, 35) + "…" : action.title;
-            return (
-              <Button
-                key={`d-${i}`}
-                size="sm"
-                variant="outline"
-                disabled={isAdded}
-                onClick={() => addSingleDocument(action.title)}
-                className="h-7 text-[10px] gap-1 border-white/[0.08] text-muted-foreground hover:text-foreground hover:bg-white/[0.04] bg-transparent"
-              >
-                {isAdded ? <CheckCircle2 size={10} className="text-emerald-400" /> : <FileText size={10} />}
-                {shortTitle}
-              </Button>
-            );
-          })}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+          <div className="flex gap-2 flex-wrap mt-2">{steps.length > 0 && (<button onClick={() => { steps.forEach(s => addSingleChecklist(s.title)); }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.06] text-[11px] text-muted-foreground hover:text-foreground hover:bg-white/[0.06] transition-colors"><ListChecks size={11} /> Add {steps.length} step{steps.length > 1 ? "s" : ""} to checklist</button>)}{docs.length > 0 && (<button onClick={() => { docs.forEach(d => addSingleDocument(d.title)); }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.06] text-[11px] text-muted-foreground hover:text-foreground hover:bg-white/[0.06] transition-colors"><FileText size={11} /> Add {docs.length} doc{docs.length > 1 ? "s" : ""} to documents</button>)}</div>
         </motion.div>
       )}
     </div>

@@ -64,9 +64,10 @@ async function streamChat({ messages, tier, systemContext, onDelta, onDone }: {
 interface Props {
   profile: UserProfile | null;
   relocationCase: RelocationCase;
+  onNavigate?: (tab: string) => void;
 }
 
-export default function DashboardChat({ profile }: Props) {
+export default function DashboardChat({ profile, onNavigate }: Props) {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([]);
@@ -249,7 +250,7 @@ INSTRUCTIONS:
                       <ReactMarkdown>{msg.content}</ReactMarkdown>
                     </div>
                     {!isLoading && (
-                      <ChatActionButtons content={msg.content} visaType={profile?.visa_type || null} />
+                      <ChatActionButtons content={msg.content} visaType={profile?.visa_type || null} onNavigate={onNavigate} />
                     )}
                   </>
                 ) : msg.content}
