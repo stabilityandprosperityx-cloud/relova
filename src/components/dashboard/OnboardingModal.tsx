@@ -66,6 +66,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const [search2, setSearch2] = useState("");
   const [matches, setMatches] = useState<CountryMatch[]>([]);
   const [showMatches, setShowMatches] = useState(false);
+  const [aiEnhancing, setAiEnhancing] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [pendingProfile, setPendingProfile] = useState<UserProfile | null>(null);
@@ -169,7 +170,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     return visaMap[country] || "Temporary_Residence";
   };
 
-  const handleModeB_Match = () => {
+  const handleModeB_Match = async () => {
     const criteria: UserCriteria = {
       citizenship,
       familyStatus,
@@ -179,8 +180,36 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       timeline,
     };
     const results = matchCountries(criteria);
+
+    const top3 = results.slice(0, 3);
+
+    // Show matches immediately with algorithm reasons (fast)
     setMatches(results);
     setShowMatches(true);
+
+    // Then enhance with AI explanations in background
+    setAiEnhancing(true);
+    try {
+      const { data } = await supabase.functions.invoke("match-explain", {
+        body: { criteria, matches: top3 },
+      });
+
+      if (data?.explanations) {
+        setMatches(prev => prev.map(match => {
+          const aiExplanation = data.explanations.find(
+            (e: { country: string; reasons: string[] }) => e.country === match.country.name
+          );
+          if (aiExplanation) {
+            return { ...match, reasons: aiExplanation.reasons };
+          }
+          return match;
+        }));
+      }
+    } catch {
+      // silently fail — keep algorithm reasons
+    } finally {
+      setAiEnhancing(false);
+    }
   };
 
   const selectCountryFromMatch = (countryName: string, matchScore: number) => {
@@ -350,6 +379,11 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-8">
         <div className="w-full max-w-2xl mx-4 rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-8">
           <h2 className="text-xl font-bold text-center mb-2">Your best matches</h2>
+          {aiEnhancing && (
+            <p className="text-[11px] text-[#38BDF8]/60 text-center mb-4 animate-pulse">
+              ✨ Personalizing your results...
+            </p>
+          )}
           <p className="text-[13px] text-[#9CA3AF] text-center mb-6">Based on your profile and preferences</p>
 
           <div className="space-y-3">
@@ -577,23 +611,42 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
             <div className="space-y-2 pt-2">
               {timelineOptions.map(t => (
                 <button key={t.id}
-                  onClick={() => {
+                  onClick={async () => {
                     setTimeline(t.id);
                     if (mode === "help") {
-                      // Trigger matching
-                      setTimeout(() => {
-                        const criteria: UserCriteria = {
-                          citizenship,
-                          familyStatus,
-                          monthlyIncome: income,
-                          goals: selectedGoals,
-                          constraints: selectedConstraints,
-                          timeline: t.id,
-                        };
-                        const results = matchCountries(criteria);
-                        setMatches(results);
-                        setShowMatches(true);
-                      }, 100);
+                      const criteria: UserCriteria = {
+                        citizenship,
+                        familyStatus,
+                        monthlyIncome: income,
+                        goals: selectedGoals,
+                        constraints: selectedConstraints,
+                        timeline: t.id,
+                      };
+                      const results = matchCountries(criteria);
+                      setMatches(results);
+                      setShowMatches(true);
+
+                      // Enhance top 3 with AI explanations
+                      setAiEnhancing(true);
+                      try {
+                        const top3 = results.slice(0, 3);
+                        const { data } = await supabase.functions.invoke("match-explain", {
+                          body: { criteria, matches: top3 },
+                        });
+                        if (data?.explanations) {
+                          setMatches(prev => prev.map(match => {
+                            const aiExplanation = data.explanations.find(
+                              (e: { country: string; reasons: string[] }) => e.country === match.country.name
+                            );
+                            if (aiExplanation) return { ...match, reasons: aiExplanation.reasons };
+                            return match;
+                          }));
+                        }
+                      } catch {
+                        // silently fail
+                      } finally {
+                        setAiEnhancing(false);
+                      }
                     } else {
                       saveProfile();
                     }
