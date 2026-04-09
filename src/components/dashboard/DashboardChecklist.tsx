@@ -83,14 +83,13 @@ export default function DashboardChecklist({ profile, relocationCase }: Props) {
   const fetchSteps = useCallback(async () => {
     if (!user || !profile?.visa_type) { setLoading(false); return; }
 
-    const { data: userStepsData } = await supabase
-      .from("user_steps")
-      .select("step_id, status, relocation_steps(id, title, description, estimated_days, step_number)")
-      .eq("user_id", user.id);
-
-    let relSteps = (userStepsData || [])
-      .map((s: any) => s.relocation_steps)
-      .filter(Boolean);
+    const { data: userStepsData } = await supabase.from("user_steps").select("step_id, status").eq("user_id", user.id);
+    const stepIds = (userStepsData || []).map((s: any) => s.step_id).filter(Boolean);
+    let relSteps: any[] = [];
+    if (stepIds.length > 0) {
+      const { data: stepsData } = await supabase.from("relocation_steps").select("id, title, description, estimated_days, step_number").in("id", stepIds).order("step_number", { ascending: true });
+      relSteps = stepsData || [];
+    }
 
     // Fallback: support freshly initialized checklists before any user_steps rows exist.
     if (!relSteps || relSteps.length === 0) {
@@ -98,6 +97,7 @@ export default function DashboardChecklist({ profile, relocationCase }: Props) {
         .from("relocation_steps")
         .select("id, title, description, estimated_days, step_number")
         .eq("visa_type", profile.visa_type!)
+        .eq("country", profile.target_country || "")
         .order("step_number", { ascending: true });
       relSteps = relStepsByVisa || [];
     }

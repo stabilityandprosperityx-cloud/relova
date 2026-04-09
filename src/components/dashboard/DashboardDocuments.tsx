@@ -164,7 +164,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
     if (!user) return;
     const [docsRes, visaRes] = await Promise.all([
       supabase.from("user_documents").select("*").eq("user_id", user.id).order("uploaded_at", { ascending: false }),
-      supabase.from("visa_documents").select("*").eq("visa_type", profile?.visa_type || "TBD"),
+      supabase.from("visa_documents").select("*").eq("visa_type", profile?.visa_type || "TBD").eq("country", profile?.target_country || ""),
     ]);
     const fetchedDocs = (docsRes.data || []) as UserDoc[];
     setUserDocs(fetchedDocs);

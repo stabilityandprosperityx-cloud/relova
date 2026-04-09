@@ -287,25 +287,17 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     let stepNumber = 1;
     for (const phase of plan) {
       for (const s of phase.steps) {
-        const { data: newStep } = await supabase
-          .from("relocation_steps")
-          .insert({
-            visa_type: visaType,
-            title: `[${phase.name}] ${s.title}`,
-            description: s.description,
-            step_number: stepNumber,
-            estimated_days: s.estimatedDays,
-          })
-          .select("id")
-          .single();
-
-        if (newStep) {
-          await supabase.from("user_steps").insert({
-            user_id: userId,
-            step_id: newStep.id,
-            status: stepNumber === 1 ? "active" : "todo",
-            completed_at: null,
-          });
+        const { data: existingStep } = await supabase.from("relocation_steps").select("id").eq("visa_type", visaType).eq("country", finalCountry).eq("title", `[${phase.name}] ${s.title}`).maybeSingle();
+        let stepId = existingStep?.id;
+        if (!stepId) {
+          const { data: newStep } = await supabase.from("relocation_steps").insert({ visa_type: visaType, country: finalCountry, title: `[${phase.name}] ${s.title}`, description: s.description, step_number: stepNumber, estimated_days: s.estimatedDays }).select("id").maybeSingle();
+          stepId = newStep?.id;
+        }
+        if (stepId) {
+          const { data: existingUserStep } = await supabase.from("user_steps").select("id").eq("user_id", userId).eq("step_id", stepId).maybeSingle();
+          if (!existingUserStep) {
+            await supabase.from("user_steps").insert({ user_id: userId, step_id: stepId, status: stepNumber === 1 ? "active" : "todo", completed_at: null });
+          }
         }
         stepNumber++;
       }
@@ -313,12 +305,10 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
     // Insert auto-generated checklist documents
     for (const doc of checklist) {
-      await supabase.from("visa_documents").insert({
-        visa_type: visaType,
-        document_name: doc.name,
-        description: doc.description,
-        is_required: doc.required,
-      });
+      const { data: existingDoc } = await supabase.from("visa_documents").select("id").eq("visa_type", visaType).eq("country", finalCountry).eq("document_name", doc.name).maybeSingle();
+      if (!existingDoc) {
+        await supabase.from("visa_documents").insert({ visa_type: visaType, country: finalCountry, document_name: doc.name, description: doc.description, is_required: doc.required });
+      }
     }
 
     setPendingProfile(profile);
@@ -330,33 +320,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     setShowResult(true);
   }, []);
 
-  const autoInitPlan = async (userId: string, visaType: string, targetCountry: string, familyStatus: string) => {
-    const { data: existing } = await supabase.from("relocation_steps").select("id").eq("visa_type", visaType).limit(1);
-    if (existing && existing.length > 0) {
-      const { data: userStepsExist } = await supabase.from("user_steps").select("id").eq("user_id", userId).limit(1);
-      if (userStepsExist && userStepsExist.length > 0) return;
-    }
-    const raw = generatePlan(targetCountry, visaType, familyStatus);
-    let stepNumber = 0;
-    for (const phase of raw) {
-      for (const step of phase.steps) {
-        stepNumber++;
-        const { data: newStep } = await supabase.from("relocation_steps").insert({ step_number: stepNumber, title: step.title, visa_type: visaType, description: step.description, estimated_days: step.estimatedDays }).select("id").maybeSingle();
-        if (newStep?.id) {
-          await supabase.from("user_steps").insert({ user_id: userId, step_id: newStep.id, status: "todo" });
-        }
-      }
-    }
-  };
-
   const handleCompleteWithAutoInit = async () => {
     if (!pendingProfile) return;
-    await autoInitPlan(
-      userId,
-      pendingProfile.visa_type || determineVisaType(pendingProfile.target_country || ""),
-      pendingProfile.target_country || "",
-      pendingProfile.family_status || "single"
-    );
     onComplete(pendingProfile);
   };
 
