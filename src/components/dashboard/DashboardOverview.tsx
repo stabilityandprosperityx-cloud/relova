@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, AlertTriangle, Clock, ChevronRight, Lightbulb, MapPin, Shield, Zap } from "lucide-react";
+import { ArrowRight, AlertTriangle, Clock, Lightbulb, MapPin, Shield, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import type { UserProfile, DashboardTab } from "@/pages/Dashboard";
 import { countryDatabase } from "@/lib/countryMatching";
@@ -75,77 +75,15 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile, 
 
   const risks = countryData?.risks || ["Research visa requirements carefully"];
 
-  // Dynamic next actions
-  const nextActions = [
-    { label: "Check visa requirements", tab: "plan" as DashboardTab },
-    { label: "Prepare key documents", tab: "documents" as DashboardTab },
-    { label: "Talk to your advisor", tab: "chat" as DashboardTab },
-  ];
-
   return (
     <div className="space-y-6 md:space-y-8">
 
-      {/* ─── 1. MAIN BLOCK — Your Relocation Path ─── */}
-      <section className="rounded-xl border border-primary/20 bg-primary/[0.04] p-5 md:p-7">
-        <p className="text-[11px] uppercase tracking-widest text-primary/80 font-medium mb-4">Your relocation path</p>
-
-        <div className="flex items-start gap-4 mb-5">
-          {countryData && <span className="text-3xl md:text-4xl mt-0.5">{countryData.flag}</span>}
-          <div className="flex-1 min-w-0">
-            <h1 className="text-xl md:text-2xl font-bold tracking-tight">{profile.target_country}</h1>
-            <p className="text-[13px] text-muted-foreground mt-0.5">Your best path based on your profile</p>
-          </div>
-          <Button variant="ghost" size="sm" className="text-[11px] text-muted-foreground hover:text-foreground shrink-0" onClick={onEditProfile}>
-            Edit
-          </Button>
-        </div>
-
-        {/* Key metrics row */}
-        <div className="grid grid-cols-3 gap-3 mb-5">
-          <div className="rounded-lg bg-white/[0.04] p-3">
-            <div className="flex items-center gap-1.5 mb-1">
-              <Clock size={12} className="text-primary/70" />
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Stability</span>
-            </div>
-            <span className="text-base md:text-lg font-bold">{stabilityMonths} mo</span>
-          </div>
-          <div className="rounded-lg bg-white/[0.04] p-3">
-            <div className="flex items-center gap-1.5 mb-1">
-              <Shield size={12} className="text-primary/70" />
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Risk</span>
-            </div>
-            <span className={`text-base md:text-lg font-bold ${risk.color}`}>{risk.label}</span>
-          </div>
-          <div className="rounded-lg bg-white/[0.04] p-3">
-            <div className="flex items-center gap-1.5 mb-1">
-              <Zap size={12} className="text-primary/70" />
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Path</span>
-            </div>
-            <span className="text-base md:text-lg font-bold truncate block">{pathType}</span>
-          </div>
-        </div>
-
-        <Button
-          className="w-full md:w-auto shadow-[0_0_28px_-4px_hsl(var(--primary)/0.35)]"
-          onClick={() => {
-            const plan = profile?.plan || "free";
-            if (plan === "free") {
-              setShowProPaywall(true);
-            } else if (plan === "pro") {
-              onNavigate("checklist");
-            } else {
-              onNavigate("plan");
-            }
-          }}
-        >
-          Continue your plan <ArrowRight size={14} className="ml-1.5" />
-        </Button>
-      </section>
-
-      {/* ─── 2. PROGRESS BLOCK — Journey Line ─── */}
+      {/* ─── 1. PROGRESS BLOCK — Journey Line ─── */}
       <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
         <div className="flex items-center justify-between mb-1">
-          <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Progress</p>
+          <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">
+            {profile.target_country} · Phase {relocationCase.currentPhaseIndex + 1} of {relocationCase.totalPhases} · {relocationCase.progressPct}% complete
+          </p>
           <span className="text-[12px] text-muted-foreground">
             Step {Math.min(currentStepNum, totalSteps)} of {totalSteps || "–"}
           </span>
@@ -235,26 +173,46 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile, 
         )}
       </section>
 
-      {/* ─── 3. WHAT TO DO NEXT ─── */}
-      <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
-        <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium mb-4">What to do next</p>
-        <div className="space-y-1">
-          {nextActions.map((action, i) => (
-            <button
-              key={i}
-              onClick={() => onNavigate(action.tab)}
-              className="w-full flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-white/[0.05] transition-colors text-left group"
-            >
-              <div className="w-1.5 h-1.5 rounded-full bg-primary/50 shrink-0" />
-              <span className="text-[13px] text-foreground/80 group-hover:text-foreground transition-colors flex-1">
-                {action.label}
-              </span>
-              <ChevronRight size={13} className="text-muted-foreground/40 group-hover:text-muted-foreground transition-colors" />
-            </button>
-          ))}
+      {/* ─── 2. MAIN BLOCK — Your Relocation Path ─── */}
+      <section className="rounded-xl border border-primary/20 bg-primary/[0.04] p-5 md:p-7">
+        <p className="text-[11px] uppercase tracking-widest text-primary/80 font-medium mb-4">Your relocation path</p>
+
+        <div className="flex items-start gap-4 mb-5">
+          {countryData && <span className="text-3xl md:text-4xl mt-0.5">{countryData.flag}</span>}
+          <div className="flex-1 min-w-0">
+            <h1 className="text-xl md:text-2xl font-bold tracking-tight">{profile.target_country}</h1>
+            <p className="text-[13px] text-muted-foreground mt-0.5">Your best path based on your profile</p>
+          </div>
+          <Button variant="ghost" size="sm" className="text-[11px] text-muted-foreground hover:text-foreground shrink-0" onClick={onEditProfile}>
+            Edit
+          </Button>
+        </div>
+
+        {/* Key metrics row */}
+        <div className="grid grid-cols-3 gap-3">
+          <div className="rounded-lg bg-white/[0.04] p-3">
+            <div className="flex items-center gap-1.5 mb-1">
+              <Clock size={12} className="text-primary/70" />
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Stability</span>
+            </div>
+            <span className="text-base md:text-lg font-bold">{stabilityMonths} mo</span>
+          </div>
+          <div className="rounded-lg bg-white/[0.04] p-3">
+            <div className="flex items-center gap-1.5 mb-1">
+              <Shield size={12} className="text-primary/70" />
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Risk</span>
+            </div>
+            <span className={`text-base md:text-lg font-bold ${risk.color}`}>{risk.label}</span>
+          </div>
+          <div className="rounded-lg bg-white/[0.04] p-3">
+            <div className="flex items-center gap-1.5 mb-1">
+              <Zap size={12} className="text-primary/70" />
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Path</span>
+            </div>
+            <span className="text-base md:text-lg font-bold truncate block">{pathType}</span>
+          </div>
         </div>
       </section>
-      <CostCalculator country={(profile.target_country || "").trim().toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())} familyStatus={((profile.family_status || "single").toLowerCase() as "single" | "couple" | "family")} monthlyIncome={Number(profile.monthly_budget || 0)} />
 
       {/* ─── Bottom row: Risks + Stability comparison ─── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
@@ -325,6 +283,7 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile, 
           </Button>
         </section>
       </div>
+      <CostCalculator country={(profile.target_country || "").trim().toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())} familyStatus={((profile.family_status || "single").toLowerCase() as "single" | "couple" | "family")} monthlyIncome={Number(profile.monthly_budget || 0)} />
       {showProPaywall && (
         <LockedOverlayPro
           onClose={() => setShowProPaywall(false)}
