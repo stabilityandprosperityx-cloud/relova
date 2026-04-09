@@ -3,3 +3,6 @@ project_id = "ewvzfuvabavlfslpdrea"
 # Paddle sends webhooks without a Supabase JWT; auth is Paddle-Signature + PADDLE_WEBHOOK_SECRET.
 [functions.paddle-webhook]
 verify_jwt = false
+
+[functions.match-explain]
+verify_jwt = false
