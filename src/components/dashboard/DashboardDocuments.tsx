@@ -12,6 +12,7 @@ import LockedOverlay from "./LockedOverlay";
 import DocumentPreviewModal from "./DocumentPreviewModal";
 import VisaLetterGenerator from "./VisaLetterGenerator";
 import type { UserProfile } from "@/pages/Dashboard";
+import { useRelocationCase } from "@/hooks/useRelocationCase";
 
 interface UserDoc {
   id: string;
@@ -128,6 +129,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate }: Prop
   const [previewDoc, setPreviewDoc] = useState<{ doc: UserDoc; aiStatus: string | null; usedFor: string; signedUrl: string | null } | null>(null);
   const [signedUrls, setSignedUrls] = useState<Record<string, string>>({});
   const isLocked = (profile?.plan || "free") !== "full";
+  const relocationCase = useRelocationCase(profile);
 
   // Generate signed URLs for all uploaded docs
   const refreshSignedUrls = async (docs: UserDoc[]) => {
@@ -384,19 +386,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate }: Prop
           {/* Subtitle */}
           <p className="text-[10px] text-muted-foreground/40 text-center mb-4">From uncertainty → stability</p>
 
-          {/* Phase indicator */}
-          {(() => {
-            const identityDocs = requiredDocs.filter(d => d.category === "identity");
-            const financialDocs = requiredDocs.filter(d => d.category === "financial");
-            const identityReady = identityDocs.every(d => d.uploadedDoc);
-            const financialReady = financialDocs.every(d => d.uploadedDoc);
-            const currentPhase = !identityReady ? "Identity verification" : !financialReady ? "Financial proof" : "Legal documents";
-            return (
-              <p className="text-[11px] text-center text-muted-foreground/60">
-                You are currently in: <span className="text-primary/80 font-medium">{currentPhase}</span>
-              </p>
-            );
-          })()}
+          <p className="text-[11px] text-center text-muted-foreground/60">Relocation: Phase {relocationCase.currentPhaseIndex + 1} of {relocationCase.totalPhases} · <span className="text-primary/80 font-medium">{relocationCase.currentPhase}</span></p>
 
           <div className="flex items-start gap-3 mt-5">
             <div className="flex-1">
@@ -562,6 +552,9 @@ export default function DashboardDocuments({ profile, onBack, onNavigate }: Prop
                                     Required for: {relatedTask} →
                                   </button>
                                 </div>
+                              )}
+                              {!doc.uploadedDoc && relocationCase.nextStep && doc.document_name.toLowerCase().includes(relocationCase.nextStep.title.toLowerCase().split(" ")[0]) && (
+                                <div className="mt-1.5"><span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 text-[10px] font-medium">⚡ Needed for your next step</span></div>
                               )}
                             </div>
 

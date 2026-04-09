@@ -10,6 +10,7 @@ import { generatePlan } from "@/lib/planGenerator";
 import { motion } from "framer-motion";
 import type { UserProfile } from "@/pages/Dashboard";
 import LockedOverlayPro from "./LockedOverlayPro";
+import { useRelocationCase } from "@/hooks/useRelocationCase";
 
 interface StepItem {
   id: string;
@@ -69,6 +70,7 @@ function parseStep(raw: string): { phase: string; title: string } {
 
 export default function DashboardChecklist({ profile }: Props) {
   const { user } = useAuth();
+  const relocationCase = useRelocationCase(profile);
   const [showPaywall, setShowPaywall] = useState(true);
   const isLocked = (profile?.plan || "free") === "free";
   const [steps, setSteps] = useState<StepItem[]>([]);
@@ -203,9 +205,7 @@ export default function DashboardChecklist({ profile }: Props) {
     );
   }
 
-  const completed = steps.filter(s => s.isDone).length;
   const total = steps.length;
-  const progressPct = total > 0 ? Math.round((completed / total) * 100) : 0;
 
   // Group steps by phase
   const grouped = PHASES
@@ -242,7 +242,7 @@ export default function DashboardChecklist({ profile }: Props) {
       <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
         <div className="flex items-center justify-between mb-1">
           <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Your journey</p>
-          <span className="text-[12px] text-muted-foreground">{completed} / {total} completed</span>
+          <span className="text-[12px] text-muted-foreground">{relocationCase.doneCount} / {relocationCase.totalCount} completed</span>
         </div>
 
         <div className="relative my-5 h-[12px] flex items-center">
@@ -252,7 +252,7 @@ export default function DashboardChecklist({ profile }: Props) {
               className="absolute inset-y-0 left-0 rounded-full"
               style={{ background: "linear-gradient(90deg, hsl(var(--primary)), hsl(190 80% 60%))" }}
               initial={{ width: 0 }}
-              animate={{ width: `${progressPct}%` }}
+              animate={{ width: `${relocationCase.progressPct}%` }}
               transition={{ duration: 1.2, ease: "easeOut" }}
             />
             <div
@@ -261,7 +261,7 @@ export default function DashboardChecklist({ profile }: Props) {
                 background: "linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.6) 50%, transparent 100%)",
                 backgroundSize: "200% 100%",
                 animation: "energyFlow 3s ease-in-out infinite",
-                width: `${progressPct}%`,
+                width: `${relocationCase.progressPct}%`,
               }}
             />
           </div>
@@ -270,11 +270,11 @@ export default function DashboardChecklist({ profile }: Props) {
             <div className="w-[8px] h-[8px] rounded-full bg-primary shadow-[0_0_6px_1px_hsl(var(--primary)/0.3)]" />
           </div>
           {/* Current position */}
-          {progressPct > 0 && progressPct < 100 && (
+          {relocationCase.progressPct > 0 && relocationCase.progressPct < 100 && (
             <motion.div
               className="absolute top-1/2 -translate-y-1/2 z-10"
               initial={{ left: "6px" }}
-              animate={{ left: `calc(6px + (100% - 12px) * ${progressPct / 100})` }}
+              animate={{ left: `calc(6px + (100% - 12px) * ${relocationCase.progressPct / 100})` }}
               transition={{ duration: 1.2, ease: "easeOut" }}
               style={{ marginLeft: "-6px" }}
             >
@@ -286,7 +286,7 @@ export default function DashboardChecklist({ profile }: Props) {
           )}
           {/* End dot */}
           <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
-            <div className={`w-[8px] h-[8px] rounded-full ${progressPct >= 100 ? "bg-primary shadow-[0_0_6px_1px_hsl(var(--primary)/0.3)]" : "bg-white/[0.08] border border-white/[0.12]"}`} />
+            <div className={`w-[8px] h-[8px] rounded-full ${relocationCase.progressPct >= 100 ? "bg-primary shadow-[0_0_6px_1px_hsl(var(--primary)/0.3)]" : "bg-white/[0.08] border border-white/[0.12]"}`} />
           </div>
         </div>
         <div className="flex justify-between">
@@ -296,15 +296,7 @@ export default function DashboardChecklist({ profile }: Props) {
 
         <p className="text-[10px] text-muted-foreground/40 text-center mt-3 mb-2">From uncertainty → stability</p>
 
-        {(() => {
-          const firstIncomplete = grouped.find(g => g.steps.some(s => !s.isDone));
-          const phaseName = firstIncomplete ? firstIncomplete.label : "Complete";
-          return (
-            <p className="text-[11px] text-center text-muted-foreground/60">
-              You are currently in: <span className="text-primary/80 font-medium">{phaseName} phase</span>
-            </p>
-          );
-        })()}
+        <p className="text-[11px] text-center text-muted-foreground/60">Phase {relocationCase.currentPhaseIndex + 1} of {relocationCase.totalPhases} · <span className="text-primary/80 font-medium">{relocationCase.currentPhase}</span></p>
       </section>
 
       {/* Phases — each is its own independent container */}
@@ -399,6 +391,9 @@ export default function DashboardChecklist({ profile }: Props) {
                             }`}>
                               {step.description}
                             </span>
+                          )}
+                          {relocationCase.nextStep?.id === step.id && !step.isDone && (
+                            <span className="inline-flex items-center gap-1 mt-1.5 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-medium">← Your next action</span>
                           )}
                         </div>
 
