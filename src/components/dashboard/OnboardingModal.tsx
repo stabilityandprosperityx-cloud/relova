@@ -378,8 +378,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   // Mode selection screen
   if (mode === null) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-6">
-        <div className="w-full max-w-lg mx-4 rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-8 max-h-[90vh] overflow-y-auto">
+      <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-4 px-4">
+        <div className="w-full max-w-lg rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-6 sm:p-8 my-4">
           <h2 className="text-xl font-bold text-center mb-2">Let's find your path</h2>
           <p className="text-[13px] text-[#9CA3AF] text-center mb-8">Choose how you'd like to start</p>
 
@@ -409,8 +409,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   // Country matching results (Mode B)
   if (showMatches) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-8">
-        <div className="w-full max-w-2xl mx-4 rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-8">
+      <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-4 px-4">
+        <div className="w-full max-w-2xl rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-4 sm:p-8 my-4">
           <h2 className="text-xl font-bold text-center mb-2">Your best matches</h2>
           {aiEnhancing && (
             <p className="text-[11px] text-[#38BDF8]/60 text-center mb-4 animate-pulse">
@@ -421,7 +421,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
           <div className="space-y-3">
             {matches.map((match, i) => (
-              <div key={match.country.name} className={`rounded-xl border p-5 transition-all ${
+              <div key={match.country.name} className={`rounded-xl border p-3 sm:p-5 transition-all ${
                 i === 0 ? "border-[#38BDF8]/30 bg-[#38BDF8]/5" : "border-white/[0.06] bg-white/[0.03]"
               }`}>
                 <div className="flex items-start justify-between gap-4">
@@ -462,8 +462,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                     </div>
                     <p className="text-[11px] text-red-400/60 mt-2">⚠ {match.topRisk}</p>
                   </div>
-                  <div className="text-right shrink-0">
-                    <div className="text-2xl font-bold text-[#38BDF8]">{match.score}%</div>
+                  <div className="text-right shrink-0 min-w-[60px]">
+                    <div className="text-xl sm:text-2xl font-bold text-[#38BDF8]">{match.score}%</div>
                     <div className="text-[10px] text-[#9CA3AF]">match</div>
                     <Button
                       size="sm"
@@ -491,8 +491,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-6">
-      <div className="w-full max-w-md mx-4 rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-8 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-4 px-4">
+      <div className="w-full max-w-md rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-6 sm:p-8 my-4">
         {/* Progress bar */}
         <div className="flex justify-center gap-2 mb-8">
           {Array.from({ length: totalSteps }).map((_, s) => (
@@ -605,7 +605,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-center">What matters most?</h2>
             <p className="text-[12px] text-[#9CA3AF] text-center">Select all that apply</p>
-            <div className="grid grid-cols-2 gap-3 pt-2">
+            <div className="grid grid-cols-2 sm:grid-cols-2 gap-2 sm:gap-3 pt-2">
               {goals.map(g => (
                 <button key={g.id}
                   onClick={() => setSelectedGoals(prev => prev.includes(g.id) ? prev.filter(x => x !== g.id) : [...prev, g.id])}
