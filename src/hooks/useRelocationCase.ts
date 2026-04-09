@@ -52,7 +52,8 @@ export function useRelocationCase(profile: UserProfile | null): RelocationCase {
     const totalCount = steps.length;
     const progressPct = totalCount > 0 ? Math.round((doneCount / totalCount) * 100) : 0;
     const nextStep = steps.find((s: any) => !s.isDone) || null;
-    const currentPhase = nextStep ? nextStep.phase : "Settling in";
+    const firstDonePhase = steps.find((s: any) => s.isDone)?.phase || null;
+    const currentPhase = doneCount === 0 ? "Before you move" : (nextStep ? nextStep.phase : "Settling in");
     const currentPhaseIndex = Math.max(0, PHASES.indexOf(currentPhase));
     let daysUntilMove: number | null = null;
     if ((profile as any).move_date) {

@@ -66,7 +66,6 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile, 
 
   const doneCount = relocationCase.doneCount;
   const totalSteps = relocationCase.totalCount;
-  const currentStepNum = doneCount + 1;
   const progressPct = relocationCase.progressPct;
 
   const recommended = profile.recommended_country;
@@ -80,13 +79,10 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile, 
 
       {/* ─── 1. PROGRESS BLOCK — Journey Line ─── */}
       <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
-        <div className="flex items-center justify-between mb-1">
+        <div className="mb-1">
           <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">
             {profile.target_country} · Phase {relocationCase.currentPhaseIndex + 1} of {relocationCase.totalPhases} · {relocationCase.progressPct}% complete
           </p>
-          <span className="text-[12px] text-muted-foreground">
-            Step {Math.min(currentStepNum, totalSteps)} of {totalSteps || "–"}
-          </span>
         </div>
 
         {/* Journey Line */}
