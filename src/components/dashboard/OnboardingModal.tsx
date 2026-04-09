@@ -330,6 +330,36 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     setShowResult(true);
   }, []);
 
+  const autoInitPlan = async (userId: string, visaType: string, targetCountry: string, familyStatus: string) => {
+    const { data: existing } = await supabase.from("relocation_steps").select("id").eq("visa_type", visaType).limit(1);
+    if (existing && existing.length > 0) {
+      const { data: userStepsExist } = await supabase.from("user_steps").select("id").eq("user_id", userId).limit(1);
+      if (userStepsExist && userStepsExist.length > 0) return;
+    }
+    const raw = generatePlan(targetCountry, visaType, familyStatus);
+    let stepNumber = 0;
+    for (const phase of raw) {
+      for (const step of phase.steps) {
+        stepNumber++;
+        const { data: newStep } = await supabase.from("relocation_steps").insert({ step_number: stepNumber, title: step.title, visa_type: visaType, description: step.description, estimated_days: step.estimatedDays }).select("id").maybeSingle();
+        if (newStep?.id) {
+          await supabase.from("user_steps").insert({ user_id: userId, step_id: newStep.id, status: "todo" });
+        }
+      }
+    }
+  };
+
+  const handleCompleteWithAutoInit = async () => {
+    if (!pendingProfile) return;
+    await autoInitPlan(
+      userId,
+      pendingProfile.visa_type || determineVisaType(pendingProfile.target_country || ""),
+      pendingProfile.target_country || "",
+      pendingProfile.family_status || "single"
+    );
+    onComplete(pendingProfile);
+  };
+
   const nextStep = () => {
     if (mode === "help" && step === currentSteps.length - 1) {
       handleModeB_Match();
@@ -352,7 +382,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     return (
       <ResultScreen
         profile={pendingProfile}
-        onContinue={() => onComplete(pendingProfile)}
+        onContinue={handleCompleteWithAutoInit}
         onSeeOtherMatches={() => {
           setShowResult(false);
           setShowLoading(false);

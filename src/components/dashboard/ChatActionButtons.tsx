@@ -84,16 +84,20 @@ export default function ChatActionButtons({ content, visaType, onNavigate }: Pro
 
       // Insert all steps
       for (const step of steps) {
-        const { data: newStep, error } = await supabase
-          .from("relocation_steps")
-          .insert({ visa_type: visaType, title: step.title, step_number: nextNumber, estimated_days: 7 })
-          .select("id")
-          .single();
-
-        if (!error && newStep) {
-          await supabase.from("user_steps").insert({ user_id: user.id, step_id: newStep.id, status: "todo" });
-          stepsAdded++;
-          nextNumber++;
+        const { data: existingStep } = await supabase.from("relocation_steps").select("id").eq("visa_type", visaType).eq("title", step.title).maybeSingle();
+        let stepId: string | null = null;
+        if (existingStep?.id) {
+          stepId = existingStep.id;
+        } else {
+          const { data: newStep, error } = await supabase.from("relocation_steps").insert({ visa_type: visaType, title: step.title, step_number: nextNumber, estimated_days: 7 }).select("id").maybeSingle();
+          if (!error && newStep?.id) { stepId = newStep.id; nextNumber++; }
+        }
+        if (stepId) {
+          const { data: existingUserStep } = await supabase.from("user_steps").select("id").eq("user_id", user.id).eq("step_id", stepId).maybeSingle();
+          if (!existingUserStep) {
+            await supabase.from("user_steps").insert({ user_id: user.id, step_id: stepId, status: "todo" });
+            stepsAdded++;
+          }
         }
       }
 
@@ -128,17 +132,25 @@ export default function ChatActionButtons({ content, visaType, onNavigate }: Pro
       .order("step_number", { ascending: false })
       .limit(1);
 
-    const nextNumber = (existingSteps?.[0]?.step_number || 0) + 1;
-    const { data: newStep, error } = await supabase
-      .from("relocation_steps")
-      .insert({ visa_type: visaType, title, step_number: nextNumber, estimated_days: 7 })
-      .select("id")
-      .single();
-
-    if (!error && newStep) {
-      await supabase.from("user_steps").insert({ user_id: user.id, step_id: newStep.id, status: "todo" });
-      setAddedItems(prev => new Set(prev).add(key));
-      toast.success(`Added to checklist: ${title}`);
+    const { data: existingStep } = await supabase.from("relocation_steps").select("id").eq("visa_type", visaType).eq("title", title).maybeSingle();
+    let stepId: string | null = null;
+    if (existingStep?.id) {
+      stepId = existingStep.id;
+    } else {
+      const nextNum = (existingSteps?.[0]?.step_number || 0) + 1;
+      const { data: newStep, error } = await supabase.from("relocation_steps").insert({ visa_type: visaType, title, step_number: nextNum, estimated_days: 7 }).select("id").maybeSingle();
+      if (!error && newStep?.id) stepId = newStep.id;
+    }
+    if (stepId) {
+      const { data: existingUserStep } = await supabase.from("user_steps").select("id").eq("user_id", user.id).eq("step_id", stepId).maybeSingle();
+      if (!existingUserStep) {
+        await supabase.from("user_steps").insert({ user_id: user.id, step_id: stepId, status: "todo" });
+        setAddedItems(prev => new Set(prev).add(key));
+        toast.success("Added to checklist: " + title);
+      } else {
+        toast.success("Already in your checklist");
+        setAddedItems(prev => new Set(prev).add(key));
+      }
     } else {
       toast.error("Could not add item");
     }
