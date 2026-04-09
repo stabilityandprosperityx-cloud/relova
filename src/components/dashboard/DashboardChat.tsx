@@ -105,6 +105,14 @@ export default function DashboardChat({ profile }: Props) {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
+  function getPhaseFromStepTitle(title: string): string {
+    const t = title.toLowerCase();
+    if (t.includes("arrive") || t.includes("accommodation") || t.includes("bank account") || t.includes("sim card")) return "Arrival";
+    if (t.includes("visa") || t.includes("permit") || t.includes("tax") || t.includes("insurance") || t.includes("biometric")) return "Legal & Setup";
+    if (t.includes("routine") || t.includes("network") || t.includes("settle")) return "Settling in";
+    return "Before you move";
+  }
+
   const buildSystemContext = async (): Promise<string | undefined> => {
     if (!profile || !user) return undefined;
 
@@ -131,6 +139,7 @@ export default function DashboardChat({ profile }: Props) {
     }
 
     const progressPct = totalSteps > 0 ? Math.round((doneSteps / totalSteps) * 100) : 0;
+    const currentPhaseLabel = currentStepTitle !== "Getting started" ? getPhaseFromStepTitle(currentStepTitle) : "Before you move";
 
     return `You are Relova AI — a personalized relocation advisor. User profile:
 citizenship: ${profile.citizenship || "unknown"}
@@ -141,14 +150,14 @@ monthly budget: $${profile.monthly_budget || "unknown"}
 family status: ${profile.family_status || "single"}
 
 Current progress: ${doneSteps}/${totalSteps} steps completed (${progressPct}%)
-Current step they are working on: ${currentStepTitle}
+Current phase: ${currentPhaseLabel}
+Currently working on: ${currentStepTitle}
 
 INSTRUCTIONS:
-- Tailor ALL advice to their exact citizenship, target country, and visa type
-- Reference their current step when relevant
-- If they ask what to do next, refer to their current step
-- Never give generic answers — always personalize
-- You are NOT a lawyer — always add disclaimer for legal/visa advice`;
+- ALWAYS reference the user's current phase and step in your first response
+- If they ask what to do next, tell them exactly: their current step, why it matters, how to do it step by step for their specific citizenship + target country
+- Never give generic answers — always personalize to their passport, country, visa type and current progress
+- You are NOT a lawyer — add disclaimer for legal/visa advice`;
   };
 
   const saveMessage = async (msg: Message) => {

@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/contexts/AuthContext";
+import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, AlertTriangle, Clock, ChevronRight, Lightbulb, MapPin, Shield, Zap } from "lucide-react";
@@ -9,20 +7,12 @@ import type { UserProfile, DashboardTab } from "@/pages/Dashboard";
 import { countryDatabase } from "@/lib/countryMatching";
 import { CostCalculator } from "@/components/dashboard/CostCalculator";
 import LockedOverlayPro from "./LockedOverlayPro";
+import { useRelocationCase } from "@/hooks/useRelocationCase";
 
 interface Props {
   profile: UserProfile | null;
   onNavigate: (tab: DashboardTab) => void;
   onEditProfile: () => void;
-}
-
-interface StepWithStatus {
-  id: string;
-  step_number: number;
-  title: string;
-  description: string | null;
-  estimated_days: number;
-  status: "todo" | "active" | "done";
 }
 
 const goalLabels: Record<string, string> = {
@@ -45,35 +35,10 @@ function getPathType(profile: UserProfile): string {
 }
 
 export default function DashboardOverview({ profile, onNavigate, onEditProfile }: Props) {
-  const { user } = useAuth();
-  const [steps, setSteps] = useState<StepWithStatus[]>([]);
-  const [loading, setLoading] = useState(true);
+  const relocationCase = useRelocationCase(profile);
   const [showProPaywall, setShowProPaywall] = useState(false);
 
-  useEffect(() => {
-    if (!user || !profile) { setLoading(false); return; }
-    const fetchData = async () => {
-      const { data: allSteps } = await supabase
-        .from("relocation_steps")
-        .select("*")
-        .eq("visa_type", profile.visa_type || "TBD")
-        .order("step_number");
-      const { data: userSteps } = await supabase
-        .from("user_steps")
-        .select("*")
-        .eq("user_id", user.id);
-      const statusMap = new Map((userSteps || []).map((s: any) => [s.step_id, s.status]));
-      const merged: StepWithStatus[] = (allSteps || []).map((s: any) => ({
-        ...s,
-        status: (statusMap.get(s.id) || "todo") as "todo" | "active" | "done",
-      }));
-      setSteps(merged);
-      setLoading(false);
-    };
-    fetchData();
-  }, [user, profile]);
-
-  if (loading) {
+  if (relocationCase.loading) {
     return (
       <div className="space-y-6">
         <Skeleton className="h-10 w-64" />
@@ -99,11 +64,10 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
   const pathType = getPathType(profile);
   const stabilityMonths = countryData?.stabilityMonths || "6-12";
 
-  const doneCount = steps.filter(s => s.status === "done").length;
-  const totalSteps = steps.length;
+  const doneCount = relocationCase.doneCount;
+  const totalSteps = relocationCase.totalCount;
   const currentStepNum = doneCount + 1;
-  const progressPct = totalSteps > 0 ? Math.max(3, Math.round((doneCount / totalSteps) * 100)) : 3;
-  const nextStep = steps.find(s => s.status === "active") || steps.find(s => s.status === "todo");
+  const progressPct = relocationCase.progressPct;
 
   const recommended = profile.recommended_country;
   const hasBetterOption = recommended && recommended !== profile.target_country;
@@ -239,28 +203,35 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile }
 
         <p className="text-[10px] text-muted-foreground/40 text-center mb-4">From uncertainty → stability</p>
 
-        {nextStep && (
-          <button
-            onClick={() => {
-              const plan = profile?.plan || "free";
-              if (plan === "free") {
-                setShowProPaywall(true);
-              } else if (plan === "pro") {
-                onNavigate("checklist");
-              } else {
-                onNavigate("plan");
-              }
-            }}
-            className="w-full flex items-center gap-3 rounded-lg bg-white/[0.04] hover:bg-white/[0.07] p-3 transition-colors text-left group"
-          >
-            <div className="w-7 h-7 rounded-md bg-primary/10 flex items-center justify-center shrink-0">
-              <ChevronRight size={14} className="text-primary group-hover:translate-x-0.5 transition-transform" />
+        {relocationCase.nextStep && (
+          <div className="mt-4 rounded-xl bg-primary/[0.06] border border-primary/20 p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-[10px] uppercase tracking-widest text-primary/70 font-medium">Your next action</span>
+              <span className="ml-auto text-[11px] text-muted-foreground/50">
+                Phase {relocationCase.currentPhaseIndex + 1} of {relocationCase.totalPhases} · {relocationCase.currentPhase}
+              </span>
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-[10px] text-muted-foreground mb-0.5">Next step</p>
-              <p className="text-[13px] font-medium truncate">{nextStep.title.replace(/\[.*?\]\s*/, "")}</p>
+            <p className="text-[14px] font-semibold mb-1">{relocationCase.nextStep.title}</p>
+            {relocationCase.nextStep.description && (
+              <p className="text-[12px] text-muted-foreground mb-3">{relocationCase.nextStep.description}</p>
+            )}
+            <div className="flex items-center gap-2 flex-wrap">
+              <Button size="sm" className="text-[12px] h-8" onClick={async () => { await relocationCase.markStepDone(relocationCase.nextStep!.id); }}>
+                ✓ Mark as done
+              </Button>
+              <Button size="sm" variant="ghost" className="text-[12px] h-8 text-primary" onClick={() => onNavigate("chat")}>
+                Ask advisor →
+              </Button>
+              {relocationCase.nextStep.estimatedDays > 0 && (
+                <span className="text-[11px] text-muted-foreground/50 ml-auto">~{relocationCase.nextStep.estimatedDays} days</span>
+              )}
             </div>
-          </button>
+          </div>
+        )}
+        {relocationCase.daysUntilMove !== null && (
+          <p className="text-[11px] text-center text-muted-foreground/40 mt-3">
+            {relocationCase.daysUntilMove} days until your move date
+          </p>
         )}
       </section>
 
