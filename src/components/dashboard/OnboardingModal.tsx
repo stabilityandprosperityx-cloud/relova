@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import ResultScreen from "./ResultScreen";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,32 @@ import { generatePlan, generateChecklist } from "@/lib/planGenerator";
 import type { UserProfile } from "@/pages/Dashboard";
 import { ArrowRight, MapPin, Compass } from "lucide-react";
 import LoadingTransition from "./LoadingTransition";
+
+const SCHENGEN_VISA_REQUIRED = [
+  "Russia", "China", "India", "Belarus", "Ukraine", "Kazakhstan",
+  "Uzbekistan", "Tajikistan", "Kyrgyzstan", "Turkmenistan", "Armenia",
+  "Azerbaijan", "Georgia", "Turkey", "Iran", "Iraq", "Syria",
+  "Afghanistan", "Pakistan", "Bangladesh", "Algeria", "Morocco",
+  "Tunisia", "Egypt", "Libya", "Sudan", "Ethiopia", "Nigeria",
+  "Ghana", "Senegal", "Mali", "Cameroon", "DR Congo", "Angola",
+  "Cuba", "Haiti", "Jamaica", "Dominican Republic",
+];
+
+const SCHENGEN_COUNTRIES = [
+  "Portugal", "Spain", "France", "Germany", "Italy", "Greece",
+  "Netherlands", "Belgium", "Austria", "Czech Republic", "Poland",
+  "Hungary", "Croatia", "Slovakia", "Slovenia", "Estonia",
+  "Latvia", "Lithuania", "Romania", "Bulgaria", "Sweden",
+  "Denmark", "Finland", "Norway", "Switzerland", "Iceland",
+  "Luxembourg", "Malta", "Cyprus",
+];
+
+const UK_VISA_REQUIRED = [
+  "Russia", "China", "India", "Belarus", "Ukraine", "Kazakhstan",
+  "Uzbekistan", "Tajikistan", "Kyrgyzstan", "Turkmenistan",
+  "Iran", "Iraq", "Syria", "Afghanistan", "Pakistan",
+  "Bangladesh", "Nigeria", "Ghana", "Ethiopia",
+];
 
 const goals = [
   { id: "safety", label: "🛡️ Safety" },
@@ -73,6 +99,12 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
   const filtered1 = filterCountryList(allCountries, search1);
   const filtered2 = filterCountryList(allCountries, search2);
+
+  useEffect(() => {
+    if (showMatches) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [showMatches]);
 
   // Mode A steps: citizenship → target → family → income → goals → timeline → save
   // Mode B steps: citizenship → family → income → goals → constraints → timeline → show matches → save
@@ -190,9 +222,10 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     // Then enhance with AI explanations in background
     setAiEnhancing(true);
     try {
-      const { data } = await supabase.functions.invoke("match-explain", {
+      const { data, error } = await supabase.functions.invoke("match-explain", {
         body: { criteria, matches: top3 },
       });
+      console.log("match-explain response:", data, error);
 
       if (data?.explanations) {
         setMatches(prev => prev.map(match => {
@@ -402,6 +435,18 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                       {match.reasons.map((r, j) => (
                         <p key={j} className="text-[12px] text-[#9CA3AF]">• {r}</p>
                       ))}
+                      {SCHENGEN_VISA_REQUIRED.includes(citizenship) &&
+                        SCHENGEN_COUNTRIES.includes(match.country.name) && (
+                          <p className="text-[11px] text-amber-400/80 mt-1">
+                            🛂 Visa required — {citizenship} passport needs Schengen visa
+                          </p>
+                        )}
+                      {UK_VISA_REQUIRED.includes(citizenship) &&
+                        match.country.name === "United Kingdom" && (
+                          <p className="text-[11px] text-amber-400/80 mt-1">
+                            🛂 Visa required — {citizenship} passport needs UK visa
+                          </p>
+                        )}
                     </div>
                     <div className="flex gap-3 flex-wrap text-[11px]">
                       <span className="px-2 py-0.5 rounded bg-white/[0.06] text-[#9CA3AF]">

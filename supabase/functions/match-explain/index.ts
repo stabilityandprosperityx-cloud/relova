@@ -11,7 +11,13 @@ Deno.serve(async (req) => {
   try {
     const { criteria, matches } = await req.json();
 
+    const SCHENGEN_VISA_PASSPORTS = ["Russia", "China", "India", "Belarus", "Ukraine", "Kazakhstan", "Uzbekistan", "Armenia", "Azerbaijan", "Georgia", "Turkey", "Iran", "Pakistan", "Bangladesh", "Nigeria", "Ghana", "Egypt", "Morocco", "Algeria", "Tunisia"];
+    const SCHENGEN_ZONE = ["Portugal", "Spain", "France", "Germany", "Italy", "Greece", "Netherlands", "Belgium", "Austria", "Czech Republic", "Poland", "Hungary", "Croatia", "Slovakia", "Slovenia", "Estonia", "Latvia", "Lithuania", "Romania", "Bulgaria", "Sweden", "Denmark", "Finland", "Norway", "Switzerland", "Iceland", "Luxembourg", "Malta"];
+
+    const needsSchengenVisa = SCHENGEN_VISA_PASSPORTS.includes(criteria.citizenship);
+
     const prompt = `You are a relocation advisor helping someone choose where to move abroad.
+${needsSchengenVisa ? `IMPORTANT: This person holds a ${criteria.citizenship} passport which REQUIRES a Schengen visa for EU countries. Mention this briefly in your explanation where relevant and suggest the specific visa they would need (e.g. D8 Digital Nomad Visa for Portugal, Digital Nomad Visa for Spain).` : ""}
 
 User profile:
 - Citizenship: ${criteria.citizenship}
@@ -23,6 +29,7 @@ User profile:
 
 Top country matches (already calculated by algorithm):
 ${matches.map((m: { country: { name: string; topVisa: string }; score: number }, i: number) => `${i + 1}. ${m.country.name} (${m.score}% match) - ${m.country.topVisa}`).join("\n")}
+${needsSchengenVisa ? `Schengen countries in this context: ${SCHENGEN_ZONE.join(", ")}` : ""}
 
 Write a SHORT, personalized explanation for why each country matches this specific person.
 Be conversational, specific to their profile, and mention 1-2 concrete things relevant to their situation.
