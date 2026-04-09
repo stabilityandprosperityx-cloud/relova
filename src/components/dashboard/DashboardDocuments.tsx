@@ -12,7 +12,7 @@ import LockedOverlay from "./LockedOverlay";
 import DocumentPreviewModal from "./DocumentPreviewModal";
 import VisaLetterGenerator from "./VisaLetterGenerator";
 import type { UserProfile } from "@/pages/Dashboard";
-import { useRelocationCase } from "@/hooks/useRelocationCase";
+import type { RelocationCase } from "@/hooks/useRelocationCase";
 
 interface UserDoc {
   id: string;
@@ -37,6 +37,7 @@ interface Props {
   profile: UserProfile | null;
   onBack?: () => void;
   onNavigate?: (tab: string) => void;
+  relocationCase: RelocationCase;
 }
 
 const CATEGORIES = [
@@ -115,7 +116,7 @@ function getStatusConfig(status: string) {
   }
 }
 
-export default function DashboardDocuments({ profile, onBack, onNavigate }: Props) {
+export default function DashboardDocuments({ profile, onBack, onNavigate, relocationCase }: Props) {
   const { user } = useAuth();
   const [userDocs, setUserDocs] = useState<UserDoc[]>([]);
   const [visaDocs, setVisaDocs] = useState<any[]>([]);
@@ -129,7 +130,6 @@ export default function DashboardDocuments({ profile, onBack, onNavigate }: Prop
   const [previewDoc, setPreviewDoc] = useState<{ doc: UserDoc; aiStatus: string | null; usedFor: string; signedUrl: string | null } | null>(null);
   const [signedUrls, setSignedUrls] = useState<Record<string, string>>({});
   const isLocked = (profile?.plan || "free") !== "full";
-  const relocationCase = useRelocationCase(profile);
 
   // Generate signed URLs for all uploaded docs
   const refreshSignedUrls = async (docs: UserDoc[]) => {

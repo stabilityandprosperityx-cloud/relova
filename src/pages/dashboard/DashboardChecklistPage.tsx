@@ -2,6 +2,6 @@ import DashboardChecklist from "@/components/dashboard/DashboardChecklist";
 import { useDashboardContext } from "@/hooks/useDashboardContext";
 
 export default function DashboardChecklistPage() {
-  const { profile } = useDashboardContext();
-  return <DashboardChecklist profile={profile} />;
+  const { profile, relocationCase } = useDashboardContext();
+  return <DashboardChecklist profile={profile} relocationCase={relocationCase} />;
 }

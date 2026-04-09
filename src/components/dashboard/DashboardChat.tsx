@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import type { UserProfile, UserPlan } from "@/pages/Dashboard";
 import ChatActionButtons from "./ChatActionButtons";
+import type { RelocationCase } from "@/hooks/useRelocationCase";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -62,6 +63,7 @@ async function streamChat({ messages, tier, systemContext, onDelta, onDone }: {
 
 interface Props {
   profile: UserProfile | null;
+  relocationCase: RelocationCase;
 }
 
 export default function DashboardChat({ profile }: Props) {

@@ -10,7 +10,7 @@ import { generatePlan } from "@/lib/planGenerator";
 import { motion } from "framer-motion";
 import type { UserProfile } from "@/pages/Dashboard";
 import LockedOverlayPro from "./LockedOverlayPro";
-import { useRelocationCase } from "@/hooks/useRelocationCase";
+import type { RelocationCase } from "@/hooks/useRelocationCase";
 
 interface StepItem {
   id: string;
@@ -30,6 +30,7 @@ const PHASES = [
 
 interface Props {
   profile: UserProfile | null;
+  relocationCase: RelocationCase;
 }
 
 /** Extract phase from raw title bracket prefix, then clean the title */
@@ -68,9 +69,8 @@ function parseStep(raw: string): { phase: string; title: string } {
   return { phase: "before_move", title: cleaned };
 }
 
-export default function DashboardChecklist({ profile }: Props) {
+export default function DashboardChecklist({ profile, relocationCase }: Props) {
   const { user } = useAuth();
-  const relocationCase = useRelocationCase(profile);
   const [showPaywall, setShowPaywall] = useState(true);
   const isLocked = (profile?.plan || "free") === "free";
   const [steps, setSteps] = useState<StepItem[]>([]);

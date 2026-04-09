@@ -7,6 +7,8 @@ import EditProfileModal from "@/components/dashboard/EditProfileModal";
 import FeedbackWidget from "@/components/dashboard/FeedbackWidget";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useRelocationCase } from "@/hooks/useRelocationCase";
+import type { RelocationCase } from "@/hooks/useRelocationCase";
 
 
 export type DashboardTab = "overview" | "plan" | "checklist" | "chat" | "documents" | "countries";
@@ -28,6 +30,15 @@ export interface UserProfile {
   constraints?: string | null;
   match_score?: number | null;
   recommended_country?: string | null;
+  move_date?: string | null;
+}
+
+export interface DashboardOutletContext {
+  profile: UserProfile | null;
+  setProfile: (p: UserProfile) => void;
+  onEditProfile: () => void;
+  onNavigate: (tab: DashboardTab) => void;
+  relocationCase: RelocationCase;
 }
 
 const routeToTab: Record<string, DashboardTab> = {
@@ -56,6 +67,7 @@ export default function Dashboard() {
   const [profileLoading, setProfileLoading] = useState(true);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [showEditProfile, setShowEditProfile] = useState(false);
+  const relocationCase = useRelocationCase(profileLoading ? null : profile);
 
   const activeTab = routeToTab[location.pathname] || "overview";
 
@@ -122,7 +134,7 @@ export default function Dashboard() {
               </div>
             </div>
           ) : (
-                <Outlet context={{ profile, setProfile, onEditProfile: () => setShowEditProfile(true), onNavigate: handleTabChange }} />
+                <Outlet context={{ profile, setProfile, onEditProfile: () => setShowEditProfile(true), onNavigate: handleTabChange, relocationCase }} />
           )}
         </div>
       </main>

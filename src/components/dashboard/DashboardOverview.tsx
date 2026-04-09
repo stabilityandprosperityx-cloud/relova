@@ -7,12 +7,13 @@ import type { UserProfile, DashboardTab } from "@/pages/Dashboard";
 import { countryDatabase } from "@/lib/countryMatching";
 import { CostCalculator } from "@/components/dashboard/CostCalculator";
 import LockedOverlayPro from "./LockedOverlayPro";
-import { useRelocationCase } from "@/hooks/useRelocationCase";
+import type { RelocationCase } from "@/hooks/useRelocationCase";
 
 interface Props {
   profile: UserProfile | null;
   onNavigate: (tab: DashboardTab) => void;
   onEditProfile: () => void;
+  relocationCase: RelocationCase;
 }
 
 const goalLabels: Record<string, string> = {
@@ -34,8 +35,7 @@ function getPathType(profile: UserProfile): string {
   return goalLabels[first] || "General relocation";
 }
 
-export default function DashboardOverview({ profile, onNavigate, onEditProfile }: Props) {
-  const relocationCase = useRelocationCase(profile);
+export default function DashboardOverview({ profile, onNavigate, onEditProfile, relocationCase }: Props) {
   const [showProPaywall, setShowProPaywall] = useState(false);
 
   if (relocationCase.loading) {
