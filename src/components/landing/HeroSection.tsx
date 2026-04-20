@@ -165,7 +165,7 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
           >
             <div className="relative z-10 rounded-[18px] overflow-hidden" style={{ background: "#0d1117" }}>
-              <ChatWidget maxHeight="340px" />
+              <ChatWidget maxHeight="320px" compact />
             </div>
           </motion.div>
 

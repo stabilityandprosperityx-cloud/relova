@@ -120,6 +120,7 @@ export default function ChatWidget({ compact = false, maxHeight = "400px", sugge
   const [isLoading, setIsLoading] = useState(false);
   const [questionsUsed, setQuestionsUsed] = useState(getQuestionsUsed);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const isAnon = !user;
@@ -129,8 +130,10 @@ export default function ChatWidget({ compact = false, maxHeight = "400px", sugge
   const tier = "free";
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isLoading]);
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const send = async (text: string) => {
     if (!text.trim() || isLoading || isLimited) return;
@@ -188,7 +191,7 @@ export default function ChatWidget({ compact = false, maxHeight = "400px", sugge
         </div>
 
         {/* Messages */}
-        <div className="overflow-y-auto p-4 space-y-4" style={{ maxHeight }}>
+        <div ref={messagesContainerRef} className="overflow-y-auto p-4 space-y-4" style={{ maxHeight }}>
           <AnimatePresence mode="popLayout">
             {messages.map((msg, i) => {
               const isLastAssistant = msg.role === "assistant" && i === messages.length - 1 && !isLoading;
