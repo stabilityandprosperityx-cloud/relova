@@ -1,4 +1,5 @@
 import LegalPage from "@/components/layout/LegalPage";
+import SEO from "@/components/SEO";
 
 const sections = [
   {
@@ -85,5 +86,14 @@ const sections = [
 ];
 
 export default function Terms() {
-  return <LegalPage title="Terms of Service" effectiveDate="March 23, 2026" sections={sections} />;
+  return (
+    <>
+      <SEO
+        title="Terms of Service — Relova"
+        description="Terms of Service for Relova AI: subscriptions, acceptable use, and your rights when using our relocation planning platform."
+        canonical="https://relova.ai/terms"
+      />
+      <LegalPage title="Terms of Service" effectiveDate="March 23, 2026" sections={sections} />
+    </>
+  );
 }

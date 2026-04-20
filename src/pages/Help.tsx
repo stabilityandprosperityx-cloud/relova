@@ -37,6 +37,7 @@ export default function Help() {
       <SEO
         title="Help Center — Relova"
         description="FAQs about Relova: how our AI relocation planner works, saving plans, accuracy, and how we differ from general chatbots. Not legal advice—always verify with a professional."
+        canonical="https://relova.ai/help"
       />
       <Navbar />
       <main className="pt-14">

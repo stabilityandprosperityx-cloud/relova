@@ -182,6 +182,7 @@ export default function Chat() {
       <SEO
         title="AI Relocation Chat — Relova"
         description="Ask Relova’s AI about visas, documents, taxes, and where to move. Get personalized relocation answers built for international moves—not generic travel tips."
+        canonical="https://relova.ai/chat"
       />
       <Navbar />
       <div className="flex-1 flex flex-col pt-16">

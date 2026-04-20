@@ -82,6 +82,7 @@ export default function Pricing() {
       <SEO
         title="Pricing — Relova"
         description="Relova plans for AI relocation planning: free exploration, Pro for unlimited guidance, and Full for deep plans. Choose monthly or lifetime access."
+        canonical="https://relova.ai/pricing"
       />
       <Navbar />
       <main className="pt-28 pb-16">

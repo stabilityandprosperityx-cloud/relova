@@ -1,9 +1,15 @@
 import ArticleLayout from "@/components/blog/ArticleLayout";
 import BlogHeroVisual from "@/components/blog/BlogHeroVisual";
+import { Helmet } from "react-helmet-async";
 
 export default function PortugalVsSpain() {
   return (
-    <ArticleLayout
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://blog.relova.ai/blog/portugal-vs-spain" />
+      </Helmet>
+      <ArticleLayout
       category="Compare"
       categoryPath="/blog"
       title="Portugal vs Spain: Where Should You Move?"
@@ -218,5 +224,6 @@ export default function PortugalVsSpain() {
         Either way, both are excellent choices. The best pick depends on your income source, family situation, and long-term goals.
       </p>
     </ArticleLayout>
+    </>
   );
 }

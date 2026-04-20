@@ -9,6 +9,7 @@ export default function Contact() {
       <SEO
         title="Contact — Relova"
         description="Contact the Relova team for product questions or support. We help with AI relocation planning accounts, billing, and feedback—reach us at support@relova.ai."
+        canonical="https://relova.ai/contact"
       />
       <Navbar />
       <main className="pt-14">

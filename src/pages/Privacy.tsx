@@ -1,4 +1,5 @@
 import LegalPage from "@/components/layout/LegalPage";
+import SEO from "@/components/SEO";
 
 const sections = [
   {
@@ -75,5 +76,14 @@ const sections = [
 ];
 
 export default function Privacy() {
-  return <LegalPage title="Privacy Policy" effectiveDate="March 23, 2026" sections={sections} />;
+  return (
+    <>
+      <SEO
+        title="Privacy Policy — Relova"
+        description="Privacy Policy for Relova AI: what we collect, how we use data, retention, and your rights."
+        canonical="https://relova.ai/privacy"
+      />
+      <LegalPage title="Privacy Policy" effectiveDate="March 23, 2026" sections={sections} />
+    </>
+  );
 }

@@ -40,6 +40,14 @@ function BlogExternalRedirect() {
   return null;
 }
 
+function BlogSlugRedirect() {
+  useEffect(() => {
+    const slug = window.location.pathname.replace(/^\/blog\//, "");
+    window.location.replace(`https://blog.relova.ai/blog/${slug}`);
+  }, []);
+  return null;
+}
+
 function AppRoutes() {
   usePageTracking();
   return (
@@ -63,6 +71,7 @@ function AppRoutes() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/refund" element={<Refund />} />
         <Route path="/blog" element={<BlogExternalRedirect />} />
+        <Route path="/blog/*" element={<BlogSlugRedirect />} />
         <Route path="/guides/move-to-portugal" element={<MoveToPortugal />} />
         <Route path="/compare/portugal-vs-spain" element={<PortugalVsSpain />} />
         <Route path="/best/best-countries-2026" element={<BestCountries2026 />} />

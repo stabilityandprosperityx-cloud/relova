@@ -1,9 +1,15 @@
 import ArticleLayout from "@/components/blog/ArticleLayout";
 import BlogHeroVisual from "@/components/blog/BlogHeroVisual";
+import { Helmet } from "react-helmet-async";
 
 export default function BestCountries2026() {
   return (
-    <ArticleLayout
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://blog.relova.ai/blog/best-countries-2026" />
+      </Helmet>
+      <ArticleLayout
       category="Best of"
       categoryPath="/blog"
       title="Best Countries to Move to in 2026"
@@ -173,5 +179,6 @@ export default function BestCountries2026() {
         Focus on three things: visa eligibility, cost of living relative to your income, and whether you want a path to permanent residency or citizenship.
       </p>
     </ArticleLayout>
+    </>
   );
 }

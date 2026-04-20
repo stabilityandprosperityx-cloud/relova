@@ -74,6 +74,7 @@ export default function Blog() {
       <SEO
         title="Blog — Relova"
         description="Relocation guides, country comparisons, and curated lists from Relova. Learn how to move abroad with clear, practical advice for visas, costs, and timelines."
+        canonical="https://relova.ai/blog"
       />
       <Navbar />
       <main className="pt-14">

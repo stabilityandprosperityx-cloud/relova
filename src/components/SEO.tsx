@@ -6,6 +6,7 @@ export type SEOProps = {
   title: string;
   description: string;
   ogImage?: string;
+  canonical?: string;
 };
 
 function resolveOgImage(ogImage?: string) {
@@ -15,11 +16,12 @@ function resolveOgImage(ogImage?: string) {
   return `${SITE_ORIGIN}${p}`;
 }
 
-export default function SEO({ title, description, ogImage }: SEOProps) {
+export default function SEO({ title, description, ogImage, canonical }: SEOProps) {
   const image = resolveOgImage(ogImage);
   return (
     <Helmet>
       <title>{title}</title>
+      {canonical ? <link rel="canonical" href={canonical} /> : null}
       <meta name="description" content={description} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

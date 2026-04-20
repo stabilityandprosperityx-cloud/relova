@@ -1,10 +1,16 @@
 import ArticleLayout from "@/components/blog/ArticleLayout";
 import BlogHeroVisual from "@/components/blog/BlogHeroVisual";
 import ProcessFlow from "@/components/blog/ProcessFlow";
+import { Helmet } from "react-helmet-async";
 
 export default function MoveToPortugal() {
   return (
-    <ArticleLayout
+    <>
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://blog.relova.ai/blog/move-to-portugal" />
+      </Helmet>
+      <ArticleLayout
       category="Guide"
       categoryPath="/blog"
       title="How to Move to Portugal in 2026"
@@ -187,5 +193,6 @@ export default function MoveToPortugal() {
         <li>Not researching the right visa type before applying</li>
       </ul>
     </ArticleLayout>
+    </>
   );
 }

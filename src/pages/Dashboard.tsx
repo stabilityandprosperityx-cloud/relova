@@ -8,6 +8,7 @@ import FeedbackWidget from "@/components/dashboard/FeedbackWidget";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useRelocationCase } from "@/hooks/useRelocationCase";
+import { Helmet } from "react-helmet-async";
 import type { RelocationCase } from "@/hooks/useRelocationCase";
 
 
@@ -115,6 +116,9 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-foreground flex">
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <DashboardSidebar
         activeTab={activeTab}
         onTabChange={handleTabChange}

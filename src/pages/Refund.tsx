@@ -1,4 +1,5 @@
 import LegalPage from "@/components/layout/LegalPage";
+import SEO from "@/components/SEO";
 
 const sections = [
   {
@@ -37,5 +38,14 @@ const sections = [
 ];
 
 export default function Refund() {
-  return <LegalPage title="Refund Policy" effectiveDate="March 23, 2026" sections={sections} />;
+  return (
+    <>
+      <SEO
+        title="Refund Policy — Relova"
+        description="Refund policy for Relova AI subscriptions and lifetime access, including our 14-day money-back guarantee via Paddle."
+        canonical="https://relova.ai/refund"
+      />
+      <LegalPage title="Refund Policy" effectiveDate="March 23, 2026" sections={sections} />
+    </>
+  );
 }

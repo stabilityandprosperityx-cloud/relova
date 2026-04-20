@@ -22,6 +22,7 @@ export default function Countries() {
       <SEO
         title="Countries — Relova"
         description="Explore destinations with Relova: compare visas, cost of living, taxes, and pathways. AI-powered relocation planning for Portugal, Spain, UAE, and dozens more."
+        canonical="https://relova.ai/countries"
       />
       <Navbar />
       <main className="pt-24 pb-16">
