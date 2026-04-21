@@ -131,7 +131,7 @@ export default function ChatWidget({ compact = false, maxHeight = "400px", sugge
   const anonLimitReached = isAnon && questionsUsed >= ANON_LIMIT;
   const freeLimitReached = !isAnon && questionsUsed >= FREE_LIMIT;
   const isLimited = anonLimitReached || freeLimitReached;
-  const tier = "free";
+  const tier = (userProfile?.plan as string) || "free";
 
   useEffect(() => {
     if (messagesContainerRef.current) {
