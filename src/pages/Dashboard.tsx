@@ -136,7 +136,7 @@ export default function Dashboard() {
           <div
             style={{
               position: "absolute", inset: 0,
-              backgroundImage: `linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px)`,
+              backgroundImage: `linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)`,
               backgroundSize: "48px 48px",
             }}
           />
