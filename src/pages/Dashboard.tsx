@@ -127,8 +127,38 @@ export default function Dashboard() {
         onEditProfile={() => setShowEditProfile(true)}
       />
 
-      <main className="flex-1 md:ml-[220px] pb-24 md:pb-0">
-        <div className="max-w-5xl mx-auto px-5 md:px-8 pt-6 md:pt-10 pb-6 md:pb-8">
+      <main
+        className="relative flex-1 md:ml-[220px] pb-24 md:pb-0"
+        style={{ background: "#07090f" }}
+      >
+        <div className="pointer-events-none fixed inset-0" style={{ zIndex: 0 }}>
+          {/* Grid */}
+          <div
+            style={{
+              position: "absolute", inset: 0,
+              backgroundImage: `linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px)`,
+              backgroundSize: "48px 48px",
+            }}
+          />
+          {/* Glow top-right */}
+          <div
+            style={{
+              position: "absolute", top: -100, right: -100,
+              width: 600, height: 400,
+              background: "radial-gradient(ellipse, rgba(56,189,248,0.07) 0%, transparent 65%)",
+            }}
+          />
+          {/* Glow bottom-left */}
+          <div
+            style={{
+              position: "absolute", bottom: -100, left: 100,
+              width: 500, height: 400,
+              background: "radial-gradient(ellipse, rgba(99,102,241,0.05) 0%, transparent 65%)",
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 max-w-5xl mx-auto px-5 md:px-8 pt-6 md:pt-10 pb-6 md:pb-8">
           {profileLoading ? (
             <div className="space-y-4">
               <Skeleton className="h-8 w-48" />
