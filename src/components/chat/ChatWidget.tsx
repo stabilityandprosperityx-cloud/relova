@@ -12,7 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 type Message = { role: "user" | "assistant"; content: string };
 
 const FREE_LIMIT = 3;
-const ANON_LIMIT = 1;
+const ANON_LIMIT = 2;
 const STORAGE_KEY = "relova_questions_used";
 
 function getQuestionsUsed(): number {
