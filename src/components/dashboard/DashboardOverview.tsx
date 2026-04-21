@@ -279,7 +279,7 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile, 
           </Button>
         </section>
       </div>
-      <CostCalculator country={(profile.target_country || "").trim().toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())} familyStatus={((profile.family_status || "single").toLowerCase() as "single" | "couple" | "family")} monthlyIncome={Number(profile.monthly_budget || 0)} />
+      <CostCalculator country={(profile.target_country || "").trim().toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())} familyStatus={((profile.family_status || "single").toLowerCase() as "single" | "couple" | "family")} monthlyIncome={Number(profile.monthly_budget || 0)} citizenship={profile.citizenship || undefined} />
       {showProPaywall && (
         <LockedOverlayPro
           onClose={() => setShowProPaywall(false)}

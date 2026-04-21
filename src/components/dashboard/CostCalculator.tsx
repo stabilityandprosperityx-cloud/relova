@@ -679,10 +679,119 @@ const COST_DATA: Record<string, CostEntry> = {
   },
 };
 
+const TAX_DATA: Record<string, { incomeTaxRate: number; specialRegime?: string; specialRegimeRate?: number; specialRegimeYears?: number; notes: string }> = {
+  Portugal: { incomeTaxRate: 0.53, specialRegime: "IFICI/NHR 2.0", specialRegimeRate: 0.20, specialRegimeYears: 10, notes: "20% flat tax for 10 years — but only for tech, science, research, and innovation professionals. Standard rate up to 53%." },
+  Spain: { incomeTaxRate: 0.47, specialRegime: "Beckham Law", specialRegimeRate: 0.24, specialRegimeYears: 6, notes: "24% flat tax on Spanish income up to €600k for 6 years. Must not have been Spanish resident for 5 years prior." },
+  Germany: { incomeTaxRate: 0.47, notes: "Progressive up to 47.5%. No special expat regime. High social contributions add ~20% on top." },
+  Greece: { incomeTaxRate: 0.44, specialRegime: "Non-Dom", specialRegimeRate: 0.07, specialRegimeYears: 15, notes: "7% flat tax on foreign income for 15 years (retirees) OR €100k lump sum for HNWIs. Standard rate up to 44%." },
+  Croatia: { incomeTaxRate: 0.35, notes: "Max 35.4% income tax. EU member since 2013. No special expat tax regime." },
+  Montenegro: { incomeTaxRate: 0.15, notes: "15% flat income tax — one of the lowest in Europe. No wealth or inheritance tax." },
+  Serbia: { incomeTaxRate: 0.10, notes: "10% flat income tax. No wealth tax. Very low cost base. Popular with digital nomads." },
+  Hungary: { incomeTaxRate: 0.15, notes: "15% flat income tax — lowest in the EU. Corporate tax 9% — also lowest in EU. No special expat regime needed." },
+  Italy: { incomeTaxRate: 0.43, specialRegime: "Flat Tax / Impatriate", specialRegimeRate: 0.07, specialRegimeYears: 10, notes: "€100k flat tax on foreign income OR 7% in southern regions for retirees. Impatriate regime: 50% income exemption for workers. Standard rate up to 43%." },
+  UAE: { incomeTaxRate: 0, notes: "Zero personal income tax. Corporate tax 9% above AED 375k profit. No capital gains tax. No inheritance tax." },
+  Turkey: { incomeTaxRate: 0.40, notes: "Progressive 15-40%. No special expat regime. Residents taxed on worldwide income after 183 days." },
+  Georgia: { incomeTaxRate: 0.20, specialRegime: "Small Business Status", specialRegimeRate: 0.01, notes: "1% tax on turnover up to 500,000 GEL (~$180k/yr) via Individual Entrepreneur + Small Business Status. Standard rate 20%. Some professions excluded (legal, medical, financial)." },
+  Armenia: { incomeTaxRate: 0.20, notes: "20% flat income tax. No special expat regime but very low cost of living. Visa-free for many nationalities." },
+  Thailand: { incomeTaxRate: 0.35, specialRegime: "LTR Visa", specialRegimeRate: 0.00, notes: "LTR Visa holders: 0% tax on foreign-sourced income. Standard residents taxed on remitted foreign income at progressive rates up to 35%. LTR requires $80k+ annual income or $1M+ assets." },
+  Malaysia: { incomeTaxRate: 0.30, specialRegime: "MM2H / Territorial", specialRegimeRate: 0.00, notes: "Foreign-sourced income not taxed for residents (territorial system). MM2H visa holders: tax-free on overseas income. Local income taxed at up to 30%. Exemption valid until 2036." },
+  Mexico: { incomeTaxRate: 0.35, notes: "Progressive 1.92-35%. Residents (183+ days) taxed on worldwide income. No special expat regime. No inheritance or wealth tax." },
+  Colombia: { incomeTaxRate: 0.39, notes: "Progressive up to 39%. Residents taxed on worldwide income. Growing digital nomad scene but no special tax regime." },
+  Panama: { incomeTaxRate: 0.25, specialRegime: "Territorial", specialRegimeRate: 0.00, notes: "Territorial tax system — foreign-sourced income not taxed. Only Panama-sourced income taxed at up to 25%. Popular for offshore structures." },
+  Austria: { incomeTaxRate: 0.55, notes: "Progressive up to 55%. Among the highest in Europe. No special expat regime. High social contributions." },
+  Netherlands: { incomeTaxRate: 0.495, specialRegime: "30% Ruling", specialRegimeRate: 0.347, specialRegimeYears: 5, notes: "30% of salary is tax-free for 5 years for skilled migrants. Effective rate ~35% on remaining 70%. Must be hired from abroad." },
+  France: { incomeTaxRate: 0.55, notes: "Progressive up to 55.4% including social charges. Among highest in world. No meaningful special expat regime for income tax." },
+  Poland: { incomeTaxRate: 0.32, notes: "Progressive up to 32%. No special expat regime. Low cost of living relative to Western Europe." },
+  Romania: { incomeTaxRate: 0.10, notes: "10% flat income tax — tied with Bulgaria for lowest in EU. No special expat regime needed. Low cost base." },
+  Bulgaria: { incomeTaxRate: 0.10, notes: "10% flat income tax — lowest in EU. Corporate tax 10%. No wealth or inheritance tax. EU member." },
+  Albania: { incomeTaxRate: 0.23, notes: "Progressive up to 23%. Low cost of living. No special expat tax regime. Growing nomad community." },
+  Estonia: { incomeTaxRate: 0.20, specialRegime: "e-Residency / 0% retained earnings", specialRegimeRate: 0.00, notes: "20% personal income tax. BUT corporate tax 0% on undistributed profits — only pay when you take dividends. Popular for EU company formation." },
+  Malta: { incomeTaxRate: 0.35, specialRegime: "Non-Dom", specialRegimeRate: 0.15, notes: "Non-Dom status: 15% flat tax on remitted foreign income. Non-remitted foreign income not taxed. Standard rate up to 35%." },
+  Cyprus: { incomeTaxRate: 0.35, specialRegime: "Non-Dom", specialRegimeRate: 0.00, notes: "Non-Dom status: 0% tax on dividends and interest for 17 years. Capital gains on foreign assets exempt. 60-day residency rule available. Standard income rate up to 35%." },
+  Switzerland: { incomeTaxRate: 0.40, notes: "Progressive up to ~40% combined federal+cantonal. Lump-sum taxation available for HNWIs not working in Switzerland. Canton varies significantly." },
+  Norway: { incomeTaxRate: 0.40, notes: "Progressive up to ~39.6% + social contributions. High cost of living. Oil wealth fund but high taxes." },
+  Sweden: { incomeTaxRate: 0.52, specialRegime: "Expert Tax", specialRegimeRate: 0.32, specialRegimeYears: 7, notes: "Expert/researcher/key personnel regime: 25% of salary tax-exempt for 7 years. Effective ~32% vs standard 52%. Must earn above SEK 114,100/month (~$10k)." },
+  Denmark: { incomeTaxRate: 0.56, specialRegime: "Researcher Scheme", specialRegimeRate: 0.27, specialRegimeYears: 7, notes: "Researcher/key employee scheme: flat 27% tax for 7 years. Must earn above DKK 75,100/month (~$10.5k). Standard rate up to 55.9%." },
+  Ireland: { incomeTaxRate: 0.48, notes: "Progressive up to 48% + USC + PRSI. No special expat regime. Remittance basis for non-doms on some foreign income." },
+  Bahrain: { incomeTaxRate: 0, notes: "Zero personal income tax. No corporate income tax on most businesses. No capital gains tax. No VAT on most items." },
+  Japan: { incomeTaxRate: 0.55, notes: "Progressive up to 55% combined national+local. Non-permanent residents (first 5 years): foreign income not taxed unless remitted to Japan." },
+  Singapore: { incomeTaxRate: 0.22, specialRegime: "Territorial", specialRegimeRate: 0.00, notes: "Territorial tax system — foreign-sourced income not taxed. Local income taxed at progressive rates up to 22%. No capital gains tax. No inheritance tax." },
+  Indonesia: { incomeTaxRate: 0.35, notes: "Progressive up to 35%. Non-residents taxed at 20% on Indonesian-source income only. No special digital nomad tax regime." },
+  Vietnam: { incomeTaxRate: 0.35, notes: "Progressive up to 35%. Residents taxed on worldwide income. No special expat regime." },
+  Philippines: { incomeTaxRate: 0.35, notes: "Progressive up to 35%. Special Economic Zone workers get 5% preferential rate. SRRV visa holders: foreign income not taxed." },
+  Uruguay: { incomeTaxRate: 0.36, specialRegime: "Tax Holiday", specialRegimeRate: 0.00, specialRegimeYears: 11, notes: "New residents: exempt from tax on foreign income for 10 years (extendable to 11). Only Uruguay-sourced income taxed at up to 36%." },
+  Argentina: { incomeTaxRate: 0.35, notes: "Progressive up to 35%. Economic instability and currency controls are key risk factors." },
+  Brazil: { incomeTaxRate: 0.275, notes: "Progressive up to 27.5%. Residents taxed on worldwide income. No special expat regime." },
+  Canada: { incomeTaxRate: 0.33, notes: "Federal rate up to 33% + provincial up to 21% = combined up to ~54%. No special expat regime. High social benefits in return." },
+  Morocco: { incomeTaxRate: 0.38, notes: "Progressive up to 38%. Foreign pensions: 80% exemption. Growing expat community in Marrakech and Rabat." },
+  Mauritius: { incomeTaxRate: 0.20, notes: "20% flat income tax. No capital gains tax. No inheritance tax. Strong offshore structures available. Premium Visa for long stays." },
+  Australia: { incomeTaxRate: 0.45, notes: "Progressive up to 45% + Medicare levy 2%. Working Holiday Makers: 15% on first $45k. No special expat tax regime." },
+  Belgium: { incomeTaxRate: 0.50, notes: "Progressive up to 50% + communal tax. One of the highest in EU. No special expat regime for most income." },
+  Luxembourg: { incomeTaxRate: 0.46, notes: "Progressive up to 45.8%. High salaries compensate high taxes. EU finance hub." },
+  Finland: { incomeTaxRate: 0.45, notes: "Progressive up to 45% (reduced from 51.5% in 2025). No special expat regime." },
+  Iceland: { incomeTaxRate: 0.46, notes: "Progressive up to 46.3%. High cost of living. No special expat regime." },
+  Slovakia: { incomeTaxRate: 0.35, notes: "Two brackets: 19% up to €47k, 25% above (35% top from 2025 reform). EU member. Low cost of living." },
+  Slovenia: { incomeTaxRate: 0.50, notes: "Progressive up to 50%. No special expat regime. EU member." },
+  Latvia: { incomeTaxRate: 0.31, notes: "Progressive up to 31%. EU member. Baltic tech hub." },
+  Lithuania: { incomeTaxRate: 0.32, notes: "Progressive up to 32%. EU member. Growing startup scene in Vilnius." },
+  Taiwan: { incomeTaxRate: 0.40, notes: "Progressive up to 40%. Foreign income under TWD 1M (~$31k) exempt. Gold Card visa: special tax treatment for high earners." },
+  India: { incomeTaxRate: 0.30, notes: "Progressive up to 30% + surcharge. NRI status: foreign income not taxed. Returning NRIs: RNOR status for 2-3 years with partial exemptions." },
+  Chile: { incomeTaxRate: 0.40, notes: "Progressive up to 40%. Territorial for first 3 years of residency — foreign income exempt. Then worldwide taxation." },
+  Ecuador: { incomeTaxRate: 0.37, notes: "Progressive up to 37%. Foreign income not taxed if not remitted to Ecuador. Pensioner visa popular." },
+  Egypt: { incomeTaxRate: 0.27, notes: "Progressive up to 27.5%. Residents taxed on Egypt-sourced income. Foreign income generally not taxed." },
+  Kenya: { incomeTaxRate: 0.30, notes: "Progressive up to 30%. Foreign income not taxed for non-citizens. Growing tech hub (Silicon Savannah)." },
+};
+
+const ORIGIN_TAX_RATES: Record<string, number> = {
+  "United Kingdom": 0.45,
+  "United States": 0.37,
+  "Germany": 0.475,
+  "France": 0.55,
+  "Netherlands": 0.495,
+  "Sweden": 0.52,
+  "Denmark": 0.56,
+  "Norway": 0.47,
+  "Finland": 0.45,
+  "Belgium": 0.50,
+  "Austria": 0.55,
+  "Italy": 0.43,
+  "Spain": 0.47,
+  "Canada": 0.54,
+  "Australia": 0.47,
+  "Russia": 0.13,
+  "Ukraine": 0.195,
+  "India": 0.30,
+  "China": 0.45,
+  "Switzerland": 0.40,
+  "Ireland": 0.48,
+  "Poland": 0.32,
+  "Portugal": 0.53,
+  "Brazil": 0.275,
+  "Argentina": 0.35,
+  "Mexico": 0.35,
+  "Japan": 0.55,
+  "South Korea": 0.45,
+  "Israel": 0.50,
+  "South Africa": 0.45,
+  "New Zealand": 0.39,
+  "Singapore": 0.22,
+  "Turkey": 0.40,
+  "Romania": 0.10,
+  "Bulgaria": 0.10,
+  "Hungary": 0.15,
+  "Czech Republic": 0.23,
+  "Slovakia": 0.35,
+  "Greece": 0.44,
+  "Estonia": 0.20,
+  "Latvia": 0.31,
+  "Lithuania": 0.32,
+};
+
 type CostCalculatorProps = {
   country: string;
   familyStatus: FamilyStatus;
   monthlyIncome: number;
+  citizenship?: string;
 };
 
 const money = (n: number) =>
@@ -693,7 +802,7 @@ const midpoint = (min: number, max: number) => (min + max) / 2;
 const familyLabel = (status: FamilyStatus) =>
   status === "single" ? "Single" : status === "couple" ? "Couple" : "Family";
 
-export const CostCalculator = ({ country, familyStatus, monthlyIncome }: CostCalculatorProps) => {
+export const CostCalculator = ({ country, familyStatus, monthlyIncome, citizenship }: CostCalculatorProps) => {
   const [selectedCountry, setSelectedCountry] = useState<string>(country);
   const [selectedFamily, setSelectedFamily] = useState<FamilyStatus>(
     (familyStatus as FamilyStatus) || "single",
@@ -845,6 +954,15 @@ export const CostCalculator = ({ country, familyStatus, monthlyIncome }: CostCal
     }
   }
 
+  const taxData = TAX_DATA[selectedCountry];
+  const originTaxRate = ORIGIN_TAX_RATES[citizenship || ""] ?? 0.35;
+  const annualIncome = selectedIncome * 12;
+  const taxInOrigin = annualIncome * originTaxRate;
+  const effectiveDestRate = taxData?.specialRegimeRate ?? taxData?.incomeTaxRate ?? 0;
+  const taxInDestination = annualIncome * effectiveDestRate;
+  const annualSaving = Math.max(0, taxInOrigin - taxInDestination);
+  const tenYearSaving = annualSaving * 10;
+
   return (
     <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
       <div className="flex items-start justify-between gap-2 mb-1">
@@ -974,6 +1092,37 @@ export const CostCalculator = ({ country, familyStatus, monthlyIncome }: CostCal
             <p className="text-[11px] text-muted-foreground">(${money(totalMin)}–${money(totalMax)})</p>
           </div>
         </div>
+
+        {taxData && annualSaving > 500 && (
+          <div className="mt-4 rounded-xl border border-green-500/20 bg-green-500/[0.04] p-4">
+            <p className="text-[11px] uppercase tracking-widest text-green-400/70 font-medium mb-3">💸 Tax savings estimate</p>
+            <div className="grid grid-cols-2 gap-3 mb-3">
+              <div>
+                <p className="text-[11px] text-muted-foreground/60 mb-0.5">Annual saving</p>
+                <p className="text-[18px] font-bold text-green-400">${money(annualSaving)}</p>
+              </div>
+              <div>
+                <p className="text-[11px] text-muted-foreground/60 mb-0.5">Over 10 years</p>
+                <p className="text-[18px] font-bold text-green-400">${money(tenYearSaving)}</p>
+              </div>
+            </div>
+            {taxData.specialRegime && (
+              <div className="rounded-lg bg-green-500/[0.06] border border-green-500/10 px-3 py-2 mb-2">
+                <p className="text-[12px] text-green-400/90 font-medium">
+                  {taxData.specialRegime}: {Math.round(effectiveDestRate * 100)}% vs your current ~{Math.round(originTaxRate * 100)}%
+                </p>
+              </div>
+            )}
+            <p className="text-[11px] text-muted-foreground/50 leading-relaxed">{taxData.notes}</p>
+            <p className="text-[10px] text-muted-foreground/30 mt-2">Estimates only. Consult a tax professional for your specific situation.</p>
+          </div>
+        )}
+
+        {taxData && annualSaving <= 500 && taxData.incomeTaxRate > 0 && (
+          <div className="mt-4 rounded-lg border border-white/[0.05] bg-white/[0.02] p-3">
+            <p className="text-[11px] text-muted-foreground/50 leading-relaxed">{taxData.notes}</p>
+          </div>
+        )}
       </div>
 
       {selectedIncome > 0 && entry && (
