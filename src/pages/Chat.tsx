@@ -10,6 +10,7 @@ import InlineUpsell from "@/components/chat/InlineUpsell";
 import AuthModal from "@/components/auth/AuthModal";
 import { useAuth } from "@/contexts/AuthContext";
 import SEO from "@/components/SEO";
+import { supabase } from "@/integrations/supabase/client";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -43,11 +44,13 @@ const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 async function streamChat({
   messages,
   tier,
+  systemContext,
   onDelta,
   onDone,
 }: {
   messages: Message[];
   tier: string;
+  systemContext?: string;
   onDelta: (text: string) => void;
   onDone: () => void;
 }) {
@@ -57,7 +60,7 @@ async function streamChat({
       "Content-Type": "application/json",
       Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
     },
-    body: JSON.stringify({ messages, tier }),
+    body: JSON.stringify({ messages, tier, systemContext }),
   });
 
   if (!resp.ok) {
@@ -119,6 +122,7 @@ async function streamChat({
 
 export default function Chat() {
   const { user } = useAuth();
+  const [userProfile, setUserProfile] = useState<any>(null);
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: "👋 Where are you currently based, and where are you thinking of moving? Tell me your situation and I'll find your best path." }
   ]);
@@ -138,6 +142,33 @@ export default function Chat() {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
+
+  useEffect(() => {
+    if (!user) return;
+    supabase
+      .from("user_profiles")
+      .select("citizenship, target_country, visa_type, goal, monthly_budget, family_status, plan")
+      .eq("user_id", user.id)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (data) setUserProfile(data);
+      });
+  }, [user]);
+
+  useEffect(() => {
+    if (user) localStorage.removeItem("relova_questions_used");
+  }, [user]);
+
+  const buildSystemContext = (): string | undefined => {
+    if (!userProfile) return undefined;
+    return `User profile:
+citizenship: ${userProfile.citizenship || "unknown"}
+target country: ${userProfile.target_country || "unknown"}
+visa type: ${userProfile.visa_type?.replace(/_/g, " ") || "unknown"}
+goal: ${userProfile.goal || "unknown"}
+monthly budget: $${userProfile.monthly_budget || "unknown"}
+family status: ${userProfile.family_status || "single"}`;
+  };
 
   const send = async (text: string) => {
     if (!text.trim() || isLoading || isLimited) return;
@@ -163,6 +194,7 @@ export default function Chat() {
       await streamChat({
         messages: newMessages,
         tier,
+        systemContext: buildSystemContext(),
         onDelta: (chunk) => upsertAssistant(chunk),
         onDone: () => {
           setIsLoading(false);
