@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, ArrowRight, Clock } from "lucide-react";
+import { Search, ArrowRight, Clock, X, BarChart2 } from "lucide-react";
 import { countryDatabase, type CountryProfile } from "@/lib/countryMatching";
 import { Button } from "@/components/ui/button";
 import type { UserProfile, DashboardTab } from "@/pages/Dashboard";
@@ -766,6 +766,43 @@ const COUNTRY_RESOURCES: Record<string, {
   },
 };
 
+const TAX_RATES: Record<string, { rate: number; regime?: string }> = {
+  UAE: { rate: 0, regime: "Zero tax" },
+  Georgia: { rate: 0.01, regime: "Small Business 1%" },
+  Bulgaria: { rate: 0.1, regime: "10% flat" },
+  Romania: { rate: 0.1, regime: "10% flat" },
+  Hungary: { rate: 0.15, regime: "15% flat" },
+  Montenegro: { rate: 0.15, regime: "15% flat" },
+  Serbia: { rate: 0.1, regime: "10% flat" },
+  Portugal: { rate: 0.2, regime: "IFICI/NHR 2.0" },
+  Estonia: { rate: 0.2, regime: "20% (0% retained)" },
+  Malaysia: { rate: 0, regime: "Foreign income exempt" },
+  Panama: { rate: 0, regime: "Territorial" },
+  Singapore: { rate: 0, regime: "Foreign income exempt" },
+  Bahrain: { rate: 0, regime: "Zero tax" },
+  Spain: { rate: 0.24, regime: "Beckham Law 24%" },
+  Thailand: { rate: 0, regime: "LTR Visa 0%" },
+  Malta: { rate: 0.15, regime: "Non-Dom 15%" },
+  Cyprus: { rate: 0, regime: "Non-Dom dividends 0%" },
+  Uruguay: { rate: 0, regime: "10yr foreign exempt" },
+  Mauritius: { rate: 0.2, regime: "20% flat" },
+  Armenia: { rate: 0.2, regime: "20% flat" },
+  Netherlands: { rate: 0.347, regime: "30% Ruling" },
+  Sweden: { rate: 0.32, regime: "Expert Tax" },
+  Denmark: { rate: 0.27, regime: "Researcher Scheme" },
+  Germany: { rate: 0.47 },
+  France: { rate: 0.55 },
+  Austria: { rate: 0.55 },
+  Italy: { rate: 0.07, regime: "Flat Tax 7%" },
+  Greece: { rate: 0.07, regime: "Non-Dom 7%" },
+};
+
+function money(n: number) {
+  return n >= 1000
+    ? `$${Math.round(n / 100) * 100 >= 1000 ? `${Math.round(n / 1000)}k` : Math.round(n).toLocaleString()}`
+    : `$${Math.round(n)}`;
+}
+
 export default function DashboardCountries({
   profile,
   onNavigate,
@@ -776,6 +813,16 @@ export default function DashboardCountries({
   const [search, setSearch] = useState("");
   const [selectedRegion, setSelectedRegion] = useState<string>("all");
   const [selectedCountry, setSelectedCountry] = useState<CountryProfile | null>(null);
+  const [compareList, setCompareList] = useState<string[]>([]);
+  const [showCompare, setShowCompare] = useState(false);
+
+  const toggleCompare = (countryName: string) => {
+    setCompareList((prev) => {
+      if (prev.includes(countryName)) return prev.filter((n) => n !== countryName);
+      if (prev.length >= 3) return prev;
+      return [...prev, countryName];
+    });
+  };
 
   const regions = [
     { id: "all", label: "All" },
@@ -915,6 +962,21 @@ export default function DashboardCountries({
                   </div>
                 </div>
               </div>
+              <div className="mt-3 flex items-center justify-end">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleCompare(country.name);
+                  }}
+                  className={`text-[11px] px-2.5 py-1 rounded-full border transition-colors ${
+                    compareList.includes(country.name)
+                      ? "border-primary/40 bg-primary/10 text-primary"
+                      : "border-white/[0.08] text-muted-foreground hover:text-foreground hover:border-white/[0.15]"
+                  }`}
+                >
+                  {compareList.includes(country.name) ? "✓ Added" : "+ Compare"}
+                </button>
+              </div>
             </motion.div>
           );
         })}
@@ -925,6 +987,242 @@ export default function DashboardCountries({
           {`No countries found for "${search}"`}
         </div>
       )}
+
+      {compareList.length > 0 && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-4 py-3 rounded-2xl border border-primary/30 bg-[#0a0a0a]/95 backdrop-blur-xl shadow-2xl">
+          <BarChart2 size={15} className="text-primary shrink-0" />
+          <span className="text-[13px] text-foreground font-medium">
+            {compareList.length} {compareList.length === 1 ? "country" : "countries"} selected
+          </span>
+          <button
+            onClick={() => setShowCompare(true)}
+            disabled={compareList.length < 2}
+            className="px-3 py-1.5 rounded-lg bg-primary text-white text-[12px] font-medium disabled:opacity-40 disabled:cursor-not-allowed hover:bg-primary/80 transition-colors"
+          >
+            Compare →
+          </button>
+          <button
+            onClick={() => setCompareList([])}
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <X size={14} />
+          </button>
+        </div>
+      )}
+
+      {showCompare && (
+        <CountryCompare
+          countries={compareList.map((name) => countryDatabase.find((c) => c.name === name)!).filter(Boolean)}
+          onClose={() => setShowCompare(false)}
+          onAskAdvisor={() => {
+            setShowCompare(false);
+            onNavigate?.("chat");
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+function CountryCompare({
+  countries,
+  onClose,
+  onAskAdvisor,
+}: {
+  countries: CountryProfile[];
+  onClose: () => void;
+  onAskAdvisor: () => void;
+}) {
+  const ROWS: {
+    label: string;
+    render: (c: CountryProfile) => string;
+    good?: (c: CountryProfile) => boolean;
+    bad?: (c: CountryProfile) => boolean;
+  }[] = [
+    {
+      label: "Time to stability",
+      render: (c) => `${c.stabilityMonths} mo`,
+    },
+    {
+      label: "Cost level",
+      render: (c) => c.costLevel,
+      good: (c) => c.costLevel === "low",
+      bad: (c) => c.costLevel === "high",
+    },
+    {
+      label: "Safety",
+      render: (c) => `${c.safetyScore}/10`,
+      good: (c) => c.safetyScore >= 8,
+      bad: (c) => c.safetyScore <= 6,
+    },
+    {
+      label: "Healthcare",
+      render: (c) => `${c.healthcareQuality}/10`,
+      good: (c) => c.healthcareQuality >= 8,
+      bad: (c) => c.healthcareQuality <= 6,
+    },
+    {
+      label: "Language barrier",
+      render: (c) => c.languageBarrier,
+      good: (c) => c.languageBarrier === "low",
+      bad: (c) => c.languageBarrier === "high",
+    },
+    {
+      label: "Visa ease",
+      render: (c) => c.visaEase,
+      good: (c) => c.visaEase === "easy",
+      bad: (c) => c.visaEase === "hard",
+    },
+    {
+      label: "Citizenship path",
+      render: (c) => (c.citizenshipYears ? `${c.citizenshipYears} years` : "No path"),
+      good: (c) => (c.citizenshipYears ?? 99) <= 5,
+      bad: (c) => c.citizenshipYears === null,
+    },
+    {
+      label: "Income tax",
+      render: (c) => {
+        const t = TAX_RATES[c.name];
+        if (!t) return "~20-35%";
+        return t.regime || `${Math.round(t.rate * 100)}%`;
+      },
+      good: (c) => (TAX_RATES[c.name]?.rate ?? 0.3) <= 0.1,
+      bad: (c) => (TAX_RATES[c.name]?.rate ?? 0.3) >= 0.4,
+    },
+    {
+      label: "Climate",
+      render: (c) => c.climate,
+      good: (c) => c.climate === "warm",
+    },
+  ];
+
+  const ORIGIN_RATE = 0.45;
+  const MONTHLY = 6000;
+  const ANNUAL = MONTHLY * 12;
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm overflow-y-auto">
+      <div className="min-h-screen p-4 md:p-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold">Country comparison</h2>
+              <p className="text-[13px] text-muted-foreground mt-0.5">Side-by-side analysis based on your profile</p>
+            </div>
+            <button
+              onClick={onClose}
+              className="text-muted-foreground hover:text-foreground transition-colors p-1"
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          <div className="rounded-2xl border border-white/[0.06] bg-[#0d0d0d] overflow-hidden mb-5">
+            <div
+              className="grid border-b border-white/[0.06]"
+              style={{ gridTemplateColumns: `140px repeat(${countries.length}, 1fr)` }}
+            >
+              <div className="p-4" />
+              {countries.map((c) => (
+                <div key={c.name} className="p-4 text-center border-l border-white/[0.04]">
+                  <div className="text-3xl mb-2">{c.flag}</div>
+                  <div className="text-[14px] font-semibold">{c.name}</div>
+                  <div className="text-[11px] text-muted-foreground mt-1 leading-tight">{c.topVisa}</div>
+                </div>
+              ))}
+            </div>
+
+            {ROWS.map((row, i) => (
+              <div
+                key={row.label}
+                className={`grid border-b border-white/[0.04] ${i % 2 === 0 ? "bg-white/[0.01]" : ""}`}
+                style={{ gridTemplateColumns: `140px repeat(${countries.length}, 1fr)` }}
+              >
+                <div className="p-3 px-4 flex items-center">
+                  <span className="text-[12px] text-muted-foreground font-medium">{row.label}</span>
+                </div>
+                {countries.map((c) => {
+                  const val = row.render(c);
+                  const isGood = row.good?.(c);
+                  const isBad = row.bad?.(c);
+                  return (
+                    <div key={c.name} className="p-3 px-4 flex items-center justify-center border-l border-white/[0.04]">
+                      <span
+                        className={`text-[13px] font-medium capitalize text-center ${
+                          isGood ? "text-green-400" : isBad ? "text-red-400" : "text-foreground"
+                        }`}
+                      >
+                        {val}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+
+            <div
+              className="grid"
+              style={{ gridTemplateColumns: `140px repeat(${countries.length}, 1fr)` }}
+            >
+              <div className="p-3 px-4 flex items-start pt-4">
+                <span className="text-[12px] text-muted-foreground font-medium">Top risk</span>
+              </div>
+              {countries.map((c) => (
+                <div key={c.name} className="p-3 px-4 pt-4 border-l border-white/[0.04]">
+                  <p className="text-[11px] text-amber-400/80 leading-relaxed">{c.risks[0]}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {countries.some((c) => TAX_RATES[c.name] !== undefined) && (
+            <div className="rounded-xl border border-green-500/20 bg-green-500/[0.04] p-5 mb-5">
+              <p className="text-[11px] uppercase tracking-widest text-green-400/70 font-medium mb-4">
+                Tax savings vs typical Western country (~45% tax, $6k/mo income)
+              </p>
+              <div className="grid gap-3" style={{ gridTemplateColumns: `repeat(${countries.length}, 1fr)` }}>
+                {countries.map((c) => {
+                  const t = TAX_RATES[c.name];
+                  const effectiveRate = t?.rate ?? 0.3;
+                  const saving = Math.max(0, (ORIGIN_RATE - effectiveRate) * ANNUAL);
+                  return (
+                    <div key={c.name} className="rounded-lg bg-white/[0.04] border border-white/[0.06] p-3 text-center">
+                      <div className="text-[11px] text-muted-foreground mb-1">{c.name}</div>
+                      <div className="text-[20px] font-bold text-green-400">{saving > 0 ? `+${money(saving)}/yr` : "Similar"}</div>
+                      {t?.regime && (
+                        <div className="text-[10px] text-muted-foreground/60 mt-1">{t.regime}</div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="text-[10px] text-muted-foreground/30 mt-3">Estimates only. Consult a tax professional.</p>
+            </div>
+          )}
+
+          <div
+            className="rounded-xl border border-primary/20 bg-primary/[0.04] p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 cursor-pointer hover:bg-primary/[0.07] transition-colors"
+            onClick={onAskAdvisor}
+          >
+            <div className="flex-1">
+              <p className="font-semibold text-[14px]">Which is best for your situation?</p>
+              <p className="text-[12px] text-muted-foreground mt-0.5">
+                Ask your AI advisor to recommend based on your passport, income and goals
+              </p>
+            </div>
+            <Button className="shrink-0 bg-primary hover:bg-primary/80">
+              Ask advisor →
+            </Button>
+          </div>
+
+          <button
+            onClick={onClose}
+            className="mt-5 mx-auto block text-[12px] text-muted-foreground hover:text-foreground transition-colors"
+          >
+            ← Back to countries
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
