@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check, ArrowRight, Zap } from "lucide-react";
 import { openPaddleCheckout } from "@/config/paddle";
@@ -130,6 +129,87 @@ export default function PricingSection() {
           </div>
         </motion.div>
 
+        <motion.div
+          className="max-w-[960px] mx-auto mb-6"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <div
+            className="relative rounded-2xl overflow-hidden"
+            style={{
+              border: "1px solid rgba(56,189,248,0.2)",
+              background: "linear-gradient(135deg, rgba(56,189,248,0.04) 0%, rgba(99,102,241,0.03) 50%, rgba(255,255,255,0.01) 100%)",
+            }}
+          >
+            <div
+              className="absolute top-0 left-0 right-0 h-px"
+              style={{ background: "linear-gradient(90deg, transparent, rgba(56,189,248,0.5), transparent)" }}
+            />
+            <div className="p-7 md:p-8">
+              <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+                <div className="flex-1">
+                  <div
+                    className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-3 text-[11px] font-medium tracking-wide"
+                    style={{
+                      background: "rgba(56,189,248,0.08)",
+                      border: "1px solid rgba(56,189,248,0.18)",
+                      color: "#7dd3fc",
+                    }}
+                  >
+                    <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#38bdf8", display: "inline-block", flexShrink: 0 }} />
+                    White-glove service
+                  </div>
+                  <h3 className="text-xl font-bold tracking-tight mb-2">Relova Concierge</h3>
+                  <p className="text-[13px] text-muted-foreground mb-4 max-w-lg leading-relaxed">
+                    Half the price of an immigration lawyer. A real expert guides you from decision to approved visa — powered by AI, verified by humans.
+                  </p>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    {[
+                      "60-min strategy call",
+                      "All documents reviewed",
+                      "Visa letter written & verified",
+                      "WhatsApp 90 days",
+                      "Lawyer reviews package",
+                      "Everything in Full — forever",
+                      "Personalized roadmap",
+                      "Money-back guarantee",
+                    ].map((f) => (
+                      <div key={f} className="flex items-start gap-1.5 text-[12px]">
+                        <span style={{ color: "#38bdf8", flexShrink: 0 }}>✓</span>
+                        <span className="text-muted-foreground">{f}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-col items-start md:items-end gap-3 flex-shrink-0">
+                  <div className="md:text-right">
+                    <p className="text-[11px] text-muted-foreground/40 line-through mb-1">Lawyers charge $1,500–$3,000</p>
+                    <div className="flex items-baseline gap-2 md:justify-end">
+                      <span className="text-4xl font-bold tracking-tight">$990</span>
+                      <span className="text-muted-foreground text-sm">one-time</span>
+                    </div>
+                    <p className="text-[11px] mt-1" style={{ color: "#34d399" }}>Save $500–$2,000 vs. a lawyer</p>
+                  </div>
+                  <button
+                    className="w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-xl px-7 py-3 text-[14px] font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
+                    style={{
+                      background: "linear-gradient(135deg, #0ea5e9, #6366f1)",
+                      boxShadow: "0 0 28px rgba(14,165,233,0.2)",
+                      border: "none",
+                    }}
+                    onClick={() => openPaddleCheckout("concierge", user?.email ?? undefined, user?.id)}
+                  >
+                    Apply for Concierge →
+                  </button>
+                  <p className="text-[11px] text-muted-foreground/40 md:text-right">Limited spots. We review each case.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         <div className="grid md:grid-cols-3 gap-5 max-w-[960px] mx-auto">
           {plans.map((plan, i) => (
             <motion.div
@@ -186,19 +266,30 @@ export default function PricingSection() {
 
               {plan.isFree ? (
                 <Link to="/dashboard">
-                  <Button variant="outline" className="w-full h-10 text-[13px] rounded-lg gap-1.5">
+                  <button
+                    className="w-full flex items-center justify-center rounded-lg h-10 text-[13px] transition-all hover:opacity-80"
+                    style={{
+                      background: "transparent",
+                      border: "1px solid rgba(255,255,255,0.12)",
+                      color: "rgba(255,255,255,0.55)",
+                    }}
+                  >
                     {plan.cta}
-                  </Button>
+                  </button>
                 </Link>
               ) : (
-                <Button
-                  variant={plan.highlighted ? "hero" : "outline"}
-                  className="w-full h-10 text-[13px] rounded-lg gap-1.5"
+                <button
+                  className="w-full flex items-center justify-center gap-2 rounded-lg h-10 text-[13px] font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
+                  style={{
+                    background: "linear-gradient(135deg, #0ea5e9, #6366f1)",
+                    boxShadow: "0 0 20px rgba(14,165,233,0.15)",
+                    border: "none",
+                  }}
                   onClick={() => handlePayment(plan.name === "Pro" ? "pro" : "full")}
                 >
                   {plan.cta}
-                  {plan.highlighted && <ArrowRight size={13} />}
-                </Button>
+                  <ArrowRight size={13} />
+                </button>
               )}
             </motion.div>
           ))}

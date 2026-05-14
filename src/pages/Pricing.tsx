@@ -142,95 +142,9 @@ export default function Pricing() {
             )}
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {plans.map((plan, i) => (
-              <motion.div
-                key={plan.name}
-                className={`relative p-8 rounded-xl border bg-card ${
-                  plan.highlighted
-                    ? "border-primary/30 shadow-[0_0_40px_-12px_hsl(var(--primary)/0.15)]"
-                    : billing === "lifetime" && plan.name === "Full"
-                    ? "border-amber-500/30 shadow-[0_0_40px_-12px_rgba(245,158,11,0.15)]"
-                    : "border-border"
-                }`}
-                initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
-                transition={{ duration: 0.6, delay: 0.1 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {plan.badge && (
-                  <span className={`absolute -top-3 left-8 px-3 py-0.5 rounded-full text-xs font-medium ${
-                    plan.badge === "Best value"
-                      ? "bg-amber-500 text-white"
-                      : "bg-primary text-primary-foreground"
-                  }`}>
-                    {plan.badge}
-                  </span>
-                )}
-
-                <div className="mb-6">
-                  <h3 className="text-lg font-semibold mb-1">{plan.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
-                  <div className="flex items-baseline gap-1">
-                    <motion.span
-                      key={billing + plan.name}
-                      initial={{ opacity: 0, y: -8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-4xl font-bold tabular-nums"
-                    >
-                      {billing === "monthly" ? plan.monthlyPrice : plan.lifetimePrice}
-                    </motion.span>
-                    <span className="text-sm text-muted-foreground">{plan.period}</span>
-                  </div>
-                  {!plan.isFree && billing === "lifetime" && (
-                    <p className="text-[11px] text-muted-foreground/60 mt-1">
-                      vs {plan.monthlyPrice}/mo — pay once, use forever
-                    </p>
-                  )}
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-sm">
-                      <Check size={16} className="text-primary mt-0.5 shrink-0" />
-                      <span className="text-muted-foreground">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {plan.isFree ? (
-                  <Link to="/dashboard">
-                    <button
-                      className="w-full flex items-center justify-center gap-2 rounded-xl h-[52px] text-[14px] font-medium transition-all hover:opacity-80 active:scale-[0.98]"
-                      style={{
-                        background: "transparent",
-                        border: "1px solid rgba(255,255,255,0.12)",
-                        color: "rgba(255,255,255,0.6)",
-                      }}
-                    >
-                      {plan.cta}
-                    </button>
-                  </Link>
-                ) : (
-                  <button
-                    className="w-full flex items-center justify-center gap-2 rounded-xl h-[52px] text-[14px] font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
-                    style={{
-                      background: "linear-gradient(135deg, #0ea5e9, #6366f1)",
-                      boxShadow: "0 0 24px rgba(14,165,233,0.2)",
-                      border: "none",
-                    }}
-                    onClick={() => handlePayment(plan.name === "Pro" ? "pro" : "full")}
-                  >
-                    {plan.cta}
-                    <ArrowRight size={14} />
-                  </button>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
           {/* Concierge */}
           <motion.div
-            className="mt-12 max-w-4xl mx-auto"
+            className="mb-8 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
             transition={{ duration: 0.6, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
@@ -322,6 +236,92 @@ export default function Pricing() {
               </div>
             </div>
           </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {plans.map((plan, i) => (
+              <motion.div
+                key={plan.name}
+                className={`relative p-8 rounded-xl border bg-card ${
+                  plan.highlighted
+                    ? "border-primary/30 shadow-[0_0_40px_-12px_hsl(var(--primary)/0.15)]"
+                    : billing === "lifetime" && plan.name === "Full"
+                    ? "border-amber-500/30 shadow-[0_0_40px_-12px_rgba(245,158,11,0.15)]"
+                    : "border-border"
+                }`}
+                initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
+                transition={{ duration: 0.6, delay: 0.1 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {plan.badge && (
+                  <span className={`absolute -top-3 left-8 px-3 py-0.5 rounded-full text-xs font-medium ${
+                    plan.badge === "Best value"
+                      ? "bg-amber-500 text-white"
+                      : "bg-primary text-primary-foreground"
+                  }`}>
+                    {plan.badge}
+                  </span>
+                )}
+
+                <div className="mb-6">
+                  <h3 className="text-lg font-semibold mb-1">{plan.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
+                  <div className="flex items-baseline gap-1">
+                    <motion.span
+                      key={billing + plan.name}
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-4xl font-bold tabular-nums"
+                    >
+                      {billing === "monthly" ? plan.monthlyPrice : plan.lifetimePrice}
+                    </motion.span>
+                    <span className="text-sm text-muted-foreground">{plan.period}</span>
+                  </div>
+                  {!plan.isFree && billing === "lifetime" && (
+                    <p className="text-[11px] text-muted-foreground/60 mt-1">
+                      vs {plan.monthlyPrice}/mo — pay once, use forever
+                    </p>
+                  )}
+                </div>
+
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5 text-sm">
+                      <Check size={16} className="text-primary mt-0.5 shrink-0" />
+                      <span className="text-muted-foreground">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {plan.isFree ? (
+                  <Link to="/dashboard">
+                    <button
+                      className="w-full flex items-center justify-center gap-2 rounded-xl h-[52px] text-[14px] font-medium transition-all hover:opacity-80 active:scale-[0.98]"
+                      style={{
+                        background: "transparent",
+                        border: "1px solid rgba(255,255,255,0.12)",
+                        color: "rgba(255,255,255,0.6)",
+                      }}
+                    >
+                      {plan.cta}
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    className="w-full flex items-center justify-center gap-2 rounded-xl h-[52px] text-[14px] font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
+                    style={{
+                      background: "linear-gradient(135deg, #0ea5e9, #6366f1)",
+                      boxShadow: "0 0 24px rgba(14,165,233,0.2)",
+                      border: "none",
+                    }}
+                    onClick={() => handlePayment(plan.name === "Pro" ? "pro" : "full")}
+                  >
+                    {plan.cta}
+                    <ArrowRight size={14} />
+                  </button>
+                )}
+              </motion.div>
+            ))}
+          </div>
 
           <motion.p
             className="text-center text-sm text-muted-foreground mt-10"
