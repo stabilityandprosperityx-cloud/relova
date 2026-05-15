@@ -167,10 +167,10 @@ export default function PricingSection() {
                   </p>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {[
-                      "60-min strategy call",
+                      "Personal expert via chat (WhatsApp / Telegram)",
                       "All documents reviewed",
                       "Visa letter written & verified",
-                      "WhatsApp 90 days",
+                      "Chat support for 90 days",
                       "Lawyer reviews package",
                       "Everything in Full — forever",
                       "Personalized roadmap",

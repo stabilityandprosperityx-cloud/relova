@@ -186,10 +186,10 @@ export default function Pricing() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {[
                         "Everything in Full plan — forever",
-                        "60-min strategy call",
+                        "Personal expert via chat (WhatsApp / Telegram)",
                         "All documents reviewed before submission",
                         "Visa cover letter written & verified",
-                        "WhatsApp access for 90 days",
+                        "Chat support for 90 days",
                         "Lawyer reviews your final package",
                         "Personalized relocation roadmap",
                         "Money-back if we make an error",
