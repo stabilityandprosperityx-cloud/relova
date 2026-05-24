@@ -20,36 +20,63 @@ const ROUTES = [
 
 export default function HeroSection() {
   return (
-    <section
-      className="relative pt-24 pb-16 md:pt-36 md:pb-24 overflow-hidden"
-      style={{ background: "#07090f" }}
-    >
+    <section className="relative pt-24 pb-16 md:pt-36 md:pb-24 overflow-hidden hero-section-bg">
+
       {/* Grid background */}
       <div className="bg-grid-relova absolute inset-0 pointer-events-none" />
 
-      {/* Glow orbs */}
+      {/* Decorative SVG curves — light mode */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none hero-curves-light dark:opacity-0 transition-opacity duration-300"
+        viewBox="0 0 1440 700"
+        fill="none"
+        preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="1300" cy="80" r="12" fill="none" stroke="#8b5cf6" strokeWidth="2" opacity="0.3"/>
+        <circle cx="1300" cy="80" r="6" fill="#8b5cf6" opacity="0.4"/>
+        <circle cx="140" cy="200" r="8" fill="none" stroke="#8b5cf6" strokeWidth="1.5" opacity="0.25"/>
+        <circle cx="140" cy="200" r="4" fill="#8b5cf6" opacity="0.35"/>
+        <path d="M 1300 80 C 1200 120, 1100 80, 1000 140 C 900 200, 800 160, 700 220" stroke="#8b5cf6" strokeWidth="1.5" opacity="0.15" fill="none"/>
+        <path d="M 140 200 C 200 240, 280 200, 360 260 C 440 320, 520 280, 600 340" stroke="#8b5cf6" strokeWidth="1.5" opacity="0.12" fill="none"/>
+        <circle cx="700" cy="220" r="6" fill="none" stroke="#8b5cf6" strokeWidth="1.5" opacity="0.2"/>
+        <circle cx="1380" cy="400" r="10" fill="none" stroke="#a78bfa" strokeWidth="1.5" opacity="0.2"/>
+        <circle cx="60" cy="500" r="8" fill="none" stroke="#a78bfa" strokeWidth="1.5" opacity="0.15"/>
+      </svg>
+
+      {/* Glow orbs — dark mode */}
       <div
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none opacity-0 dark:opacity-100 transition-opacity duration-300"
         style={{
           top: "-100px", left: "50%", transform: "translateX(-50%)",
           width: "800px", height: "400px",
-          background: "radial-gradient(ellipse, rgba(56,189,248,0.14) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse, rgba(139,92,246,0.18) 0%, transparent 60%)",
         }}
       />
       <div
-        className="absolute pointer-events-none hidden lg:block"
+        className="absolute pointer-events-none hidden lg:block opacity-0 dark:opacity-100 transition-opacity duration-300"
         style={{
           top: "80px", left: "-60px",
           width: "420px", height: "320px",
-          background: "radial-gradient(ellipse, rgba(99,102,241,0.1) 0%, transparent 65%)",
+          background: "radial-gradient(ellipse, rgba(99,102,241,0.12) 0%, transparent 65%)",
         }}
       />
       <div
-        className="absolute pointer-events-none hidden lg:block"
+        className="absolute pointer-events-none hidden lg:block opacity-0 dark:opacity-100 transition-opacity duration-300"
         style={{
           top: "100px", right: "-40px",
           width: "360px", height: "280px",
-          background: "radial-gradient(ellipse, rgba(20,184,166,0.08) 0%, transparent 65%)",
+          background: "radial-gradient(ellipse, rgba(139,92,246,0.1) 0%, transparent 65%)",
+        }}
+      />
+
+      {/* Light mode glow */}
+      <div
+        className="absolute pointer-events-none opacity-100 dark:opacity-0 transition-opacity duration-300"
+        style={{
+          top: "-60px", left: "50%", transform: "translateX(-50%)",
+          width: "900px", height: "400px",
+          background: "radial-gradient(ellipse, rgba(139,92,246,0.12) 0%, transparent 60%)",
         }}
       />
 
@@ -78,9 +105,9 @@ export default function HeroSection() {
           <motion.div
             className="inline-flex items-center gap-2 rounded-full px-4 py-[5px] mb-7 text-[11px] tracking-[0.04em]"
             style={{
-              background: "rgba(56,189,248,0.07)",
-              border: "1px solid rgba(56,189,248,0.18)",
-              color: "#7dd3fc",
+              background: "rgba(139,92,246,0.08)",
+              border: "1px solid rgba(139,92,246,0.2)",
+              color: "#8b5cf6",
             }}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -89,8 +116,8 @@ export default function HeroSection() {
             <span
               style={{
                 width: 6, height: 6, borderRadius: "50%",
-                background: "#38bdf8",
-                boxShadow: "0 0 6px #38bdf8",
+                background: "#8b5cf6",
+                boxShadow: "0 0 6px #8b5cf6",
                 animation: "blink 2s infinite",
                 display: "inline-block",
                 flexShrink: 0,
@@ -101,21 +128,19 @@ export default function HeroSection() {
 
           {/* Headline */}
           <motion.h1
-            className="text-[2.4rem] sm:text-[3rem] md:text-[3.8rem] font-bold leading-[1.04] tracking-[-0.045em] mb-5"
-            style={{ color: "#fff" }}
+            className="text-[2.4rem] sm:text-[3rem] md:text-[3.8rem] font-bold leading-[1.04] tracking-[-0.045em] mb-5 text-foreground"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.05, ease: "easeOut" }}
           >
             You already know<br />
-            <span style={{ color: "rgba(255,255,255,0.45)" }}>you want to leave.</span><br />
+            <span className="text-muted-foreground" style={{ opacity: 0.6 }}>you want to leave.</span><br />
             <span className="text-gradient-accent">We show you where.</span>
           </motion.h1>
 
           {/* Subheadline */}
           <motion.p
-            className="text-[15px] md:text-[16px] leading-[1.75] max-w-[460px] mx-auto mb-9"
-            style={{ color: "rgba(255,255,255,0.42)" }}
+            className="text-[15px] md:text-[16px] leading-[1.75] max-w-[460px] mx-auto mb-9 text-muted-foreground"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
@@ -132,10 +157,10 @@ export default function HeroSection() {
           >
             <Link to="/chat" className="w-full sm:w-auto">
               <button
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[10px] px-7 h-[50px] text-[14px] font-semibold text-white"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[10px] px-7 h-[50px] text-[14px] font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
                 style={{
-                  background: "linear-gradient(135deg, #0ea5e9, #6366f1)",
-                  boxShadow: "0 0 32px rgba(14,165,233,0.3)",
+                  background: "linear-gradient(135deg, #8b5cf6, #6366f1)",
+                  boxShadow: "0 0 32px rgba(139,92,246,0.35)",
                   border: "none",
                 }}
               >
@@ -146,25 +171,20 @@ export default function HeroSection() {
               <Button
                 variant="outline"
                 className="w-full sm:w-auto h-[50px] px-7 text-[14px] rounded-[10px]"
-                style={{
-                  background: "transparent",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  color: "rgba(255,255,255,0.6)",
-                }}
               >
                 Explore countries
               </Button>
             </Link>
           </motion.div>
 
-          {/* Demo Chat Widget with gradient border */}
+          {/* Demo Chat Widget */}
           <motion.div
             className="gradient-border-box mb-8"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
           >
-            <div className="relative z-10 rounded-[18px] overflow-hidden" style={{ background: "#0d1117" }}>
+            <div className="relative z-10 rounded-[18px] overflow-hidden bg-card">
               <ChatWidget maxHeight="320px" compact />
             </div>
           </motion.div>
@@ -177,11 +197,11 @@ export default function HeroSection() {
             transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
           >
             {ROUTES.map((r, i) => (
-              <span key={i} className="text-[12px]" style={{ color: "rgba(255,255,255,0.25)" }}>
+              <span key={i} className="text-[12px] text-muted-foreground/50">
                 {r.from} → {r.to} ·{" "}
-                <span style={{ color: "#38bdf8", fontWeight: 500 }}>{r.stat}</span>
+                <span style={{ color: "#8b5cf6", fontWeight: 500 }}>{r.stat}</span>
                 {i < ROUTES.length - 1 && (
-                  <span className="ml-4" style={{ color: "rgba(255,255,255,0.08)" }}>·</span>
+                  <span className="ml-4 text-muted-foreground/20">·</span>
                 )}
               </span>
             ))}
@@ -194,6 +214,28 @@ export default function HeroSection() {
         @keyframes blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.3; }
+        }
+        .hero-section-bg {
+          background: linear-gradient(160deg, #f5f3ff 0%, #ede9fe 40%, #f8f7ff 100%);
+        }
+        .dark .hero-section-bg {
+          background: #07090f;
+        }
+        .hero-float-badge {
+          background: rgba(139,92,246,0.08);
+          border: 1px solid rgba(139,92,246,0.18);
+          color: #7c3aed;
+        }
+        .dark .hero-float-badge {
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.08);
+          color: rgba(255,255,255,0.45);
+        }
+        .hero-curves-light {
+          opacity: 1;
+        }
+        .dark .hero-curves-light {
+          opacity: 0;
         }
       `}</style>
     </section>
