@@ -209,6 +209,70 @@
     pointer-events: none;
     opacity: 0.4;
   }
+
+  .section-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--border)) 20%, hsl(var(--border)) 80%, transparent);
+    margin: 0;
+  }
+
+  .card-premium {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .card-premium:hover {
+    box-shadow: 0 4px 24px rgba(139,92,246,0.1), 0 1px 3px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+
+  .dark .card-premium {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 4px 16px rgba(0,0,0,0.15);
+  }
+
+  .dark .card-premium:hover {
+    box-shadow: 0 4px 24px rgba(139,92,246,0.15), 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  .section-purple-bg {
+    background: linear-gradient(160deg, hsl(258 90% 97%) 0%, hsl(250 60% 99%) 100%);
+  }
+
+  .dark .section-purple-bg {
+    background: hsl(220 10% 7%);
+  }
+
+  .photo-card {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4/3;
+  }
+
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .photo-card:hover img {
+    transform: scale(1.04);
+  }
+
+  .photo-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 16px 16px;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
+    color: white;
+  }
 }
 
 @keyframes energyFlow {
