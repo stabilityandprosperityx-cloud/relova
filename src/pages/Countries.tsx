@@ -25,13 +25,78 @@ export default function Countries() {
         canonical="https://relova.ai/countries"
       />
       <Navbar />
-      <main className="pt-24 pb-16">
-        <div className="container">
-          <motion.div className="mb-12" initial={{ opacity: 0, y: 16, filter: "blur(4px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0)" }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">Explore Countries</h1>
-            <p className="text-muted-foreground text-lg">Compare destinations and find the right fit for your relocation.</p>
-          </motion.div>
+      <main className="pt-0 pb-16">
+        {/* Hero header with background */}
+        <div className="relative overflow-hidden pt-24 pb-16 mb-12">
+          {/* Light mode background */}
+          <div
+            className="absolute inset-0 opacity-100 dark:opacity-0 transition-opacity duration-300"
+            style={{
+              background: "linear-gradient(160deg, #f0ebff 0%, #e8e0ff 50%, #f5f3ff 100%)",
+            }}
+          />
+          {/* Dark mode background */}
+          <div
+            className="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity duration-300"
+            style={{
+              background: "linear-gradient(160deg, rgba(139,92,246,0.08) 0%, rgba(99,102,241,0.05) 50%, transparent 100%)",
+            }}
+          />
+          {/* SVG decorative curves */}
+          <svg
+            className="absolute top-0 right-0 w-[500px] h-[300px] pointer-events-none opacity-40"
+            viewBox="0 0 500 300"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="420" cy="60" r="12" stroke="#8b5cf6" strokeWidth="2" fill="none" opacity="0.5"/>
+            <circle cx="420" cy="60" r="6" fill="#8b5cf6" opacity="0.5"/>
+            <path d="M420 60 C350 100 260 70 180 120" stroke="#8b5cf6" strokeWidth="1.5" opacity="0.2" fill="none"/>
+            <circle cx="180" cy="120" r="8" stroke="#8b5cf6" strokeWidth="1.5" fill="none" opacity="0.3"/>
+            <circle cx="470" cy="200" r="10" stroke="#a78bfa" strokeWidth="1.5" fill="none" opacity="0.2"/>
+            <circle cx="60" cy="240" r="7" stroke="#a78bfa" strokeWidth="1.5" fill="none" opacity="0.15"/>
+            <path d="M60 240 C120 220 180 240 240 210" stroke="#8b5cf6" strokeWidth="1" opacity="0.12" fill="none"/>
+          </svg>
+          {/* Floating country badges */}
+          <div className="absolute top-8 right-8 hidden xl:flex flex-col gap-2 opacity-60">
+            {["🇵🇹 Portugal · D7 Visa", "🇦🇪 UAE · 0% Tax", "🇬🇪 Georgia · 1% Tax"].map((b) => (
+              <div
+                key={b}
+                className="text-[11px] px-3 py-1.5 rounded-lg font-medium"
+                style={{
+                  background: "rgba(139,92,246,0.08)",
+                  border: "1px solid rgba(139,92,246,0.15)",
+                  color: "#7c3aed",
+                }}
+              >
+                {b}
+              </div>
+            ))}
+          </div>
+          <div className="container relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div
+                className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-4 text-[11px] font-medium tracking-wide"
+                style={{
+                  background: "rgba(139,92,246,0.08)",
+                  border: "1px solid rgba(139,92,246,0.18)",
+                  color: "#8b5cf6",
+                }}
+              >
+                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#8b5cf6", display: "inline-block" }} />
+                70+ destinations · Real visa paths
+              </div>
+              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-[1.1]">Explore Countries</h1>
+              <p className="text-muted-foreground text-lg max-w-[500px]">Compare destinations and find the right fit for your relocation. Real costs, visa paths, and timelines.</p>
+            </motion.div>
+          </div>
+        </div>
 
+        <div className="container">
           <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}>
             {quickStats.map((stat) => (
               <div key={stat.label} className="p-5 rounded-xl border border-border bg-card">
