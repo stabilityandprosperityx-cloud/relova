@@ -32,7 +32,15 @@ export default function Countries() {
           <div
             className="absolute inset-0 opacity-100 dark:opacity-0 transition-opacity duration-300"
             style={{
-              background: "linear-gradient(160deg, #f0ebff 0%, #e8e0ff 50%, #f5f3ff 100%)",
+              backgroundImage: "url('/images/world-map.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(to top, rgba(10,5,30,0.82) 0%, rgba(10,5,30,0.5) 50%, rgba(10,5,30,0.3) 100%)",
             }}
           />
           {/* Dark mode background */}
@@ -64,9 +72,10 @@ export default function Countries() {
                 key={b}
                 className="text-[11px] px-3 py-1.5 rounded-lg font-medium"
                 style={{
-                  background: "rgba(139,92,246,0.08)",
-                  border: "1px solid rgba(139,92,246,0.15)",
-                  color: "#7c3aed",
+                  background: "rgba(255,255,255,0.1)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  color: "rgba(255,255,255,0.9)",
+                  backdropFilter: "blur(8px)" as const,
                 }}
               >
                 {b}
@@ -82,16 +91,17 @@ export default function Countries() {
               <div
                 className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-4 text-[11px] font-medium tracking-wide"
                 style={{
-                  background: "rgba(139,92,246,0.08)",
-                  border: "1px solid rgba(139,92,246,0.18)",
-                  color: "#8b5cf6",
+                  background: "rgba(255,255,255,0.1)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  color: "rgba(255,255,255,0.9)",
+                  backdropFilter: "blur(8px)" as const,
                 }}
               >
                 <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#8b5cf6", display: "inline-block" }} />
                 70+ destinations · Real visa paths
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-[1.1]">Explore Countries</h1>
-              <p className="text-muted-foreground text-lg max-w-[500px]">Compare destinations and find the right fit for your relocation. Real costs, visa paths, and timelines.</p>
+              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-[1.1]" style={{ color: "white" }}>Explore Countries</h1>
+              <p className="text-lg max-w-[500px]" style={{ color: "rgba(255,255,255,0.65)" }}>Compare destinations and find the right fit for your relocation. Real costs, visa paths, and timelines.</p>
             </motion.div>
           </div>
         </div>

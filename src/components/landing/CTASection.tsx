@@ -5,6 +5,13 @@ import { motion } from "framer-motion";
 export default function CTASection() {
   return (
     <section className="py-[80px] md:py-[100px] relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <img
+          src="/images/hero-lisbon.png"
+          alt=""
+          className="w-full h-full object-cover opacity-[0.12] dark:opacity-[0.08]"
+        />
+      </div>
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
