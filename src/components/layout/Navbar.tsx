@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Menu, X, LogOut } from "lucide-react";
+import { Menu, X, LogOut, Sun, Moon } from "lucide-react";
 import RelovaLogo from "@/components/RelovaLogo";
 import { useAuth } from "@/contexts/AuthContext";
 import AuthModal from "@/components/auth/AuthModal";
@@ -18,6 +18,26 @@ export default function Navbar() {
   const [authOpen, setAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "signup">("signup");
   const { user, signOut } = useAuth();
+
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.classList.contains('dark');
+    }
+    return false;
+  });
+
+  const toggleTheme = () => {
+    const html = document.documentElement;
+    if (isDark) {
+      html.classList.remove('dark');
+      localStorage.setItem('relova-theme', 'light');
+      setIsDark(false);
+    } else {
+      html.classList.add('dark');
+      localStorage.setItem('relova-theme', 'dark');
+      setIsDark(true);
+    }
+  };
 
   const openAuth = (mode: "login" | "signup") => {
     setAuthMode(mode);
@@ -50,6 +70,13 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-5">
+            <button
+              onClick={toggleTheme}
+              className="w-8 h-8 flex items-center justify-center rounded-lg transition-colors hover:bg-muted"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun size={16} className="text-muted-foreground" /> : <Moon size={16} className="text-muted-foreground" />}
+            </button>
             {user ? (
               <>
                 <button
@@ -104,6 +131,13 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="pt-3 border-t border-border/30 mt-3 space-y-2">
+              <button
+                onClick={toggleTheme}
+                className="w-8 h-8 flex items-center justify-center rounded-lg transition-colors hover:bg-muted"
+                aria-label="Toggle theme"
+              >
+                {isDark ? <Sun size={16} className="text-muted-foreground" /> : <Moon size={16} className="text-muted-foreground" />}
+              </button>
               {user ? (
                 <>
                   <Link
