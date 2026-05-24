@@ -23,29 +23,29 @@ const cursorPositions = [
   { x: 50, y: 60 }, { x: 45, y: 55 }, { x: 55, y: 50 }, { x: 35, y: 40 },
 ];
 
-const cardBg = "bg-[#111113] border border-white/[0.06] rounded-lg";
+const cardBg = "bg-card border border-border rounded-lg";
 const labelCyan = "text-[#8b5cf6]";
 
 function Screen0() {
   return (
     <div className="flex flex-col items-center justify-center h-full px-6">
-      <p className="text-[10px] uppercase tracking-[0.15em] text-white/40 mb-3">Step 1 of 4</p>
-      <h3 className="text-[15px] font-semibold text-white mb-5">What's your passport?</h3>
+      <p className="text-[10px] uppercase tracking-[0.15em] text-foreground/40 mb-3">Step 1 of 4</p>
+      <h3 className="text-[15px] font-semibold text-foreground mb-5">What's your passport?</h3>
       <div className={`${cardBg} w-full max-w-[260px] p-3 mb-3`}>
-        <div className="flex items-center gap-2 mb-2 border-b border-white/[0.06] pb-2">
-          <svg className="w-3.5 h-3.5 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          <span className="text-[12px] text-white/60">Search countries...</span>
+        <div className="flex items-center gap-2 mb-2 border-b border-border/60 pb-2">
+          <svg className="w-3.5 h-3.5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <span className="text-[12px] text-foreground/60">Search countries...</span>
         </div>
         {["🇺🇸 United States", "🇬🇧 United Kingdom", "🇷🇺 Russia", "🇩🇪 Germany"].map((c, i) => (
-          <div key={c} className={`text-[11px] py-1.5 px-2 rounded ${i === 2 ? "bg-[#8b5cf6]/15 text-[#8b5cf6]" : "text-white/50"}`}>{c}</div>
+          <div key={c} className={`text-[11px] py-1.5 px-2 rounded ${i === 2 ? "bg-[#8b5cf6]/15 text-[#8b5cf6]" : "text-foreground/50"}`}>{c}</div>
         ))}
       </div>
       <div className={`${cardBg} w-full max-w-[260px] p-3`}>
-        <p className="text-[10px] text-white/40 mb-2">Monthly budget</p>
+        <p className="text-[10px] text-foreground/40 mb-2">Monthly budget</p>
         <div className="flex items-center justify-between mb-2">
           <span className={`text-[13px] font-semibold ${labelCyan}`}>$3,000 / mo</span>
         </div>
-        <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+        <div className="w-full h-1.5 rounded-full bg-muted/50 overflow-hidden">
           <div className="h-full rounded-full bg-[#8b5cf6] w-[45%]" />
         </div>
       </div>
@@ -56,25 +56,25 @@ function Screen0() {
 function Screen1() {
   return (
     <div className="flex flex-col h-full">
-      <div className="flex items-center gap-2 px-4 pt-4 pb-3 border-b border-white/[0.06]">
+      <div className="flex items-center gap-2 px-4 pt-4 pb-3 border-b border-border/60">
         <div className="w-2 h-2 rounded-full bg-[#8b5cf6] animate-pulse" />
-        <span className="text-[12px] font-medium text-white">Relova Advisor</span>
-        <span className="text-[10px] text-white/30 ml-auto">Online</span>
+        <span className="text-[12px] font-medium text-foreground">Relova Advisor</span>
+        <span className="text-[10px] text-muted-foreground ml-auto">Online</span>
       </div>
       <div className="flex-1 px-4 py-3 space-y-3 overflow-hidden">
         <div className={`${cardBg} p-3 max-w-[85%]`}>
-          <p className="text-[11px] text-white/70 leading-relaxed">I see you're planning to move from Russia to Portugal. The D7 Passive Income Visa looks like your best path. Want me to walk you through the requirements?</p>
+          <p className="text-[11px] text-foreground/70 leading-relaxed">I see you're planning to move from Russia to Portugal. The D7 Passive Income Visa looks like your best path. Want me to walk you through the requirements?</p>
         </div>
         <div className="p-3 max-w-[75%] ml-auto bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 rounded-lg">
           <p className="text-[11px] text-[#8b5cf6]/90 leading-relaxed">Yes — what documents do I need?</p>
         </div>
         <div className={`${cardBg} p-3 max-w-[85%]`}>
-          <p className="text-[11px] text-white/70 leading-relaxed">You'll need: proof of passive income ($1,500+/mo), health insurance, criminal record certificate (apostilled), and proof of accommodation in Portugal.</p>
+          <p className="text-[11px] text-foreground/70 leading-relaxed">You'll need: proof of passive income ($1,500+/mo), health insurance, criminal record certificate (apostilled), and proof of accommodation in Portugal.</p>
         </div>
       </div>
       <div className="px-4 pb-4">
         <div className={`${cardBg} flex items-center gap-2 p-2.5`}>
-          <span className="text-[11px] text-white/30 flex-1">Ask about visas, costs, documents...</span>
+          <span className="text-[11px] text-muted-foreground flex-1">Ask about visas, costs, documents...</span>
           <div className="w-6 h-6 rounded-md bg-[#8b5cf6] flex items-center justify-center">
             <ArrowRight className="w-3 h-3 text-black" />
           </div>
@@ -93,21 +93,21 @@ function Screen2() {
   ];
   return (
     <div className="flex flex-col h-full px-4 py-4">
-      <h3 className="text-[13px] font-semibold text-white mb-3">Your top matches</h3>
+      <h3 className="text-[13px] font-semibold text-foreground mb-3">Your top matches</h3>
       <div className="space-y-2 flex-1">
         {countries.map((c, i) => (
           <div key={c.name} className={`${cardBg} flex items-center gap-3 p-3 ${i === 0 ? "border-[#8b5cf6]/30 bg-[#8b5cf6]/5" : ""}`}>
             <span className="text-[18px]">{c.flag}</span>
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-[12px] font-medium text-white">{c.name}</span>
-                <span className={`text-[10px] font-mono font-semibold ${i === 0 ? labelCyan : "text-white/40"}`}>{c.score}%</span>
+                <span className="text-[12px] font-medium text-foreground">{c.name}</span>
+                <span className={`text-[10px] font-mono font-semibold ${i === 0 ? labelCyan : "text-foreground/40"}`}>{c.score}%</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="flex-1 h-1 rounded-full bg-white/10 overflow-hidden">
+                <div className="flex-1 h-1 rounded-full bg-muted/50 overflow-hidden">
                   <div className="h-full rounded-full bg-[#8b5cf6]" style={{ width: `${c.score}%`, opacity: i === 0 ? 1 : 0.4 }} />
                 </div>
-                <span className="text-[9px] text-white/30">{c.visa}</span>
+                <span className="text-[9px] text-muted-foreground">{c.visa}</span>
                 <span className={`text-[9px] ${c.diff === "Very Easy" || c.diff === "Easy" ? "text-emerald-400" : "text-yellow-400"}`}>{c.diff}</span>
               </div>
             </div>
@@ -123,17 +123,17 @@ function Screen3() {
     <div className="flex flex-col h-full px-4 py-4">
       <div className="flex items-center justify-between mb-2">
         <div>
-          <h3 className="text-[13px] font-semibold text-white">Your Relocation Plan</h3>
-          <p className="text-[10px] text-white/40 mt-0.5">🇵🇹 Portugal · D7 Visa</p>
+          <h3 className="text-[13px] font-semibold text-foreground">Your Relocation Plan</h3>
+          <p className="text-[10px] text-foreground/40 mt-0.5">🇵🇹 Portugal · D7 Visa</p>
         </div>
         <span className={`text-[10px] font-mono ${labelCyan}`}>Step 3 of 51</span>
       </div>
-      <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden mb-3">
+      <div className="w-full h-1.5 rounded-full bg-muted/50 overflow-hidden mb-3">
         <div className="h-full rounded-full bg-[#8b5cf6] w-[6%]" />
       </div>
       <div className="flex gap-1.5 mb-3 flex-wrap">
         {["Preparation", "Arrival", "Settling in", "Stability"].map((p, i) => (
-          <div key={p} className={`text-[8px] px-2 py-1 rounded-full font-medium ${i === 0 ? "bg-[#8b5cf6]/15 text-[#8b5cf6] border border-[#8b5cf6]/30" : "bg-white/5 text-white/30"}`}>{p}</div>
+          <div key={p} className={`text-[8px] px-2 py-1 rounded-full font-medium ${i === 0 ? "bg-[#8b5cf6]/15 text-[#8b5cf6] border border-[#8b5cf6]/30" : "bg-muted/30 text-muted-foreground"}`}>{p}</div>
         ))}
       </div>
       <div className="space-y-2 flex-1">
@@ -141,11 +141,11 @@ function Screen3() {
           { n: 1, t: "Research visa requirements", status: "Done", c: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20" },
           { n: 2, t: "Apostille your documents", status: "Done", c: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20" },
           { n: 3, t: "Get health insurance quote", status: "In progress", c: "text-[#8b5cf6] bg-[#8b5cf6]/10 border-[#8b5cf6]/20" },
-          { n: 4, t: "Book initial accommodation", status: "Upcoming", c: "text-white/30 bg-white/5 border-white/10" },
+          { n: 4, t: "Book initial accommodation", status: "Upcoming", c: "text-muted-foreground bg-muted/30 border-border" },
         ].map(s => (
           <div key={s.n} className={`${cardBg} flex items-center gap-3 p-2.5`}>
-            <div className={`w-5 h-5 rounded-full border flex items-center justify-center text-[9px] font-mono shrink-0 ${s.status === "Done" ? "bg-emerald-400/20 border-emerald-400/40 text-emerald-400" : s.status === "In progress" ? "bg-[#8b5cf6]/20 border-[#8b5cf6]/40 text-[#8b5cf6]" : "border-white/15 text-white/30"}`}>{s.n}</div>
-            <span className="text-[11px] text-white/70 flex-1">{s.t}</span>
+            <div className={`w-5 h-5 rounded-full border flex items-center justify-center text-[9px] font-mono shrink-0 ${s.status === "Done" ? "bg-emerald-400/20 border-emerald-400/40 text-emerald-400" : s.status === "In progress" ? "bg-[#8b5cf6]/20 border-[#8b5cf6]/40 text-[#8b5cf6]" : "border-border text-muted-foreground"}`}>{s.n}</div>
+            <span className="text-[11px] text-foreground/70 flex-1">{s.t}</span>
             <span className={`text-[9px] font-medium px-2 py-0.5 rounded-full border ${s.c}`}>{s.status}</span>
           </div>
         ))}
@@ -158,43 +158,43 @@ function Screen4() {
   return (
     <div className="flex flex-col h-full px-4 py-4">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-[13px] font-semibold text-white">Monthly Cost Estimate</h3>
+        <h3 className="text-[13px] font-semibold text-foreground">Monthly Cost Estimate</h3>
         <div className={`${cardBg} flex items-center gap-1.5 px-2.5 py-1.5`}>
-          <span className="text-[11px] text-white/70">🇵🇹 Portugal</span>
+          <span className="text-[11px] text-foreground/70">🇵🇹 Portugal</span>
           <span className={`text-[10px] ${labelCyan}`}>▾</span>
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2 mb-3">
         {[["Rent", "€700–1,100"], ["Food", "€280–400"], ["Insurance", "€70–120"]].map(([k, v]) => (
           <div key={k} className={`${cardBg} p-3 text-center`}>
-            <p className="text-[9px] text-white/30 uppercase tracking-wider mb-1">{k}</p>
+            <p className="text-[9px] text-muted-foreground uppercase tracking-wider mb-1">{k}</p>
             <p className={`text-[13px] font-bold ${labelCyan} leading-tight`}>{v}</p>
-            <p className="text-[9px] text-white/30">/mo</p>
+            <p className="text-[9px] text-muted-foreground">/mo</p>
           </div>
         ))}
       </div>
       <div className={`${cardBg} p-3 mb-3`}>
         <div className="flex justify-between items-center mb-1.5">
-          <span className="text-[11px] text-white/50">Visa fees (one-time)</span>
-          <span className="text-[11px] text-white/70">~€250–350</span>
+          <span className="text-[11px] text-foreground/50">Visa fees (one-time)</span>
+          <span className="text-[11px] text-foreground/70">~€250–350</span>
         </div>
         <div className="flex justify-between items-center mb-1.5">
-          <span className="text-[11px] text-white/50">Total monthly</span>
-          <span className="text-[13px] font-bold text-white leading-tight">€1,500–2,000/mo</span>
+          <span className="text-[11px] text-foreground/50">Total monthly</span>
+          <span className="text-[13px] font-bold text-foreground leading-tight">€1,500–2,000/mo</span>
         </div>
         <div className="flex justify-between items-center">
-          <span className="text-[11px] text-white/50">vs your budget ($3,000)</span>
+          <span className="text-[11px] text-foreground/50">vs your budget ($3,000)</span>
           <span className="text-[11px] text-emerald-400 font-medium">✓ Comfortable</span>
         </div>
-        <p className="text-[9px] text-white/35 mt-2 leading-relaxed">
+        <p className="text-[9px] text-muted-foreground mt-2 leading-relaxed">
           Estimates for a comfortable single-person lifestyle. Varies by city and habits.
         </p>
       </div>
       <div className={`${cardBg} p-3`}>
-        <p className="text-[10px] text-white/40 mb-2">Family status</p>
+        <p className="text-[10px] text-foreground/40 mb-2">Family status</p>
         <div className="flex gap-2">
           {["Solo", "Couple", "Family"].map((f, i) => (
-            <div key={f} className={`text-[10px] px-2.5 py-1 rounded-full border font-medium ${i === 0 ? "bg-[#8b5cf6]/15 text-[#8b5cf6] border-[#8b5cf6]/30" : "bg-white/5 text-white/30 border-white/10"}`}>{f}</div>
+            <div key={f} className={`text-[10px] px-2.5 py-1 rounded-full border font-medium ${i === 0 ? "bg-[#8b5cf6]/15 text-[#8b5cf6] border-[#8b5cf6]/30" : "bg-muted/30 text-muted-foreground border-border"}`}>{f}</div>
           ))}
         </div>
       </div>
@@ -215,11 +215,11 @@ function Screen5() {
     <div className="flex flex-col h-full px-4 py-4">
       <div className="flex items-center gap-2 mb-3">
         <div className={`${cardBg} flex items-center gap-1.5 px-2.5 py-1.5 flex-1`}>
-          <svg className="w-3 h-3 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          <span className="text-[11px] text-white/30">Search 50+ countries...</span>
+          <svg className="w-3 h-3 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <span className="text-[11px] text-muted-foreground">Search 50+ countries...</span>
         </div>
         <div className={`${cardBg} px-2.5 py-1.5`}>
-          <span className="text-[10px] text-white/40">Europe ▾</span>
+          <span className="text-[10px] text-foreground/40">Europe ▾</span>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-2 flex-1">
@@ -228,12 +228,12 @@ function Screen5() {
             <span className="text-[18px]">{c.flag}</span>
             <div className="min-w-0">
               <div className="flex items-center gap-1">
-                <p className="text-[11px] font-medium text-white truncate">{c.name}</p>
+                <p className="text-[11px] font-medium text-foreground truncate">{c.name}</p>
                 {c.tag && <span className={`text-[8px] ${labelCyan}`}>★</span>}
               </div>
               <div className="flex items-center gap-1.5 mt-0.5">
-                <span className={`text-[8px] px-1.5 py-0.5 rounded border ${i === 0 ? "text-[#8b5cf6] border-[#8b5cf6]/30 bg-[#8b5cf6]/10" : "text-white/30 border-white/10"}`}>{c.visa}</span>
-                <span className="text-[9px] text-white/30">{c.cost}</span>
+                <span className={`text-[8px] px-1.5 py-0.5 rounded border ${i === 0 ? "text-[#8b5cf6] border-[#8b5cf6]/30 bg-[#8b5cf6]/10" : "text-muted-foreground border-border"}`}>{c.visa}</span>
+                <span className="text-[9px] text-muted-foreground">{c.cost}</span>
               </div>
             </div>
           </div>
@@ -247,26 +247,26 @@ function Screen6() {
   return (
     <div className="flex flex-col h-full px-4 py-4">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-[13px] font-semibold text-white">Visa Cover Letter</h3>
+        <h3 className="text-[13px] font-semibold text-foreground">Visa Cover Letter</h3>
         <span className="text-[9px] font-medium bg-[#8b5cf6]/15 text-[#8b5cf6] border border-[#8b5cf6]/30 px-2 py-0.5 rounded-full">Full plan</span>
       </div>
       <div className={`${cardBg} p-3 mb-3`}>
-        <div className="flex items-center gap-2 mb-3 pb-2 border-b border-white/[0.06]">
-          <div className="w-6 h-6 rounded bg-white/5 flex items-center justify-center text-[11px]">📄</div>
+        <div className="flex items-center gap-2 mb-3 pb-2 border-b border-border/60">
+          <div className="w-6 h-6 rounded bg-muted/30 flex items-center justify-center text-[11px]">📄</div>
           <div>
-            <p className="text-[11px] font-medium text-white">Portugal D7 — Cover Letter</p>
-            <p className="text-[9px] text-white/30">Generated · Ready to submit</p>
+            <p className="text-[11px] font-medium text-foreground">Portugal D7 — Cover Letter</p>
+            <p className="text-[9px] text-muted-foreground">Generated · Ready to submit</p>
           </div>
         </div>
         <div className="space-y-1.5">
           {[100, 90, 95, 0, 100, 85, 92, 0, 70, 88].map((w, i) => (
-            <div key={i} className={`h-1.5 rounded-full ${w === 0 ? "bg-transparent h-1" : "bg-white/10"}`} style={{ width: w ? `${w}%` : "100%" }} />
+            <div key={i} className={`h-1.5 rounded-full ${w === 0 ? "bg-transparent h-1" : "bg-muted/50"}`} style={{ width: w ? `${w}%` : "100%" }} />
           ))}
         </div>
       </div>
       <div className="flex gap-2">
         <div className="flex-1 bg-[#8b5cf6] text-black text-[11px] font-semibold px-3 py-2 rounded-lg text-center cursor-pointer">Download PDF</div>
-        <div className={`${cardBg} px-3 py-2 text-[11px] text-white/50 rounded-lg cursor-pointer`}>Regenerate</div>
+        <div className={`${cardBg} px-3 py-2 text-[11px] text-foreground/50 rounded-lg cursor-pointer`}>Regenerate</div>
       </div>
     </div>
   );
@@ -276,10 +276,10 @@ function Screen7() {
   return (
     <div className="flex flex-col h-full px-4 py-4">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-[13px] font-semibold text-white">Document Checklist</h3>
+        <h3 className="text-[13px] font-semibold text-foreground">Document Checklist</h3>
         <span className={`text-[10px] font-mono ${labelCyan}`}>4 / 11 done</span>
       </div>
-      <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden mb-3">
+      <div className="w-full h-1.5 rounded-full bg-muted/50 overflow-hidden mb-3">
         <div className="h-full rounded-full bg-[#8b5cf6] w-[36%]" />
       </div>
       <div className="space-y-1.5 flex-1">
@@ -294,10 +294,10 @@ function Screen7() {
           { t: "Visa cover letter", done: false },
         ].map((d, i) => (
           <div key={i} className={`${cardBg} flex items-center gap-3 p-2.5`}>
-            <div className={`w-4 h-4 rounded border flex items-center justify-center shrink-0 ${d.done ? "bg-emerald-400/20 border-emerald-400/40" : "border-white/15"}`}>
+            <div className={`w-4 h-4 rounded border flex items-center justify-center shrink-0 ${d.done ? "bg-emerald-400/20 border-emerald-400/40" : "border-border"}`}>
               {d.done && <svg className="w-2.5 h-2.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/></svg>}
             </div>
-            <span className={`text-[10px] ${d.done ? "text-white/40 line-through" : "text-white/70"}`}>{d.t}</span>
+            <span className={`text-[10px] ${d.done ? "text-foreground/40 line-through" : "text-foreground/70"}`}>{d.t}</span>
           </div>
         ))}
       </div>
@@ -316,12 +316,12 @@ function Screen8() {
   ];
   return (
     <div className="flex flex-col h-full px-4 py-4">
-      <h3 className="text-[13px] font-semibold text-white mb-4">Relocation Timeline</h3>
+      <h3 className="text-[13px] font-semibold text-foreground mb-4">Relocation Timeline</h3>
       <div className="flex gap-2 mb-4">
         {months.map((m, i) => (
           <div key={m} className="flex-1 text-center">
-            <p className="text-[9px] text-white/30 mb-2">{m}</p>
-            <div className={`w-full h-1 rounded-full ${i === 0 ? "bg-[#8b5cf6]" : "bg-white/10"}`} />
+            <p className="text-[9px] text-muted-foreground mb-2">{m}</p>
+            <div className={`w-full h-1 rounded-full ${i === 0 ? "bg-[#8b5cf6]" : "bg-muted/50"}`} />
           </div>
         ))}
       </div>
@@ -329,8 +329,8 @@ function Screen8() {
         {events.map((e, i) => (
           <div key={i} className={`${cardBg} flex items-center gap-3 p-2.5`}>
             <div className={`w-2 h-2 rounded-full shrink-0 ${e.color}`} />
-            <span className="text-[10px] text-white/60 flex-1">{e.label}</span>
-            <span className="text-[9px] text-white/30">{months[e.month]}</span>
+            <span className="text-[10px] text-foreground/60 flex-1">{e.label}</span>
+            <span className="text-[9px] text-muted-foreground">{months[e.month]}</span>
           </div>
         ))}
       </div>
@@ -344,34 +344,34 @@ function Screen9() {
       <div className="flex items-center gap-2 mb-3">
         <span className="text-[18px]">🇵🇹</span>
         <div>
-          <h3 className="text-[13px] font-semibold text-white">Portugal · D7 Visa</h3>
-          <p className="text-[9px] text-white/40">Overview</p>
+          <h3 className="text-[13px] font-semibold text-foreground">Portugal · D7 Visa</h3>
+          <p className="text-[9px] text-foreground/40">Overview</p>
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2 mb-3">
-        {[["STABILITY", "4-8 mo", labelCyan], ["COST", "€1.5–2k/mo", "text-emerald-400"], ["STEPS", "3 / 51", "text-white/60"]].map(([k, v, c]) => (
+        {[["STABILITY", "4-8 mo", labelCyan], ["COST", "€1.5–2k/mo", "text-emerald-400"], ["STEPS", "3 / 51", "text-foreground/60"]].map(([k, v, c]) => (
           <div key={k} className={`${cardBg} p-2 text-center`}>
-            <p className="text-[8px] text-white/30 uppercase tracking-wider">{k}</p>
+            <p className="text-[8px] text-muted-foreground uppercase tracking-wider">{k}</p>
             <p className={`text-[11px] font-semibold mt-0.5 ${c}`}>{v}</p>
           </div>
         ))}
       </div>
       <div className={`${cardBg} p-3 mb-2`}>
         <div className="flex justify-between text-[10px] mb-1.5">
-          <span className="text-white/50">Overall progress</span>
+          <span className="text-foreground/50">Overall progress</span>
           <span className={`font-mono ${labelCyan}`}>6%</span>
         </div>
-        <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+        <div className="w-full h-1.5 rounded-full bg-muted/50 overflow-hidden">
           <div className="h-full rounded-full bg-[#8b5cf6] w-[6%]" />
         </div>
       </div>
       <div className={`${cardBg} p-3`}>
-        <p className="text-[10px] text-white/40 mb-2">Next up</p>
+        <p className="text-[10px] text-foreground/40 mb-2">Next up</p>
         <div className="space-y-1.5">
           {["Get health insurance quote", "Book initial accommodation"].map(s => (
             <div key={s} className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-[#8b5cf6]/60 shrink-0" />
-              <span className="text-[10px] text-white/60">{s}</span>
+              <span className="text-[10px] text-foreground/60">{s}</span>
             </div>
           ))}
         </div>
@@ -478,11 +478,11 @@ export default function ProductTourSection() {
                   onClick={() => goTo(i)}
                   className={`text-left px-3 py-2 rounded-lg text-[12px] font-medium transition-all duration-200 ${
                     i === active
-                      ? "bg-[#8b5cf6]/15 text-[#8b5cf6] border border-[#8b5cf6]/30"
-                      : "text-white/35 hover:text-white/60 hover:bg-white/[0.04] border border-transparent"
+                      ? "bg-primary/10 text-primary border border-primary/30"
+                      : "text-muted-foreground hover:text-foreground/60 hover:bg-muted/30 border border-transparent"
                   }`}
                 >
-                  <span className={`text-[9px] font-mono mr-1.5 ${i === active ? "text-[#8b5cf6]/60" : "text-white/20"}`}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className={`text-[9px] font-mono mr-1.5 ${i === active ? "text-primary/60" : "text-muted-foreground"}`}>{String(i + 1).padStart(2, "0")}</span>
                   {s.label}
                 </button>
               ))}
@@ -506,18 +506,18 @@ export default function ProductTourSection() {
             </AnimatePresence>
 
             <div className="rounded-xl border border-border bg-card shadow-[0_0_60px_-20px_#8b5cf655] overflow-hidden">
-              <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/[0.06]">
+              <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-border/60">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
                 <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-                <div className="ml-4 flex-1 h-1 rounded-full bg-white/[0.04] overflow-hidden max-w-[200px]">
+                <div className="ml-4 flex-1 h-1 rounded-full bg-muted/30 overflow-hidden max-w-[200px]">
                   <motion.div
                     className="h-full rounded-full bg-[#8b5cf6]/60"
                     animate={{ width: `${((active + 1) / steps.length) * 100}%` }}
                     transition={{ duration: 0.4 }}
                   />
                 </div>
-                <span className="ml-auto text-[10px] text-white/20 font-mono">{String(active + 1).padStart(2, "0")}/{String(steps.length).padStart(2, "0")}</span>
+                <span className="ml-auto text-[10px] text-muted-foreground font-mono">{String(active + 1).padStart(2, "0")}/{String(steps.length).padStart(2, "0")}</span>
               </div>
               <div className="relative h-[300px] sm:h-[360px] md:h-[400px]">
                 <AnimatePresence mode="wait">
