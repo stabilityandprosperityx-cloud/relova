@@ -326,7 +326,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-7"
+          className="surface-card p-5 md:p-7"
         >
           <div className="flex items-center justify-between mb-1">
             <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Your documents</p>
@@ -443,7 +443,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
             >
               <Collapsible open={isOpen} onOpenChange={(open) => setOpenCategories(prev => ({ ...prev, [cat.key]: open }))}>
                 <CollapsibleTrigger asChild>
-                  <button className="w-full flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] hover:bg-white/[0.05] p-4 md:p-5 transition-colors text-left group">
+                  <button className="w-full flex items-center gap-3 surface-card hover:bg-muted p-4 md:p-5 transition-colors text-left group">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <h2 className="text-[14px] font-semibold">{cat.label}</h2>
@@ -468,8 +468,8 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
                       return (
                         <div
                           key={doc.id}
-                          className={`rounded-xl border border-white/[0.05] bg-white/[0.02] p-4 md:px-5 md:py-4 group/card transition-colors ${
-                            hasUpload ? "hover:bg-white/[0.04] cursor-pointer" : ""
+                          className={`surface-card p-4 md:px-5 md:py-4 group/card transition-colors ${
+                            hasUpload ? "hover:bg-muted cursor-pointer" : ""
                           }`}
                           onClick={hasUpload ? () => setPreviewDoc({ doc: doc.uploadedDoc!, aiStatus: doc.aiStatus, usedFor: doc.usedFor, signedUrl: signedUrls[doc.uploadedDoc!.id] || null }) : undefined}
                         >

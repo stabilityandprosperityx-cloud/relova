@@ -1251,7 +1251,7 @@ function CountryDetail({
         ← Back to countries
       </button>
 
-      <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-7">
+      <div className="surface-card p-5 md:p-7">
         <div className="flex items-start gap-4">
           <span className="text-5xl">{country.flag}</span>
           <div className="flex-1">
@@ -1289,7 +1289,7 @@ function CountryDetail({
         </div>
       </div>
 
-      <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5">
+      <div className="surface-card p-5">
         <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium mb-3">
           Best for
         </p>
@@ -1305,7 +1305,7 @@ function CountryDetail({
         </div>
       </div>
 
-      <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5">
+      <div className="surface-card p-5">
         <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium mb-3">
           ⚠ Risks & considerations
         </p>
@@ -1323,7 +1323,7 @@ function CountryDetail({
         const resources = COUNTRY_RESOURCES[country.name];
         if (!resources) return null;
         return (
-          <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5">
+          <div className="surface-card p-5">
             <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium mb-4">🏙 Living there</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Housing */}

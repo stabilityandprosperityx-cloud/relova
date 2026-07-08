@@ -270,7 +270,7 @@ export default function DashboardPlan({ profile, onBack, onNavigate }: Props) {
         </motion.section>
 
         {/* ─── MOVE TIMELINE ─── */}
-        <section className="mt-8 rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
+        <section className="mt-8 surface-card p-5 md:p-6">
           <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium mb-4">Your move timeline</p>
 
           {!moveDate ? (
@@ -353,7 +353,7 @@ export default function DashboardPlan({ profile, onBack, onNavigate }: Props) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.15, duration: 0.4 }}
-          className="mt-8 rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-7"
+          className="mt-8 surface-card p-5 md:p-7"
         >
           <div className="flex items-center justify-between mb-2">
             <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Your journey</p>
@@ -526,7 +526,7 @@ export default function DashboardPlan({ profile, onBack, onNavigate }: Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.35, duration: 0.4 }}
-            className="mt-8 rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6"
+            className="mt-8 surface-card p-5 md:p-6"
           >
             <div className="flex items-center gap-2 mb-4">
               <Lightbulb size={14} className="text-primary" />
@@ -549,7 +549,7 @@ export default function DashboardPlan({ profile, onBack, onNavigate }: Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.4 }}
-            className="mt-8 rounded-xl border border-white/[0.05] bg-white/[0.02] p-5 md:p-6"
+            className="mt-8 surface-card p-5 md:p-6"
           >
             <p className="text-[11px] uppercase tracking-widest text-muted-foreground/60 font-medium mb-3">Alternative option</p>
             <div className="flex items-center gap-3">

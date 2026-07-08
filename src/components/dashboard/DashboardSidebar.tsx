@@ -37,7 +37,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-[220px] flex-col bg-[#0a0a0a] border-r border-border z-40">
+      <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-[220px] flex-col bg-sidebar border-r border-sidebar-border z-40">
         <div className="px-5 py-6">
           <div className="flex items-center gap-2.5">
             <RelovaLogo size={22} pulse={false} />
@@ -73,7 +73,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
                     ? "bg-[#38BDF820] text-[#38BDF8]"
                     : item.highlight
                     ? "text-[#38BDF8]/70 hover:text-[#38BDF8] hover:bg-[#38BDF8]/[0.06]"
-                    : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04]"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 }`}
               >
                 <item.icon size={16} />
@@ -101,7 +101,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
           )}
           <button
             onClick={signOut}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] text-muted-foreground hover:text-foreground hover:bg-foreground/[0.04] transition-colors"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
           >
             <LogOut size={16} />
             Log out
@@ -114,7 +114,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
       </aside>
 
       {/* Mobile bottom tab bar */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-background border-t border-border z-40 flex justify-around items-end px-1 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-sidebar border-t border-sidebar-border z-40 flex justify-around items-end px-1 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
         {navItems.map((item) => {
           const active = activeTab === item.id;
           const locked = isLocked(item.minPlan);
@@ -149,7 +149,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
           </button>
           <SheetContent
             side="bottom"
-            className="rounded-t-2xl border-white/[0.08] bg-[#0a0a0a] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
+            className="rounded-t-2xl border-border bg-card pb-[max(1.5rem,env(safe-area-inset-bottom))]"
           >
             <SheetHeader className="space-y-1 text-left">
               <SheetTitle className="text-base text-foreground">Account</SheetTitle>
@@ -173,7 +173,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
                     onEditProfile();
                     setMobileSheetOpen(false);
                   }}
-                  className="w-full rounded-lg px-3 py-3 text-left text-[14px] text-muted-foreground transition-colors hover:bg-foreground/[0.04] hover:text-foreground"
+                  className="w-full rounded-lg px-3 py-3 text-left text-[14px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
                   Edit profile
                 </button>
@@ -181,7 +181,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
               <Link
                 to="/"
                 onClick={() => setMobileSheetOpen(false)}
-                className="rounded-lg px-3 py-3 text-[14px] text-muted-foreground transition-colors hover:bg-foreground/[0.04] hover:text-foreground"
+                className="rounded-lg px-3 py-3 text-[14px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               >
                 ← Back to site
               </Link>
@@ -191,7 +191,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
                   void signOut();
                   setMobileSheetOpen(false);
                 }}
-                className="mt-2 flex w-full items-center gap-2 border-t border-white/[0.08] px-3 py-4 text-left text-[14px] font-medium text-foreground transition-colors hover:bg-foreground/[0.04]"
+                className="mt-2 flex w-full items-center gap-2 border-t border-white/[0.08] px-3 py-4 text-left text-[14px] font-medium text-foreground transition-colors hover:bg-muted"
               >
                 <LogOut size={16} className="text-muted-foreground" />
                 Log out

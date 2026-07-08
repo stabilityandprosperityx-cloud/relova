@@ -239,7 +239,7 @@ export default function DashboardChecklist({ profile, relocationCase }: Props) {
       </div>
 
       {/* ─── Journey Line (same as Overview) ─── */}
-      <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
+      <section className="surface-card p-5 md:p-6">
         <div className="flex items-center justify-between mb-1">
           <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Your journey</p>
           <span className="text-[12px] text-muted-foreground">{relocationCase.doneCount} / {relocationCase.totalCount} completed</span>

@@ -6,32 +6,32 @@
 
 @layer base {
   :root {
-    --background: 250 30% 98%;
-    --foreground: 0 0% 9%;
+    --background: 256 55% 97%;
+    --foreground: 222 12% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 9%;
+    --card-foreground: 222 12% 12%;
     --primary: 258 90% 60%;
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 220 5% 55%;
+    --muted: 256 30% 95%;
+    --muted-foreground: 256 8% 55%;
     --accent: 258 90% 60%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 250 20% 88%;
-    --input: 0 0% 90%;
+    --border: 256 40% 91%;
+    --input: 256 40% 91%;
     --ring: 258 90% 60%;
-    --radius: 0.5rem;
+    --radius: 0.875rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 20%;
+    --sidebar-background: 256 60% 98%;
+    --sidebar-foreground: 256 8% 40%;
     --sidebar-primary: 258 90% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 95%;
-    --sidebar-accent-foreground: 0 0% 20%;
-    --sidebar-border: 0 0% 90%;
+    --sidebar-accent: 258 75% 95%;
+    --sidebar-accent-foreground: 258 90% 45%;
+    --sidebar-border: 256 40% 91%;
     --sidebar-ring: 258 90% 60%;
 
     --surface-1: 0 0% 7%;
@@ -304,4 +304,20 @@
 }
 .prose-relova li {
   @apply leading-[1.7];
+}
+
+.surface-card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgba(109,79,224,0.04), 0 8px 24px -8px rgba(109,79,224,0.12);
+}
+
+.dark .surface-card {
+  border: 1px solid hsl(var(--border));
+  box-shadow: none;
+}
+
+.shadow-apple-sm {
+  box-shadow: 0 1px 2px rgba(109,79,224,0.04);
 }

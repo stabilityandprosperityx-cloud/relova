@@ -51,7 +51,7 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile, 
   if (!profile) {
     return (
       <div className="flex flex-col items-center pt-8 md:pt-12 px-5">
-        <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-6 md:p-8 text-center max-w-md w-full">
+        <div className="surface-card p-6 md:p-8 text-center max-w-md w-full">
           <h2 className="text-lg font-semibold mb-2">Set up your relocation profile</h2>
           <p className="text-sm text-muted-foreground mb-6">Tell us about your situation and we'll create a personalized plan.</p>
         </div>
@@ -78,7 +78,7 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile, 
     <div className="space-y-6 md:space-y-8">
 
       {/* ─── 1. PROGRESS BLOCK — Journey Line ─── */}
-      <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
+      <section className="surface-card p-5 md:p-6">
         <div className="mb-1">
           <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">
             {profile.target_country} · Phase {relocationCase.currentPhaseIndex + 1} of {relocationCase.totalPhases} · {relocationCase.progressPct}% complete
@@ -214,7 +214,7 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile, 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
 
         {/* ─── 4. RISKS & CONSIDERATIONS ─── */}
-        <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
+        <section className="surface-card p-5 md:p-6">
           <div className="flex items-center gap-2 mb-4">
             <AlertTriangle size={14} className="text-amber-400" />
             <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Risks & considerations</p>
@@ -238,7 +238,7 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile, 
         </section>
 
         {/* ─── 5. TIME TO STABILITY ─── */}
-        <section className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 md:p-6">
+        <section className="surface-card p-5 md:p-6">
           <div className="flex items-center gap-2 mb-4">
             <Clock size={14} className="text-primary" />
             <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Time to stability</p>

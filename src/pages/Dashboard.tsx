@@ -130,7 +130,7 @@ export default function Dashboard() {
       <main
         className="relative flex-1 md:ml-[220px] pb-24 md:pb-0 bg-background"
       >
-        <div className="pointer-events-none fixed inset-0" style={{ zIndex: 0 }}>
+        <div className="pointer-events-none fixed inset-0 hidden dark:block" style={{ zIndex: 0 }}>
           {/* Grid */}
           <div
             style={{
