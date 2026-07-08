@@ -108,14 +108,14 @@ export default function Dashboard() {
 
   if (authLoading || !user) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] pt-20 md:pt-24 flex justify-center">
+      <div className="min-h-screen bg-background pt-20 md:pt-24 flex justify-center">
         <Skeleton className="h-8 w-32" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-foreground flex">
+    <div className="min-h-screen bg-background text-foreground flex">
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
@@ -128,8 +128,7 @@ export default function Dashboard() {
       />
 
       <main
-        className="relative flex-1 md:ml-[220px] pb-24 md:pb-0"
-        style={{ background: "#07090f" }}
+        className="relative flex-1 md:ml-[220px] pb-24 md:pb-0 bg-background"
       >
         <div className="pointer-events-none fixed inset-0" style={{ zIndex: 0 }}>
           {/* Grid */}
