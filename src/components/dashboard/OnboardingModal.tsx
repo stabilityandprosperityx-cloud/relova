@@ -408,7 +408,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
         <div className="w-full max-w-2xl rounded-2xl border border-border bg-card p-4 sm:p-8 my-4">
           <h2 className="text-xl font-bold text-center mb-2">Your best matches</h2>
           {aiEnhancing && (
-            <p className="text-[11px] text-[#38BDF8]/60 text-center mb-4 animate-pulse">
+            <p className="text-[11px] text-primary/60 text-center mb-4 animate-pulse">
               ✨ Personalizing your results...
             </p>
           )}
@@ -417,14 +417,14 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
           <div className="space-y-3">
             {matches.map((match, i) => (
               <div key={match.country.name} className={`rounded-xl border p-3 sm:p-5 transition-all ${
-                i === 0 ? "border-[#38BDF8]/30 bg-[#38BDF8]/5" : "border-border bg-muted/50"
+                i === 0 ? "border-primary/30 bg-primary/5" : "border-border bg-muted/50"
               }`}>
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-lg">{match.country.flag}</span>
                       <span className="text-[15px] font-semibold">{match.country.name}</span>
-                      {i === 0 && <span className="px-2 py-0.5 rounded-full bg-[#38BDF8]/20 text-[#38BDF8] text-[10px] font-medium">Best match</span>}
+                      {i === 0 && <span className="px-2 py-0.5 rounded-full bg-primary/20 text-primary text-[10px] font-medium">Best match</span>}
                     </div>
                     <div className="space-y-1 mb-3">
                       {match.reasons.map((r, j) => (
@@ -444,7 +444,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                         )}
                     </div>
                     <div className="flex gap-3 flex-wrap text-[11px]">
-                      <span className="px-2 py-0.5 rounded bg-white/[0.06] text-muted-foreground">
+                      <span className="px-2 py-0.5 rounded bg-muted text-muted-foreground">
                         {match.country.stabilityMonths} months to stability
                       </span>
                       <span className={`px-2 py-0.5 rounded ${
@@ -458,11 +458,12 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                     <p className="text-[11px] text-red-400/60 mt-2">⚠ {match.topRisk}</p>
                   </div>
                   <div className="text-right shrink-0 min-w-[60px]">
-                    <div className="text-xl sm:text-2xl font-bold text-[#38BDF8]">{match.score}%</div>
+                    <div className="text-xl sm:text-2xl font-bold text-primary">{match.score}%</div>
                     <div className="text-[10px] text-muted-foreground">match</div>
                     <Button
                       size="sm"
-                      className="mt-3 text-[12px] bg-[#38BDF8] hover:bg-[#38BDF8]/80 text-white"
+                      className="mt-3 text-[12px] text-white border-0 hover:opacity-90 transition-opacity"
+                      style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)" }}
                       onClick={() => selectCountryFromMatch(match.country.name, match.score)}
                       disabled={saving}
                     >
