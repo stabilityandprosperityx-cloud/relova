@@ -167,33 +167,21 @@ Deno.serve(async (req) => {
       }
 
       // Table is public.user_profiles (plan + user_id), not "profiles".
-      const { data: updatedRows, error: updateError } = await supabase
+      const { error: updateError } = await supabase
         .from("user_profiles")
-        .update({
-          plan,
-          paddle_customer_id: customerId,
-          paddle_subscription_id: subscriptionId,
-        })
-        .eq("user_id", userId)
-        .select("user_id");
+        .upsert(
+          {
+            user_id: userId,
+            plan,
+            paddle_customer_id: customerId,
+            paddle_subscription_id: subscriptionId,
+          },
+          { onConflict: "user_id" }
+        );
 
       if (updateError) {
-        console.error("Error updating profile:", updateError);
+        console.error("Error upserting profile:", updateError);
         return jsonResponse({ error: "Update failed" }, 500);
-      }
-
-      if (!updatedRows?.length) {
-        console.error(
-          "No user_profiles row matched user_id (checkout customData must match auth user id):",
-          userId
-        );
-        return jsonResponse(
-          {
-            error: "No profile row for user_id",
-            userId,
-          },
-          404
-        );
       }
 
       console.log(`Updated user ${userId} to plan: ${plan}`);
@@ -227,11 +215,10 @@ Deno.serve(async (req) => {
 
       const { error } = await supabase
         .from("user_profiles")
-        .update({ plan })
-        .eq("user_id", userId);
+        .upsert({ user_id: userId, plan }, { onConflict: "user_id" });
 
       if (error) {
-        console.error("transaction.completed: update failed", error);
+        console.error("transaction.completed: upsert failed", error);
         return jsonResponse({ error: "Update failed" }, 500);
       }
 

@@ -254,6 +254,17 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
   const saveProfile = async (country?: string, matchScore?: number) => {
     setSaving(true);
+
+    const { data: existingProfile } = await supabase
+      .from("user_profiles")
+      .select("plan, paddle_customer_id, paddle_subscription_id, plan_expires_at")
+      .eq("user_id", userId)
+      .maybeSingle();
+
+    const preservedPlan = existingProfile?.plan && existingProfile.plan !== "free"
+      ? existingProfile.plan
+      : "free";
+
     const finalCountry = country || targetCountry;
     const visaType = determineVisaType(finalCountry);
 
@@ -268,9 +279,11 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       visa_type: visaType,
       goal: selectedGoals.join(","),
       monthly_budget: income,
-      plan: "free",
+      plan: preservedPlan,
       questions_used: 0,
-      plan_expires_at: null,
+      plan_expires_at: existingProfile?.plan_expires_at ?? null,
+      paddle_customer_id: existingProfile?.paddle_customer_id ?? null,
+      paddle_subscription_id: existingProfile?.paddle_subscription_id ?? null,
       family_status: familyStatus,
       timeline,
       constraints: selectedConstraints.join(",") || null,

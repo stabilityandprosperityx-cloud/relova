@@ -32,6 +32,8 @@ export interface UserProfile {
   match_score?: number | null;
   recommended_country?: string | null;
   move_date?: string | null;
+  paddle_customer_id?: string | null;
+  paddle_subscription_id?: string | null;
 }
 
 export interface DashboardOutletContext {
