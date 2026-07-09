@@ -12,9 +12,9 @@ import { ArrowRight, MapPin, Compass } from "lucide-react";
 import LoadingTransition from "./LoadingTransition";
 
 const SCHENGEN_VISA_REQUIRED = [
-  "Russia", "China", "India", "Belarus", "Ukraine", "Kazakhstan",
+  "Russia", "China", "India", "Belarus", "Kazakhstan",
   "Uzbekistan", "Tajikistan", "Kyrgyzstan", "Turkmenistan", "Armenia",
-  "Azerbaijan", "Georgia", "Turkey", "Iran", "Iraq", "Syria",
+  "Azerbaijan", "Turkey", "Iran", "Iraq", "Syria",
   "Afghanistan", "Pakistan", "Bangladesh", "Algeria", "Morocco",
   "Tunisia", "Egypt", "Libya", "Sudan", "Ethiopia", "Nigeria",
   "Ghana", "Senegal", "Mali", "Cameroon", "DR Congo", "Angola",
