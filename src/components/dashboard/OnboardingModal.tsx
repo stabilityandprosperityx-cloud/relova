@@ -278,7 +278,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       recommended_country: matches.length > 0 ? matches[0].country.name : null,
     };
 
-    const { error } = await supabase.from("user_profiles").insert({ ...profile });
+    const { error } = await supabase.from("user_profiles").upsert({ ...profile }, { onConflict: "user_id" });
     if (error) {
       toast.error("Failed to save profile: " + error.message);
       setSaving(false);

@@ -95,7 +95,7 @@ export default function ResultScreen({ profile, onContinue, onSeeOtherMatches }:
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-[12px] uppercase tracking-[0.15em] text-[#38BDF8] font-medium text-center mb-6"
+          className="text-[12px] uppercase tracking-[0.15em] text-primary/60 font-medium text-center mb-6"
         >
           We found your best path
         </motion.p>
@@ -110,10 +110,10 @@ export default function ResultScreen({ profile, onContinue, onSeeOtherMatches }:
           <div className="text-4xl mb-2">{flag}</div>
           <h2 className="text-[22px] font-bold text-[#EDEDED] tracking-tight">{country}</h2>
           <div className="flex items-center justify-center gap-2 mt-3">
-            <div className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#38BDF8]/10 border border-[#38BDF8]/20">
-              <Star size={13} className="text-[#38BDF8] fill-[#38BDF8]" />
-              <span className="text-[14px] font-bold text-[#38BDF8]">{score}%</span>
-              <span className="text-[11px] text-[#38BDF8]/70">match</span>
+            <div className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+              <Star size={13} className="text-primary fill-primary" />
+              <span className="text-[14px] font-bold text-primary">{score}%</span>
+              <span className="text-[11px] text-primary/70">match</span>
             </div>
           </div>
         </motion.div>
@@ -143,7 +143,7 @@ export default function ResultScreen({ profile, onContinue, onSeeOtherMatches }:
               transition={{ delay: 0.7 + i * 0.1 }}
               className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.04]"
             >
-              <span className="text-[#38BDF8] text-[11px]">✓</span>
+              <span className="text-primary text-[11px]">✓</span>
               <span className="text-[13px] text-[#EDEDED]/90">{reason}</span>
             </motion.div>
           ))}
@@ -168,7 +168,8 @@ export default function ResultScreen({ profile, onContinue, onSeeOtherMatches }:
           className="space-y-3"
         >
           <Button
-            className="w-full h-12 bg-[#38BDF8] hover:bg-[#38BDF8]/80 text-white font-semibold text-[14px]"
+            className="w-full h-12 text-white font-semibold text-[14px] border-0 hover:opacity-90 transition-opacity"
+            style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)" }}
             onClick={onContinue}
           >
             See my plan <ArrowRight size={15} className="ml-1" />
