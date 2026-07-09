@@ -206,8 +206,8 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-      <div className="w-full max-w-md mx-4 rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-8 relative max-h-[90vh] overflow-y-auto">
-        <button onClick={onClose} className="absolute top-4 right-4 text-[#9CA3AF]/60 hover:text-[#9CA3AF] transition-colors">
+      <div className="w-full max-w-md mx-4 rounded-2xl border border-border bg-card p-8 relative max-h-[90vh] overflow-y-auto">
+        <button onClick={onClose} className="absolute top-4 right-4 text-muted-foreground/60 hover:text-muted-foreground transition-colors">
           <X size={18} />
         </button>
 
@@ -216,7 +216,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
         <div className="space-y-5">
           {/* Citizenship */}
           <div className="relative">
-            <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Citizenship</label>
+            <label className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1.5 block">Citizenship</label>
             <input
               type="text"
               name="edit-citizenship-search"
@@ -234,17 +234,17 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
                 setSearch1(e.target.value);
                 setCitizenship("");
               }}
-              className="w-full bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] placeholder:text-[#9CA3AF]/40 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/50"
+              className="w-full bg-muted border border-border rounded-lg px-3 py-2.5 text-[13px] placeholder:text-muted-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary/50"
             />
             {focus1 && (
-              <div className="absolute left-0 right-0 z-50 max-h-48 overflow-y-auto mt-1 rounded-lg border border-white/[0.06] bg-[#111]">
+              <div className="absolute left-0 right-0 z-50 max-h-48 overflow-y-auto mt-1 rounded-lg border border-border bg-[#111]">
                 {filtered1.length > 0 ? filtered1.map((c) => (
                   <button key={c} onMouseDown={(e) => e.preventDefault()} onClick={() => { setCitizenship(c); setSearch1(""); setFocus1(false); }}
-                    className="w-full text-left px-3 py-2 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground">
+                    className="w-full text-left px-3 py-2 text-[13px] text-muted-foreground hover:bg-muted hover:text-foreground">
                     {c}
                   </button>
                 )) : (
-                  <div className="px-3 py-2 text-[12px] text-[#9CA3AF]/50">No countries found</div>
+                  <div className="px-3 py-2 text-[12px] text-muted-foreground/50">No countries found</div>
                 )}
               </div>
             )}
@@ -252,7 +252,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
 
           {/* Target country */}
           <div className="relative">
-            <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Target country</label>
+            <label className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1.5 block">Target country</label>
             <input
               type="text"
               name="edit-target-search"
@@ -270,17 +270,17 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
                 setSearch2(e.target.value);
                 setTargetCountry("");
               }}
-              className="w-full bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] placeholder:text-[#9CA3AF]/40 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/50"
+              className="w-full bg-muted border border-border rounded-lg px-3 py-2.5 text-[13px] placeholder:text-muted-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary/50"
             />
             {focus2 && (
-              <div className="absolute left-0 right-0 z-50 max-h-48 overflow-y-auto mt-1 rounded-lg border border-white/[0.06] bg-[#111]">
+              <div className="absolute left-0 right-0 z-50 max-h-48 overflow-y-auto mt-1 rounded-lg border border-border bg-[#111]">
                 {filtered2.length > 0 ? filtered2.map((c) => (
                   <button key={c} onMouseDown={(e) => e.preventDefault()} onClick={() => { setTargetCountry(c); setSearch2(""); setFocus2(false); }}
-                    className="w-full text-left px-3 py-2 text-[13px] text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground">
+                    className="w-full text-left px-3 py-2 text-[13px] text-muted-foreground hover:bg-muted hover:text-foreground">
                     {c}
                   </button>
                 )) : (
-                  <div className="px-3 py-2 text-[12px] text-[#9CA3AF]/50">No countries found</div>
+                  <div className="px-3 py-2 text-[12px] text-muted-foreground/50">No countries found</div>
                 )}
               </div>
             )}
@@ -288,14 +288,14 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
 
           {/* Family status */}
           <div>
-            <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Family status</label>
+            <label className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1.5 block">Family status</label>
             <div className="grid grid-cols-3 gap-2">
               {familyOptions.map(f => (
                 <button key={f.id} onClick={() => setFamilyStatus(f.id)}
                   className={`rounded-lg border p-2.5 text-[12px] font-medium text-center transition-all ${
                     familyStatus === f.id
-                      ? "border-[#38BDF8] bg-[#38BDF8]/10 text-[#38BDF8]"
-                      : "border-white/[0.06] bg-white/[0.03] text-[#9CA3AF] hover:text-foreground"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-border bg-muted/50 text-muted-foreground hover:text-foreground"
                   }`}>
                   {f.label}
                 </button>
@@ -305,7 +305,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
 
           {/* Goals */}
           <div>
-            <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">
+            <label className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1.5 block">
               Goals <span className="normal-case tracking-normal">(select all that apply)</span>
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -317,8 +317,8 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
                   }}
                   className={`rounded-lg border p-2.5 text-[12px] font-medium text-center transition-all active:scale-[0.97] ${
                     selectedGoals.includes(g.id)
-                      ? "border-[#38BDF8] bg-[#38BDF8]/10 text-[#38BDF8]"
-                      : "border-white/[0.06] bg-white/[0.03] text-[#9CA3AF] hover:text-foreground hover:bg-white/[0.05]"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-border bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`}>
                   {g.label}
                 </button>
@@ -328,28 +328,28 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
 
           {/* Budget */}
           <div>
-            <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Monthly budget</label>
+            <label className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1.5 block">Monthly budget</label>
             <div className="text-center mb-2">
               <span className="text-xl font-bold tabular-nums">
                 {budget >= 50000 ? "$50,000+" : `$${budget.toLocaleString()}`}
               </span>
-              <span className="text-[#9CA3AF] text-sm">/mo</span>
+              <span className="text-muted-foreground text-sm">/mo</span>
             </div>
             <input type="range" min={0} max={50000} step={500} value={budget}
               onChange={(e) => setBudget(Number(e.target.value))}
-              className="w-full accent-[#38BDF8]" />
+              className="w-full accent-primary" />
           </div>
 
           {/* Timeline */}
           <div>
-            <label className="text-[11px] uppercase tracking-wider text-[#9CA3AF] mb-1.5 block">Timeline</label>
+            <label className="text-[11px] uppercase tracking-wider text-muted-foreground mb-1.5 block">Timeline</label>
             <div className="grid grid-cols-2 gap-2">
               {timelineOptions.map(t => (
                 <button key={t.id} onClick={() => setTimeline(t.id)}
                   className={`rounded-lg border p-2.5 text-[12px] font-medium text-center transition-all ${
                     timeline === t.id
-                      ? "border-[#38BDF8] bg-[#38BDF8]/10 text-[#38BDF8]"
-                      : "border-white/[0.06] bg-white/[0.03] text-[#9CA3AF] hover:text-foreground"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-border bg-muted/50 text-muted-foreground hover:text-foreground"
                   }`}>
                   {t.label}
                 </button>
@@ -357,7 +357,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
             </div>
           </div>
 
-          <Button className="w-full h-11 bg-[#38BDF8] hover:bg-[#38BDF8]/80 text-white" onClick={handleSave} disabled={saving}>
+          <Button className="w-full h-11 text-white border-0 hover:opacity-90 transition-opacity" style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)" }} onClick={handleSave} disabled={saving}>
             {saving ? "Saving..." : "Save changes"}
           </Button>
         </div>

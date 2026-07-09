@@ -374,26 +374,26 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   if (mode === null) {
     return (
       <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-4 px-4">
-        <div className="w-full max-w-lg rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-6 sm:p-8 my-4">
+        <div className="w-full max-w-lg rounded-2xl border border-border bg-card p-6 sm:p-8 my-4">
           <h2 className="text-xl font-bold text-center mb-2">Let's find your path</h2>
-          <p className="text-[13px] text-[#9CA3AF] text-center mb-8">Choose how you'd like to start</p>
+          <p className="text-[13px] text-muted-foreground text-center mb-8">Choose how you'd like to start</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <button
               onClick={() => { setMode("know"); setStep(0); }}
-              className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-6 text-left hover:bg-white/[0.06] hover:border-[#38BDF8]/30 transition-all group"
+              className="rounded-xl border border-border bg-muted/50 p-6 text-left hover:bg-muted hover:border-primary/30 transition-all group"
             >
-              <MapPin size={24} className="text-[#38BDF8] mb-3" />
+              <MapPin size={24} className="text-primary mb-3" />
               <div className="text-[15px] font-semibold mb-1">I know where I want to move</div>
-              <div className="text-[12px] text-[#9CA3AF]">Go directly to your personalized plan</div>
+              <div className="text-[12px] text-muted-foreground">Go directly to your personalized plan</div>
             </button>
             <button
               onClick={() => { setMode("help"); setStep(0); }}
-              className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-6 text-left hover:bg-white/[0.06] hover:border-[#38BDF8]/30 transition-all group"
+              className="rounded-xl border border-border bg-muted/50 p-6 text-left hover:bg-muted hover:border-primary/30 transition-all group"
             >
-              <Compass size={24} className="text-[#38BDF8] mb-3" />
+              <Compass size={24} className="text-primary mb-3" />
               <div className="text-[15px] font-semibold mb-1">Help me choose the best country</div>
-              <div className="text-[12px] text-[#9CA3AF]">We'll match you based on your situation</div>
+              <div className="text-[12px] text-muted-foreground">We'll match you based on your situation</div>
             </button>
           </div>
         </div>
@@ -405,19 +405,19 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   if (showMatches) {
     return (
       <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-4 px-4">
-        <div className="w-full max-w-2xl rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-4 sm:p-8 my-4">
+        <div className="w-full max-w-2xl rounded-2xl border border-border bg-card p-4 sm:p-8 my-4">
           <h2 className="text-xl font-bold text-center mb-2">Your best matches</h2>
           {aiEnhancing && (
             <p className="text-[11px] text-[#38BDF8]/60 text-center mb-4 animate-pulse">
               ✨ Personalizing your results...
             </p>
           )}
-          <p className="text-[13px] text-[#9CA3AF] text-center mb-6">Based on your profile and preferences</p>
+          <p className="text-[13px] text-muted-foreground text-center mb-6">Based on your profile and preferences</p>
 
           <div className="space-y-3">
             {matches.map((match, i) => (
               <div key={match.country.name} className={`rounded-xl border p-3 sm:p-5 transition-all ${
-                i === 0 ? "border-[#38BDF8]/30 bg-[#38BDF8]/5" : "border-white/[0.06] bg-white/[0.03]"
+                i === 0 ? "border-[#38BDF8]/30 bg-[#38BDF8]/5" : "border-border bg-muted/50"
               }`}>
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
@@ -428,7 +428,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                     </div>
                     <div className="space-y-1 mb-3">
                       {match.reasons.map((r, j) => (
-                        <p key={j} className="text-[12px] text-[#9CA3AF]">• {r}</p>
+                        <p key={j} className="text-[12px] text-muted-foreground">• {r}</p>
                       ))}
                       {SCHENGEN_VISA_REQUIRED.includes(citizenship) &&
                         SCHENGEN_COUNTRIES.includes(match.country.name) && (
@@ -444,7 +444,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                         )}
                     </div>
                     <div className="flex gap-3 flex-wrap text-[11px]">
-                      <span className="px-2 py-0.5 rounded bg-white/[0.06] text-[#9CA3AF]">
+                      <span className="px-2 py-0.5 rounded bg-white/[0.06] text-muted-foreground">
                         {match.country.stabilityMonths} months to stability
                       </span>
                       <span className={`px-2 py-0.5 rounded ${
@@ -459,7 +459,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                   </div>
                   <div className="text-right shrink-0 min-w-[60px]">
                     <div className="text-xl sm:text-2xl font-bold text-[#38BDF8]">{match.score}%</div>
-                    <div className="text-[10px] text-[#9CA3AF]">match</div>
+                    <div className="text-[10px] text-muted-foreground">match</div>
                     <Button
                       size="sm"
                       className="mt-3 text-[12px] bg-[#38BDF8] hover:bg-[#38BDF8]/80 text-white"
@@ -476,7 +476,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
           <button
             onClick={() => { setShowMatches(false); setStep(0); }}
-            className="mt-4 text-[11px] text-[#9CA3AF]/60 hover:text-[#9CA3AF] transition-colors block mx-auto"
+            className="mt-4 text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-colors block mx-auto"
           >
             ← Start over
           </button>
@@ -487,11 +487,11 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-4 px-4">
-      <div className="w-full max-w-md rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-6 sm:p-8 my-4">
+      <div className="w-full max-w-md rounded-2xl border border-border bg-card p-6 sm:p-8 my-4">
         {/* Progress bar */}
         <div className="flex justify-center gap-2 mb-8">
           {Array.from({ length: totalSteps }).map((_, s) => (
-            <div key={s} className={`h-1.5 w-8 rounded-full transition-colors ${s <= step ? "bg-[#38BDF8]" : "bg-white/[0.08]"}`} />
+            <div key={s} className={`h-1.5 w-8 rounded-full transition-colors ${s <= step ? "bg-primary" : "bg-muted"}`} />
           ))}
         </div>
 
@@ -508,14 +508,14 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
               placeholder="Search countries..."
               value={search1}
               onChange={(e) => setSearch1(e.target.value)}
-              className="w-full bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] placeholder:text-[#9CA3AF]/40 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/50"
+              className="w-full bg-muted border border-border rounded-lg px-3 py-2.5 text-[13px] placeholder:text-muted-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary/50"
               autoFocus
             />
             <div className="max-h-[40vh] overflow-y-auto space-y-0.5 rounded-lg">
               {filtered1.map(c => (
                 <button key={c} onClick={() => { setCitizenship(c); setStep(step + 1); }}
                   className={`w-full text-left px-3 py-2 rounded-lg text-[13px] transition-colors ${
-                    citizenship === c ? "bg-[#38BDF8]/10 text-[#38BDF8]" : "text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground"
+                    citizenship === c ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}>
                   {c}
                 </button>
@@ -537,14 +537,14 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
               placeholder="Search countries..."
               value={search2}
               onChange={(e) => setSearch2(e.target.value)}
-              className="w-full bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] placeholder:text-[#9CA3AF]/40 focus:outline-none focus:ring-1 focus:ring-[#38BDF8]/50"
+              className="w-full bg-muted border border-border rounded-lg px-3 py-2.5 text-[13px] placeholder:text-muted-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary/50"
               autoFocus
             />
             <div className="max-h-[40vh] overflow-y-auto space-y-0.5 rounded-lg">
               {filtered2.map(c => (
                 <button key={c} onClick={() => { setTargetCountry(c); setStep(step + 1); }}
                   className={`w-full text-left px-3 py-2 rounded-lg text-[13px] transition-colors ${
-                    targetCountry === c ? "bg-[#38BDF8]/10 text-[#38BDF8]" : "text-[#9CA3AF] hover:bg-white/[0.04] hover:text-foreground"
+                    targetCountry === c ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted hover:text-foreground"
                   }`}>
                   {c}
                 </button>
@@ -563,8 +563,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                   onClick={() => { setFamilyStatus(f.id); setStep(step + 1); }}
                   className={`w-full rounded-xl border p-4 text-[14px] font-medium text-left transition-all active:scale-[0.98] ${
                     familyStatus === f.id
-                      ? "border-[#38BDF8] bg-[#38BDF8]/10 text-[#38BDF8]"
-                      : "border-white/[0.06] bg-white/[0.03] text-[#9CA3AF] hover:text-foreground hover:bg-white/[0.05]"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-border bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`}>
                   {f.label}
                 </button>
@@ -581,15 +581,15 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
               <span className="text-3xl font-bold tabular-nums">
                 {income >= 50000 ? "$50,000+" : `$${income.toLocaleString()}`}
               </span>
-              <span className="text-[#9CA3AF] text-sm">/mo</span>
+              <span className="text-muted-foreground text-sm">/mo</span>
             </div>
             <input type="range" min={0} max={50000} step={500} value={income}
               onChange={(e) => setIncome(Number(e.target.value))}
-              className="w-full accent-[#38BDF8]" />
-            <div className="flex justify-between text-[11px] text-[#9CA3AF]">
+              className="w-full accent-primary" />
+            <div className="flex justify-between text-[11px] text-muted-foreground">
               <span>$0</span><span>$50,000+</span>
             </div>
-            <Button className="w-full h-11 bg-[#38BDF8] hover:bg-[#38BDF8]/80 text-white" onClick={nextStep}>
+            <Button className="w-full h-11 text-white border-0 hover:opacity-90 transition-opacity" style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)" }} onClick={nextStep}>
               Continue <ArrowRight size={14} className="ml-1" />
             </Button>
           </div>
@@ -599,21 +599,22 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
         {currentStepName === "goals" && (
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-center">What matters most?</h2>
-            <p className="text-[12px] text-[#9CA3AF] text-center">Select all that apply</p>
+            <p className="text-[12px] text-muted-foreground text-center">Select all that apply</p>
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-2 sm:gap-3 pt-2">
               {goals.map(g => (
                 <button key={g.id}
                   onClick={() => setSelectedGoals(prev => prev.includes(g.id) ? prev.filter(x => x !== g.id) : [...prev, g.id])}
                   className={`rounded-xl border p-4 text-[13px] font-medium text-center transition-all active:scale-[0.97] ${
                     selectedGoals.includes(g.id)
-                      ? "border-[#38BDF8] bg-[#38BDF8]/10 text-[#38BDF8]"
-                      : "border-white/[0.06] bg-white/[0.03] text-[#9CA3AF] hover:text-foreground hover:bg-white/[0.05]"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-border bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`}>
                   {g.label}
                 </button>
               ))}
             </div>
-            <Button className="w-full h-11 bg-[#38BDF8] hover:bg-[#38BDF8]/80 text-white mt-2"
+            <Button className="w-full h-11 text-white border-0 hover:opacity-90 transition-opacity mt-2"
+              style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)" }}
               onClick={nextStep} disabled={selectedGoals.length === 0}>
               Continue <ArrowRight size={14} className="ml-1" />
             </Button>
@@ -624,21 +625,23 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
         {currentStepName === "constraints" && (
           <div className="space-y-4">
             <h2 className="text-lg font-semibold text-center">Any dealbreakers?</h2>
-            <p className="text-[12px] text-[#9CA3AF] text-center">Select all that apply, or skip</p>
+            <p className="text-[12px] text-muted-foreground text-center">Select all that apply, or skip</p>
             <div className="space-y-2 pt-2">
               {constraintOptions.map(c => (
                 <button key={c.id}
                   onClick={() => setSelectedConstraints(prev => prev.includes(c.id) ? prev.filter(x => x !== c.id) : [...prev, c.id])}
                   className={`w-full rounded-xl border p-3.5 text-[13px] font-medium text-left transition-all active:scale-[0.98] ${
                     selectedConstraints.includes(c.id)
-                      ? "border-[#38BDF8] bg-[#38BDF8]/10 text-[#38BDF8]"
-                      : "border-white/[0.06] bg-white/[0.03] text-[#9CA3AF] hover:text-foreground hover:bg-white/[0.05]"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-border bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`}>
                   {c.label}
                 </button>
               ))}
             </div>
-            <Button className="w-full h-11 bg-[#38BDF8] hover:bg-[#38BDF8]/80 text-white mt-2" onClick={nextStep}>
+            <Button className="w-full h-11 text-white border-0 hover:opacity-90 transition-opacity mt-2"
+              style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)" }}
+              onClick={nextStep}>
               Continue <ArrowRight size={14} className="ml-1" />
             </Button>
           </div>
@@ -693,8 +696,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                   }}
                   className={`w-full rounded-xl border p-4 text-[14px] font-medium text-left transition-all active:scale-[0.98] ${
                     timeline === t.id
-                      ? "border-[#38BDF8] bg-[#38BDF8]/10 text-[#38BDF8]"
-                      : "border-white/[0.06] bg-white/[0.03] text-[#9CA3AF] hover:text-foreground hover:bg-white/[0.05]"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-border bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`}>
                   {t.label}
                 </button>
@@ -706,7 +709,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
         {/* Back button */}
         {step > 0 && !showMatches && (
           <button onClick={() => setStep(step - 1)}
-            className="mt-4 text-[11px] text-[#9CA3AF]/60 hover:text-[#9CA3AF] transition-colors block mx-auto">
+            className="mt-4 text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-colors block mx-auto">
             ← Back
           </button>
         )}
