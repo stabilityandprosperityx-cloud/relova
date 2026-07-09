@@ -66,20 +66,27 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
                     onTabChange(item.id);
                   }
                 }}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-colors ${
+                className={`relative w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-colors ${
                   locked
                     ? "text-muted-foreground/30 cursor-not-allowed"
                     : active
-                    ? "bg-[#38BDF820] text-[#38BDF8]"
+                    ? "text-[#a78bfa] dark:text-[#c4b5fd]"
                     : item.highlight
-                    ? "text-[#38BDF8]/70 hover:text-[#38BDF8] hover:bg-[#38BDF8]/[0.06]"
+                    ? "text-primary/70 hover:text-primary hover:bg-primary/[0.06]"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 }`}
+                style={active ? { background: "linear-gradient(135deg, rgba(139,92,246,0.12), rgba(99,102,241,0.07))" } : undefined}
               >
+                {active && (
+                  <div
+                    className="absolute left-0 top-1.5 bottom-1.5 w-[3px] rounded-full"
+                    style={{ background: "linear-gradient(180deg, #8b5cf6, #6366f1)" }}
+                  />
+                )}
                 <item.icon size={16} />
                 {item.label}
                 {item.highlight && !active && !locked && (
-                  <span className="ml-auto flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#38BDF8]/10 text-[10px] text-[#38BDF8]/80 font-medium">
+                  <span className="ml-auto flex items-center gap-1 px-1.5 py-0.5 rounded bg-primary/10 text-[10px] text-primary font-medium">
                     <Sparkles size={10} />
                     AI
                   </span>
@@ -109,7 +116,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
           </button>
           <div className="px-3 py-2">
             <p className="text-[11px] text-muted-foreground/60 truncate">{userEmail}</p>
-            <p className="text-[10px] text-[#38BDF8]/60 capitalize mt-0.5">{userPlan} plan</p>
+            <p className="text-[10px] text-primary/60 capitalize mt-0.5">{userPlan} plan</p>
           </div>
         </div>
       </aside>
@@ -131,7 +138,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
                 }
               }}
               className={`flex min-w-0 flex-1 flex-col items-center gap-0.5 px-1 py-1 rounded-lg transition-colors ${
-                locked ? "text-muted-foreground/20" : active ? "text-[#38BDF8]" : "text-muted-foreground"
+                locked ? "text-muted-foreground/20" : active ? "text-primary" : "text-muted-foreground"
               }`}
             >
               {locked ? <Lock size={18} /> : <item.icon size={18} />}
@@ -155,7 +162,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
             <SheetHeader className="space-y-1 text-left">
               <SheetTitle className="text-base text-foreground">Account</SheetTitle>
               <p className="truncate text-[12px] font-normal text-muted-foreground">{userEmail}</p>
-              <p className="text-[11px] capitalize text-[#38BDF8]/70">{userPlan} plan</p>
+              <p className="text-[11px] capitalize text-primary/70">{userPlan} plan</p>
             </SheetHeader>
             <div className="mt-6 flex flex-col gap-0">
               {userPlan !== "full" && (
