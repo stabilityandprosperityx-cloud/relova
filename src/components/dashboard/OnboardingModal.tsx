@@ -88,6 +88,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const [selectedConstraints, setSelectedConstraints] = useState<string[]>([]);
   const [timeline, setTimeline] = useState("exploring");
   const [saving, setSaving] = useState(false);
+  const [selectingCountry, setSelectingCountry] = useState<string | null>(null);
   const [search1, setSearch1] = useState("");
   const [search2, setSearch2] = useState("");
   const [matches, setMatches] = useState<CountryMatch[]>([]);
@@ -247,6 +248,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
   const selectCountryFromMatch = (countryName: string, matchScore: number) => {
     setTargetCountry(countryName);
+    setSelectingCountry(countryName);
     saveProfile(countryName, matchScore);
   };
 
@@ -280,6 +282,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     if (error) {
       toast.error("Failed to save profile: " + error.message);
       setSaving(false);
+      setSelectingCountry(null);
       return;
     }
 
@@ -349,6 +352,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
         profile={pendingProfile}
         onContinue={handleCompleteWithAutoInit}
         onSeeOtherMatches={() => {
+          setSaving(false);
+          setSelectingCountry(null);
           setShowResult(false);
           setShowLoading(false);
           setShowMatches(true);
@@ -465,9 +470,9 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                       className="mt-3 text-[12px] text-white border-0 hover:opacity-90 transition-opacity"
                       style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)" }}
                       onClick={() => selectCountryFromMatch(match.country.name, match.score)}
-                      disabled={saving}
+                      disabled={selectingCountry === match.country.name}
                     >
-                      {saving ? "..." : "Build my plan →"}
+                      {selectingCountry === match.country.name ? "..." : "Build my plan →"}
                     </Button>
                   </div>
                 </div>
@@ -476,7 +481,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
           </div>
 
           <button
-            onClick={() => { setShowMatches(false); setStep(0); }}
+            onClick={() => { setSaving(false); setSelectingCountry(null); setShowMatches(false); setStep(0); }}
             className="mt-4 text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-colors block mx-auto"
           >
             ← Start over
