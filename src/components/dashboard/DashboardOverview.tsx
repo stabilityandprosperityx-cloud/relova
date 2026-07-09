@@ -150,7 +150,12 @@ export default function DashboardOverview({ profile, onNavigate, onEditProfile, 
               <p className="text-[12px] text-muted-foreground mb-3">{relocationCase.nextStep.description}</p>
             )}
             <div className="flex items-center gap-2 flex-wrap">
-              <Button size="sm" className="text-[12px] h-8" onClick={async () => { await relocationCase.markStepDone(relocationCase.nextStep!.id); }}>
+              <Button
+                size="sm"
+                className="text-[12px] h-8"
+                style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)", border: "none" }}
+                onClick={async () => { await relocationCase.markStepDone(relocationCase.nextStep!.id); }}
+              >
                 ✓ Mark as done
               </Button>
               <Button size="sm" variant="ghost" className="text-[12px] h-8 text-primary" onClick={() => onNavigate("chat")}>

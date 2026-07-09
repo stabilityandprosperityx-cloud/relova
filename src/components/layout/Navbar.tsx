@@ -88,7 +88,8 @@ export default function Navbar() {
                 <Link to="/dashboard">
                   <Button
                     size="sm"
-                    className="h-8 text-[13px] px-5 rounded-lg font-medium bg-[hsl(199,89%,61%)] hover:bg-[hsl(199,89%,51%)] text-white"
+                    className="inline-flex items-center gap-1.5 rounded-[8px] px-4 h-9 text-[13px] font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
+                    style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 24px rgba(139,92,246,0.3)", border: "none" }}
                   >
                     Dashboard →
                   </Button>

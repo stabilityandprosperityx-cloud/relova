@@ -94,7 +94,8 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
           {userPlan !== "full" && (
             <Link
               to="/pricing"
-              className="block w-full text-center px-3 py-2 rounded-lg bg-[#38BDF8]/10 text-[#38BDF8] text-[11px] font-medium hover:bg-[#38BDF8]/20 transition-colors"
+              className="block w-full text-center px-3 py-2 rounded-lg text-[11px] font-medium text-white transition-all hover:opacity-90"
+              style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)", border: "none" }}
             >
               Upgrade plan ↑
             </Link>
@@ -161,7 +162,8 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
                 <Link
                   to="/pricing"
                   onClick={() => setMobileSheetOpen(false)}
-                  className="rounded-lg px-3 py-3 text-center text-[14px] font-medium text-[#38BDF8] transition-colors hover:bg-[#38BDF8]/10"
+                  className="rounded-lg px-3 py-3 text-center text-[14px] font-medium text-white transition-all hover:opacity-90"
+                  style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)", border: "none" }}
                 >
                   Upgrade plan
                 </Link>
