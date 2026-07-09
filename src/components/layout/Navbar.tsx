@@ -23,7 +23,7 @@ export default function Navbar() {
     if (typeof window !== 'undefined') {
       return document.documentElement.classList.contains('dark');
     }
-    return false;
+    return true;
   });
 
   const toggleTheme = () => {
