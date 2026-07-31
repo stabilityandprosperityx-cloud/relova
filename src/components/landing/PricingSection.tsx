@@ -1,9 +1,28 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Check, ArrowRight, Zap } from "lucide-react";
+import { Check, Shield, RefreshCw, Lock, Headphones, Zap } from "lucide-react";
 import { openPaddleCheckout } from "@/config/paddle";
 import { useAuth } from "@/contexts/AuthContext";
 import { useState } from "react";
+import conciergeCouple from "@/assets/redesign/concierge-couple.jpg";
+
+const CONCIERGE_FEATURES = [
+  "Personal expert via chat (WhatsApp / Telegram)",
+  "All documents reviewed",
+  "Visa letter written & verified",
+  "Chat support for 90 days",
+  "Lawyer reviews package",
+  "Everything in Full — forever",
+  "Personalized roadmap",
+  "Money-back guarantee",
+];
+
+const TRUST_BADGES = [
+  { icon: Shield,     label: "Secure payments" },
+  { icon: RefreshCw,  label: "Cancel anytime" },
+  { icon: Lock,       label: "Your data is protected" },
+  { icon: Headphones, label: "Human support" },
+];
 
 export default function PricingSection() {
   const { user } = useAuth();
@@ -78,31 +97,44 @@ export default function PricingSection() {
   ];
 
   return (
-    <section id="pricing" className="py-[60px] md:py-[80px] border-t border-border/40">
-      <div className="container max-w-[1200px] mx-auto">
+    <section id="pricing" className="py-20 md:py-28 bg-background border-t border-border/50">
+      <div className="container max-w-6xl px-5 md:px-8">
+
+        {/* Centered header */}
         <motion.div
-          className="mb-16 text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
         >
-          <p className="text-[11px] text-muted-foreground/60 mb-4 uppercase tracking-[0.15em] font-medium">
-            Pricing
-          </p>
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">
-            Choose your level of clarity
+          {/* Logo badge */}
+          <div className="inline-flex items-center gap-1.5 mb-5">
+            <div
+              className="w-5 h-5 rounded flex items-center justify-center"
+              style={{ background: "hsl(var(--primary))" }}
+            >
+              <span className="text-[9px] font-bold text-white">R</span>
+            </div>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+              Relova
+            </span>
+          </div>
+
+          <h2 className="font-serif text-[2rem] sm:text-[2.6rem] md:text-[3rem] font-semibold leading-[1.1] mb-4 text-foreground">
+            Simple pricing. Every journey.
           </h2>
-          <p className="text-muted-foreground text-sm max-w-md mx-auto">
-            Start free. Upgrade when you're ready to move with confidence.
+          <p className="text-[15px] text-muted-foreground max-w-md mx-auto mb-6">
+            Choose the plan that fits your move. Upgrade or cancel anytime.
           </p>
 
-          <div className="inline-flex items-center gap-1 p-1 mt-6 rounded-xl bg-white/[0.05] border border-white/[0.08]">
+          {/* Billing toggle */}
+          <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-secondary border border-border">
             <button
               onClick={() => setBilling("monthly")}
-              className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
+              className={`px-5 py-2 rounded-lg text-[13px] font-medium transition-all ${
                 billing === "monthly"
-                  ? "bg-primary text-primary-foreground shadow-sm"
+                  ? "bg-card text-foreground shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -110,190 +142,205 @@ export default function PricingSection() {
             </button>
             <button
               onClick={() => setBilling("lifetime")}
-              className={`px-5 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+              className={`px-5 py-2 rounded-lg text-[13px] font-medium transition-all flex items-center gap-2 ${
                 billing === "lifetime"
-                  ? "bg-primary text-primary-foreground shadow-sm"
+                  ? "bg-card text-foreground shadow-sm"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <Zap size={13} />
+              <Zap size={12} />
               Lifetime
-              <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-semibold ${
-                billing === "lifetime"
-                  ? "bg-primary-foreground/20 text-primary-foreground"
-                  : "bg-primary/20 text-primary"
-              }`}>
+              <span className="text-[10px] px-1.5 py-0.5 rounded-full font-semibold bg-primary/10 text-primary">
                 Save 70%
               </span>
             </button>
           </div>
         </motion.div>
 
-        <motion.div
-          className="max-w-[960px] mx-auto mb-6"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-          <div
-            className="relative rounded-2xl overflow-hidden"
-            style={{
-              border: "1px solid rgba(56,189,248,0.2)",
-              background: "linear-gradient(135deg, rgba(56,189,248,0.04) 0%, rgba(99,102,241,0.03) 50%, rgba(255,255,255,0.01) 100%)",
-            }}
-          >
-            <div
-              className="absolute top-0 left-0 right-0 h-px"
-              style={{ background: "linear-gradient(90deg, transparent, rgba(56,189,248,0.5), transparent)" }}
-            />
-            <div className="p-7 md:p-8">
-              <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
-                <div className="flex-1">
-                  <div
-                    className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-3 text-[11px] font-medium tracking-wide"
-                    style={{
-                      background: "rgba(56,189,248,0.08)",
-                      border: "1px solid rgba(56,189,248,0.18)",
-                      color: "#7dd3fc",
-                    }}
-                  >
-                    <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#38bdf8", display: "inline-block", flexShrink: 0 }} />
-                    White-glove service
-                  </div>
-                  <h3 className="text-xl font-bold tracking-tight mb-2">Relova Concierge</h3>
-                  <p className="text-[13px] text-muted-foreground mb-4 max-w-lg leading-relaxed">
-                    Half the price of an immigration lawyer. A real expert guides you from decision to approved visa — powered by AI, verified by humans.
-                  </p>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                    {[
-                      "Personal expert via chat (WhatsApp / Telegram)",
-                      "All documents reviewed",
-                      "Visa letter written & verified",
-                      "Chat support for 90 days",
-                      "Lawyer reviews package",
-                      "Everything in Full — forever",
-                      "Personalized roadmap",
-                      "Money-back guarantee",
-                    ].map((f) => (
-                      <div key={f} className="flex items-start gap-1.5 text-[12px]">
-                        <span style={{ color: "#38bdf8", flexShrink: 0 }}>✓</span>
-                        <span className="text-muted-foreground">{f}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex flex-col items-start md:items-end gap-3 flex-shrink-0">
-                  <div className="md:text-right">
-                    <p className="text-[11px] text-muted-foreground/40 line-through mb-1">Lawyers charge $1,500–$3,000</p>
-                    <div className="flex items-baseline gap-2 md:justify-end">
-                      <span className="text-4xl font-bold tracking-tight">$990</span>
-                      <span className="text-muted-foreground text-sm">one-time</span>
-                    </div>
-                    <p className="text-[11px] mt-1" style={{ color: "#34d399" }}>Save $500–$2,000 vs. a lawyer</p>
-                  </div>
-                  <button
-                    className="w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-xl px-7 py-3 text-[14px] font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
-                    style={{
-                      background: "linear-gradient(135deg, #0ea5e9, #6366f1)",
-                      boxShadow: "0 0 28px rgba(14,165,233,0.2)",
-                      border: "none",
-                    }}
-                    onClick={() => openPaddleCheckout("concierge", user?.email ?? undefined, user?.id)}
-                  >
-                    Apply for Concierge →
-                  </button>
-                  <p className="text-[11px] text-muted-foreground/40 md:text-right">Limited spots. We review each case.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        <div className="grid md:grid-cols-3 gap-5 max-w-[960px] mx-auto">
+        {/* 3 regular plan cards */}
+        <div className="grid md:grid-cols-3 gap-5 mb-5">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
-              className={`relative p-7 rounded-xl border transition-shadow ${
+              className={`relative rounded-2xl p-6 flex flex-col ${
                 plan.highlighted
-                  ? "border-primary/30 bg-primary/[0.03] shadow-[0_0_40px_-12px_hsl(var(--primary)/0.15)]"
-                  : billing === "lifetime" && plan.name === "Full"
-                  ? "border-amber-500/30 shadow-[0_0_40px_-12px_rgba(245,158,11,0.15)]"
-                  : "border-border/50 bg-card/50"
+                  ? "border-2 border-primary bg-card"
+                  : "border border-border bg-card"
               }`}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              style={{
+                boxShadow: plan.highlighted
+                  ? "0 8px 40px hsl(var(--primary) / 0.12)"
+                  : "0 2px 12px rgba(0,0,0,0.05)",
+              }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.4, delay: i * 0.07, ease: "easeOut" }}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
             >
+              {/* Badge */}
               {plan.badge && (
-                <span className={`absolute -top-2.5 left-7 px-2.5 py-0.5 rounded-full text-[10px] font-medium tracking-wide ${
-                  plan.badge === "Best value"
-                    ? "bg-amber-500 text-white"
-                    : "bg-primary text-primary-foreground"
-                }`}>
-                  {plan.badge}
-                </span>
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span
+                    className={`px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider text-white ${
+                      plan.badge === "Best value" ? "bg-amber-500" : ""
+                    }`}
+                    style={plan.badge !== "Best value" ? { background: "hsl(var(--primary))" } : undefined}
+                  >
+                    {plan.badge}
+                  </span>
+                </div>
               )}
 
-              <h3 className="text-lg font-semibold tracking-tight mb-1">{plan.name}</h3>
-              <div className="flex items-baseline gap-1 mb-2">
-                <motion.span
-                  key={billing + plan.name}
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-3xl font-bold tabular-nums"
-                >
-                  {billing === "monthly" ? plan.monthlyPrice : plan.lifetimePrice}
-                </motion.span>
-                <span className="text-xs text-muted-foreground">{plan.period}</span>
+              {/* Plan header */}
+              <div className="mb-5">
+                <h3 className="text-[16px] font-semibold text-foreground mb-1">{plan.name}</h3>
+                <div className="flex items-baseline gap-1 mb-2">
+                  <motion.span
+                    key={billing + plan.name}
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-[2.2rem] font-bold text-foreground tabular-nums"
+                  >
+                    {billing === "monthly" ? plan.monthlyPrice : plan.lifetimePrice}
+                  </motion.span>
+                  <span className="text-[13px] text-muted-foreground">{plan.period}</span>
+                </div>
+                <p className="text-[13px] text-muted-foreground">{plan.description}</p>
               </div>
-              {!plan.isFree && billing === "lifetime" && (
-                <p className="text-[11px] text-muted-foreground/60 mb-2">
-                  vs {plan.monthlyPrice}/mo — pay once, use forever
-                </p>
-              )}
-              <p className="text-[13px] text-muted-foreground mb-6">{plan.description}</p>
 
-              <ul className="space-y-2.5 mb-8">
+              {/* Features */}
+              <ul className="space-y-2.5 mb-6 flex-1">
                 {plan.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2.5 text-[13px] text-foreground/75">
-                    <Check size={14} className="text-primary shrink-0" strokeWidth={2.5} />
+                  <li key={f} className="flex items-start gap-2.5 text-[13px] text-foreground/80">
+                    <Check size={14} className="text-primary shrink-0 mt-0.5" strokeWidth={2.5} />
                     {f}
                   </li>
                 ))}
               </ul>
 
+              {/* CTA */}
               {plan.isFree ? (
                 <Link to="/dashboard">
-                  <button
-                    className="w-full flex items-center justify-center rounded-lg h-10 text-[13px] transition-all hover:opacity-80"
-                    style={{
-                      background: "transparent",
-                      border: "1px solid rgba(255,255,255,0.12)",
-                      color: "rgba(255,255,255,0.55)",
-                    }}
-                  >
+                  <button className="w-full h-10 rounded-xl border border-border text-[13px] font-medium text-foreground hover:bg-secondary transition-colors">
                     {plan.cta}
                   </button>
                 </Link>
-              ) : (
+              ) : plan.highlighted ? (
                 <button
-                  className="w-full flex items-center justify-center gap-2 rounded-lg h-10 text-[13px] font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
-                  style={{
-                    background: "linear-gradient(135deg, #0ea5e9, #6366f1)",
-                    boxShadow: "0 0 20px rgba(14,165,233,0.15)",
-                    border: "none",
-                  }}
+                  className="w-full h-10 rounded-xl text-[13px] font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
+                  style={{ background: "hsl(var(--primary))", boxShadow: "0 4px 16px hsl(var(--primary) / 0.30)" }}
                   onClick={() => handlePayment(plan.name === "Pro" ? "pro" : "full")}
                 >
                   {plan.cta}
-                  <ArrowRight size={13} />
+                </button>
+              ) : (
+                <button
+                  className="w-full h-10 rounded-xl border border-border text-[13px] font-medium text-foreground hover:border-primary/40 hover:bg-primary/4 transition-colors"
+                  onClick={() => handlePayment(plan.name === "Pro" ? "pro" : "full")}
+                >
+                  {plan.cta}
                 </button>
               )}
             </motion.div>
           ))}
         </div>
+
+        {/* Concierge card — full width, 2-column */}
+        <motion.div
+          className="rounded-2xl overflow-hidden border border-border bg-card grid md:grid-cols-[1fr_0.55fr]"
+          style={{ boxShadow: "0 8px 40px rgba(0,0,0,0.08)" }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+        >
+          {/* Left — text content */}
+          <div className="p-7 md:p-9 flex flex-col">
+            {/* White-glove service badge */}
+            <div className="mb-4">
+              <span
+                className="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider border"
+                style={{
+                  background: "hsl(var(--primary) / 0.06)",
+                  borderColor: "hsl(var(--primary) / 0.25)",
+                  color: "hsl(var(--primary))",
+                }}
+              >
+                ✦ White-glove service
+              </span>
+            </div>
+
+            <h3 className="font-serif text-[1.6rem] md:text-[1.9rem] font-semibold text-foreground mb-2 leading-tight">
+              Relova Concierge
+            </h3>
+            <p className="text-[14px] text-muted-foreground mb-5">
+              Half the price of an immigration lawyer. A real expert guides you from decision to approved visa — powered by AI, verified by humans.
+            </p>
+
+            {/* Price */}
+            <div className="mb-1">
+              <p className="text-[11px] text-muted-foreground/50 line-through mb-1">
+                Lawyers charge $1,500–$3,000
+              </p>
+              <div className="flex items-baseline gap-2">
+                <span className="text-[2.4rem] font-bold text-foreground tabular-nums">$990</span>
+                <span className="text-[14px] text-muted-foreground">one-time</span>
+              </div>
+              <p className="text-[12px] text-emerald-600 font-medium mt-0.5 mb-5">
+                Save $500–$2,000 vs. a lawyer
+              </p>
+            </div>
+
+            {/* Features */}
+            <ul className="space-y-2.5 mb-8 flex-1">
+              {CONCIERGE_FEATURES.map((f) => (
+                <li key={f} className="flex items-start gap-2.5 text-[13px] text-foreground/80">
+                  <div
+                    className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                    style={{ background: "hsl(var(--primary) / 0.10)" }}
+                  >
+                    <Check size={9} className="text-primary" strokeWidth={3} />
+                  </div>
+                  {f}
+                </li>
+              ))}
+            </ul>
+
+            <button
+              className="w-full md:w-auto inline-flex items-center justify-center gap-2 h-11 px-8 rounded-xl text-[14px] font-semibold text-white transition-all hover:opacity-90 active:scale-[0.98]"
+              style={{
+                background: "hsl(var(--primary))",
+                boxShadow: "0 4px 20px hsl(var(--primary) / 0.28)",
+              }}
+              onClick={() => openPaddleCheckout("concierge", user?.email ?? undefined, user?.id)}
+            >
+              Apply for Concierge →
+            </button>
+            <p className="text-[11px] text-muted-foreground/50 mt-2">
+              Limited spots. We review each case.
+            </p>
+          </div>
+
+          {/* Right — photo */}
+          <div className="hidden md:block relative overflow-hidden" style={{ minHeight: 320 }}>
+            <img
+              src={conciergeCouple}
+              alt="A couple working with a Relova concierge expert on their relocation plan"
+              className="w-full h-full object-cover object-center absolute inset-0"
+            />
+          </div>
+        </motion.div>
+
+        {/* Trust badges */}
+        <div className="flex flex-wrap items-center justify-center gap-6 mt-10">
+          {TRUST_BADGES.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex items-center gap-2 text-[12px] text-muted-foreground/60">
+              <Icon size={14} strokeWidth={1.6} />
+              {label}
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

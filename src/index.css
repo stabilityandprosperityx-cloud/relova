@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600;1,9..144,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,23 +6,23 @@
 
 @layer base {
   :root {
-    --background: 256 55% 97%;
-    --foreground: 222 12% 12%;
+    --background: 36 33% 95%;
+    --foreground: 230 20% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 222 12% 12%;
-    --primary: 258 90% 60%;
+    --card-foreground: 230 20% 10%;
+    --primary: 245 78% 62%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 256 30% 95%;
-    --muted-foreground: 256 8% 55%;
-    --accent: 258 90% 60%;
+    --secondary: 35 25% 91%;
+    --secondary-foreground: 230 20% 10%;
+    --muted: 35 25% 91%;
+    --muted-foreground: 230 8% 45%;
+    --accent: 245 78% 62%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 256 40% 91%;
-    --input: 256 40% 91%;
-    --ring: 258 90% 60%;
+    --border: 35 20% 85%;
+    --input: 35 20% 85%;
+    --ring: 245 78% 62%;
     --radius: 0.875rem;
 
     --sidebar-background: 256 60% 98%;
@@ -84,7 +84,12 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+  h3, h4, h5, h6 {
     text-wrap: balance;
     letter-spacing: -0.03em;
   }
