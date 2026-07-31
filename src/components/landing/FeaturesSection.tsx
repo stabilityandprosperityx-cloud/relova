@@ -116,7 +116,7 @@ function CostThumb() {
 function AdvisorThumb() {
   return (
     <div className="w-full rounded-xl overflow-hidden" style={{ height: 108 }}>
-      <img
+      <img loading="lazy"
         src={advisorPreview}
         alt="AI relocation advisor answering questions about visas and countries"
         className="w-full h-full object-cover object-center"
@@ -128,7 +128,7 @@ function AdvisorThumb() {
 function DocumentsThumb() {
   return (
     <div className="w-full rounded-xl overflow-hidden" style={{ height: 108 }}>
-      <img
+      <img loading="lazy"
         src={documentsPreview}
         alt="Document checklist and visa letter generation interface"
         className="w-full h-full object-cover object-center"
@@ -140,7 +140,7 @@ function DocumentsThumb() {
 function CountryThumb() {
   return (
     <div className="w-full rounded-xl overflow-hidden" style={{ height: 108 }}>
-      <img
+      <img loading="lazy"
         src={countryPreview}
         alt="Countries explorer showing destinations around the world"
         className="w-full h-full object-cover object-center"

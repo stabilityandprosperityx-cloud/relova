@@ -323,7 +323,7 @@ export default function PricingSection() {
 
           {/* Right — photo */}
           <div className="hidden md:block relative overflow-hidden" style={{ minHeight: 320 }}>
-            <img
+            <img loading="lazy"
               src={conciergeCouple}
               alt="A couple working with a Relova concierge expert on their relocation plan"
               className="w-full h-full object-cover object-center absolute inset-0"

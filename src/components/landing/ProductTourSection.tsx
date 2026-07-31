@@ -42,7 +42,7 @@ function AdvisorScreen() {
 
       {/* World map */}
       <div className="w-full rounded-xl mb-4 overflow-hidden" style={{ height: 110 }}>
-        <img
+        <img loading="lazy"
           src={worldMap}
           alt="World map showing popular relocation destinations"
           className="w-full h-full object-cover object-center"
@@ -68,7 +68,7 @@ function AdvisorScreen() {
           >
             {/* Country photo */}
             <div className="w-full" style={{ height: 48 }}>
-              <img
+              <img loading="lazy"
                 src={c.imgSrc}
                 alt={c.name}
                 className="w-full h-full object-cover object-center"
@@ -192,7 +192,7 @@ function CountryScreen() {
           <div key={c.name} className={`rounded-xl overflow-hidden border ${i === 0 ? "border-primary/30" : "border-border"} bg-card`}>
             {/* Country photo */}
             <div className="w-full" style={{ height: 52 }}>
-              <img
+              <img loading="lazy"
                 src={c.imgSrc}
                 alt={c.name}
                 className="w-full h-full object-cover object-center"

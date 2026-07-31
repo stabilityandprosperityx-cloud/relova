@@ -71,7 +71,7 @@ export default function DemoSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="w-[380px] h-[420px] overflow-hidden flex-shrink-0">
-              <img
+              <img loading="lazy"
                 src={demoLifestyle}
                 alt="Person using Relova AI advisor on a laptop in a cozy home setting"
                 className="w-full h-full object-cover object-center"

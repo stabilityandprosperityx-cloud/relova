@@ -120,7 +120,7 @@ export default function CountriesSection() {
             >
               {/* Photo */}
               <div className="w-full" style={{ height: 140 }}>
-                <img
+                <img loading="lazy"
                   src={c.imgSrc}
                   alt={c.imgAlt}
                   className="w-full h-full object-cover object-center"

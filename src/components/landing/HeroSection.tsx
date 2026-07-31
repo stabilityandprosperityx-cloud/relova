@@ -104,6 +104,7 @@ export default function HeroSection() {
                     key={i}
                     src={src}
                     alt="Relova user"
+                    loading="lazy"
                     className="w-8 h-8 rounded-full border-2 border-background object-cover object-center"
                   />
                 ))}

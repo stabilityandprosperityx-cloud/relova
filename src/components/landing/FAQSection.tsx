@@ -118,7 +118,7 @@ export default function FAQSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="w-[380px] h-[420px] overflow-hidden flex-shrink-0">
-              <img
+              <img loading="lazy"
                 src={faqLifestyle}
                 alt="Person relaxing at home after a successful international relocation"
                 className="w-full h-full object-cover object-center"

@@ -7,7 +7,7 @@ export default function CTASection() {
   return (
     <section className="relative overflow-hidden border-t border-border/50">
       {/* Background photo */}
-      <img
+      <img loading="lazy"
         src={ctaCityview}
         alt="Scenic city view representing a new life abroad"
         className="absolute inset-0 w-full h-full object-cover object-center"

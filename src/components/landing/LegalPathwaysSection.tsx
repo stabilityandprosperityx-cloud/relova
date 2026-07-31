@@ -143,7 +143,7 @@ function VisaCard({ pathway: p, index: i }: { pathway: typeof PATHWAYS[0]; index
     >
       {/* Photo */}
       <div className="relative w-full" style={{ height: 160 }}>
-        <img
+        <img loading="lazy"
           src={p.imgSrc}
           alt={p.imgAlt}
           className="w-full h-full object-cover object-center"
