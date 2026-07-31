@@ -1,33 +1,51 @@
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { useState } from "react";
 
-const footerLinks = [
+const FOOTER_COLS = [
   {
     title: "Product",
     links: [
-      { label: "How it works", href: "#" },
-      { label: "Countries", href: "/dashboard" },
-      { label: "Pricing", href: "/pricing" },
+      { label: "Features",      href: "#" },
+      { label: "Pricing",       href: "/pricing" },
+      { label: "Concierge",     href: "/pricing" },
+      { label: "Integrations",  href: "#" },
+      { label: "What's New",    href: "#" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About Us",      href: "#" },
+      { label: "Our Mission",   href: "#" },
+      { label: "Careers",       href: "#" },
+      { label: "Press",         href: "#" },
+      { label: "Contact",       href: "/contact" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Blog", href: "/blog" },
-      { label: "Help center", href: "/help" },
-      { label: "Contact", href: "/contact" },
+      { label: "Country Guides",    href: "/countries" },
+      { label: "Visa Timeline",     href: "#" },
+      { label: "Relocation Blog",   href: "/blog" },
+      { label: "Help Center",       href: "/help" },
+      { label: "Webinars",          href: "#" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Privacy", href: "/privacy" },
-      { label: "Terms", href: "/terms" },
-      { label: "Refund Policy", href: "/refund" },
+      { label: "Privacy Policy",    href: "/privacy" },
+      { label: "Terms of Service",  href: "/terms" },
+      { label: "Cookie Policy",     href: "#" },
+      { label: "Data Security",     href: "#" },
+      { label: "Compliance",        href: "#" },
     ],
   },
 ];
 
-const socials = [
+const SOCIALS = [
   {
     label: "X (Twitter)",
     href: "https://x.com/relovaai?s=21",
@@ -67,39 +85,57 @@ const socials = [
 ];
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+
   return (
-    <footer className="border-t border-border/30">
-      <div className="container py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <footer className="border-t border-border/40 bg-background">
+      <div className="container max-w-6xl px-5 md:px-8 py-14">
+
+        {/* Main grid: logo col + 4 link cols + newsletter col */}
+        <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr_1.3fr] gap-8 mb-12">
+
+          {/* Logo + description + socials */}
           <div className="col-span-2 md:col-span-1">
-            <p className="text-[15px] font-bold tracking-[-0.04em] mb-3">relova</p>
-            <p className="text-[13px] text-muted-foreground/50 leading-relaxed max-w-[220px] mb-5">
-              Relocation, structured.
+            <div className="flex items-center gap-2 mb-3">
+              <div
+                className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0"
+                style={{ background: "hsl(var(--primary))" }}
+              >
+                <span className="text-[10px] font-bold text-white">R</span>
+              </div>
+              <span className="text-[15px] font-bold tracking-[-0.02em] text-foreground">RELOVA</span>
+            </div>
+            <p className="text-[13px] text-muted-foreground leading-relaxed max-w-[200px] mb-5">
+              Relova is your all-in-one relocation partner. Trusted by thousands of people and families to plan, move, and thrive in a new country.
             </p>
-            <div className="flex items-center gap-3">
-              {socials.map((s) => (
+            <div className="flex items-center gap-3 flex-wrap">
+              {SOCIALS.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="text-muted-foreground/40 hover:text-foreground transition-colors"
+                  className="text-muted-foreground/50 hover:text-foreground transition-colors"
                 >
                   {s.icon}
                 </a>
               ))}
             </div>
           </div>
-          {footerLinks.map((group) => (
-            <div key={group.title}>
-              <p className="text-[12px] font-medium mb-4 text-muted-foreground/50 uppercase tracking-[0.1em]">{group.title}</p>
+
+          {/* Link columns */}
+          {FOOTER_COLS.map((col) => (
+            <div key={col.title}>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground/60 mb-4">
+                {col.title}
+              </p>
               <ul className="space-y-2.5">
-                {group.links.map((link) => (
+                {col.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="text-[13px] text-muted-foreground/60 hover:text-foreground transition-colors"
+                      className="text-[13px] text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -108,24 +144,52 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-        </div>
-        <div className="mt-14 pt-6 border-t border-border/20 flex items-center justify-between">
-          <p className="text-[11px] text-muted-foreground/30">© 2026 Relova. All rights reserved.</p>
-          <div className="flex items-center gap-3">
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-                className="text-muted-foreground/25 hover:text-muted-foreground/60 transition-colors"
+
+          {/* Newsletter */}
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground/60 mb-4">
+              Stay in the know
+            </p>
+            <p className="text-[13px] text-muted-foreground leading-relaxed mb-4">
+              Get tips, guides, and updates to your inbox.
+            </p>
+            <div className="flex items-center gap-0 rounded-xl border border-border bg-card overflow-hidden focus-within:border-primary/40 transition-colors">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="flex-1 h-10 px-3 text-[13px] bg-transparent outline-none text-foreground placeholder:text-muted-foreground/50 min-w-0"
+              />
+              <button
+                className="h-10 w-10 flex items-center justify-center flex-shrink-0 transition-colors hover:opacity-80"
+                style={{ background: "hsl(var(--primary))" }}
+                aria-label="Subscribe"
               >
-                {s.icon}
-              </a>
-            ))}
+                <ArrowRight size={14} className="text-white" strokeWidth={2.5} />
+              </button>
+            </div>
           </div>
+
         </div>
+
+        {/* Bottom bar */}
+        <div className="border-t border-border/30 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <button className="flex items-center gap-1.5 text-[12px] text-muted-foreground/60 hover:text-foreground transition-colors border border-border/50 rounded-lg px-3 py-1.5">
+              <span>🌐</span> English
+              <span className="text-muted-foreground/30">▾</span>
+            </button>
+            <button className="flex items-center gap-1.5 text-[12px] text-muted-foreground/60 hover:text-foreground transition-colors border border-border/50 rounded-lg px-3 py-1.5">
+              <span>🇺🇸</span> United States (USD $)
+              <span className="text-muted-foreground/30">▾</span>
+            </button>
+          </div>
+          <p className="text-[11px] text-muted-foreground/40">
+            © 2026 Relova, Inc. All rights reserved.
+          </p>
+        </div>
+
       </div>
     </footer>
   );

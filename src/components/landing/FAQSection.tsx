@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
+import faqLifestyle from "@/assets/redesign/faq-lifestyle.jpg";
 
 const faqs = [
   {
@@ -34,64 +36,96 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-[60px] md:py-[80px] border-t border-border/40">
-      <div className="container max-w-[720px]">
-        <motion.div
-          className="mb-14"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-        >
-          <p className="text-[11px] text-muted-foreground/60 mb-4 uppercase tracking-[0.15em] font-medium">
-            FAQ
-          </p>
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-            Common questions
-          </h2>
-        </motion.div>
+    <section className="py-20 md:py-28 border-t border-border/50 bg-secondary">
+      <div className="container max-w-6xl px-5 md:px-8">
+        <div className="grid lg:grid-cols-[1fr_1.6fr_0.6fr] gap-10 lg:gap-10 items-start">
 
-        <div className="space-y-2">
-          {faqs.map((faq, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <motion.div
-                key={i}
-                className="rounded-xl border border-border/40 bg-card/50 overflow-hidden"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.4, delay: i * 0.05, ease: "easeOut" }}
-              >
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between px-6 py-5 text-left transition-colors hover:bg-muted/20 active:scale-[0.99]"
-                >
-                  <span className="text-[14px] font-medium text-foreground/90 pr-4">
-                    {faq.question}
-                  </span>
-                  <ChevronDown
-                    size={16}
-                    className={`text-primary shrink-0 transition-transform duration-300 ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                    strokeWidth={2.5}
-                  />
-                </button>
-                <div
-                  className="overflow-hidden transition-all duration-300"
-                  style={{
-                    maxHeight: isOpen ? "200px" : "0px",
-                    opacity: isOpen ? 1 : 0,
-                  }}
-                >
-                  <p className="px-6 pb-5 text-[13px] text-muted-foreground leading-[1.7]">
-                    {faq.answer}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
+          {/* Left — text */}
+          <motion.div
+            className="lg:sticky lg:top-24 relative z-10"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary mb-4">
+              FAQ
+            </p>
+            <h2 className="font-serif text-[2rem] sm:text-[2.4rem] md:text-[2.8rem] font-semibold leading-[1.1] mb-6 text-foreground">
+              Frequently asked questions.
+            </h2>
+            <p className="text-[14px] text-muted-foreground mb-3">
+              Can't find the answer you're looking for?
+            </p>
+            <Link
+              to="/contact"
+              className="text-[14px] font-medium text-primary hover:opacity-75 transition-opacity"
+            >
+              Contact us →
+            </Link>
+          </motion.div>
+
+          {/* Right — accordion */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <div className="divide-y divide-border">
+              {faqs.map((faq, i) => {
+                const isOpen = openIndex === i;
+                return (
+                  <div key={i}>
+                    <button
+                      onClick={() => setOpenIndex(isOpen ? null : i)}
+                      className="flex w-full items-center justify-between py-5 text-left gap-4 group"
+                    >
+                      <span className="text-[15px] font-medium text-foreground group-hover:text-primary transition-colors leading-snug">
+                        {faq.question}
+                      </span>
+                      <ChevronDown
+                        size={16}
+                        className={`text-muted-foreground group-hover:text-primary shrink-0 transition-all duration-300 ${
+                          isOpen ? "rotate-180 text-primary" : ""
+                        }`}
+                        strokeWidth={2}
+                      />
+                    </button>
+                    <div
+                      className="overflow-hidden transition-all duration-300"
+                      style={{
+                        maxHeight: isOpen ? "300px" : "0px",
+                        opacity: isOpen ? 1 : 0,
+                      }}
+                    >
+                      <p className="pb-5 text-[14px] text-muted-foreground leading-[1.75]">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Right — lifestyle photo */}
+          <motion.div
+            className="hidden lg:flex items-center justify-center"
+            initial={{ opacity: 0, x: 16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="w-[380px] h-[420px] overflow-hidden flex-shrink-0">
+              <img
+                src={faqLifestyle}
+                alt="Person relaxing at home after a successful international relocation"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
