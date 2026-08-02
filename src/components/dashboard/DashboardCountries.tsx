@@ -920,18 +920,46 @@ export default function DashboardCountries({
         ))}
       </div>
 
-      <div className="relative">
-        {/* Decorative blobs — make the glass effect visible against the page */}
+      <div className="relative" style={{ overflow: "visible" }}>
+        {/* Decorative blobs — contrast backdrop for glassmorphism */}
         <div
-          className="pointer-events-none absolute -top-24 left-1/3 w-96 h-72 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(ellipse, rgba(99,102,241,0.13) 0%, transparent 70%)", zIndex: 0 }}
+          className="pointer-events-none absolute rounded-full"
+          style={{
+            top: "-80px",
+            left: "-60px",
+            width: "520px",
+            height: "420px",
+            background: "radial-gradient(ellipse, rgba(99,102,241,0.28) 0%, transparent 68%)",
+            filter: "blur(40px)",
+            zIndex: 0,
+          }}
         />
         <div
-          className="pointer-events-none absolute bottom-0 right-1/4 w-80 h-60 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(ellipse, rgba(56,189,248,0.10) 0%, transparent 70%)", zIndex: 0 }}
+          className="pointer-events-none absolute rounded-full"
+          style={{
+            bottom: "-60px",
+            right: "-40px",
+            width: "480px",
+            height: "380px",
+            background: "radial-gradient(ellipse, rgba(251,146,60,0.22) 0%, transparent 68%)",
+            filter: "blur(40px)",
+            zIndex: 0,
+          }}
+        />
+        <div
+          className="pointer-events-none absolute rounded-full"
+          style={{
+            top: "40%",
+            left: "30%",
+            width: "360px",
+            height: "300px",
+            background: "radial-gradient(ellipse, rgba(236,72,153,0.15) 0%, transparent 68%)",
+            filter: "blur(50px)",
+            zIndex: 0,
+          }}
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 relative" style={{ zIndex: 1 }}>
         {filtered.map((country, i) => {
           const isUserCountry = country.name === profile?.target_country;
 
@@ -943,15 +971,15 @@ export default function DashboardCountries({
               transition={{ duration: 0.2, delay: i * 0.02 }}
               onClick={() => setSelectedCountry(country)}
               style={{
-                backdropFilter: "blur(12px)",
-                WebkitBackdropFilter: "blur(12px)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
                 background: isUserCountry
-                  ? "rgba(255, 255, 255, 0.55)"
-                  : "rgba(255, 255, 255, 0.50)",
-                boxShadow: "0 8px 32px rgba(31, 38, 135, 0.08)",
+                  ? "rgba(255, 255, 255, 0.38)"
+                  : "rgba(255, 255, 255, 0.32)",
+                boxShadow: "0 8px 32px rgba(31, 38, 135, 0.12)",
                 border: isUserCountry
-                  ? "1px solid rgba(99, 102, 241, 0.35)"
-                  : "1px solid rgba(255, 255, 255, 0.60)",
+                  ? "1px solid rgba(99, 102, 241, 0.40)"
+                  : "1px solid rgba(255, 255, 255, 0.55)",
               }}
               className="rounded-xl p-4 cursor-pointer transition-all hover:brightness-[1.03]"
             >
