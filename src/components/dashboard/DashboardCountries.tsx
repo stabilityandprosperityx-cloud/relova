@@ -920,7 +920,18 @@ export default function DashboardCountries({
         ))}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="relative">
+        {/* Decorative blobs — make the glass effect visible against the page */}
+        <div
+          className="pointer-events-none absolute -top-24 left-1/3 w-96 h-72 rounded-full blur-3xl"
+          style={{ background: "radial-gradient(ellipse, rgba(99,102,241,0.13) 0%, transparent 70%)", zIndex: 0 }}
+        />
+        <div
+          className="pointer-events-none absolute bottom-0 right-1/4 w-80 h-60 rounded-full blur-3xl"
+          style={{ background: "radial-gradient(ellipse, rgba(56,189,248,0.10) 0%, transparent 70%)", zIndex: 0 }}
+        />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 relative">
         {filtered.map((country, i) => {
           const isUserCountry = country.name === profile?.target_country;
 
@@ -931,11 +942,18 @@ export default function DashboardCountries({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2, delay: i * 0.02 }}
               onClick={() => setSelectedCountry(country)}
-              className={`rounded-xl border p-4 cursor-pointer transition-all hover:bg-white/[0.05] ${
-                isUserCountry
-                  ? "border-primary/30 bg-primary/[0.04]"
-                  : "border-white/[0.06] bg-white/[0.03]"
-              }`}
+              style={{
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                background: isUserCountry
+                  ? "rgba(255, 255, 255, 0.55)"
+                  : "rgba(255, 255, 255, 0.50)",
+                boxShadow: "0 8px 32px rgba(31, 38, 135, 0.08)",
+                border: isUserCountry
+                  ? "1px solid rgba(99, 102, 241, 0.35)"
+                  : "1px solid rgba(255, 255, 255, 0.60)",
+              }}
+              className="rounded-xl p-4 cursor-pointer transition-all hover:brightness-[1.03]"
             >
               <div className="flex items-start gap-3">
                 <span className="text-2xl">{country.flag}</span>
@@ -980,6 +998,7 @@ export default function DashboardCountries({
             </motion.div>
           );
         })}
+        </div>
       </div>
 
       {filtered.length === 0 && (
