@@ -1,5 +1,4 @@
 import { useState } from "react";
-import greeceIslandsImg from "@/assets/redesign/greece-islands.jpg";
 import { motion } from "framer-motion";
 import { Search, ArrowRight, Clock, X, BarChart2 } from "lucide-react";
 import { countryDatabase, type CountryProfile } from "@/lib/countryMatching";
@@ -922,13 +921,39 @@ export default function DashboardCountries({
       </div>
 
       <div className="relative" style={{ overflow: "visible" }}>
-        {/* Detailed background image — gives backdrop-filter something sharp to blur */}
-        <img
-          src={greeceIslandsImg}
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none select-none absolute inset-0 w-full h-full object-cover rounded-xl"
-          style={{ opacity: 0.35, zIndex: 0 }}
+        {/* Sharp color blobs — no blur on the blobs themselves so backdrop-filter on cards has crisp edges to blur */}
+        <div
+          className="pointer-events-none absolute rounded-full"
+          style={{
+            top: "-60px",
+            left: "-40px",
+            width: "500px",
+            height: "400px",
+            background: "radial-gradient(ellipse, rgba(99,102,241,0.28) 0%, transparent 65%)",
+            zIndex: 0,
+          }}
+        />
+        <div
+          className="pointer-events-none absolute rounded-full"
+          style={{
+            bottom: "-40px",
+            right: "-30px",
+            width: "460px",
+            height: "360px",
+            background: "radial-gradient(ellipse, rgba(251,146,60,0.24) 0%, transparent 65%)",
+            zIndex: 0,
+          }}
+        />
+        <div
+          className="pointer-events-none absolute rounded-full"
+          style={{
+            top: "35%",
+            left: "28%",
+            width: "400px",
+            height: "320px",
+            background: "radial-gradient(ellipse, rgba(236,72,153,0.18) 0%, transparent 65%)",
+            zIndex: 0,
+          }}
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 relative" style={{ zIndex: 1 }}>
@@ -946,12 +971,12 @@ export default function DashboardCountries({
                 backdropFilter: "blur(16px)",
                 WebkitBackdropFilter: "blur(16px)",
                 background: isUserCountry
-                  ? "rgba(255, 255, 255, 0.38)"
-                  : "rgba(255, 255, 255, 0.35)",
-                boxShadow: "0 8px 32px rgba(31, 38, 135, 0.12)",
+                  ? "rgba(255, 255, 255, 0.26)"
+                  : "rgba(255, 255, 255, 0.22)",
+                boxShadow: "0 4px 24px rgba(31, 38, 135, 0.06)",
                 border: isUserCountry
-                  ? "1px solid rgba(99, 102, 241, 0.45)"
-                  : "1px solid rgba(255, 255, 255, 0.60)",
+                  ? "1px solid rgba(99, 102, 241, 0.40)"
+                  : "1px solid rgba(255, 255, 255, 0.50)",
               }}
               className="rounded-xl p-4 cursor-pointer transition-all hover:brightness-[1.03]"
             >
