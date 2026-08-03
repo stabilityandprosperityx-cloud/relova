@@ -50,7 +50,7 @@ src/
 │   └── filterCountries.ts
 supabase/
 └── functions/
-├── chat/index.ts                      # Claude claude-sonnet-4-20250514, streaming SSE
+├── chat/index.ts                      # Claude claude-sonnet-4-6, streaming SSE
 └── paddle-webhook/index.ts            # Paddle → update plan in Supabase
 
 ### Supabase таблицы
@@ -95,7 +95,7 @@ supabase/
 - Legal pages: /terms, /privacy, /refund
 - Paddle настроен, payouts активны
 - Zoho Mail: info@relova.ai, support@relova.ai
-- AI под капотом: Claude (claude-sonnet-4-20250514)
+- AI под капотом: Claude (claude-sonnet-4-6)
 
 ### 7-8 апреля 2026 — Фичи
 - Cost Calculator — 70 стран, интерактивный

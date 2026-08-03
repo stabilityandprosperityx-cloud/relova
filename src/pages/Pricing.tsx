@@ -29,7 +29,7 @@ export default function Pricing() {
       description: "Explore what Relova can do.",
       features: [
         "3 AI questions total",
-        "Countries explorer (50+ countries)",
+        "Countries explorer (70+ countries)",
         "Basic cost calculator",
       ],
       cta: "Get Started",

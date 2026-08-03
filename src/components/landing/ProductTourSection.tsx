@@ -13,7 +13,7 @@ const steps = [
   { label: "My Plan", navIdx: 2, title: "51-step relocation plan", description: "Every step organized by phase: Preparation → Arrival → Settling in → Stability." },
   { label: "Documents", navIdx: 3, title: "Manage your documents", description: "Organize, track, and store all your documents in one secure place." },
   { label: "Checklists", navIdx: 4, title: "Document checklist per visa", description: "Every document you need, in the right order, with status tracking." },
-  { label: "Country Guide", navIdx: 5, title: "Explore 50+ countries", description: "Filter by region, visa type, cost level, and climate. Click any country for full details." },
+  { label: "Country Guide", navIdx: 5, title: "Explore 70+ countries", description: "Filter by region, visa type, cost level, and climate. Click any country for full details." },
   { label: "Cost Calculator", navIdx: 6, title: "Know exactly what you'll spend", description: "Rent, food, insurance, visa fees — real data for 70 countries, adjusted for your family size." },
 ];
 
@@ -29,9 +29,9 @@ const NAV_ITEMS = [
 ];
 
 const TOP_MATCHES = [
-  { flag: "🇵🇹", name: "Portugal", pct: 96, imgSrc: countryPortugal },
-  { flag: "🇪🇸", name: "Spain", pct: 91, imgSrc: countrySpain },
-  { flag: "🇬🇷", name: "Greece", pct: 88, imgSrc: countryGreece },
+  { flag: "🇵🇹", name: "Portugal", pct: 98, imgSrc: countryPortugal },
+  { flag: "🇪🇸", name: "Spain", pct: 93, imgSrc: countrySpain },
+  { flag: "🇬🇷", name: "Greece", pct: 89, imgSrc: countryGreece },
 ];
 
 function AdvisorScreen() {
@@ -179,9 +179,9 @@ function ChecklistScreen() {
 
 function CountryScreen() {
   const countries = [
-    { flag: "🇵🇹", name: "Portugal", score: 96, visa: "D7 Visa", imgSrc: countryPortugal },
-    { flag: "🇪🇸", name: "Spain", score: 91, visa: "Non-Lucrative", imgSrc: countrySpain },
-    { flag: "🇬🇷", name: "Greece", score: 88, visa: "Digital Nomad", imgSrc: countryGreece },
+    { flag: "🇵🇹", name: "Portugal", score: 98, visa: "D7 Visa", imgSrc: countryPortugal },
+    { flag: "🇪🇸", name: "Spain", score: 93, visa: "Non-Lucrative", imgSrc: countrySpain },
+    { flag: "🇬🇷", name: "Greece", score: 89, visa: "Digital Nomad", imgSrc: countryGreece },
     { flag: "🇲🇽", name: "Mexico", score: 84, visa: "Temporary Res.", imgSrc: mexicoCoast },
   ];
   return (

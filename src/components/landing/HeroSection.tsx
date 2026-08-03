@@ -118,7 +118,7 @@ export default function HeroSection() {
                 <p className="text-[12px] text-muted-foreground">
                   Trusted by{" "}
                   <span className="font-semibold text-foreground">12,000+</span>{" "}
-                  future movers &nbsp;·&nbsp; 4.5/5 from 1,200+ reviews
+                  future movers &nbsp;·&nbsp; 4.8/5 from 1,200+ reviews
                 </p>
               </div>
             </div>

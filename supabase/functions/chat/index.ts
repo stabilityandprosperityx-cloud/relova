@@ -115,6 +115,12 @@ Always include: timeline estimates, cost estimates, required documents list, and
 Never guarantee legal outcomes.`,
 };
 
+const MODEL_BY_TIER: Record<string, string> = {
+  free: "claude-haiku-4-5-20251001",
+  pro:  "claude-sonnet-5",
+  full: "claude-opus-5",
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -128,6 +134,8 @@ serve(async (req) => {
       systemPrompt += "\n\n## USER CONTEXT\n" + systemContext;
     }
 
+    const model = MODEL_BY_TIER[tier] || MODEL_BY_TIER.pro;
+
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
@@ -136,7 +144,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model,
         max_tokens: 4096,
         system: systemPrompt,
         messages: messages.map((m: { role: string; content: string }) => ({

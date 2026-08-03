@@ -32,7 +32,12 @@ async function streamChat({ messages, tier, systemContext, onDelta, onDone }: {
     },
     body: JSON.stringify({ messages, tier, systemContext }),
   });
-  if (!resp.ok) throw new Error("Failed to get response");
+  if (!resp.ok) {
+    const errorData = await resp.json().catch(() => ({}));
+    if (resp.status === 429) throw new Error("Rate limit exceeded. Please wait a moment.");
+    if (resp.status === 402) throw new Error("AI credits exhausted. Please contact support.");
+    throw new Error(errorData.error || `Request failed (${resp.status})`);
+  }
   if (!resp.body) throw new Error("No response body");
 
   const reader = resp.body.getReader();
@@ -231,10 +236,13 @@ INSTRUCTIONS:
 
       <div className="flex-1 overflow-y-auto space-y-4 pr-1">
         <AnimatePresence mode="popLayout">
-          {messages.map((msg, i) => (
+          {messages.map((msg, i) => {
+            const prevMsg = messages[i - 1];
+            const isConsecutiveAssistant = msg.role === "assistant" && prevMsg?.role === "assistant";
+            return (
             <motion.div
               key={i}
-              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} ${isConsecutiveAssistant ? "mt-6" : ""}`}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -256,7 +264,8 @@ INSTRUCTIONS:
                 ) : msg.content}
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </AnimatePresence>
 
         {isLoading && messages[messages.length - 1]?.role !== "assistant" && (

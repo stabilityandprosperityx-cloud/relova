@@ -19,7 +19,7 @@ const FEATURES = [
   {
     icon: Map,
     title: "Step-by-step move plan",
-    description: "51 steps organized by phase: Preparation → Arrival → Legal setup → Settlement.",
+    description: "51 steps organized by phase: Preparation → Arrival → Settling in → Stability.",
     thumb: true,
   },
   {
