@@ -6,7 +6,7 @@ import { allCountries } from "@/data/allCountries";
 import { filterCountryList } from "@/lib/filterCountries";
 import { toast } from "sonner";
 import { matchCountries, type CountryMatch, type UserCriteria } from "@/lib/countryMatching";
-import { generatePlan, generateChecklist } from "@/lib/planGenerator";
+import { generateAndSaveUserPlan } from "@/lib/generateUserPlan";
 import type { UserProfile } from "@/pages/Dashboard";
 import { ArrowRight, MapPin, Compass } from "lucide-react";
 import LoadingTransition from "./LoadingTransition";
@@ -268,10 +268,6 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     const finalCountry = country || targetCountry;
     const visaType = determineVisaType(finalCountry);
 
-    // Generate plan and checklist
-    const plan = generatePlan(finalCountry, visaType, familyStatus);
-    const checklist = generateChecklist(finalCountry, visaType, familyStatus);
-
     const profile: UserProfile = {
       user_id: userId,
       citizenship,
@@ -299,43 +295,14 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       return;
     }
 
-    // Clear any existing plan + docs for this user (handles re-onboarding)
-    await Promise.all([
-      supabase.from("user_relocation_plan").delete().eq("user_id", userId),
-      supabase.from("user_documents").delete().eq("user_id", userId),
-    ]);
-
-    // Write steps directly into user_relocation_plan (no shared template tables)
-    let stepNumber = 1;
-    const planRows: object[] = [];
-    for (const phase of plan) {
-      for (const s of phase.steps) {
-        planRows.push({
-          user_id: userId,
-          title: s.title,
-          description: s.description,
-          phase: phase.name,
-          step_number: stepNumber,
-          estimated_days: s.estimatedDays,
-          status: "todo",
-        });
-        stepNumber++;
-      }
-    }
-    if (planRows.length > 0) {
-      await supabase.from("user_relocation_plan").insert(planRows);
-    }
-
-    // Write documents directly into user_documents
-    const docRows = checklist.map((doc) => ({
-      user_id: userId,
-      document_name: doc.name,
-      status: "pending",
-      verification_status: "pending",
-      prepared_without_upload: false,
-    }));
-    if (docRows.length > 0) {
-      await supabase.from("user_documents").insert(docRows);
+    // Clear old plan + docs, then write fresh ones (shared logic with EditProfileModal)
+    try {
+      await generateAndSaveUserPlan(userId, finalCountry, visaType, familyStatus);
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : "Failed to save plan");
+      setSaving(false);
+      setSelectingCountry(null);
+      return;
     }
 
     setPendingProfile(profile);

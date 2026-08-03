@@ -5,7 +5,7 @@ import { allCountries } from "@/data/allCountries";
 import { filterCountryList } from "@/lib/filterCountries";
 import { toast } from "sonner";
 import { X } from "lucide-react";
-import { generatePlan, generateChecklist } from "@/lib/planGenerator";
+import { generateAndSaveUserPlan } from "@/lib/generateUserPlan";
 import type { UserProfile } from "@/pages/Dashboard";
 
 const goals = [
@@ -145,47 +145,12 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
     }
 
     if (visaChanged || targetCountry !== profile.target_country) {
-      // Step 1: Get all step IDs linked to this user
-      const { data: oldUserSteps } = await supabase
-        .from("user_steps")
-        .select("step_id")
-        .eq("user_id", profile.user_id);
-
-      // Step 2: Delete user_steps first (foreign key constraint)
-      await supabase.from("user_steps").delete().eq("user_id", profile.user_id);
-
-      // Step 3: Delete the old relocation_steps that belonged to this user
-      if (oldUserSteps && oldUserSteps.length > 0) {
-        const stepIds = oldUserSteps.map((s: any) => s.step_id);
-        await supabase.from("relocation_steps").delete().in("id", stepIds);
-      }
-
-      // Step 4: Regenerate plan
-      const plan = generatePlan(targetCountry, newVisaType, familyStatus);
-      let stepNumber = 1;
-      for (const phase of plan) {
-        for (const s of phase.steps) {
-          const { data: newStep } = await supabase
-            .from("relocation_steps")
-            .insert({
-              visa_type: newVisaType,
-              title: `[${phase.name}] ${s.title}`,
-              description: s.description,
-              step_number: stepNumber,
-              estimated_days: s.estimatedDays,
-            })
-            .select("id")
-            .single();
-          if (newStep) {
-            await supabase.from("user_steps").insert({
-              user_id: profile.user_id,
-              step_id: newStep.id,
-              status: stepNumber === 1 ? "active" : "todo",
-              completed_at: null,
-            });
-          }
-          stepNumber++;
-        }
+      try {
+        await generateAndSaveUserPlan(profile.user_id, targetCountry, newVisaType, familyStatus);
+      } catch (err: unknown) {
+        toast.error(err instanceof Error ? err.message : "Failed to regenerate plan");
+        setSaving(false);
+        return;
       }
     }
 
