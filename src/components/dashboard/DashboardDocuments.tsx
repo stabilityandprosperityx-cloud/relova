@@ -24,6 +24,7 @@ interface UserDoc {
   verification_status: "pending" | "ok" | "warning" | "mismatch" | null;
   verification_note: string | null;
   prepared_without_upload: boolean | null;
+  related_step_title: string | null;
   uploaded_at: string;
 }
 
@@ -40,6 +41,7 @@ interface RequiredDoc {
   verificationNote: string | null;
   aiStatus: string | null;
   usedFor: string;
+  related_step_title: string | null;
 }
 
 interface ActiveUpload { id: string | null; name: string }
@@ -213,6 +215,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
           verificationNote: ud.verification_note,
           aiStatus: null,
           usedFor: getUsedFor(ud.document_name),
+          related_step_title: ud.related_step_title ?? null,
         };
       });
     }
@@ -230,6 +233,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
       verificationNote: null,
       aiStatus: null,
       usedFor: getUsedFor(d.name),
+      related_step_title: null,
     }));
   }, [userDocs]);
 
@@ -620,6 +624,12 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
                                   <span className="text-[9px] uppercase tracking-wider text-primary/70 font-medium">Required</span>
                                 )}
                               </div>
+
+                              {doc.related_step_title && (
+                                <p className="text-[10px] text-muted-foreground/50 mt-0.5">
+                                  Needed for: {doc.related_step_title}
+                                </p>
+                              )}
 
                               {doc.description && (
                                 <p className="text-[11px] text-muted-foreground/60 mt-0.5">{doc.description}</p>

@@ -113,41 +113,40 @@ export default function DashboardChat({ profile, onNavigate }: Props) {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
-  function getPhaseFromStepTitle(title: string): string {
-    const t = title.toLowerCase();
-    if (t.includes("arrive") || t.includes("accommodation") || t.includes("bank account") || t.includes("sim card")) return "Arrival";
-    if (t.includes("visa") || t.includes("permit") || t.includes("tax") || t.includes("insurance") || t.includes("biometric")) return "Legal & Setup";
-    if (t.includes("routine") || t.includes("network") || t.includes("settle")) return "Settling in";
-    return "Before you move";
-  }
-
   const buildSystemContext = async (): Promise<string | undefined> => {
     if (!profile || !user) return undefined;
 
-    // Fetch user's current progress
-    const { data: userStepsData } = await supabase
-      .from("user_steps")
-      .select("status, step_id")
-      .eq("user_id", user.id);
+    // Read progress directly from user_relocation_plan (source of truth)
+    const [{ data: planSteps }, { data: userDocs }] = await Promise.all([
+      supabase
+        .from("user_relocation_plan")
+        .select("title, phase, status, step_number")
+        .eq("user_id", user.id)
+        .order("step_number", { ascending: true }),
+      supabase
+        .from("user_documents")
+        .select("document_name")
+        .eq("user_id", user.id),
+    ]);
 
-    const totalSteps = userStepsData?.length || 0;
-    const doneSteps = userStepsData?.filter((s: any) => s.status === "done").length || 0;
-    const currentStep = userStepsData?.find((s: any) => s.status === "active");
-
-    let currentStepTitle = "Getting started";
-    if (currentStep) {
-      const { data: stepData } = await supabase
-        .from("relocation_steps")
-        .select("title")
-        .eq("id", currentStep.step_id)
-        .single();
-      if (stepData) {
-        currentStepTitle = stepData.title.replace(/\[.*?\]\s*/, "");
-      }
-    }
-
+    const allSteps = planSteps ?? [];
+    const totalSteps = allSteps.length;
+    const doneSteps = allSteps.filter((s: { status: string }) => s.status === "done").length;
+    const nextStep = allSteps.find((s: { status: string }) => s.status !== "done");
     const progressPct = totalSteps > 0 ? Math.round((doneSteps / totalSteps) * 100) : 0;
-    const currentPhaseLabel = currentStepTitle !== "Getting started" ? getPhaseFromStepTitle(currentStepTitle) : "Before you move";
+
+    const currentStepTitle = nextStep?.title ?? "All steps completed";
+    const currentPhaseLabel = nextStep?.phase ?? "Stability";
+
+    const stepTitles = allSteps.map((s: { title: string }) => s.title);
+    const docNames = (userDocs ?? []).map((d: { document_name: string }) => d.document_name);
+
+    const existingStepsBlock = stepTitles.length > 0
+      ? stepTitles.map((t: string) => `- ${t}`).join("\n")
+      : "(none yet)";
+    const existingDocsBlock = docNames.length > 0
+      ? docNames.map((d: string) => `- ${d}`).join("\n")
+      : "(none yet)";
 
     return `You are Relova AI — a personalized relocation advisor. User profile:
 citizenship: ${profile.citizenship || "unknown"}
@@ -161,10 +160,17 @@ Current progress: ${doneSteps}/${totalSteps} steps completed (${progressPct}%)
 Current phase: ${currentPhaseLabel}
 Currently working on: ${currentStepTitle}
 
+User's existing plan steps (DO NOT suggest these again):
+${existingStepsBlock}
+
+User's existing documents checklist (DO NOT suggest these again):
+${existingDocsBlock}
+
 INSTRUCTIONS:
-- ALWAYS reference the user's current phase and step in your first response
-- If they ask what to do next, tell them exactly: their current step, why it matters, how to do it step by step for their specific citizenship + target country
+- Reference the user's current phase and step when relevant
+- If they ask what to do next, give concrete advice for their specific citizenship + target country
 - Never give generic answers — always personalize to their passport, country, visa type and current progress
+- When suggesting new steps or documents, only suggest items NOT already in the lists above
 - You are NOT a lawyer — add disclaimer for legal/visa advice`;
   };
 
