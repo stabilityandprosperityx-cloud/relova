@@ -2,6 +2,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { CheckCircle2, Clock, Sparkles, AlertCircle, FileText, Link2, Download, RefreshCw, Trash2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface UserDoc {
   id: string;
@@ -59,12 +60,30 @@ export default function DocumentPreviewModal({ open, onOpenChange, doc, signedUr
 
   const statusConfig = getStatusConfig(doc.status);
   const StatusIcon = statusConfig.icon;
-  // Use signedUrl for all preview/download operations
   const viewUrl = signedUrl;
   const hasUrl = !!viewUrl;
   const isImage = hasUrl && !imgError && isImageUrl(doc.file_url || "");
   const isPdf = hasUrl && isPdfUrl(doc.file_url || "");
   const ext = doc.file_url ? getFileExtension(doc.file_url) : "FILE";
+
+  const handleDownload = async () => {
+    if (!viewUrl) return;
+    try {
+      const resp = await fetch(viewUrl);
+      if (!resp.ok) throw new Error("fetch failed");
+      const blob = await resp.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = doc.document_name;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(blobUrl);
+    } catch {
+      toast.error("Could not download file");
+    }
+  };
 
   return (
     <Dialog open={open} onOpenChange={(v) => { if (!v) setImgError(false); onOpenChange(v); }}>
@@ -150,11 +169,9 @@ export default function DocumentPreviewModal({ open, onOpenChange, doc, signedUr
                 variant="outline"
                 size="sm"
                 className="text-[11px] border-white/[0.08] bg-transparent hover:bg-white/[0.04] gap-1.5 flex-1"
-                asChild
+                onClick={handleDownload}
               >
-                <a href={viewUrl!} download target="_blank" rel="noopener noreferrer">
-                  <Download size={12} /> Download
-                </a>
+                <Download size={12} /> Download
               </Button>
             )}
             <Button
