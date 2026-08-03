@@ -43,7 +43,6 @@ function generateReasons(profile: UserProfile): string[] {
     if (country.healthcareQuality >= 8) reasons.push("Strong healthcare system");
   }
 
-  // Fallbacks
   if (reasons.length < 2) reasons.push("Strong fit for your profile");
   if (reasons.length < 3) reasons.push("Realistic timeline for relocation");
 
@@ -82,13 +81,13 @@ export default function ResultScreen({ profile, onContinue, onSeeOtherMatches }:
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a0b]"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-background"
     >
       <motion.div
         initial={{ opacity: 0, y: 20, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ delay: 0.15, duration: 0.6, ease: "easeOut" }}
-        className="w-full max-w-md mx-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 backdrop-blur-sm"
+        className="w-full max-w-md mx-4 rounded-2xl border border-border bg-card p-8 shadow-xl"
       >
         {/* Header */}
         <motion.p
@@ -108,7 +107,7 @@ export default function ResultScreen({ profile, onContinue, onSeeOtherMatches }:
           className="text-center mb-6"
         >
           <div className="text-4xl mb-2">{flag}</div>
-          <h2 className="text-[22px] font-bold text-[#EDEDED] tracking-tight">{country}</h2>
+          <h2 className="text-[22px] font-bold text-foreground tracking-tight">{country}</h2>
           <div className="flex items-center justify-center gap-2 mt-3">
             <div className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
               <Star size={13} className="text-primary fill-primary" />
@@ -125,7 +124,7 @@ export default function ResultScreen({ profile, onContinue, onSeeOtherMatches }:
           transition={{ delay: 0.55 }}
           className="mb-6"
         >
-          <p className="text-[12px] text-[#9CA3AF] leading-relaxed text-center">{whyText}</p>
+          <p className="text-[12px] text-muted-foreground leading-relaxed text-center">{whyText}</p>
         </motion.div>
 
         {/* Key reasons */}
@@ -141,10 +140,10 @@ export default function ResultScreen({ profile, onContinue, onSeeOtherMatches }:
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.7 + i * 0.1 }}
-              className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/[0.04]"
+              className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-muted/50 border border-border"
             >
               <span className="text-primary text-[11px]">✓</span>
-              <span className="text-[13px] text-[#EDEDED]/90">{reason}</span>
+              <span className="text-[13px] text-foreground/90">{reason}</span>
             </motion.div>
           ))}
         </motion.div>
@@ -154,10 +153,10 @@ export default function ResultScreen({ profile, onContinue, onSeeOtherMatches }:
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.95 }}
-          className="text-center mb-8 px-4 py-3 rounded-xl bg-white/[0.02] border border-white/[0.04]"
+          className="text-center mb-8 px-4 py-3 rounded-xl bg-muted/30 border border-border"
         >
-          <p className="text-[10px] uppercase tracking-[0.12em] text-[#9CA3AF]/60 mb-1">Estimated time to stability</p>
-          <p className="text-[16px] font-semibold text-[#EDEDED]">{stability} months</p>
+          <p className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground/60 mb-1">Estimated time to stability</p>
+          <p className="text-[16px] font-semibold text-foreground">{stability} months</p>
         </motion.div>
 
         {/* CTAs */}
@@ -176,7 +175,7 @@ export default function ResultScreen({ profile, onContinue, onSeeOtherMatches }:
           </Button>
           <button
             onClick={onSeeOtherMatches}
-            className="w-full text-center text-[12px] text-[#9CA3AF]/60 hover:text-[#9CA3AF] transition-colors py-2"
+            className="w-full text-center text-[12px] text-muted-foreground/60 hover:text-muted-foreground transition-colors py-2"
           >
             See other matches
           </button>

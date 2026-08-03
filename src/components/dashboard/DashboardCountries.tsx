@@ -1041,7 +1041,7 @@ export default function DashboardCountries({
       )}
 
       {compareList.length > 0 && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-4 py-3 rounded-2xl border border-primary/30 bg-[#0a0a0a]/95 backdrop-blur-xl shadow-2xl">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-4 py-3 rounded-2xl border border-primary/30 bg-card/95 backdrop-blur-xl shadow-2xl">
           <BarChart2 size={15} className="text-primary shrink-0" />
           <span className="text-[13px] text-foreground font-medium">
             {compareList.length} {compareList.length === 1 ? "country" : "countries"} selected

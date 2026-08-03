@@ -44,7 +44,7 @@ export default function LoadingTransition({ onFinished }: Props) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a0b]"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-background"
     >
       <div className="flex flex-col items-center gap-8 max-w-sm mx-4">
         {/* Logo */}
@@ -61,7 +61,7 @@ export default function LoadingTransition({ onFinished }: Props) {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-[18px] font-semibold text-[#EDEDED] text-center tracking-tight"
+          className="text-[18px] font-semibold text-foreground text-center tracking-tight"
         >
           Building your relocation strategy
         </motion.h2>
@@ -92,7 +92,7 @@ export default function LoadingTransition({ onFinished }: Props) {
               />
               <span
                 className={`text-[13px] transition-colors duration-300 ${
-                  i <= activeLine ? "text-[#EDEDED]" : "text-[#8A8F98]/30"
+                  i <= activeLine ? "text-foreground" : "text-muted-foreground/30"
                 } ${i === activeLine ? "font-medium" : ""}`}
               >
                 {line}
@@ -110,8 +110,8 @@ export default function LoadingTransition({ onFinished }: Props) {
           ))}
         </div>
 
-        {/* Subtle progress bar */}
-        <div className="w-full h-[2px] bg-white/[0.04] rounded-full overflow-hidden mt-2">
+        {/* Progress bar */}
+        <div className="w-full h-[2px] bg-border rounded-full overflow-hidden mt-2">
           <motion.div
             className="h-full bg-[#38BDF8]/60 rounded-full"
             initial={{ width: "0%" }}

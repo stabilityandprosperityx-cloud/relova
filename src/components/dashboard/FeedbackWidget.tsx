@@ -36,7 +36,7 @@ export default function FeedbackWidget() {
       {/* Floating button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-3 py-2.5 rounded-full bg-[#1a1a1a] border border-white/[0.08] text-[12px] text-muted-foreground hover:text-foreground hover:border-white/[0.15] transition-all shadow-lg md:bottom-6 bottom-20"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-3 py-2.5 rounded-full bg-card border border-border text-[12px] text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all shadow-lg md:bottom-6 bottom-20"
       >
         <MessageSquare size={14} />
         <span className="hidden sm:inline">Feedback</span>
@@ -79,7 +79,7 @@ export default function FeedbackWidget() {
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tell us what you think, what's missing, or what's broken..."
                   rows={4}
-                  className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2.5 text-[13px] placeholder:text-muted-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary/50 resize-none mb-3"
+                  className="w-full bg-muted/50 border border-border rounded-lg px-3 py-2.5 text-[13px] placeholder:text-muted-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary/50 resize-none mb-3"
                 />
                 {status === "error" && (
                   <p className="text-[12px] text-destructive mb-3">
