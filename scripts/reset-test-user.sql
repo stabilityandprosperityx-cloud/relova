@@ -23,5 +23,10 @@ BEGIN
   DELETE FROM public.user_steps           WHERE user_id = target_user_id;
   DELETE FROM public.chat_messages        WHERE user_id = target_user_id;
 
-  RAISE NOTICE 'Cleared plan/documents/steps/chat for user %', target_user_id;
+  -- Null out country/visa so onboarding modal triggers on next login
+  UPDATE public.user_profiles
+  SET target_country = NULL, visa_type = NULL
+  WHERE user_id = target_user_id;
+
+  RAISE NOTICE 'Cleared plan/documents/steps/chat and reset profile country for user %', target_user_id;
 END $$;

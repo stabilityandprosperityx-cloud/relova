@@ -91,7 +91,7 @@ export default function Dashboard() {
         .select("*")
         .eq("user_id", user.id)
         .maybeSingle();
-      if (data) {
+      if (data && data.target_country) {
         setProfile(data as UserProfile);
       } else {
         setShowOnboarding(true);
