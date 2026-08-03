@@ -11,31 +11,6 @@ import type { UserProfile } from "@/pages/Dashboard";
 import { ArrowRight, MapPin, Compass } from "lucide-react";
 import LoadingTransition from "./LoadingTransition";
 
-const SCHENGEN_VISA_REQUIRED = [
-  "Russia", "China", "India", "Belarus", "Kazakhstan",
-  "Uzbekistan", "Tajikistan", "Kyrgyzstan", "Turkmenistan", "Armenia",
-  "Azerbaijan", "Turkey", "Iran", "Iraq", "Syria",
-  "Afghanistan", "Pakistan", "Bangladesh", "Algeria", "Morocco",
-  "Tunisia", "Egypt", "Libya", "Sudan", "Ethiopia", "Nigeria",
-  "Ghana", "Senegal", "Mali", "Cameroon", "DR Congo", "Angola",
-  "Cuba", "Haiti", "Jamaica", "Dominican Republic",
-];
-
-const SCHENGEN_COUNTRIES = [
-  "Portugal", "Spain", "France", "Germany", "Italy", "Greece",
-  "Netherlands", "Belgium", "Austria", "Czech Republic", "Poland",
-  "Hungary", "Croatia", "Slovakia", "Slovenia", "Estonia",
-  "Latvia", "Lithuania", "Romania", "Bulgaria", "Sweden",
-  "Denmark", "Finland", "Norway", "Switzerland", "Iceland",
-  "Luxembourg", "Malta", "Cyprus",
-];
-
-const UK_VISA_REQUIRED = [
-  "Russia", "China", "India", "Belarus", "Ukraine", "Kazakhstan",
-  "Uzbekistan", "Tajikistan", "Kyrgyzstan", "Turkmenistan",
-  "Iran", "Iraq", "Syria", "Afghanistan", "Pakistan",
-  "Bangladesh", "Nigeria", "Ghana", "Ethiopia",
-];
 
 const goals = [
   { id: "safety", label: "🛡️ Safety" },
@@ -230,11 +205,16 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
       if (data?.explanations) {
         setMatches(prev => prev.map(match => {
-          const aiExplanation = data.explanations.find(
-            (e: { country: string; reasons: string[] }) => e.country === match.country.name
+          const aiExpl = data.explanations.find(
+            (e: { country: string; reasons: string[]; visaRequired?: boolean; visaNote?: string }) => e.country === match.country.name
           );
-          if (aiExplanation) {
-            return { ...match, reasons: aiExplanation.reasons };
+          if (aiExpl) {
+            return {
+              ...match,
+              reasons: aiExpl.reasons,
+              visaRequired: aiExpl.visaRequired ?? false,
+              visaNote: aiExpl.visaNote ?? "",
+            };
           }
           return match;
         }));
@@ -426,16 +406,10 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                       {match.reasons.map((r, j) => (
                         <p key={j} className="text-[12px] text-muted-foreground">• {r}</p>
                       ))}
-                      {SCHENGEN_VISA_REQUIRED.includes(citizenship) &&
-                        SCHENGEN_COUNTRIES.includes(match.country.name) && (
+                      {(match as CountryMatch & { visaRequired?: boolean; visaNote?: string }).visaRequired &&
+                        (match as CountryMatch & { visaNote?: string }).visaNote && (
                           <p className="text-[11px] text-amber-400/80 mt-1">
-                            🛂 Visa required — {citizenship} passport needs Schengen visa
-                          </p>
-                        )}
-                      {UK_VISA_REQUIRED.includes(citizenship) &&
-                        match.country.name === "United Kingdom" && (
-                          <p className="text-[11px] text-amber-400/80 mt-1">
-                            🛂 Visa required — {citizenship} passport needs UK visa
+                            🛂 {(match as CountryMatch & { visaNote?: string }).visaNote}
                           </p>
                         )}
                     </div>
@@ -675,10 +649,15 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                         });
                         if (data?.explanations) {
                           setMatches(prev => prev.map(match => {
-                            const aiExplanation = data.explanations.find(
-                              (e: { country: string; reasons: string[] }) => e.country === match.country.name
+                            const aiExpl = data.explanations.find(
+                              (e: { country: string; reasons: string[]; visaRequired?: boolean; visaNote?: string }) => e.country === match.country.name
                             );
-                            if (aiExplanation) return { ...match, reasons: aiExplanation.reasons };
+                            if (aiExpl) return {
+                              ...match,
+                              reasons: aiExpl.reasons,
+                              visaRequired: aiExpl.visaRequired ?? false,
+                              visaNote: aiExpl.visaNote ?? "",
+                            };
                             return match;
                           }));
                         }

@@ -11,13 +11,7 @@ Deno.serve(async (req) => {
   try {
     const { criteria, matches } = await req.json();
 
-    const SCHENGEN_VISA_PASSPORTS = ["Russia", "China", "India", "Belarus", "Ukraine", "Kazakhstan", "Uzbekistan", "Armenia", "Azerbaijan", "Georgia", "Turkey", "Iran", "Pakistan", "Bangladesh", "Nigeria", "Ghana", "Egypt", "Morocco", "Algeria", "Tunisia"];
-    const SCHENGEN_ZONE = ["Portugal", "Spain", "France", "Germany", "Italy", "Greece", "Netherlands", "Belgium", "Austria", "Czech Republic", "Poland", "Hungary", "Croatia", "Slovakia", "Slovenia", "Estonia", "Latvia", "Lithuania", "Romania", "Bulgaria", "Sweden", "Denmark", "Finland", "Norway", "Switzerland", "Iceland", "Luxembourg", "Malta"];
-
-    const needsSchengenVisa = SCHENGEN_VISA_PASSPORTS.includes(criteria.citizenship);
-
     const prompt = `You are a relocation advisor helping someone choose where to move abroad.
-${needsSchengenVisa ? `IMPORTANT: This person holds a ${criteria.citizenship} passport which REQUIRES a Schengen visa for EU countries. Mention this briefly in your explanation where relevant and suggest the specific visa they would need (e.g. D8 Digital Nomad Visa for Portugal, Digital Nomad Visa for Spain).` : ""}
 
 User profile:
 - Citizenship: ${criteria.citizenship}
@@ -29,18 +23,21 @@ User profile:
 
 Top country matches (already calculated by algorithm):
 ${matches.map((m: { country: { name: string; topVisa: string }; score: number }, i: number) => `${i + 1}. ${m.country.name} (${m.score}% match) - ${m.country.topVisa}`).join("\n")}
-${needsSchengenVisa ? `Schengen countries in this context: ${SCHENGEN_ZONE.join(", ")}` : ""}
 
-Write a SHORT, personalized explanation for why each country matches this specific person.
-Be conversational, specific to their profile, and mention 1-2 concrete things relevant to their situation.
-DO NOT be generic. Reference their citizenship, income, goals or family status specifically.
+For each country, provide:
+1. "reasons" — 2 short, personalized reasons why this country fits this specific person (reference their citizenship, income, goals or family status — never be generic).
+2. "visaRequired" — true if a ${criteria.citizenship} passport holder needs a visa to ENTER or LIVE in that country long-term, false if they can enter visa-free or get residency easily. Base this on your knowledge of current visa rules.
+3. "visaNote" — a short, plain-English note (max 12 words) about the visa situation, e.g. "Russian passport needs a visa for Ireland" or "Visa-free entry, digital nomad visa available". If you are uncertain whether rules are current, add "— verify before booking" to your note.
 
-Respond in JSON format only, no markdown:
+Respond ONLY in JSON, no markdown:
 {
   "explanations": [
-    { "country": "CountryName", "reasons": ["reason 1", "reason 2"] },
-    { "country": "CountryName", "reasons": ["reason 1", "reason 2"] },
-    { "country": "CountryName", "reasons": ["reason 1", "reason 2"] }
+    {
+      "country": "CountryName",
+      "reasons": ["reason 1", "reason 2"],
+      "visaRequired": true,
+      "visaNote": "Short visa note here"
+    }
   ]
 }`;
 
@@ -58,23 +55,27 @@ Respond in JSON format only, no markdown:
       },
       body: JSON.stringify({
         model: "claude-sonnet-5",
-        max_tokens: 800,
+        max_tokens: 1000,
         messages: [{ role: "user", content: prompt }],
       }),
     });
 
     const data = await response.json();
-    const text = data.content[0].text;
+    const text = data?.content?.[0]?.text ?? "";
+
+    // Strip any accidental markdown fences
+    const cleaned = text.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "").trim();
 
     let parsed;
     try {
-      parsed = JSON.parse(text);
+      parsed = JSON.parse(cleaned);
     } catch {
-      // fallback if JSON parse fails
       parsed = {
         explanations: matches.map((m: { country: { name: string }; reasons: string[] }) => ({
           country: m.country.name,
           reasons: m.reasons,
+          visaRequired: false,
+          visaNote: "",
         })),
       };
     }
