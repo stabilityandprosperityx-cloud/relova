@@ -28,12 +28,15 @@ export default function Countries() {
       <Navbar />
       <main className="pt-0 pb-16">
         {/* Hero — full-bleed photo with text overlay */}
-        <div className="relative overflow-hidden h-[340px] md:h-[400px] mb-12">
+        {/* Mobile: 4:3 crop centred-left; desktop: matches photo's 2048/768 ratio, capped at 520px */}
+        <div
+          className="relative overflow-hidden mb-12 aspect-[4/3] md:aspect-[2048/768] md:max-h-[520px]"
+        >
           {/* Photo background */}
           <img
             src={countriesHero}
             alt="Explore countries for relocation"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-left md:object-center"
           />
           {/* Gradient overlay for text contrast */}
           <div
