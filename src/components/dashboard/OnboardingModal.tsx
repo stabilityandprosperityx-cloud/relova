@@ -299,32 +299,43 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       return;
     }
 
-    // Insert auto-generated plan steps
+    // Clear any existing plan + docs for this user (handles re-onboarding)
+    await Promise.all([
+      supabase.from("user_relocation_plan").delete().eq("user_id", userId),
+      supabase.from("user_documents").delete().eq("user_id", userId),
+    ]);
+
+    // Write steps directly into user_relocation_plan (no shared template tables)
     let stepNumber = 1;
+    const planRows: object[] = [];
     for (const phase of plan) {
       for (const s of phase.steps) {
-        const { data: existingStep } = await supabase.from("relocation_steps").select("id").eq("visa_type", visaType).eq("country", finalCountry).eq("title", `[${phase.name}] ${s.title}`).maybeSingle();
-        let stepId = existingStep?.id;
-        if (!stepId) {
-          const { data: newStep } = await supabase.from("relocation_steps").insert({ visa_type: visaType, country: finalCountry, title: `[${phase.name}] ${s.title}`, description: s.description, step_number: stepNumber, estimated_days: s.estimatedDays }).select("id").maybeSingle();
-          stepId = newStep?.id;
-        }
-        if (stepId) {
-          const { data: existingUserStep } = await supabase.from("user_steps").select("id").eq("user_id", userId).eq("step_id", stepId).maybeSingle();
-          if (!existingUserStep) {
-            await supabase.from("user_steps").insert({ user_id: userId, step_id: stepId, status: stepNumber === 1 ? "active" : "todo", completed_at: null });
-          }
-        }
+        planRows.push({
+          user_id: userId,
+          title: s.title,
+          description: s.description,
+          phase: phase.name,
+          step_number: stepNumber,
+          estimated_days: s.estimatedDays,
+          status: "todo",
+        });
         stepNumber++;
       }
     }
+    if (planRows.length > 0) {
+      await supabase.from("user_relocation_plan").insert(planRows);
+    }
 
-    // Insert auto-generated checklist documents
-    for (const doc of checklist) {
-      const { data: existingDoc } = await supabase.from("visa_documents").select("id").eq("visa_type", visaType).eq("country", finalCountry).eq("document_name", doc.name).maybeSingle();
-      if (!existingDoc) {
-        await supabase.from("visa_documents").insert({ visa_type: visaType, country: finalCountry, document_name: doc.name, description: doc.description, is_required: doc.required });
-      }
+    // Write documents directly into user_documents
+    const docRows = checklist.map((doc) => ({
+      user_id: userId,
+      document_name: doc.name,
+      status: "pending",
+      verification_status: "pending",
+      prepared_without_upload: false,
+    }));
+    if (docRows.length > 0) {
+      await supabase.from("user_documents").insert(docRows);
     }
 
     setPendingProfile(profile);
