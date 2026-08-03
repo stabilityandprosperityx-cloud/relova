@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet-async";
 import type { RelocationCase } from "@/hooks/useRelocationCase";
 
 
-export type DashboardTab = "overview" | "plan" | "checklist" | "chat" | "documents" | "countries";
+export type DashboardTab = "overview" | "plan" | "chat" | "documents" | "countries";
 
 export type UserPlan = "free" | "pro" | "full";
 
@@ -48,7 +48,6 @@ const routeToTab: Record<string, DashboardTab> = {
   "/dashboard": "overview",
   "/dashboard/advisor": "chat",
   "/dashboard/plan": "plan",
-  "/dashboard/checklist": "checklist",
   "/dashboard/documents": "documents",
   "/dashboard/countries": "countries",
 };
@@ -57,7 +56,6 @@ const tabToRoute: Record<DashboardTab, string> = {
   overview: "/dashboard",
   chat: "/dashboard/advisor",
   plan: "/dashboard/plan",
-  checklist: "/dashboard/checklist",
   documents: "/dashboard/documents",
   countries: "/dashboard/countries",
 };

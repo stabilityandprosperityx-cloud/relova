@@ -202,7 +202,7 @@ export default function ChatActionButtons({ content, visaType, onNavigate, count
       <AnimatePresence>
         {showResult && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }}>
-            <button onClick={() => onNavigate?.("checklist")} className="w-full text-[11px] text-primary/70 hover:text-primary transition-colors text-center py-1">Added to your plan. Go to Checklist →</button>
+            <button onClick={() => onNavigate?.("plan")} className="w-full text-[11px] text-primary/70 hover:text-primary transition-colors text-center py-1">Added to your plan. Go to Plan →</button>
           </motion.div>
         )}
       </AnimatePresence>
