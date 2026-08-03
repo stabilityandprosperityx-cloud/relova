@@ -14,16 +14,15 @@ const AVATARS = [
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-background min-h-[calc(100vh-60px)]">
+    <section className="relative overflow-hidden bg-background lg:min-h-[calc(100vh-60px)]">
 
-      {/* ── Full-bleed photo layer — right 50% of viewport, full height ── */}
+      {/* ── Full-bleed photo layer — right 50% of viewport, desktop only ── */}
       <motion.div
         className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:block"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
       >
-        {/* Photo with left+top edge fade into background */}
         <div
           className="absolute inset-0 overflow-hidden"
           style={{
@@ -44,7 +43,6 @@ export default function HeroSection() {
             alt="Person enjoying a sunlit balcony view in their new home abroad"
             className="w-full h-full object-cover object-center"
           />
-          {/* Warm bottom overlay */}
           <div
             className="absolute inset-0"
             style={{ background: "linear-gradient(to top, rgba(30,20,10,0.3) 0%, transparent 50%)" }}
@@ -52,9 +50,9 @@ export default function HeroSection() {
         </div>
       </motion.div>
 
-      {/* ── Content layer — text left, BestMatchCard anchor right ── */}
-      <div className="relative z-10 container max-w-6xl px-5 md:px-8 py-20 md:py-28 lg:py-0 min-h-[calc(100vh-60px)] flex items-center">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center w-full lg:min-h-[calc(100vh-60px)]">
+      {/* ── Content layer ── */}
+      <div className="relative z-10 container max-w-6xl px-5 md:px-8 pt-24 pb-10 lg:py-0 lg:min-h-[calc(100vh-60px)] lg:flex lg:items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-8 items-center w-full lg:min-h-[calc(100vh-60px)]">
 
           {/* Text block */}
           <motion.div
@@ -124,8 +122,21 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Right column — anchor for BestMatchCard */}
-          {/* self-stretch gives this column the full grid row height so bottom-N works */}
+          {/* Mobile-only hero image — shown below text, hidden on desktop */}
+          <motion.div
+            className="block lg:hidden mt-2"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+          >
+            <img
+              src={heroBalcony}
+              alt="Person enjoying a sunlit balcony view in their new home abroad"
+              className="w-full aspect-[4/3] object-cover object-top rounded-2xl"
+            />
+          </motion.div>
+
+          {/* Desktop right column — BestMatchCard anchor, hidden on mobile */}
           <div className="relative hidden lg:block self-stretch">
             <motion.div
               className="absolute z-20"
