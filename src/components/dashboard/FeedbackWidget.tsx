@@ -2,9 +2,7 @@ import { useState } from "react";
 import { MessageSquare, X, Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
-
-const TELEGRAM_BOT_TOKEN = "8670604565:AAGsWUyWj7iSWNbuoDPi6NxDyfIjYhDsL6w";
-const TELEGRAM_CHAT_ID = "979688838";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function FeedbackWidget() {
   const { user } = useAuth();
@@ -16,22 +14,11 @@ export default function FeedbackWidget() {
     if (!message.trim()) return;
     setStatus("sending");
 
-    const text = `💬 *New Relova Feedback*\n\n${message}\n\n👤 User: ${user?.email || "anonymous"}\n🕐 ${new Date().toLocaleString("en-GB", { timeZone: "UTC" })} UTC`;
-
     try {
-      const response = await fetch(
-        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text,
-            parse_mode: "Markdown",
-          }),
-        }
-      );
-      if (!response.ok) throw new Error("Failed");
+      const { error } = await supabase.functions.invoke("feedback", {
+        body: { message: message.trim(), userEmail: user?.email ?? null },
+      });
+      if (error) throw error;
       setStatus("sent");
       setTimeout(() => {
         setIsOpen(false);
