@@ -358,7 +358,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
     await fetchData();
   };
 
-  // ── Download (real file download, not new tab) ───────────────────────────
+  // ── Download — blob-based to bypass cross-origin <a download> restriction ──
   const downloadDoc = async (doc: UserDoc) => {
     const path = getStoragePath(doc);
     if (!path) return;
@@ -366,14 +366,24 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
     try {
       const { data, error } = await supabase.storage
         .from("user-documents")
-        .createSignedUrl(path, 600, { download: true });
-      if (error || !data?.signedUrl) { toast.error("Could not generate download link"); return; }
+        .createSignedUrl(path, 600);
+      if (error || !data?.signedUrl) {
+        toast.error("Could not generate download link");
+        return;
+      }
+      const resp = await fetch(data.signedUrl);
+      if (!resp.ok) throw new Error("fetch failed");
+      const blob = await resp.blob();
+      const blobUrl = URL.createObjectURL(blob);
       const a = document.createElement("a");
-      a.href = data.signedUrl;
+      a.href = blobUrl;
       a.download = doc.document_name;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
+      URL.revokeObjectURL(blobUrl);
+    } catch {
+      toast.error("Could not download file");
     } finally {
       setDownloading(null);
     }
