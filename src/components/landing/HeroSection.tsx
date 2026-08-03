@@ -87,7 +87,7 @@ export default function HeroSection() {
                   Find my best match <ArrowRight size={15} strokeWidth={2.5} />
                 </button>
               </Link>
-              <Link to="/countries">
+              <Link to="/chat">
                 <Button
                   variant="outline"
                   className="h-[50px] px-7 text-[14px] rounded-[10px] border-border bg-card/60 hover:bg-card"

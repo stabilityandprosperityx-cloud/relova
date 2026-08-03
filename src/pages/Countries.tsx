@@ -6,6 +6,7 @@ import { ArrowRight, FileText, DollarSign, Home, Briefcase } from "lucide-react"
 import { motion } from "framer-motion";
 import { countryData } from "@/data/countries";
 import SEO from "@/components/SEO";
+import countriesHero from "@/assets/redesign/countries-hero.jpg";
 
 const countryOrder = ["portugal", "spain", "uae", "usa", "canada", "germany", "australia", "thailand", "mexico", "estonia", "indonesia", "singapore", "argentina"];
 
@@ -26,82 +27,48 @@ export default function Countries() {
       />
       <Navbar />
       <main className="pt-0 pb-16">
-        {/* Hero header with background */}
-        <div className="relative overflow-hidden pt-24 pb-16 mb-12">
-          {/* Light mode background */}
-          <div
-            className="absolute inset-0 opacity-100 dark:opacity-0 transition-opacity duration-300"
-            style={{
-              backgroundImage: "url('/images/world-map.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
+        {/* Hero — full-bleed photo with text overlay */}
+        <div className="relative overflow-hidden h-[340px] md:h-[400px] mb-12">
+          {/* Photo background */}
+          <img
+            src={countriesHero}
+            alt="Explore countries for relocation"
+            className="absolute inset-0 w-full h-full object-cover"
           />
+          {/* Gradient overlay for text contrast */}
           <div
             className="absolute inset-0"
             style={{
-              background: "linear-gradient(to top, rgba(10,5,30,0.82) 0%, rgba(10,5,30,0.5) 50%, rgba(10,5,30,0.3) 100%)",
+              background: "linear-gradient(to top, rgba(5,3,20,0.75) 0%, rgba(5,3,20,0.45) 55%, rgba(5,3,20,0.20) 100%)",
             }}
           />
-          {/* Dark mode background */}
-          <div
-            className="absolute inset-0 opacity-0 dark:opacity-100 transition-opacity duration-300"
-            style={{
-              background: "linear-gradient(160deg, rgba(139,92,246,0.08) 0%, rgba(99,102,241,0.05) 50%, transparent 100%)",
-            }}
-          />
-          {/* SVG decorative curves */}
-          <svg
-            className="absolute top-0 right-0 w-[500px] h-[300px] pointer-events-none opacity-40"
-            viewBox="0 0 500 300"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="420" cy="60" r="12" stroke="#8b5cf6" strokeWidth="2" fill="none" opacity="0.5"/>
-            <circle cx="420" cy="60" r="6" fill="#8b5cf6" opacity="0.5"/>
-            <path d="M420 60 C350 100 260 70 180 120" stroke="#8b5cf6" strokeWidth="1.5" opacity="0.2" fill="none"/>
-            <circle cx="180" cy="120" r="8" stroke="#8b5cf6" strokeWidth="1.5" fill="none" opacity="0.3"/>
-            <circle cx="470" cy="200" r="10" stroke="#a78bfa" strokeWidth="1.5" fill="none" opacity="0.2"/>
-            <circle cx="60" cy="240" r="7" stroke="#a78bfa" strokeWidth="1.5" fill="none" opacity="0.15"/>
-            <path d="M60 240 C120 220 180 240 240 210" stroke="#8b5cf6" strokeWidth="1" opacity="0.12" fill="none"/>
-          </svg>
-          {/* Floating country badges */}
-          <div className="absolute top-8 right-8 hidden xl:flex flex-col gap-2 opacity-60">
-            {["🇵🇹 Portugal · D7 Visa", "🇦🇪 UAE · 0% Tax", "🇬🇪 Georgia · 1% Tax"].map((b) => (
-              <div
-                key={b}
-                className="text-[11px] px-3 py-1.5 rounded-lg font-medium"
-                style={{
-                  background: "rgba(255,255,255,0.1)",
-                  border: "1px solid rgba(255,255,255,0.2)",
-                  color: "rgba(255,255,255,0.9)",
-                  backdropFilter: "blur(8px)" as const,
-                }}
-              >
-                {b}
-              </div>
-            ))}
-          </div>
-          <div className="container relative z-10">
+          <div className="absolute inset-0 flex flex-col justify-end container pb-10 pt-24">
             <motion.div
               initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               <div
-                className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-4 text-[11px] font-medium tracking-wide"
+                className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-3 text-[11px] font-medium tracking-wide"
                 style={{
-                  background: "rgba(255,255,255,0.1)",
-                  border: "1px solid rgba(255,255,255,0.2)",
-                  color: "rgba(255,255,255,0.9)",
+                  background: "rgba(255,255,255,0.12)",
+                  border: "1px solid rgba(255,255,255,0.22)",
+                  color: "rgba(255,255,255,0.92)",
                   backdropFilter: "blur(8px)" as const,
                 }}
               >
                 <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#8b5cf6", display: "inline-block" }} />
                 70+ destinations · Real visa paths
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 leading-[1.1]" style={{ color: "white" }}>Explore Countries</h1>
-              <p className="text-lg max-w-[500px]" style={{ color: "rgba(255,255,255,0.65)" }}>Compare destinations and find the right fit for your relocation. Real costs, visa paths, and timelines.</p>
+              <p
+                className="text-lg md:text-xl max-w-[520px] font-medium"
+                style={{
+                  color: "rgba(255,255,255,0.82)",
+                  textShadow: "0 1px 4px rgba(0,0,0,0.4)",
+                }}
+              >
+                Compare destinations and find the right fit for your relocation. Real costs, visa paths, and timelines.
+              </p>
             </motion.div>
           </div>
         </div>

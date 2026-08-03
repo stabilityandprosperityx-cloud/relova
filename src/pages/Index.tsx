@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/landing/HeroSection";
@@ -18,6 +20,21 @@ import CTASection from "@/components/landing/CTASection";
 import SEO from "@/components/SEO";
 
 export default function Index() {
+  const { hash } = useLocation();
+
+  // Scroll to anchor with fixed-navbar offset (80px) when hash changes or on mount
+  useEffect(() => {
+    if (!hash) return;
+    const id = setTimeout(() => {
+      const el = document.querySelector(hash);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    }, 80);
+    return () => clearTimeout(id);
+  }, [hash]);
+
   return (
     <div className="min-h-screen bg-background bg-noise bg-grid">
       <SEO
@@ -31,10 +48,14 @@ export default function Index() {
         <ProductTourSection />
         <ProblemSection />
         <SolutionSection />
-        <FeaturesSection />
+        <div id="features" className="scroll-mt-20">
+          <FeaturesSection />
+        </div>
         <ComparisonSection />
         <LegalPathwaysSection />
-        <HowItWorksSection />
+        <div id="how-it-works" className="scroll-mt-20">
+          <HowItWorksSection />
+        </div>
         <CountriesSection />
         <PlanBuilderSection />
         <DemoSection />
