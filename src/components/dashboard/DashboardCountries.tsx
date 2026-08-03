@@ -921,37 +921,44 @@ export default function DashboardCountries({
       </div>
 
       <div className="relative" style={{ overflow: "visible" }}>
-        {/* Sharp color blobs — no blur on the blobs themselves so backdrop-filter on cards has crisp edges to blur */}
+        {/* Sharp blobs — NO filter/blur on the blobs; backdrop-filter on cards does the blurring */}
+        {/* Violet — top-left */}
         <div
           className="pointer-events-none absolute rounded-full"
           style={{
-            top: "-60px",
-            left: "-40px",
-            width: "500px",
-            height: "400px",
-            background: "radial-gradient(ellipse, rgba(99,102,241,0.28) 0%, transparent 65%)",
+            top: "-60px", left: "-40px",
+            width: "520px", height: "420px",
+            background: "radial-gradient(ellipse, rgba(99,102,241,0.42) 0%, transparent 62%)",
             zIndex: 0,
           }}
         />
+        {/* Amber — bottom-right */}
         <div
           className="pointer-events-none absolute rounded-full"
           style={{
-            bottom: "-40px",
-            right: "-30px",
-            width: "460px",
-            height: "360px",
-            background: "radial-gradient(ellipse, rgba(251,146,60,0.24) 0%, transparent 65%)",
+            bottom: "-40px", right: "-30px",
+            width: "480px", height: "380px",
+            background: "radial-gradient(ellipse, rgba(251,146,60,0.38) 0%, transparent 62%)",
             zIndex: 0,
           }}
         />
+        {/* Rose — center */}
         <div
           className="pointer-events-none absolute rounded-full"
           style={{
-            top: "35%",
-            left: "28%",
-            width: "400px",
-            height: "320px",
-            background: "radial-gradient(ellipse, rgba(236,72,153,0.18) 0%, transparent 65%)",
+            top: "35%", left: "28%",
+            width: "420px", height: "340px",
+            background: "radial-gradient(ellipse, rgba(236,72,153,0.35) 0%, transparent 62%)",
+            zIndex: 0,
+          }}
+        />
+        {/* Teal — top-right */}
+        <div
+          className="pointer-events-none absolute rounded-full"
+          style={{
+            top: "-20px", right: "-20px",
+            width: "360px", height: "300px",
+            background: "radial-gradient(ellipse, rgba(20,184,166,0.30) 0%, transparent 62%)",
             zIndex: 0,
           }}
         />
@@ -968,23 +975,24 @@ export default function DashboardCountries({
               transition={{ duration: 0.2, delay: i * 0.02 }}
               onClick={() => setSelectedCountry(country)}
               style={{
-                backdropFilter: "blur(16px)",
-                WebkitBackdropFilter: "blur(16px)",
-                background: isUserCountry
-                  ? "rgba(255, 255, 255, 0.26)"
-                  : "rgba(255, 255, 255, 0.22)",
-                boxShadow: "0 4px 24px rgba(31, 38, 135, 0.06)",
-                border: isUserCountry
-                  ? "1px solid rgba(99, 102, 241, 0.40)"
-                  : "1px solid rgba(255, 255, 255, 0.50)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
               }}
-              className="rounded-xl p-4 cursor-pointer transition-all hover:brightness-[1.03]"
+              className={`rounded-xl p-4 cursor-pointer transition-all hover:brightness-[1.04]
+                bg-white/10 dark:bg-white/[0.06]
+                shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]
+                border
+                ${isUserCountry
+                  ? "border-primary/40"
+                  : "border-white/25 dark:border-white/[0.15]"
+                }
+              `}
             >
               <div className="flex items-start gap-3">
                 <span className="text-2xl">{country.flag}</span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <p className="font-semibold text-[14px]">{country.name}</p>
+                    <p className="font-semibold text-[14px] [text-shadow:0_1px_2px_rgba(0,0,0,0.12)] dark:[text-shadow:none]">{country.name}</p>
                     {isUserCountry && (
                       <span className="text-[9px] uppercase tracking-wider text-primary font-medium">
                         Your pick
