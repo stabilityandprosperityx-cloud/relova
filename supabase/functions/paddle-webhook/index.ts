@@ -100,6 +100,33 @@ function userIdFromCustomData(
   return s.length > 0 ? s : undefined;
 }
 
+/** Fetch a buyer's email from the Paddle Customers API using their customer_id.
+ *  The transaction.completed event never includes email directly — it must be
+ *  looked up separately. Returns undefined (and logs the error) on any failure
+ *  so the caller can fall through to the "unresolved" path gracefully. */
+async function fetchPaddleCustomerEmail(customerId: string): Promise<string | undefined> {
+  const PADDLE_API_KEY = Deno.env.get("PADDLE_API_KEY");
+  if (!PADDLE_API_KEY) {
+    console.error("fetchPaddleCustomerEmail: PADDLE_API_KEY not set");
+    return undefined;
+  }
+  try {
+    const res = await fetch(`https://api.paddle.com/customers/${customerId}`, {
+      headers: { "Authorization": `Bearer ${PADDLE_API_KEY}` },
+    });
+    if (!res.ok) {
+      const errText = await res.text();
+      console.error("fetchPaddleCustomerEmail: Paddle API error", res.status, errText);
+      return undefined;
+    }
+    const json = await res.json();
+    return json?.data?.email as string | undefined;
+  } catch (err) {
+    console.error("fetchPaddleCustomerEmail: fetch failed", err);
+    return undefined;
+  }
+}
+
 async function sendPurchaseEmail(to: string, html: string, planLabel: string) {
   const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
   if (!RESEND_API_KEY) {
@@ -241,12 +268,15 @@ Deno.serve(async (req) => {
       let resolutionMethod: string | null = userId ? "custom_data_userId" : null;
 
       if (!userId) {
-        // Guest checkout — resolve buyer by email instead of hard-failing
-        const guestEmail: string | undefined =
-          (customData?.guestEmail as string | undefined) ??
-          (customData?.guest_email as string | undefined) ??
-          (data.customer as { email?: string } | undefined)?.email ??
-          (data.billing_details as { email?: string } | undefined)?.email;
+        // Guest checkout — resolve buyer by email instead of hard-failing.
+        // transaction.completed never includes email directly; customer_id is the
+        // reliable field. customData.guestEmail is kept as a harmless legacy check.
+        let guestEmail: string | undefined =
+          (customData?.guestEmail as string | undefined) ?? undefined;
+
+        if (!guestEmail && data.customer_id) {
+          guestEmail = await fetchPaddleCustomerEmail(data.customer_id as string);
+        }
 
         if (!guestEmail) {
           console.error(
