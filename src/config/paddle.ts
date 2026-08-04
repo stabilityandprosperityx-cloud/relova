@@ -54,6 +54,12 @@ export function openPaddleCheckout(plan: "pro" | "full" | "pro_lifetime" | "full
   }
   initPaddle();
 
+  // Fire tracking BEFORE opening the overlay — overlay can pause JS execution
+  const value = PLAN_PRICES[plan] ?? 0;
+  const eventId = generateEventId();
+  trackPixelEvent("InitiateCheckout", eventId, { value, currency: "USD", content_name: plan });
+  console.log("InitiateCheckout tracked", eventId, "plan:", plan, "value:", value);
+
   const itemsList = [{ priceId, quantity: 1 }];
   console.log("Opening Paddle checkout for", plan, "with price", priceId);
 
@@ -62,8 +68,4 @@ export function openPaddleCheckout(plan: "pro" | "full" | "pro_lifetime" | "full
     ...(userEmail ? { customer: { email: userEmail } } : {}),
     ...(userId ? { customData: { userId } } : {}),
   });
-
-  // Meta Pixel InitiateCheckout (Pixel-only; no CAPI needed for this event)
-  const value = PLAN_PRICES[plan] ?? 0;
-  trackPixelEvent("InitiateCheckout", generateEventId(), { value, currency: "USD", content_name: plan });
 }
