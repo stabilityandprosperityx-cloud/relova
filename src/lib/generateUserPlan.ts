@@ -95,21 +95,48 @@ export async function generateAndSaveUserPlan(
     if (docError) throw new Error("Failed to save documents: " + docError.message);
   }
 
-  // Fire-and-forget: Edge Function materializes AI list server-side
-  void supabase.functions
-    .invoke("generate-document-checklist", {
-      body: {
-        citizenship_country: citizenship,
-        destination_country: targetCountry,
-        visa_type: visaType,
-        user_id: userId,
-        family_status: familyStatus,
-      },
-    })
-    .then(({ error }) => {
-      if (error) console.error("generate-document-checklist invoke failed:", error);
-    })
-    .catch((err) => {
-      console.error("generate-document-checklist invoke error:", err);
+  // Fire-and-forget: Edge Function materializes AI list server-side.
+  // On gateway/network failure the function never runs, so mark failed client-side
+  // after one retry (server-side fallback still handles AI/parse failures when it does run).
+  const checklistBody = {
+    citizenship_country: citizenship,
+    destination_country: targetCountry,
+    visa_type: visaType,
+    user_id: userId,
+    family_status: familyStatus,
+  };
+
+  const markChecklistFailed = async () => {
+    const { error } = await supabase
+      .from("user_profiles")
+      .update({ documents_status: "failed" })
+      .eq("user_id", userId);
+    if (error) console.error("Failed to set documents_status=failed:", error);
+  };
+
+  const invokeChecklist = async () => {
+    const { error, data } = await supabase.functions.invoke("generate-document-checklist", {
+      body: checklistBody,
     });
+    // Non-2xx / FunctionsHttpError lands in `error`; also treat explicit error payloads as failure
+    if (error) throw error;
+    if (data && typeof data === "object" && "error" in data && (data as { error?: unknown }).error) {
+      throw new Error(String((data as { error: unknown }).error));
+    }
+  };
+
+  void (async () => {
+    try {
+      await invokeChecklist();
+    } catch (firstErr) {
+      console.error("generate-document-checklist invoke failed, retrying once:", firstErr);
+      await new Promise((r) => setTimeout(r, 2000));
+      try {
+        await invokeChecklist();
+      } catch (retryErr) {
+        console.error("generate-document-checklist invoke failed after retry:", retryErr);
+        await markChecklistFailed();
+      }
+    }
+  })();
 }

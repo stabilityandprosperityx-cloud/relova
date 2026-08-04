@@ -286,7 +286,9 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       return;
     }
 
-    setPendingProfile(profile);
+    // generateAndSaveUserPlan sets documents_status='generating' in DB — include it so
+    // DashboardDocuments initializes correctly instead of defaulting to 'ready'.
+    setPendingProfile({ ...profile, documents_status: "generating" });
     setShowLoading(true);
   };
 

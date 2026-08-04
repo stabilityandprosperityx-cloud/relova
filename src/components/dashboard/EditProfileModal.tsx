@@ -163,6 +163,10 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
       visa_type: newVisaType,
       family_status: familyStatus,
       timeline,
+      // Match DB when plan/docs were regenerated
+      ...(visaChanged || targetCountry !== profile.target_country
+        ? { documents_status: "generating" as const }
+        : {}),
     };
 
     toast.success("Profile updated");
