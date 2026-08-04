@@ -112,10 +112,10 @@ export const MOVE_AS_PERSONAS: PersonaConfig[] = [
     metaDescription:
       "Cheapest countries to move to — ranked for cost of living and money stretch. Free Relova shortlist for budget relocators.",
     intro:
-      "We use a modest income profile so the scoring formula favors lower cost-of-living destinations — useful if stretching every dollar (or euro) is the point.",
+      "We use a tight income profile (~$1,800/mo) so the scoring formula pushes hard toward the cheapest destinations — useful if stretching every dollar (or euro) is the point.",
     criteria: baseCriteria({
       goals: ["money"],
-      monthlyIncome: 2500,
+      monthlyIncome: 1800,
     }),
   },
   {
@@ -125,10 +125,10 @@ export const MOVE_AS_PERSONAS: PersonaConfig[] = [
     metaDescription:
       "Best countries for a life reset — new beginnings, slower pace, and a clean slate abroad. Free Relova match.",
     intro:
-      "These destinations are tagged for a life reset — places people choose when they want a clean slate, a slower rhythm, or a meaningful change of scenery.",
+      "These destinations are tagged for a life reset and a better quality of life — places people choose for a clean slate, not just the lowest rent. We assume a moderate budget, since starting over doesn’t mean going as cheap as possible.",
     criteria: baseCriteria({
-      goals: ["reset"],
-      monthlyIncome: 3500,
+      goals: ["reset", "better_life"],
+      monthlyIncome: 4000,
     }),
   },
 ];
