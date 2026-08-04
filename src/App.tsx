@@ -26,6 +26,8 @@ import PortugalVsSpain from "./pages/blog/PortugalVsSpain.tsx";
 import BestCountries2026 from "./pages/blog/BestCountries2026.tsx";
 import Help from "./pages/Help.tsx";
 import Contact from "./pages/Contact.tsx";
+import CanIMoveHub from "./pages/tools/CanIMoveHub.tsx";
+import CanIMove from "./pages/tools/CanIMove.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import { usePageTracking } from "./hooks/usePageTracking.ts";
 
@@ -77,6 +79,8 @@ function AppRoutes() {
         <Route path="/best/best-countries-2026" element={<BestCountries2026 />} />
         <Route path="/help" element={<Help />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/tools/can-i-move" element={<CanIMoveHub />} />
+        <Route path="/tools/can-i-move/:citizenshipSlug/:destinationSlug" element={<CanIMove />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
