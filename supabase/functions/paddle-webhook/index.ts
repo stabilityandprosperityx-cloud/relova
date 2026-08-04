@@ -4,6 +4,7 @@
  * Security: verify `paddle-signature` with `PADDLE_WEBHOOK_SECRET` only.
  */
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
+import { buildPurchaseEmailHtml } from "./email-template.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -97,6 +98,37 @@ function userIdFromCustomData(
   if (raw === undefined || raw === null) return undefined;
   const s = String(raw).trim();
   return s.length > 0 ? s : undefined;
+}
+
+async function sendPurchaseEmail(to: string, html: string, planLabel: string) {
+  const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+  if (!RESEND_API_KEY) {
+    console.error("sendPurchaseEmail: RESEND_API_KEY not set, skipping email");
+    return;
+  }
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "Relova <hello@relova.ai>",
+        to: [to],
+        subject: `Welcome to Relova ${planLabel} 🎉`,
+        html,
+      }),
+    });
+    if (!res.ok) {
+      const errText = await res.text();
+      console.error("sendPurchaseEmail: Resend API error", res.status, errText);
+    } else {
+      console.log(`sendPurchaseEmail: sent to ${to}`);
+    }
+  } catch (err) {
+    console.error("sendPurchaseEmail: fetch failed", err);
+  }
 }
 
 Deno.serve(async (req) => {
@@ -292,6 +324,34 @@ Deno.serve(async (req) => {
       }
 
       console.log(`Lifetime purchase: updated user ${userId} to plan: ${plan} (resolution: ${resolutionMethod})`);
+
+      // Send branded purchase confirmation email via Resend
+      try {
+        // Get recipient email — may already be in scope as guestEmail, otherwise fetch from auth
+        let recipientEmail: string | undefined =
+          (customData?.guestEmail as string | undefined) ??
+          (customData?.guest_email as string | undefined);
+
+        if (!recipientEmail) {
+          const { data: userData } = await supabase.auth.admin.getUserById(userId);
+          recipientEmail = userData?.user?.email;
+        }
+
+        if (recipientEmail) {
+          const planLabel = plan === "full" ? "Full" : "Pro";
+          const emailHtml = buildPurchaseEmailHtml({
+            planLabel,
+            dashboardUrl: "https://relova.ai/dashboard",
+            isAutoCreatedAccount: resolutionMethod === "auto_created",
+          });
+          await sendPurchaseEmail(recipientEmail, emailHtml, planLabel);
+        } else {
+          console.error("sendPurchaseEmail: no recipient email resolved, skipping");
+        }
+      } catch (emailErr) {
+        // Never let email sending break the webhook response
+        console.error("sendPurchaseEmail: unexpected error (non-fatal):", emailErr);
+      }
 
       // Meta CAPI — Purchase event (direct call, no extra hop via meta-capi function)
       try {
