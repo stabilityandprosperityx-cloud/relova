@@ -3,6 +3,7 @@ import {
   matchCountries,
   type CountryMatch,
   type CountryProfile,
+  type MatchScoreWeights,
   type UserCriteria,
 } from "./countryMatching";
 
@@ -15,6 +16,12 @@ export interface PersonaConfig {
   criteria: UserCriteria;
   /** Keywords matched case-insensitively against country.topVisa before scoring */
   poolFilterKeywords?: string[];
+  /** Exclude speculative visa wording from keyword pools */
+  excludeVisaPhrases?: string[];
+  /** Min safetyScore required to enter the scored pool (safety-first) */
+  minSafetyScore?: number;
+  /** Optional matchCountries weight overrides — safety-first only */
+  scoreWeights?: MatchScoreWeights;
 }
 
 const baseCriteria = (overrides: Partial<UserCriteria> & Pick<UserCriteria, "goals">): UserCriteria => ({
@@ -34,6 +41,13 @@ export const NOMAD_VISA_KEYWORDS = [
   "welcome stamp",
 ];
 
+/** Drop speculative / not-yet-live programs from the nomad pool */
+export const NOMAD_VISA_EXCLUDE_PHRASES = [
+  "in development",
+  "emerging",
+  "launching",
+];
+
 /** Retirement / passive-income visa wording from countryDatabase.topVisa */
 export const RETIREE_VISA_KEYWORDS = [
   "retire",
@@ -48,6 +62,15 @@ export const RETIREE_VISA_KEYWORDS = [
   "qrp",
 ];
 
+/** Safety-first: boost safety/crime, de-emphasize cost & visa ease (persona-only). */
+export const SAFETY_FIRST_WEIGHTS: MatchScoreWeights = {
+  safetyScoreMultiplier: 3.5,
+  crimeLowBonus: 12,
+  crimeHighPenalty: 14,
+  budgetScale: 0.35,
+  visaScale: 0.35,
+};
+
 export const MOVE_AS_PERSONAS: PersonaConfig[] = [
   {
     slug: "digital-nomad",
@@ -59,6 +82,7 @@ export const MOVE_AS_PERSONAS: PersonaConfig[] = [
       "We score destinations that already offer a digital nomad or remote-work visa pathway, then rank them for freedom and earning power — the priorities most remote workers care about when picking a base.",
     criteria: baseCriteria({ goals: ["freedom", "money"], monthlyIncome: 4500 }),
     poolFilterKeywords: NOMAD_VISA_KEYWORDS,
+    excludeVisaPhrases: NOMAD_VISA_EXCLUDE_PHRASES,
   },
   {
     slug: "retiree",
@@ -104,6 +128,8 @@ export const MOVE_AS_PERSONAS: PersonaConfig[] = [
       monthlyIncome: 4000,
       constraints: ["low_crime"],
     }),
+    minSafetyScore: 7,
+    scoreWeights: SAFETY_FIRST_WEIGHTS,
   },
   {
     slug: "budget",
@@ -140,17 +166,33 @@ export function getPersonaBySlug(slug: string): PersonaConfig | undefined {
 export function filterPoolByVisaKeywords(
   keywords: string[],
   database: CountryProfile[] = countryDatabase,
+  excludePhrases: string[] = [],
 ): CountryProfile[] {
   const needles = keywords.map((k) => k.toLowerCase());
+  const excludes = excludePhrases.map((k) => k.toLowerCase());
   return database.filter((c) => {
     const visa = (c.topVisa || "").toLowerCase();
-    return needles.some((k) => visa.includes(k));
+    if (!needles.some((k) => visa.includes(k))) return false;
+    if (excludes.some((phrase) => visa.includes(phrase))) return false;
+    return true;
   });
 }
 
 export function getPersonaMatches(persona: PersonaConfig, limit = 8): CountryMatch[] {
-  const pool = persona.poolFilterKeywords?.length
-    ? filterPoolByVisaKeywords(persona.poolFilterKeywords)
-    : undefined;
-  return matchCountries(persona.criteria, pool, limit);
+  let pool: CountryProfile[] | undefined;
+
+  if (persona.poolFilterKeywords?.length) {
+    pool = filterPoolByVisaKeywords(
+      persona.poolFilterKeywords,
+      countryDatabase,
+      persona.excludeVisaPhrases ?? [],
+    );
+  }
+
+  if (persona.minSafetyScore != null) {
+    const base = pool ?? countryDatabase;
+    pool = base.filter((c) => c.safetyScore >= persona.minSafetyScore!);
+  }
+
+  return matchCountries(persona.criteria, pool, limit, persona.scoreWeights);
 }

@@ -831,6 +831,7 @@ export default function DashboardCountries({
     { id: "asia", label: "Asia" },
     { id: "americas", label: "Americas" },
     { id: "middle_east", label: "Middle East" },
+    { id: "africa", label: "Africa" },
   ];
 
   const filtered = countryDatabase.filter((c) => {

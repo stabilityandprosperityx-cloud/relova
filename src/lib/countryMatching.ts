@@ -6,7 +6,7 @@ export interface CountryProfile {
   costLevel: "low" | "medium" | "high"; // relative to $3k/mo threshold
   safetyScore: number; // 1-10
   climate: "warm" | "cold" | "moderate";
-  region: "europe" | "asia" | "americas" | "middle_east";
+  region: "europe" | "asia" | "americas" | "middle_east" | "africa";
   healthcareQuality: number; // 1-10
   crimeLevel: "low" | "medium" | "high";
   citizenshipYears: number | null; // null = no path
@@ -821,7 +821,7 @@ export const countryDatabase: CountryProfile[] = [
   },
   {
     name: "Rwanda", flag: "🇷🇼", costLevel: "low", safetyScore: 8, climate: "warm",
-    region: "middle_east", healthcareQuality: 6, crimeLevel: "low", citizenshipYears: null,
+    region: "africa", healthcareQuality: 6, crimeLevel: "low", citizenshipYears: null,
     visaEase: "easy", stabilityMonths: "1-3", languageBarrier: "medium",
     bestFor: ["safety", "growth", "reset", "environment"],
     topVisa: "Digital Nomad Visa / Work Permit",
@@ -959,58 +959,104 @@ export function resolveCountryProfile(name: string): CountryProfile | undefined 
   return undefined;
 }
 
+/** Optional per-call weight tweaks — used by safety-first persona pages only. */
+export interface MatchScoreWeights {
+  /** Multiplier for (safetyScore - 5) when goals include "safety". Default 1.5 */
+  safetyScoreMultiplier?: number;
+  /** Points for low crime when "low_crime" constraint is set. Default 8 */
+  crimeLowBonus?: number;
+  /** Penalty for high crime when "low_crime" constraint is set. Default 12 */
+  crimeHighPenalty?: number;
+  /** Scale budget contribution (can be < 1 to de-emphasize cost). Default 1 */
+  budgetScale?: number;
+  /** Scale visa-ease contribution. Default 1 */
+  visaScale?: number;
+}
+
+const COST_RANK: Record<CountryProfile["costLevel"], number> = {
+  low: 0,
+  medium: 1,
+  high: 2,
+};
+
+function truncateVisa(topVisa: string, max = 56): string {
+  const trimmed = topVisa.trim();
+  if (trimmed.length <= max) return trimmed;
+  return `${trimmed.slice(0, max - 1).trimEnd()}…`;
+}
+
 export function matchCountries(
   criteria: UserCriteria,
   pool?: CountryProfile[],
   limit = 5,
+  weights?: MatchScoreWeights,
 ): CountryMatch[] {
   const results: CountryMatch[] = [];
   const countries = pool && pool.length > 0 ? pool : countryDatabase;
+  const safetyMult = weights?.safetyScoreMultiplier ?? 1.5;
+  const crimeLow = weights?.crimeLowBonus ?? 8;
+  const crimeHigh = weights?.crimeHighPenalty ?? 12;
+  const budgetScale = weights?.budgetScale ?? 1;
+  const visaScale = weights?.visaScale ?? 1;
 
   for (const country of countries) {
     let score = 0; // start from 0, not 50
-    const reasons: string[] = [];
+    // Collect by priority so the final top-3 stay specific when many fire
+    let goalReason: string | undefined;
+    let visaReason: string | undefined;
+    let budgetReason: string | undefined;
+    const constraintReasons: string[] = [];
+    const detailReasons: string[] = [];
 
     // 1. GOAL MATCHING — max 35 points
     const goalOverlap = criteria.goals.filter(g => country.bestFor.includes(g));
     const goalScore = Math.min(35, goalOverlap.length * 10);
     score += goalScore;
     if (goalOverlap.length >= 2) {
-      reasons.push(`Matches ${goalOverlap.length} of your goals: ${goalOverlap.slice(0, 2).join(", ")}`);
+      goalReason = `Matches ${goalOverlap.length} of your goals: ${goalOverlap.slice(0, 2).join(", ")}`;
     } else if (goalOverlap.length === 1) {
-      reasons.push(`Matches your goal: ${goalOverlap[0]}`);
+      goalReason = `Matches your goal: ${goalOverlap[0]}`;
     }
 
-    // 2. BUDGET FIT — max 20 points
+    // 2. BUDGET FIT — max 20 points (optionally scaled)
+    let budgetDelta = 0;
     if (country.costLevel === "low" && criteria.monthlyIncome < 2000) {
-      score += 20;
-      reasons.push("Fits your budget very well");
+      budgetDelta = 20;
+      budgetReason = "Fits your budget very well";
     } else if (country.costLevel === "low" && criteria.monthlyIncome >= 2000) {
-      score += 15;
-      reasons.push("Very affordable for your income");
+      budgetDelta = 15;
+      budgetReason = "Very affordable for your income";
     } else if (country.costLevel === "medium" && criteria.monthlyIncome >= 3000 && criteria.monthlyIncome < 7000) {
-      score += 12;
-      reasons.push("Comfortable for your budget");
+      budgetDelta = 12;
+      budgetReason = "Comfortable for your budget";
     } else if (country.costLevel === "medium" && criteria.monthlyIncome >= 7000) {
-      score += 8;
+      budgetDelta = 8;
     } else if (country.costLevel === "high" && criteria.monthlyIncome >= 8000) {
-      score += 10;
+      budgetDelta = 10;
     } else if (country.costLevel === "high" && criteria.monthlyIncome < 3000) {
-      score -= 20; // heavy penalty
+      budgetDelta = -20; // heavy penalty
     } else if (country.costLevel === "high" && criteria.monthlyIncome < 5000) {
-      score -= 10; // penalty
+      budgetDelta = -10; // penalty
     }
+    score += Math.round(budgetDelta * budgetScale);
+    if (budgetScale <= 0) budgetReason = undefined;
 
-    // 3. VISA ACCESSIBILITY — max 15 points
-    if (country.visaEase === "easy") score += 15;
-    else if (country.visaEase === "moderate") score += 8;
-    else score += 0; // hard = no bonus
+    // 3. VISA ACCESSIBILITY — max 15 points (optionally scaled)
+    let visaDelta = 0;
+    if (country.visaEase === "easy") visaDelta = 15;
+    else if (country.visaEase === "moderate") visaDelta = 8;
+    if (visaDelta > 0 && visaScale > 0) {
+      score += Math.round(visaDelta * visaScale);
+      if (country.topVisa) {
+        visaReason = `Visa pathway: ${truncateVisa(country.topVisa)}`;
+      }
+    }
 
     // 4. CONSTRAINTS — can add or subtract up to 20 points
     if (criteria.constraints.includes("language")) {
       if (country.languageBarrier === "low") {
         score += 8;
-        reasons.push("Low language barrier");
+        constraintReasons.push("Low language barrier");
       } else if (country.languageBarrier === "medium") {
         score += 2;
       } else if (country.languageBarrier === "high") {
@@ -1026,31 +1072,33 @@ export function matchCountries(
     if (criteria.constraints.includes("close_europe")) {
       if (country.region === "europe") {
         score += 8;
-        reasons.push("Close to Europe");
+        constraintReasons.push("Close to Europe");
       } else score -= 6;
     }
 
+    let healthcareReasonFromConstraint = false;
     if (criteria.constraints.includes("healthcare")) {
       if (country.healthcareQuality >= 8) {
         score += 8;
-        reasons.push("Strong healthcare system");
+        constraintReasons.push("Strong healthcare system");
+        healthcareReasonFromConstraint = true;
       } else if (country.healthcareQuality <= 5) score -= 8;
     }
 
     if (criteria.constraints.includes("low_crime")) {
       if (country.crimeLevel === "low") {
-        score += 8;
-        reasons.push("Low crime rate");
-      } else if (country.crimeLevel === "high") score -= 12;
+        score += crimeLow;
+        constraintReasons.push("Low crime rate");
+      } else if (country.crimeLevel === "high") score -= crimeHigh;
     }
 
     if (criteria.constraints.includes("fast_citizenship")) {
       if (country.citizenshipYears && country.citizenshipYears <= 3) {
         score += 10;
-        reasons.push(`Fast citizenship: ${country.citizenshipYears} years`);
+        constraintReasons.push(`Fast citizenship: ${country.citizenshipYears} years`);
       } else if (country.citizenshipYears && country.citizenshipYears <= 5) {
         score += 6;
-        reasons.push(`Citizenship in ${country.citizenshipYears} years`);
+        constraintReasons.push(`Citizenship in ${country.citizenshipYears} years`);
       } else if (!country.citizenshipYears) {
         score -= 8;
       }
@@ -1069,7 +1117,21 @@ export function matchCountries(
 
     // 7. SAFETY bonus for safety goal
     if (criteria.goals.includes("safety")) {
-      score += Math.round((country.safetyScore - 5) * 1.5); // -7.5 to +7.5
+      score += Math.round((country.safetyScore - 5) * safetyMult);
+    }
+
+    // Extra specific reasons from static fields
+    if (criteria.goals.includes("safety") || country.safetyScore >= 8) {
+      detailReasons.push(`Safety score ${country.safetyScore}/10`);
+    }
+    if (!healthcareReasonFromConstraint && country.healthcareQuality >= 8) {
+      detailReasons.push("Strong healthcare system");
+    }
+    if (
+      !criteria.constraints.includes("language") &&
+      country.languageBarrier === "low"
+    ) {
+      detailReasons.push("English widely usable");
     }
 
     // Cap between 0 and 97 — never show 100% (nothing is perfect)
@@ -1079,6 +1141,14 @@ export function matchCountries(
     let difficulty: "Easy" | "Moderate" | "Challenging" = "Moderate";
     if (country.visaEase === "easy") difficulty = "Easy";
     else if (country.visaEase === "hard") difficulty = "Challenging";
+
+    const reasons = [
+      goalReason,
+      visaReason,
+      ...constraintReasons,
+      ...detailReasons,
+      budgetReason,
+    ].filter((r): r is string => !!r);
 
     if (reasons.length === 0) reasons.push("Viable option for your profile");
     if (reasons.length === 1) reasons.push(`Stability in ${country.stabilityMonths} months`);
@@ -1092,6 +1162,15 @@ export function matchCountries(
     });
   }
 
-  results.sort((a, b) => b.score - a.score);
+  // Primary: score. Ties: higher safety, then cheaper cost, then name.
+  results.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    if (b.country.safetyScore !== a.country.safetyScore) {
+      return b.country.safetyScore - a.country.safetyScore;
+    }
+    const costDiff = COST_RANK[a.country.costLevel] - COST_RANK[b.country.costLevel];
+    if (costDiff !== 0) return costDiff;
+    return a.country.name.localeCompare(b.country.name);
+  });
   return results.slice(0, Math.max(1, limit));
 }
