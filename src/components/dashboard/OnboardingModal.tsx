@@ -5,7 +5,13 @@ import { Button } from "@/components/ui/button";
 import { allCountries } from "@/data/allCountries";
 import { filterCountryList } from "@/lib/filterCountries";
 import { toast } from "sonner";
-import { matchCountries, type CountryMatch, type UserCriteria } from "@/lib/countryMatching";
+import {
+  matchCountries,
+  resolveCountryProfile,
+  type CountryMatch,
+  type CountryProfile,
+  type UserCriteria,
+} from "@/lib/countryMatching";
 import { generateAndSaveUserPlan } from "@/lib/generateUserPlan";
 import type { UserProfile } from "@/pages/Dashboard";
 import { ArrowRight, MapPin, Compass } from "lucide-react";
@@ -70,6 +76,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const [matches, setMatches] = useState<CountryMatch[]>([]);
   const [showMatches, setShowMatches] = useState(false);
   const [aiEnhancing, setAiEnhancing] = useState(false);
+  const [findingDestinations, setFindingDestinations] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [pendingProfile, setPendingProfile] = useState<UserProfile | null>(null);
@@ -179,52 +186,91 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     return visaMap[country] || "Temporary_Residence";
   };
 
-  const handleModeB_Match = async () => {
-    const criteria: UserCriteria = {
-      citizenship,
-      familyStatus,
-      monthlyIncome: income,
-      goals: selectedGoals,
-      constraints: selectedConstraints,
-      timeline,
-    };
-    const results = matchCountries(criteria);
+  /** Mode B: Layer 1 citizenship candidates → Layer 2 static scoring → match-explain. */
+  const runModeBMatching = useCallback(async (criteria: UserCriteria) => {
+    setFindingDestinations(true);
+    setShowMatches(false);
 
-    const top3 = results.slice(0, 3);
+    let pool: CountryProfile[] | undefined;
+    const noteByCountry = new Map<string, string>();
 
-    // Show matches immediately with algorithm reasons (fast)
+    try {
+      const { data, error } = await supabase.functions.invoke("get-citizenship-candidates", {
+        body: { citizenship_country: criteria.citizenship },
+      });
+
+      if (!error && data?.source !== "fallback" && Array.isArray(data?.candidates)) {
+        const resolved: CountryProfile[] = [];
+        for (const c of data.candidates as { country?: string; note?: string }[]) {
+          if (!c?.country) continue;
+          const profile = resolveCountryProfile(c.country);
+          if (!profile) continue;
+          if (!resolved.some((p) => p.name === profile.name)) {
+            resolved.push(profile);
+            if (typeof c.note === "string" && c.note.trim()) {
+              noteByCountry.set(profile.name, c.note.trim());
+            }
+          }
+        }
+        if (resolved.length >= 5) pool = resolved;
+      }
+    } catch (err) {
+      console.error("get-citizenship-candidates invoke failed, using full database:", err);
+    }
+
+    const results = matchCountries(criteria, pool).map((m) => ({
+      ...m,
+      feasibilityNote: noteByCountry.get(m.country.name),
+    }));
+
     setMatches(results);
+    setFindingDestinations(false);
     setShowMatches(true);
 
-    // Then enhance with AI explanations in background
+    // Enhance top 3 with AI explanations (unchanged)
     setAiEnhancing(true);
     try {
+      const top3 = results.slice(0, 3);
       const { data, error } = await supabase.functions.invoke("match-explain", {
         body: { criteria, matches: top3 },
       });
       console.log("match-explain response:", data, error);
 
       if (data?.explanations) {
-        setMatches(prev => prev.map(match => {
-          const aiExpl = data.explanations.find(
-            (e: { country: string; reasons: string[]; visaRequired?: boolean; visaNote?: string }) => e.country === match.country.name
-          );
-          if (aiExpl) {
-            return {
-              ...match,
-              reasons: aiExpl.reasons,
-              visaRequired: aiExpl.visaRequired ?? false,
-              visaNote: aiExpl.visaNote ?? "",
-            };
-          }
-          return match;
-        }));
+        setMatches((prev) =>
+          prev.map((match) => {
+            const aiExpl = data.explanations.find(
+              (e: { country: string; reasons: string[]; visaRequired?: boolean; visaNote?: string }) =>
+                e.country === match.country.name,
+            );
+            if (aiExpl) {
+              return {
+                ...match,
+                reasons: aiExpl.reasons,
+                visaRequired: aiExpl.visaRequired ?? false,
+                visaNote: aiExpl.visaNote ?? "",
+              };
+            }
+            return match;
+          }),
+        );
       }
     } catch {
       // silently fail — keep algorithm reasons
     } finally {
       setAiEnhancing(false);
     }
+  }, []);
+
+  const handleModeB_Match = async () => {
+    await runModeBMatching({
+      citizenship,
+      familyStatus,
+      monthlyIncome: income,
+      goals: selectedGoals,
+      constraints: selectedConstraints,
+      timeline,
+    });
   };
 
   const selectCountryFromMatch = (countryName: string, matchScore: number) => {
@@ -330,19 +376,17 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
           setSelectingCountry(null);
           setShowResult(false);
           setShowLoading(false);
-          setShowMatches(true);
-          // Re-run matching if needed
-          if (matches.length === 0) {
-            const criteria = {
+          if (matches.length > 0) {
+            setShowMatches(true);
+          } else {
+            void runModeBMatching({
               citizenship,
               familyStatus,
               monthlyIncome: income,
               goals: selectedGoals,
               constraints: selectedConstraints,
               timeline,
-            };
-            const results = matchCountries(criteria);
-            setMatches(results);
+            });
           }
         }}
       />
@@ -380,6 +424,22 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     );
   }
 
+  // Layer 1 loading — before matches are revealed
+  if (findingDestinations) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-4 px-4">
+        <div className="w-full max-w-md rounded-2xl border border-border bg-card p-6 sm:p-8 my-4">
+          <div className="rounded-lg border border-primary/20 bg-primary/[0.04] px-4 py-5 text-center">
+            <p className="text-[13px] text-muted-foreground animate-pulse">
+              Finding realistic destinations for{" "}
+              {citizenship ? `${citizenship} passports` : "your passport"}…
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Country matching results (Mode B)
   if (showMatches) {
     return (
@@ -409,6 +469,11 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                       {match.reasons.map((r, j) => (
                         <p key={j} className="text-[12px] text-muted-foreground">• {r}</p>
                       ))}
+                      {match.feasibilityNote && (
+                        <p className="text-[11px] text-muted-foreground/70 mt-1 line-clamp-1">
+                          {match.feasibilityNote}
+                        </p>
+                      )}
                       {(match as CountryMatch & { visaRequired?: boolean; visaNote?: string }).visaRequired &&
                         (match as CountryMatch & { visaNote?: string }).visaNote && (
                           <p className="text-[11px] text-amber-400/80 mt-1">
@@ -628,47 +693,17 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
             <div className="space-y-2 pt-2">
               {timelineOptions.map(t => (
                 <button key={t.id}
-                  onClick={async () => {
+                  onClick={() => {
                     setTimeline(t.id);
                     if (mode === "help") {
-                      const criteria: UserCriteria = {
+                      void runModeBMatching({
                         citizenship,
                         familyStatus,
                         monthlyIncome: income,
                         goals: selectedGoals,
                         constraints: selectedConstraints,
                         timeline: t.id,
-                      };
-                      const results = matchCountries(criteria);
-                      setMatches(results);
-                      setShowMatches(true);
-
-                      // Enhance top 3 with AI explanations
-                      setAiEnhancing(true);
-                      try {
-                        const top3 = results.slice(0, 3);
-                        const { data } = await supabase.functions.invoke("match-explain", {
-                          body: { criteria, matches: top3 },
-                        });
-                        if (data?.explanations) {
-                          setMatches(prev => prev.map(match => {
-                            const aiExpl = data.explanations.find(
-                              (e: { country: string; reasons: string[]; visaRequired?: boolean; visaNote?: string }) => e.country === match.country.name
-                            );
-                            if (aiExpl) return {
-                              ...match,
-                              reasons: aiExpl.reasons,
-                              visaRequired: aiExpl.visaRequired ?? false,
-                              visaNote: aiExpl.visaNote ?? "",
-                            };
-                            return match;
-                          }));
-                        }
-                      } catch {
-                        // silently fail
-                      } finally {
-                        setAiEnhancing(false);
-                      }
+                      });
                     } else {
                       saveProfile();
                     }

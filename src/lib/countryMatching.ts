@@ -918,12 +918,52 @@ export interface CountryMatch {
   reasons: string[];
   topRisk: string;
   difficulty: "Easy" | "Moderate" | "Challenging";
+  /** Citizenship-feasibility note from Layer 1 AI shortlist (optional). */
+  feasibilityNote?: string;
 }
 
-export function matchCountries(criteria: UserCriteria): CountryMatch[] {
-  const results: CountryMatch[] = [];
+/** Common AI name variants → exact countryDatabase[].name */
+export const COUNTRY_NAME_ALIASES: Record<string, string> = {
+  "usa": "United States",
+  "u.s.": "United States",
+  "u.s.a.": "United States",
+  "us": "United States",
+  "united states of america": "United States",
+  "uk": "United Kingdom",
+  "u.k.": "United Kingdom",
+  "great britain": "United Kingdom",
+  "britain": "United Kingdom",
+  "czechia": "Czech Republic",
+  "czech": "Czech Republic",
+  "u.a.e.": "UAE",
+  "uae": "UAE",
+  "united arab emirates": "UAE",
+  "korea": "South Korea",
+  "republic of korea": "South Korea",
+  "south korea": "South Korea",
+  "turkiye": "Turkey",
+  "holland": "Netherlands",
+  "the netherlands": "Netherlands",
+  "bosnia": "Bosnia and Herzegovina",
+  "bosnia-herzegovina": "Bosnia and Herzegovina",
+  "macedonia": "North Macedonia",
+  "cabo verde": "Cape Verde",
+};
 
-  for (const country of countryDatabase) {
+export function resolveCountryProfile(name: string): CountryProfile | undefined {
+  const trimmed = name.trim().replace(/\s+/g, " ");
+  const exact = countryDatabase.find((c) => c.name === trimmed);
+  if (exact) return exact;
+  const alias = COUNTRY_NAME_ALIASES[trimmed.toLowerCase()];
+  if (alias) return countryDatabase.find((c) => c.name === alias);
+  return undefined;
+}
+
+export function matchCountries(criteria: UserCriteria, pool?: CountryProfile[]): CountryMatch[] {
+  const results: CountryMatch[] = [];
+  const countries = pool && pool.length > 0 ? pool : countryDatabase;
+
+  for (const country of countries) {
     let score = 0; // start from 0, not 50
     const reasons: string[] = [];
 
