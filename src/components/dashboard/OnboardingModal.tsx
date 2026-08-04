@@ -77,6 +77,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   const [showMatches, setShowMatches] = useState(false);
   const [aiEnhancing, setAiEnhancing] = useState(false);
   const [findingDestinations, setFindingDestinations] = useState(false);
+  const [citizenshipMatchFallback, setCitizenshipMatchFallback] = useState(false);
+  const [retryingCitizenshipMatch, setRetryingCitizenshipMatch] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [pendingProfile, setPendingProfile] = useState<UserProfile | null>(null);
@@ -187,19 +189,28 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   };
 
   /** Mode B: Layer 1 citizenship candidates → Layer 2 static scoring → match-explain. */
-  const runModeBMatching = useCallback(async (criteria: UserCriteria) => {
-    setFindingDestinations(true);
-    setShowMatches(false);
+  const runModeBMatching = useCallback(async (criteria: UserCriteria, opts?: { isRetry?: boolean }) => {
+    const isRetry = !!opts?.isRetry;
+    if (isRetry) {
+      setRetryingCitizenshipMatch(true);
+    } else {
+      setFindingDestinations(true);
+      setShowMatches(false);
+    }
+    setCitizenshipMatchFallback(false);
 
     let pool: CountryProfile[] | undefined;
     const noteByCountry = new Map<string, string>();
+    let usedFallback = false;
 
     try {
       const { data, error } = await supabase.functions.invoke("get-citizenship-candidates", {
         body: { citizenship_country: criteria.citizenship },
       });
 
-      if (!error && data?.source !== "fallback" && Array.isArray(data?.candidates)) {
+      if (error || data?.source === "fallback" || !Array.isArray(data?.candidates)) {
+        usedFallback = true;
+      } else {
         const resolved: CountryProfile[] = [];
         for (const c of data.candidates as { country?: string; note?: string }[]) {
           if (!c?.country) continue;
@@ -212,10 +223,15 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
             }
           }
         }
-        if (resolved.length >= 5) pool = resolved;
+        if (resolved.length >= 5) {
+          pool = resolved;
+        } else {
+          usedFallback = true;
+        }
       }
     } catch (err) {
       console.error("get-citizenship-candidates invoke failed, using full database:", err);
+      usedFallback = true;
     }
 
     const results = matchCountries(criteria, pool).map((m) => ({
@@ -224,7 +240,9 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
     }));
 
     setMatches(results);
+    setCitizenshipMatchFallback(usedFallback);
     setFindingDestinations(false);
+    setRetryingCitizenshipMatch(false);
     setShowMatches(true);
 
     // Enhance top 3 with AI explanations (unchanged)
@@ -271,6 +289,20 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
       constraints: selectedConstraints,
       timeline,
     });
+  };
+
+  const retryCitizenshipPersonalization = () => {
+    void runModeBMatching(
+      {
+        citizenship,
+        familyStatus,
+        monthlyIncome: income,
+        goals: selectedGoals,
+        constraints: selectedConstraints,
+        timeline,
+      },
+      { isRetry: true },
+    );
   };
 
   const selectCountryFromMatch = (countryName: string, matchScore: number) => {
@@ -450,6 +482,21 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
             <p className="text-[11px] text-primary/60 text-center mb-4 animate-pulse">
               ✨ Personalizing your results...
             </p>
+          )}
+          {citizenshipMatchFallback && (
+            <div className="rounded-lg border border-amber-500/25 bg-amber-500/[0.06] px-4 py-3 mb-4 flex items-center justify-between gap-3 flex-wrap">
+              <p className="text-[12px] text-muted-foreground">
+                Showing general matches — couldn&apos;t personalize for your passport right now.
+              </p>
+              <button
+                type="button"
+                onClick={retryCitizenshipPersonalization}
+                disabled={retryingCitizenshipMatch || aiEnhancing}
+                className="text-[12px] text-primary hover:underline disabled:opacity-40 shrink-0"
+              >
+                {retryingCitizenshipMatch ? "Retrying…" : "Retry"}
+              </button>
+            </div>
           )}
           <p className="text-[13px] text-muted-foreground text-center mb-6">Based on your profile and preferences</p>
 

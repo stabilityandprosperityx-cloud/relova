@@ -79,33 +79,112 @@ function overlayFamilyDocs(docs: DocItem[], familyStatus?: string): DocItem[] {
   return out;
 }
 
+function extractTextFromClaudeContent(content: unknown[]): { text: string; blockCount: number; blockTypes: string[] } {
+  const blocks = Array.isArray(content) ? content : [];
+  const blockTypes = blocks.map((b) =>
+    b && typeof b === "object" && "type" in b ? String((b as { type: unknown }).type) : "unknown",
+  );
+  const text = blocks
+    .filter((b): b is { type: string; text?: string } =>
+      !!b && typeof b === "object" && (b as { type?: string }).type === "text",
+    )
+    .map((b) => b.text ?? "")
+    .join("\n");
+  return { text, blockCount: blocks.length, blockTypes };
+}
+
+/** Prefer fenced JSON, else outermost {...}, else trimmed text after leading fence strip. */
+function extractJsonPayload(rawText: string): string {
+  const fenceMatch = rawText.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenceMatch?.[1]) return fenceMatch[1].trim();
+
+  const stripped = rawText.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "").trim();
+  const start = stripped.indexOf("{");
+  const end = stripped.lastIndexOf("}");
+  if (start >= 0 && end > start) return stripped.slice(start, end + 1);
+  return stripped;
+}
+
 function parseDocuments(rawText: string): DocItem[] | null {
-  const cleaned = rawText.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "").trim();
+  const payload = extractJsonPayload(rawText);
+  let parsed: unknown;
   try {
-    const parsed = JSON.parse(cleaned);
-    const arr = Array.isArray(parsed?.documents) ? parsed.documents : Array.isArray(parsed) ? parsed : null;
-    if (!arr || arr.length === 0) return null;
-
-    const validPhases = new Set(["before", "during", "after"]);
-    const validCats = new Set(["identity", "financial", "legal", "other"]);
-    const out: DocItem[] = [];
-
-    for (const item of arr) {
-      if (!item || typeof item.name !== "string" || !item.name.trim()) continue;
-      const phase = validPhases.has(item.phase) ? item.phase : "before";
-      const category = validCats.has(item.category) ? item.category : "other";
-      out.push({
-        name: String(item.name).trim(),
-        description: typeof item.description === "string" ? item.description.trim() : "",
-        phase,
-        required: item.required !== false,
-        category,
-      });
-    }
-    return out.length > 0 ? out : null;
-  } catch {
+    parsed = JSON.parse(payload);
+  } catch (err) {
+    console.error(
+      "generate-document-checklist: invalid JSON syntax:",
+      err instanceof Error ? err.message : err,
+    );
+    console.error("generate-document-checklist: FULL raw text attempted:\n", rawText);
     return null;
   }
+
+  if (!parsed || typeof parsed !== "object") {
+    console.error("generate-document-checklist: JSON wrong shape — not an object/array");
+    console.error("generate-document-checklist: FULL raw text attempted:\n", rawText);
+    return null;
+  }
+
+  const arr = Array.isArray((parsed as { documents?: unknown }).documents)
+    ? (parsed as { documents: unknown[] }).documents
+    : Array.isArray(parsed)
+      ? parsed
+      : null;
+
+  if (!arr) {
+    console.error('generate-document-checklist: JSON wrong shape — missing "documents" array');
+    console.error("generate-document-checklist: FULL raw text attempted:\n", rawText);
+    return null;
+  }
+  if (arr.length === 0) {
+    console.error("generate-document-checklist: JSON wrong shape — documents array empty");
+    console.error("generate-document-checklist: FULL raw text attempted:\n", rawText);
+    return null;
+  }
+
+  const validPhases = new Set(["before", "during", "after"]);
+  const validCats = new Set(["identity", "financial", "legal", "other"]);
+  const out: DocItem[] = [];
+  let skipped = 0;
+
+  for (const item of arr) {
+    if (!item || typeof item !== "object" || typeof (item as { name?: unknown }).name !== "string") {
+      skipped++;
+      continue;
+    }
+    const name = String((item as { name: string }).name).trim();
+    if (!name) {
+      skipped++;
+      continue;
+    }
+    const phase = validPhases.has((item as { phase?: string }).phase ?? "")
+      ? ((item as { phase: "before" | "during" | "after" }).phase)
+      : "before";
+    const category = validCats.has((item as { category?: string }).category ?? "")
+      ? ((item as { category: "identity" | "financial" | "legal" | "other" }).category)
+      : "other";
+    out.push({
+      name,
+      description:
+        typeof (item as { description?: unknown }).description === "string"
+          ? (item as { description: string }).description.trim()
+          : "",
+      phase,
+      required: (item as { required?: boolean }).required !== false,
+      category,
+    });
+  }
+
+  console.log(
+    `generate-document-checklist: schema filter — raw=${arr.length}, kept=${out.length}, skipped=${skipped}`,
+  );
+
+  if (out.length === 0) {
+    console.error("generate-document-checklist: zero valid documents after schema filtering");
+    console.error("generate-document-checklist: FULL raw text attempted:\n", rawText);
+    return null;
+  }
+  return out;
 }
 
 async function callClaudeWithWebSearch(
@@ -167,8 +246,11 @@ Return JSON only, no markdown fences, no preamble:
     }
 
     const data = await response.json();
-    const textBlocks = (data?.content ?? []).filter((b: { type?: string }) => b.type === "text");
-    const text = textBlocks.map((b: { text?: string }) => b.text ?? "").join("\n");
+    const content = Array.isArray(data?.content) ? data.content : [];
+    const { text, blockCount, blockTypes } = extractTextFromClaudeContent(content);
+    console.log(
+      `generate-document-checklist: Claude response: ${blockCount} blocks [${blockTypes.join(", ")}], ${text.length} chars extracted, stop_reason=${data?.stop_reason ?? "n/a"}`,
+    );
     return parseDocuments(text);
   } catch (err) {
     console.error("generate-document-checklist: Claude fetch failed", err);

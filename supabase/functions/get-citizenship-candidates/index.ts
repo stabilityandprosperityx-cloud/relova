@@ -91,32 +91,104 @@ function resolveCountryName(raw: string): string | null {
   return null;
 }
 
+function extractTextFromClaudeContent(content: unknown[]): { text: string; blockCount: number; blockTypes: string[] } {
+  const blocks = Array.isArray(content) ? content : [];
+  const blockTypes = blocks.map((b) =>
+    b && typeof b === "object" && "type" in b ? String((b as { type: unknown }).type) : "unknown",
+  );
+  const text = blocks
+    .filter((b): b is { type: string; text?: string } =>
+      !!b && typeof b === "object" && (b as { type?: string }).type === "text",
+    )
+    .map((b) => b.text ?? "")
+    .join("\n");
+  return { text, blockCount: blocks.length, blockTypes };
+}
+
+/** Prefer fenced JSON, else outermost {...}, else trimmed text after leading fence strip. */
+function extractJsonPayload(rawText: string): string {
+  const fenceMatch = rawText.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenceMatch?.[1]) return fenceMatch[1].trim();
+
+  const stripped = rawText.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "").trim();
+  const start = stripped.indexOf("{");
+  const end = stripped.lastIndexOf("}");
+  if (start >= 0 && end > start) return stripped.slice(start, end + 1);
+  return stripped;
+}
+
 function parseCandidates(rawText: string): Candidate[] | null {
-  const cleaned = rawText.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "").trim();
+  const payload = extractJsonPayload(rawText);
+  let parsed: unknown;
   try {
-    const parsed = JSON.parse(cleaned);
-    const arr = Array.isArray(parsed?.candidates) ? parsed.candidates : null;
-    if (!arr || arr.length === 0) return null;
-
-    const out: Candidate[] = [];
-    const seen = new Set<string>();
-
-    for (const item of arr) {
-      if (!item || typeof item.country !== "string") continue;
-      const resolved = resolveCountryName(item.country);
-      if (!resolved) {
-        console.warn("get-citizenship-candidates: dropping unknown country", item.country);
-        continue;
-      }
-      if (seen.has(resolved)) continue;
-      seen.add(resolved);
-      const note = typeof item.note === "string" ? item.note.trim().slice(0, 160) : "";
-      out.push({ country: resolved, note });
-    }
-    return out.length > 0 ? out : null;
-  } catch {
+    parsed = JSON.parse(payload);
+  } catch (err) {
+    console.error(
+      "get-citizenship-candidates: invalid JSON syntax:",
+      err instanceof Error ? err.message : err,
+    );
+    console.error("get-citizenship-candidates: FULL raw text attempted:\n", rawText);
     return null;
   }
+
+  if (!parsed || typeof parsed !== "object") {
+    console.error("get-citizenship-candidates: JSON wrong shape — not an object");
+    console.error("get-citizenship-candidates: FULL raw text attempted:\n", rawText);
+    return null;
+  }
+
+  const arr = Array.isArray((parsed as { candidates?: unknown }).candidates)
+    ? (parsed as { candidates: unknown[] }).candidates
+    : null;
+
+  if (!arr) {
+    console.error('get-citizenship-candidates: JSON wrong shape — missing "candidates" array');
+    console.error("get-citizenship-candidates: FULL raw text attempted:\n", rawText);
+    return null;
+  }
+  if (arr.length === 0) {
+    console.error("get-citizenship-candidates: JSON wrong shape — candidates array empty");
+    console.error("get-citizenship-candidates: FULL raw text attempted:\n", rawText);
+    return null;
+  }
+
+  const out: Candidate[] = [];
+  const seen = new Set<string>();
+  let dropped = 0;
+
+  for (const item of arr) {
+    if (!item || typeof item !== "object" || typeof (item as { country?: unknown }).country !== "string") {
+      dropped++;
+      continue;
+    }
+    const rawName = (item as { country: string }).country;
+    const resolved = resolveCountryName(rawName);
+    if (!resolved) {
+      dropped++;
+      console.warn("get-citizenship-candidates: dropping unknown country", rawName);
+      continue;
+    }
+    if (seen.has(resolved)) continue;
+    seen.add(resolved);
+    const note =
+      typeof (item as { note?: unknown }).note === "string"
+        ? (item as { note: string }).note.trim().slice(0, 160)
+        : "";
+    out.push({ country: resolved, note });
+  }
+
+  console.log(
+    `get-citizenship-candidates: allowlist filter — raw=${arr.length}, kept=${out.length}, dropped=${dropped}`,
+  );
+
+  if (out.length === 0) {
+    console.error(
+      "get-citizenship-candidates: zero valid candidates after allowlist/alias filtering",
+    );
+    console.error("get-citizenship-candidates: FULL raw text attempted:\n", rawText);
+    return null;
+  }
+  return out;
 }
 
 async function callClaude(citizenship: string): Promise<Candidate[] | null> {
@@ -163,8 +235,11 @@ Rules: 15-20 items; no duplicates; only allowlist names; notes specific to this 
     }
 
     const data = await response.json();
-    const textBlocks = (data?.content ?? []).filter((b: { type?: string }) => b.type === "text");
-    const text = textBlocks.map((b: { text?: string }) => b.text ?? "").join("\n");
+    const content = Array.isArray(data?.content) ? data.content : [];
+    const { text, blockCount, blockTypes } = extractTextFromClaudeContent(content);
+    console.log(
+      `get-citizenship-candidates: Claude response: ${blockCount} blocks [${blockTypes.join(", ")}], ${text.length} chars extracted, stop_reason=${data?.stop_reason ?? "n/a"}`,
+    );
     return parseCandidates(text);
   } catch (err) {
     console.error("get-citizenship-candidates: Claude fetch failed", err);
