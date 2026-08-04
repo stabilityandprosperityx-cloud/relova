@@ -21,7 +21,7 @@
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
     --border: 35 20% 85%;
-    --input: 35 20% 85%;
+    --input: 30 15% 78%;
     --ring: 245 78% 62%;
     --radius: 0.875rem;
 
@@ -58,7 +58,7 @@
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
     --border: 220 8% 14%;
-    --input: 220 8% 14%;
+    --input: 220 8% 26%;
     --ring: 258 90% 60%;
 
     --surface-1: 220 10% 7%;
@@ -316,6 +316,25 @@
   border: 1px solid hsl(var(--border));
   border-radius: 1rem;
   box-shadow: 0 1px 2px rgba(109,79,224,0.04), 0 8px 24px -8px rgba(109,79,224,0.12);
+}
+
+/* Shared form-field look: visible border + inset depth + purple focus glow */
+.form-field {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--input));
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+  color: hsl(var(--foreground));
+}
+.form-field::placeholder {
+  color: hsl(var(--muted-foreground) / 0.55);
+}
+.form-field:focus,
+.form-field:focus-visible {
+  outline: none;
+  border-color: hsl(var(--ring));
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.04),
+    0 0 0 3px hsl(var(--ring) / 0.15);
 }
 
 .dark .surface-card {

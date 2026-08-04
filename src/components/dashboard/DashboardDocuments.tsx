@@ -127,17 +127,57 @@ function getStoragePath(doc: UserDoc): string | null {
 
 function getStatusConfig(doc: RequiredDoc) {
   if (!doc.uploadedDoc && !doc.isPrepared) {
-    return { label: "Missing", color: "text-muted-foreground/50", bg: "bg-white/[0.04]" };
+    return {
+      label: "Missing",
+      color: "text-muted-foreground/50",
+      bg: "bg-white/[0.04]",
+      cardClass: "",
+    };
   }
   if (doc.isPrepared && !doc.uploadedDoc) {
-    return { label: "✓ Marked as ready", color: "text-muted-foreground/70", bg: "bg-white/[0.06]" };
+    return {
+      label: "✓ Marked as ready",
+      color: "text-muted-foreground/70",
+      bg: "bg-white/[0.06]",
+      cardClass: "",
+    };
   }
   switch (doc.verificationStatus) {
-    case "ok":       return { label: "✔ Verified",       color: "text-primary",    bg: "bg-primary/10" };
-    case "warning":  return { label: "⚠ Review needed",  color: "text-amber-400",  bg: "bg-amber-500/10" };
-    case "mismatch": return { label: "✗ Wrong document", color: "text-red-400",    bg: "bg-red-500/10" };
-    case "pending":  return { label: "Verifying…",       color: "text-blue-400",   bg: "bg-blue-500/10" };
-    default:         return { label: "✔ Uploaded",       color: "text-green-400",  bg: "bg-green-500/10" };
+    case "ok":
+      return {
+        label: "✔ Verified",
+        color: "text-emerald-700 dark:text-emerald-400",
+        bg: "bg-emerald-500/15",
+        cardClass: "!border-[1.5px] !border-[hsl(142_60%_45%)] !bg-[hsl(142_60%_96%)] dark:!bg-[hsl(142_40%_12%)] dark:!border-[hsl(142_50%_40%)]",
+      };
+    case "warning":
+      return {
+        label: "⚠ Needs review",
+        color: "text-amber-700 dark:text-amber-400",
+        bg: "bg-amber-500/15",
+        cardClass: "!border-[1.5px] !border-[hsl(38_90%_50%)] !bg-[hsl(38_90%_96%)] dark:!bg-[hsl(38_40%_14%)] dark:!border-[hsl(38_70%_45%)]",
+      };
+    case "mismatch":
+      return {
+        label: "✗ Rejected",
+        color: "text-red-700 dark:text-red-400",
+        bg: "bg-red-500/15",
+        cardClass: "!border-[1.5px] !border-[hsl(0_70%_50%)] !bg-[hsl(0_70%_97%)] dark:!bg-[hsl(0_40%_14%)] dark:!border-[hsl(0_60%_45%)]",
+      };
+    case "pending":
+      return {
+        label: "Verifying…",
+        color: "text-blue-400",
+        bg: "bg-blue-500/10",
+        cardClass: "",
+      };
+    default:
+      return {
+        label: "✔ Uploaded",
+        color: "text-green-400",
+        bg: "bg-green-500/10",
+        cardClass: "",
+      };
   }
 }
 
@@ -578,7 +618,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
                       return (
                         <div
                           key={doc.id}
-                          className={`surface-card p-4 md:px-5 md:py-4 group/card transition-colors ${hasUpload ? "hover:bg-muted cursor-pointer" : ""}`}
+                          className={`surface-card p-4 md:px-5 md:py-4 group/card transition-colors ${statusCfg.cardClass} ${hasUpload && !statusCfg.cardClass ? "hover:bg-muted cursor-pointer" : hasUpload ? "cursor-pointer" : ""}`}
                           onClick={hasUpload ? () => setPreviewDoc({
                             doc: doc.uploadedDoc!,
                             verificationNote: doc.verificationNote,
@@ -647,8 +687,10 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
 
                               {/* Verification note */}
                               {doc.verificationNote && (doc.verificationStatus === "warning" || doc.verificationStatus === "mismatch") && (
-                                <p className="text-[11px] text-amber-400/80 mt-1.5 flex items-center gap-1.5">
-                                  <Sparkles size={10} className="text-primary/60 shrink-0" />
+                                <p className={`text-[11px] mt-1.5 flex items-start gap-1.5 ${
+                                  doc.verificationStatus === "mismatch" ? "text-red-600/90 dark:text-red-400/80" : "text-amber-700/90 dark:text-amber-400/80"
+                                }`}>
+                                  <Sparkles size={10} className="text-primary/60 shrink-0 mt-0.5" />
                                   {doc.verificationNote}
                                 </p>
                               )}
@@ -697,8 +739,15 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
                                     {downloading === doc.uploadedDoc!.id ? "…" : "Save"}
                                   </Button>
                                   <Button
-                                    variant="ghost" size="sm"
-                                    className="text-[11px] text-muted-foreground/50 hover:text-foreground h-7 px-2"
+                                    variant={doc.verificationStatus === "mismatch" || doc.verificationStatus === "warning" ? "outline" : "ghost"}
+                                    size="sm"
+                                    className={
+                                      doc.verificationStatus === "mismatch"
+                                        ? "text-[11px] h-7 px-2 border-red-500/40 text-red-700 dark:text-red-400 hover:bg-red-500/10"
+                                        : doc.verificationStatus === "warning"
+                                        ? "text-[11px] h-7 px-2 border-amber-500/40 text-amber-700 dark:text-amber-400 hover:bg-amber-500/10"
+                                        : "text-[11px] text-muted-foreground/50 hover:text-foreground h-7 px-2"
+                                    }
                                     onClick={() => triggerUploadFor(doc.userDocId, doc.document_name)}
                                   >
                                     Replace

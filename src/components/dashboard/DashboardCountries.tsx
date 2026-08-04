@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Search, ArrowRight, Clock, X, BarChart2 } from "lucide-react";
 import { countryDatabase, type CountryProfile } from "@/lib/countryMatching";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import type { UserProfile, DashboardTab } from "@/pages/Dashboard";
 
 const COUNTRY_RESOURCES: Record<string, {
@@ -894,12 +895,12 @@ export default function DashboardCountries({
 
       <div className="relative">
         <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground/40" />
-        <input
+        <Input
           type="text"
           placeholder="Search countries..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full bg-white/[0.04] border border-white/[0.06] rounded-lg pl-9 pr-4 py-2.5 text-[13px] placeholder:text-muted-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary/50"
+          className="pl-9 text-[13px] h-10"
         />
       </div>
 

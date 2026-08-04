@@ -11,6 +11,7 @@ import { countryDatabase } from "@/lib/countryMatching";
 import LockedOverlayPro from "./LockedOverlayPro";
 import type { RelocationCase } from "@/hooks/useRelocationCase";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Input } from "@/components/ui/input";
 
 interface StepWithStatus {
   id: string;
@@ -422,11 +423,11 @@ export default function DashboardPlan({ profile, onNavigate, relocationCase }: P
               <p className="text-[13px] text-muted-foreground">
                 When are you planning to move? Set a date to get a week-by-week action plan.
               </p>
-              <input
+              <Input
                 type="date"
                 value={moveDate}
                 onChange={(e) => saveMoveDate(e.target.value)}
-                className="bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] text-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 [color-scheme:dark]"
+                className="w-auto text-[13px]"
               />
             </div>
           ) : daysUntilMove !== null && daysUntilMove >= 0 ? (
@@ -473,11 +474,11 @@ export default function DashboardPlan({ profile, onNavigate, relocationCase }: P
           ) : (
             <div className="space-y-3">
               <p className="text-[13px] text-muted-foreground">Your move date has passed — update it to continue planning.</p>
-              <input
+              <Input
                 type="date"
                 value={moveDate}
                 onChange={(e) => saveMoveDate(e.target.value)}
-                className="bg-white/[0.04] border border-white/[0.06] rounded-lg px-3 py-2.5 text-[13px] text-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 [color-scheme:dark]"
+                className="w-auto text-[13px]"
               />
             </div>
           )}

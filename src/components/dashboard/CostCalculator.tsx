@@ -862,7 +862,7 @@ export const CostCalculator = ({ country, familyStatus, monthlyIncome, citizensh
             <select
               value={selectedCountry}
               onChange={(e) => setSelectedCountry(e.target.value)}
-              className="bg-white/[0.06] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] text-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 w-full"
+              className="form-field rounded-lg px-3 py-2 text-[13px] w-full"
             >
               {Object.keys(COST_DATA).map((c) => (
                 <option key={c} value={c}>
@@ -1000,7 +1000,7 @@ export const CostCalculator = ({ country, familyStatus, monthlyIncome, citizensh
           <select
             value={selectedCountry}
             onChange={(e) => setSelectedCountry(e.target.value)}
-            className="bg-white/[0.06] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] text-foreground focus:outline-none focus:ring-1 focus:ring-primary/50 w-full"
+            className="form-field rounded-lg px-3 py-2 text-[13px] w-full"
           >
             {Object.keys(COST_DATA).map((c) => (
               <option key={c} value={c}>

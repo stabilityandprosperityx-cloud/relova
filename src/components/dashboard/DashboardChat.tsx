@@ -319,7 +319,7 @@ INSTRUCTIONS:
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about your relocation..."
-              className="flex-1 bg-white/[0.04] border border-white/[0.06] rounded-xl px-4 py-3.5 text-[13px] placeholder:text-muted-foreground/40 focus:outline-none focus:ring-1 focus:ring-primary/50"
+              className="flex-1 form-field rounded-xl px-4 py-3.5 text-[13px]"
               disabled={isLoading}
             />
             <Button type="submit" size="icon" className="h-12 w-12 rounded-xl shrink-0 bg-primary hover:bg-primary/80" disabled={!input.trim() || isLoading}>

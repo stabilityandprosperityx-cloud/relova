@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Download, Sparkles, RefreshCw } from "lucide-react";
 import type { UserProfile } from "@/pages/Dashboard";
 import { supabase } from "@/integrations/supabase/client";
@@ -316,30 +318,30 @@ REQUIREMENTS:
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-[12px] text-muted-foreground mb-1.5 block">Full name (as in passport) *</label>
-                <input
+                <Input
                   value={form.fullName}
                   onChange={e => update("fullName", e.target.value)}
                   placeholder="John Smith"
-                  className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  className="h-9 text-[13px]"
                 />
               </div>
               <div>
                 <label className="text-[12px] text-muted-foreground mb-1.5 block">Date of birth *</label>
-                <input
+                <Input
                   type="date"
                   value={form.dateOfBirth}
                   onChange={e => update("dateOfBirth", e.target.value)}
-                  className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  className="h-9 text-[13px]"
                 />
               </div>
             </div>
             <div>
               <label className="text-[12px] text-muted-foreground mb-1.5 block">Current address</label>
-              <input
+              <Input
                 value={form.currentAddress}
                 onChange={e => update("currentAddress", e.target.value)}
                 placeholder="123 Main St, City, Country"
-                className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-1 focus:ring-primary/50"
+                className="h-9 text-[13px]"
               />
             </div>
           </div>
@@ -350,31 +352,31 @@ REQUIREMENTS:
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-[12px] text-muted-foreground mb-1.5 block">Employer / Company *</label>
-                <input
+                <Input
                   value={form.employer}
                   onChange={e => update("employer", e.target.value)}
                   placeholder="Acme Corp / Self-employed"
-                  className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  className="h-9 text-[13px]"
                 />
               </div>
               <div>
                 <label className="text-[12px] text-muted-foreground mb-1.5 block">Job title</label>
-                <input
+                <Input
                   value={form.jobTitle}
                   onChange={e => update("jobTitle", e.target.value)}
                   placeholder="Software Engineer"
-                  className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  className="h-9 text-[13px]"
                 />
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-[12px] text-muted-foreground mb-1.5 block">Years of employment</label>
-                <input
+                <Input
                   value={form.employmentYears}
                   onChange={e => update("employmentYears", e.target.value)}
                   placeholder="3 years"
-                  className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  className="h-9 text-[13px]"
                 />
               </div>
               <div>
@@ -382,7 +384,7 @@ REQUIREMENTS:
                 <select
                   value={form.incomeSource}
                   onChange={e => update("incomeSource", e.target.value)}
-                  className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  className="form-field w-full rounded-lg px-3 py-2 text-[13px]"
                 >
                   {INCOME_SOURCES.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
@@ -396,11 +398,11 @@ REQUIREMENTS:
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-[12px] text-muted-foreground mb-1.5 block">Planned entry date</label>
-                <input
+                <Input
                   type="date"
                   value={form.plannedEntryDate}
                   onChange={e => update("plannedEntryDate", e.target.value)}
-                  className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  className="h-9 text-[13px]"
                 />
               </div>
               <div>
@@ -408,7 +410,7 @@ REQUIREMENTS:
                 <select
                   value={form.purposeOfMove}
                   onChange={e => update("purposeOfMove", e.target.value)}
-                  className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  className="form-field w-full rounded-lg px-3 py-2 text-[13px]"
                 >
                   {PURPOSES.map(p => <option key={p} value={p}>{p}</option>)}
                 </select>
@@ -416,11 +418,11 @@ REQUIREMENTS:
             </div>
             <div>
               <label className="text-[12px] text-muted-foreground mb-1.5 block">Planned address in {profile?.target_country || "destination"}</label>
-              <input
+              <Input
                 value={form.plannedAddress}
                 onChange={e => update("plannedAddress", e.target.value)}
                 placeholder="Leave blank if still searching"
-                className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-1 focus:ring-primary/50"
+                className="h-9 text-[13px]"
               />
             </div>
           </div>
@@ -449,12 +451,12 @@ REQUIREMENTS:
           {/* Additional */}
           <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5 space-y-3">
             <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Additional context (optional)</p>
-            <textarea
+            <Textarea
               value={form.additionalNotes}
               onChange={e => update("additionalNotes", e.target.value)}
               placeholder="Any special circumstances, previous visa history, specific reasons for choosing this country..."
               rows={3}
-              className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-[13px] focus:outline-none focus:ring-1 focus:ring-primary/50 resize-none"
+              className="text-[13px] resize-none"
             />
           </div>
         </div>
