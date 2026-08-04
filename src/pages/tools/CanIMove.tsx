@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import AuthModal from "@/components/auth/AuthModal";
 import { supabase } from "@/integrations/supabase/client";
 import { countryDatabase } from "@/lib/countryMatching";
+import { canIMoveTitle } from "@/lib/demonyms";
 import { unslugify } from "@/lib/toolSlugs";
 import { ArrowLeft } from "lucide-react";
 
@@ -92,7 +93,7 @@ export default function CanIMove() {
     );
   }
 
-  const title = `Can I move to ${destination} with a ${citizenship} passport?`;
+  const title = canIMoveTitle(destination, citizenship);
   const description = `Quick check: relocating from ${citizenship} to ${destination} — common paths, visa difficulty, and next steps with Relova.`;
 
   return (

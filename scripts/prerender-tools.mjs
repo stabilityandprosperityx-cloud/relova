@@ -163,6 +163,37 @@ const LAUNCH_PAIRS = [
   },
 ];
 
+/** Keep in sync with src/lib/demonyms.ts */
+const DEMONYMS = {
+  Russia: "Russian",
+  "United States": "US",
+  "United Kingdom": "UK",
+  India: "Indian",
+  China: "Chinese",
+  Brazil: "Brazilian",
+  Nigeria: "Nigerian",
+  Philippines: "Filipino",
+};
+const CONSONANT_SOUND_EXCEPTIONS = new Set(["us", "uk"]);
+
+function indefiniteArticle(word) {
+  const trimmed = String(word || "").trim();
+  if (!trimmed) return "a";
+  const lower = trimmed.toLowerCase();
+  if (CONSONANT_SOUND_EXCEPTIONS.has(lower)) return "a";
+  return /^[aeiou]/i.test(lower) ? "an" : "a";
+}
+
+function citizenshipPassportPhrase(countryName) {
+  const key = String(countryName || "").trim();
+  const label = DEMONYMS[key] ?? key;
+  return `${indefiniteArticle(label)} ${label} passport`;
+}
+
+function canIMoveTitle(destination, citizenship) {
+  return `Can I move to ${destination} with ${citizenshipPassportPhrase(citizenship)}?`;
+}
+
 function slugify(name) {
   return name
     .trim()
@@ -231,7 +262,7 @@ writePage({
 for (const pair of LAUNCH_PAIRS) {
   const cSlug = slugify(pair.citizenship);
   const dSlug = slugify(pair.destination);
-  const h1 = `Can I move to ${pair.destination} with a ${pair.citizenship} passport?`;
+  const h1 = canIMoveTitle(pair.destination, pair.citizenship);
   writePage({
     outPath: join(distDir, "tools", "can-i-move", cSlug, dSlug, "index.html"),
     title: `${h1} — Relova`,
