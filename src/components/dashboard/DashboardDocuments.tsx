@@ -136,7 +136,7 @@ function getStatusConfig(doc: RequiredDoc) {
     case "ok":       return { label: "✔ Verified",       color: "text-primary",    bg: "bg-primary/10" };
     case "warning":  return { label: "⚠ Review needed",  color: "text-amber-400",  bg: "bg-amber-500/10" };
     case "mismatch": return { label: "✗ Wrong document", color: "text-red-400",    bg: "bg-red-500/10" };
-    case "pending":  return { label: "🤖 AI verifying…", color: "text-blue-400",   bg: "bg-blue-500/10" };
+    case "pending":  return { label: "Verifying…",       color: "text-blue-400",   bg: "bg-blue-500/10" };
     default:         return { label: "✔ Uploaded",       color: "text-green-400",  bg: "bg-green-500/10" };
   }
 }
@@ -319,7 +319,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
       });
     }
 
-    toast.success("Uploaded! AI verification starting…", {
+    toast.success("Uploaded! Verification starting…", {
       duration: 4000,
       icon: <Sparkles size={14} className="text-primary" />,
     });
@@ -529,7 +529,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
               <div className="flex-1">
                 <p className="font-semibold text-[14px]">Visa Cover Letter Generator</p>
                 <p className="text-[12px] text-muted-foreground mt-0.5">
-                  AI-generated cover letter for your {profile?.visa_type?.replace(/_/g, " ")} application — save $300+ on lawyers
+                  Personalized cover letter for your {profile?.visa_type?.replace(/_/g, " ")} application — save $300+ on lawyers
                 </p>
               </div>
               <ArrowRight size={16} className="text-primary shrink-0" />
@@ -754,7 +754,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
         {/* Footer note */}
         <div className="text-center pt-2">
           <p className="text-[11px] text-muted-foreground/40">
-            Personalized for your profile · AI verification is automatic for image uploads
+            Personalized for your profile · Verification is automatic for image uploads
           </p>
         </div>
       </div>

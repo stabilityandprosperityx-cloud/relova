@@ -73,7 +73,7 @@ const testimonials = [
     image: "https://i.pravatar.cc/150?img=51",
   },
   {
-    quote: "The AI advisor answered questions at 2am that my lawyer took a week to reply to.",
+    quote: "The Relocation Expert answered questions at 2am that my lawyer took a week to reply to.",
     name: "Sofia M.",
     role: "Product manager",
     route: "🇦🇷 Córdoba → 🇵🇹 Porto",

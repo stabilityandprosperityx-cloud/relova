@@ -12,7 +12,7 @@ const STEPS = [
     n: 2,
     icon: Sparkles,
     title: "Get your plan",
-    desc: "Relova AI builds your personalized relocation plan.",
+    desc: "Relova builds your personalized relocation plan.",
   },
   {
     n: 3,

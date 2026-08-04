@@ -4,7 +4,7 @@ const STEPS = [
   {
     n: 1,
     title: "Discover your country match",
-    desc: "Answer a few questions and our AI finds the best countries for your lifestyle and goals.",
+    desc: "Answer a few questions and we'll find the best countries for your lifestyle and goals.",
     thumb: "thumb-match",
   },
   {
@@ -152,7 +152,7 @@ export default function SolutionSection() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Our AI-powered platform gives you clarity, a personalized plan, and the confidence to move forward.
+            Relova gives you clarity, a personalized plan, and the confidence to move forward.
           </motion.p>
         </div>
 

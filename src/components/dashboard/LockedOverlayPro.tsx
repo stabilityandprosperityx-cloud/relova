@@ -46,7 +46,7 @@ export default function LockedOverlayPro({ onClose, profile }: Props) {
             Pro plan includes:
           </p>
           {[
-            "Unlimited AI Advisor — no question limits",
+            "Unlimited Relocation Expert — no question limits",
             profile?.target_country
               ? `Your ${profile.target_country} checklist — ready to start`
               : "Personalized relocation checklist",
@@ -67,7 +67,7 @@ export default function LockedOverlayPro({ onClose, profile }: Props) {
             Without Pro:
           </p>
           {[
-            "Only 3 questions to your AI Advisor",
+            "Only 3 questions to your Relocation Expert",
             "No action plan or checklist",
           ].map((item) => (
             <div key={item} className="flex items-start gap-2.5">

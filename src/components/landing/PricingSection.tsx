@@ -53,7 +53,7 @@ export default function PricingSection() {
       period: "forever",
       description: "Explore what Relova can do.",
       features: [
-        "3 AI questions total",
+        "3 Relocation Expert questions total",
         "Countries explorer (70+ countries)",
         "Basic cost calculator",
       ],
@@ -69,7 +69,7 @@ export default function PricingSection() {
       period: billing === "monthly" ? "/month" : "one-time",
       description: "Personalized guidance for your move.",
       features: [
-        "Unlimited AI Advisor",
+        "Unlimited Relocation Expert",
         "Personalized relocation checklist",
         "Move timeline with deadlines",
         "Cost calculator — 70+ countries",
@@ -92,7 +92,7 @@ export default function PricingSection() {
         "Document checklists",
         "Visa cover letter generator",
         "Timeline & milestones",
-        "Priority AI responses",
+        "Priority Relocation Expert responses",
       ],
       cta: billing === "monthly" ? "Get Full Plan" : "Get Full Lifetime",
       highlighted: false,
@@ -279,7 +279,7 @@ export default function PricingSection() {
               Relova Concierge
             </h3>
             <p className="text-[14px] text-muted-foreground mb-5">
-              Half the price of an immigration lawyer. A real expert guides you from decision to approved visa — powered by AI, verified by humans.
+              Half the price of an immigration lawyer. A real expert guides you from decision to approved visa.
             </p>
 
             {/* Price */}

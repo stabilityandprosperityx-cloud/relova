@@ -219,7 +219,7 @@ family status: ${userProfile.family_status || "single"}`;
         {/* Header */}
         <div className="px-4 py-3 border-b border-border/40 flex items-center gap-2">
           <div className="h-2.5 w-2.5 rounded-full bg-primary/40" />
-          <span className="text-[11px] text-muted-foreground/50 font-medium">Relova AI</span>
+          <span className="text-[11px] text-muted-foreground/50 font-medium">Relocation Expert</span>
         </div>
 
         {/* Messages */}

@@ -11,7 +11,7 @@ import {
 const faqs = [
   {
     q: "Is the information accurate and up to date?",
-    a: "Relova AI is trained on current visa rules, tax laws, and residency requirements. For final legal decisions, always verify with a licensed professional.",
+    a: "Relova's Relocation Expert draws on current visa rules, tax laws, and residency requirements. For final legal decisions, always verify with a licensed professional.",
   },
   {
     q: "What if my country isn't listed?",
@@ -36,7 +36,7 @@ export default function Help() {
     <div className="min-h-screen bg-background">
       <SEO
         title="Help Center — Relova"
-        description="FAQs about Relova: how our AI relocation planner works, saving plans, accuracy, and how we differ from general chatbots. Not legal advice—always verify with a professional."
+        description="FAQs about Relova: how our relocation planning works, saving plans, accuracy, and how we differ from general chatbots. Not legal advice—always verify with a professional."
         canonical="https://relova.ai/help"
       />
       <Navbar />

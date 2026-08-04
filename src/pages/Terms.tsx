@@ -5,13 +5,13 @@ const sections = [
   {
     title: "ACCEPTANCE OF TERMS",
     content: [
-      'By accessing or using Relova AI ("Service"), you agree to be bound by these Terms. If you disagree, do not use the Service.',
+      'By accessing or using Relova ("Service"), you agree to be bound by these Terms. If you disagree, do not use the Service.',
     ],
   },
   {
     title: "DESCRIPTION OF SERVICE",
     content: [
-      "Relova AI is an AI-powered relocation planning platform that provides personalized country recommendations, visa guidance, document checklists, and relocation roadmaps. The Service is informational only and does not constitute legal, immigration, tax, or financial advice.",
+      "Relova is a relocation planning platform that provides personalized country recommendations, visa guidance, document checklists, and relocation roadmaps. The Service is informational only and does not constitute legal, immigration, tax, or financial advice.",
     ],
   },
   {
@@ -23,8 +23,8 @@ const sections = [
   {
     title: "SUBSCRIPTION PLANS AND BILLING",
     content: [
-      "Free Plan: Limited to 3 AI questions total.",
-      "Pro Plan: $19/month, unlimited AI questions and personalized guidance.",
+      "Free Plan: Limited to 3 Relocation Expert questions total.",
+      "Pro Plan: $19/month, unlimited Relocation Expert questions and personalized guidance.",
       "Full Plan: $49/month, complete relocation system including document checklists, timelines, and tax strategy guidance.",
       "Subscriptions are billed monthly in advance. Payments are processed by Paddle.com who acts as Merchant of Record. Your subscription renews automatically unless cancelled.",
     ],
@@ -48,19 +48,19 @@ const sections = [
   {
     title: "INTELLECTUAL PROPERTY",
     content: [
-      "All content, features, and functionality of the Service are owned by Relova AI and protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without written permission.",
+      "All content, features, and functionality of the Service are owned by Relova and protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without written permission.",
     ],
   },
   {
     title: "DISCLAIMER OF WARRANTIES",
     content: [
-      'The Service is provided "as is" without warranties of any kind. Relova AI makes no warranty that the Service will be uninterrupted, error-free, or that information provided is current or accurate. Always verify visa and immigration information with qualified legal professionals.',
+      'The Service is provided "as is" without warranties of any kind. Relova makes no warranty that the Service will be uninterrupted, error-free, or that information provided is current or accurate. Always verify visa and immigration information with qualified legal professionals.',
     ],
   },
   {
     title: "LIMITATION OF LIABILITY",
     content: [
-      "To the maximum extent permitted by law, Relova AI shall not be liable for any indirect, incidental, or consequential damages arising from your use of the Service. Our total liability shall not exceed the amount you paid in the 12 months preceding the claim.",
+      "To the maximum extent permitted by law, Relova shall not be liable for any indirect, incidental, or consequential damages arising from your use of the Service. Our total liability shall not exceed the amount you paid in the 12 months preceding the claim.",
     ],
   },
   {
@@ -90,7 +90,7 @@ export default function Terms() {
     <>
       <SEO
         title="Terms of Service — Relova"
-        description="Terms of Service for Relova AI: subscriptions, acceptable use, and your rights when using our relocation planning platform."
+        description="Terms of Service for Relova: subscriptions, acceptable use, and your rights when using our relocation planning platform."
         canonical="https://relova.ai/terms"
       />
       <LegalPage title="Terms of Service" effectiveDate="March 23, 2026" sections={sections} />

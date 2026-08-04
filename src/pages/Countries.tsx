@@ -22,7 +22,7 @@ export default function Countries() {
     <div className="min-h-screen bg-background">
       <SEO
         title="Countries — Relova"
-        description="Explore destinations with Relova: compare visas, cost of living, taxes, and pathways. AI-powered relocation planning for Portugal, Spain, UAE, and dozens more."
+        description="Explore destinations with Relova: compare visas, cost of living, taxes, and pathways. Expert relocation planning for Portugal, Spain, UAE, and dozens more."
         canonical="https://relova.ai/countries"
       />
       <Navbar />
@@ -120,7 +120,7 @@ export default function Countries() {
           <motion.div className="mt-12 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
             <p className="text-muted-foreground mb-4">Not sure which country is right for you?</p>
             <Link to="/chat">
-              <Button variant="hero" className="gap-2">Ask Relova AI <ArrowRight size={14} /></Button>
+              <Button variant="hero" className="gap-2">Ask Your Relocation Expert <ArrowRight size={14} /></Button>
             </Link>
           </motion.div>
         </div>

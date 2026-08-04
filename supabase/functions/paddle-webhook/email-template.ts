@@ -114,7 +114,7 @@ export function buildPurchaseEmailHtml(params: PurchaseEmailParams): string {
                           <div style="width: 24px; height: 24px; border-radius: 50%; background-color: #5b4fe0; text-align: center; line-height: 24px; font-size: 12px; font-weight: 700; color: #fff;">3</div>
                         </td>
                         <td style="font-size: 14px; line-height: 1.55; color: #544d42;">
-                          <strong style="color: #2a2622;">Start your step-by-step relocation plan</strong> — track documents, timelines, and use the AI advisor whenever you have questions along the way.
+                          <strong style="color: #2a2622;">Start your step-by-step relocation plan</strong> — track documents, timelines, and use your Relocation Expert whenever you have questions along the way.
                         </td>
                       </tr>
                     </table>

@@ -87,7 +87,6 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
                 {item.highlight && !active && !locked && (
                   <span className="ml-auto flex items-center gap-1 px-1.5 py-0.5 rounded bg-primary/10 text-[10px] text-primary font-medium">
                     <Sparkles size={10} />
-                    AI
                   </span>
                 )}
                 {locked && <Lock size={12} className="ml-auto text-muted-foreground/30" />}

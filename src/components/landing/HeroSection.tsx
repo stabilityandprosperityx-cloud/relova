@@ -70,7 +70,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="text-[16px] md:text-[17px] leading-[1.7] mb-8 text-muted-foreground max-w-[440px]">
-              AI-powered relocation planning that finds the right country, builds your personalized plan, and guides you every step of the way.
+              Expert relocation planning that finds the right country, builds your personalized plan, and guides you every step of the way.
             </p>
 
             <div className="flex flex-col sm:flex-row items-start gap-3 mb-10">

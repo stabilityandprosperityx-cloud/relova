@@ -8,7 +8,7 @@ export default function Contact() {
     <div className="min-h-screen bg-background">
       <SEO
         title="Contact — Relova"
-        description="Contact the Relova team for product questions or support. We help with AI relocation planning accounts, billing, and feedback—reach us at support@relova.ai."
+        description="Contact the Relova team for product questions or support. We help with relocation planning accounts, billing, and feedback—reach us at support@relova.ai."
         canonical="https://relova.ai/contact"
       />
       <Navbar />

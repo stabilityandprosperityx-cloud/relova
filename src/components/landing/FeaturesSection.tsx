@@ -7,7 +7,7 @@ import countryPreview from "@/assets/redesign/country-preview.jpg";
 const FEATURES = [
   {
     icon: MessageSquare,
-    title: "AI relocation advisor",
+    title: "Your Relocation Expert",
     description: "Unlimited personalized answers about visas, taxes, banking — specific to your passport and situation.",
   },
   {
@@ -118,7 +118,7 @@ function AdvisorThumb() {
     <div className="w-full rounded-xl overflow-hidden" style={{ height: 108 }}>
       <img loading="lazy"
         src={advisorPreview}
-        alt="AI relocation advisor answering questions about visas and countries"
+        alt="Relocation Expert answering questions about visas and countries"
         className="w-full h-full object-cover object-center"
       />
     </div>

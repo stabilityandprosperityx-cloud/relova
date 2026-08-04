@@ -96,7 +96,7 @@ export default function CountryPage() {
             <p className="text-sm text-muted-foreground mb-5">Get a personalized plan based on your specific situation.</p>
             <Link to="/chat">
               <Button variant="hero" className="gap-2">
-                Talk to Relova AI <ArrowRight size={14} />
+                Talk to Your Relocation Expert <ArrowRight size={14} />
               </Button>
             </Link>
           </motion.div>

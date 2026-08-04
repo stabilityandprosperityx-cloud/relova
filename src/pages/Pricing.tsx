@@ -28,7 +28,7 @@ export default function Pricing() {
       period: billing === "monthly" ? "forever" : "forever",
       description: "Explore what Relova can do.",
       features: [
-        "3 AI questions total",
+        "3 Relocation Expert questions total",
         "Countries explorer (70+ countries)",
         "Basic cost calculator",
       ],
@@ -44,7 +44,7 @@ export default function Pricing() {
       period: billing === "monthly" ? "/month" : "one-time",
       description: "Personalized guidance for your move.",
       features: [
-        "Unlimited AI Advisor",
+        "Unlimited Relocation Expert",
         "Personalized relocation checklist",
         "Move timeline with deadlines",
         "Cost calculator — 70+ countries",
@@ -67,7 +67,7 @@ export default function Pricing() {
         "Document checklists",
         "Visa cover letter generator",
         "Timeline & milestones",
-        "Priority AI responses",
+        "Priority Relocation Expert responses",
       ],
       cta: billing === "monthly" ? "Get Full Plan" : "Get Full Lifetime",
       highlighted: false,
@@ -80,7 +80,7 @@ export default function Pricing() {
     <div className="min-h-screen bg-background">
       <SEO
         title="Pricing — Relova"
-        description="Relova plans for AI relocation planning: free exploration, Pro for unlimited guidance, and Full for deep plans. Choose monthly or lifetime access."
+        description="Relova plans for expert relocation planning: free exploration, Pro for unlimited guidance, and Full for deep plans. Choose monthly or lifetime access."
         canonical="https://relova.ai/pricing"
       />
       <Navbar />
@@ -180,7 +180,7 @@ export default function Pricing() {
                       Relova Concierge
                     </h3>
                     <p className="text-muted-foreground mb-6 max-w-md leading-relaxed">
-                      Half the price of an immigration lawyer. A real expert guides you from decision to approved visa — powered by AI, verified by humans.
+                      Half the price of an immigration lawyer. A real expert guides you from decision to approved visa.
                     </p>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

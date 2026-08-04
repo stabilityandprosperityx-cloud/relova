@@ -148,7 +148,7 @@ export default function DashboardChat({ profile, onNavigate }: Props) {
       ? docNames.map((d: string) => `- ${d}`).join("\n")
       : "(none yet)";
 
-    return `You are Relova AI — a personalized relocation advisor. User profile:
+    return `You are Relova's Relocation Expert — a personalized relocation advisor. User profile:
 citizenship: ${profile.citizenship || "unknown"}
 target country: ${profile.target_country || "unknown"}
 visa type: ${profile.visa_type?.replace(/_/g, " ") || "unknown"}

@@ -5,7 +5,7 @@ const sections = [
   {
     title: "OVERVIEW",
     content: [
-      "Relova AI payments are processed by Paddle.com, our Merchant of Record. Paddle handles all payments, refunds, and customer billing on our behalf.",
+      "Relova payments are processed by Paddle.com, our Merchant of Record. Paddle handles all payments, refunds, and customer billing on our behalf.",
     ],
   },
   {
@@ -42,7 +42,7 @@ export default function Refund() {
     <>
       <SEO
         title="Refund Policy — Relova"
-        description="Refund policy for Relova AI subscriptions and lifetime access, including our 14-day money-back guarantee via Paddle."
+        description="Refund policy for Relova subscriptions and lifetime access, including our 14-day money-back guarantee via Paddle."
         canonical="https://relova.ai/refund"
       />
       <LegalPage title="Refund Policy" effectiveDate="March 23, 2026" sections={sections} />

@@ -212,8 +212,8 @@ family status: ${userProfile.family_status || "single"}`;
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <SEO
-        title="AI Relocation Chat — Relova"
-        description="Ask Relova’s AI about visas, documents, taxes, and where to move. Get personalized relocation answers built for international moves—not generic travel tips."
+        title="Relocation Expert Chat — Relova"
+        description="Ask Relova’s Relocation Expert about visas, documents, taxes, and where to move. Get personalized relocation answers built for international moves—not generic travel tips."
         canonical="https://relova.ai/chat"
       />
       <Navbar />

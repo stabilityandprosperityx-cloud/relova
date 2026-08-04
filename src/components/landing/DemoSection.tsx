@@ -23,13 +23,13 @@ export default function DemoSection() {
             transition={{ duration: 0.5 }}
           >
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary mb-4">
-              AI Advisor Demo
+              Relocation Expert Demo
             </p>
             <h2 className="font-serif text-[2rem] sm:text-[2.4rem] md:text-[2.8rem] font-semibold leading-[1.1] mb-5 text-foreground">
               Ask. Plan. Move.
             </h2>
             <p className="text-[15px] leading-[1.7] text-muted-foreground mb-8">
-              Your AI Advisor is here 24/7 to guide you.
+              Your Relocation Expert is here 24/7 to guide you.
             </p>
 
             <ul className="space-y-3">
@@ -73,7 +73,7 @@ export default function DemoSection() {
             <div className="w-[380px] h-[420px] overflow-hidden flex-shrink-0">
               <img loading="lazy"
                 src={demoLifestyle}
-                alt="Person using Relova AI advisor on a laptop in a cozy home setting"
+                alt="Person using Relova's relocation expert on a laptop in a cozy home setting"
                 className="w-full h-full object-cover object-center"
               />
             </div>

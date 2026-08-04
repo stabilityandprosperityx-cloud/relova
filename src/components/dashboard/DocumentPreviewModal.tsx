@@ -45,7 +45,7 @@ function getStatusConfig(status: string) {
     case "verified":
       return { icon: CheckCircle2, label: "✔ Uploaded", color: "text-primary", bg: "bg-primary/10" };
     case "pending":
-      return { icon: Sparkles, label: "🤖 AI analyzing", color: "text-blue-400", bg: "bg-blue-500/10" };
+      return { icon: Sparkles, label: "Analyzing", color: "text-blue-400", bg: "bg-blue-500/10" };
     case "uploaded":
       return { icon: Clock, label: "⚠ Needs review", color: "text-amber-400", bg: "bg-amber-500/10" };
     default:

@@ -1259,7 +1259,7 @@ function CountryCompare({
             <div className="flex-1">
               <p className="font-semibold text-[14px]">Which is best for your situation?</p>
               <p className="text-[12px] text-muted-foreground mt-0.5">
-                Ask your AI advisor to recommend based on your passport, income and goals
+                Ask your Relocation Expert to recommend based on your passport, income and goals
               </p>
             </div>
             <Button className="shrink-0 bg-primary hover:bg-primary/80">

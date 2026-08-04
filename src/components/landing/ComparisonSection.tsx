@@ -4,7 +4,7 @@ import { Check, Minus } from "lucide-react";
 type CellValue = true | "—" | string;
 
 const ROWS: { label: string; others: CellValue; lawyers: CellValue; relova: CellValue }[] = [
-  { label: "AI-powered guidance",   others: "—",            lawyers: "—",               relova: true },
+  { label: "Expert guidance",        others: "—",            lawyers: "—",               relova: true },
   { label: "Personalized plan",     others: "—",            lawyers: "Basic",            relova: true },
   { label: "Real-time updates",     others: "—",            lawyers: "—",               relova: true },
   { label: "Document automation",   others: "Limited",      lawyers: "Manual",           relova: true },
@@ -67,7 +67,7 @@ export default function ComparisonSection() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Relova combines AI precision with human expertise — at a fraction of the cost.
+            Relova combines data-driven precision with human expertise — at a fraction of the cost.
           </motion.p>
         </div>
 

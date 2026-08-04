@@ -39,7 +39,7 @@ export default function Index() {
     <div className="min-h-screen bg-background bg-noise bg-grid">
       <SEO
         title="Relova — Know where to move. Know how to do it."
-        description="AI relocation planning: visas, documents, and housing tailored to your passport, budget, and goals. Turn international moves into a clear, step-by-step plan."
+        description="Expert relocation planning: visas, documents, and housing tailored to your passport, budget, and goals. Turn international moves into a clear, step-by-step plan."
         canonical="https://relova.ai/"
       />
       <Navbar />

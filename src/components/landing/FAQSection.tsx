@@ -8,7 +8,7 @@ const faqs = [
   {
     question: "Is the information accurate and up to date?",
     answer:
-      "Relova AI is trained on current visa rules, tax laws, and residency requirements. For final legal decisions, always verify with a licensed professional.",
+      "Relova's Relocation Expert draws on current visa rules, tax laws, and residency requirements. For final legal decisions, always verify with a licensed professional.",
   },
   {
     question: "What if my country isn't listed?",

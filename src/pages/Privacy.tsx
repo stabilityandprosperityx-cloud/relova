@@ -5,7 +5,7 @@ const sections = [
   {
     title: "INTRODUCTION",
     content: [
-      'Relova AI ("we", "us", "our") is committed to protecting your personal information. This policy explains what data we collect, how we use it, and your rights.',
+      'Relova ("we", "us", "our") is committed to protecting your personal information. This policy explains what data we collect, how we use it, and your rights.',
     ],
   },
   {
@@ -80,7 +80,7 @@ export default function Privacy() {
     <>
       <SEO
         title="Privacy Policy — Relova"
-        description="Privacy Policy for Relova AI: what we collect, how we use data, retention, and your rights."
+        description="Privacy Policy for Relova: what we collect, how we use data, retention, and your rights."
         canonical="https://relova.ai/privacy"
       />
       <LegalPage title="Privacy Policy" effectiveDate="March 23, 2026" sections={sections} />

@@ -9,7 +9,7 @@ import countryGreece from "@/assets/redesign/country-greece.jpg";
 import mexicoCoast from "@/assets/redesign/mexico-coast.jpg";
 
 const steps = [
-  { label: "AI Advisor", navIdx: 1, title: "Ask anything about your move", description: "Get specific answers about visas, documents, taxes, banking — personalized to your situation." },
+  { label: "Relocation Expert", navIdx: 1, title: "Ask anything about your move", description: "Get specific answers about visas, documents, taxes, banking — personalized to your situation." },
   { label: "My Plan", navIdx: 2, title: "51-step relocation plan", description: "Every step organized by phase: Preparation → Arrival → Settling in → Stability." },
   { label: "Documents", navIdx: 3, title: "Manage your documents", description: "Organize, track, and store all your documents in one secure place." },
   { label: "Checklists", navIdx: 4, title: "Document checklist per visa", description: "Every document you need, in the right order, with status tracking." },
@@ -19,7 +19,7 @@ const steps = [
 
 const NAV_ITEMS = [
   { label: "Home", icon: Home },
-  { label: "AI Advisor", icon: MessageSquare },
+  { label: "Relocation Expert", icon: MessageSquare },
   { label: "My Plan", icon: FileText },
   { label: "Documents", icon: FileText },
   { label: "Checklists", icon: CheckSquare },
@@ -38,7 +38,7 @@ function AdvisorScreen() {
   return (
     <div className="flex flex-col h-full px-5 py-5">
       <h3 className="text-[15px] font-semibold text-foreground mb-1">Where should you relocate?</h3>
-      <p className="text-[11px] text-muted-foreground mb-4">Answer a few questions and our AI will find your best matches.</p>
+      <p className="text-[11px] text-muted-foreground mb-4">Answer a few questions and we'll find your best matches.</p>
 
       {/* World map */}
       <div className="w-full rounded-xl mb-4 overflow-hidden" style={{ height: 110 }}>
