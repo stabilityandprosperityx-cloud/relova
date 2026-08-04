@@ -41,7 +41,27 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://relova.ai/tools/can-i-move/united-states/mexico</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://relova.ai/tools/can-i-move/united-states/portugal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/united-kingdom/ireland</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/united-kingdom/spain</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/india/united-states</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -51,7 +71,42 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://relova.ai/tools/can-i-move/united-kingdom/spain</loc>
+    <loc>https://relova.ai/tools/can-i-move/china/singapore</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/china/japan</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/brazil/portugal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/brazil/spain</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/nigeria/united-kingdom</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/nigeria/canada</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/philippines/uae</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/philippines/canada</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

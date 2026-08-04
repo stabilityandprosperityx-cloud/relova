@@ -1,5 +1,5 @@
 /**
- * Post-build: write static HTML shells for the can-i-move hub + 10 launch pairs.
+ * Post-build: write static HTML shells for the can-i-move hub + launch pairs.
  * Crawlers get real title/H1/verdict text; SPA hydrates via the same bundle as index.html.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
@@ -27,6 +27,7 @@ function extractHeadAssets(html) {
 const { links, scripts } = extractHeadAssets(indexHtml);
 
 const LAUNCH_PAIRS = [
+  // Russia (7)
   {
     citizenship: "Russia",
     destination: "Georgia",
@@ -69,23 +70,96 @@ const LAUNCH_PAIRS = [
     status: "common",
     note: "Popular visa-free/long-stay and retirement destination; among top tourist-turned-resident countries for Russians.",
   },
+  // United States (2)
+  {
+    citizenship: "United States",
+    destination: "Mexico",
+    status: "common",
+    note: "Most popular expat destination for Americans; Temporary Resident Visa via income proof, easy land access, no US totalization agreement issue.",
+  },
   {
     citizenship: "United States",
     destination: "Portugal",
-    status: "uncached",
-    note: "General visa difficulty: moderate — typical path: D8 Digital Nomad / D7 Passive Income Visa. This is general guidance, not specific to your passport yet.",
+    status: "common",
+    note: "D7 passive-income and D8 digital nomad visas widely used by Americans, though NHR tax break closed to new arrivals in 2025.",
   },
+  // United Kingdom (2)
   {
-    citizenship: "India",
-    destination: "UAE",
-    status: "uncached",
-    note: "General visa difficulty: moderate — typical path: Freelance Permit + Residence Visa / Golden Visa. This is general guidance, not specific to your passport yet.",
+    citizenship: "United Kingdom",
+    destination: "Ireland",
+    status: "common",
+    note: "Common Travel Area lets Britons live, work, and study visa-free with no residency permits or income checks.",
   },
   {
     citizenship: "United Kingdom",
     destination: "Spain",
-    status: "uncached",
-    note: "General visa difficulty: moderate — typical path: Digital Nomad Visa (Ley de Startups). This is general guidance, not specific to your passport yet.",
+    status: "common",
+    note: "Non-Lucrative and Digital Nomad Visas are standard routes; over 400,000 British residents already there.",
+  },
+  // India (2)
+  {
+    citizenship: "India",
+    destination: "United States",
+    status: "common",
+    note: "H-1B visa: India is top source, 71-73% of all approvals, despite 2025 $100,000 fee hike.",
+  },
+  {
+    citizenship: "India",
+    destination: "UAE",
+    status: "common",
+    note: "10-year Golden Visa and sponsor-free work visas; Indians are largest expat community (~35% of population).",
+  },
+  // China (2)
+  {
+    citizenship: "China",
+    destination: "Singapore",
+    status: "common",
+    note: "Among Singapore's citizens and permanent residents, three-quarters are of Chinese ethnicity, easing cultural/language integration for mainland Chinese via work/",
+  },
+  {
+    citizenship: "China",
+    destination: "Japan",
+    status: "common",
+    note: "Visa-free short-stay entry was re-established for Japan in 2025; large existing Chinese community supports work/study/spouse visa routes.",
+  },
+  // Brazil (2)
+  {
+    citizenship: "Brazil",
+    destination: "Portugal",
+    status: "common",
+    note: "CPLP mobility deal lets Brazilians get fast residency/work permits; largest Brazilian community in Europe.",
+  },
+  {
+    citizenship: "Brazil",
+    destination: "Spain",
+    status: "common",
+    note: "Ibero-American nationals get citizenship after just 2 years' legal residence vs 10 for others.",
+  },
+  // Nigeria (2)
+  {
+    citizenship: "Nigeria",
+    destination: "United Kingdom",
+    status: "common",
+    note: "Nigeria consistently top-5 nationality for UK visas; large diaspora, but Skilled Worker/Health-Care routes now tightened with higher salary thresholds.",
+  },
+  {
+    citizenship: "Nigeria",
+    destination: "Canada",
+    status: "common",
+    note: "Nigeria ranks among top 3 nationalities for Express Entry PR and a leading source country for study permits; strong track record.",
+  },
+  // Philippines (2)
+  {
+    citizenship: "Philippines",
+    destination: "UAE",
+    status: "common",
+    note: "Top land-based OFW destination overall, with 397,892 deployed in 2025, mostly on employer-sponsored work visas.",
+  },
+  {
+    citizenship: "Philippines",
+    destination: "Canada",
+    status: "common",
+    note: "Nearly 1 million Filipino-Canadians; Express Entry, caregiver pilots (Home Child Care/Home Support Worker), and PNPs are common PR routes.",
   },
 ];
 
