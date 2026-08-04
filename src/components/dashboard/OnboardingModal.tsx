@@ -459,13 +459,22 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   // Layer 1 loading — before matches are revealed
   if (findingDestinations) {
     return (
-      <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-4 px-4">
-        <div className="w-full max-w-md rounded-2xl border border-border bg-card p-6 sm:p-8 my-4">
-          <div className="rounded-lg border border-primary/20 bg-primary/[0.04] px-4 py-5 text-center">
-            <p className="text-[13px] text-muted-foreground animate-pulse">
-              Finding realistic destinations for{" "}
-              {citizenship ? `${citizenship} passports` : "your passport"}…
-            </p>
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm px-4">
+        <div className="surface-card w-full max-w-sm p-10 sm:p-12 text-center">
+          <div className="mx-auto h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-5">
+            <Compass size={22} className="text-primary animate-pulse" />
+          </div>
+          <h2 className="font-serif text-[1.35rem] sm:text-[1.5rem] font-semibold text-card-foreground tracking-tight leading-tight">
+            Finding your best-fit countries
+          </h2>
+          <p className="text-[13px] text-muted-foreground mt-2.5 leading-relaxed">
+            Checking realistic options for{" "}
+            {citizenship ? `${citizenship} passports` : "your passport"}…
+          </p>
+          <div className="flex items-center justify-center gap-1.5 mt-6" aria-hidden>
+            <span className="h-1.5 w-1.5 rounded-full bg-primary/50 animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-primary/50 animate-pulse [animation-delay:150ms]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-primary/50 animate-pulse [animation-delay:300ms]" />
           </div>
         </div>
       </div>
