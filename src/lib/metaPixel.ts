@@ -20,8 +20,17 @@ export function trackPixelEvent(
   eventId: string,
   params?: Record<string, unknown>,
 ): void {
-  if (typeof window.fbq !== "function") return;
-  window.fbq("track", eventName, params ?? {}, { eventID: eventId });
+  console.log(`[MetaPixel] Attempting to fire: ${eventName}`, { eventId, params, fbqExists: typeof window.fbq });
+  if (typeof window.fbq !== "function") {
+    console.warn(`[MetaPixel] SKIPPED ${eventName} — window.fbq is not a function`);
+    return;
+  }
+  try {
+    window.fbq("track", eventName, params ?? {}, { eventID: eventId });
+    console.log(`[MetaPixel] Successfully called fbq for: ${eventName}`);
+  } catch (err) {
+    console.error(`[MetaPixel] ERROR firing ${eventName}:`, err);
+  }
 }
 
 /**
