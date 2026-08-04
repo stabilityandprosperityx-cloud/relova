@@ -190,27 +190,96 @@ Deno.serve(async (req) => {
     // One-time lifetime purchase
     if (eventType === "transaction.completed") {
       const data = event.data ?? {};
-      const customData = data.custom_data as Record<string, unknown> | undefined;
-      const userId = userIdFromCustomData(customData);
 
-      if (!userId) {
-        console.error("transaction.completed: no userId in custom_data");
-        return jsonResponse({ error: "Missing userId" }, 400);
-      }
-
-      // Find price ID from transaction items
+      // Resolve plan first — skip immediately if not a Relova price
       const items = (data.items ?? []) as Array<{ price?: { id?: string }; price_id?: string }>;
       let priceId: string | undefined;
       for (const item of items) {
         priceId = item.price?.id ?? item.price_id;
         if (priceId) break;
       }
-
       const plan = priceId ? PRICE_TO_PLAN[priceId] : undefined;
-
       if (!plan) {
         console.log("transaction.completed: not a Relova plan price, skipping", priceId);
         return jsonResponse({ received: true });
+      }
+
+      const customData = data.custom_data as Record<string, unknown> | undefined;
+      let userId = userIdFromCustomData(customData);
+      let resolutionMethod: string | null = userId ? "custom_data_userId" : null;
+
+      if (!userId) {
+        // Guest checkout — resolve buyer by email instead of hard-failing
+        const guestEmail: string | undefined =
+          (customData?.guestEmail as string | undefined) ??
+          (customData?.guest_email as string | undefined) ??
+          (data.customer as { email?: string } | undefined)?.email ??
+          (data.billing_details as { email?: string } | undefined)?.email;
+
+        if (!guestEmail) {
+          console.error(
+            "transaction.completed: no userId AND no email found — cannot resolve buyer",
+            JSON.stringify({ custom_data: customData, customer: data.customer })
+          );
+          await supabase.from("pending_grants").insert({
+            email: "unknown",
+            plan,
+            paddle_transaction_id: (data.id as string | undefined) ?? null,
+            resolution_method: "unresolved",
+            raw_event: data,
+          });
+          // Acknowledge to Paddle so it doesn't retry indefinitely; needs manual review
+          return jsonResponse({ received: true, warning: "unresolved buyer" });
+        }
+
+        // Try to find an existing Supabase user with this email
+        const { data: listData, error: listError } = await supabase.auth.admin.listUsers({
+          page: 1,
+          perPage: 1000,
+        });
+        if (listError) {
+          console.error("transaction.completed: listUsers failed", listError);
+        }
+
+        const existingUser = listData?.users?.find(
+          (u) => u.email?.toLowerCase() === guestEmail.toLowerCase()
+        );
+
+        if (existingUser) {
+          userId = existingUser.id;
+          resolutionMethod = "existing_user";
+          console.log(`transaction.completed: resolved guest ${guestEmail} → existing user ${userId}`);
+        } else {
+          // No account yet — auto-create one and send an invite/magic-link email
+          const { data: inviteData, error: inviteError } =
+            await supabase.auth.admin.inviteUserByEmail(guestEmail);
+
+          if (inviteError || !inviteData?.user) {
+            console.error("transaction.completed: inviteUserByEmail failed", inviteError);
+            await supabase.from("pending_grants").insert({
+              email: guestEmail,
+              plan,
+              paddle_transaction_id: (data.id as string | undefined) ?? null,
+              resolution_method: "unresolved",
+              raw_event: data,
+            });
+            return jsonResponse({ received: true, warning: "could not auto-create user" });
+          }
+
+          userId = inviteData.user.id;
+          resolutionMethod = "auto_created";
+          console.log(`transaction.completed: auto-created user ${userId} for guest ${guestEmail}`);
+        }
+
+        // Audit log for every guest path regardless of outcome
+        await supabase.from("pending_grants").insert({
+          email: guestEmail,
+          plan,
+          paddle_transaction_id: (data.id as string | undefined) ?? null,
+          resolved_user_id: userId,
+          resolution_method: resolutionMethod,
+          raw_event: data,
+        });
       }
 
       const { error } = await supabase
@@ -222,7 +291,7 @@ Deno.serve(async (req) => {
         return jsonResponse({ error: "Update failed" }, 500);
       }
 
-      console.log(`Lifetime purchase: updated user ${userId} to plan: ${plan}`);
+      console.log(`Lifetime purchase: updated user ${userId} to plan: ${plan} (resolution: ${resolutionMethod})`);
 
       // Meta CAPI — Purchase event (direct call, no extra hop via meta-capi function)
       try {
