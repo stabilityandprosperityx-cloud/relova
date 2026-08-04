@@ -26,6 +26,7 @@ export interface UserProfile {
   plan: UserPlan;
   questions_used: number;
   plan_expires_at: string | null;
+  documents_status?: "generating" | "ready" | "failed" | null;
   family_status?: string | null;
   timeline?: string | null;
   constraints?: string | null;

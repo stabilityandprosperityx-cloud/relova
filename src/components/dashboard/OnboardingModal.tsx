@@ -278,7 +278,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
     // Clear old plan + docs, then write fresh ones (shared logic with EditProfileModal)
     try {
-      await generateAndSaveUserPlan(userId, finalCountry, visaType, familyStatus);
+      await generateAndSaveUserPlan(userId, citizenship, finalCountry, visaType, familyStatus);
     } catch (err: unknown) {
       toast.error(err instanceof Error ? err.message : "Failed to save plan");
       setSaving(false);

@@ -136,6 +136,7 @@ export default function ChatActionButtons({ content, onNavigate }: Props) {
         verification_status: "pending",
         prepared_without_upload: false,
         related_step_title: i.doc!.related_step_title ?? null,
+        source: "chat",
       }));
       if (docRows.length > 0) {
         const { error } = await supabase.from("user_documents").insert(docRows);

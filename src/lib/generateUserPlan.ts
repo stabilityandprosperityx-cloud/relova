@@ -1,27 +1,58 @@
 import { supabase } from "@/integrations/supabase/client";
-import { generatePlan, generateChecklist } from "@/lib/planGenerator";
+import { generatePlan } from "@/lib/planGenerator";
+
+/** Minimal starter list shown while AI checklist generates in the background. */
+export const PLACEHOLDER_DOCUMENTS = [
+  { name: "Valid passport", description: "Must be valid for 6+ months from planned entry", phase: "before" as const, category: "identity", required: true },
+  { name: "Proof of funds / bank statements", description: "Recent statements showing sufficient funds", phase: "before" as const, category: "financial", required: true },
+  { name: "Health insurance", description: "Coverage valid in the destination country", phase: "before" as const, category: "legal", required: true },
+  { name: "Criminal background check", description: "From your country of citizenship, apostilled if required", phase: "before" as const, category: "legal", required: true },
+  { name: "Proof of accommodation", description: "Rental agreement, booking, or host invitation", phase: "before" as const, category: "legal", required: true },
+];
 
 /**
- * Clears any existing plan/documents for a user, then writes a fresh
- * user_relocation_plan + user_documents derived from the given profile data.
+ * Clears replaceable plan/docs for a user, writes a fresh relocation plan,
+ * inserts placeholder documents, then fires async AI checklist generation.
  *
- * Used by both OnboardingModal and EditProfileModal so the logic never
- * diverges between the two flows.
+ * Used by both OnboardingModal and EditProfileModal.
  */
 export async function generateAndSaveUserPlan(
   userId: string,
+  citizenship: string,
   targetCountry: string,
   visaType: string,
   familyStatus: string,
 ): Promise<void> {
   const plan = generatePlan(targetCountry, visaType, familyStatus);
-  const checklist = generateChecklist(targetCountry, visaType, familyStatus);
 
-  // Clear existing plan + docs (handles re-onboarding / country change)
-  await Promise.all([
-    supabase.from("user_relocation_plan").delete().eq("user_id", userId),
-    supabase.from("user_documents").delete().eq("user_id", userId),
-  ]);
+  // Mark checklist as generating before we swap docs
+  await supabase
+    .from("user_profiles")
+    .update({ documents_status: "generating" })
+    .eq("user_id", userId);
+
+  // Clear plan steps always
+  await supabase.from("user_relocation_plan").delete().eq("user_id", userId);
+
+  // Clear only non-preserved documents (never wipe uploads / marked-ready)
+  const { data: existingDocs } = await supabase
+    .from("user_documents")
+    .select("id, document_name, storage_path, prepared_without_upload")
+    .eq("user_id", userId);
+
+  const preservedNames = new Set(
+    (existingDocs || [])
+      .filter((d) => d.storage_path || d.prepared_without_upload)
+      .map((d) => d.document_name.toLowerCase()),
+  );
+
+  const deletableIds = (existingDocs || [])
+    .filter((d) => !d.storage_path && !d.prepared_without_upload)
+    .map((d) => d.id);
+
+  if (deletableIds.length > 0) {
+    await supabase.from("user_documents").delete().in("id", deletableIds);
+  }
 
   // Insert steps into user_relocation_plan
   let stepNumber = 1;
@@ -45,16 +76,40 @@ export async function generateAndSaveUserPlan(
     if (error) throw new Error("Failed to save plan: " + error.message);
   }
 
-  // Insert documents into user_documents
-  const docRows = checklist.map((doc) => ({
-    user_id: userId,
-    document_name: doc.name,
-    status: "pending",
-    verification_status: "pending",
-    prepared_without_upload: false,
-  }));
-  if (docRows.length > 0) {
-    const { error } = await supabase.from("user_documents").insert(docRows);
-    if (error) throw new Error("Failed to save documents: " + error.message);
+  // Placeholder docs so Documents tab isn't empty while AI runs
+  const placeholderRows = PLACEHOLDER_DOCUMENTS
+    .filter((doc) => !preservedNames.has(doc.name.toLowerCase()))
+    .map((doc) => ({
+      user_id: userId,
+      document_name: doc.name,
+      description: doc.description,
+      phase: doc.phase,
+      category: doc.category,
+      source: "placeholder",
+      status: "pending",
+      verification_status: "pending",
+      prepared_without_upload: false,
+    }));
+  if (placeholderRows.length > 0) {
+    const { error: docError } = await supabase.from("user_documents").insert(placeholderRows);
+    if (docError) throw new Error("Failed to save documents: " + docError.message);
   }
+
+  // Fire-and-forget: Edge Function materializes AI list server-side
+  void supabase.functions
+    .invoke("generate-document-checklist", {
+      body: {
+        citizenship_country: citizenship,
+        destination_country: targetCountry,
+        visa_type: visaType,
+        user_id: userId,
+        family_status: familyStatus,
+      },
+    })
+    .then(({ error }) => {
+      if (error) console.error("generate-document-checklist invoke failed:", error);
+    })
+    .catch((err) => {
+      console.error("generate-document-checklist invoke error:", err);
+    });
 }

@@ -25,6 +25,10 @@ interface UserDoc {
   verification_note: string | null;
   prepared_without_upload: boolean | null;
   related_step_title: string | null;
+  description?: string | null;
+  category?: string | null;
+  phase?: string | null;
+  source?: string | null;
   uploaded_at: string;
 }
 
@@ -59,6 +63,7 @@ const CATEGORIES = [
   { key: "identity",  label: "Identity",       description: "Personal identification documents" },
   { key: "financial", label: "Financial proof", description: "Income and financial documentation" },
   { key: "legal",     label: "Legal documents", description: "Permits, certificates, and legal paperwork" },
+  { key: "other",     label: "Other",          description: "Additional documents for your move" },
 ];
 
 const DEFAULT_DOCS = [
@@ -205,6 +210,10 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({ identity: true });
   const [previewDoc, setPreviewDoc] = useState<{ doc: UserDoc; verificationNote: string | null; usedFor: string; signedUrl: string | null } | null>(null);
   const [signedUrls, setSignedUrls] = useState<Record<string, string>>({});
+  const [docsStatus, setDocsStatus] = useState<"generating" | "ready" | "failed">(
+    (profile?.documents_status as "generating" | "ready" | "failed") || "ready",
+  );
+  const [refreshing, setRefreshing] = useState(false);
   const isLocked = (profile?.plan || "free") !== "full" && (profile?.plan || "free") !== "concierge";
 
   // ── Signed URLs (for preview thumbnails, 1h) ────────────────────────────────
@@ -237,6 +246,67 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
 
   useEffect(() => { fetchData(); }, [fetchData]);
 
+  // Sync docsStatus from profile when it loads/changes
+  useEffect(() => {
+    if (profile?.documents_status) {
+      setDocsStatus(profile.documents_status);
+    }
+  }, [profile?.documents_status]);
+
+  // Poll while checklist is generating
+  useEffect(() => {
+    if (!user || docsStatus !== "generating") return;
+
+    const poll = async () => {
+      const { data } = await supabase
+        .from("user_profiles")
+        .select("documents_status")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      const status = (data?.documents_status as "generating" | "ready" | "failed") || "ready";
+      if (status !== "generating") {
+        setDocsStatus(status);
+        await fetchData();
+      }
+    };
+
+    const id = setInterval(poll, 2500);
+    return () => clearInterval(id);
+  }, [user, docsStatus, fetchData]);
+
+  const triggerChecklistRefresh = useCallback(async () => {
+    if (!user || !profile?.citizenship || !profile?.target_country || !profile?.visa_type) {
+      toast.error("Complete your profile (citizenship, destination, visa) first");
+      return;
+    }
+    setRefreshing(true);
+    setDocsStatus("generating");
+    await supabase
+      .from("user_profiles")
+      .update({ documents_status: "generating" })
+      .eq("user_id", user.id);
+
+    const { error } = await supabase.functions.invoke("generate-document-checklist", {
+      body: {
+        citizenship_country: profile.citizenship,
+        destination_country: profile.target_country,
+        visa_type: profile.visa_type,
+        user_id: user.id,
+        family_status: profile.family_status ?? undefined,
+      },
+    });
+
+    setRefreshing(false);
+    if (error) {
+      console.error(error);
+      setDocsStatus("failed");
+      toast.error("Could not start checklist refresh");
+      return;
+    }
+    // Polling effect will pick up ready/failed
+  }, [user, profile]);
+
   // ── requiredDocs computation ────────────────────────────────────────────────
   const requiredDocs: RequiredDoc[] = useMemo(() => {
     if (userDocs.length > 0) {
@@ -245,9 +315,9 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
         return {
           id: ud.id,
           document_name: ud.document_name,
-          description: null,
+          description: ud.description ?? null,
           is_required: ud.status !== "optional",
-          category: categorizeDoc(ud.document_name),
+          category: ud.category || categorizeDoc(ud.document_name),
           userDocId: ud.id,
           uploadedDoc: hasFile ? ud : null,
           isPrepared: !hasFile && (ud.prepared_without_upload ?? false),
@@ -494,7 +564,17 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
         >
           <div className="flex items-center justify-between mb-1">
             <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Your documents</p>
-            <span className="text-[12px] text-muted-foreground">{readyCount} / {totalCount} ready</span>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => triggerChecklistRefresh()}
+                disabled={refreshing || docsStatus === "generating" || isLocked}
+                className="text-[11px] text-primary/70 hover:text-primary disabled:opacity-40 transition-colors"
+              >
+                {refreshing || docsStatus === "generating" ? "Refreshing…" : "Refresh checklist"}
+              </button>
+              <span className="text-[12px] text-muted-foreground">{readyCount} / {totalCount} ready</span>
+            </div>
           </div>
 
           {/* Journey Line */}
@@ -555,6 +635,33 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
             </Button>
           </div>
         </motion.section>
+
+        {docsStatus === "generating" && (
+          <div className="rounded-lg border border-primary/20 bg-primary/[0.04] px-4 py-3 text-[13px] text-muted-foreground">
+            Personalizing your checklist
+            {profile?.citizenship && profile?.target_country
+              ? ` for ${profile.citizenship} → ${profile.target_country}`
+              : " for your move"}
+            …
+          </div>
+        )}
+
+        {docsStatus === "failed" && (
+          <div className="rounded-lg border border-amber-500/25 bg-amber-500/[0.06] px-4 py-3 flex items-center justify-between gap-3 flex-wrap">
+            <p className="text-[13px] text-muted-foreground">
+              We couldn&apos;t personalize your checklist — showing a starter list.
+            </p>
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-[12px] h-8"
+              onClick={() => triggerChecklistRefresh()}
+              disabled={refreshing}
+            >
+              Retry personalization
+            </Button>
+          </div>
+        )}
 
         {/* Visa Cover Letter Generator */}
         {!isLocked && (

@@ -146,7 +146,7 @@ export default function EditProfileModal({ profile, onSave, onClose }: Props) {
 
     if (visaChanged || targetCountry !== profile.target_country) {
       try {
-        await generateAndSaveUserPlan(profile.user_id, targetCountry, newVisaType, familyStatus);
+        await generateAndSaveUserPlan(profile.user_id, citizenship, targetCountry, newVisaType, familyStatus);
       } catch (err: unknown) {
         toast.error(err instanceof Error ? err.message : "Failed to regenerate plan");
         setSaving(false);
