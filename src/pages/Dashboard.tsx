@@ -14,7 +14,7 @@ import type { RelocationCase } from "@/hooks/useRelocationCase";
 
 export type DashboardTab = "overview" | "plan" | "chat" | "documents" | "countries";
 
-export type UserPlan = "free" | "pro" | "full";
+export type UserPlan = "free" | "pro" | "full" | "concierge";
 
 export interface UserProfile {
   user_id: string;

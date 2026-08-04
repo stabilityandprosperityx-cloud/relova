@@ -16,7 +16,7 @@ const navItems: { id: DashboardTab; label: string; icon: typeof LayoutGrid; minP
   { id: "countries", label: "Countries", icon: Globe, minPlan: "free" },
 ];
 
-const planRank: Record<UserPlan, number> = { free: 0, pro: 1, full: 2 };
+const planRank: Record<UserPlan, number> = { free: 0, pro: 1, full: 2, concierge: 3 };
 
 interface Props {
   activeTab: DashboardTab;
@@ -97,7 +97,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
         </nav>
 
         <div className="px-3 pb-4 space-y-2">
-          {userPlan !== "full" && (
+          {userPlan !== "full" && userPlan !== "concierge" && (
             <Link
               to="/pricing"
               className="block w-full text-center px-3 py-2 rounded-lg text-[11px] font-medium text-white transition-all hover:opacity-90"
@@ -164,7 +164,7 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
               <p className="text-[11px] capitalize text-primary/70">{userPlan} plan</p>
             </SheetHeader>
             <div className="mt-6 flex flex-col gap-0">
-              {userPlan !== "full" && (
+              {userPlan !== "full" && userPlan !== "concierge" && (
                 <Link
                   to="/pricing"
                   onClick={() => setMobileSheetOpen(false)}

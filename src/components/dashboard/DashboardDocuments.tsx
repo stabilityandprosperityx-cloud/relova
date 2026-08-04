@@ -165,7 +165,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({ identity: true });
   const [previewDoc, setPreviewDoc] = useState<{ doc: UserDoc; verificationNote: string | null; usedFor: string; signedUrl: string | null } | null>(null);
   const [signedUrls, setSignedUrls] = useState<Record<string, string>>({});
-  const isLocked = (profile?.plan || "free") !== "full";
+  const isLocked = (profile?.plan || "free") !== "full" && (profile?.plan || "free") !== "concierge";
 
   // ── Signed URLs (for preview thumbnails, 1h) ────────────────────────────────
   const refreshSignedUrls = useCallback(async (docs: UserDoc[]) => {

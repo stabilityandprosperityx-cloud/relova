@@ -87,8 +87,8 @@ export default function DashboardPlan({ profile, onNavigate, relocationCase }: P
   const [openPhases, setOpenPhases] = useState<Record<string, boolean>>({});
 
   const plan = profile?.plan || "free";
-  const isProOrAbove = plan === "pro" || plan === "full";
-  const isFullPlan = plan === "full";
+  const isProOrAbove = plan === "pro" || plan === "full" || plan === "concierge";
+  const isFullPlan = plan === "full" || plan === "concierge";
 
   useEffect(() => {
     setMoveDate(profile?.move_date || "");

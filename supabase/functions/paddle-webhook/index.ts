@@ -64,6 +64,15 @@ const PRICE_TO_PLAN: Record<string, string> = {
   pri_01kmcs3ffsnfr0gn8qkkqnptkz: "full",
   pri_01knntsw2jrs7fvdysgrvp33gf: "pro",
   pri_01knntwgba19kgzp0ja68a7xt8: "full",
+  pri_01krkty7x4gx2m5pkjkj9vtepe: "concierge",
+};
+
+const PRICE_TO_LABEL: Record<string, string> = {
+  pri_01kmcrz3x9v1ya2ak025nbpn1g: "Pro",
+  pri_01kmcs3ffsnfr0gn8qkkqnptkz: "Full",
+  pri_01knntsw2jrs7fvdysgrvp33gf: "Pro",
+  pri_01knntwgba19kgzp0ja68a7xt8: "Full",
+  pri_01krkty7x4gx2m5pkjkj9vtepe: "Concierge",
 };
 
 type SubscriptionItem = {
@@ -368,7 +377,7 @@ Deno.serve(async (req) => {
         }
 
         if (recipientEmail) {
-          const planLabel = plan === "full" ? "Full" : "Pro";
+          const planLabel = PRICE_TO_LABEL[priceId ?? ""] ?? (plan === "full" ? "Full" : plan === "concierge" ? "Concierge" : "Pro");
           const emailHtml = buildPurchaseEmailHtml({
             planLabel,
             dashboardUrl: "https://relova.ai/dashboard",

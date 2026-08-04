@@ -119,6 +119,7 @@ const MODEL_BY_TIER: Record<string, string> = {
   free: "claude-haiku-4-5-20251001",
   pro:  "claude-sonnet-5",
   full: "claude-opus-5",
+  concierge: "claude-opus-5",
 };
 
 serve(async (req) => {
