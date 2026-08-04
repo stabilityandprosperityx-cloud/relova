@@ -28,6 +28,7 @@ const FOOTER_COLS = [
     links: [
       { label: "Country Guides",         href: "/countries" },
       { label: "Visa Eligibility Check", href: "/tools/can-i-move" },
+      { label: "Where Should I Move?",   href: "/tools/where-should-i-move" },
       { label: "Visa Timeline",          href: "#" },
       { label: "Relocation Blog",        href: "/blog" },
       { label: "Help Center",            href: "/help" },

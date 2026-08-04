@@ -65,6 +65,12 @@ export default function FAQSection() {
                 Free visa eligibility check →
               </Link>
               <Link
+                to="/tools/where-should-i-move"
+                className="text-[14px] font-medium text-primary hover:opacity-75 transition-opacity"
+              >
+                Where should I move? →
+              </Link>
+              <Link
                 to="/contact"
                 className="text-[14px] font-medium text-primary hover:opacity-75 transition-opacity"
               >

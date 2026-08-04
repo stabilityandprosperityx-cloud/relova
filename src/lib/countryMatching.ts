@@ -959,7 +959,11 @@ export function resolveCountryProfile(name: string): CountryProfile | undefined 
   return undefined;
 }
 
-export function matchCountries(criteria: UserCriteria, pool?: CountryProfile[]): CountryMatch[] {
+export function matchCountries(
+  criteria: UserCriteria,
+  pool?: CountryProfile[],
+  limit = 5,
+): CountryMatch[] {
   const results: CountryMatch[] = [];
   const countries = pool && pool.length > 0 ? pool : countryDatabase;
 
@@ -1089,5 +1093,5 @@ export function matchCountries(criteria: UserCriteria, pool?: CountryProfile[]):
   }
 
   results.sort((a, b) => b.score - a.score);
-  return results.slice(0, 5);
+  return results.slice(0, Math.max(1, limit));
 }

@@ -1,10 +1,12 @@
 /**
- * Post-build: write static HTML shells for the can-i-move hub + launch pairs.
+ * Post-build: write static HTML shells for the can-i-move hub + launch pairs
+ * and the where-should-i-move persona hub + pages.
  * Crawlers get real title/H1/verdict text; SPA hydrates via the same bundle as index.html.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import { execFileSync } from "child_process";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, "..", "dist");
@@ -275,6 +277,72 @@ for (const pair of LAUNCH_PAIRS) {
       <p style="margin-top:0.75rem;color:#333">${escapeHtml(pair.note)}</p>
       <p style="margin-top:1.5rem;font-size:0.75rem;color:#888">Not legal advice. Based on general and cached research — verify with official sources before making decisions.</p>
       <p style="margin-top:2rem"><a href="/tools/can-i-move">Want a personalized plan? Start free →</a></p>
+    </main>
+  `,
+  });
+}
+
+// ─── Where should I move (persona pages) ───
+let personaSnapshots = [];
+try {
+  const viteNodeBin = join(__dirname, "..", "node_modules", ".bin", "vite-node");
+  const raw = execFileSync(
+    viteNodeBin,
+    [join(__dirname, "dump-persona-matches.ts")],
+    { encoding: "utf8", cwd: join(__dirname, "..") },
+  );
+  personaSnapshots = JSON.parse(raw.trim());
+} catch (err) {
+  console.error("prerender-tools: failed to dump persona matches", err);
+  process.exit(1);
+}
+
+writePage({
+  outPath: join(distDir, "tools", "where-should-i-move", "index.html"),
+  title: "Where Should I Move? — Relova",
+  description:
+    "Free country shortlists for digital nomads, retirees, families, safety-first movers, budget relocators, and anyone seeking a fresh start.",
+  bodyHtml: `
+    <main style="max-width:36rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+      <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">Where should I move?</h1>
+      <p style="color:#666;margin-top:0.75rem">Pick a profile for a ranked shortlist of countries — no account needed.</p>
+      <ul style="margin-top:1.5rem;padding-left:1.25rem;line-height:1.8">
+        ${personaSnapshots
+          .map(
+            (p) =>
+              `<li><a href="/tools/where-should-i-move/${escapeHtml(p.slug)}">${escapeHtml(p.pageTitle)}</a></li>`,
+          )
+          .join("\n        ")}
+      </ul>
+    </main>
+  `,
+});
+
+for (const persona of personaSnapshots) {
+  const listHtml = persona.topCountries
+    .map(
+      (c, i) => `
+      <li style="margin-top:1rem">
+        <strong>${escapeHtml(c.flag)} ${escapeHtml(c.name)}</strong> — ${c.score}% match
+        ${i === 0 ? " (Best match)" : ""}
+        <br /><span style="color:#555;font-size:0.9rem">${escapeHtml((c.reasons || []).slice(0, 2).join(" · "))}</span>
+      </li>`,
+    )
+    .join("");
+
+  writePage({
+    outPath: join(distDir, "tools", "where-should-i-move", persona.slug, "index.html"),
+    title: `${persona.pageTitle} — Relova`,
+    description: persona.metaDescription,
+    bodyHtml: `
+    <main style="max-width:40rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+      <p><a href="/tools/where-should-i-move">← See all personas</a></p>
+      <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2;margin-top:1.5rem">${escapeHtml(persona.pageTitle)}</h1>
+      <p style="color:#444;margin-top:0.75rem">${escapeHtml(persona.intro)}</p>
+      <ol style="margin-top:1.5rem;padding-left:1.25rem">${listHtml}
+      </ol>
+      <p style="margin-top:1.5rem;font-size:0.75rem;color:#888">General guidance based on typical patterns — your personal situation may differ.</p>
+      <p style="margin-top:2rem"><a href="/tools/where-should-i-move">Want a personalized match? Start free →</a></p>
     </main>
   `,
   });

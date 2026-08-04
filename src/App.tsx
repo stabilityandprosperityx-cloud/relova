@@ -28,6 +28,8 @@ import Help from "./pages/Help.tsx";
 import Contact from "./pages/Contact.tsx";
 import CanIMoveHub from "./pages/tools/CanIMoveHub.tsx";
 import CanIMove from "./pages/tools/CanIMove.tsx";
+import MoveAsHub from "./pages/tools/MoveAsHub.tsx";
+import MoveAsPersona from "./pages/tools/MoveAsPersona.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import { usePageTracking } from "./hooks/usePageTracking.ts";
 
@@ -81,6 +83,8 @@ function AppRoutes() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/tools/can-i-move" element={<CanIMoveHub />} />
         <Route path="/tools/can-i-move/:citizenshipSlug/:destinationSlug" element={<CanIMove />} />
+        <Route path="/tools/where-should-i-move" element={<MoveAsHub />} />
+        <Route path="/tools/where-should-i-move/:personaSlug" element={<MoveAsPersona />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
