@@ -122,6 +122,12 @@ export default function Countries() {
             <Link to="/chat">
               <Button variant="hero" className="gap-2">Ask Your Relocation Expert <ArrowRight size={14} /></Button>
             </Link>
+            <p className="text-sm text-muted-foreground mt-5">
+              Wondering if you&apos;re eligible?{" "}
+              <Link to="/tools/can-i-move" className="text-primary font-medium hover:underline">
+                Quick passport check →
+              </Link>
+            </p>
           </motion.div>
         </div>
       </main>

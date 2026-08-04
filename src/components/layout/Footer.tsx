@@ -26,11 +26,12 @@ const FOOTER_COLS = [
   {
     title: "Resources",
     links: [
-      { label: "Country Guides",    href: "/countries" },
-      { label: "Visa Timeline",     href: "#" },
-      { label: "Relocation Blog",   href: "/blog" },
-      { label: "Help Center",       href: "/help" },
-      { label: "Webinars",          href: "#" },
+      { label: "Country Guides",         href: "/countries" },
+      { label: "Visa Eligibility Check", href: "/tools/can-i-move" },
+      { label: "Visa Timeline",          href: "#" },
+      { label: "Relocation Blog",        href: "/blog" },
+      { label: "Help Center",            href: "/help" },
+      { label: "Webinars",               href: "#" },
     ],
   },
   {

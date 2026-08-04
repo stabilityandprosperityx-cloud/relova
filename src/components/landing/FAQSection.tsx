@@ -57,12 +57,20 @@ export default function FAQSection() {
             <p className="text-[14px] text-muted-foreground mb-3">
               Can't find the answer you're looking for?
             </p>
-            <Link
-              to="/contact"
-              className="text-[14px] font-medium text-primary hover:opacity-75 transition-opacity"
-            >
-              Contact us →
-            </Link>
+            <div className="flex flex-col gap-2 items-start">
+              <Link
+                to="/tools/can-i-move"
+                className="text-[14px] font-medium text-primary hover:opacity-75 transition-opacity"
+              >
+                Free visa eligibility check →
+              </Link>
+              <Link
+                to="/contact"
+                className="text-[14px] font-medium text-primary hover:opacity-75 transition-opacity"
+              >
+                Contact us →
+              </Link>
+            </div>
           </motion.div>
 
           {/* Right — accordion */}

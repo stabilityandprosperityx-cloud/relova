@@ -44,6 +44,12 @@ export default function CountryPage() {
                 </div>
               ))}
             </div>
+            <p className="text-sm text-muted-foreground mt-5">
+              Wondering if you&apos;re eligible for {country.name}?{" "}
+              <Link to="/tools/can-i-move" className="text-primary font-medium hover:underline">
+                Quick passport check →
+              </Link>
+            </p>
           </motion.section>
 
           {/* Tax Info */}
