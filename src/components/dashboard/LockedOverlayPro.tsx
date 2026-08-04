@@ -46,7 +46,7 @@ export default function LockedOverlayPro({ onClose, profile }: Props) {
             Pro plan includes:
           </p>
           {[
-            "Unlimited Relocation Expert — no question limits",
+            "Unlimited Relocation Expert access — no question limits",
             profile?.target_country
               ? `Your ${profile.target_country} checklist — ready to start`
               : "Personalized relocation checklist",

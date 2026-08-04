@@ -53,7 +53,7 @@ export default function PricingSection() {
       period: "forever",
       description: "Explore what Relova can do.",
       features: [
-        "3 Relocation Expert questions total",
+        "3 questions to your Relocation Expert",
         "Countries explorer (70+ countries)",
         "Basic cost calculator",
       ],
@@ -69,7 +69,7 @@ export default function PricingSection() {
       period: billing === "monthly" ? "/month" : "one-time",
       description: "Personalized guidance for your move.",
       features: [
-        "Unlimited Relocation Expert",
+        "Unlimited Relocation Expert access",
         "Personalized relocation checklist",
         "Move timeline with deadlines",
         "Cost calculator — 70+ countries",

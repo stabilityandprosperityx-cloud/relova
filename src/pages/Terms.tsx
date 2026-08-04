@@ -23,7 +23,7 @@ const sections = [
   {
     title: "SUBSCRIPTION PLANS AND BILLING",
     content: [
-      "Free Plan: Limited to 3 Relocation Expert questions total.",
+      "Free Plan: Limited to 3 questions to your Relocation Expert.",
       "Pro Plan: $19/month, unlimited Relocation Expert questions and personalized guidance.",
       "Full Plan: $49/month, complete relocation system including document checklists, timelines, and tax strategy guidance.",
       "Subscriptions are billed monthly in advance. Payments are processed by Paddle.com who acts as Merchant of Record. Your subscription renews automatically unless cancelled.",
