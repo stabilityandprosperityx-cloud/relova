@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Check, Shield, RefreshCw, Lock, Headphones, Zap } from "lucide-react";
 import { openPaddleCheckout } from "@/config/paddle";
 import { useAuth } from "@/contexts/AuthContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { generateEventId, trackPixelEvent } from "@/lib/metaPixel";
 import conciergeCouple from "@/assets/redesign/concierge-couple.jpg";
 
 const CONCIERGE_FEATURES = [
@@ -27,6 +28,10 @@ const TRUST_BADGES = [
 export default function PricingSection() {
   const { user } = useAuth();
   const [billing, setBilling] = useState<"monthly" | "lifetime">("monthly");
+
+  useEffect(() => {
+    trackPixelEvent("ViewContent", generateEventId(), { content_name: "pricing" });
+  }, []);
 
   const handlePayment = (plan: "pro" | "full") => {
     if (billing === "lifetime") {

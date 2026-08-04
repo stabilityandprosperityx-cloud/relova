@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import type { UserProfile } from "@/pages/Dashboard";
 import { countryDatabase } from "@/lib/countryMatching";
+import { generateEventId, trackPixelEvent } from "@/lib/metaPixel";
 
 interface Props {
   profile: UserProfile;
@@ -69,6 +71,12 @@ function getWhyItFits(profile: UserProfile): string {
 
 export default function ResultScreen({ profile, onContinue, onSeeOtherMatches }: Props) {
   const country = profile.target_country || "Your match";
+
+  useEffect(() => {
+    trackPixelEvent("RecommendationsViewed", generateEventId(), {
+      content_name: country,
+    });
+  }, []);
   const flag = getCountryFlag(country);
   const score = profile.match_score || 85;
   const stability = getStabilityMonths(country);

@@ -1,3 +1,5 @@
+import { generateEventId, trackPixelEvent } from "@/lib/metaPixel";
+
 declare global {
   interface Window {
     Paddle?: {
@@ -6,6 +8,14 @@ declare global {
     };
   }
 }
+
+const PLAN_PRICES: Record<string, number> = {
+  pro: 19,
+  full: 49,
+  pro_lifetime: 79,
+  full_lifetime: 149,
+  concierge: 990,
+};
 
 const PADDLE_CLIENT_TOKEN = import.meta.env.VITE_PADDLE_CLIENT_TOKEN ?? "";
 
@@ -52,4 +62,8 @@ export function openPaddleCheckout(plan: "pro" | "full" | "pro_lifetime" | "full
     ...(userEmail ? { customer: { email: userEmail } } : {}),
     ...(userId ? { customData: { userId } } : {}),
   });
+
+  // Meta Pixel InitiateCheckout (Pixel-only; no CAPI needed for this event)
+  const value = PLAN_PRICES[plan] ?? 0;
+  trackPixelEvent("InitiateCheckout", generateEventId(), { value, currency: "USD", content_name: plan });
 }

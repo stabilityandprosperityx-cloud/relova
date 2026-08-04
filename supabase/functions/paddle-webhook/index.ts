@@ -223,6 +223,50 @@ Deno.serve(async (req) => {
       }
 
       console.log(`Lifetime purchase: updated user ${userId} to plan: ${plan}`);
+
+      // Meta CAPI — Purchase event (direct call, no extra hop via meta-capi function)
+      try {
+        const metaToken = Deno.env.get("META_CAPI_ACCESS_TOKEN");
+        if (metaToken) {
+          const transactionId = (data.id as string | undefined) ?? crypto.randomUUID();
+          const totalsRaw = (data as any)?.details?.totals?.total;
+          const currencyCode = (data.currency_code as string | undefined) ?? "USD";
+          const value = totalsRaw ? parseFloat(String(totalsRaw)) / 100 : 0;
+
+          // Hash userId as external_id
+          const uidBytes = new TextEncoder().encode(userId.trim().toLowerCase());
+          const uidHash = await crypto.subtle.digest("SHA-256", uidBytes);
+          const hashedUid = Array.from(new Uint8Array(uidHash))
+            .map((b) => b.toString(16).padStart(2, "0"))
+            .join("");
+
+          const metaPayload = {
+            data: [{
+              event_name: "Purchase",
+              event_time: Math.floor(Date.now() / 1000),
+              event_id: transactionId,
+              action_source: "website",
+              event_source_url: "https://relova.ai/pricing",
+              user_data: { external_id: hashedUid },
+              custom_data: {
+                value,
+                currency: currencyCode,
+                transaction_id: transactionId,
+              },
+            }],
+          };
+
+          const metaRes = await fetch(
+            `https://graph.facebook.com/v21.0/1377613737161212/events?access_token=${metaToken}`,
+            { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(metaPayload) }
+          );
+          const metaResult = await metaRes.json();
+          console.log("Meta Purchase CAPI:", metaRes.status, metaResult?.fbtrace_id ?? metaResult);
+        }
+      } catch (metaErr) {
+        // Never let analytics break the webhook response
+        console.error("Meta CAPI Purchase error (non-fatal):", metaErr);
+      }
     }
 
     if (eventType === "subscription.canceled") {

@@ -10,6 +10,7 @@ import { generateAndSaveUserPlan } from "@/lib/generateUserPlan";
 import type { UserProfile } from "@/pages/Dashboard";
 import { ArrowRight, MapPin, Compass } from "lucide-react";
 import LoadingTransition from "./LoadingTransition";
+import { generateEventId, trackPixelEvent } from "@/lib/metaPixel";
 
 
 const goals = [
@@ -356,7 +357,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <button
-              onClick={() => { setMode("know"); setStep(0); }}
+              onClick={() => { setMode("know"); setStep(0); trackPixelEvent("StartQuestionnaire", generateEventId()); }}
               className="rounded-xl border border-border bg-muted/50 p-6 text-left hover:bg-muted hover:border-primary/30 transition-all group"
             >
               <MapPin size={24} className="text-primary mb-3" />
@@ -364,7 +365,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
               <div className="text-[12px] text-muted-foreground">Go directly to your personalized plan</div>
             </button>
             <button
-              onClick={() => { setMode("help"); setStep(0); }}
+              onClick={() => { setMode("help"); setStep(0); trackPixelEvent("StartQuestionnaire", generateEventId()); }}
               className="rounded-xl border border-border bg-muted/50 p-6 text-left hover:bg-muted hover:border-primary/30 transition-all group"
             >
               <Compass size={24} className="text-primary mb-3" />

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { trackDualEvent } from "@/lib/metaPixel";
 
 const GOOGLE_OAUTH_REDIRECT = "https://relova.ai/dashboard";
 import { Mail, Loader2 } from "lucide-react";
@@ -57,6 +58,8 @@ export default function AuthModal({
       toast.error(error.message);
     } else {
       toast.success("Check your email to confirm your account");
+      // Fire CompleteRegistration — Pixel + CAPI with same eventId for deduplication
+      trackDualEvent("CompleteRegistration", {}, { email });
       onOpenChange(false);
     }
   };
