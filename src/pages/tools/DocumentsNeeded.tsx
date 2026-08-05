@@ -8,12 +8,9 @@ import AuthModal from "@/components/auth/AuthModal";
 import { supabase } from "@/integrations/supabase/client";
 import { determineVisaType, formatVisaTypeLabel } from "@/lib/determineVisaType";
 import { canIMoveTitle } from "@/lib/demonyms";
-import {
-  hasCanIMoveCrosslink,
-  canIMovePath,
-  DOCUMENTS_LAUNCH_PAIRS,
-} from "@/lib/documentsNeededPairs";
-import { slugify, unslugify } from "@/lib/toolSlugs";
+import { hasCanIMoveCrosslink, canIMovePath } from "@/lib/documentsNeededPairs";
+import { DocumentsPopularLinks } from "@/components/tools/DocumentsPopularLinks";
+import { unslugify } from "@/lib/toolSlugs";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
 interface DocItem {
@@ -241,19 +238,7 @@ export default function DocumentsNeeded() {
                 personalized checklist.
               </p>
               <p className="text-[12px] text-muted-foreground leading-relaxed">
-                Popular:{" "}
-                {DOCUMENTS_LAUNCH_PAIRS.slice(0, 4).map((pair, i) => (
-                  <span key={`${pair.citizenship}-${pair.destination}`}>
-                    {i > 0 && ", "}
-                    <Link
-                      to={`/tools/documents-needed/${slugify(pair.citizenship)}/${slugify(pair.destination)}`}
-                      className="text-primary hover:underline"
-                    >
-                      {pair.citizenship === "United States" ? "US" : pair.citizenship} →{" "}
-                      {pair.destination}
-                    </Link>
-                  </span>
-                ))}
+                <DocumentsPopularLinks limit={5} />
               </p>
             </div>
           )}

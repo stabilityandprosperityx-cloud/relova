@@ -98,13 +98,69 @@ function extractTextFromClaudeContent(content: unknown[]): { text: string; block
   return { text, blockCount: blocks.length, blockTypes };
 }
 
-/** Prefer fenced JSON, else outermost {...}, else trimmed text after leading fence strip. */
+/** Find index of closing `}` that matches the `{` at position 0, respecting strings. */
+function matchingBraceEnd(s: string): number {
+  let depth = 0;
+  let inString = false;
+  let escape = false;
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (inString) {
+      if (escape) {
+        escape = false;
+        continue;
+      }
+      if (c === "\\") {
+        escape = true;
+        continue;
+      }
+      if (c === '"') inString = false;
+      continue;
+    }
+    if (c === '"') {
+      inString = true;
+      continue;
+    }
+    if (c === "{") depth++;
+    else if (c === "}") {
+      depth--;
+      if (depth === 0) return i;
+    }
+  }
+  return -1;
+}
+
+function sanitizeJsonish(s: string): string {
+  return s
+    .replace(/[\u201C\u201D]/g, '"')
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/,\s*([}\]])/g, "$1");
+}
+
+/** Prefer fenced JSON, else first {...} object that contains "documents". */
 function extractJsonPayload(rawText: string): string {
   const fenceMatch = rawText.match(/```(?:json)?\s*([\s\S]*?)```/i);
-  if (fenceMatch?.[1]) return fenceMatch[1].trim();
+  if (fenceMatch?.[1]) return sanitizeJsonish(fenceMatch[1].trim());
 
-  const stripped = rawText.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "").trim();
+  const stripped = sanitizeJsonish(
+    rawText.replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "").trim(),
+  );
+
+  // Prefer the documents object even when Claude prefixes prose ("I'll search…")
+  const docsMatch = stripped.match(/\{\s*"documents"\s*:/);
+  if (docsMatch && docsMatch.index != null) {
+    const from = stripped.slice(docsMatch.index);
+    const end = matchingBraceEnd(from);
+    if (end >= 0) return from.slice(0, end + 1);
+  }
+
   const start = stripped.indexOf("{");
+  if (start >= 0) {
+    const from = stripped.slice(start);
+    const end = matchingBraceEnd(from);
+    if (end >= 0) return from.slice(0, end + 1);
+  }
+
   const end = stripped.lastIndexOf("}");
   if (start >= 0 && end > start) return stripped.slice(start, end + 1);
   return stripped;

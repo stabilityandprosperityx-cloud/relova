@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CITIZENSHIP_NAMES, DESTINATION_NAMES, slugify } from "@/lib/toolSlugs";
-import { DOCUMENTS_LAUNCH_PAIRS } from "@/lib/documentsNeededPairs";
+import { DocumentsPopularLinks } from "@/components/tools/DocumentsPopularLinks";
 
 export default function DocumentsNeededHub() {
   const navigate = useNavigate();
@@ -85,18 +85,7 @@ export default function DocumentsNeededHub() {
           </div>
 
           <p className="text-[12px] text-muted-foreground text-center mt-8 leading-relaxed">
-            Popular:{" "}
-            {DOCUMENTS_LAUNCH_PAIRS.slice(0, 5).map((pair, i) => (
-              <span key={`${pair.citizenship}-${pair.destination}`}>
-                {i > 0 && ", "}
-                <Link
-                  to={`/tools/documents-needed/${slugify(pair.citizenship)}/${slugify(pair.destination)}`}
-                  className="text-primary hover:underline"
-                >
-                  {pair.citizenship === "United States" ? "US" : pair.citizenship} → {pair.destination}
-                </Link>
-              </span>
-            ))}
+            <DocumentsPopularLinks limit={5} />
           </p>
         </div>
       </main>

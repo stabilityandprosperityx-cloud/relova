@@ -7,7 +7,7 @@ export interface DocumentsLaunchPair {
   visa_type: string;
 }
 
-/** 15 launch pairs for /tools/documents-needed (warm + prerender). */
+/** Launch pairs for /tools/documents-needed (warm + prerender). */
 export const DOCUMENTS_LAUNCH_PAIRS: DocumentsLaunchPair[] = [
   { citizenship: "Russia", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
   { citizenship: "Russia", destination: "Armenia", visa_type: "Visa_Free" },
@@ -22,8 +22,16 @@ export const DOCUMENTS_LAUNCH_PAIRS: DocumentsLaunchPair[] = [
   { citizenship: "United States", destination: "Mexico", visa_type: "Temporary_Resident" },
   { citizenship: "United Kingdom", destination: "Spain", visa_type: "Digital_Nomad" },
   { citizenship: "India", destination: "UAE", visa_type: "Freelance_Permit" },
+  { citizenship: "India", destination: "Germany", visa_type: "Freelance_Visa" },
   { citizenship: "Brazil", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
+  { citizenship: "Brazil", destination: "Spain", visa_type: "Digital_Nomad" },
   { citizenship: "China", destination: "Japan", visa_type: "Digital_Nomad" },
+  { citizenship: "China", destination: "Singapore", visa_type: "Employment_Pass" },
+  { citizenship: "Nigeria", destination: "United Kingdom", visa_type: "Temporary_Residence" },
+  { citizenship: "Nigeria", destination: "Canada", visa_type: "Express_Entry" },
+  { citizenship: "Philippines", destination: "UAE", visa_type: "Freelance_Permit" },
+  { citizenship: "Philippines", destination: "Canada", visa_type: "Express_Entry" },
+  { citizenship: "Germany", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
 ];
 
 /** can-i-move pairs that also have a documents-needed launch page. */
@@ -41,7 +49,47 @@ export const CAN_I_MOVE_CROSSLINK_PAIRS = [
   ["India", "UAE"],
   ["Brazil", "Portugal"],
   ["China", "Japan"],
+  ["Nigeria", "United Kingdom"],
+  ["Nigeria", "Canada"],
+  ["Philippines", "UAE"],
+  ["Philippines", "Canada"],
+  ["Brazil", "Spain"],
+  ["China", "Singapore"],
 ] as const;
+
+/** Short label for Popular links. */
+export function shortCitizenshipLabel(citizenship: string): string {
+  if (citizenship === "United States") return "US";
+  if (citizenship === "United Kingdom") return "UK";
+  return citizenship;
+}
+
+/**
+ * Offline fallback for Popular links: at most one destination per citizenship.
+ * Prefer non-Russia citizenships first so the default list isn't Russia-skewed.
+ */
+export function pickDiversePopularPairs(
+  pairs: DocumentsLaunchPair[],
+  limit = 5,
+): DocumentsLaunchPair[] {
+  const russia: DocumentsLaunchPair[] = [];
+  const others: DocumentsLaunchPair[] = [];
+  for (const p of pairs) {
+    if (p.citizenship === "Russia") russia.push(p);
+    else others.push(p);
+  }
+
+  const ordered = [...others, ...russia];
+  const seen = new Set<string>();
+  const out: DocumentsLaunchPair[] = [];
+  for (const p of ordered) {
+    if (seen.has(p.citizenship)) continue;
+    seen.add(p.citizenship);
+    out.push(p);
+    if (out.length >= limit) break;
+  }
+  return out;
+}
 
 export function hasDocumentsNeededPage(citizenship: string, destination: string): boolean {
   return DOCUMENTS_LAUNCH_PAIRS.some(

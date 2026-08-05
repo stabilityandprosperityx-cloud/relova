@@ -1739,178 +1739,178 @@
     "visa_type": "Temporary_Resident",
     "cSlug": "united-states",
     "dSlug": "mexico",
-    "generated_at": "2026-08-05T10:45:02.697Z",
+    "generated_at": "2026-08-05T10:45:02.697+00:00",
     "documents": [
       {
         "name": "Valid U.S. passport (original) plus photocopy of the biographical data page",
-        "description": "Original U.S. passport presented at the Mexican consulate interview, together with a plain photocopy of the main photo/data page. Consulates ask for both; the copy is retained in the file. Passport should remain valid well beyond the 180-day visa validity and the intended residency period.",
         "phase": "before",
-        "required": true,
+        "source": "https://consulmex.sre.gob.mx/washington/images/2025/visas/esp/RESIDENTE_TEMPORAL_2025.pdf",
         "category": "identity",
-        "source": "https://consulmex.sre.gob.mx/washington/images/2025/visas/esp/RESIDENTE_TEMPORAL_2025.pdf"
+        "required": true,
+        "description": "Original U.S. passport presented at the Mexican consulate interview, together with a plain photocopy of the main photo/data page. Consulates ask for both; the copy is retained in the file. Passport should remain valid well beyond the 180-day visa validity and the intended residency period."
       },
       {
         "name": "Completed Mexican visa application form (Solicitud de Visa Mexicana)",
-        "description": "The SRE visa application form, printed, completed and signed, presented at the consular interview. Some consulates provide their own current-year version of the form \u2014 download it from the specific consulate holding your appointment.",
         "phase": "before",
-        "required": true,
+        "source": "https://consulmex.sre.gob.mx/houston/images/Visas/2025/residente-temporal-solvencia-economica-2025.pdf",
         "category": "legal",
-        "source": "https://consulmex.sre.gob.mx/houston/images/Visas/2025/residente-temporal-solvencia-economica-2025.pdf"
+        "required": true,
+        "description": "The SRE visa application form, printed, completed and signed, presented at the consular interview. Some consulates provide their own current-year version of the form \u2014 download it from the specific consulate holding your appointment."
       },
       {
         "name": "One recent color passport-style photograph of the applicant",
-        "description": "A single recent color photo, front view, white background, face fully visible and uncovered, without glasses. Some consulates specify a size close to 3.9 cm x 3.1 cm rather than U.S. passport dimensions \u2014 confirm exact size with your consulate, as this varies.",
         "phase": "before",
-        "required": true,
+        "source": "https://consulmex.sre.gob.mx/washington/images/2025/visas/esp/RESIDENTE_TEMPORAL_2025.pdf",
         "category": "identity",
-        "source": "https://consulmex.sre.gob.mx/washington/images/2025/visas/esp/RESIDENTE_TEMPORAL_2025.pdf"
+        "required": true,
+        "description": "A single recent color photo, front view, white background, face fully visible and uncovered, without glasses. Some consulates specify a size close to 3.9 cm x 3.1 cm rather than U.S. passport dimensions \u2014 confirm exact size with your consulate, as this varies."
       },
       {
         "name": "Twelve consecutive original monthly bank or investment account statements (savings route)",
-        "description": "Economic solvency option (a): original personal bank or investment statements for the last 12 months showing a month-end balance above the UMA-based threshold (roughly USD $69,000\u2013$74,000 in 2025\u20132026 consular sheets; the exact peso figure is set per consulate and per exchange rate on your appointment date). Digital-banking users must bring statements stamped by a bank branch \u2014 plain home printouts are rejected.",
         "phase": "before",
-        "required": false,
+        "source": "https://consulmex.sre.gob.mx/washington/images/2025/visas/esp/RESIDENTE_TEMPORAL_2025.pdf",
         "category": "financial",
-        "source": "https://consulmex.sre.gob.mx/washington/images/2025/visas/esp/RESIDENTE_TEMPORAL_2025.pdf"
+        "required": false,
+        "description": "Economic solvency option (a): original personal bank or investment statements for the last 12 months showing a month-end balance above the UMA-based threshold (roughly USD $69,000\u2013$74,000 in 2025\u20132026 consular sheets; the exact peso figure is set per consulate and per exchange rate on your appointment date). Digital-banking users must bring statements stamped by a bank branch \u2014 plain home printouts are rejected."
       },
       {
         "name": "Six months of pension/salary payment receipts with matching bank statements (income route)",
-        "description": "Economic solvency option (b), used instead of the savings route: six most recent pay stubs, SSA award/benefit statements or pension receipts showing net monthly income above the threshold (approximately USD $4,300\u2013$4,500 per month in 2026), accompanied by the six matching bank statements showing the direct deposits. Some consulates also require an employment letter.",
         "phase": "before",
-        "required": false,
+        "source": "https://consulmex.sre.gob.mx/washington/images/2025/visas/esp/RESIDENTE_TEMPORAL_2025.pdf",
         "category": "financial",
-        "source": "https://consulmex.sre.gob.mx/washington/images/2025/visas/esp/RESIDENTE_TEMPORAL_2025.pdf"
+        "required": false,
+        "description": "Economic solvency option (b), used instead of the savings route: six most recent pay stubs, SSA award/benefit statements or pension receipts showing net monthly income above the threshold (approximately USD $4,300\u2013$4,500 per month in 2026), accompanied by the six matching bank statements showing the direct deposits. Some consulates also require an employment letter."
       },
       {
         "name": "Consular appointment confirmation (citas.sre.gob.mx / MiConsulado booking)",
-        "description": "Printed or digital confirmation of the individual visa appointment \u2014 one appointment per applicant, including each dependent. Must be booked at a Mexican consulate in the United States; jurisdiction rules and document expectations differ by consulate.",
         "phase": "before",
-        "required": true,
+        "source": "https://citas.sre.gob.mx",
         "category": "legal",
-        "source": "https://citas.sre.gob.mx"
+        "required": true,
+        "description": "Printed or digital confirmation of the individual visa appointment \u2014 one appointment per applicant, including each dependent. Must be booked at a Mexican consulate in the United States; jurisdiction rules and document expectations differ by consulate."
       },
       {
         "name": "Receipt for the non-refundable consular visa processing fee",
-        "description": "Proof of payment of the visa application fee (around USD $54 in current consular sheets), paid by credit or debit card (Visa/Mastercard) at the consulate; some posts also accept cash. The fee is not refunded if the visa is denied.",
         "phase": "before",
-        "required": true,
+        "source": "https://consulmex.sre.gob.mx/saintpaul/index.php/se/visesp/5-seccion/235-residente-temporal",
         "category": "financial",
-        "source": "https://consulmex.sre.gob.mx/saintpaul/index.php/se/visesp/5-seccion/235-residente-temporal"
+        "required": true,
+        "description": "Proof of payment of the visa application fee (around USD $54 in current consular sheets), paid by credit or debit card (Visa/Mastercard) at the consulate; some posts also accept cash. The fee is not refunded if the visa is denied."
       },
       {
         "name": "Certified marriage certificate or birth certificate proving the family bond (dependent applicants only)",
-        "description": "Required only when applying through family unity or bringing dependents: certified copy of the marriage certificate (spouse) or original birth certificate (child/parent). U.S.- and Mexico-issued civil documents are accepted directly; documents from any other country need apostille/legalization plus certified Spanish translation.",
         "phase": "before",
-        "required": false,
+        "source": "https://consulmex.sre.gob.mx/saintpaul/index.php/se/visesp/5-seccion/235-residente-temporal",
         "category": "legal",
-        "source": "https://consulmex.sre.gob.mx/saintpaul/index.php/se/visesp/5-seccion/235-residente-temporal"
+        "required": false,
+        "description": "Required only when applying through family unity or bringing dependents: certified copy of the marriage certificate (spouse) or original birth certificate (child/parent). U.S.- and Mexico-issued civil documents are accepted directly; documents from any other country need apostille/legalization plus certified Spanish translation."
       },
       {
         "name": "Apostille and certified Spanish translation for non-U.S., non-Mexican documents",
-        "description": "Any supporting document not issued in the United States or Mexico must carry an apostille or legalization from the issuing country, and documents drafted in a language other than Spanish or English must include an official translation. Verify with your specific consulate, as translation policies differ between posts.",
         "phase": "before",
-        "required": false,
+        "source": "https://consulmex.sre.gob.mx/houston/images/Visas/2025/residente-temporal-solvencia-economica-2025.pdf",
         "category": "legal",
-        "source": "https://consulmex.sre.gob.mx/houston/images/Visas/2025/residente-temporal-solvencia-economica-2025.pdf"
+        "required": false,
+        "description": "Any supporting document not issued in the United States or Mexico must carry an apostille or legalization from the issuing country, and documents drafted in a language other than Spanish or English must include an official translation. Verify with your specific consulate, as translation policies differ between posts."
       },
       {
         "name": "Temporary resident visa sticker affixed in the passport",
-        "description": "The physical visa foil issued by the consulate after approval. It is valid for a maximum of 180 days from issuance and authorizes a single entry to Mexico to begin the residency exchange \u2014 it is not the residency itself.",
         "phase": "before",
-        "required": true,
+        "source": "https://embamex.sre.gob.mx/espana/index.php/documentacion-a-mexicanos/64-secconsular/542-residente-temporal-autorizado-por-el-inm",
         "category": "legal",
-        "source": "https://embamex.sre.gob.mx/espana/index.php/documentacion-a-mexicanos/64-secconsular/542-residente-temporal-autorizado-por-el-inm"
+        "required": true,
+        "description": "The physical visa foil issued by the consulate after approval. It is valid for a maximum of 180 days from issuance and authorizes a single entry to Mexico to begin the residency exchange \u2014 it is not the residency itself."
       },
       {
         "name": "Entry immigration form (FMM) endorsed by the officer as 'CANJE \u2014 30 d\u00edas'",
-        "description": "At the port of entry the immigration officer must record your admission as a canje (exchange) with 30 days, not as a tourist stay. Check this at the counter and ask for correction if mismarked; an incorrectly marked entry record is a common cause of failed card applications. Keep a physical and digital copy.",
         "phase": "during",
-        "required": true,
+        "source": "https://www.inm.gob.mx/static/Tramites/expedicion_documento_canje.pdf",
         "category": "legal",
-        "source": "https://www.inm.gob.mx/static/Tramites/expedicion_documento_canje.pdf"
+        "required": true,
+        "description": "At the port of entry the immigration officer must record your admission as a canje (exchange) with 30 days, not as a tourist stay. Check this at the counter and ask for correction if mismarked; an incorrectly marked entry record is a common cause of failed card applications. Keep a physical and digital copy."
       },
       {
         "name": "INM canje appointment with N\u00famero \u00danico de Tr\u00e1mite (NUT)",
-        "description": "Register the 'Expedici\u00f3n de documento migratorio por canje' request on the INM Micrositio de Tr\u00e1mites Migratorios to obtain a NUT, then book the in-person appointment at the INM office covering your address. The appointment must fall within 30 calendar days of entry; where possible arrange it before leaving the U.S.",
         "phase": "during",
-        "required": true,
+        "source": "https://www.gob.mx/tramites/ficha/expedicion-de-documento-migratorio-por-canje/INM811",
         "category": "legal",
-        "source": "https://www.gob.mx/tramites/ficha/expedicion-de-documento-migratorio-por-canje/INM811"
+        "required": true,
+        "description": "Register the 'Expedici\u00f3n de documento migratorio por canje' request on the INM Micrositio de Tr\u00e1mites Migratorios to obtain a NUT, then book the in-person appointment at the INM office covering your address. The appointment must fall within 30 calendar days of entry; where possible arrange it before leaving the U.S."
       },
       {
         "name": "INM 'Formato B\u00e1sico' and printed, signed canje application",
-        "description": "The INM basic data format plus the tr\u00e1mite request form for the canje, downloaded from the INM site, completed, printed and signed, and handed in at the appointment together with the rest of the file.",
         "phase": "during",
-        "required": true,
+        "source": "https://www.inm.gob.mx/static/Tramites/expedicion_documento_canje.pdf",
         "category": "legal",
-        "source": "https://www.inm.gob.mx/static/Tramites/expedicion_documento_canje.pdf"
+        "required": true,
+        "description": "The INM basic data format plus the tr\u00e1mite request form for the canje, downloaded from the INM site, completed, printed and signed, and handed in at the appointment together with the rest of the file."
       },
       {
         "name": "Bank-stamped proof of payment of INM derechos (hoja de ayuda / SAT formato e5)",
-        "description": "Print the payment sheet, pay at an authorized bank branch (e.g. BBVA, Banorte, Santander) or by Visa/Mastercard at the INM office, and bring the stamped receipt. INM does not accept cash, and home-printed SPEI transfer confirmations are not valid proof. Card issuance fees rose substantially under the November 2025 fee schedule.",
         "phase": "during",
-        "required": true,
+        "source": "https://www.inm.gob.mx/static/Tramites/expedicion_documento_canje.pdf",
         "category": "financial",
-        "source": "https://www.inm.gob.mx/static/Tramites/expedicion_documento_canje.pdf"
+        "required": true,
+        "description": "Print the payment sheet, pay at an authorized bank branch (e.g. BBVA, Banorte, Santander) or by Visa/Mastercard at the INM office, and bring the stamped receipt. INM does not accept cash, and home-printed SPEI transfer confirmations are not valid proof. Card issuance fees rose substantially under the November 2025 fee schedule."
       },
       {
         "name": "Biometric enrolment record at INM (photograph, signature, fingerprints)",
-        "description": "At the canje appointment INM captures your photo, signature and fingerprints in person; no self-supplied photos substitute for this step. There is no document to bring, but attendance is mandatory and the record is what generates your card and CURP.",
         "phase": "during",
-        "required": true,
+        "source": "Instituto Nacional de Migraci\u00f3n (INM)",
         "category": "identity",
-        "source": "Instituto Nacional de Migraci\u00f3n (INM)"
+        "required": true,
+        "description": "At the canje appointment INM captures your photo, signature and fingerprints in person; no self-supplied photos substitute for this step. There is no document to bring, but attendance is mandatory and the record is what generates your card and CURP."
       },
       {
         "name": "Proof of Mexican address (comprobante de domicilio)",
-        "description": "A recent utility bill or signed lease in your name or your host's name, used to confirm the INM office with jurisdiction over you and later required by banks and RENAPO. Not listed on the federal canje requirement sheet \u2014 verify with your local INM office, as practice varies by delegation.",
         "phase": "during",
-        "required": false,
+        "source": "Instituto Nacional de Migraci\u00f3n (INM)",
         "category": "other",
-        "source": "Instituto Nacional de Migraci\u00f3n (INM)"
+        "required": false,
+        "description": "A recent utility bill or signed lease in your name or your host's name, used to confirm the INM office with jurisdiction over you and later required by banks and RENAPO. Not listed on the federal canje requirement sheet \u2014 verify with your local INM office, as practice varies by delegation."
       },
       {
         "name": "Tarjeta de Residente Temporal (physical residency card)",
-        "description": "The plastic card issued by INM after the canje, valid initially for one year and renewable up to a four-year total. It carries your NUE and your 18-character CURP printed on the front, and is your primary Mexican ID for banking, leases and travel re-entry.",
         "phase": "after",
-        "required": true,
+        "source": "Instituto Nacional de Migraci\u00f3n (INM)",
         "category": "identity",
-        "source": "Instituto Nacional de Migraci\u00f3n (INM)"
+        "required": true,
+        "description": "The plastic card issued by INM after the canje, valid initially for one year and renewable up to a four-year total. It carries your NUE and your 18-character CURP printed on the front, and is your primary Mexican ID for banking, leases and travel re-entry."
       },
       {
         "name": "Printed CURP certificate from the RENAPO portal",
-        "description": "Although the CURP is generated automatically when INM issues your resident card, banks and government offices require the free letter-size printout downloaded from the official RENAPO/gob.mx CURP portal. Check the spelling of your name and date of birth immediately; corrections must be made in person at a RENAPO module with your passport and resident card.",
         "phase": "after",
-        "required": true,
+        "source": "https://www.gob.mx/curp/",
         "category": "identity",
-        "source": "https://www.gob.mx/curp/"
+        "required": true,
+        "description": "Although the CURP is generated automatically when INM issues your resident card, banks and government offices require the free letter-size printout downloaded from the official RENAPO/gob.mx CURP portal. Check the spelling of your name and date of birth immediately; corrections must be made in person at a RENAPO module with your passport and resident card."
       },
       {
         "name": "RFC registration with SAT (Mexican tax ID)",
-        "description": "Needed if you will earn Mexican-source income, invoice clients, buy property or take formal employment; not needed by most solvency-based residents living on foreign income. Requires your CURP, resident card and proof of address.",
         "phase": "after",
-        "required": false,
+        "source": "Servicio de Administraci\u00f3n Tributaria (SAT)",
         "category": "financial",
-        "source": "Servicio de Administraci\u00f3n Tributaria (SAT)"
+        "required": false,
+        "description": "Needed if you will earn Mexican-source income, invoice clients, buy property or take formal employment; not needed by most solvency-based residents living on foreign income. Requires your CURP, resident card and proof of address."
       },
       {
         "name": "INM renewal application filed at least 30 days before card expiry",
-        "description": "Temporary resident cards are renewed for 1 or 3 additional years, using an updated file plus a new derechos payment. Start the renewal before the current card expires \u2014 lapsing into irregular status triggers fines and can block future tr\u00e1mites. Note that solvency-based residents who wish to work in Mexico must separately request work authorization from INM.",
         "phase": "after",
-        "required": true,
+        "source": "Instituto Nacional de Migraci\u00f3n (INM)",
         "category": "legal",
-        "source": "Instituto Nacional de Migraci\u00f3n (INM)"
+        "required": true,
+        "description": "Temporary resident cards are renewed for 1 or 3 additional years, using an updated file plus a new derechos payment. Start the renewal before the current card expires \u2014 lapsing into irregular status triggers fines and can block future tr\u00e1mites. Note that solvency-based residents who wish to work in Mexico must separately request work authorization from INM."
       },
       {
         "name": "Change-of-condition file for permanent residency after four years",
-        "description": "To convert to Residente Permanente, INM requires the passport or travel document used to obtain temporary residence, a still-valid temporary resident card, proof of payment of the change-of-condition fee, and evidence of the qualifying ground. Time spent as a student temporary resident does not count toward the four years.",
         "phase": "after",
-        "required": false,
+        "source": "https://www.inm.gob.mx/static/Tramites/cambio_residente_temporal-residente_permanente.pdf",
         "category": "legal",
-        "source": "https://www.inm.gob.mx/static/Tramites/cambio_residente_temporal-residente_permanente.pdf"
+        "required": false,
+        "description": "To convert to Residente Permanente, INM requires the passport or travel document used to obtain temporary residence, a still-valid temporary resident card, proof of payment of the change-of-condition fee, and evidence of the qualifying ground. Time spent as a student temporary resident does not count toward the four years."
       }
     ],
-    "source": "fresh"
+    "source": "cache"
   },
   {
     "citizenship": "United Kingdom",
@@ -1918,186 +1918,186 @@
     "visa_type": "Digital_Nomad",
     "cSlug": "united-kingdom",
     "dSlug": "spain",
-    "generated_at": "2026-08-05T10:46:38.841Z",
+    "generated_at": "2026-08-05T10:46:38.841+00:00",
     "documents": [
       {
         "name": "National visa application form (Solicitud de visado nacional)",
-        "description": "Official long-stay national visa form, completed in full and signed by each applicant (a separate form for each accompanying family member). Submitted in person at the Spanish Consulate General covering your UK place of residence (London, Manchester or Edinburgh).",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "legal",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "Official long-stay national visa form, completed in full and signed by each applicant (a separate form for each accompanying family member). Submitted in person at the Spanish Consulate General covering your UK place of residence (London, Manchester or Edinburgh)."
       },
       {
         "name": "Valid UK passport plus photocopy of the biometric data page",
-        "description": "Original passport with minimum 1 year validity remaining and at least two blank pages; passports issued more than 10 years ago are not accepted. One photocopy of the biometric/data page(s) is submitted with the file. This is the document copy requirement, not the photo requirement.",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "identity",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "Original passport with minimum 1 year validity remaining and at least two blank pages; passports issued more than 10 years ago are not accepted. One photocopy of the biometric/data page(s) is submitted with the file. This is the document copy requirement, not the photo requirement."
       },
       {
         "name": "Recent passport-size colour photograph of the applicant",
-        "description": "One recent colour photo, light/plain background, full-face, no dark glasses, no glare and no head coverings obscuring the face oval. Separate and additional to the passport photocopy above.",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "identity",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "One recent colour photo, light/plain background, full-face, no dark glasses, no glare and no head coverings obscuring the face oval. Separate and additional to the passport photocopy above."
       },
       {
         "name": "ACRO Police Certificate (UK criminal record certificate) with apostille",
-        "description": "For UK criminal records the Spanish consular network specifically requires the ACRO certificate. It must generally be under 6 months old at submission (unless the certificate states a different expiry), apostilled by the FCDO Legalisation Office and accompanied by an official Spanish translation. Certificates may also be required from any other country you lived in during the last 2\u20135 years.",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "legal",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "For UK criminal records the Spanish consular network specifically requires the ACRO certificate. It must generally be under 6 months old at submission (unless the certificate states a different expiry), apostilled by the FCDO Legalisation Office and accompanied by an official Spanish translation. Certificates may also be required from any other country you lived in during the last 2\u20135 years."
       },
       {
         "name": "Declaraci\u00f3n responsable of no criminal record (last 5 years)",
-        "description": "Signed sworn statement declaring the absence of any criminal record over the previous five years. This is a separate declaration from the ACRO certificate itself.",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "legal",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "Signed sworn statement declaring the absence of any criminal record over the previous five years. This is a separate declaration from the ACRO certificate itself."
       },
       {
         "name": "FCDO apostille and sworn Spanish translation of all UK-issued documents",
-        "description": "Post-Brexit, UK public documents are no longer exempt from legalisation as EU documents are, so ACRO certificates, degrees, marriage/birth certificates etc. must be apostilled and, where applicable, translated into Spanish by an officially recognised (sworn) translator. Ask your consulate for its list of accepted translators, as practice varies by consulate.",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "legal",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "Post-Brexit, UK public documents are no longer exempt from legalisation as EU documents are, so ACRO certificates, degrees, marriage/birth certificates etc. must be apostilled and, where applicable, translated into Spanish by an officially recognised (sworn) translator. Ask your consulate for its list of accepted translators, as practice varies by consulate."
       },
       {
         "name": "Employer or client certificate authorising remote work from Spain (minimum 3-month relationship)",
-        "description": "Letter/certificate from the non-Spanish employer or contracting company confirming the employment or commercial relationship has lasted at least 3 months at the date of application, and expressly permitting remote work from Spanish territory. Employees must also provide the employment contract containing the teleworking clause; freelancers must show contracts with clients where Spanish-based clients are no more than 20% of activity.",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "legal",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "Letter/certificate from the non-Spanish employer or contracting company confirming the employment or commercial relationship has lasted at least 3 months at the date of application, and expressly permitting remote work from Spanish territory. Employees must also provide the employment contract containing the teleworking clause; freelancers must show contracts with clients where Spanish-based clients are no more than 20% of activity."
       },
       {
         "name": "Proof that the employing/contracting company has traded for at least one year",
-        "description": "Corporate documentation evidencing that the foreign company has been genuinely active for a minimum of one year \u2014 for a UK employer this is typically a Companies House certificate of incorporation plus a current filing/registry extract.",
         "phase": "before",
-        "required": true,
+        "source": "Consulado General de Espa\u00f1a en Londres (Ministerio de Asuntos Exteriores, UE y Cooperaci\u00f3n)",
         "category": "legal",
-        "source": "Consulado General de Espa\u00f1a en Londres (Ministerio de Asuntos Exteriores, UE y Cooperaci\u00f3n)"
+        "required": true,
+        "description": "Corporate documentation evidencing that the foreign company has been genuinely active for a minimum of one year \u2014 for a UK employer this is typically a Companies House certificate of incorporation plus a current filing/registry extract."
       },
       {
         "name": "Evidence of professional qualification or 3 years' relevant experience",
-        "description": "Either a university/higher-education or professional qualification (degree certificate, apostilled and translated) or documentation proving at least three years of experience in duties comparable to the telework role. If equivalence of a vocational qualification is doubtful, official recognition (convalidaci\u00f3n) may be requested.",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "legal",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "Either a university/higher-education or professional qualification (degree certificate, apostilled and translated) or documentation proving at least three years of experience in duties comparable to the telework role. If equivalence of a vocational qualification is doubtful, official recognition (convalidaci\u00f3n) may be requested."
       },
       {
         "name": "Proof of sufficient income (200% of the Spanish minimum wage)",
-        "description": "Payslips, employment/service contracts and bank statements evidencing recurring income at or above 200% of the Spanish SMI (approximately \u20ac2,849/month in 2026), with uplifts of 75% of the SMI for the first dependent and 25% for each further dependent. Verify the current threshold with the consulate, as it changes each time the SMI is updated.",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "financial",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "Payslips, employment/service contracts and bank statements evidencing recurring income at or above 200% of the Spanish SMI (approximately \u20ac2,849/month in 2026), with uplifts of 75% of the SMI for the first dependent and 25% for each further dependent. Verify the current threshold with the consulate, as it changes each time the SMI is updated."
       },
       {
         "name": "Full private health insurance policy with an insurer authorised in Spain",
-        "description": "Certificate of cover from an insurer registered with the Direcci\u00f3n General de Seguros y Fondos de Pensiones, valid for the whole authorisation period, with no waiting periods, no co-payments and no coverage caps (100% of medical costs, including consultations, check-ups, illness and emergencies). A UK GHIC/EHIC or travel policy is not accepted.",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "other",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "Certificate of cover from an insurer registered with the Direcci\u00f3n General de Seguros y Fondos de Pensiones, valid for the whole authorisation period, with no waiting periods, no co-payments and no coverage caps (100% of medical costs, including consultations, check-ups, illness and emergencies). A UK GHIC/EHIC or travel policy is not accepted."
       },
       {
         "name": "Social security undertaking plus UK A1 / Certificate of Coverage where applicable",
-        "description": "Declaraci\u00f3n responsable committing to comply with social security obligations before starting the activity. If you remain in the UK system under the UK\u2013EU social security coordination protocol, provide the HMRC A1/Certificate of Coverage; otherwise evidence of the company's registration with Spanish Social Security or your own affiliation.",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "legal",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "Declaraci\u00f3n responsable committing to comply with social security obligations before starting the activity. If you remain in the UK system under the UK\u2013EU social security coordination protocol, provide the HMRC A1/Certificate of Coverage; otherwise evidence of the company's registration with Spanish Social Security or your own affiliation."
       },
       {
         "name": "NIE (N\u00famero de Identificaci\u00f3n de Extranjero) request filed with the visa",
-        "description": "The consulate requires the NIE to be requested at the same time and in the same consular office as the digital nomad visa application. This is the identification number only \u2014 distinct from the physical TIE card obtained later in Spain.",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "identity",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "The consulate requires the NIE to be requested at the same time and in the same consular office as the digital nomad visa application. This is the identification number only \u2014 distinct from the physical TIE card obtained later in Spain."
       },
       {
         "name": "Proof of legal residence in the consular district and visa fee receipt",
-        "description": "Evidence that you legally reside in the UK area covered by the consulate where you apply (e.g. UK council tax bill, tenancy agreement or utility bill), together with proof of payment of the consular visa fee, which must be paid in GBP at the time of submission and changes with exchange rates.",
         "phase": "before",
-        "required": true,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "legal",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": true,
+        "description": "Evidence that you legally reside in the UK area covered by the consulate where you apply (e.g. UK council tax bill, tenancy agreement or utility bill), together with proof of payment of the consular visa fee, which must be paid in GBP at the time of submission and changes with exchange rates."
       },
       {
         "name": "Family relationship certificates for accompanying dependants",
-        "description": "Only if family members apply with you: civil-registry birth or marriage certificates, civil-partnership registration or other proof of an unregistered partnership; for adult children, proof of economic dependency and civil status; for ascendants, proof they are dependent on the teleworker. All apostilled and translated.",
         "phase": "before",
-        "required": false,
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx",
         "category": "legal",
-        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+        "required": false,
+        "description": "Only if family members apply with you: civil-registry birth or marriage certificates, civil-partnership registration or other proof of an unregistered partnership; for adult children, proof of economic dependency and civil status; for ascendants, proof they are dependent on the teleworker. All apostilled and translated."
       },
       {
         "name": "Certificado / volante de empadronamiento from your Spanish town hall",
-        "description": "Municipal residence registration at the Ayuntamiento of your Spanish address, normally evidenced by a Spanish rental contract or property deed plus passport. Required for the TIE appointment and for most later administrative steps; it must generally be less than three months old when presented.",
         "phase": "during",
-        "required": true,
+        "source": "https://www.interior.gob.es/opencms/es/servicios-al-ciudadano/tramites-y-gestiones/extranjeria/regimen-general/tarjeta-de-identidad-de-extranjero/",
         "category": "legal",
-        "source": "https://www.interior.gob.es/opencms/es/servicios-al-ciudadano/tramites-y-gestiones/extranjeria/regimen-general/tarjeta-de-identidad-de-extranjero/"
+        "required": true,
+        "description": "Municipal residence registration at the Ayuntamiento of your Spanish address, normally evidenced by a Spanish rental contract or property deed plus passport. Required for the TIE appointment and for most later administrative steps; it must generally be less than three months old when presented."
       },
       {
         "name": "TIE application: form EX-17 with tasa modelo 790 c\u00f3digo 012",
-        "description": "Physical foreigner's identity card must be applied for in person within one month of entering Spain, at the Oficina de Extranjer\u00eda or National Police station of your province, by prior appointment booked online. Bring the signed EX-17, passport plus copy, a colour passport photo on white background, empadronamiento and the paid 790/012 fee slip; fingerprints are taken at the appointment and the card is collected in person weeks later.",
         "phase": "during",
-        "required": true,
+        "source": "https://sede.policia.gob.es/portalCiudadano/_es/tramites_extranjeria_tramite_tarjeta_residencia_residenciaytrabajo.php",
         "category": "identity",
-        "source": "https://sede.policia.gob.es/portalCiudadano/_es/tramites_extranjeria_tramite_tarjeta_residencia_residenciaytrabajo.php"
+        "required": true,
+        "description": "Physical foreigner's identity card must be applied for in person within one month of entering Spain, at the Oficina de Extranjer\u00eda or National Police station of your province, by prior appointment booked online. Bring the signed EX-17, passport plus copy, a colour passport photo on white background, empadronamiento and the paid 790/012 fee slip; fingerprints are taken at the appointment and the card is collected in person weeks later."
       },
       {
         "name": "Extranjer\u00eda/Police appointment confirmation (cita previa)",
-        "description": "Booking confirmation obtained through the government electronic office for the fingerprinting and card-collection appointments; appointments are compulsory and may be issued several weeks out, so book immediately on arrival.",
         "phase": "during",
-        "required": true,
+        "source": "https://sede.administracionespublicas.gob.es/pagina/index/directorio/icpplus",
         "category": "other",
-        "source": "https://sede.administracionespublicas.gob.es/pagina/index/directorio/icpplus"
+        "required": true,
+        "description": "Booking confirmation obtained through the government electronic office for the fingerprinting and card-collection appointments; appointments are compulsory and may be issued several weeks out, so book immediately on arrival."
       },
       {
         "name": "Spanish tax and social security registration file",
-        "description": "Registration with the Agencia Tributaria (modelo 036/037 census declaration for freelancers) and, where you fall under the Spanish system rather than a UK A1, affiliation and enrolment with the Tesorer\u00eda General de la Seguridad Social to obtain your social security number. Employees covered by a UK A1 should file the certificate instead \u2014 confirm your own case, as treatment differs between employees and self-employed.",
         "phase": "during",
-        "required": true,
+        "source": "Agencia Estatal de Administraci\u00f3n Tributaria (AEAT) / Tesorer\u00eda General de la Seguridad Social",
         "category": "financial",
-        "source": "Agencia Estatal de Administraci\u00f3n Tributaria (AEAT) / Tesorer\u00eda General de la Seguridad Social"
+        "required": true,
+        "description": "Registration with the Agencia Tributaria (modelo 036/037 census declaration for freelancers) and, where you fall under the Spanish system rather than a UK A1, affiliation and enrolment with the Tesorer\u00eda General de la Seguridad Social to obtain your social security number. Employees covered by a UK A1 should file the certificate instead \u2014 confirm your own case, as treatment differs between employees and self-employed."
       },
       {
         "name": "Modelo 149 application for the special expat tax regime",
-        "description": "Optional election of the 'Beckham Law' special non-resident tax regime available to international teleworkers, filed with the Agencia Tributaria within six months of the start of Spanish social security cover. Deadlines are strict; verify eligibility with AEAT or a Spanish tax adviser.",
         "phase": "after",
-        "required": false,
+        "source": "Agencia Estatal de Administraci\u00f3n Tributaria (AEAT)",
         "category": "financial",
-        "source": "Agencia Estatal de Administraci\u00f3n Tributaria (AEAT)"
+        "required": false,
+        "description": "Optional election of the 'Beckham Law' special non-resident tax regime available to international teleworkers, filed with the Agencia Tributaria within six months of the start of Spanish social security cover. Deadlines are strict; verify eligibility with AEAT or a Spanish tax adviser."
       },
       {
         "name": "Residence authorisation for international teleworker (renewal application to UGE-CE)",
-        "description": "The consular visa is valid for a maximum of one year; to continue living in Spain you must apply in Spain, within the 60 calendar days before the visa expires, for the autorizaci\u00f3n de residencia para teletrabajador de car\u00e1cter internacional, evidencing that the original conditions (income, remote employment, insurance, clean record) still hold. Handled by the Unidad de Grandes Empresas y Colectivos Estrat\u00e9gicos.",
         "phase": "after",
-        "required": true,
+        "source": "Unidad de Grandes Empresas y Colectivos Estrat\u00e9gicos (UGE-CE), Ministerio de Inclusi\u00f3n, Seguridad Social y Migraciones",
         "category": "legal",
-        "source": "Unidad de Grandes Empresas y Colectivos Estrat\u00e9gicos (UGE-CE), Ministerio de Inclusi\u00f3n, Seguridad Social y Migraciones"
+        "required": true,
+        "description": "The consular visa is valid for a maximum of one year; to continue living in Spain you must apply in Spain, within the 60 calendar days before the visa expires, for the autorizaci\u00f3n de residencia para teletrabajador de car\u00e1cter internacional, evidencing that the original conditions (income, remote employment, insurance, clean record) still hold. Handled by the Unidad de Grandes Empresas y Colectivos Estrat\u00e9gicos."
       },
       {
         "name": "Evidence of effective residence in Spain for renewal",
-        "description": "For renewals and any later long-term residence application, keep proof of actual physical residence (padr\u00f3n history, utility bills, tenancy, travel records, Spanish tax returns). Absences of more than six months in a year can jeopardise renewal \u2014 confirm the exact rule applicable to your case with the Oficina de Extranjer\u00eda or UGE-CE.",
         "phase": "after",
-        "required": true,
+        "source": "Oficina de Extranjer\u00eda / Ministerio de Inclusi\u00f3n, Seguridad Social y Migraciones",
         "category": "legal",
-        "source": "Oficina de Extranjer\u00eda / Ministerio de Inclusi\u00f3n, Seguridad Social y Migraciones"
+        "required": true,
+        "description": "For renewals and any later long-term residence application, keep proof of actual physical residence (padr\u00f3n history, utility bills, tenancy, travel records, Spanish tax returns). Absences of more than six months in a year can jeopardise renewal \u2014 confirm the exact rule applicable to your case with the Oficina de Extranjer\u00eda or UGE-CE."
       }
     ],
-    "source": "fresh"
+    "source": "cache"
   },
   {
     "citizenship": "India",
@@ -2274,6 +2274,177 @@
         "required": false,
         "category": "legal",
         "source": "UAE Ministry of Foreign Affairs (MOFAIC) attestation service / Embassy of the UAE in New Delhi"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "India",
+    "destination": "Germany",
+    "visa_type": "Freelance_Visa",
+    "cSlug": "india",
+    "dSlug": "germany",
+    "generated_at": "2026-08-05T12:02:30.880Z",
+    "documents": [
+      {
+        "name": "Valid Indian passport (original)",
+        "description": "Ordinary Indian passport issued within the last 10 years, with at least two blank visa pages; passports with observations/remarks on the front data page are not accepted by German missions in India.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://india.diplo.de/in-en/service/2539362-2539362"
+      },
+      {
+        "name": "VIDEX national visa (D visa) application form \u2013 two signed printouts",
+        "description": "Application form for a long-stay national visa for self-employment/freelance work, completed online in the VIDEX tool, printed twice and signed by hand on both copies.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://india.diplo.de/in-en/service/2539362-2539362"
+      },
+      {
+        "name": "Biometric passport photograph of the applicant",
+        "description": "Recent identical photo(s) meeting German biometric specifications (35x45 mm, light background, taken within the last 6 months). This is the physical photo taken at a studio \u2014 not a scan or photocopy of an existing photo.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://india.diplo.de/in-en/service/2539362-2539362"
+      },
+      {
+        "name": "Photocopies of the passport data page and any previous Schengen/German visas",
+        "description": "Plain paper copies of the biographical data page plus pages containing prior visas/entry stamps, submitted alongside the original passport. Number of copy sets can differ per mission (Delhi, Mumbai, Bengaluru, Chennai, Kolkata) \u2014 verify the mission-specific checklist before your appointment.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://india.diplo.de/in-en/service/2539362-2539362"
+      },
+      {
+        "name": "Curriculum vitae with qualification and experience evidence",
+        "description": "Tabular CV supported by degree/diploma certificates and references documenting the professional experience that qualifies you for a liberal profession under Section 18(1)(1) EStG (e.g. IT specialist, designer, engineer, language teacher, journalist, architect).",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://service.berlin.de/dienstleistung/328332/en/"
+      },
+      {
+        "name": "Letters of intent from at least two prospective German clients",
+        "description": "Client declarations (Absichtserkl\u00e4rungen) or signed freelance contracts stating the nature, scope and remuneration of the planned collaboration \u2014 the core evidence of regional need/economic or cultural benefit for a \u00a721(5) AufenthG permit.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://service.berlin.de/dienstleistung/328332/en/"
+      },
+      {
+        "name": "Freelance activity and revenue plan (financing plan)",
+        "description": "Written description of the intended freelance activity with projected income, expected costs and a financing/capital plan showing the activity will cover your living costs in Germany.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://india.diplo.de/in-en/service/2539362-2539362"
+      },
+      {
+        "name": "Proof of personal capital / Indian bank statements",
+        "description": "Recent Indian bank account statements, fixed deposits or a loan commitment demonstrating funds available to realise the freelance activity and to support yourself until income starts flowing.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://india.diplo.de/in-en/service/2539362-2539362"
+      },
+      {
+        "name": "Health insurance cover valid in Germany for the visa period",
+        "description": "Insurance confirmation covering you from the day of entry (typically expat/incoming cover for the D-visa period). For the later residence permit the insurer must issue the specific certificate for a residence title for gainful employment \u2014 statutory (GKV) or an adequate private policy.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://service.berlin.de/dienstleistung/324288/en/"
+      },
+      {
+        "name": "Proof of adequate old-age pension provision (applicants aged 45+)",
+        "description": "Required only if you have already turned 45: evidence that from age 67 you will have either a monthly pension of at least EUR 1,612.53 for 12 years or assets of at least EUR 232,204 (values effective 1 July 2025). Indian nationals are not on the exemption list.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://service.berlin.de/dienstleistung/328332/en/"
+      },
+      {
+        "name": "Professional practice licence / chamber admission for regulated professions",
+        "description": "Only for regulated liberal professions (e.g. doctor, dentist, architect, tax adviser, lawyer): the permission to practise must already be granted or promised in writing before the permit can be issued. Confirm with the competent chamber/licensing authority in your intended German state.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.gesetze-im-internet.de/aufenthg_2004/__21.html"
+      },
+      {
+        "name": "Wohnungsgeberbest\u00e4tigung (landlord's confirmation of occupancy)",
+        "description": "Signed confirmation from your landlord/main tenant that you have moved into the address; mandatory attachment for the Anmeldung at the B\u00fcrgeramt, which must normally be done within two weeks of moving in.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Service Berlin / local B\u00fcrgeramt \u2013 Anmeldung einer Wohnung"
+      },
+      {
+        "name": "Meldebescheinigung (city registration certificate)",
+        "description": "Certificate issued after the Anmeldung proving your registered German address; prerequisite for the tax number, bank account and the residence permit application. A second home is not sufficient \u2014 your main residence must be at the address.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://service.berlin.de/dienstleistung/328332/en/"
+      },
+      {
+        "name": "German rental contract plus proof of monthly rent payments",
+        "description": "Current (sub)lease agreement together with evidence of the actual monthly housing cost, e.g. a current bank account statement showing the rent debit, or documentation of costs if you own the property.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://service.berlin.de/dienstleistung/328332/en/"
+      },
+      {
+        "name": "Freelancer tax registration with the Finanzamt (Fragebogen zur steuerlichen Erfassung) and resulting Steuernummer",
+        "description": "Tax registration questionnaire filed via ELSTER with the local tax office as a Freiberufler; the confirmation/tax number (and VAT ID if applicable) is required evidence for the immigration office.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "https://service.berlin.de/dienstleistung/324288/en/"
+      },
+      {
+        "name": "Residence permit application for freelance activity under \u00a721(5) AufenthG",
+        "description": "Online application to the Ausl\u00e4nderbeh\u00f6rde/LEA (in Berlin the 'Aufenthaltserlaubnis f\u00fcr selbstst\u00e4ndig oder freiberuflich t\u00e4tige Personen' form) with uploaded documents; you must already hold a valid D visa or residence title \u2014 a Schengen C visa is not sufficient. Procedure and forms differ by city.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://service.berlin.de/dienstleistung/328332/en/"
+      },
+      {
+        "name": "Digitally captured biometric photo for the electronic residence title (eAT)",
+        "description": "Since 1 May 2025 the biometric photo for the residence card must be captured digitally at an authority terminal or a certified photo studio and transmitted electronically; a printed photo is no longer accepted. Distinct from the paper photo used for the visa file in India.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://service.berlin.de/dienstleistung/326564/en/"
+      },
+      {
+        "name": "Client invoices and six months of German bank statements showing recurring freelance income",
+        "description": "Kept for the extension application: issued invoices plus account statements evidencing regular inflows from the freelance activity, submitted in originals and sorted.",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": "https://service.berlin.de/dienstleistung/324288/en/"
+      },
+      {
+        "name": "Latest Steuerbescheid and tax adviser's net profit determination",
+        "description": "Most recent income tax assessment together with a net-profit calculation prepared by a Steuerberater as proof of a secured livelihood at extension. Freelancers under \u00a721(5) do not have to submit the 'Pr\u00fcfungsbericht' (audit report) required of commercial self-employed persons. Extension can be filed at the earliest 4 months before expiry.",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": "https://service.berlin.de/dienstleistung/324288/en/"
+      },
+      {
+        "name": "Settlement permit (Niederlassungserlaubnis) application file after 5 years",
+        "description": "For long-term stability: freelancers holding a \u00a721(5) permit can be granted permanent residence at the earliest after 5 years, submitting passport with permit, sustained income proof, health insurance and pension contribution records; German language and integration proof also apply. Exact requirements vary by immigration authority \u2014 verify locally.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://service.berlin.de/dienstleistung/326564/en/"
       }
     ],
     "source": "fresh"
@@ -2466,6 +2637,177 @@
     "source": "fresh"
   },
   {
+    "citizenship": "Brazil",
+    "destination": "Spain",
+    "visa_type": "Digital_Nomad",
+    "cSlug": "brazil",
+    "dSlug": "spain",
+    "generated_at": "2026-08-05T12:09:56.591Z",
+    "documents": [
+      {
+        "name": "National long-stay visa application form (Solicitud de visado nacional)",
+        "description": "Official Spanish national visa form, completed and signed by the applicant; a separate form is required for each accompanying family member. Submitted in person at the Spanish Consulate General with jurisdiction over the applicant's Brazilian state of residence (S\u00e3o Paulo, Rio de Janeiro, Bras\u00edlia, Salvador, Recife, Porto Alegre, Belo Horizonte or Curitiba).",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.exteriores.gob.es/Consulados/saopaulo/es/ServiciosConsulares/Paginas/index.aspx?scca=Visados&scco=Brasil&scd=263&scs=Visados+Nacionales+-+Visado+de+residencia+para+teletrabajo+%28n%C3%B3mada+digital"
+      },
+      {
+        "name": "Brazilian passport (original) valid at least 1 year with two blank pages",
+        "description": "Original ordinary Brazilian passport presented at the visa appointment; must remain valid for a minimum of one year and contain at least two blank visa pages.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.exteriores.gob.es/Consulados/saopaulo/es/ServiciosConsulares/Paginas/index.aspx?scca=Visados&scco=Brasil&scd=263&scs=Visados+Nacionales+-+Visado+de+residencia+para+teletrabajo+%28n%C3%B3mada+digital"
+      },
+      {
+        "name": "Photocopy of the passport biographical/biometric data page",
+        "description": "A separate colour photocopy (A4) of the page containing the holder's photo and personal data, retained by the consulate in the file. This is a paper copy, not the original passport and not a photograph of the applicant.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Consulado General de Espa\u00f1a en S\u00e3o Paulo (exteriores.gob.es)"
+      },
+      {
+        "name": "Recent colour biometric photograph of the applicant",
+        "description": "One (some Brazilian consular posts request two) recent passport-size colour photo, white background, meeting Schengen/ICAO photo standards, glued or attached to the application form. Exact number varies by consular post \u2014 confirm with the specific consulate.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Consulado General de Espa\u00f1a en S\u00e3o Paulo (exteriores.gob.es)"
+      },
+      {
+        "name": "Atestado de Antecedentes Criminais from the Pol\u00edcia Federal (federal criminal record), apostilled",
+        "description": "Federal criminal-record certificate issued by Brazil's Pol\u00edcia Federal, covering the applicant's period of residence in Brazil. Must carry the Hague Apostille issued by a CNJ-authorised Brazilian cart\u00f3rio and be accompanied by a sworn Spanish translation; the consulate normally requires the apostilled original plus a plain photocopy. Some posts also request state-level (Justi\u00e7a Estadual/Federal) certificates \u2014 verify with your consulate.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Pol\u00edcia Federal do Brasil / Consulado General de Espa\u00f1a en S\u00e3o Paulo (exteriores.gob.es)"
+      },
+      {
+        "name": "Criminal record certificate(s) from any other country of residence in the last 2 years",
+        "description": "Required only if the applicant lived outside Brazil for more than six months during the relevant look-back period; each certificate must be apostilled or legalised and translated into Spanish. Spain's law refers to a 5-year declaration but consulates commonly request certificates covering the last 2 years \u2014 confirm the exact period with the consulate.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://prie.comercio.gob.es/es-es/Paginas/Teletrabajadores-caracter-internacional.aspx"
+      },
+      {
+        "name": "Declaraci\u00f3n responsable of absence of criminal record for the previous 5 years",
+        "description": "Signed sworn statement declaring the applicant has no criminal convictions in the countries of residence over the last five years, using the model provided by the consulate. This is a self-declaration and is separate from the official police certificates.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://prie.comercio.gob.es/es-es/Paginas/Teletrabajadores-caracter-internacional.aspx"
+      },
+      {
+        "name": "Certificate from the foreign employer or client company (relationship \u22653 months, company active \u22651 year)",
+        "description": "Letter/certificate from the non-Spanish employer (employees) or the contracting companies (self-employed) confirming the labour or commercial relationship has existed for at least three months at the date of application, that the work may be performed fully remotely, and the terms and conditions of the remote activity. Must also evidence the company's real and continuous activity for at least one year. For self-employed applicants working for a Spanish client, no more than 20% of activity may come from Spain.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://prie.comercio.gob.es/es-es/Paginas/Teletrabajadores-caracter-internacional.aspx"
+      },
+      {
+        "name": "Proof of qualification: university/postgraduate diploma, recognised professional training, or 3+ years of experience",
+        "description": "Diploma from a university, professional training centre or business school of recognised prestige, or evidence of at least three years' professional experience in the field. Brazil-specific advantage: the Spanish consulate in Brazil accepts a copy of the Carteira de Trabalho as proof of professional experience without a Spanish translation. If there is doubt about equivalence of a vocational diploma, homologation before the Spanish education authority may be requested.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.exteriores.gob.es/Consulados/saopaulo/es/ServiciosConsulares/Paginas/index.aspx?scca=Visados&scco=Brasil&scd=263&scs=Visados+Nacionales+-+Visado+de+residencia+para+teletrabajo+%28n%C3%B3mada+digital"
+      },
+      {
+        "name": "Proof of sufficient economic means (200% of the Spanish SMI)",
+        "description": "Employment or commercial contract plus payslips and/or bank statements showing monthly income of at least 200% of the Spanish minimum wage (approximately \u20ac2,849/month in 2026), with additional percentages for each accompanying family member. The exact euro threshold changes each year with the SMI \u2014 confirm the current figure with the consulate before submitting.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.exteriores.gob.es/Consulados/saopaulo/es/ServiciosConsulares/Paginas/index.aspx?scca=Visados&scco=Brasil&scd=263&scs=Visados+Nacionales+-+Visado+de+residencia+para+teletrabajo+%28n%C3%B3mada+digital"
+      },
+      {
+        "name": "Health insurance certificate from an insurer authorised to operate in Spain",
+        "description": "Original and one copy of a public or private health insurance certificate issued by an entity registered with the Direcci\u00f3n General de Seguros y Fondos de Pensiones, covering all risks covered by the Spanish public health system, with no co-payments or waiting periods. Not required if coverage by the Spanish Social Security system is proven instead.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.exteriores.gob.es/Consulados/saopaulo/es/ServiciosConsulares/Paginas/index.aspx?scca=Visados&scco=Brasil&scd=263&scs=Visados+Nacionales+-+Visado+de+residencia+para+teletrabajo+%28n%C3%B3mada+digital"
+      },
+      {
+        "name": "Social security compliance declaration, or Brazilian certificate of applicable legislation (INSS)",
+        "description": "Declaraci\u00f3n responsable committing to comply with Spanish social security obligations before starting work; alternatively, under the Brazil\u2013Spain bilateral social security agreement, the Brazilian INSS may issue a certificate of applicable legislation for teleworkers giving temporary coverage in Spain, which must be noted in the declaration. Not all countries issue this teleworker certificate \u2014 verify availability with INSS and the consulate.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.exteriores.gob.es/Consulados/saopaulo/es/ServiciosConsulares/Paginas/index.aspx?scca=Visados&scco=Brasil&scd=263&scs=Visados+Nacionales+-+Visado+de+residencia+para+teletrabajo+%28n%C3%B3mada+digital"
+      },
+      {
+        "name": "Visa fee payment receipt (paid in Brazilian reais)",
+        "description": "Proof of payment of the consular visa fee, which in Brazil must be paid in reais in cash or by PIX at the time of application; amounts fluctuate with exchange rates and are published in the consular fee list.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.exteriores.gob.es/Consulados/saopaulo/es/ServiciosConsulares/Paginas/index.aspx?scca=Visados&scco=Brasil&scd=263&scs=Visados+Nacionales+-+Visado+de+residencia+para+teletrabajo+%28n%C3%B3mada+digital"
+      },
+      {
+        "name": "Brazilian civil registry certificates proving family relationship (certid\u00e3o de casamento / nascimento), apostilled and translated",
+        "description": "Only for accompanying spouse, registered/unregistered partner, dependent children or dependent ascendants: marriage, birth or partnership certificates issued by the Brazilian registro civil. The consulate in Brazil explicitly requires these Brazilian certificates to be apostilled and translated into Spanish; adult children must additionally prove economic dependence and civil status.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "https://www.exteriores.gob.es/Consulados/saopaulo/es/ServiciosConsulares/Paginas/index.aspx?scca=Visados&scco=Brasil&scd=263&scs=Visados+Nacionales+-+Visado+de+residencia+para+teletrabajo+%28n%C3%B3mada+digital"
+      },
+      {
+        "name": "Certificado/volante de empadronamiento from the Spanish town hall",
+        "description": "Municipal residence registration obtained at the Ayuntamiento of your Spanish address after arrival, normally requiring the passport with visa and a rental contract, property deed or landlord authorisation. Needed for the TIE appointment in most provinces and for healthcare, tax and banking formalities; must usually be less than three months old.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.interior.gob.es/opencms/es/servicios-al-ciudadano/tramites-y-gestiones/extranjeria/regimen-general/tarjeta-de-identidad-de-extranjero/"
+      },
+      {
+        "name": "Form EX-17 \u2013 application for the Tarjeta de Identidad de Extranjero (TIE)",
+        "description": "Official TIE application form completed and signed, submitted at the Oficina de Extranjer\u00eda or Comisar\u00eda de Polic\u00eda with the passport and a copy of the visa/favourable resolution. Note: a one-year teleworking visa already accredits legal residence, so the TIE is optional for visa holders but is strongly recommended in practice and mandatory once a 3-year residence authorisation is granted.",
+        "phase": "during",
+        "required": false,
+        "category": "identity",
+        "source": "https://sede.policia.gob.es/portalCiudadano/_es/tramites_extranjeria_tramite_tarjeta_residencia_residenciaytrabajo.php"
+      },
+      {
+        "name": "Tasa Modelo 790 C\u00f3digo 012 payment receipt",
+        "description": "Proof of payment of the Ministry of Interior police fee for issuing the foreigner identity card, paid online or at a collaborating bank and presented at the fingerprinting (toma de huellas) appointment together with the appointment confirmation.",
+        "phase": "during",
+        "required": false,
+        "category": "financial",
+        "source": "https://sede.policia.gob.es/portalCiudadano/_es/tramites_extranjeria_tramite_tarjeta_residencia_residenciaytrabajo.php"
+      },
+      {
+        "name": "Application for the residence authorisation for international teleworkers (UGE-CE)",
+        "description": "Filed with the Unidad de Grandes Empresas y Colectivos Estrat\u00e9gicos within the 60 calendar days before the visa expires (or in the 90 days after), proving the original conditions still hold; grants a residence permit of up to 3 years, renewable for 2 more.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://prie.comercio.gob.es/es-es/Paginas/Teletrabajadores-caracter-internacional.aspx"
+      },
+      {
+        "name": "Spanish tax registration (Modelo 030) and optional special regime request (Modelo 149)",
+        "description": "Registration in the Agencia Tributaria census of taxpayers with your NIE and Spanish address; digital nomads may additionally opt for the special non-resident-style tax regime for teleworkers (Modelo 149) within six months of registration. Eligibility conditions are technical \u2014 confirm with the Agencia Tributaria or a Spanish tax adviser.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "Agencia Estatal de Administraci\u00f3n Tributaria (AEAT)"
+      },
+      {
+        "name": "Evidence of effective residence in Spain for renewal",
+        "description": "Kept for the renewal file: updated padr\u00f3n certificates, Spanish rental contract, utility bills, bank activity and travel history showing effective residence in Spain; absences beyond six consecutive months can jeopardise renewal and future long-term residence or nationality applications.",
+        "phase": "after",
+        "required": true,
+        "category": "other",
+        "source": "Unidad de Grandes Empresas y Colectivos Estrat\u00e9gicos (UGE-CE)"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
     "citizenship": "China",
     "destination": "Japan",
     "visa_type": "Digital_Nomad",
@@ -2635,5 +2977,1087 @@
       }
     ],
     "source": "fresh"
+  },
+  {
+    "citizenship": "China",
+    "destination": "Singapore",
+    "visa_type": "Employment_Pass",
+    "cSlug": "china",
+    "dSlug": "singapore",
+    "generated_at": "2026-08-05T12:05:25.548Z",
+    "documents": [
+      {
+        "name": "Chinese passport (biodata page) valid at least 6 months",
+        "description": "Personal particulars page of the PRC passport, uploaded by the employer with the EP application. Details (name in Latin letters, passport number, date of birth) must match the application exactly. Also include any amendment pages if name or expiry date was changed.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.mom.gov.sg/passes-and-permits/employment-pass/apply-for-a-pass"
+      },
+      {
+        "name": "Signed employment contract or letter of offer from the Singapore-registered employer",
+        "description": "Must state job title, detailed job duties and the fixed monthly salary. Salary must meet the EP qualifying floor (S$5,600/month most sectors, S$6,200 financial services, scaling up with age; rising to S$6,000/S$6,600 for new applications from 1 January 2027).",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.mom.gov.sg/passes-and-permits/employment-pass/eligibility"
+      },
+      {
+        "name": "Education verification report for mainland China qualifications (CSSD/CHSI or CDGDC)",
+        "description": "China-specific requirement: for a diploma-level qualification from mainland China, an Online Verification Report of Higher Education Qualification Certificate from CHSI/CSSD; for bachelor's degree and above, verification from China Academic Degrees & Graduate Education Development Center (CDGDC) or an MOM-accepted global screening firm. Notarised certificate copies alone are NOT accepted as verification. Required if the qualification is declared for COMPASS points.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.mom.gov.sg/passes-and-permits/employment-pass/documents-required"
+      },
+      {
+        "name": "Original degree/diploma certificate and academic transcript with certified English translation",
+        "description": "The underlying Chinese-language \u6bd5\u4e1a\u8bc1/\u5b66\u4f4d\u8bc1 and transcripts, submitted alongside the verification report. All documents not in English must be accompanied by an official English translation submitted as one file.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.mom.gov.sg/passes-and-permits/employment-pass/documents-required"
+      },
+      {
+        "name": "Written consent from the candidate authorising the employer or employment agent to apply",
+        "description": "Signed declaration allowing the Singapore employer or appointed employment agent to submit the EP application via the myMOM Portal on the applicant's behalf. Candidates cannot self-apply.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Ministry of Manpower Singapore (MOM)"
+      },
+      {
+        "name": "Employer's ACRA business profile / latest company information",
+        "description": "The sponsoring company's latest ACRA business profile or instant information, filed by the employer as part of the EP submission to establish the entity's registration and standing.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.acra.gov.sg"
+      },
+      {
+        "name": "Detailed CV / r\u00e9sum\u00e9 with employment history",
+        "description": "Chronological work history supporting the role's seniority and relevance; used by MOM to assess whether qualifications and experience match the job. Inconsistency with declared details is a leading rejection cause.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "Ministry of Manpower Singapore (MOM)"
+      },
+      {
+        "name": "COMPASS self-assessment (SAT) result printout",
+        "description": "Employer-run Self-Assessment Tool output showing the application scores at least 40 points across the four foundational and two bonus COMPASS criteria (salary, qualifications, diversity, local employment). Not a submitted document per se, but a required pre-submission check \u2014 a 'No' result means near-certain rejection. Exempt if fixed monthly salary is at least S$22,500.",
+        "phase": "before",
+        "required": false,
+        "category": "other",
+        "source": "https://service2.mom.gov.sg/eposat/"
+      },
+      {
+        "name": "Recent payslips or income proof from the last China-based employer",
+        "description": "Salary history from the applicant's current/previous employment in China. Not always mandated for a standard EP, but frequently requested by MOM to corroborate declared salary and seniority \u2014 verify with MOM whether required in your case.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "Ministry of Manpower Singapore (MOM)"
+      },
+      {
+        "name": "In-Principle Approval (IPA) letter",
+        "description": "Issued via myMOM after approval; serves as the entry document for travel to Singapore and must be presented at check-in and at the ICA checkpoint. The applicant has six months from IPA issuance to enter Singapore and have the pass issued.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.mom.gov.sg/passes-and-permits/employment-pass/apply-for-a-pass"
+      },
+      {
+        "name": "SG Arrival Card submission (ICA electronic arrival declaration)",
+        "description": "Electronic arrival card and health declaration submitted to the Immigration & Checkpoints Authority within three days before arrival in Singapore. Required of all non-resident travellers, including IPA holders arriving to take up an EP.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://eservices.ica.gov.sg/sgarrivalcard"
+      },
+      {
+        "name": "Employment Pass card issuance registration and biometric/photo submission",
+        "description": "After arrival the candidate must be physically in Singapore for the employer to request pass issuance via myMOM (S$225 issuance fee). Where MOM requires registration, the applicant attends the Employment Pass Services Centre in person to give fingerprints and a photograph before the EP card is delivered.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.mom.gov.sg/passes-and-permits/employment-pass/issuance"
+      },
+      {
+        "name": "Employment Pass card and FIN (Foreign Identification Number)",
+        "description": "The issued EP card carries the FIN, the identifier used for banking, telco, tenancy, healthcare and all subsequent government transactions in Singapore. Work may only begin from the date the EP is issued, not on the IPA alone.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.mom.gov.sg/passes-and-permits/employment-pass"
+      },
+      {
+        "name": "Multiple Journey Visa (MJV) endorsement for PRC passport holders",
+        "description": "Chinese nationals are a visa-required nationality for Singapore; work pass holders normally obtain an MJV (approx. S$30, applied for with the pass) so they can re-enter Singapore after trips abroad without a fresh visa. Confirm current requirement with MOM/ICA, as Singapore\u2013China mutual visa-exemption arrangements have altered short-visit rules.",
+        "phase": "during",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.ica.gov.sg/enter-depart/entry_requirements"
+      },
+      {
+        "name": "Singapore residential tenancy agreement (stamped with IRAS)",
+        "description": "Signed lease for accommodation, stamp-duty certified via IRAS e-Stamping. Commonly required as proof of local address for bank account opening, utilities and dependant applications.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.iras.gov.sg/taxes/stamp-duty/for-property/basics-of-stamp-duty-for-property/renting-a-property"
+      },
+      {
+        "name": "Dependant's Pass application set (spouse and children under 21)",
+        "description": "Employer-submitted via myMOM: dependant's passport particulars page, plus PRC marriage certificate for a spouse or birth certificate (\u51fa\u751f\u8bc1\u660e) for each child, and adoption order if applicable \u2014 each with certified English translation. EP holder must earn at least S$6,000 fixed monthly salary to sponsor.",
+        "phase": "after",
+        "required": false,
+        "category": "identity",
+        "source": "https://www.mom.gov.sg/passes-and-permits/dependants-pass"
+      },
+      {
+        "name": "Long Term Visit Pass application for parents or parents-in-law",
+        "description": "Separate pass route for family members not eligible for a Dependant's Pass (e.g. parents of the EP holder, common-law spouse, stepchildren). Requires the applicant's passport particulars page and relationship-proving certificates with English translations; ICA/MOM may request additional supporting documents.",
+        "phase": "after",
+        "required": false,
+        "category": "identity",
+        "source": "https://www.mom.gov.sg/passes-and-permits/long-term-visit-pass"
+      },
+      {
+        "name": "Letter of Consent (LOC) for a Dependant's Pass holder who wishes to work",
+        "description": "A DP holder cannot work on the DP alone; the prospective Singapore employer must obtain separate work authorisation (LOC, EP, S Pass or DP-Work Permit) from MOM before the spouse starts employment.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.mom.gov.sg/passes-and-permits/letter-of-consent"
+      },
+      {
+        "name": "EP renewal application with updated COMPASS evidence",
+        "description": "Filed by the employer via myMOM up to six months before expiry and at least two weeks prior. Renewal is not automatic: MOM reassesses against the prevailing qualifying salary and COMPASS benchmarks and may request recent payslips or company financials. Passes expiring from 1 July 2026 onward are assessed against updated COMPASS salary benchmarks.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.mom.gov.sg/passes-and-permits/employment-pass/renew-a-pass"
+      },
+      {
+        "name": "IRAS Notice of Assessment / annual income tax filing record",
+        "description": "Singapore income tax filings for each year of employment. EP holders are taxed on Singapore-sourced income and the employer must file Form IR21 tax clearance if the holder ceases employment or leaves Singapore; the assessment history also supports later PR or long-term pass applications.",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.iras.gov.sg"
+      },
+      {
+        "name": "Permanent Residence application (ICA e-PR) supporting document set",
+        "description": "Optional stability step, typically considered after roughly six months on an EP. ICA requires the PRC passport, birth certificate, education and employment records, income tax notices and payslips, plus marriage/birth certificates for accompanying family \u2014 all with certified English translations. Some Chinese civil documents may need notarisation; verify the current ICA e-PR checklist as requirements are periodically updated.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.ica.gov.sg/reside/PR/apply"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Nigeria",
+    "destination": "United Kingdom",
+    "visa_type": "Temporary_Residence",
+    "cSlug": "nigeria",
+    "dSlug": "united-kingdom",
+    "generated_at": "2026-08-05T12:11:51.862Z",
+    "documents": [
+      {
+        "name": "Valid Nigerian international passport",
+        "description": "Machine-readable Nigerian passport with at least one blank page for a vignette and validity covering the intended entry date; the biodata page is uploaded and the passport chip is scanned during identity verification. Name spelling must match all other documents exactly.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.gov.uk/skilled-worker-visa/documents-you-must-provide"
+      },
+      {
+        "name": "Certificate of Sponsorship (CoS) reference number",
+        "description": "Unique reference issued by the Home Office licensed UK sponsor, stating job title, SOC occupation code, salary and start date. Must be used within 3 months of issue. This is the core route-defining document for a UK temporary residence work permission.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.uk/skilled-worker-visa"
+      },
+      {
+        "name": "Tuberculosis clearance certificate from a UK-approved clinic in Nigeria",
+        "description": "Mandatory for Nigerian residents applying to stay in the UK 6 months or more. Test must be done only at Home Office-approved centres in Nigeria (IOM Migration Health Assessment Centres in Lagos and Abuja, Q-Life Family Clinic Lagos, The Consultants Practice Lagos). Certificates from non-approved clinics are rejected; validity is normally 6 months from examination (3 months in some contact-tracing cases).",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.uk/government/publications/tuberculosis-test-for-a-uk-visa-clinics-in-nigeria"
+      },
+      {
+        "name": "English language evidence (SELT certificate or ECCTIS degree confirmation)",
+        "description": "Nigeria is not on the UKVI majority-English-speaking country list, so a Nigerian applicant normally proves English at CEFR B1 either via an approved Secure English Language Test (e.g. IELTS for UKVI) taken at an approved centre, or via an ECCTIS (formerly UK NARIC) statement confirming a Nigerian degree was taught in English. Choose one route only \u2014 do not submit both as interchangeable.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-english-language"
+      },
+      {
+        "name": "Bank statements evidencing maintenance funds (\u00a31,270 for 28 consecutive days)",
+        "description": "Personal Nigerian or foreign bank statements showing the required maintenance balance held for 28 continuous days ending no more than 31 days before application. Not needed if the UK sponsor certifies maintenance on the CoS \u2014 verify which applies with your sponsor.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://www.gov.uk/skilled-worker-visa/money-you-need-to-support-yourself"
+      },
+      {
+        "name": "Visa application fee and Immigration Health Surcharge payment confirmation",
+        "description": "Online payment receipts plus the generated GWF or UAN application reference number. The IHS must be paid for the full grant period before the application can be submitted; keep the reference for eVisa account creation later.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.gov.uk/healthcare-immigration-application/pay"
+      },
+      {
+        "name": "Nigeria Police Force criminal record certificate",
+        "description": "Police clearance certificate covering Nigeria, plus one from any other country lived in for 12 months or more in the last 10 years. Required only for specified occupations (e.g. healthcare, education, roles working with children or vulnerable adults) \u2014 confirm applicability against the Home Office list before paying for it.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.gov.uk/guidance/criminal-records-checks-for-overseas-applicants"
+      },
+      {
+        "name": "Biometric enrolment confirmation from a Visa Application Centre (Lagos or Abuja) or ID Check app verification",
+        "description": "Either an appointment confirmation and biometric receipt after giving fingerprints and a facial image at the VFS/TLS visa application centre in Lagos or Abuja, or completed identity verification via the 'UK Immigration: ID Check' app if eligible. This is distinct from any printed passport-style photographs a clinic or agent may request.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.gov.uk/skilled-worker-visa/apply-outside-the-uk"
+      },
+      {
+        "name": "Nigerian academic and professional qualification certificates",
+        "description": "Degree/diploma certificates and, where the role requires it, professional registration evidence (e.g. GMC, NMC, HCPC decision letter). Some sponsors and UKVI expect Nigerian certificates authenticated by the issuing institution and the Nigerian Ministry of Foreign Affairs \u2014 verify with the sponsor and UKVI, requirements vary by occupation.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "UK Visas and Immigration (Home Office)"
+      },
+      {
+        "name": "Dependant relationship documents (Nigerian marriage certificate and NPC birth certificates)",
+        "description": "Required only if a partner or children apply as dependants: Nigerian marriage certificate or evidence of 2 years' cohabitation, and National Population Commission birth certificates naming both parents. Each dependant also needs their own TB certificate and IHS payment.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "https://www.gov.uk/skilled-worker-visa/partner-family"
+      },
+      {
+        "name": "Visa decision letter and entry clearance (vignette or eVisa confirmation)",
+        "description": "The Home Office decision letter stating conditions of entry, plus the 90-day travel vignette in the passport where one is still issued. The UK has moved to digital status, so many applicants now travel on an eVisa alone \u2014 verify at collection whether a vignette was placed in your passport.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.uk/guidance/online-immigration-status-evisa"
+      },
+      {
+        "name": "UKVI account with eVisa access",
+        "description": "Free digital account created at gov.uk/get-access-evisa using your passport and GWF/UAN reference, verified with the 'UK Immigration: ID Check' app. The eVisa has replaced the Biometric Residence Permit, biometric residence cards and passport endorsements as the record of status; passport details in the account must be kept current for carrier checks when travelling.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.uk/guidance/online-immigration-status-evisa"
+      },
+      {
+        "name": "Right-to-work share code (W code)",
+        "description": "Nine-character code beginning with 'W' generated in the 'View and prove your immigration status' service and given to the UK employer with your date of birth so they can complete the statutory right-to-work check. Valid 90 days; this is separate from the right-to-rent code.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.uk/prove-right-to-work"
+      },
+      {
+        "name": "Right-to-rent share code (R code)",
+        "description": "Separate nine-character code beginning with 'R' generated from the same UKVI account, provided to a landlord or letting agent in England to evidence right to rent before signing a tenancy.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.uk/prove-right-to-rent"
+      },
+      {
+        "name": "National Insurance number",
+        "description": "Needed for PAYE payroll and social security contributions. Some work visa holders have an NI number issued with their immigration decision; if not shown in your eVisa or decision letter, apply through the HMRC/DWP online service after arrival.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.uk/apply-national-insurance-number"
+      },
+      {
+        "name": "UK tenancy agreement or proof of address",
+        "description": "Signed assured shorthold tenancy agreement, or a letter/utility bill in your name, used to open a bank account, register with a GP and evidence residence. Keep the original \u2014 many banks will not accept a mobile phone bill.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": null
+      },
+      {
+        "name": "NHS GP registration (GMS1 form)",
+        "description": "Completed GMS1 registration form submitted to a local GP practice with your passport and proof of address to access NHS primary care already funded by your Immigration Health Surcharge.",
+        "phase": "during",
+        "required": false,
+        "category": "other",
+        "source": "https://www.nhs.uk/nhs-services/gps/how-to-register-with-a-gp-surgery/"
+      },
+      {
+        "name": "Record of absences from the UK",
+        "description": "A running log of every trip outside the UK with dates, supported by passport stamps and boarding passes. Settlement requires absences of no more than 180 days in any rolling 12-month period across the qualifying years, so this must be maintained from arrival.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.uk/indefinite-leave-to-remain-skilled-worker"
+      },
+      {
+        "name": "Life in the UK test pass notification",
+        "description": "Unique reference number issued after passing the Life in the UK test at an approved test centre; needed for indefinite leave to remain and later naturalisation. Book only through the official GOV.UK booking service.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.uk/life-in-the-uk-test"
+      },
+      {
+        "name": "Indefinite Leave to Remain application pack (form SET(O)) with sponsor letter and salary evidence",
+        "description": "Online SET(O) settlement application supported by a current employer/sponsor letter confirming continued employment, payslips and P60s showing the applicable salary threshold is met at the application date, English language evidence and the Life in the UK result. Settlement rules are under reform ('earned settlement' proposals) \u2014 confirm the qualifying period and salary threshold on GOV.UK before applying.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.uk/indefinite-leave-to-remain-skilled-worker"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Nigeria",
+    "destination": "Canada",
+    "visa_type": "Express_Entry",
+    "cSlug": "nigeria",
+    "dSlug": "canada",
+    "generated_at": "2026-08-05T11:57:08.806Z",
+    "documents": [
+      {
+        "name": "Nigerian international passport (machine-readable, valid)",
+        "description": "Standard Nigerian e-passport issued by the Nigeria Immigration Service. The biographic data page is uploaded in the e-APR, and the passport must remain valid through landing because the permanent resident visa counterfoil is affixed inside it. Renew early if validity is under 12 months.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Nigeria Immigration Service (immigration.gov.ng)"
+      },
+      {
+        "name": "IRCC-approved language test result (IELTS General Training, CELPIP-General, PTE Core, TEF/TCF Canada)",
+        "description": "Test results must be less than two years old on the date the Express Entry profile is submitted and still valid when the e-APR is filed. Nigerian applicants most commonly use IELTS General Training at British Council/IDP centres in Lagos, Abuja, Port Harcourt or Ibadan. Academic IELTS is not accepted for Express Entry.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry.html"
+      },
+      {
+        "name": "Educational Credential Assessment (ECA) report",
+        "description": "Issued by an IRCC-designated organization (WES is the route most Nigerian applicants use). Nigerian university transcripts must be sent directly by the institution and WAEC/NECO secondary results are sent directly through the exam board's online verification service \u2014 allow several months for Nigerian institutional delays. ECA validity is five years from issue.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/education-assessed.html"
+      },
+      {
+        "name": "Degree certificate, diploma and academic transcripts",
+        "description": "The underlying credentials themselves, uploaded separately from the ECA report. Include the final degree certificate/statement of result and full academic transcript for each credential claimed for CRS points.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "IRCC \u2013 Immigration, Refugees and Citizenship Canada"
+      },
+      {
+        "name": "Employer reference letters for each period of skilled work experience",
+        "description": "On company letterhead, signed by someone with authority over your employment, stating job title, detailed duties, employment dates, hours per week, and salary/benefits, and matching the NOC code claimed. One letter per employer. For Nigerian employers that have closed or will not issue letters, substitute contracts, payslips, PAYE/tax records plus a written explanation.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/work-experience.html"
+      },
+      {
+        "name": "Nigeria Police Character Certificate (Police Clearance Certificate)",
+        "description": "Issued by the Nigeria Police Force Criminal Investigation Department at Force Headquarters, Alagbon Close, Lagos (INTERPOL/CRC route also used). Processing commonly takes 4\u201312 weeks, so start immediately after the Invitation to Apply. Must generally be issued within six months of e-APR submission; IRCC does not accept certificates mailed directly by the police to IRCC for Express Entry. Some applicants additionally have it authenticated by the Nigerian Ministry of Foreign Affairs or certified at a Nigerian mission abroad \u2014 verify with the official source, practice varies.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/operational-bulletins-manuals/updates/2018-police-certificates-2.html"
+      },
+      {
+        "name": "Police certificates from every other country of residence (6+ months since age 18, last 10 years)",
+        "description": "Separate from the Nigerian certificate. Required for each country/territory other than Canada where you (and each accompanying family member 18+) lived six or more consecutive months in the past ten years \u2014 e.g. UK ACRO, US FBI Identity History Summary, UAE, Saudi Arabia, South Africa. If a certificate is delayed, upload documented proof of the request.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/operational-bulletins-manuals/updates/2018-police-certificates-2.html"
+      },
+      {
+        "name": "Immigration medical examination (IME) report from an IRCC panel physician",
+        "description": "Must be done by a panel physician on IRCC's list (clinics in Lagos, Abuja, Port Harcourt and Benin City). Results are valid 12 months. An upfront exam before e-APR submission is optional but can shorten processing; the eMedical Information Sheet/IMM 1017 receipt is uploaded as proof.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/medical-exams/requirements-permanent-residents.html"
+      },
+      {
+        "name": "Biometrics enrolment (ten fingerprints and facial photograph) at a Canada VAC",
+        "description": "Distinct from the digital photo uploaded in your application. Biometrics must be given in person after receiving the Biometric Instruction Letter \u2014 in Nigeria at the VFS Global-operated Canada Visa Application Centre in Lagos or Abuja, by prior appointment. Every permanent residence applicant 14\u201379 must give biometrics again even if previously enrolled; the CAD 85 fee (CAD 170 per family) is paid with the application.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/biometrics/when-to-give-permanent-residence.html"
+      },
+      {
+        "name": "Digital photograph meeting IRCC specifications (for the application and PR card)",
+        "description": "A separate uploaded photo file, not the biometric photo captured at the VAC. IRCC reuses the photo attached to your Confirmation of Permanent Residence to produce your first PR card, so it must meet the published size, framing and recency specifications.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/permanent-residents/card/apply.html"
+      },
+      {
+        "name": "Proof of funds \u2014 official bank letter plus six months of account statements",
+        "description": "Required for Federal Skilled Worker and Federal Skilled Trades applicants without a valid Canadian job offer or existing Canadian work authorization; Canadian Experience Class applicants are exempt. The bank letter must be on letterhead with contact details, account numbers, opening dates and balances; IRCC assesses the whole six-month window, not a single snapshot, so unexplained large deposits should be documented. Nigerian applicants commonly hold funds in a USD domiciliary account to avoid naira valuation problems.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/proof-funds.html"
+      },
+      {
+        "name": "Civil status records: birth certificate / attestation of birth, and marriage certificate or divorce decree",
+        "description": "Nigerian birth certificate from the National Population Commission (or a sworn declaration of age plus attestation of birth where no NPopC record exists) for you and each dependent child, plus marriage certificate for an accompanying spouse or final divorce/death certificate to establish current marital status. Customary/traditional marriages usually need the registry certificate or a court affidavit \u2014 verify with the official source.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "National Population Commission of Nigeria / IRCC"
+      },
+      {
+        "name": "Confirmation of Permanent Residence (COPR) and permanent resident visa counterfoil",
+        "description": "Issued on approval; the counterfoil is placed in your Nigerian passport at the visa office and both documents carry an expiry date tied to your medical exam. You must travel to Canada before that expiry. Keep the paper/e-COPR \u2014 it is your proof of status until the PR card arrives.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "IRCC \u2013 Immigration, Refugees and Citizenship Canada"
+      },
+      {
+        "name": "CBSA landing examination: COPR, passport and Canadian mailing address",
+        "description": "At the port of entry a Canada Border Services Agency officer examines your valid passport and COPR and completes your landing. Give the officer a Canadian mailing address so PR card production starts automatically; if you have no address yet you may supply it to IRCC online within 180 days of becoming a permanent resident.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/permanent-residents/card/apply.html"
+      },
+      {
+        "name": "Personal effects accounting document (BSF186) and Goods to Follow list (BSF186A)",
+        "description": "Two typed, valued inventories presented to CBSA at first landing \u2014 one for goods accompanying you, one for goods being shipped later. Settlers' effects enter duty- and tax-free only if listed at landing, so items still in Nigeria (household goods, vehicle) must appear on the Goods to Follow list.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Canada Border Services Agency (cbsa-asfc.gc.ca)"
+      },
+      {
+        "name": "Currency/monetary instruments declaration for CAD 10,000 or more",
+        "description": "Cash, bank drafts, traveller's cheques or money orders totalling CAD 10,000 or more (in any currency combined) must be declared to CBSA on arrival. Undeclared funds can be seized. Carry the bank draft or transfer documentation for your settlement funds.",
+        "phase": "during",
+        "required": false,
+        "category": "financial",
+        "source": "Canada Border Services Agency (cbsa-asfc.gc.ca)"
+      },
+      {
+        "name": "Social Insurance Number (SIN)",
+        "description": "Applied for in person at a Service Canada centre (or online) with your COPR/e-COPR and passport; a permanent SIN is normally issued at the appointment with a confirmation-of-SIN letter. Required to work, be paid legally and receive federal benefits.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "Service Canada (canada.ca/en/employment-social-development/services/sin.html)"
+      },
+      {
+        "name": "Permanent Resident (PR) card",
+        "description": "Your first PR card is mailed automatically to a Canadian address \u2014 no application form is needed \u2014 provided you supplied the address and an acceptable photo within 180 days of landing. It must be delivered in Canada and is the document you need, together with your passport, to re-enter Canada on a commercial carrier.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/permanent-residents/card/apply.html"
+      },
+      {
+        "name": "Provincial or territorial health insurance card",
+        "description": "Applied for through the health ministry of your province of residence using your COPR/PR card, photo ID and proof of a local address. Some provinces impose a waiting period before coverage begins (for example Ontario historically applied a three-month wait), so apply immediately on arrival and keep the application receipt.",
+        "phase": "after",
+        "required": true,
+        "category": "other",
+        "source": "Provincial/territorial ministry of health (e.g. ServiceOntario, Alberta Health, Health Insurance BC)"
+      },
+      {
+        "name": "Provincial driver's licence with Nigerian driving history letter",
+        "description": "Nigeria has no reciprocal full-exchange agreement with Canadian provinces, so most Nigerian newcomers must complete provincial knowledge and road tests. A letter of driving experience from the Federal Road Safety Corps / state licensing authority, translated and sometimes authenticated, can reduce the graduated-licensing waiting period and insurance premiums \u2014 requirements differ by province, verify with the provincial licensing body.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "Provincial driver licensing authority (e.g. ServiceOntario, Alberta Registries, ICBC)"
+      },
+      {
+        "name": "Canada Revenue Agency tax records for your first filing year",
+        "description": "As a newcomer you file a first Canadian tax return for the year you landed, using your date of entry as your residency start date. Keep your T4 slips, COPR (date of landing) and records of foreign income and assets; filing is what unlocks GST/HST credit, Canada Child Benefit and later proof-of-residency evidence for citizenship.",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": "Canada Revenue Agency (canada.ca/en/revenue-agency)"
+      },
+      {
+        "name": "Residency-day evidence for maintaining PR status and future citizenship",
+        "description": "Retain boarding passes, passport entry/exit stamps, lease agreements, employment records and bank statements. Permanent residents must be physically present in Canada at least 730 days in every rolling five-year period to keep status, and 1,095 days in five years to apply for citizenship \u2014 this evidence is what proves it if questioned at a port of entry or on PR card renewal.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants/pr-card/understand-pr-status.html"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Philippines",
+    "destination": "UAE",
+    "visa_type": "Freelance_Permit",
+    "cSlug": "philippines",
+    "dSlug": "uae",
+    "generated_at": "2026-08-05T11:59:10.613Z",
+    "documents": [
+      {
+        "name": "Valid Philippine passport",
+        "description": "Original Philippine passport with at least 6 months' validity beyond the intended entry date; the passport data page is the base document for the freelance permit, entry permit and Emirates ID file. Name spelling must match all attested certificates exactly.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Department of Foreign Affairs (DFA), Republic of the Philippines"
+      },
+      {
+        "name": "Recent biometric passport-size photographs of the applicant",
+        "description": "Colour photos with plain white background meeting UAE immigration specification (head-and-shoulders, no glasses/head covering unless religious). Used for the freelance licence file, entry permit and Emirates ID card \u2014 separate from any photocopies of the passport.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)"
+      },
+      {
+        "name": "Freelance permit / freelancer licence application with declared activity",
+        "description": "Online application to the chosen issuing authority (e.g. Dubai Development Authority / GoFreelance-TECOM, twofour54 Abu Dhabi, RAKEZ, Ajman FZ, UAQ FTZ) selecting one or more approved freelance activities from that authority's activity list. Some Dubai activity packages have been temporarily restricted \u2014 verify current availability directly with the issuing free zone.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://dda.gov.ae/en/registration-licensing/setting-up-a-business/freelancer"
+      },
+      {
+        "name": "Attested Philippine degree/diploma (CHED CAV \u2192 DFA Apostille \u2192 UAE Embassy Manila)",
+        "description": "Educational certificate authenticated by the Commission on Higher Education (sealed CAV envelope \u2014 do not open), then apostilled by DFA Manila, then attested by the UAE Embassy in Manila. The UAE is not a Hague Apostille state for incoming documents, so the DFA apostille alone is not accepted.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Commission on Higher Education (CHED), Philippines / UAE Embassy in Manila"
+      },
+      {
+        "name": "Professional portfolio or experience/qualification evidence",
+        "description": "Work samples, client references or CV proving competence in the declared freelance activity. Mandatory for regulated activities (e.g. personal trainer, media, education roles) and optional for others \u2014 confirm the exact evidence list with your issuing free zone.",
+        "phase": "before",
+        "required": false,
+        "category": "other",
+        "source": "https://dda.gov.ae/en/registration-licensing/setting-up-a-business/freelancer"
+      },
+      {
+        "name": "Personal bank statements / certified income records",
+        "description": "Statements (typically 6 months for a standard freelance residence visa; around 24 months of income records plus AED 15,000+ average monthly income if applying for the self-sponsored 5-year Green Visa as a freelancer). Philippine-issued statements should be in English or officially translated.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)"
+      },
+      {
+        "name": "NBI clearance (Philippine police clearance) with DFA apostille",
+        "description": "Good-conduct certificate issued by the National Bureau of Investigation, apostilled by DFA and \u2014 if the UAE authority requests it \u2014 attested by the UAE Embassy in Manila. Not demanded by every freelance-permit issuer; verify with the specific free zone, requirements vary by authority and activity.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "National Bureau of Investigation (NBI), Philippines"
+      },
+      {
+        "name": "DMW exit clearance \u2014 OFW Travel Pass (formerly OEC)",
+        "description": "Philippine departure clearance for nationals leaving to work abroad, generated digitally via the eGovPH/DMW app once employment or engagement is verified; it replaces the printed Overseas Employment Certificate and gives travel-tax and terminal-fee exemption. Treatment of self-sponsored freelance-permit holders is not uniform \u2014 confirm your case with DMW or the Migrant Workers Office before booking a flight.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Department of Migrant Workers (DMW), Philippines"
+      },
+      {
+        "name": "Certified proof of Philippine civil status (PSA birth / marriage certificate, apostilled and UAE-Embassy attested)",
+        "description": "PSA-issued birth certificate, and marriage certificate if married, apostilled by DFA and attested by the UAE Embassy in Manila. Not needed for the freelance permit itself but required later for family sponsorship, school enrolment and some bank/insurance formalities \u2014 process it while still in the Philippines.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "Philippine Statistics Authority (PSA) / UAE Embassy in Manila"
+      },
+      {
+        "name": "UAE entry permit (residence entry visa) sponsored by the free zone",
+        "description": "Electronic entry permit issued by ICP or GDRFA through the freelance-licence issuing authority; Filipino nationals are not eligible for visa-on-arrival unless holding a valid US/UK/EU/Australian/Canadian visa or residence permit, so the entry permit must be issued before travel and activated on arrival.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)"
+      },
+      {
+        "name": "Establishment card / immigration file card of the freelance licence",
+        "description": "Immigration establishment card issued in the freelancer's own licence name (e.g. AED 2,000 under GoFreelance), which is the mechanism that allows the licence to sponsor the holder's residence visa and, later, dependants.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "GoFreelance (TECOM Group, Dubai)"
+      },
+      {
+        "name": "UAE medical fitness certificate",
+        "description": "Screening at a government-approved centre (Dubai Health/Smart Salem, Emirates Health Services elsewhere) for HIV and tuberculosis \u2014 plus syphilis/Hepatitis B for certain occupations. Must be taken after the entry permit is issued and before visa stamping and Emirates ID issuance; applicants must be 18+.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.ehs.gov.ae/en/services/services-directory/examination-of-medical-fitness-for-residency-visa"
+      },
+      {
+        "name": "Valid UAE health insurance policy",
+        "description": "Health cover meeting the minimum benefit standards of the emirate of residence (DHA for Dubai, DOH for Abu Dhabi). Self-sponsored freelancers must buy their own policy; the residence file is not completed without it.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://u.ae/en/information-and-services/jobs/employment-in-the-private-sector/job-offers-and-work-permits-and-contracts/work-permits"
+      },
+      {
+        "name": "Emirates ID application with biometric enrolment",
+        "description": "Application submitted to ICP (or via an Amer/typing centre) followed by in-person fingerprint and facial capture at an ICP or authorised enrolment centre. Residency becomes fully active once the Emirates ID is issued.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)"
+      },
+      {
+        "name": "Issued residence visa (e-visa / residence permit linked to the freelance licence)",
+        "description": "The 1- or 2-year self-sponsored residence permit issued after the medical certificate and Emirates ID biometrics are cleared; issued electronically by ICP or GDRFA Dubai rather than as a passport sticker in most cases.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "General Directorate of Residency and Foreigners Affairs \u2013 Dubai (GDRFA)"
+      },
+      {
+        "name": "MOFAIC (UAE Ministry of Foreign Affairs) attestation of Philippine documents",
+        "description": "Final in-country legalisation stamp on the degree, PSA and other Philippine certificates already attested in Manila. Required before UAE bodies (licensing authorities, employers, schools, courts) will accept them; documents lacking the Manila embassy step are commonly rejected at this stage.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Ministry of Foreign Affairs (MOFAIC), UAE"
+      },
+      {
+        "name": "Registered UAE mobile number in the applicant's own name",
+        "description": "A local SIM registered against the passport/Emirates ID; required by freelance-permit issuers and used for all ICP, medical-test and banking OTP verifications.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "GoFreelance (TECOM Group, Dubai)"
+      },
+      {
+        "name": "Registered tenancy contract (Ejari or emirate equivalent)",
+        "description": "Attested lease registration in the freelancer's name, used as proof of address for utilities, family sponsorship and bank compliance updates. Registered via Ejari in Dubai; equivalent tenancy registration systems apply in other emirates.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "Dubai Land Department (Ejari)"
+      },
+      {
+        "name": "UAE personal bank account file (freelance licence + Emirates ID + address proof)",
+        "description": "A freelance licence holder may open a personal account and receive client payments, but cannot hire staff without converting to an LLC. Banks apply their own KYC list on top of the licence, Emirates ID and tenancy proof.",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": null
+      },
+      {
+        "name": "Annual freelance licence and residence visa renewal file",
+        "description": "The freelance permit is renewed yearly (fees roughly equal to setup cost) and the residence visa every 1\u20132 years, each renewal requiring a fresh TB screening, current health insurance and valid passport.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://dda.gov.ae/en/registration-licensing/setting-up-a-business/freelancer"
+      },
+      {
+        "name": "OWWA membership and Philippine Consulate/MWO registration",
+        "description": "Overseas Workers Welfare Administration membership and registration with the Migrant Workers Office (Philippine Consulate General Dubai for Dubai and the Northern Emirates, Philippine Embassy Abu Dhabi otherwise) \u2014 needed for welfare benefits, exit-clearance processing and passport/civil-registry services while resident. Optional for permit issuance, strongly advisable for stability.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "https://mwodubai.org"
+      },
+      {
+        "name": "UAE Federal Tax Authority registration (corporate tax / VAT, if thresholds met)",
+        "description": "Freelance licence income above the corporate-tax threshold, or taxable turnover above the VAT registration threshold, triggers registration and filing obligations with the FTA. Thresholds and small-business relief change \u2014 verify your position directly with the Federal Tax Authority.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "UAE Federal Tax Authority"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Philippines",
+    "destination": "Canada",
+    "visa_type": "Express_Entry",
+    "cSlug": "philippines",
+    "dSlug": "canada",
+    "generated_at": "2026-08-05T12:00:44.114Z",
+    "documents": [
+      {
+        "name": "Philippine passport (valid, machine-readable)",
+        "description": "DFA-issued Philippine passport for the principal applicant and each accompanying family member; passport bio-data page is uploaded to the e-APR and the passport number must match the Express Entry profile. Must remain valid through landing, since the COPR/PR visa is tied to the passport.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry.html"
+      },
+      {
+        "name": "PSA birth certificate (Security Paper / SECPA)",
+        "description": "Philippine Statistics Authority-issued birth certificate on security paper for the applicant and each dependent child, showing full name, date of birth and parents' names. If the PSA record is unreadable or 'negative', a Certificate of No Record plus a Local Civil Registry copy is normally requested.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://psa.gov.ph"
+      },
+      {
+        "name": "PSA marriage certificate, CENOMAR, or annulment/divorce decree",
+        "description": "PSA-issued civil status record: marriage certificate for a spouse being included, or CENOMAR (Certificate of No Marriage Record) if single, or a court-issued annulment/nullity decision with PSA annotation for prior marriages. <cite index=\"2-3\">Marriage certificates, divorce decrees, death certificates or other civil status documents are required where applicable.</cite>",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://psa.gov.ph"
+      },
+      {
+        "name": "NBI Multi-purpose Clearance Certificate (police certificate)",
+        "description": "The Philippine police certificate IRCC accepts is the <cite index=\"16-2\">National Bureau of Investigation (NBI) Multi-purpose Clearance Certificate</cite>. <cite index=\"16-6\">It must bear a thumbprint and include a dry seal</cite>, and <cite index=\"16-7\">no translation is required because it is issued in English</cite>. It must be issued for travel/immigration abroad, not local employment. <cite index=\"16-8\">Certificates must be picked up in person unless the requestor lives outside the Philippines, in which case they are mailed.</cite> Required for the applicant and every family member aged 18 or older.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/police-certificates/how/philippines.html"
+      },
+      {
+        "name": "NBI Form No. 5 fingerprint card consularized by a Philippine Consulate",
+        "description": "Only needed if you are outside the Philippines when applying: <cite index=\"13-2,13-3,13-4,13-5\">the Philippine Consulate General consularizes NBI Form No. 5 (Fingerprint Card form), which is required to obtain the NBI Clearance from the Philippines; applicants then send the completed form to the NBI.</cite> Verify the current procedure with the consulate serving your area, as steps differ per post.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.vancouverpcg.org/services/nbi/"
+      },
+      {
+        "name": "Police certificate from each other country of residence",
+        "description": "Separate from the NBI clearance: <cite index=\"11-13\">if you have lived in another country for six consecutive months or more since the age of 18, you must also obtain a police certificate from that country</cite> \u2014 highly relevant for Filipinos with prior work in UAE, Saudi Arabia, Qatar, Singapore, Hong Kong or Taiwan.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/police-certificates.html"
+      },
+      {
+        "name": "Educational Credential Assessment (ECA) report",
+        "description": "Assessment of your Philippine diploma/transcript by an IRCC-designated organization. <cite index=\"8-14\">You need to get your foreign educational credential assessed by one of IRCC's approved third parties.</cite> <cite index=\"12-2\">WES, ICAS and IQAS all accept Philippine credentials.</cite> The ECA report is a distinct document from the underlying diploma and Transcript of Records, which some assessors require to be sent directly by your school.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/education-assessed.html"
+      },
+      {
+        "name": "Language test results (IELTS General Training, CELPIP, PTE Core or TEF/TCF)",
+        "description": "Original test report from an IRCC-designated provider taken within the last two years. <cite index=\"8-17\">For all three Express Entry programs you must take English and/or French test(s) and score enough points to be eligible.</cite> Only the General/immigration versions are accepted \u2014 academic versions are not.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/language-proficiency.html"
+      },
+      {
+        "name": "Employer reference/experience letters for each declared job",
+        "description": "Letters on company letterhead from each Philippine or overseas employer stating job title, dates of employment, hours worked per week, annual salary plus benefits, and detailed duties matching your NOC code. <cite index=\"7-11,7-12\">A reference letter that omits hours, salary or duties is the most common avoidable cause of refusal.</cite> For OFW experience, keep the POEA/DMW-verified contract as supporting evidence.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/proof-work-experience.html"
+      },
+      {
+        "name": "Proof of settlement funds (official bank letter/certification)",
+        "description": "Bank-issued letter on letterhead with account numbers, opening dates, current and six-month average balances, and outstanding debts, for FSWP/FSTP applicants. <cite index=\"30-10,30-11,30-12\">Canadian Experience Class applicants do not need to show settlement funds</cite>, and <cite index=\"30-13\">applicants with a valid job offer are also exempt.</cite> Amounts are <cite index=\"26-1\">updated annually based on 50% of the low-income cut-off (LICO)</cite> \u2014 sources disagree on the exact 2026 figures, so confirm the current table on the IRCC proof-of-funds page for your family size. Philippine peso balances are converted to CAD.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/proof-funds.html"
+      },
+      {
+        "name": "Digital photo for the Express Entry application",
+        "description": "One recent digital photograph per applicant meeting IRCC's immigration photo specifications, uploaded to the e-APR. This is distinct from your biometrics photo captured at a collection point and from the separate PR card photo requested later in the PR portal.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/application-forms-guides/photo-specifications-permanent-residence.html"
+      },
+      {
+        "name": "Biometrics enrolment (fingerprints and photo) at a VAC",
+        "description": "<cite index=\"7-7\">After you submit, you are typically asked to give biometrics</cite> at a Visa Application Centre \u2014 in the Philippines this is done at VFS Global offices in Manila or Cebu after receiving the Biometrics Instruction Letter. <cite index=\"16-1\">Giving fingerprints for a police certificate is not the same as giving your biometrics for an application.</cite> Bring the instruction letter and your passport.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/biometrics.html"
+      },
+      {
+        "name": "Immigration Medical Examination (IME) by an IRCC panel physician",
+        "description": "Completed at an IRCC-designated panel physician clinic in the Philippines. <cite index=\"8-6,8-7\">You no longer need an upfront medical exam before submitting an Express Entry application \u2014 you upload a blank document in that field and wait for IRCC's instructions on when to get the exam.</cite> Keep the eMedical/IME reference number for your file.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/medical-exams.html"
+      },
+      {
+        "name": "PRC professional licence and board certification (regulated occupations)",
+        "description": "Applies to Filipino nurses, engineers, teachers, accountants and other regulated professionals. <cite index=\"12-8\">PRC licence documents are often required separately for nursing/healthcare applicants.</cite> Also useful later for provincial credential recognition; verify the exact evidence with the relevant Canadian regulator.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.prc.gov.ph"
+      },
+      {
+        "name": "CFO Guidance and Counselling Certificate and emigrant registration sticker",
+        "description": "Philippine exit requirement, not a Canadian one. <cite index=\"20-3\">The CFO has confirmed that Filipinos departing with immigrant or long-term permanent residence visas must secure the Guidance and Counselling Program prior to departure.</cite> <cite index=\"24-2\">The CFO emigrant registration sticker must be presented to Philippine Bureau of Immigration officers before departure.</cite> Register via the CFO's online system (OF-CORS); confirm current fees and appointment rules directly with CFO.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://cfo.gov.ph"
+      },
+      {
+        "name": "Confirmation of Permanent Residence (COPR / eCOPR)",
+        "description": "Issued after approval and presented to a CBSA officer at your port of entry to complete landing. It is your proof of status until the PR card arrives \u2014 <cite index=\"42-5\">while you wait for your PR card you can use your signed confirmation of permanent residence to apply for a social insurance number and access government programs.</cite> Keep the original plus digital copies permanently.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants/prepare-arrival.html"
+      },
+      {
+        "name": "Goods to Follow and Goods Accompanying lists (BSF186 / BSF186A)",
+        "description": "Two typed inventories of personal effects \u2014 one for items you carry in and one for items shipped later \u2014 declared to CBSA at first landing so household goods enter duty- and tax-free as settler's effects. Include values, serial numbers and (for balikbayan boxes) the shipping manifest. Lists cannot be added after you land.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.cbsa-asfc.gc.ca/travel-voyage/ifcw-rpcm-eng.html"
+      },
+      {
+        "name": "Canadian mailing address notification to IRCC",
+        "description": "Not a certificate but a mandatory filing: <cite index=\"42-3,42-4\">if you did not provide a Canadian mailing address when you became a permanent resident, use IRCC's online address notification tool within 180 days to avoid cancellation of your PR card \u2014 otherwise you must apply for another one and pay new processing fees.</cite> Keep the confirmation and a lease or utility bill as proof of address.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants/pr-card/understand-pr-status.html"
+      },
+      {
+        "name": "Social Insurance Number (SIN)",
+        "description": "Nine-digit number from Service Canada needed to work, file taxes and receive benefits. Apply with your COPR/eCOPR and passport; <cite index=\"38-14\">original documents only are accepted \u2014 photocopies are not.</cite> A PR SIN begins with 4, 5 or 6 rather than the 9 used for temporary residents.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.canada.ca/en/employment-social-development/services/sin.html"
+      },
+      {
+        "name": "Provincial or territorial health insurance card",
+        "description": "Apply in the province where you settle (e.g. OHIP in Ontario, MSP in British Columbia, AHCIP in Alberta) using your COPR, passport and proof of provincial address. Waiting periods and required proofs differ by province \u2014 <cite index=\"40-15\">Alberta, for example, can cover arrivals from the date residency is established if you apply within three months</cite> \u2014 so verify with your provincial ministry. Consider private interim coverage for any gap.",
+        "phase": "after",
+        "required": true,
+        "category": "other",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants/new-life-canada/health-care-card.html"
+      },
+      {
+        "name": "Permanent Resident (PR) card",
+        "description": "Your official status and travel document, issued from the photo collected in the PR portal \u2014 <cite index=\"42-7,42-8,42-9\">IRCC asks for a photo to start making your first PR card, you don't apply for it, and it is mailed to the Canadian address you provided.</cite> <cite index=\"37-1\">If you travel outside Canada without a valid PR card, you must apply for a permanent resident travel document before returning by commercial carrier.</cite>",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants/pr-card.html"
+      },
+      {
+        "name": "Provincial driver's licence with Philippine LTO driving record",
+        "description": "To convert or reduce graduated-licensing steps, most provinces ask for your valid LTO licence plus an official LTO/Philippine driving abstract or certification of driving history; some accept it only if authenticated. Requirements differ by province and the Philippines has no full reciprocity in most provinces \u2014 verify with the provincial licensing authority.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants/new-life-canada/driving.html"
+      },
+      {
+        "name": "Residency-day records for PR status maintenance and citizenship",
+        "description": "Keep boarding passes, passport stamps, lease agreements and CRA Notices of Assessment as evidence of physical presence: <cite index=\"37-9\">to keep PR status you must have been in Canada at least 730 days during the last five years.</cite> The same records support a later citizenship application, which uses a separate 1,095-day threshold.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/permanent-residents/status.html"
+      },
+      {
+        "name": "Dual citizenship / Philippine passport renewal record",
+        "description": "Canada permits dual citizenship, and the Philippines allows natural-born Filipinos who later naturalize to retain or reacquire citizenship under RA 9225 through a Philippine Consulate. Retain your PSA birth certificate and Philippine passport for any future reacquisition or Report of Marriage/Birth filings; confirm current procedures with the consulate serving your province.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "Philippine Department of Foreign Affairs / Philippine Consulate General (Canada)"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Germany",
+    "destination": "Portugal",
+    "visa_type": "D8_Digital_Nomad",
+    "cSlug": "germany",
+    "dSlug": "portugal",
+    "generated_at": "2026-08-05T11:53:57.924+00:00",
+    "documents": [
+      {
+        "name": "German passport or national identity card (Personalausweis)",
+        "phase": "before",
+        "source": "https://www2.gov.pt/servicos/pedir-o-certificado-de-registo-para-cidadao-da-ue/eee/suica",
+        "category": "identity",
+        "required": true,
+        "description": "Sole entry document needed. IMPORTANT: as a German (EU) national you are outside the scope of the D8 digital nomad visa, which Portugal grants only to non-EU/EEA/Swiss nationals; you enter and stay under EU free movement (Lei n.\u00ba 37/2006) with just a valid ID or passport for the first 3 months, and no consular visa application exists for your nationality. Card/passport must be valid for the whole stay."
+      },
+      {
+        "name": "NIF (N\u00famero de Identifica\u00e7\u00e3o Fiscal) attribution request",
+        "phase": "before",
+        "source": "https://www2.gov.pt/servicos/pedir-o-numero-de-identificacao-fiscal-para-pessoa-singular",
+        "category": "financial",
+        "required": true,
+        "description": "Portuguese 9-digit tax number issued by Autoridade Tribut\u00e1ria e Aduaneira. Can be requested free of charge in advance at a Portuguese consulate in Germany, or in person after arrival at any Servi\u00e7o de Finan\u00e7as / Loja do Cidad\u00e3o with your ID; needed for a lease, utilities and bank account. As an EU citizen you do not need a fiscal representative once registered as resident."
+      },
+      {
+        "name": "Remote employment contract or freelance/client service agreements",
+        "phase": "before",
+        "source": "https://www2.gov.pt/servicos/pedir-o-certificado-de-registo-para-cidadao-da-ue/eee/suica",
+        "category": "legal",
+        "required": true,
+        "description": "Written proof of your remote professional activity (employer contract, or client contracts/invoices if self-employed). Not filed with any consulate for Germans, but used to substantiate the sworn declaration of subordinate or independent professional activity at the C\u00e2mara Municipal, and for Finan\u00e7as/Seguran\u00e7a Social registration."
+      },
+      {
+        "name": "A1 certificate (A1-Bescheinigung) or Portuguese social security liability confirmation",
+        "phase": "before",
+        "source": "Deutsche Verbindungsstelle Krankenversicherung \u2013 Ausland (DVKA) / Deutsche Rentenversicherung",
+        "category": "legal",
+        "required": false,
+        "description": "If you continue working for a German employer while living in Portugal, obtain the EU A1 form determining which country's social security applies; if instead you become self-employed/insured in Portugal, no A1 is issued and you register with Seguran\u00e7a Social locally. Verify your specific case with DVKA/Deutsche Rentenversicherung before departure."
+      },
+      {
+        "name": "European Health Insurance Card (EHIC / EU-Krankenversicherungskarte) or private health insurance policy",
+        "phase": "before",
+        "source": "Deutsche Verbindungsstelle Krankenversicherung \u2013 Ausland (DVKA)",
+        "category": "other",
+        "required": false,
+        "description": "Health cover proof for the transition period. EHIC covers only temporary/necessary care, not settled residence; German statutory cover normally ends when residence moves, so plan Portuguese SNS enrolment or private cover. Portuguese law may require proof of health insurance for non-employed EU registrants where Germany requires the same of Portuguese citizens \u2014 verify with the municipality."
+      },
+      {
+        "name": "Abmeldung confirmation (Abmeldebescheinigung) from German municipal registry",
+        "phase": "before",
+        "source": "Bundesportal / competent German Einwohnermeldeamt (B\u00fcrgeramt)",
+        "category": "legal",
+        "required": false,
+        "description": "Deregistration certificate from your German Einwohnermeldeamt/B\u00fcrgeramt when you give up your German residence. Relevant for German tax residence, broadcasting fee and health insurance termination; keep the confirmation as evidence of the move date."
+      },
+      {
+        "name": "Recent bank statements evidencing sufficient resources",
+        "phase": "before",
+        "source": "https://www2.gov.pt/servicos/pedir-o-certificado-de-registo-para-cidadao-da-ue/eee/suica",
+        "category": "financial",
+        "required": false,
+        "description": "Statements (typically last 3 months) showing income/savings enough to support yourself without recourse to Portuguese social assistance. Required chiefly if you register as economically self-sufficient rather than as employed/self-employed in Portugal; there is no fixed legal threshold \u2014 municipalities in practice look for income around or above the national minimum wage. Note: the D8 income thresholds (4x minimum wage) do NOT apply to German citizens."
+      },
+      {
+        "name": "Portuguese rental contract, property deed or landlord accommodation declaration",
+        "phase": "during",
+        "source": "https://portaldomunicipe.cm-porto.pt/pt/-/registo-de-cidad%C3%A3o-comunit%C3%A1rio-sef",
+        "category": "legal",
+        "required": true,
+        "description": "Document proving your address in the municipality where you will register. Municipalities such as Porto may additionally ask for the electronic rent receipt (Recibo de Renda Eletr\u00f3nico) or Modelo II lease communication from Autoridade Tribut\u00e1ria alongside the lease."
+      },
+      {
+        "name": "Atestado de resid\u00eancia from the Junta de Freguesia",
+        "phase": "during",
+        "source": "https://portaldomunicipe.cm-porto.pt/pt/-/registo-de-cidad%C3%A3o-comunit%C3%A1rio-sef",
+        "category": "other",
+        "required": false,
+        "description": "Parish-issued residence attestation, accepted as an alternative address proof where you have no lease in your own name (e.g. shared housing, staying with a partner). Distinct from the lease itself; only needed if your municipality requests it \u2014 requirements vary by c\u00e2mara."
+      },
+      {
+        "name": "Declara\u00e7\u00e3o sob compromisso de honra (sworn declaration of activity or self-sufficiency)",
+        "phase": "during",
+        "source": "https://www2.gov.pt/servicos/pedir-o-certificado-de-registo-para-cidadao-da-ue/eee/suica",
+        "category": "legal",
+        "required": true,
+        "description": "Standard form, provided free at the C\u00e2mara Municipal counter and signed in person, declaring either that you carry out subordinate or independent professional activity in Portugal, or that you have sufficient resources (and health insurance where applicable) for yourself and family under Article 7 of Lei n.\u00ba 37/2006."
+      },
+      {
+        "name": "CRUE \u2013 Certificado de Registo de Cidad\u00e3o da Uni\u00e3o Europeia",
+        "phase": "during",
+        "source": "https://aima.gov.pt/pt/nacionais-ue-e-familiares/nacionais-ue/certificado-de-registo-para-nacionais-ue",
+        "category": "legal",
+        "required": true,
+        "description": "Your actual residence document as a German citizen \u2014 this replaces the D8 residence permit route entirely. Requested in person (physical presence mandatory, no proxy) at the C\u00e2mara Municipal or Loja do Cidad\u00e3o of your area of residence within 30 days after completing 3 months in Portugal, i.e. roughly between day 90 and day 120. Fee approx. \u20ac15 for adults; validity 5 years. Do not book an AIMA appointment for this."
+      },
+      {
+        "name": "NISS (N\u00famero de Identifica\u00e7\u00e3o de Seguran\u00e7a Social) registration",
+        "phase": "during",
+        "source": "Instituto da Seguran\u00e7a Social (Seguran\u00e7a Social Direta)",
+        "category": "other",
+        "required": false,
+        "description": "Social security number obtained from Instituto da Seguran\u00e7a Social, normally after the CRUE. Needed if you work, invoice or pay contributions in Portugal; not needed if an A1 certificate keeps you insured in Germany \u2014 confirm your situation with Seguran\u00e7a Social."
+      },
+      {
+        "name": "Declara\u00e7\u00e3o de in\u00edcio de atividade with Autoridade Tribut\u00e1ria",
+        "phase": "during",
+        "source": "https://info.portaldasfinancas.gov.pt",
+        "category": "financial",
+        "required": false,
+        "description": "Self-employment/freelancer opening declaration filed at Finan\u00e7as or on Portal das Finan\u00e7as, required only if you invoice clients as an independent worker from Portugal. Not needed if you remain a salaried employee of a foreign company."
+      },
+      {
+        "name": "N\u00famero de Utente do SNS (national health service user number)",
+        "phase": "after",
+        "source": "Servi\u00e7o Nacional de Sa\u00fade (SNS) / Minist\u00e9rio da Sa\u00fade",
+        "category": "other",
+        "required": true,
+        "description": "Registration at your local Centro de Sa\u00fade to access public healthcare, normally requiring CRUE, NIF and address proof. Some health centres also ask for the NISS \u2014 verify locally as practice varies by unit."
+      },
+      {
+        "name": "Change of fiscal address / tax residency registration with Autoridade Tribut\u00e1ria",
+        "phase": "after",
+        "source": "https://info.portaldasfinancas.gov.pt",
+        "category": "financial",
+        "required": true,
+        "description": "Update of your NIF record from non-resident to resident at your Portuguese address, which triggers Portuguese tax residency and annual IRS filing obligations. Coordinate with the Germany\u2013Portugal double taxation treaty to avoid dual residence."
+      },
+      {
+        "name": "IFICI application (tax incentive for scientific research and innovation, successor to NHR)",
+        "phase": "after",
+        "source": "Autoridade Tribut\u00e1ria e Aduaneira (Portal das Finan\u00e7as)",
+        "category": "financial",
+        "required": false,
+        "description": "Optional application for the Portuguese preferential tax regime, submitted to Autoridade Tribut\u00e1ria by 15 January of the year after you become tax resident; the deadline is generally not recoverable if missed. Eligibility is activity-based \u2014 confirm with AT or a licensed Portuguese accountant."
+      },
+      {
+        "name": "German EU driving licence registration with IMT",
+        "phase": "after",
+        "source": "Instituto da Mobilidade e dos Transportes (IMT)",
+        "category": "other",
+        "required": false,
+        "description": "A German EU licence stays valid in Portugal, but residents are expected to register it (or exchange it) with Instituto da Mobilidade e dos Transportes after establishing residence. Deadlines and whether registration is mandatory in your case should be verified directly with IMT."
+      },
+      {
+        "name": "Certificado de Resid\u00eancia Permanente para Nacionais UE",
+        "phase": "after",
+        "source": "https://aima.gov.pt/pt/nacionais-ue-e-familiares/nacionais-ue/certificado-de-residencia-permanente-para-nacionais-ue",
+        "category": "legal",
+        "required": false,
+        "description": "Permanent residence certificate for EU nationals, applied for through AIMA after 5 years of continuous legal residence in Portugal; renewal of an expired CRUE is likewise handled by AIMA rather than the municipality."
+      }
+    ],
+    "source": "cache"
   }
 ]

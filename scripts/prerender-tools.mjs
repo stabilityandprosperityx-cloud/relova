@@ -363,8 +363,16 @@ const DOC_LAUNCH_PAIRS = [
   { citizenship: "United States", destination: "Mexico", visa_type: "Temporary_Resident" },
   { citizenship: "United Kingdom", destination: "Spain", visa_type: "Digital_Nomad" },
   { citizenship: "India", destination: "UAE", visa_type: "Freelance_Permit" },
+  { citizenship: "India", destination: "Germany", visa_type: "Freelance_Visa" },
   { citizenship: "Brazil", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
+  { citizenship: "Brazil", destination: "Spain", visa_type: "Digital_Nomad" },
   { citizenship: "China", destination: "Japan", visa_type: "Digital_Nomad" },
+  { citizenship: "China", destination: "Singapore", visa_type: "Employment_Pass" },
+  { citizenship: "Nigeria", destination: "United Kingdom", visa_type: "Temporary_Residence" },
+  { citizenship: "Nigeria", destination: "Canada", visa_type: "Express_Entry" },
+  { citizenship: "Philippines", destination: "UAE", visa_type: "Freelance_Permit" },
+  { citizenship: "Philippines", destination: "Canada", visa_type: "Express_Entry" },
+  { citizenship: "Germany", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
 ];
 
 let docSnapshots = [];

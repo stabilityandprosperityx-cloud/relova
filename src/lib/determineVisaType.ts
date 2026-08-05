@@ -71,6 +71,7 @@ export function determineVisaType(country: string): string {
     Uruguay: "Temporary_Residence",
     Canada: "Express_Entry",
     "United States": "Work_Visa",
+    "United Kingdom": "Temporary_Residence",
 
     // AFRICA & ISLANDS
     "South Africa": "Critical_Skills",
