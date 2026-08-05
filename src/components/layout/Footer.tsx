@@ -6,44 +6,37 @@ const FOOTER_COLS = [
   {
     title: "Product",
     links: [
-      { label: "Features",      href: "#" },
-      { label: "Pricing",       href: "/pricing" },
-      { label: "Concierge",     href: "/pricing" },
-      { label: "Integrations",  href: "#" },
-      { label: "What's New",    href: "#" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Concierge", href: "/pricing" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "About Us",      href: "#" },
-      { label: "Our Mission",   href: "#" },
-      { label: "Careers",       href: "#" },
-      { label: "Press",         href: "#" },
-      { label: "Contact",       href: "/contact" },
+      { label: "About Us", href: "/about" },
+      { label: "Our Mission", href: "/mission" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Country Guides",         href: "/countries" },
+      { label: "Country Guides", href: "/countries" },
       { label: "Visa Eligibility Check", href: "/tools/can-i-move" },
-      { label: "Where Should I Move?",   href: "/tools/where-should-i-move" },
-      { label: "Document Checklist",     href: "/tools/documents-needed" },
-      { label: "Visa Timeline",          href: "#" },
-      { label: "Relocation Blog",        href: "/blog" },
-      { label: "Help Center",            href: "/help" },
-      { label: "Webinars",               href: "#" },
+      { label: "Where Should I Move?", href: "/tools/where-should-i-move" },
+      { label: "Document Checklist", href: "/tools/documents-needed" },
+      { label: "Relocation Blog", href: "/blog" },
+      { label: "Help Center", href: "/help" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Privacy Policy",    href: "/privacy" },
-      { label: "Terms of Service",  href: "/terms" },
-      { label: "Cookie Policy",     href: "#" },
-      { label: "Data Security",     href: "#" },
-      { label: "Compliance",        href: "#" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms" },
+      { label: "Cookie Policy", href: "/cookie-policy" },
+      { label: "Data Security", href: "/data-security" },
+      { label: "Compliance", href: "/compliance" },
     ],
   },
 ];
@@ -177,17 +170,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-border/30 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <button className="flex items-center gap-1.5 text-[12px] text-muted-foreground/60 hover:text-foreground transition-colors border border-border/50 rounded-lg px-3 py-1.5">
-              <span>🌐</span> English
-              <span className="text-muted-foreground/30">▾</span>
-            </button>
-            <button className="flex items-center gap-1.5 text-[12px] text-muted-foreground/60 hover:text-foreground transition-colors border border-border/50 rounded-lg px-3 py-1.5">
-              <span>🇺🇸</span> United States (USD $)
-              <span className="text-muted-foreground/30">▾</span>
-            </button>
-          </div>
+        <div className="border-t border-border/30 pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
           <p className="text-[11px] text-muted-foreground/40">
             © 2026 Relova, Inc. All rights reserved.
           </p>

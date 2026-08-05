@@ -26,6 +26,11 @@ import PortugalVsSpain from "./pages/blog/PortugalVsSpain.tsx";
 import BestCountries2026 from "./pages/blog/BestCountries2026.tsx";
 import Help from "./pages/Help.tsx";
 import Contact from "./pages/Contact.tsx";
+import About from "./pages/About.tsx";
+import Mission from "./pages/Mission.tsx";
+import CookiePolicy from "./pages/CookiePolicy.tsx";
+import DataSecurity from "./pages/DataSecurity.tsx";
+import Compliance from "./pages/Compliance.tsx";
 import CanIMoveHub from "./pages/tools/CanIMoveHub.tsx";
 import CanIMove from "./pages/tools/CanIMove.tsx";
 import MoveAsHub from "./pages/tools/MoveAsHub.tsx";
@@ -83,6 +88,11 @@ function AppRoutes() {
         <Route path="/best/best-countries-2026" element={<BestCountries2026 />} />
         <Route path="/help" element={<Help />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/mission" element={<Mission />} />
+        <Route path="/cookie-policy" element={<CookiePolicy />} />
+        <Route path="/data-security" element={<DataSecurity />} />
+        <Route path="/compliance" element={<Compliance />} />
         <Route path="/tools/can-i-move" element={<CanIMoveHub />} />
         <Route path="/tools/can-i-move/:citizenshipSlug/:destinationSlug" element={<CanIMove />} />
         <Route path="/tools/where-should-i-move" element={<MoveAsHub />} />
