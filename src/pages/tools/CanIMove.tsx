@@ -8,6 +8,7 @@ import AuthModal from "@/components/auth/AuthModal";
 import { supabase } from "@/integrations/supabase/client";
 import { countryDatabase } from "@/lib/countryMatching";
 import { canIMoveTitle } from "@/lib/demonyms";
+import { hasDocumentsNeededPage, documentsNeededPath } from "@/lib/documentsNeededPairs";
 import { unslugify } from "@/lib/toolSlugs";
 import { ArrowLeft } from "lucide-react";
 
@@ -176,6 +177,18 @@ export default function CanIMove() {
             Not legal advice. Based on general and cached research — verify with official sources before
             making decisions.
           </p>
+
+          {hasDocumentsNeededPage(citizenship, destination) && (
+            <p className="text-[13px] text-muted-foreground mb-8">
+              Also:{" "}
+              <Link
+                to={documentsNeededPath(citizenship, destination)}
+                className="text-primary hover:underline"
+              >
+                What documents do I need to move to {destination} as a {citizenship} citizen? →
+              </Link>
+            </p>
+          )}
 
           <div className="surface-card p-6 sm:p-8 border-primary/20">
             <p className="font-serif text-lg font-semibold text-foreground mb-2">

@@ -9,8 +9,8 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const PROMPT_VERSION = "v1";
-const MODEL = "claude-sonnet-5";
+const PROMPT_VERSION = "v2";
+const MODEL = "claude-opus-5";
 const CACHE_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 
 interface DocItem {
@@ -19,14 +19,16 @@ interface DocItem {
   phase: "before" | "during" | "after";
   required: boolean;
   category: "identity" | "financial" | "legal" | "other";
+  /** Official government/consulate URL or source name when found; otherwise null */
+  source: string | null;
 }
 
 const FALLBACK_DOCS: DocItem[] = [
-  { name: "Valid passport", description: "Must be valid for 6+ months from planned entry", phase: "before", required: true, category: "identity" },
-  { name: "Proof of funds / bank statements", description: "Recent statements showing sufficient funds for your visa type", phase: "before", required: true, category: "financial" },
-  { name: "Health insurance", description: "Coverage valid in the destination country", phase: "before", required: true, category: "legal" },
-  { name: "Criminal background check", description: "From your country of citizenship, apostilled if required", phase: "before", required: true, category: "legal" },
-  { name: "Proof of accommodation", description: "Rental agreement, booking, or host invitation for arrival", phase: "before", required: true, category: "legal" },
+  { name: "Valid passport", description: "Must be valid for 6+ months from planned entry", phase: "before", required: true, category: "identity", source: null },
+  { name: "Proof of funds / bank statements", description: "Recent statements showing sufficient funds for your visa type", phase: "before", required: true, category: "financial", source: null },
+  { name: "Health insurance", description: "Coverage valid in the destination country", phase: "before", required: true, category: "legal", source: null },
+  { name: "Criminal background check", description: "From your country of citizenship, apostilled if required", phase: "before", required: true, category: "legal", source: null },
+  { name: "Proof of accommodation", description: "Rental agreement, booking, or host invitation for arrival", phase: "before", required: true, category: "legal", source: null },
 ];
 
 function jsonResponse(body: Record<string, unknown>, status = 200) {
@@ -58,6 +60,7 @@ function overlayFamilyDocs(docs: DocItem[], familyStatus?: string): DocItem[] {
       phase: "before",
       required: true,
       category: "legal",
+      source: null,
     });
   }
   if (familyStatus === "family") {
@@ -67,6 +70,7 @@ function overlayFamilyDocs(docs: DocItem[], familyStatus?: string): DocItem[] {
       phase: "before",
       required: true,
       category: "identity",
+      source: null,
     });
     push({
       name: "School records",
@@ -74,6 +78,7 @@ function overlayFamilyDocs(docs: DocItem[], familyStatus?: string): DocItem[] {
       phase: "before",
       required: false,
       category: "other",
+      source: null,
     });
   }
   return out;
@@ -163,6 +168,12 @@ function parseDocuments(rawText: string): DocItem[] | null {
     const category = validCats.has((item as { category?: string }).category ?? "")
       ? ((item as { category: "identity" | "financial" | "legal" | "other" }).category)
       : "other";
+    const rawSource = (item as { source?: unknown }).source;
+    let source: string | null = null;
+    if (typeof rawSource === "string") {
+      const trimmed = rawSource.trim();
+      if (trimmed && trimmed.toLowerCase() !== "null") source = trimmed;
+    }
     out.push({
       name,
       description:
@@ -172,6 +183,7 @@ function parseDocuments(rawText: string): DocItem[] | null {
       phase,
       required: (item as { required?: boolean }).required !== false,
       category,
+      source,
     });
   }
 
@@ -201,20 +213,22 @@ async function callClaudeWithWebSearch(
   const prompt = `You are a relocation document specialist.
 Given: citizenship=${citizenship}, destination=${destination}, visa_type=${visaType}.
 
-Search official government/consulate sources for current document requirements for this specific citizenship → destination → visa combination.
+Search official government/consulate/embassy sources for current document requirements for this specific citizenship → destination → visa combination.
 
 Return documents a typical applicant needs BEFORE departure, DURING arrival/setup, and AFTER for residence/stability.
 Rules:
 - Specific to this citizenship→destination→visa combination
 - Distinct atomic items — do not list overlapping/ambiguous items (e.g. distinguish clearly between 'passport photocopies' and 'biometric photos of the applicant' if both are needed, never list near-duplicates unclearly)
 - Prefer official government/consulate sources; if uncertain about a specific requirement, note that in the description (e.g. 'verify with official source, requirements may vary by consulate')
+- For each document, include a "source" field: an official government/consulate/embassy URL when findable via search, OR a short official source name (e.g. "AIMA Portugal", "Ministry of Interior of the Czech Republic"). Use null only when no credible official source can be identified.
+- Do not invent URLs. If unsure of the exact URL, use the official body name as a string instead of guessing a link.
 - 8-20 items total across all three phases
 - No generic filler items
 
 Return JSON only, no markdown fences, no preamble:
 {
   "documents": [
-    { "name": "...", "description": "...", "phase": "before"|"during"|"after", "required": true|false, "category": "identity"|"financial"|"legal"|"other" }
+    { "name": "...", "description": "...", "phase": "before"|"during"|"after", "required": true|false, "category": "identity"|"financial"|"legal"|"other", "source": "<official URL or source name, or null>" }
   ]
 }`;
 
@@ -228,7 +242,7 @@ Return JSON only, no markdown fences, no preamble:
       },
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 4096,
+        max_tokens: 8192,
         tools: [{
           type: "web_search_20250305",
           name: "web_search",

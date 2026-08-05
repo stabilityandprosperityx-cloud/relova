@@ -30,6 +30,8 @@ import CanIMoveHub from "./pages/tools/CanIMoveHub.tsx";
 import CanIMove from "./pages/tools/CanIMove.tsx";
 import MoveAsHub from "./pages/tools/MoveAsHub.tsx";
 import MoveAsPersona from "./pages/tools/MoveAsPersona.tsx";
+import DocumentsNeededHub from "./pages/tools/DocumentsNeededHub.tsx";
+import DocumentsNeeded from "./pages/tools/DocumentsNeeded.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import { usePageTracking } from "./hooks/usePageTracking.ts";
 
@@ -85,6 +87,8 @@ function AppRoutes() {
         <Route path="/tools/can-i-move/:citizenshipSlug/:destinationSlug" element={<CanIMove />} />
         <Route path="/tools/where-should-i-move" element={<MoveAsHub />} />
         <Route path="/tools/where-should-i-move/:personaSlug" element={<MoveAsPersona />} />
+        <Route path="/tools/documents-needed" element={<DocumentsNeededHub />} />
+        <Route path="/tools/documents-needed/:citizenshipSlug/:destinationSlug" element={<DocumentsNeeded />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

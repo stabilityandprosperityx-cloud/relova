@@ -1,0 +1,2468 @@
+[
+  {
+    "citizenship": "Russia",
+    "destination": "Portugal",
+    "visa_type": "D8_Digital_Nomad",
+    "cSlug": "russia",
+    "dSlug": "portugal",
+    "generated_at": "2026-08-05T10:30:57.556Z",
+    "documents": [
+      {
+        "name": "Russian biometric international passport (zagranpasport)",
+        "description": "Original Russian foreign-travel passport valid at least 3 months beyond the intended stay (many consulates require 6+ months) with at least two blank pages. Applications from Russian citizens are accepted only for the passport holder in person at the Moscow centre or at a Portuguese consulate where the applicant holds legal residence.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://moscovo.embaixadaportugal.mne.gov.pt/ru/"
+      },
+      {
+        "name": "Completed Portuguese national (type D) visa application form",
+        "description": "Official national visa form, signed by the applicant; downloadable in Portuguese or Russian from the Embassy of Portugal in Moscow. Note: the remote-work/digital-nomad category is commonly called D8, but the Moscow BLS checklist lists remote-work 'digital nomads' under a separate code — confirm the exact category label when booking.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://moscovo.embaixadaportugal.mne.gov.pt/ru/%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9-%D0%BE%D1%82%D0%B4%D0%B5%D0%BB/%D0%B2%D0%B8%D0%B7%D1%8B"
+      },
+      {
+        "name": "Two biometric passport photos (35x45 mm)",
+        "description": "Two recent identical colour photographs meeting Portuguese consular photo specifications; submitted with the paper file in addition to the fingerprints and digital photo captured at the visa centre.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://blsrussiaportugal.com/russian/national-visa.php"
+      },
+      {
+        "name": "Photocopies of every passport page and of each supporting document",
+        "description": "The Moscow visa centre requires a separate photocopy of every page of the passport and of each document in the file, submitted alongside the originals. This is distinct from the biometric photos above.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://blsrussiaportugal.com/russian/national-visa.php"
+      },
+      {
+        "name": "Russian criminal record certificate with apostille and sworn Portuguese translation",
+        "description": "Certificate of absence of criminal record issued by the Russian Ministry of Internal Affairs (ГИАЦ МВД), issued within the last 3 months, legalised with a Hague apostille and translated into Portuguese by a certified/sworn translator. Allow several weeks; translation requirements can vary by consular post — verify with the Embassy in Moscow.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Ministry of Internal Affairs of the Russian Federation (ГИАЦ МВД) / Embassy of Portugal in Moscow"
+      },
+      {
+        "name": "Signed authorisation for AIMA to consult the Portuguese criminal record",
+        "description": "Standard consent form permitting the Portuguese immigration authority to check the applicant's criminal record in Portugal; submitted with the visa file.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "AIMA Portugal"
+      },
+      {
+        "name": "Proof of remote professional activity for a non-Portuguese employer or clients",
+        "description": "Employment contract, secondment/remote-work declaration from the employer, or freelance/service contracts and invoices with clients established outside Portugal, showing the work is performed remotely. Documents in Russian require translation (Portuguese, or English where accepted).",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://moscovo.embaixadaportugal.mne.gov.pt/ru/%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9-%D0%BE%D1%82%D0%B4%D0%B5%D0%BB/%D0%B2%D0%B8%D0%B7%D1%8B"
+      },
+      {
+        "name": "Proof of monthly income at four times the Portuguese minimum wage",
+        "description": "Payslips, invoices or bank credit records for the last 3 consecutive months evidencing average monthly income of at least four times the Portuguese minimum wage (threshold is indexed and rises annually; higher amounts apply if dependants are included) — confirm the current figure with the consulate before submission.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "AIMA Portugal"
+      },
+      {
+        "name": "Bank statements showing accumulated savings",
+        "description": "Statements for the last 3–6 months, stamped/certified by the bank, showing a savings balance equal to roughly twelve months of the Portuguese minimum wage. Russian-bank statements are accepted as proof of means, but sanctions may restrict later transfers to Portugal — consider holding funds in an account outside Russia and verify acceptance with the consular post.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "Embassy of Portugal in Moscow"
+      },
+      {
+        "name": "Russian tax residence / tax return evidence",
+        "description": "Tax residence certificate or filed personal income tax return (e.g. 3-NDFL or self-employed/IP tax statement) confirming that the declared income is taxed outside Portugal. Some consulates ask for 12 months of tax residence proof; verify with the official source as practice varies.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "Embassy of Portugal in Moscow"
+      },
+      {
+        "name": "Proof of accommodation in Portugal",
+        "description": "Signed Portuguese lease agreement (12 months is the safest standard), property deed, or a hosting declaration from a Portuguese resident with proof of their own accommodation. Short-term bookings are sometimes accepted for the remote-work visa but may be questioned.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "AIMA Portugal"
+      },
+      {
+        "name": "Travel/health insurance valid in Portugal",
+        "description": "Policy covering medical expenses, urgent care and repatriation in Portugal for the whole visa validity (commonly minimum EUR 30,000 cover). Policies issued by Russian insurers are frequently rejected because of payment/sanctions issues — an international or EU-issued policy is safer.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "Embassy of Portugal in Moscow"
+      },
+      {
+        "name": "Portuguese tax identification number (NIF)",
+        "description": "Issued by the Portuguese Tax Authority; obtainable before departure through a fiscal representative or in Portugal at a Finanças office / Loja do Cidadão with passport and proof of address. Needed to sign a lease, open a bank account and complete the residence permit application.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Autoridade Tributária e Aduaneira (Portal das Finanças)"
+      },
+      {
+        "name": "Flight reservation showing arrival in Portugal",
+        "description": "One-way ticket or itinerary confirming the intended entry date; a return ticket is not required for national visas, but Russian applicants should note there are no direct flights and should show the actual routing used. Some centres list this as optional.",
+        "phase": "before",
+        "required": false,
+        "category": "other",
+        "source": "https://blsrussiaportugal.com/russian/national-visa.php"
+      },
+      {
+        "name": "Visa fee and BLS service fee payment receipt",
+        "description": "Proof of payment of the national visa consular fee (EUR 110 at the Moscow post) plus the separate BLS International service charge, paid at the visa application centre.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://moscovo.embaixadaportugal.mne.gov.pt/ru/%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9-%D0%BE%D1%82%D0%B4%D0%B5%D0%BB/%D0%B2%D0%B8%D0%B7%D1%8B"
+      },
+      {
+        "name": "AIMA residence permit appointment confirmation",
+        "description": "Some residence visas are issued with a pre-scheduled AIMA appointment printed on or attached to the visa; if not, the appointment must be requested through AIMA's online channel immediately after arrival and held within the visa's 120-day validity.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://aima.gov.pt"
+      },
+      {
+        "name": "Portuguese bank account confirmation with transferred funds",
+        "description": "Account opening declaration/IBAN and a statement showing the subsistence funds available locally, presented at the AIMA appointment. Russian citizens should expect enhanced compliance checks on the source of funds and on transfers originating from Russian banks.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "AIMA Portugal"
+      },
+      {
+        "name": "Updated income evidence for the AIMA appointment",
+        "description": "Recent payslips, invoices or client contracts dated after the visa was issued, proving the remote activity and income are still ongoing; presented together with the original consular file and the passport bearing the visa sticker.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "AIMA Portugal"
+      },
+      {
+        "name": "Portuguese social security number (NISS)",
+        "description": "Registration with Instituto da Segurança Social, required for self-employed/freelance remote workers who register an activity in Portugal, and often requested as supporting proof at AIMA where applicable.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "Instituto da Segurança Social (seg-social.pt)"
+      },
+      {
+        "name": "Residence permit card (Título de Residência) and SNS/address registration",
+        "description": "Card issued for 2 years and renewable for 3 years after biometrics at AIMA; on receipt, update the NIF address with Finanças and register at the local Centro de Saúde for the national health service. Absences above 6 consecutive or 8 non-consecutive months during the permit's validity jeopardise renewal and the 5-year path to permanent residence/citizenship.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "https://aima.gov.pt"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Russia",
+    "destination": "Armenia",
+    "visa_type": "Visa_Free",
+    "cSlug": "russia",
+    "dSlug": "armenia",
+    "generated_at": "2026-08-05T10:32:14.414Z",
+    "documents": [
+      {
+        "name": "Valid Russian internal passport (общегражданский паспорт РФ)",
+        "description": "Russian citizens may cross into Armenia on the internal Russian passport under the CIS/bilateral regime; note it is accepted for air arrivals in practice, so an international passport is safer for land/mixed routes and for onward travel. If you enter on the internal passport, a notarized Armenian translation of it will later be demanded by almost every Armenian authority.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "Migration and Citizenship Service of Armenia (migration.mia.gov.am)"
+      },
+      {
+        "name": "Valid Russian international passport (загранпаспорт)",
+        "description": "Preferred travel document: no visa is needed for Russian citizens, and entry is granted on presentation of the passport alone. Recommended validity of at least 6 months remaining; it is also the document banks, notaries and the Migration Service work with most easily. Verify current validity expectations with the border service, as practice may differ by crossing point.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Ministry of Foreign Affairs of the Republic of Armenia (mfa.am)"
+      },
+      {
+        "name": "Proof of accommodation for the first stay",
+        "description": "Hotel booking or landlord/host details covering the initial days. Border officers may ask where you will stay; the same address is later reused for address registration, so obtain the host's or owner's contact data in writing.",
+        "phase": "before",
+        "required": false,
+        "category": "other",
+        "source": "Ministry of Foreign Affairs of the Republic of Armenia (mfa.am)"
+      },
+      {
+        "name": "Proof of sufficient funds / onward travel evidence",
+        "description": "Bank statement, card, cash or a return/onward ticket. Not a formal visa-free condition, but border officials may request it at their discretion — verify with the Armenian border service as practice varies by crossing point.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "Ministry of Foreign Affairs of the Republic of Armenia (mfa.am)"
+      },
+      {
+        "name": "Russian birth certificates of accompanying children",
+        "description": "Originals for each minor travelling with you. Needed later for the child's Public Services Number and for school enrolment; if you entered on internal passports, the birth certificate must also be translated into Armenian and notarized.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "Migration and Citizenship Service of Armenia (migration.mia.gov.am)"
+      },
+      {
+        "name": "Russian marriage certificate (original, with apostille)",
+        "description": "Required only if you will apply for family-based residence status or register a spouse/family member on a residence application. Armenian authorities require civil-status documents to be apostilled and translated into Armenian, so obtain the apostille in Russia before departure.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "Migration and Citizenship Service of Armenia (migration.mia.gov.am)"
+      },
+      {
+        "name": "Russian criminal record certificate (справка о несудимости) with apostille",
+        "description": "A home-country police clearance is commonly requested in residence-status files and for some regulated employment; it cannot be obtained conveniently from abroad, so request it with apostille before leaving. Note: it is not on the core statutory list for every residence ground — verify against the Migration and Citizenship Service checklist for your specific ground.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "Migration and Citizenship Service of Armenia (migration.mia.gov.am)"
+      },
+      {
+        "name": "Passport entry stamp / border crossing record",
+        "description": "The stamp placed in your document at the border is your proof of legal entry and start date of the visa-free period; Russian citizens may generally stay up to 180 days within one year. Check the date and duration on the stamp immediately, as overstay leads to fines and possible entry bans, and the stamp is required when applying for a Public Services Number.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Ministry of Foreign Affairs of the Republic of Armenia (mfa.am)"
+      },
+      {
+        "name": "Notarized Armenian translation of your Russian passport",
+        "description": "A translation of the exact document you entered on, certified by an Armenian notary. Explicitly required from Russian citizens for address registration, and required for the Public Services Number if you crossed the border on the internal passport.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://english.hartak.am/guides/address-registration/"
+      },
+      {
+        "name": "Notarized residential lease agreement",
+        "description": "A lease for your Armenian home, notarized (and ideally cadastre-registered), naming you as tenant. It is the standard proof of housing for address registration and is distinct from the owner's consent document.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://english.hartak.am/guides/address-registration/"
+      },
+      {
+        "name": "Property owner's consent plus copy of the owner's passport",
+        "description": "Written consent from the landlord (notarized if the owner cannot attend in person, and from all co-owners if the property is jointly owned), naming the persons to be registered, together with a copy of the owner's identity document.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://english.hartak.am/services/326540e7-8e18-4671-8bb1-8d3a32a13330/offline_book_visit/"
+      },
+      {
+        "name": "Address registration (grantsoum) application and state fee receipt",
+        "description": "Filed at the territorial Passport and Visa Department / Migration and Citizenship Service, usually via appointment through the Hartak or migration.e-gov.am portal; state fee around 1,000 AMD. For Russian citizens staying under 180 days in a calendar year, address registration alone can legalise presence for work purposes without a residence card.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://english.hartak.am/guides/address-registration/"
+      },
+      {
+        "name": "Police certificate confirming actual residence at the address",
+        "description": "Where housing documents are incomplete or occupancy is doubted, the police verify actual residence at the declared address within about 5 working days and issue a confirmation that closes the registration file.",
+        "phase": "during",
+        "required": false,
+        "category": "legal",
+        "source": "https://english.hartak.am/guides/address-registration/"
+      },
+      {
+        "name": "Public Services Number (PSN/SSN) certificate",
+        "description": "A 10-digit identifier issued to foreigners legally present in Armenia, obtained in person at a Migration and Citizenship Service subdivision or online with strong authentication; for foreigners it is issued as a stamped paper certificate rather than a card. Needed for employment, banking, taxes and public services, and a certificate of lawful residence cannot be printed without it.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://migration.mia.gov.am/en/certificates-and-documents-from-the-state-population-register"
+      },
+      {
+        "name": "Armenian bank account opening file",
+        "description": "Bank onboarding typically requires the passport, the Public Services Number and proof of your Armenian address; banks generally ask for the PSN as part of identification, so obtain it first. Exact document lists differ by bank — confirm directly with the chosen bank.",
+        "phase": "during",
+        "required": false,
+        "category": "financial",
+        "source": "Central Bank of Armenia (cba.am)"
+      },
+      {
+        "name": "Employment contract with an Armenian employer",
+        "description": "As an EAEU national you are exempt from a work permit, but a signed employment agreement is the substantive basis for the certificate of lawful residence and for payroll/tax registration by the employer.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://workpermit.am/en/home"
+      },
+      {
+        "name": "Certificate confirming the legality of stay (EAEU certificate)",
+        "description": "The EAEU alternative to a work permit for Russian citizens working in Armenia beyond the short-stay period: the employee applies through the EAEU section of workpermit.am (the employer must first be registered on the platform). Application items include the PSN, passport copy, employment agreement, Armenian residence address and a 35x45 mm photo; it is normally issued for the contract term or one year.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://workpermit.am/en/home"
+      },
+      {
+        "name": "Temporary residence status application file (1-year residence card)",
+        "description": "Filed in person by appointment at the Migration and Citizenship Service, 14 Tairov Street, Yerevan, for grounds such as study, business, family or Armenian descent; the card is issued for up to one year and is renewable. Core file: application form, passport with notarized Armenian translation, photos, health certificate, proof of legal stay and evidence of the chosen ground; state fee reported at AMD 105,000 — confirm the current fee and checklist with the Service, and note that procedures move to the digital permits.am system under the reform effective 1 November 2026.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://migration.mia.gov.am/en/residency-status-and-visa"
+      },
+      {
+        "name": "Biometric photographs, 35x45 mm",
+        "description": "Recent colour passport-style photos (three copies are typically requested for a temporary residence file, one for the EAEU certificate application). These are separate from passport photocopies and must meet the size specification.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "https://migration.mia.gov.am/en/residency-status-and-visa"
+      },
+      {
+        "name": "Medical/health certificate for the residence file",
+        "description": "A health certificate on the form accepted by the Migration and Citizenship Service, normally issued by an Armenian clinic after arrival. A missing or wrongly formatted medical form is a frequent cause of delay — confirm the accepted issuing institutions with the Service.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "https://migration.mia.gov.am/en/residency-status-and-visa"
+      },
+      {
+        "name": "Residence status renewal or replacement application",
+        "description": "Renewal must be filed roughly 30 days before the card expires; a lost card can be restored and a card must be replaced if it becomes unusable or if you change your passport, by applying in person or via a representative at 14 Tairov Street.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://migration.mia.gov.am/en/residency-status-and-visa"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Russia",
+    "destination": "Cyprus",
+    "visa_type": "Digital_Nomad",
+    "cSlug": "russia",
+    "dSlug": "cyprus",
+    "generated_at": "2026-08-05T10:33:59.056Z",
+    "documents": [
+      {
+        "name": "Valid Russian international passport (original)",
+        "description": "Russian biometric passport, valid well beyond the intended stay (Migration Department document lists require validity of at least 3 months beyond the permit period; Cyprus consulates in Russia generally ask for 6 months' validity beyond visa expiry and 2 blank pages). Both original and a full photocopy of all pages are submitted with the residence permit application.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      },
+      {
+        "name": "Cyprus entry visa issued by a Cypriot mission in Russia",
+        "description": "Russian nationals are not visa-exempt for Cyprus and must obtain a paper entry visa (short-stay/tourist or national visa) before travel; Cyprus is outside Schengen and issues its own visa. The Digital Nomad residence permit application is then filed inside Cyprus after lawful entry. Apply at the Embassy of the Republic of Cyprus in Moscow or a Cypriot Consulate General (St Petersburg, Yekaterinburg, Samara, Krasnodar) — confirm current appointment procedure and accepted visa category directly with the mission, as availability for Russian applicants has changed since 2022.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Embassy of the Republic of Cyprus in Moscow (Ministry of Foreign Affairs of the Republic of Cyprus)"
+      },
+      {
+        "name": "Russian criminal record certificate (справка об отсутствии судимости) from the MVD",
+        "description": "Original clean criminal record certificate issued by the Ministry of Internal Affairs of the Russian Federation (via MVD/Gosuslugi), normally not older than 6 months at submission. If you have also lived in a third country, a police certificate from that country of residence is expected as well.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Ministry of Internal Affairs of the Russian Federation (MVD) / https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      },
+      {
+        "name": "Apostille and certified Greek/English translation of Russian-issued documents",
+        "description": "All documents accompanying the application must be officially translated (into Greek or English) and duly certified/ratified. Russia is a Hague Apostille Convention party, so the MVD police certificate, civil status certificates and medical documents should carry an apostille before translation; translations should be certified by a recognised/sworn translator (in Cyprus, the Press and Information Office register).",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      },
+      {
+        "name": "Proof of remote work for a non-Cypriot employer or clients",
+        "description": "Employment contract with a company registered abroad, or — for self-employed applicants — service/project contracts with foreign clients plus company registration documents. The application form must state whether you are employed or self-employed, and the work must be performed via telecommunications technology for entities outside Cyprus.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.cy/app/uploads/sites/174/2025/12/DIGITAL-NOMAD-VISA-SCHEME-E%CE%9D.pdf"
+      },
+      {
+        "name": "Bank statements and salary evidence proving €3,500+ net monthly income",
+        "description": "Statements covering roughly the last 6 months (plus payslips or invoices) showing stable net income of at least €3,500 per month after taxes and contributions; the threshold rises by 20% for a spouse/civil partner and 15% per child. Russian-bank statements should be translated and certified; consider also statements from a non-sanctioned foreign bank, as Cypriot banks and the Migration Department may query Russian-sourced funds (verify with the Department, practice varies by case officer).",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.gov.cy/app/uploads/sites/174/2025/12/DIGITAL-NOMAD-VISA-SCHEME-E%CE%9D.pdf"
+      },
+      {
+        "name": "Private health insurance policy valid in Cyprus",
+        "description": "Accident and health insurance certificate covering inpatient and outpatient care and other medical expenses (repatriation cover is commonly requested) for the whole permit period. Check that the insurer's policy is accepted in Cyprus and is not limited by sanctions restrictions applying to Russian-issued policies.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      },
+      {
+        "name": "Original blood test results (HIV, syphilis, hepatitis B and C)",
+        "description": "Original laboratory results certifying the applicant and dependants are free of these infectious diseases; results obtained abroad must be duly certified/legalised (apostille) and can alternatively be taken in Cyprus at a state or approved private lab after arrival. Children under 6 are exempt.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.gov.cy/mip-md/en/uncategorized/submission-of-medical-examinations-as-part-of-the-required-supporting-documents-for-applications-for-immigration-permit-categories-a-f/"
+      },
+      {
+        "name": "Chest X-ray report for tuberculosis screening",
+        "description": "Original chest X-ray/radiology report certified by a physician, issued in the country of origin or last country of lawful residence (Russia) with proper certification, or performed in Cyprus after arrival. Children under 6 are exempt.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.gov.cy/mip-md/en/uncategorized/submission-of-medical-examinations-as-part-of-the-required-supporting-documents-for-applications-for-immigration-permit-categories-a-f/"
+      },
+      {
+        "name": "Two recent biometric-standard photographs of the applicant",
+        "description": "Two colour passport-style photos (35x45 mm, plain background, no headgear/sunglasses) attached to the residence permit application form — separate from the digital photograph captured at the biometrics appointment and separate from passport photocopies.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      },
+      {
+        "name": "Apostilled Russian marriage certificate and children's birth certificates",
+        "description": "Needed only if a spouse/civil partner or minor children apply as family members; Russian ZAGS-issued certificates must be apostilled and translated into Greek or English. Family members file their own permit applications and cannot work or carry out economic activity in Cyprus.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      },
+      {
+        "name": "Completed Digital Nomad residence permit application form (MVIS4; MVIS6 for family members)",
+        "description": "Signed Migration Department form for the temporary residence permit, filed in person (or via authorised representative) at the Civil Registry and Migration Department central offices in Nicosia within 3 months of arrival, together with the fees of €70 for the permit and €70 for first registration in the Aliens Registry per person. Incomplete files are not processed; confirm the current form version/appointment need on the Department's website.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      },
+      {
+        "name": "Proof of accommodation in Cyprus (rental agreement or title deed)",
+        "description": "Signed long-term rental contract for the Cypriot address (landlord's title/ownership evidence is often attached), or the title deed if you own property; short-term booking confirmations are sometimes accepted for the initial filing — verify acceptability with the Migration Department.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      },
+      {
+        "name": "Photocopy of the passport page showing the last entry stamp into Cyprus",
+        "description": "Copy of the passport page(s) with the Cyprus entry visa and the most recent entry stamp, evidencing lawful entry and that the application is filed within the 3-month window (distinct from the general full-passport photocopy).",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      },
+      {
+        "name": "Biometric data enrolment (fingerprints and digital photograph)",
+        "description": "Mandatory in-person capture of fingerprints and a facial image at the Migration Department in Nicosia or at an Aliens and Immigration Office of the Cyprus Police; the residence permit card cannot be issued without it. Children under six provide only a photograph.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      },
+      {
+        "name": "Signed affirmation that accompanying family members will not engage in economic activity",
+        "description": "Written declaration submitted with the family members' applications confirming they will not be employed or run a business in Cyprus while holding the dependent permit.",
+        "phase": "during",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.gov.cy/app/uploads/sites/174/2025/12/DIGITAL-NOMAD-VISA-SCHEME-E%CE%9D.pdf"
+      },
+      {
+        "name": "Digital Nomad temporary residence permit card",
+        "description": "The issued permit (valid one year, renewable up to a total of three years) is your proof of legal residence in Cyprus; carry it with your passport. The permit is cancelled if you stay outside Cyprus for more than 90 consecutive days — plan absences accordingly.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      },
+      {
+        "name": "Alien Registration Certificate (ARC) / Aliens Registry registration",
+        "description": "First-time registration in the Aliens Registry (fee €70 per person, paid with the application) produces your alien registration number/certificate, routinely requested by Cypriot banks, insurers and utility providers.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      },
+      {
+        "name": "Cyprus Tax Identification Code (TIC) registration",
+        "description": "Register with the Cyprus Tax Department if you become a Cyprus tax resident — mainly under the 183-day rule — and file annual returns; a TIC is also frequently required for banking and GHS (GeSY) contributions. Russian tax residency status and the Russia–Cyprus double tax treaty position should be checked with a qualified adviser.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "Cyprus Tax Department (Ministry of Finance) / https://www.gov.cy/app/uploads/sites/174/2025/12/DIGITAL-NOMAD-VISA-SCHEME-E%CE%9D.pdf"
+      },
+      {
+        "name": "Renewal application file with refreshed supporting evidence",
+        "description": "Submitted to the Civil Registry and Migration Department in Nicosia at least one month before the current permit expires, with updated proof of income at the €3,500+ threshold, a current remote-work contract, a valid insurance policy, current accommodation proof and the applicable fees; a fresh MVD criminal record certificate may be requested — verify the current renewal document list with the Department.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.cy/mip-md/en/documents/digital-nomads-and-family-members/"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Russia",
+    "destination": "Czech Republic",
+    "visa_type": "Long_Term_Residence",
+    "cSlug": "russia",
+    "dSlug": "czech-republic",
+    "generated_at": "2026-08-05T10:35:26.967Z",
+    "documents": [
+      {
+        "name": "Biometric passport of the Russian Federation",
+        "description": "Valid Russian biometric (chip) travel document — since 3 July 2024 Czechia recognises ONLY biometric passports issued by the Russian Federation; non-biometric Russian passports are not accepted for visa/residence permit applications. Must be issued within the last 10 years, contain at least 2 blank pages and be valid at least 3 months beyond the requested permit validity.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://mzv.gov.cz/jnp/en/information_for_aliens/index.html"
+      },
+      {
+        "name": "Completed long-term residence permit application form (Žádost o povolení k dlouhodobému pobytu)",
+        "description": "Official bilingual Czech/English MFA form, one form per applicant, filled in legible Latin capitals and signed. First-time applications must be lodged in person at a Czech diplomatic mission competent for Russian citizens (territorial consular competence applies; Russians must generally apply at the mission in the state of citizenship or of long-term residence of 2+ years).",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://mzv.gov.cz/jnp/en/information_for_aliens/visa_form/index.html"
+      },
+      {
+        "name": "Biometric-standard photographs of the applicant (3.5 x 4.5 cm)",
+        "description": "Printed passport-style photographs on light background, no head covering except for religious reasons, matching current appearance. Consulates commonly request 2–3 prints — verify the exact number with the specific Czech embassy/consulate handling your file.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Ministry of Foreign Affairs of the Czech Republic (mzv.gov.cz)"
+      },
+      {
+        "name": "Document proving the purpose of stay",
+        "description": "Original document matching the exact purpose of the long-term residence permit applied for (e.g. employment contract / employee card job offer, confirmation of enrolment at an accredited Czech university, family reunification documents, business registration, scientific research hosting agreement). A long-term residence permit is always issued for one specific purpose and that purpose must continue to exist.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://ipc.gov.cz/en/visa-and-residence-permit-types/third-country-nationals/long-term-residence-permits/long-term-residence-general-information/"
+      },
+      {
+        "name": "Proof of secured accommodation in the Czech Republic",
+        "description": "Lease agreement, accommodation confirmation from the property owner with notarised signature, or dormitory confirmation, covering the requested residence period at a specific Czech address.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://mv.gov.cz/mvcren/article/third-country-nationals-long-term-residence.aspx"
+      },
+      {
+        "name": "Proof of sufficient financial means",
+        "description": "Bank statements, Czech bank account confirmation, salary/scholarship confirmation or an internationally usable payment card together with an account balance statement. For study purposes the indicative annual amount is roughly CZK 125,000; thresholds differ by purpose — confirm the current figure for your purpose with the Ministry of the Interior.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://ipc.gov.cz/en/visa-and-residence-permit-types/third-country-nationals/long-term-residence-permits/long-term-residence-general-information/"
+      },
+      {
+        "name": "Russian criminal record extract (справка о наличии/отсутствии судимости) with Apostille",
+        "description": "Certificate of no criminal record issued by the Russian MVD. As a foreign public document it must carry higher verification — Russia is an Apostille Convention party, so an Apostille is required. Must not be older than 180 days at submission.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://mv.gov.cz/mvcren/article/third-country-nationals-long-term-residence.aspx"
+      },
+      {
+        "name": "Criminal record certificate(s) from other countries of residence in the last 3 years",
+        "description": "Equivalent document from any state where you resided continuously for more than 6 months during the past 3 years (relevant for Russian nationals who relocated via third countries such as Armenia, Kazakhstan, Serbia, Turkey or UAE), also apostilled/superlegalised.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://ipc.gov.cz/en/visa-and-residence-permit-types/third-country-nationals/long-term-residence-permits/long-term-residence-general-information/"
+      },
+      {
+        "name": "Certified Czech translations of all Russian-language documents",
+        "description": "Every Russian-issued document (criminal record extract, birth/marriage certificate, diplomas, employer letters) must be submitted with a translation into Czech; translations should be made by a court-appointed (soudní) translator. Translation of a document does not remove the separate Apostille requirement.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://mv.gov.cz/mvcren/article/third-country-nationals-long-term-residence.aspx"
+      },
+      {
+        "name": "Written justification for the application under Czech restrictive measures against Russian nationals",
+        "description": "Because Czechia applies restrictive visa measures in response to the aggression against Ukraine and, with limited exceptions, does not issue visas or residence permits to Russian nationals located outside the Czech Republic, Russian applicants should be prepared to document that they fall within an exemption (e.g. family reunification with a Czech resident, humanitarian grounds, or an application filed from within Czechia as a current permit holder). Not a standard statutory form — verify eligibility with the competent Czech embassy or the Ministry of the Interior before paying fees.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://mzv.gov.cz/jnp/en/information_for_aliens/index.html"
+      },
+      {
+        "name": "Proof of paid administrative/consular fee",
+        "description": "Receipt for the application fee. Applications filed inside the Czech Republic cost CZK 2,500 (CZK 1,000 for persons under 15) and can only be paid by card at a Ministry of the Interior office; fees for applications filed at a diplomatic mission differ and must be confirmed with that mission (e.g. CZK 5,000 for a Blue Card).",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://portal.gov.cz/en/sluzby-vs/application-for-a-longterm-residence-permit-S6160"
+      },
+      {
+        "name": "Czech medical insurance policy for presentation before the visa sticker is issued",
+        "description": "Once the Ministry of the Interior approves the permit, insurance covering the territory of the Czech Republic must be arranged and shown to the embassy before the entry visa is stamped into the passport. The embassy sends the specific policy parameters to each successful applicant.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://mzv.gov.cz/nairobi/en/visas_and_consular_information/visas/long_stay_residence_permit/long_stay_residence_permit_application.html"
+      },
+      {
+        "name": "D/VR entry visa for collection of the residence permit",
+        "description": "Special long-stay visa sticker affixed in the passport by the Czech embassy after approval; it is not the residence permit itself but the entry document allowing you to travel to Czechia and collect the biometric card.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://mzv.gov.cz/losangeles/en/visa_information/long_term_residence_permit/index.html"
+      },
+      {
+        "name": "Registration of arrival at a Ministry of the Interior office",
+        "description": "Holders of a D/VR visa must register at the competent Ministry of the Interior office within 30 calendar days of arrival; at registration the office schedules the biometric appointment and applies for your Czech personal identity (birth) number. If you enter legally by another route, the deadline is 3 days.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://ipc.gov.cz/en/obligations-for-foreigners/registration-after-arrival/"
+      },
+      {
+        "name": "Foreign Police residence registration form",
+        "description": "Separate obligation to report your Czech place of residence to the Department of Foreign Police within 3 days of entry; it does not apply if your accommodation provider (hotel, hostel, dormitory) reports you, or if you register your arrival at the Ministry of the Interior when collecting a long-term permit.",
+        "phase": "during",
+        "required": false,
+        "category": "legal",
+        "source": "https://ipc.gov.cz/en/obligations-for-foreigners/obligations-of-third-country-nationals-general-information/"
+      },
+      {
+        "name": "Biometric data capture record (facial image and fingerprints)",
+        "description": "Attend the scheduled appointment with your passport to have your facial record and fingerprints scanned for the residence permit card; at this appointment you agree the collection date for the finished card.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://ipc.gov.cz/en/administrative-proceedings/biometrics/"
+      },
+      {
+        "name": "Biometric residence permit card (průkaz o povolení k pobytu)",
+        "description": "The actual long-term residence permit document, collected in person at the Ministry of the Interior within 60 days of the biometric data scan; it is the identity document you must present to police on request.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "https://ipc.gov.cz/en/visa-and-residence-permit-types/third-country-nationals/long-term-residence-permits/employee-card/"
+      },
+      {
+        "name": "Employer confirmation of commencement of work (employment-based permits only)",
+        "description": "When collecting a first employee card you must present the employer's confirmation, on the Ministry's form, that you have started work in the position for which the card was issued. Not applicable to study, family or research purposes.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://ipc.gov.cz/en/visa-and-residence-permit-types/third-country-nationals/long-term-residence-permits/employee-card/"
+      },
+      {
+        "name": "Notifications of changed personal or document data",
+        "description": "Written report to the Ministry of the Interior within 3 working days of any change of name, surname, marital status, travel document data (including issuance of a new Russian biometric passport) or data in your residence permit. Relevant for Russian citizens who must replace non-biometric passports.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://ipc.gov.cz/en/obligations-for-foreigners/obligations-of-third-country-nationals-general-information/"
+      },
+      {
+        "name": "Application for extension of the long-term residence permit",
+        "description": "Must be filed in person at a Ministry of the Interior office no later than the last day of validity of your current permit or long-term visa (normally within the 120-day window before expiry); supporting documents must again be no older than 180 days. Russian nationals with pending extensions have in the past faced travel restrictions and 'bridge visa' limitations — verify current practice with the Ministry of the Interior.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://mv.gov.cz/mvcren/article/third-country-nationals-long-term-residence.aspx"
+      },
+      {
+        "name": "Czech language examination certificate (level A2) for later permanent residence",
+        "description": "Needed only when converting long-term residence into permanent residence after the required period of continuous residence; note that since 1 January 2025 Russian citizens may apply for Czech nationality only if they prove renunciation of Russian citizenship. Confirm the current exam level and residence period with the Ministry of the Interior.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "Ministry of the Interior of the Czech Republic"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Russia",
+    "destination": "Georgia",
+    "visa_type": "Visa_Free",
+    "cSlug": "russia",
+    "dSlug": "georgia",
+    "generated_at": "2026-08-05T10:37:15.467Z",
+    "documents": [
+      {
+        "name": "Valid Russian international passport (загранпаспорт)",
+        "description": "Machine-readable Russian international travel passport is the only entry document needed for visa-free entry; internal Russian passports are not accepted. Georgian practice expects validity covering the full intended stay, and official guidance advises validity of at least 3 months beyond planned departure (6 months is the safer margin recommended by many missions). Border officers have discretion where expiry is near.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.geoconsul.gov.ge/en"
+      },
+      {
+        "name": "Health and accident insurance policy (min. 30,000 GEL coverage)",
+        "description": "Under the Law of Georgia 'On Tourism', since 1 January 2026 every tourist entering Georgia must hold a valid health and accident insurance policy, presented in paper or electronic form, in Georgian or English, issued by a Georgian or foreign insurer, with coverage of no less than 30,000 GEL and valid for the entire stay. Buy before departure; enforcement details and exemption categories should be verified on geoconsul.gov.ge as the rule is new.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.geoconsul.gov.ge/en/entering-georgia"
+      },
+      {
+        "name": "Proof of sufficient funds for the stay",
+        "description": "Border officers may request evidence of financial means: bank statements, a card with available balance, or a salary confirmation letter. Georgia publishes no fixed daily minimum, so the exact amount is at officer discretion — verify with the Consular Department of the MFA if travelling for an extended visa-free stay.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "Consular Department, Ministry of Foreign Affairs of Georgia (geoconsul.gov.ge)"
+      },
+      {
+        "name": "Proof of accommodation for arrival (hotel booking, lease, or notarized invitation)",
+        "description": "Georgian embassies advise holding accommodation details at border checkpoints: a hotel reservation, a lease agreement, or — if staying with a host — a notarized invitation letter on the MFA form. One document type is sufficient; this is separate from the later address-registration lease used for residency.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://china.mfa.gov.ge/en/important-information"
+      },
+      {
+        "name": "Onward or return travel ticket",
+        "description": "Not a formal legal requirement for visa-free Russian nationals, but border officers frequently ask about departure plans; any confirmation of onward travel (flight, bus, or train booking) satisfies the question. Russian citizens should note that Russia–Georgia land crossings operate under special conditions, so route choice should be checked in advance.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "Consular Department, Ministry of Foreign Affairs of Georgia (geoconsul.gov.ge)"
+      },
+      {
+        "name": "Photocopies and digital scans of passport and insurance policy",
+        "description": "Keep paper photocopies plus cloud-stored scans of the passport bio-data page, insurance policy and accommodation confirmation, stored separately from the originals. This is a practical safeguard, not a legal entry requirement.",
+        "phase": "before",
+        "required": false,
+        "category": "other",
+        "source": null
+      },
+      {
+        "name": "Apostilled Russian civil-status documents (birth certificate, marriage certificate)",
+        "description": "Obtain apostilles from the Russian ZAGS/Ministry of Justice before leaving Russia if a family-based residence permit, family address registration, school enrolment or later citizenship application is possible. Georgian authorities require foreign-issued documents to be apostilled and translated into Georgian; certifications generally must not be older than six months at submission.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://sda.gov.ge/en/products/migration-residence-permits/"
+      },
+      {
+        "name": "Apostilled Russian educational diplomas and qualification certificates",
+        "description": "Needed only if a study-based or work-based residence permit, professional licensing, or recognition of Russian qualifications is planned. Apostille in Russia first — it is difficult to arrange from Georgia. Georgian translation will be required at submission.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://sda.gov.ge/en/products/migration-residence-permits/"
+      },
+      {
+        "name": "Apostilled and notarized power of attorney (optional, for representation)",
+        "description": "If a representative will register a company, an Individual Entrepreneur, or property on your behalf, the PoA must be notarized in Russia, apostilled and translated into Georgian; a PoA notarized inside Georgia is also possible once you are in the country.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "National Agency of Public Registry of Georgia (napr.gov.ge)"
+      },
+      {
+        "name": "Entry stamp / border-crossing record in passport",
+        "description": "The visa-free permission is granted automatically at the border, and the entry stamp is the proof of the legal-stay start date. Russian citizens currently receive up to one year (365 days) of visa-free stay; entry and exit dates are tracked automatically, and overstay leads to fines and possible entry bans. Confirm the exact allowed duration on the MFA visa-free list before travel, as some sources cite different periods.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.geoconsul.gov.ge/en"
+      },
+      {
+        "name": "Rental agreement in the tenant's own name",
+        "description": "A written lease naming you as tenant is the practical foundation for address registration, bank onboarding and later residence-permit applications, and is stronger evidence than an informal arrangement. Keep the landlord's ownership extract details available.",
+        "phase": "during",
+        "required": false,
+        "category": "legal",
+        "source": "National Agency of Public Registry of Georgia (napr.gov.ge)"
+      },
+      {
+        "name": "Georgian taxpayer identification number (personal TIN) from the Revenue Service",
+        "description": "Foreign individuals who are not running a registered business are assigned a 9-digit TIN manually by the Revenue Service; registration can be done through the Revenue Service portal with video verification that must be completed from inside Georgia. Needed for tax filings, property purchase and some account openings.",
+        "phase": "during",
+        "required": false,
+        "category": "financial",
+        "source": "https://rs.ge"
+      },
+      {
+        "name": "Georgian bank account opening file (passport plus source-of-funds evidence)",
+        "description": "Georgian banks apply enhanced due diligence to Russian citizens: expect to supply the international passport, a local address, and documentation of income/source of funds (employment contract, invoices, prior bank statements). Exact documentation varies by bank — confirm directly with the chosen bank, as this is a commercial rather than a state requirement.",
+        "phase": "during",
+        "required": false,
+        "category": "financial",
+        "source": "National Bank of Georgia (nbg.gov.ge)"
+      },
+      {
+        "name": "Individual Entrepreneur (IE) registration certificate with Entrepreneurs Registry",
+        "description": "Foreign nationals may register as an Individual Entrepreneur at the Public Service Hall via the National Agency of Public Registry using a valid international passport and a Georgian registration address; registration typically completes within one business day, followed by mandatory tax registration at rs.ge. Important: rules reported as effective from 1 March 2026 may require foreigners performing paid activity to hold a work/residence permit or D1 visa — verify current status with the Public Registry before relying on visa-free status alone.",
+        "phase": "during",
+        "required": false,
+        "category": "legal",
+        "source": "National Agency of Public Registry / Public Service Hall (psh.gov.ge)"
+      },
+      {
+        "name": "Small Business Status confirmation from the Revenue Service",
+        "description": "A separate application filed after IE registration to obtain the reduced turnover tax rate; approval depends on the business activity, as some activity types (including certain consulting work) are excluded. Filed with the Revenue Service of Georgia.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "https://rs.ge"
+      },
+      {
+        "name": "Residence permit application form and supporting package (Public Service Hall)",
+        "description": "First-time residence permit applications must be filed from inside Georgia at a Public Service Hall / Public Service Development Agency, on the official form, with documents in Georgian (or accepted in another language at the Agency's discretion) and copies certified as prescribed by law. Grounds include work, study, family reunification, investment and property ownership, each with its own document list.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://sda.gov.ge/en/products/migration-residence-permits/"
+      },
+      {
+        "name": "Biometric photograph of the applicant for the residence file",
+        "description": "A recent colour photo (commonly 3x4 cm) is part of the residence permit package, and the applicant normally attends the Public Service Hall in person to be photographed for the card. This is distinct from the passport photocopies also submitted with the application.",
+        "phase": "after",
+        "required": false,
+        "category": "identity",
+        "source": "https://sda.gov.ge/en/products/migration-residence-permits/"
+      },
+      {
+        "name": "Evidence of legal income or bank balance for the residence permit",
+        "description": "Georgian regulation accepts an employment or business-activity document (labour contract or similar); where legal income is not confirmed that way, funds in the applicant's personal bank account may count, and the amount must be at least double the minimum subsistence level for average consumers, scaled to the permit duration. Work-permit applicants face additional thresholds, including an employer turnover requirement of 50,000 GEL per foreign employee (35,000 GEL for educational/medical institutions).",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "https://matsne.gov.ge/en/document/view/2483468"
+      },
+      {
+        "name": "Georgian residence card and address registration",
+        "description": "After a residence permit is granted, the holder must apply for a residence card at a Public Service Development Agency office, Public Service Hall branch or Community Centre within 30 days and register a living address; the card is the identity document certifying identity, citizenship and place of residence in Georgia.",
+        "phase": "after",
+        "required": false,
+        "category": "identity",
+        "source": "https://sda.gov.ge/en/products/migration-residence-permits/"
+      },
+      {
+        "name": "Residence permit renewal or permanent residence file",
+        "description": "Temporary permits are issued for 6-12 months initially and can be extended; renewals are normally submitted within a fixed window before expiry (roughly 40-90 days beforehand) and, unlike first applications, may be filed from abroad online. Permanent residence generally becomes available after several consecutive years on a temporary permit, or under a simplified property-based route. Confirm current renewal windows and qualifying periods with the Public Service Development Agency, as these rules have changed repeatedly.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://sda.gov.ge/en/products/migration-residence-permits/"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Russia",
+    "destination": "Turkey",
+    "visa_type": "Residence_Permit",
+    "cSlug": "russia",
+    "dSlug": "turkey",
+    "generated_at": "2026-08-05T10:38:43.931Z",
+    "documents": [
+      {
+        "name": "Russian Federation international passport (valid 60+ days beyond requested permit period)",
+        "description": "Ordinary Russian biometric passport used for entry. Official rule: applicants must hold a passport or passport-substitute document valid for at least sixty days longer than the requested residence permit period; an application cannot be finalised on an expired passport. Note that Russian ordinary-passport holders enter visa-free, but holders of official/special/service passports are not covered by the exemption and must obtain a visa before travel.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://en.goc.gov.tr/residence-"
+      },
+      {
+        "name": "Purpose-specific Turkish entry visa from a Turkish consulate in Russia (work / student cases only)",
+        "description": "If the residence permit basis is employment or study rather than tourism/property, the corresponding work or student visa must be obtained from a Turkish Embassy/Consulate in the Russian Federation before departure; the student visa is the basis of the later student residence permit. Not needed for applicants entering under the visa-free regime for tourism/property purposes.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "Republic of Türkiye Ministry of Foreign Affairs / Turkish Consulate General in Russia"
+      },
+      {
+        "name": "Apostilled Russian criminal record certificate (справка о несудимости) with sworn Turkish translation",
+        "description": "Required for specific short-term categories, notably the investor basis, covering the last five years, and for long-term permit applications. Documents issued abroad must carry an apostille and a notarised Turkish translation; if not apostilled, consulate/Ministry of Foreign Affairs certification plus translation is accepted. Not requested for ordinary tourism-based short-term applications — verify with the provincial migration office, practice varies by province.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://e-ikamet.goc.gov.tr/Ikamet/BasvuruIstenenBelgeler/BasvuruFormuIstenenBelgeler?tur=0"
+      },
+      {
+        "name": "Apostilled Russian civil-status certificates (birth certificate, marriage certificate) with notarised Turkish translation",
+        "description": "Needed for family-tie based applications and for accompanying minor children. Russian ZAGS-issued certificates must be apostilled and translated into Turkish by a sworn translator. If a child travels with only one parent, a certified consent of the absent parent is requested; certified custody or death certificates apply in divorce/widowhood cases.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://e-ikamet.goc.gov.tr/Ikamet/BasvuruIstenenBelgeler/BasvuruFormuIstenenBelgeler?tur=0"
+      },
+      {
+        "name": "Proof of sufficient and regular income for the stay",
+        "description": "One of: pensioner identification card plus pension allocation certificate, bank statements showing the last three months of account movements, or a stamped and signed employer/company income document. Income documents obtained outside Türkiye must be translated into Turkish by a sworn translator. For short-term and student permits the foreigner's own declaration may be sufficient unless the administration specifically requests documents.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://en.goc.gov.tr/residence-"
+      },
+      {
+        "name": "Turkish potential tax identification number (Potansiyel Vergi Kimlik Numarası)",
+        "description": "Free 10-digit tax number for foreigners without a YKN, obtainable online from the Digital Tax Office with a scan of the passport photo page. Needed to pay residence permit fees, open a bank account, sign utility contracts and complete a property purchase before the ikamet card is issued.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://dijital.gib.gov.tr/foreigners/kimlikNoBasvuru"
+      },
+      {
+        "name": "Signed printout of the e-ikamet residence permit application form",
+        "description": "The online application is completed at e-ikamet.goc.gov.tr, where the permit type is selected and a photo uploaded; the system then assigns an appointment at the provincial Directorate of Migration Management. The generated PDF must be printed, signed and brought to the appointment. The online application must be submitted before the visa-free stay or current permit expires.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://e-ikamet.goc.gov.tr"
+      },
+      {
+        "name": "Four biometric photographs of the applicant",
+        "description": "Four recent passport-standard biometric photos taken against a white background, submitted in the application file. These are physical prints and are separate from the digital photo uploaded into the e-ikamet form.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://e-ikamet.goc.gov.tr/Ikamet/BasvuruIstenenBelgeler/BasvuruFormuIstenenBelgeler?tur=0"
+      },
+      {
+        "name": "Photocopy of the passport plus notarised Turkish translation of passport pages",
+        "description": "Copies of the identity page, the last entry stamp page and the visa/e-visa page, with a notarised Turkish translation of the passport. This is a paper copy set for the file and is distinct from the original passport, which must also be presented on the appointment day.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://e-ikamet.goc.gov.tr/Ikamet/BasvuruIstenenBelgeler/BasvuruFormuIstenenBelgeler?tur=0"
+      },
+      {
+        "name": "Valid private health insurance policy for foreigners covering the full permit period",
+        "description": "In principle insurance must cover the entire requested residence permit period; the first page of the policy is generally sufficient. Buying a policy for more than one year supports a longer permit. Alternatively, an official SGK application/provision document for General Health Insurance (GSS) is accepted where the applicant is covered by state insurance.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://en.goc.gov.tr/residence-"
+      },
+      {
+        "name": "Notarised Turkish residential lease agreement (noter tasdikli kira sözleşmesi)",
+        "description": "Proof of accommodation for tenants: a lease agreement notarised in Türkiye and containing the property owner's details. Important: new foreign address registration is closed or restricted in a large number of neighbourhoods and districts (including several in Istanbul), so confirm the specific address is open to new foreign registration before signing — verify with the local Directorate of Migration Management or Nüfus office.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://e-ikamet.goc.gov.tr/Ikamet/BasvuruIstenenBelgeler/BasvuruFormuIstenenBelgeler?tur=0"
+      },
+      {
+        "name": "Title deed (Tapu) copy plus municipal numbering (numarataj) certificate — property-owner applicants",
+        "description": "For applicants basing a short-term permit on property ownership, the property must be registered in the applicant's name in the Turkish land registry; a title deed copy is submitted with a numbering certificate from the municipality on first application (and a title-deed continuation certificate on extension). A minimum declared property value threshold applies and has been raised in recent years — verify the current figure with the Presidency of Migration Management, as reported thresholds vary by source.",
+        "phase": "during",
+        "required": false,
+        "category": "financial",
+        "source": "https://www.invest.gov.tr/en/investmentguide/pages/obtaining-a-residence-permit.aspx"
+      },
+      {
+        "name": "Notarised host commitment letter (yabancı misafir taahhütnamesi) with host's residence certificate and utility bill",
+        "description": "Only for applicants staying at a third party's home instead of their own lease or property: a notarised undertaking by the accommodation provider (co-signed by the spouse if married), a current utility subscription/invoice in the host's name, and the host's residence certificate. Migration Management has significantly tightened acceptance of commitment-letter registrations, including occupancy-per-dwelling checks.",
+        "phase": "during",
+        "required": false,
+        "category": "legal",
+        "source": "https://e-ikamet.goc.gov.tr/Ikamet/BasvuruIstenenBelgeler/BasvuruFormuIstenenBelgeler?tur=0"
+      },
+      {
+        "name": "Residence permit fee and card fee payment receipts",
+        "description": "After submitting the online form the system produces an accrual number (tahakkuk numarası); the residence permit fee and the card fee are paid against it and the receipts are added to the application file. Payment can be made online via the Digital Tax Office or in cash at a tax office depending on the fee type and province.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "https://dijital.gib.gov.tr"
+      },
+      {
+        "name": "Fingerprint registration at the Provincial Directorate of Migration Management",
+        "description": "Biometric fingerprints are taken at the migration office for first-time applicants. If a fingerprint number already appears on the documents of an extension or transfer applicant, new fingerprinting is not required.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "Presidency of Migration Management (Göç İdaresi Başkanlığı)"
+      },
+      {
+        "name": "Residence permit card (ikamet kartı) with Foreigner Identification Number (YKN)",
+        "description": "The physical card is dispatched from Ankara by PTT after approval; processing typically takes several weeks and varies by province. The card carries the 11-digit Yabancı Kimlik Numarası, which becomes the primary identifier for taxation, banking, property and utility transactions. If lost or stolen, file a police loss report and re-apply at the provincial migration office with the report, a biometric photo and address registration proof.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "https://en.goc.gov.tr/residence-"
+      },
+      {
+        "name": "Address registration and residence certificate (yerleşim yeri belgesi)",
+        "description": "Once the permit is approved, the address must be registered in the national address system. Since mid-2024 an appointment must first be booked through the Migration Management appointment system; walk-in manual registration was discontinued. The resulting residence certificate can afterwards be downloaded from e-Devlet and the entry checked in the National Address Query System using the YKN.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.turkiye.gov.tr/nvi-yerlesim-yeri-ve-diger-adres-belgesi-sorgulama"
+      },
+      {
+        "name": "UETS registered electronic notification address (Kayıtlı Elektronik Posta) from PTT",
+        "description": "A National Electronic Notification System address obtained in person at a PTT office. Required in extension and transfer residence permit applications (applicable from 15.04.2024); not required for applicants under 18.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "https://e-ikamet.goc.gov.tr/Ikamet/BasvuruIstenenBelgeler/BasvuruFormuIstenenBelgeler?tur=0"
+      },
+      {
+        "name": "Separate work permit application (İŞKUR/Ministry of Labour) if employment is intended",
+        "description": "A residence permit does not itself grant the right to work. Foreigners intending to work must apply for a work permit under International Labour Force Law No. 6735, or for a work permit exemption under Article 48 of its implementing regulation. Income supporting a tourism-based short-term permit must come from outside Türkiye.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://e-ikamet.goc.gov.tr/Ikamet/BasvuruIstenenBelgeler/BasvuruFormuIstenenBelgeler?tur=0"
+      },
+      {
+        "name": "Notification of change in personal circumstances to the Provincial Directorate of Migration Management",
+        "description": "Any change of name/surname, marital status, passport, address, employer, or school/programme must be reported to the provincial migration office immediately after it occurs, to keep the permit valid and avoid problems at renewal.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "Presidency of Migration Management (Göç İdaresi Başkanlığı)"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Russia",
+    "destination": "UAE",
+    "visa_type": "Freelance_Permit",
+    "cSlug": "russia",
+    "dSlug": "uae",
+    "generated_at": "2026-08-05T10:40:23.663Z",
+    "documents": [
+      {
+        "name": "Russian international passport (zagranpasport)",
+        "description": "Original biometric Russian foreign-travel passport with at least 6 months validity beyond the intended entry date and blank pages for the entry stamp. Russian citizens enter the UAE visa-free for up to 90 days within any rolling 180-day period, which is the window normally used to complete freelance permit and residence formalities.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.mofa.gov.ae/en/missions/moscow/contact-us/faqs"
+      },
+      {
+        "name": "Colour scan of passport bio-data page",
+        "description": "High-resolution digital scan/photocopy of the passport data page (plus any prior UAE visa pages) uploaded to the free zone or MOHRE online portal at application stage. This is a document upload, separate from presenting the original passport at the service centre.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://dda.gov.ae/en/registration-licensing/setting-up-a-business/freelancer/freelancer-license-registration-sole-professional-license"
+      },
+      {
+        "name": "Biometric passport-style photograph of the applicant",
+        "description": "Recent colour photograph of the applicant, white background, full face, meeting UAE immigration specifications; needed digitally for the permit/visa application and physically at the medical and Emirates ID stages. Distinct from the passport scan.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.gofreelance.ae/"
+      },
+      {
+        "name": "Freelance permit / sole professional licence application file",
+        "description": "Application for a freelance permit or sole-professional licence for an approved activity, submitted either to MOHRE (federal freelance work permit) or to a free zone authority (e.g. DDA/GoFreelance in Dubai, or a Northern Emirates free zone). Activity lists and availability change, so confirm your exact profession is currently open with the issuing authority before paying.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://u.ae/en/information-and-services/jobs/employment-in-the-private-sector/job-offers-and-work-permits-and-contracts/work-permits"
+      },
+      {
+        "name": "University degree or specialised diploma with full Russian consular legalisation",
+        "description": "Original diploma legalised through the Russian chain — notarisation, Russian Ministry of Foreign Affairs authentication, then attestation at the UAE Embassy/Consulate in Moscow. A Hague apostille alone is not accepted because the UAE is not a party to the Apostille Convention; stages inside Russia must be completed before departure. Mandatory for the 5-year Green Visa freelancer track (bachelor's degree or equivalent minimum).",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://adro.gov.ae/Visas/Types-of-Visas/Abu-Dhabi-Green-Visa/Freelancers"
+      },
+      {
+        "name": "Certified Arabic or English translation of Russian-language documents",
+        "description": "Sworn/notarised translation of Russian-issued documents (diploma, marriage and birth certificates, police record) into English or Arabic, as UAE missions and authorities do not accept Russian-only text. Have translations legalised together with the originals.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "UAE Ministry of Foreign Affairs (MOFAIC) — consular legalisation requirements"
+      },
+      {
+        "name": "Proof of self-employment income for the previous two years",
+        "description": "Bank statements, audited accounts or certified income records showing annual self-employment income of at least AED 360,000 for each of the last two years — the threshold for the Green Visa freelancer/self-employed category.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://www.added.gov.ae/en/live/long-term-residency/abu-dhabi-green-visa/for-freelancers"
+      },
+      {
+        "name": "Proof of financial solvency for the residence period",
+        "description": "Alternative to the AED 360,000 income history: evidence of sufficient funds to support yourself throughout residency (bank balance certificates, liquid assets). Note that Russian-bank statements are frequently questioned by UAE banks and authorities; obtain stamped, translated statements and verify acceptance with the issuing authority.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://www.added.gov.ae/en/live/long-term-residency/abu-dhabi-green-visa/for-freelancers"
+      },
+      {
+        "name": "Client contracts, invoices or letters of engagement",
+        "description": "Signed service agreements or historic invoices evidencing independent professional activity in the requested field. Used by free zone authorities and MOHRE to justify the activity chosen and to corroborate declared freelance income.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "Ministry of Human Resources and Emiratisation (MOHRE)"
+      },
+      {
+        "name": "Russian criminal record certificate (справка о несудимости), legalised",
+        "description": "Certificate of no criminal record from the Russian MVD, translated and consular-legalised. Not uniformly demanded for freelance permits but requested for some free zones, activities and long-term residence categories — verify with the specific issuing authority, requirements vary.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)"
+      },
+      {
+        "name": "UAE entry permit or visa-free entry stamp",
+        "description": "Either the 90-day visa-free entry stamp granted to Russian passport holders on arrival, or an employment/residence entry permit issued electronically once the freelance permit is approved. If already in the UAE on another residence visa, do not cancel it before the freelance/self-employment permit is issued.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.mofa.gov.ae/en/missions/moscow/contact-us/faqs"
+      },
+      {
+        "name": "Issued freelance permit / licence certificate",
+        "description": "The final permit or sole-professional licence document naming you as the licensee in your own legal name. This is the work authorisation that lets you invoice UAE clients; it is separate from, and issued before, the residence visa.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://dda.gov.ae/en/registration-licensing/setting-up-a-business/freelancer/freelancer-license-registration-sole-professional-license"
+      },
+      {
+        "name": "Establishment (immigration) card",
+        "description": "Immigration file/establishment card linked to your freelance licence, which is what allows the licence to sponsor your own residence visa and later your dependants. Issued by the licensing free zone together with the permit.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gofreelance.ae/"
+      },
+      {
+        "name": "MOFAIC attestation of the legalised Russian documents",
+        "description": "Final leg of the legalisation chain, performed inside the UAE by the Ministry of Foreign Affairs on documents already attested at the UAE mission in Moscow. Required before the degree can be used for Green Visa or professional recognition.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "UAE Ministry of Foreign Affairs (MOFAIC)"
+      },
+      {
+        "name": "Medical fitness test certificate",
+        "description": "Result of the mandatory medical screening (chest X-ray and blood tests for communicable diseases) at a government-approved centre in the emirate of application. Must be completed in the UAE after the entry permit and before visa issuance.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)"
+      },
+      {
+        "name": "UAE health insurance policy",
+        "description": "Valid UAE-compliant medical insurance in your own name — compulsory for residence visa issuance as a self-sponsored freelancer, since there is no employer providing cover. Minimum plan requirements differ by emirate (e.g. DHA basic plan in Dubai).",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.gofreelance.ae/"
+      },
+      {
+        "name": "Emirates ID application and biometric enrolment",
+        "description": "ICP registration with fingerprints and facial capture; the Emirates ID card is the operative national identity document and its issuance activates your residency in practice.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)"
+      },
+      {
+        "name": "Residence visa (electronic residence permit)",
+        "description": "The residence permit itself, issued after medical, insurance and Emirates ID steps — either a 1–2 year visa sponsored by your freelance licence, or the 5-year Green Visa if you meet the permit, degree and income/solvency conditions.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.added.gov.ae/en/live/long-term-residency/abu-dhabi-green-visa/for-freelancers"
+      },
+      {
+        "name": "Registered tenancy contract (Ejari or emirate equivalent)",
+        "description": "Government-registered lease in your name, used as proof of address for banking, utilities, dependant sponsorship and visa renewal. Registration authority differs by emirate (Ejari via Dubai Land Department; equivalent Tawtheeq/municipality systems elsewhere).",
+        "phase": "after",
+        "required": true,
+        "category": "other",
+        "source": "Dubai Land Department (Ejari)"
+      },
+      {
+        "name": "Federal Tax Authority registrations and Tax Residency Certificate",
+        "description": "Corporate tax registration and TRN for the licensed freelance activity, and — for Russian nationals needing to evidence a change of tax residence — a UAE Tax Residency Certificate issued by the Federal Tax Authority after meeting the physical-presence and residence conditions. Confirm current thresholds and small-business relief directly with the FTA.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "https://tax.gov.ae"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Russia",
+    "destination": "Thailand",
+    "visa_type": "DTV",
+    "cSlug": "russia",
+    "dSlug": "thailand",
+    "generated_at": "2026-08-05T10:41:56.984Z",
+    "documents": [
+      {
+        "name": "Russian international passport (original)",
+        "description": "Ordinary Russian Federation travel passport that must remain valid at least 6 months from the intended travel date; the DTV is issued for 5 years, so a passport with long remaining validity avoids having to transfer the visa to a new passport later.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://image.mfa.go.th/mfa/0/n3gTFT2TOE/Visa_Requirements/Checklist_DTV.pdf"
+      },
+      {
+        "name": "Scan/copy of the passport biodata page",
+        "description": "A separate colour copy or upload of the personal-data page of the Russian passport, submitted in addition to presenting the original passport. This is a distinct checklist item from the passport itself.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://image.mfa.go.th/mfa/0/n3gTFT2TOE/Visa_Requirements/Checklist_DTV.pdf"
+      },
+      {
+        "name": "Biometric photograph of the applicant",
+        "description": "One recent photo taken within the past 6 months, ICAO-standard: full-face, plain white background, no hat or tinted lenses. Uploaded as a digital file for the e-Visa application (not the same item as the passport copy).",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://image.mfa.go.th/mfa/0/n3gTFT2TOE/Visa_Requirements/Checklist_DTV.pdf"
+      },
+      {
+        "name": "Completed DTV application submitted on the Thai e-Visa portal",
+        "description": "Online visa application form for the Destination Thailand Visa. Since 1 January 2025 all Royal Thai missions, including the Royal Thai Embassy in Moscow, process DTV applications through the mandatory e-Visa system; the application must be lodged while physically outside Thailand. The Russia-post fee is charged in USD (approx. 350 USD) rather than in THB.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.thaievisa.go.th"
+      },
+      {
+        "name": "Bank statement showing 500,000 THB equivalent (3 months)",
+        "description": "Official bank statement for the last 3 months with an ending balance of no less than 500,000 THB equivalent (for Russian applicants, typically a RUB or foreign-currency account statement). Funds must be 'seasoned' — held for at least 3 months. Cryptocurrency wallets and brokerage/investment statements are generally not accepted; verify accepted bank formats with the Royal Thai Embassy in Moscow, as practice varies by mission.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://image.mfa.go.th/mfa/0/n3gTFT2TOE/Visa_Requirements/Checklist_DTV.pdf"
+      },
+      {
+        "name": "Proof of monthly income / salary slips for the last 6 months",
+        "description": "Payslips, remittance records or income statements covering 6 months, evidencing ongoing income from a source outside Thailand. This is a separate checklist item from the 500,000 THB balance statement.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://image.mfa.go.th/mfa/0/n3gTFT2TOE/Visa_Requirements/Checklist_DTV.pdf"
+      },
+      {
+        "name": "Foreign employment contract or employer certificate (Workcation category)",
+        "description": "Contract or letter of employment from a company registered outside Thailand. The MFA checklist requires it to be authenticated/legalised by the embassy of the country where the company is registered; for a Russian employer this normally means notarisation and legalisation in Russia. Verify the exact legalisation format with the Royal Thai Embassy in Moscow — requirements vary by consulate.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://image.mfa.go.th/mfa/0/n3gTFT2TOE/Visa_Requirements/Checklist_DTV.pdf"
+      },
+      {
+        "name": "Company registration / business licence of the non-Thai employer or own company",
+        "description": "Copy of the corporate registration extract or business licence of the foreign employer, or of your own registered company (e.g. Russian EGRUL/EGRIP extract for an IP or OOO), authenticated by the embassy of the country of registration. Applies to employees and to self-employed owners.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://image.mfa.go.th/mfa/0/n3gTFT2TOE/Visa_Requirements/Checklist_DTV.pdf"
+      },
+      {
+        "name": "Freelance evidence pack: client contracts and recent invoices",
+        "description": "For freelancers without a single employer: signed client contracts with non-Thai clients plus recent invoices/payment records. Since 2025 a CV or portfolio website alone is generally considered insufficient; documentary contracts are expected. Required only if you have no employment contract.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://image.mfa.go.th/mfa/0/n3gTFT2TOE/Visa_Requirements/Checklist_DTV.pdf"
+      },
+      {
+        "name": "Letter of acceptance from a Thai soft-power host organisation",
+        "description": "Alternative to the Workcation evidence: enrolment/acceptance letter from an accredited Muay Thai gym, Thai culinary school, sports or cultural programme, or a hospital letter for medical treatment. Programmes are generally expected to run at least 6 months; Thai language schools were removed from this category in 2025.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://image.mfa.go.th/mfa/0/n3gTFT2TOE/Visa_Requirements/Checklist_DTV.pdf"
+      },
+      {
+        "name": "Proof of your location/legal residence in the country of application",
+        "description": "Evidence that you are applying from outside Thailand and are legally present where you apply — e.g. Russian internal registration (propiska) or a utility bill if applying from Russia, or a residence permit/long-term visa if applying at a third-country mission such as Vientiane or Kuala Lumpur. Some missions refuse non-residents.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://moscow.thaiembassy.org/en/publicservice/dtv"
+      },
+      {
+        "name": "Accommodation / long-stay evidence for Thailand",
+        "description": "Some Royal Thai missions ask for a condominium rental agreement, lease or equivalent showing intended prolonged stay in Thailand. This is not uniformly enforced — verify with the specific mission before applying, as requirements may vary by consulate.",
+        "phase": "before",
+        "required": false,
+        "category": "other",
+        "source": "https://image.mfa.go.th/mfa/0/n3gTFT2TOE/Visa_Requirements/Checklist_DTV.pdf"
+      },
+      {
+        "name": "Certified English translations of Russian-language documents",
+        "description": "All supporting documents must be submitted in English or Thai. Russian-issued bank statements, employment contracts, company extracts and civil-status certificates therefore need certified/notarised English translations.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://image.mfa.go.th/mfa/0/n3gTFT2TOE/Visa_Requirements/Checklist_DTV.pdf"
+      },
+      {
+        "name": "Dependent relationship documents (marriage / birth certificate)",
+        "description": "For a spouse or unmarried children under 20 applying as dependents: Russian marriage certificate or birth certificate, translated and legalised, plus the primary applicant's passport biodata page and DTV visa/application reference. Dependents do not need to show separate 500,000 THB funds.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://image.mfa.go.th/mfa/0/n3gTFT2TOE/Visa_Requirements/Checklist_DTV.pdf"
+      },
+      {
+        "name": "Thailand Digital Arrival Card (TDAC) submission",
+        "description": "Mandatory online arrival declaration replacing the paper TM6, completed within 72 hours before every arrival in Thailand by air, land or sea — including each re-entry on the 5-year multiple-entry DTV. Keep the TDAC reference number: it is needed for the online 90-day reporting system.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://tdac.immigration.go.th"
+      },
+      {
+        "name": "Printed DTV e-Visa approval letter",
+        "description": "The approval issued by email as a PDF after e-Visa processing. Carry a printed copy for airline check-in in Russia/transit and for presentation to the Thai immigration officer at the border, since no visa sticker is placed in the passport under the e-Visa system.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.thaievisa.go.th"
+      },
+      {
+        "name": "TM30 notification of residence (filed by the host/landlord)",
+        "description": "The house owner, condo juristic person or landlord must notify Thai Immigration of your address within 24 hours of your moving in; hotels file it automatically. Obtain and keep the TM30 receipt/screenshot — without it the immigration office can refuse your 90-day report or extension.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Thai Immigration Bureau (immigration.go.th)"
+      },
+      {
+        "name": "TM47 90-day notification of residence",
+        "description": "Personal obligation under Section 37(5) of the Immigration Act for any foreigner staying more than 90 consecutive days on one permission of stay, which applies to DTV holders who do not leave. File in person, by registered post or online; window is 15 days before to 7 days after the due date. Late filing typically incurs a 2,000 THB fine. The counter resets only on re-entry to Thailand.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "Thai Immigration Bureau (immigration.go.th)"
+      },
+      {
+        "name": "TM7 application for extension of temporary stay",
+        "description": "Filed at the local immigration office to extend the 180-day DTV entry once by a further 180 days, fee 1,900 THB. Submitted with passport, photo, TM30 evidence and address proof. Note that extending does not reset the 90-day reporting counter.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "Thai Immigration Bureau (immigration.go.th)"
+      },
+      {
+        "name": "Certificate of Residence from Thai Immigration",
+        "description": "Immigration-issued residence certificate commonly requested by Thai banks for opening an account and by the Department of Land Transport for a Thai driving licence. Issued against passport, DTV entry stamp, TM30 and lease; availability and evidence required differ by immigration office — verify locally.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "Thai Immigration Bureau (immigration.go.th)"
+      },
+      {
+        "name": "Thai Taxpayer Identification Number (TIN) application",
+        "description": "If you are physically present in Thailand for 180 days or more in a calendar year you become Thai tax-resident and may need to register with the Revenue Department and file a return on assessable income brought into Thailand. Russian applicants should also check the Russia–Thailand double taxation treaty; confirm your position with the Revenue Department or a tax adviser.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "The Revenue Department of Thailand (rd.go.th)"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "United States",
+    "destination": "Portugal",
+    "visa_type": "D8_Digital_Nomad",
+    "cSlug": "united-states",
+    "dSlug": "portugal",
+    "generated_at": "2026-08-05T10:43:38.158Z",
+    "documents": [
+      {
+        "name": "Completed national visa application form (D8 residence visa)",
+        "description": "The official Portuguese national visa form, filled in fully and signed by the applicant; select the D8 residence-visa version (4-month, two-entry visa leading to a residence permit) rather than the temporary-stay version. <cite index=\"19-1\">The consular checklist for the remote-work \"digital nomad\" residence visa requires a national visa application form completed in full and signed by the applicant</cite>.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://vistos.mne.gov.pt/pt/vistos-nacionais/legislacao-nacional"
+      },
+      {
+        "name": "Two identical passport-type photographs of the applicant",
+        "description": "Two recent, identical passport-size photos in good identification condition; one is glued to the application form. <cite index=\"19-1\">The official checklist specifies 2 identical passport-type photographs, updated and in good identification condition, with one affixed to the form</cite>. These are separate from the biometrics captured live at the VFS/consulate appointment.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Portuguese Ministry of Foreign Affairs (MNE) national visa checklist – vistos.mne.gov.pt"
+      },
+      {
+        "name": "Valid US passport (original)",
+        "description": "Original US passport presented at the appointment. <cite index=\"19-1\">It must be valid for at least three months beyond the intended duration of stay</cite>. Two blank pages are generally needed for the visa vignette.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Portuguese Ministry of Foreign Affairs (MNE) national visa checklist – vistos.mne.gov.pt"
+      },
+      {
+        "name": "Photocopy of the passport biographic data page",
+        "description": "A plain photocopy of the passport's biodata page, submitted in addition to the original passport. <cite index=\"19-2\">The digital nomad residence visa checklist lists a photocopy of the biographic page as a separate item</cite>.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Portuguese Ministry of Foreign Affairs (MNE) national visa checklist – vistos.mne.gov.pt"
+      },
+      {
+        "name": "FBI Identity History Summary with US Department of State apostille",
+        "description": "Fingerprint-based federal criminal record report, issued recently (commonly required within 3 months), legalized with a Hague apostille. <cite index=\"25-2,25-3\">It cannot be apostilled by a state Secretary of State; only the U.S. Department of State Office of Authentications can apostille FBI reports</cite>, <cite index=\"27-5\">after the FBI authenticates the fingerprint search results with its watermark and official signature</cite>. A certified Portuguese translation is normally expected — verify wording and recency limits with your jurisdiction's consulate/VFS center.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.fbi.gov/how-we-can-help-you/more-fbi-services-and-information/identity-history-summary-checks/identity-history-summary-checks-faqs"
+      },
+      {
+        "name": "Signed consent authorizing AIMA to consult Portuguese criminal records",
+        "description": "A standard declaration on the visa form/annex permitting the Portuguese immigration authority to query national criminal records. <cite index=\"13-11\">The consulate reviews the application and requests an opinion from AIMA</cite>, which relies on this authorization. Verify the exact form used by your consulate, as annexes vary by post.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "AIMA (Agência para a Integração, Migrações e Asilo)"
+      },
+      {
+        "name": "Proof of accommodation in Portugal covering at least 12 months",
+        "description": "Signed lease, property deed, or equivalent housing document. <cite index=\"21-1\">Proof of accommodation must cover a minimum period of one year for a residence visa, or the intended period for a temporary-stay visa</cite>.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://buenosaires.embaixadaportugal.mne.gov.pt/pt/seccao-consular/vistos/nomada-digital"
+      },
+      {
+        "name": "Travel/health insurance certificate valid in Portugal",
+        "description": "Policy covering medical expenses, emergency care and repatriation. <cite index=\"21-2\">For a residence visa the health insurance may be valid for 120 days; for a temporary-stay visa it must cover the whole intended period</cite>. Coverage of at least €30,000 is commonly requested — confirm the required minimum and wording with the consulate/VFS center handling your file.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://buenosaires.embaixadaportugal.mne.gov.pt/pt/seccao-consular/vistos/nomada-digital"
+      },
+      {
+        "name": "Remote work contract or service agreement with a non-Portuguese entity",
+        "description": "Employment contract (for employees) or company/services contract, written contract proposal, or client agreements (for freelancers). <cite index=\"12-1\">The submission package requires an employment contract or service agreement with a company based outside Portugal</cite>, because <cite index=\"11-8\">the D8 requires primary income to come from employers or clients based outside Portugal</cite>.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Portuguese Ministry of Foreign Affairs (MNE) national visa checklist – vistos.mne.gov.pt"
+      },
+      {
+        "name": "Three months of bank statements plus income evidence proving the D8 threshold",
+        "description": "Statements and payslips/invoices showing average monthly income over the last three months of at least four times the Portuguese minimum wage. <cite index=\"21-3\">Means of subsistence must be equivalent to four Portuguese minimum salaries</cite>; <cite index=\"17-4\">applicants must submit proof that average monthly income over the last three months exceeded four Portuguese minimum wages</cite>. The euro figure changes each year with the minimum wage — verify the current amount before filing.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://buenosaires.embaixadaportugal.mne.gov.pt/pt/seccao-consular/vistos/nomada-digital"
+      },
+      {
+        "name": "Document attesting current tax residence",
+        "description": "Evidence of where you are tax resident (e.g. IRS tax return/transcript or IRS residency certification). <cite index=\"21-4\">A document proving tax residence must be presented</cite> and <cite index=\"19-3\">it appears as a standalone item on the digital nomad visa checklist</cite>. This is distinct from the income/bank statement evidence.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://vistos.mne.gov.pt/pt/vistos-nacionais/legislacao-nacional"
+      },
+      {
+        "name": "Portuguese NIF (Número de Identificação Fiscal)",
+        "description": "Tax identification number needed to sign a lease, open a bank account and support the application. <cite index=\"1-2\">Digital nomads need a NIF, obtainable via the Portal das Finanças of the Portuguese Tax Authority</cite>; non-residents usually need a fiscal representative to obtain it.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.portaldasfinancas.gov.pt"
+      },
+      {
+        "name": "Return or onward travel ticket",
+        "description": "Proof of return transport is listed on the official digital nomad visa checklist. <cite index=\"23-1\">The remote-work residence visa checklist includes a return travel title (título de transporte de regresso)</cite>. Some posts accept a reservation rather than a purchased ticket — verify with your consulate.",
+        "phase": "before",
+        "required": false,
+        "category": "other",
+        "source": "Portuguese Ministry of Foreign Affairs (MNE) national visa checklist – vistos.mne.gov.pt"
+      },
+      {
+        "name": "D8 entry visa vignette in passport",
+        "description": "The approved visa sticker allowing travel to Portugal and attendance at the residence-permit appointment. <cite index=\"14-10\">Once approved you receive a 120-day visa allowing entry to Portugal and attendance at the residency appointment</cite>; <cite index=\"12-3\">in most cases the residence visa is issued already showing the date and place of the AIMA appointment</cite>.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "AIMA (Agência para a Integração, Migrações e Asilo)"
+      },
+      {
+        "name": "AIMA residence permit appointment confirmation and biometric enrolment",
+        "description": "Appointment notice (issued with the visa or requested afterwards) for the in-person residence permit interview. <cite index=\"12-4,12-5,12-6\">If the appointment is not pre-scheduled the applicant must request one by phone, email or the appropriate form; AIMA then has 90 days to issue the residence card, and the visa holder must appear before AIMA to provide biometric data</cite>. <cite index=\"14-15\">Bring the same documents submitted for the visa plus any updated paperwork</cite>.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "AIMA (Agência para a Integração, Migrações e Asilo)"
+      },
+      {
+        "name": "Residence permit fee payment receipt (AIMA)",
+        "description": "Proof of payment of the residence permit issuance fee at the AIMA appointment. <cite index=\"11-14\">The digital nomad residence permit fee is generally around €185.60, while the visa application fee is about €109.40</cite>. Amounts are updated periodically — confirm the current tariff with AIMA.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "AIMA (Agência para a Integração, Migrações e Asilo)"
+      },
+      {
+        "name": "NISS (Número de Identificação de Segurança Social)",
+        "description": "Portuguese social security number, requested from Segurança Social after arrival; needed for freelancers registering activity and for social-security contributions. <cite index=\"3-6\">Standard D8 documentation for Americans includes both NIF and NISS</cite>.",
+        "phase": "during",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.seg-social.pt"
+      },
+      {
+        "name": "Título de Residência (residence permit card)",
+        "description": "Physical residence card issued after the AIMA appointment. <cite index=\"9-16,9-17\">The card is mailed to the applicant's registered address in Portugal and the first permit for digital nomads is issued for 2 years</cite>, and <cite index=\"12-9\">it can then be renewed for successive 3-year periods</cite>. Keep the registered Portuguese address current for delivery.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "AIMA (Agência para a Integração, Migrações e Asilo)"
+      },
+      {
+        "name": "Renewal application with updated income, insurance, accommodation and presence evidence",
+        "description": "Submitted to AIMA (increasingly via its online renewal platform) before the permit expires. <cite index=\"11-12\">Renewal requires updated documents</cite> and <cite index=\"11-11\">compliance with the absence rule: no more than 6 consecutive or 8 non-consecutive months outside Portugal during the permit's validity</cite>. <cite index=\"9-1,9-2\">AIMA has opened online renewals for permits expiring in later 2026, though users report platform instability and issuance delays</cite>.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "AIMA (Agência para a Integração, Migrações e Asilo)"
+      },
+      {
+        "name": "Annual Portuguese IRS tax return (Portal das Finanças)",
+        "description": "Filed yearly once you are a Portuguese tax resident; the return also serves as supporting evidence of continued income at renewal and for permanent residence. <cite index=\"15-17,15-18\">The visa type does not determine tax obligations — these follow from the individual's tax residency status</cite>. US citizens must still file US federal returns; verify treaty treatment with a tax professional.",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.portaldasfinancas.gov.pt"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "United States",
+    "destination": "Mexico",
+    "visa_type": "Temporary_Resident",
+    "cSlug": "united-states",
+    "dSlug": "mexico",
+    "generated_at": "2026-08-05T10:45:02.697Z",
+    "documents": [
+      {
+        "name": "Valid U.S. passport (original) plus photocopy of the biographical data page",
+        "description": "Original U.S. passport presented at the Mexican consulate interview, together with a plain photocopy of the main photo/data page. Consulates ask for both; the copy is retained in the file. Passport should remain valid well beyond the 180-day visa validity and the intended residency period.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://consulmex.sre.gob.mx/washington/images/2025/visas/esp/RESIDENTE_TEMPORAL_2025.pdf"
+      },
+      {
+        "name": "Completed Mexican visa application form (Solicitud de Visa Mexicana)",
+        "description": "The SRE visa application form, printed, completed and signed, presented at the consular interview. Some consulates provide their own current-year version of the form — download it from the specific consulate holding your appointment.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://consulmex.sre.gob.mx/houston/images/Visas/2025/residente-temporal-solvencia-economica-2025.pdf"
+      },
+      {
+        "name": "One recent color passport-style photograph of the applicant",
+        "description": "A single recent color photo, front view, white background, face fully visible and uncovered, without glasses. Some consulates specify a size close to 3.9 cm x 3.1 cm rather than U.S. passport dimensions — confirm exact size with your consulate, as this varies.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://consulmex.sre.gob.mx/washington/images/2025/visas/esp/RESIDENTE_TEMPORAL_2025.pdf"
+      },
+      {
+        "name": "Twelve consecutive original monthly bank or investment account statements (savings route)",
+        "description": "Economic solvency option (a): original personal bank or investment statements for the last 12 months showing a month-end balance above the UMA-based threshold (roughly USD $69,000–$74,000 in 2025–2026 consular sheets; the exact peso figure is set per consulate and per exchange rate on your appointment date). Digital-banking users must bring statements stamped by a bank branch — plain home printouts are rejected.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://consulmex.sre.gob.mx/washington/images/2025/visas/esp/RESIDENTE_TEMPORAL_2025.pdf"
+      },
+      {
+        "name": "Six months of pension/salary payment receipts with matching bank statements (income route)",
+        "description": "Economic solvency option (b), used instead of the savings route: six most recent pay stubs, SSA award/benefit statements or pension receipts showing net monthly income above the threshold (approximately USD $4,300–$4,500 per month in 2026), accompanied by the six matching bank statements showing the direct deposits. Some consulates also require an employment letter.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://consulmex.sre.gob.mx/washington/images/2025/visas/esp/RESIDENTE_TEMPORAL_2025.pdf"
+      },
+      {
+        "name": "Consular appointment confirmation (citas.sre.gob.mx / MiConsulado booking)",
+        "description": "Printed or digital confirmation of the individual visa appointment — one appointment per applicant, including each dependent. Must be booked at a Mexican consulate in the United States; jurisdiction rules and document expectations differ by consulate.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://citas.sre.gob.mx"
+      },
+      {
+        "name": "Receipt for the non-refundable consular visa processing fee",
+        "description": "Proof of payment of the visa application fee (around USD $54 in current consular sheets), paid by credit or debit card (Visa/Mastercard) at the consulate; some posts also accept cash. The fee is not refunded if the visa is denied.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://consulmex.sre.gob.mx/saintpaul/index.php/se/visesp/5-seccion/235-residente-temporal"
+      },
+      {
+        "name": "Certified marriage certificate or birth certificate proving the family bond (dependent applicants only)",
+        "description": "Required only when applying through family unity or bringing dependents: certified copy of the marriage certificate (spouse) or original birth certificate (child/parent). U.S.- and Mexico-issued civil documents are accepted directly; documents from any other country need apostille/legalization plus certified Spanish translation.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://consulmex.sre.gob.mx/saintpaul/index.php/se/visesp/5-seccion/235-residente-temporal"
+      },
+      {
+        "name": "Apostille and certified Spanish translation for non-U.S., non-Mexican documents",
+        "description": "Any supporting document not issued in the United States or Mexico must carry an apostille or legalization from the issuing country, and documents drafted in a language other than Spanish or English must include an official translation. Verify with your specific consulate, as translation policies differ between posts.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://consulmex.sre.gob.mx/houston/images/Visas/2025/residente-temporal-solvencia-economica-2025.pdf"
+      },
+      {
+        "name": "Temporary resident visa sticker affixed in the passport",
+        "description": "The physical visa foil issued by the consulate after approval. It is valid for a maximum of 180 days from issuance and authorizes a single entry to Mexico to begin the residency exchange — it is not the residency itself.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://embamex.sre.gob.mx/espana/index.php/documentacion-a-mexicanos/64-secconsular/542-residente-temporal-autorizado-por-el-inm"
+      },
+      {
+        "name": "Entry immigration form (FMM) endorsed by the officer as 'CANJE — 30 días'",
+        "description": "At the port of entry the immigration officer must record your admission as a canje (exchange) with 30 days, not as a tourist stay. Check this at the counter and ask for correction if mismarked; an incorrectly marked entry record is a common cause of failed card applications. Keep a physical and digital copy.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.inm.gob.mx/static/Tramites/expedicion_documento_canje.pdf"
+      },
+      {
+        "name": "INM canje appointment with Número Único de Trámite (NUT)",
+        "description": "Register the 'Expedición de documento migratorio por canje' request on the INM Micrositio de Trámites Migratorios to obtain a NUT, then book the in-person appointment at the INM office covering your address. The appointment must fall within 30 calendar days of entry; where possible arrange it before leaving the U.S.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gob.mx/tramites/ficha/expedicion-de-documento-migratorio-por-canje/INM811"
+      },
+      {
+        "name": "INM 'Formato Básico' and printed, signed canje application",
+        "description": "The INM basic data format plus the trámite request form for the canje, downloaded from the INM site, completed, printed and signed, and handed in at the appointment together with the rest of the file.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.inm.gob.mx/static/Tramites/expedicion_documento_canje.pdf"
+      },
+      {
+        "name": "Bank-stamped proof of payment of INM derechos (hoja de ayuda / SAT formato e5)",
+        "description": "Print the payment sheet, pay at an authorized bank branch (e.g. BBVA, Banorte, Santander) or by Visa/Mastercard at the INM office, and bring the stamped receipt. INM does not accept cash, and home-printed SPEI transfer confirmations are not valid proof. Card issuance fees rose substantially under the November 2025 fee schedule.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.inm.gob.mx/static/Tramites/expedicion_documento_canje.pdf"
+      },
+      {
+        "name": "Biometric enrolment record at INM (photograph, signature, fingerprints)",
+        "description": "At the canje appointment INM captures your photo, signature and fingerprints in person; no self-supplied photos substitute for this step. There is no document to bring, but attendance is mandatory and the record is what generates your card and CURP.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "Instituto Nacional de Migración (INM)"
+      },
+      {
+        "name": "Proof of Mexican address (comprobante de domicilio)",
+        "description": "A recent utility bill or signed lease in your name or your host's name, used to confirm the INM office with jurisdiction over you and later required by banks and RENAPO. Not listed on the federal canje requirement sheet — verify with your local INM office, as practice varies by delegation.",
+        "phase": "during",
+        "required": false,
+        "category": "other",
+        "source": "Instituto Nacional de Migración (INM)"
+      },
+      {
+        "name": "Tarjeta de Residente Temporal (physical residency card)",
+        "description": "The plastic card issued by INM after the canje, valid initially for one year and renewable up to a four-year total. It carries your NUE and your 18-character CURP printed on the front, and is your primary Mexican ID for banking, leases and travel re-entry.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "Instituto Nacional de Migración (INM)"
+      },
+      {
+        "name": "Printed CURP certificate from the RENAPO portal",
+        "description": "Although the CURP is generated automatically when INM issues your resident card, banks and government offices require the free letter-size printout downloaded from the official RENAPO/gob.mx CURP portal. Check the spelling of your name and date of birth immediately; corrections must be made in person at a RENAPO module with your passport and resident card.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.gob.mx/curp/"
+      },
+      {
+        "name": "RFC registration with SAT (Mexican tax ID)",
+        "description": "Needed if you will earn Mexican-source income, invoice clients, buy property or take formal employment; not needed by most solvency-based residents living on foreign income. Requires your CURP, resident card and proof of address.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "Servicio de Administración Tributaria (SAT)"
+      },
+      {
+        "name": "INM renewal application filed at least 30 days before card expiry",
+        "description": "Temporary resident cards are renewed for 1 or 3 additional years, using an updated file plus a new derechos payment. Start the renewal before the current card expires — lapsing into irregular status triggers fines and can block future trámites. Note that solvency-based residents who wish to work in Mexico must separately request work authorization from INM.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "Instituto Nacional de Migración (INM)"
+      },
+      {
+        "name": "Change-of-condition file for permanent residency after four years",
+        "description": "To convert to Residente Permanente, INM requires the passport or travel document used to obtain temporary residence, a still-valid temporary resident card, proof of payment of the change-of-condition fee, and evidence of the qualifying ground. Time spent as a student temporary resident does not count toward the four years.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.inm.gob.mx/static/Tramites/cambio_residente_temporal-residente_permanente.pdf"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "United Kingdom",
+    "destination": "Spain",
+    "visa_type": "Digital_Nomad",
+    "cSlug": "united-kingdom",
+    "dSlug": "spain",
+    "generated_at": "2026-08-05T10:46:38.841Z",
+    "documents": [
+      {
+        "name": "National visa application form (Solicitud de visado nacional)",
+        "description": "Official long-stay national visa form, completed in full and signed by each applicant (a separate form for each accompanying family member). Submitted in person at the Spanish Consulate General covering your UK place of residence (London, Manchester or Edinburgh).",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "Valid UK passport plus photocopy of the biometric data page",
+        "description": "Original passport with minimum 1 year validity remaining and at least two blank pages; passports issued more than 10 years ago are not accepted. One photocopy of the biometric/data page(s) is submitted with the file. This is the document copy requirement, not the photo requirement.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "Recent passport-size colour photograph of the applicant",
+        "description": "One recent colour photo, light/plain background, full-face, no dark glasses, no glare and no head coverings obscuring the face oval. Separate and additional to the passport photocopy above.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "ACRO Police Certificate (UK criminal record certificate) with apostille",
+        "description": "For UK criminal records the Spanish consular network specifically requires the ACRO certificate. It must generally be under 6 months old at submission (unless the certificate states a different expiry), apostilled by the FCDO Legalisation Office and accompanied by an official Spanish translation. Certificates may also be required from any other country you lived in during the last 2–5 years.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "Declaración responsable of no criminal record (last 5 years)",
+        "description": "Signed sworn statement declaring the absence of any criminal record over the previous five years. This is a separate declaration from the ACRO certificate itself.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "FCDO apostille and sworn Spanish translation of all UK-issued documents",
+        "description": "Post-Brexit, UK public documents are no longer exempt from legalisation as EU documents are, so ACRO certificates, degrees, marriage/birth certificates etc. must be apostilled and, where applicable, translated into Spanish by an officially recognised (sworn) translator. Ask your consulate for its list of accepted translators, as practice varies by consulate.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "Employer or client certificate authorising remote work from Spain (minimum 3-month relationship)",
+        "description": "Letter/certificate from the non-Spanish employer or contracting company confirming the employment or commercial relationship has lasted at least 3 months at the date of application, and expressly permitting remote work from Spanish territory. Employees must also provide the employment contract containing the teleworking clause; freelancers must show contracts with clients where Spanish-based clients are no more than 20% of activity.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "Proof that the employing/contracting company has traded for at least one year",
+        "description": "Corporate documentation evidencing that the foreign company has been genuinely active for a minimum of one year — for a UK employer this is typically a Companies House certificate of incorporation plus a current filing/registry extract.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Consulado General de España en Londres (Ministerio de Asuntos Exteriores, UE y Cooperación)"
+      },
+      {
+        "name": "Evidence of professional qualification or 3 years' relevant experience",
+        "description": "Either a university/higher-education or professional qualification (degree certificate, apostilled and translated) or documentation proving at least three years of experience in duties comparable to the telework role. If equivalence of a vocational qualification is doubtful, official recognition (convalidación) may be requested.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "Proof of sufficient income (200% of the Spanish minimum wage)",
+        "description": "Payslips, employment/service contracts and bank statements evidencing recurring income at or above 200% of the Spanish SMI (approximately €2,849/month in 2026), with uplifts of 75% of the SMI for the first dependent and 25% for each further dependent. Verify the current threshold with the consulate, as it changes each time the SMI is updated.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "Full private health insurance policy with an insurer authorised in Spain",
+        "description": "Certificate of cover from an insurer registered with the Dirección General de Seguros y Fondos de Pensiones, valid for the whole authorisation period, with no waiting periods, no co-payments and no coverage caps (100% of medical costs, including consultations, check-ups, illness and emergencies). A UK GHIC/EHIC or travel policy is not accepted.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "Social security undertaking plus UK A1 / Certificate of Coverage where applicable",
+        "description": "Declaración responsable committing to comply with social security obligations before starting the activity. If you remain in the UK system under the UK–EU social security coordination protocol, provide the HMRC A1/Certificate of Coverage; otherwise evidence of the company's registration with Spanish Social Security or your own affiliation.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "NIE (Número de Identificación de Extranjero) request filed with the visa",
+        "description": "The consulate requires the NIE to be requested at the same time and in the same consular office as the digital nomad visa application. This is the identification number only — distinct from the physical TIE card obtained later in Spain.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "Proof of legal residence in the consular district and visa fee receipt",
+        "description": "Evidence that you legally reside in the UK area covered by the consulate where you apply (e.g. UK council tax bill, tenancy agreement or utility bill), together with proof of payment of the consular visa fee, which must be paid in GBP at the time of submission and changes with exchange rates.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "Family relationship certificates for accompanying dependants",
+        "description": "Only if family members apply with you: civil-registry birth or marriage certificates, civil-partnership registration or other proof of an unregistered partnership; for adult children, proof of economic dependency and civil status; for ascendants, proof they are dependent on the teleworker. All apostilled and translated.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.exteriores.gob.es/Consulados/londres/en/ServiciosConsulares/Paginas/Consular/Digital-Nomad-Visa.aspx"
+      },
+      {
+        "name": "Certificado / volante de empadronamiento from your Spanish town hall",
+        "description": "Municipal residence registration at the Ayuntamiento of your Spanish address, normally evidenced by a Spanish rental contract or property deed plus passport. Required for the TIE appointment and for most later administrative steps; it must generally be less than three months old when presented.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.interior.gob.es/opencms/es/servicios-al-ciudadano/tramites-y-gestiones/extranjeria/regimen-general/tarjeta-de-identidad-de-extranjero/"
+      },
+      {
+        "name": "TIE application: form EX-17 with tasa modelo 790 código 012",
+        "description": "Physical foreigner's identity card must be applied for in person within one month of entering Spain, at the Oficina de Extranjería or National Police station of your province, by prior appointment booked online. Bring the signed EX-17, passport plus copy, a colour passport photo on white background, empadronamiento and the paid 790/012 fee slip; fingerprints are taken at the appointment and the card is collected in person weeks later.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://sede.policia.gob.es/portalCiudadano/_es/tramites_extranjeria_tramite_tarjeta_residencia_residenciaytrabajo.php"
+      },
+      {
+        "name": "Extranjería/Police appointment confirmation (cita previa)",
+        "description": "Booking confirmation obtained through the government electronic office for the fingerprinting and card-collection appointments; appointments are compulsory and may be issued several weeks out, so book immediately on arrival.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://sede.administracionespublicas.gob.es/pagina/index/directorio/icpplus"
+      },
+      {
+        "name": "Spanish tax and social security registration file",
+        "description": "Registration with the Agencia Tributaria (modelo 036/037 census declaration for freelancers) and, where you fall under the Spanish system rather than a UK A1, affiliation and enrolment with the Tesorería General de la Seguridad Social to obtain your social security number. Employees covered by a UK A1 should file the certificate instead — confirm your own case, as treatment differs between employees and self-employed.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "Agencia Estatal de Administración Tributaria (AEAT) / Tesorería General de la Seguridad Social"
+      },
+      {
+        "name": "Modelo 149 application for the special expat tax regime",
+        "description": "Optional election of the 'Beckham Law' special non-resident tax regime available to international teleworkers, filed with the Agencia Tributaria within six months of the start of Spanish social security cover. Deadlines are strict; verify eligibility with AEAT or a Spanish tax adviser.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "Agencia Estatal de Administración Tributaria (AEAT)"
+      },
+      {
+        "name": "Residence authorisation for international teleworker (renewal application to UGE-CE)",
+        "description": "The consular visa is valid for a maximum of one year; to continue living in Spain you must apply in Spain, within the 60 calendar days before the visa expires, for the autorización de residencia para teletrabajador de carácter internacional, evidencing that the original conditions (income, remote employment, insurance, clean record) still hold. Handled by the Unidad de Grandes Empresas y Colectivos Estratégicos.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "Unidad de Grandes Empresas y Colectivos Estratégicos (UGE-CE), Ministerio de Inclusión, Seguridad Social y Migraciones"
+      },
+      {
+        "name": "Evidence of effective residence in Spain for renewal",
+        "description": "For renewals and any later long-term residence application, keep proof of actual physical residence (padrón history, utility bills, tenancy, travel records, Spanish tax returns). Absences of more than six months in a year can jeopardise renewal — confirm the exact rule applicable to your case with the Oficina de Extranjería or UGE-CE.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "Oficina de Extranjería / Ministerio de Inclusión, Seguridad Social y Migraciones"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "India",
+    "destination": "UAE",
+    "visa_type": "Freelance_Permit",
+    "cSlug": "india",
+    "dSlug": "uae",
+    "generated_at": "2026-08-05T10:48:17.376Z",
+    "documents": [
+      {
+        "name": "Indian passport (original, minimum 6 months validity)",
+        "description": "Machine-readable Indian passport valid at least 6 months beyond the intended entry date; used for the freelance permit/licence application, entry permit and Emirates ID file. Passport must have blank pages for stamping and details must exactly match all other documents.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://icp.gov.ae/en/green-residency/"
+      },
+      {
+        "name": "Coloured passport data-page scan (PDF/JPEG) for online upload",
+        "description": "High-resolution digital copy of the passport bio-data page uploaded to the ICP portal, GDRFA Dubai portal or free-zone e-portal. This is separate from presenting the original passport at biometric/medical appointments.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://uaqftz.gov.ae/freelance-permit"
+      },
+      {
+        "name": "Recent passport-size photographs (white background, UAE specification)",
+        "description": "Digital and printed colour photos of the applicant with white background, per UAE immigration photo specification. Required for the freelance permit file and again for the medical fitness/Emirates ID registration; these are photographs of the applicant, not photocopies of the passport.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://uaqftz.gov.ae/freelance-permit"
+      },
+      {
+        "name": "Bachelor's degree or specialised diploma (original certificate)",
+        "description": "Original Indian degree or specialised diploma proving the qualification required for the freelance/self-employment Green Residency route; the field should reasonably align with the declared freelance activity.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://icp.gov.ae/en/green-residency/"
+      },
+      {
+        "name": "Legalisation chain for the Indian degree (state HRD/SDM → MEA → UAE Embassy/Consulate in India)",
+        "description": "Because the UAE is not an Apostille-accepting state for these purposes, the Indian degree must be state-verified, then attested/apostilled by the Ministry of External Affairs, then attested by the UAE Embassy in New Delhi or the UAE Consulates (Mumbai/Hyderabad/Thiruvananthapuram) per jurisdiction. Complete this in India before departure; formats have moved to digital attestation letters — verify current procedure with the UAE Embassy in India.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Embassy of the UAE in New Delhi / Ministry of External Affairs, Government of India"
+      },
+      {
+        "name": "Curriculum vitae and professional portfolio / client evidence",
+        "description": "Up-to-date CV plus samples, contracts or client references demonstrating the freelance activity applied for. Free zones and MOHRE assess the requested activity against this evidence before issuing the permit.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://uaqftz.gov.ae/freelance-permit"
+      },
+      {
+        "name": "Proof of self-employment income of at least AED 360,000 per year for the previous two years",
+        "description": "Invoices, client contracts, Indian income tax returns (ITR) or audited/certified income statements evidencing annual self-employment income of not less than AED 360,000 (or foreign-currency equivalent) for each of the two preceding years, for the Green Residency freelancer category.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://adro.gov.ae/Visas/Types-of-Visas/Abu-Dhabi-Green-Visa/Freelancers"
+      },
+      {
+        "name": "Proof of financial solvency (personal bank statements)",
+        "description": "Alternative to the income threshold: bank statements or a bank-issued balance/solvency certificate showing sufficient funds to support yourself throughout the residency period. This is the solvency evidence, distinct from the historical income evidence above; accepted formats and minimum balances are set by the issuing authority (ICP / GDRFA / ADRO) — verify with the relevant authority.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://adro.gov.ae/Visas/Types-of-Visas/Abu-Dhabi-Green-Visa/Freelancers"
+      },
+      {
+        "name": "Freelance / self-employment permit or free-zone freelancer licence",
+        "description": "The core authorisation: either a freelance work permit issued by the UAE Ministry of Human Resources and Emiratisation (MOHRE) or a freelancer/sole-professional licence from a recognised free zone (e.g. Dubai Development Authority, UAQ FTZ). Residency cannot be processed without it, and it names the permitted activity.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://u.ae/en/information-and-services/jobs/employment-in-the-private-sector/job-offers-and-work-permits-and-contracts/work-permits"
+      },
+      {
+        "name": "eMigrate emigration clearance (ECR-category Indian passport holders only)",
+        "description": "The UAE is a notified ECR destination: Indian passport holders whose passport bears an ECR endorsement require emigration clearance from the Protector of Emigrants via eMigrate before departure. Graduate freelancers normally hold ECNR status and are exempt — check the ECR/ECNR page of your passport.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "Protector of Emigrants / eMigrate, Ministry of External Affairs, Government of India"
+      },
+      {
+        "name": "Police Clearance Certificate (PCC) from Indian authorities, attested",
+        "description": "Character certificate issued by the Regional Passport Office or state police, legalised through the MEA and UAE Embassy chain. Not universally demanded for the freelancer Green Residency route but requested by some free zones and some emirates — verify with the specific issuing authority before paying for attestation.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "Passport Seva, Ministry of External Affairs, Government of India"
+      },
+      {
+        "name": "Establishment card (immigration establishment/company card)",
+        "description": "Immigration card issued to the freelance licence holder that links the licence to the UAE immigration system and enables the entry permit and residence file. Typically arranged by the free zone or MOHRE-linked channel after the permit is issued.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "General Directorate of Residency and Foreigners Affairs (GDRFA) Dubai / ICP"
+      },
+      {
+        "name": "Entry permit (e-visa) or in-country status change approval",
+        "description": "Electronic entry permit issued by ICP or GDRFA that allows entry to complete residency formalities; if already inside the UAE on another status, an in-country status change is used instead. GDRFA Dubai advises existing residents not to cancel current residency until the self-employment permit is issued.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gdrfad.gov.ae"
+      },
+      {
+        "name": "Medical fitness certificate for residency",
+        "description": "Mandatory screening (blood test and, in Dubai/Abu Dhabi, chest X-ray) at a government-approved centre — Emirates Health Services centres in the northern emirates, DHA-approved centres in Dubai — after receiving the entry permit and before Emirates ID issuance and residency activation. Bring the entry permit copy and passport.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.ehs.gov.ae/EN/services/services-directory/examination-of-medical-fitness-for-residency-visa"
+      },
+      {
+        "name": "Emirates ID application and biometric enrolment record",
+        "description": "Biometric capture (fingerprints and facial image) and ICP Emirates ID application; the issued Emirates ID card is the primary residency credential, as residency is now linked digitally to the Emirates ID rather than a passport sticker.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)"
+      },
+      {
+        "name": "UAE health insurance policy in the applicant's own name",
+        "description": "Valid UAE-compliant medical insurance is a condition for residence issuance and renewal; self-sponsored freelancers must purchase and pay for their own policy meeting the minimum benefits of the emirate of residence (DHA in Dubai, DOH in Abu Dhabi).",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.gofreelance.ae/"
+      },
+      {
+        "name": "Registered tenancy contract (Ejari in Dubai / Tawtheeq in Abu Dhabi)",
+        "description": "Officially registered lease in the freelancer's name, needed to prove address for utility connections, dependant sponsorship, some bank accounts and school registration. Registration authority differs by emirate.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "Dubai Land Department (Ejari) / Abu Dhabi Department of Municipalities and Transport (Tawtheeq)"
+      },
+      {
+        "name": "UAE bank account opening file (licence + Emirates ID + residence proof)",
+        "description": "Resident/business account application supported by the freelance licence, establishment card, Emirates ID, passport with residence, and address proof. Needed to receive client payments locally and to evidence ongoing solvency at renewal; documentary requirements vary by bank under Central Bank KYC rules.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "Central Bank of the UAE"
+      },
+      {
+        "name": "Federal Tax Authority registrations (corporate tax; VAT if turnover exceeds threshold)",
+        "description": "Licensed freelancers are treated as conducting business activity and may need corporate tax registration, plus mandatory VAT registration once taxable turnover exceeds AED 375,000. Confirm your specific obligation and deadlines with the Federal Tax Authority.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "Federal Tax Authority (UAE)"
+      },
+      {
+        "name": "Annual freelance permit/licence renewal file",
+        "description": "Freelance permits and free-zone freelancer licences are generally issued for one year and must be renewed annually (residence itself may run longer, e.g. 5-year Green Residency); renewal requires an active licence, valid insurance and continued eligibility evidence.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://uaqftz.gov.ae/freelance-permit"
+      },
+      {
+        "name": "Attested marriage certificate and children's birth certificates (for dependant sponsorship)",
+        "description": "Indian-issued marriage and birth certificates legalised through the state authority, MEA and UAE Embassy chain, plus final UAE MOFAIC attestation, if you later sponsor a spouse, children or parents as a self-sponsored permit holder.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "UAE Ministry of Foreign Affairs (MOFAIC) attestation service / Embassy of the UAE in New Delhi"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Brazil",
+    "destination": "Portugal",
+    "visa_type": "D8_Digital_Nomad",
+    "cSlug": "brazil",
+    "dSlug": "portugal",
+    "generated_at": "2026-08-05T10:49:28.892Z",
+    "documents": [
+      {
+        "name": "Brazilian passport (original, valid)",
+        "description": "Original Brazilian passport with validity beyond the intended stay and blank pages for the visa vignette. VFS Global Brazil retains the original passport for the entire analysis period, so plan travel accordingly.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.vfsglobal.com/portugal/brazil/how-to-apply.html"
+      },
+      {
+        "name": "Photocopy of passport biographic data page",
+        "description": "Plain photocopy of the biographic/photo page of the passport, submitted as a separate item in the D8 checklist (distinct from the original passport).",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.vfsglobal.com/portugal/brazil/pdf/Visto-de-Residência-para-o-exercício-de-atividade-profissional-prestada-de-forma-remota–“nômades-digitais”.pdf"
+      },
+      {
+        "name": "Signed national visa application form (Formulário de Pedido de Visto)",
+        "description": "Portuguese national (non-Schengen) visa form, completed in full and signed in the designated signature field; must be signed in field 37 and at the end of the form per the Brazil checklist.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.vfsglobal.com/portugal/brazil/temporary-visa.html"
+      },
+      {
+        "name": "Two identical biometric photos of the applicant (3x4 cm)",
+        "description": "Two recent identical photos of the applicant in consular standard, one of which is glued onto the application form; face must be unobstructed (no hats, hair covering, earrings) or the file will be rejected. Photos can also be taken at the VFS centre on the appointment day.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.vfsglobal.com/portugal/brazil/how-to-apply.html"
+      },
+      {
+        "name": "Criminal record certificate from Brazilian Federal Police with Hague Apostille",
+        "description": "Atestado de Antecedentes Criminais issued by the Polícia Federal, issued within the last 30 days and apostilled. VFS Brazil states this must carry the Hague Apostille for all applicants regardless of nationality; some consular posts note it is the only document requiring apostille and is valid 90 days.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.vfsglobal.com/portugal/brazil/temporary-visa.html"
+      },
+      {
+        "name": "Additional foreign criminal record certificate (if resident abroad in the last year)",
+        "description": "If the applicant lived in a country other than Brazil during the past year, a criminal record certificate from that country's competent authority, with Hague Apostille or legalisation, is also required.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.vfsglobal.com/portugal/brazil/pdf/Visto-de-Residência-para-o-exercício-de-atividade-profissional-prestada-de-forma-remota–“nômades-digitais”.pdf"
+      },
+      {
+        "name": "Authorisation for AIMA/SEF to consult Portuguese criminal record",
+        "description": "Signed consent form allowing Portuguese authorities to check the applicant's criminal record in Portugal; applicants under 16 are exempt from criminal-record documentation.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://vistos.mne.gov.pt/pt/vistos-nacionais/documentacao-instrutoria/estada-temporaria"
+      },
+      {
+        "name": "Proof of remote work relationship (employment declaration or service/freelance contract)",
+        "description": "For employees, an employer declaration proving the employment relationship; for self-employed applicants, contracts or partnership/service agreements with clients based outside Portugal. The visa is for remote work contracted with any country except Portugal.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.vfsglobal.com/portugal/brazil/English/pdf/Temporary-Stay-Visa-for-the-exercise-of-a-professional-activity-done-remotely-“digital-nomads”.pdf"
+      },
+      {
+        "name": "Proof of means of subsistence (income + savings bank statements)",
+        "description": "Bank statements and/or payslips showing the legally set monthly income threshold (four times the Portuguese minimum wage) plus the required savings balance. Exact euro amounts change annually with the Portuguese minimum wage — verify the current portaria figure with the consular post before submitting.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://vistos.mne.gov.pt/pt/vistos-nacionais/documentacao-instrutoria/estada-temporaria"
+      },
+      {
+        "name": "Brazilian tax residence document (comprovante de residência fiscal)",
+        "description": "Document attesting the applicant's fiscal residence, listed explicitly on the Brazil D8 checklist (e.g. Receita Federal tax residence proof / income tax declaration).",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.vfsglobal.com/portugal/brazil/pdf/Visto-de-Residência-para-o-exercício-de-atividade-profissional-prestada-de-forma-remota–“nômades-digitais”.pdf"
+      },
+      {
+        "name": "Proof of address in Brazil (comprovante de residência)",
+        "description": "Full Brazilian address proof (street, number, complement, CEP, city, state) used to route the file to the consular post with jurisdiction over the applicant.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://curitiba.consuladoportugal.mne.gov.pt/pt/assuntos-consulares/vistos"
+      },
+      {
+        "name": "Proof of accommodation in Portugal",
+        "description": "Signed lease, property deed, or host/accommodation declaration covering the stay in Portugal. Junta de Freguesia address attestations are not accepted by AIMA later in the process.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://vistos.mne.gov.pt/pt/vistos-nacionais/documentacao-instrutoria/estada-temporaria"
+      },
+      {
+        "name": "Travel/health insurance valid in Portugal",
+        "description": "Insurance covering medical expenses, urgent care and repatriation in Portugal for the duration of the stay. Coverage minimums differ by consular post — confirm the required amount on the current checklist.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://vistos.mne.gov.pt/pt/vistos-nacionais/documentacao-instrutoria/estada-temporaria"
+      },
+      {
+        "name": "Return transport ticket to Brazil",
+        "description": "Copy of return travel document (passagem de retorno ao Brasil) required on the Brazilian D8 temporary-stay checklist.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.vfsglobal.com/portugal/brazil/English/pdf/Temporary-Stay-Visa-for-the-exercise-of-a-professional-activity-done-remotely-“digital-nomads”.pdf"
+      },
+      {
+        "name": "Printed VFS checklist in duplicate with completed header",
+        "description": "Two copies of the specific D8 checklist with the applicant's header filled in; documents must be presented loose, in checklist order, single-sided A4, no staples or clips, or the file will not be accepted.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.vfsglobal.com/portugal/brazil/temporary-visa.html"
+      },
+      {
+        "name": "Proof of legal entry into Portugal (PSP/GNR entry record or stamp)",
+        "description": "Evidence of the date of legal entry into national territory, to be presented at the AIMA appointment; entry declaration from PSP/GNR is preferred where no passport stamp exists.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "AIMA Portugal"
+      },
+      {
+        "name": "Portuguese tax number registration proof (NIF from Autoridade Tributária)",
+        "description": "Declaration from the Portuguese tax authority stating the applicant's NIF, required at the AIMA residence-permit appointment.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "https://aima.gov.pt/pt/decreto-regulamentar-da-lei-de-estrangeiros-alteracoes/perguntas-frequentes"
+      },
+      {
+        "name": "Portuguese social security number registration proof (NISS)",
+        "description": "Social Security registration declaration showing the NISS, required where applicable — typically for self-employed/freelance D8 holders who register activity in Portugal. Verify applicability to your work arrangement with AIMA.",
+        "phase": "during",
+        "required": false,
+        "category": "financial",
+        "source": "https://aima.gov.pt/pt/decreto-regulamentar-da-lei-de-estrangeiros-alteracoes/perguntas-frequentes"
+      },
+      {
+        "name": "AIMA residence permit application form plus accommodation evidence package",
+        "description": "Signed AIMA application form submitted in person at a Loja AIMA by appointment, accompanied by accommodation proof: for owners, the certidão de registo predial or its access code; for tenants, a landlord/host declaration stating the legal basis of use, and where the applicant's name is not on the contract, a sworn honour declaration plus an AT fiscal-domicile certificate issued less than 30 days earlier.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://aima.gov.pt/pt/trabalhar/autorizacao-de-residencia-para-o-exercicio-de-atividade-profissional-prestada-de-forma-remota-com-visto-de-residencia-para-o-exe"
+      },
+      {
+        "name": "Renewal file for the temporary residence permit (updated D8 evidence)",
+        "description": "For renewal via AIMA's Portal das Renovações: updated remote work contract/employer declaration, current income evidence, updated accommodation proof, and consent for criminal record consultation. Document lists are updated periodically — confirm on the AIMA portal at renewal time.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "AIMA Portugal – Portal das Renovações"
+      },
+      {
+        "name": "Tax and social security compliance certificates (nada consta)",
+        "description": "Certificates from the Autoridade Tributária and Segurança Social confirming no outstanding obligations, required for permanent residence and commonly requested at renewal.",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": "https://aima.gov.pt/pt/viver/autorizacao-de-residencia-permanente-art-80-o"
+      },
+      {
+        "name": "Proof of basic Portuguese language knowledge (A2)",
+        "description": "Certificate from an official Portuguese teaching establishment or recognised A2 exam certificate, required when applying for permanent residence after five years of temporary residence.",
+        "phase": "after",
+        "required": true,
+        "category": "other",
+        "source": "https://aima.gov.pt/pt/viver/autorizacao-de-residencia-permanente-art-80-o"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "China",
+    "destination": "Japan",
+    "visa_type": "Digital_Nomad",
+    "cSlug": "china",
+    "dSlug": "japan",
+    "generated_at": "2026-08-05T10:51:05.141Z",
+    "documents": [
+      {
+        "name": "Nationality eligibility confirmation against the ISA list of eligible countries/regions",
+        "description": "CRITICAL BLOCKER: Japan's Digital Nomad status (Designated Activities, Ministry of Justice Notification No. 53) is limited to nationals of countries/regions holding BOTH a tax treaty and a visa-exemption arrangement with Japan (approx. 49-50 countries/regions). The People's Republic of China (ordinary PRC passport) is NOT on this list because PRC passport holders do not have visa-exempt entry to Japan, so a mainland Chinese citizen cannot obtain this visa. Holders of HKSAR, Macao SAR or Taiwan travel documents ARE on the eligible list. Print the current ISA eligible-countries PDF and verify your exact travel document before spending money on any other document. Verify with the Embassy of Japan in China, as the list is periodically updated.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.moj.go.jp/isa/content/001416932.pdf"
+      },
+      {
+        "name": "Eligible passport (HKSAR / Macao SAR / Taiwan travel document, or other eligible nationality)",
+        "description": "Original passport valid for the full intended stay (consulates commonly ask for 6 months' remaining validity beyond the visa expiry) with at least one to two completely blank visa pages. A mainland PRC ordinary passport cannot be used for this visa category; if you hold a PRC passport only, the practical alternatives are a Temporary Visitor visa (max 90 days, no work), an Engineer/Specialist in Humanities work visa, Highly Skilled Professional, or Business Manager/Startup status.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.moj.go.jp/isa/applications/status/designatedactivities10_00001.html"
+      },
+      {
+        "name": "Completed MOFA visa application form (Designated Activities)",
+        "description": "Official Japanese visa application form, completed in ink or typed (never pencil), signed, including a Japan-reachable contact telephone number. Some Japanese missions accept submission through the Japan e-Visa system instead of paper.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.chicago.us.emb-japan.go.jp/Consular/visa/downloadable/nomad.pdf"
+      },
+      {
+        "name": "Biometric passport photograph of the applicant (45mm x 45mm)",
+        "description": "One recent colour photo taken within the last 6 months, plain background, affixed to the visa application form. This is physically separate from any passport photocopy — both are typically requested.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Ministry of Foreign Affairs of Japan"
+      },
+      {
+        "name": "Photocopy of passport bio-data page and any current visas/residence stamps",
+        "description": "Plain paper copy of the identification page (and, if applying from a third country, of the pages showing your legal status there). Kept by the mission as the file copy; distinct from the original passport and from the biometric photo.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Embassy of Japan in the People's Republic of China"
+      },
+      {
+        "name": "Proof of legal residence in the consulate's jurisdiction",
+        "description": "Residence permit, ID card, recent utility bill, bank statement or lease showing your full name and current address, proving the Japanese Embassy/Consulate-General you apply to has jurisdiction over you. Especially relevant for Chinese nationals residing abroad who hold an eligible second nationality or SAR travel document.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.sf.us.emb-japan.go.jp/files/101001925.pdf"
+      },
+      {
+        "name": "Application submitted via a Japan-accredited visa agency (mainland China applicants)",
+        "description": "Japanese diplomatic missions in mainland China generally do not accept walk-in individual visa applications; files must be lodged through an accredited/designated travel or visa agency, which issues a submission receipt you should retain. Confirm the current agency list and whether the Designated Activities category is handled this way with your jurisdictional Japanese mission before filing.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "Embassy of Japan in the People's Republic of China"
+      },
+      {
+        "name": "Description of Intended Activities in Japan (ISA prescribed form)",
+        "description": "Statement on the ISA form describing the remote work you will perform, the overseas employer/clients, the timeframe, and your contact details including a phone number reachable in Japan. Required only when applying WITHOUT a Certificate of Eligibility.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.moj.go.jp/isa/applications/status/designatedactivities10_00001.html"
+      },
+      {
+        "name": "Proof of annual income of at least JPY 10,000,000",
+        "description": "Chinese individual income tax payment record (个人所得税纳税记录) from the State Taxation Administration electronic tax bureau, or salary/dividend statements and audited business income for the self-employed, showing at least JPY 10 million in the year of application from non-Japanese sources. Provide a Japanese or English translation; some missions require notarisation.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.moj.go.jp/isa/applications/status/designatedactivities10_00001.html"
+      },
+      {
+        "name": "Remote-work employment contract or overseas client contracts",
+        "description": "Contract with a company incorporated outside Japan, or freelance/consulting agreements and invoices with non-Japan-based clients, confirming the work is performed remotely. Contracts with Japanese companies or invoicing of Japanese entities is prohibited under this status and will cause refusal.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.moj.go.jp/isa/applications/status/designatedactivities10_00001.html"
+      },
+      {
+        "name": "Private medical insurance certificate with JPY 10,000,000+ coverage",
+        "description": "Copy of the policy plus an insurer-issued coverage certificate in English or Japanese, covering death, injury and illness in Japan for the entire stay, with a minimum indemnity of JPY 10 million and coverage for rescue/repatriation costs. Digital Nomad holders cannot enrol in Japanese National Health Insurance, so this is the sole health cover.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.moj.go.jp/isa/applications/status/designatedactivities10_00001.html"
+      },
+      {
+        "name": "Certificate of Eligibility (COE) issued by a Regional Immigration Bureau",
+        "description": "Optional advance approval filed in Japan by a proxy. If presented at the visa application, the separate income-proof, insurance and planned-activity documents may be omitted. Processing can take around three months, so most applicants apply directly at the mission instead.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.moj.go.jp/isa/applications/status/designatedactivities10_00001.html"
+      },
+      {
+        "name": "Notarised family relationship documents for accompanying spouse/children",
+        "description": "For dependants applying under Designated Activities Notification No. 54: Chinese marriage certificate (结婚证) and/or birth certificate (出生医学证明), notarised and translated, plus a copy of the principal digital nomad's passport and separate insurance for each family member. Legally recognised marriage and cohabitation are required; de-facto and same-sex partnerships are not covered.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.moj.go.jp/isa/applications/status/designatedactivities10_00001.html"
+      },
+      {
+        "name": "Visit Japan Web pre-registration QR codes",
+        "description": "Online pre-registration for immigration entry and customs declaration completed before boarding; generates QR codes presented at the airport to speed up landing procedures.",
+        "phase": "during",
+        "required": false,
+        "category": "other",
+        "source": "Visit Japan Web, Digital Agency of Japan"
+      },
+      {
+        "name": "Landing permission seal granting Designated Activities (Digital Nomad), 6 months",
+        "description": "Granted in the passport at the port of entry; the visa itself is single-entry and valid only 3 months from issue, so you must enter within that window. Note that Digital Nomad holders are not mid-to-long-term residents, so no Residence Card (在留カード) and no resident registration (住民票) are issued — keep the passport stamp as your only proof of status.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.chicago.us.emb-japan.go.jp/Consular/visa/downloadable/nomad.pdf"
+      },
+      {
+        "name": "Customs declaration for accompanied and unaccompanied personal effects",
+        "description": "Declaration form for baggage and any separately shipped belongings; submit the unaccompanied-baggage copy at arrival to clear items shipped from China duty-free as personal effects.",
+        "phase": "during",
+        "required": false,
+        "category": "other",
+        "source": "Japan Customs (Ministry of Finance)"
+      },
+      {
+        "name": "Short-stay accommodation contract (monthly apartment, serviced flat or hotel)",
+        "description": "Signed booking or monthly-lease agreement covering the stay. Without a Residence Card most standard long-term Japanese leases, bank accounts and postpaid mobile contracts are unavailable, so arrange accommodation, eSIM/prepaid data and payment methods that do not require residency.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": null
+      },
+      {
+        "name": "Chinese Certificate of Tax Residency (中国税收居民身份证明)",
+        "description": "Issued by the State Taxation Administration to support treaty relief under the Japan-China double taxation agreement. Foreign-source income is generally not taxed in Japan under this status, but residency can be argued if your centre of living is in Japan — take professional advice for stays approaching 183 days.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "State Taxation Administration of the People's Republic of China"
+      },
+      {
+        "name": "Special Re-entry Permit confirmation for trips out of Japan",
+        "description": "Digital Nomad holders may use the deemed re-entry permit system when leaving and returning within the validity of their stay; because no Residence Card is issued, confirm at the airport immigration counter which departure form and endorsement apply to your case before travelling.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "Immigration Services Agency of Japan"
+      },
+      {
+        "name": "Departure or change-of-status file before the 6-month expiry",
+        "description": "The 6-month period cannot be extended or renewed. To stay in Japan you must file a Change of Status of Residence application (e.g. to Engineer/Specialist in Humanities/International Services, Business Manager or Highly Skilled Professional) with supporting employer or company documents; otherwise you must depart, and re-application as a digital nomad generally requires around six consecutive months outside Japan.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.moj.go.jp/isa/applications/status/designatedactivities10_00001.html"
+      }
+    ],
+    "source": "fresh"
+  }
+]

@@ -6,6 +6,7 @@ import { filterCountryList } from "@/lib/filterCountries";
 import { toast } from "sonner";
 import { X } from "lucide-react";
 import { generateAndSaveUserPlan } from "@/lib/generateUserPlan";
+import { determineVisaType } from "@/lib/determineVisaType";
 import type { UserProfile } from "@/pages/Dashboard";
 
 const goals = [
@@ -36,64 +37,6 @@ interface Props {
   profile: UserProfile;
   onSave: (updated: UserProfile) => void;
   onClose: () => void;
-}
-
-function determineVisaType(country: string): string {
-  const visaMap: Record<string, string> = {
-    "Portugal": "D8_Digital_Nomad",
-    "Spain": "Digital_Nomad",
-    "Germany": "Freelance_Visa",
-    "Italy": "Digital_Nomad",
-    "Greece": "Digital_Nomad",
-    "Croatia": "Digital_Nomad",
-    "Czech Republic": "Long_Term_Residence",
-    "Hungary": "White_Card",
-    "Malta": "Nomad_Residence_Permit",
-    "Cyprus": "Digital_Nomad",
-    "Estonia": "Digital_Nomad",
-    "Netherlands": "Highly_Skilled_Migrant",
-    "France": "Talent_Passport",
-    "Austria": "Red_White_Red_Card",
-    "Poland": "Temporary_Residence",
-    "Romania": "Digital_Nomad",
-    "Bulgaria": "Digital_Nomad",
-    "Serbia": "Temporary_Residence",
-    "Montenegro": "Temporary_Residence",
-    "Albania": "Visa_Free",
-    "Switzerland": "Work_Permit_B",
-    "Norway": "Skilled_Worker",
-    "Sweden": "Work_Permit",
-    "Denmark": "Pay_Limit_Scheme",
-    "Finland": "Work_Permit",
-    "Ireland": "Critical_Skills",
-    "UAE": "Freelance_Permit",
-    "Turkey": "Residence_Permit",
-    "Bahrain": "Digital_Nomad",
-    "Georgia": "Visa_Free",
-    "Armenia": "Visa_Free",
-    "Thailand": "DTV",
-    "Indonesia": "Social_Visa",
-    "Vietnam": "E_Visa",
-    "Malaysia": "DE_Rantau",
-    "Japan": "Digital_Nomad",
-    "Singapore": "Employment_Pass",
-    "South Korea": "Workcation_Visa",
-    "Philippines": "Digital_Nomad",
-    "Mexico": "Temporary_Resident",
-    "Colombia": "Digital_Nomad",
-    "Brazil": "Digital_Nomad",
-    "Argentina": "Rentista",
-    "Panama": "Friendly_Nations",
-    "Costa Rica": "Rentista",
-    "Uruguay": "Temporary_Residence",
-    "Canada": "Express_Entry",
-    "South Africa": "Critical_Skills",
-    "Morocco": "Residence_Permit",
-    "Mauritius": "Premium_Visa",
-    "Australia": "Skilled_Nominated",
-    "New Zealand": "Skilled_Migrant",
-  };
-  return visaMap[country] || "Temporary_Residence";
 }
 
 export default function EditProfileModal({ profile, onSave, onClose }: Props) {

@@ -71,6 +71,12 @@ export default function FAQSection() {
                 Where should I move? →
               </Link>
               <Link
+                to="/tools/documents-needed"
+                className="text-[14px] font-medium text-primary hover:opacity-75 transition-opacity"
+              >
+                Document checklist finder →
+              </Link>
+              <Link
                 to="/contact"
                 className="text-[14px] font-medium text-primary hover:opacity-75 transition-opacity"
               >

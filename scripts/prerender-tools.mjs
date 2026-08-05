@@ -348,4 +348,104 @@ for (const persona of personaSnapshots) {
   });
 }
 
+// ─── Documents needed pages ───
+const DOC_LAUNCH_PAIRS = [
+  { citizenship: "Russia", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
+  { citizenship: "Russia", destination: "Armenia", visa_type: "Visa_Free" },
+  { citizenship: "Russia", destination: "Cyprus", visa_type: "Digital_Nomad" },
+  { citizenship: "Russia", destination: "Czech Republic", visa_type: "Long_Term_Residence" },
+  { citizenship: "Russia", destination: "Montenegro", visa_type: "Temporary_Residence" },
+  { citizenship: "Russia", destination: "Georgia", visa_type: "Visa_Free" },
+  { citizenship: "Russia", destination: "Turkey", visa_type: "Residence_Permit" },
+  { citizenship: "Russia", destination: "UAE", visa_type: "Freelance_Permit" },
+  { citizenship: "Russia", destination: "Thailand", visa_type: "DTV" },
+  { citizenship: "United States", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
+  { citizenship: "United States", destination: "Mexico", visa_type: "Temporary_Resident" },
+  { citizenship: "United Kingdom", destination: "Spain", visa_type: "Digital_Nomad" },
+  { citizenship: "India", destination: "UAE", visa_type: "Freelance_Permit" },
+  { citizenship: "Brazil", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
+  { citizenship: "China", destination: "Japan", visa_type: "Digital_Nomad" },
+];
+
+let docSnapshots = [];
+const docSnapPath = join(__dirname, "document-checklist-snapshots.json");
+if (existsSync(docSnapPath)) {
+  try {
+    docSnapshots = JSON.parse(readFileSync(docSnapPath, "utf8"));
+  } catch (err) {
+    console.warn("prerender-tools: could not parse document snapshots", err);
+  }
+}
+const docSnapByKey = new Map(
+  docSnapshots.map((s) => [`${s.citizenship}|${s.destination}|${s.visa_type}`, s]),
+);
+
+function formatVerifiedDate(iso) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return String(iso || "");
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+}
+
+writePage({
+  outPath: join(distDir, "tools", "documents-needed", "index.html"),
+  title: "What documents do I need to move abroad? — Relova",
+  description:
+    "Free document checklist for relocating abroad — passport, visa, and residence requirements by citizenship and destination.",
+  bodyHtml: `
+    <main style="max-width:36rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+      <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">What documents do I need to move abroad?</h1>
+      <p style="color:#666;margin-top:0.75rem">Pick your citizenship and destination for a cached checklist.</p>
+      <ul style="margin-top:1.5rem;padding-left:1.25rem;line-height:1.8">
+        ${DOC_LAUNCH_PAIRS.map(
+          (p) =>
+            `<li><a href="/tools/documents-needed/${slugify(p.citizenship)}/${slugify(p.destination)}">What documents do I need to move to ${escapeHtml(p.destination)} as a ${escapeHtml(p.citizenship)} citizen?</a></li>`,
+        ).join("\n        ")}
+      </ul>
+    </main>
+  `,
+});
+
+for (const pair of DOC_LAUNCH_PAIRS) {
+  const snap = docSnapByKey.get(`${pair.citizenship}|${pair.destination}|${pair.visa_type}`);
+  const h1 = `What documents do I need to move to ${pair.destination} as a ${pair.citizenship} citizen?`;
+  const verified = snap?.generated_at
+    ? `<p style="margin-top:0.75rem;font-weight:600">Last verified: ${escapeHtml(formatVerifiedDate(snap.generated_at))}</p>`
+    : "";
+  const docs = Array.isArray(snap?.documents) ? snap.documents : [];
+  const listHtml = docs.length
+    ? `<ul style="margin-top:1rem;padding-left:1.25rem;line-height:1.6">${docs
+        .map((d) => {
+          const src = d.source
+            ? ` <span style="color:#666;font-size:0.85rem">— Source: ${escapeHtml(String(d.source))}</span>`
+            : "";
+          return `<li style="margin-top:0.5rem"><strong>${escapeHtml(d.name || "")}</strong>${d.phase ? ` <em>(${escapeHtml(d.phase)})</em>` : ""}${src}${d.description ? `<br/><span style="color:#555;font-size:0.9rem">${escapeHtml(d.description)}</span>` : ""}</li>`;
+        })
+        .join("")}</ul>`
+    : `<p style="margin-top:1rem;color:#666">Checklist loads when available in cache.</p>`;
+
+  writePage({
+    outPath: join(
+      distDir,
+      "tools",
+      "documents-needed",
+      slugify(pair.citizenship),
+      slugify(pair.destination),
+      "index.html",
+    ),
+    title: `${h1} — Relova`,
+    description: `Document checklist for relocating from ${pair.citizenship} to ${pair.destination}.`,
+    bodyHtml: `
+    <main style="max-width:40rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+      <p><a href="/tools/documents-needed">← Check a different combination</a></p>
+      <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2;margin-top:1.5rem">${escapeHtml(h1)}</h1>
+      <p style="color:#555;margin-top:0.5rem">Typical pathway: ${escapeHtml(pair.visa_type.replace(/_/g, " "))}</p>
+      ${verified}
+      ${listHtml}
+      <p style="margin-top:1.5rem;font-size:0.75rem;color:#888">Not legal advice. Based on cached research — verify with official sources before making decisions.</p>
+      <p style="margin-top:2rem"><a href="/tools/documents-needed">Want a personalized plan? Start free →</a></p>
+    </main>
+  `,
+  });
+}
+
 console.log("prerender-tools: done");

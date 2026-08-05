@@ -12,3 +12,9 @@ verify_jwt = false
 
 [functions.get-citizenship-candidates]
 verify_jwt = false
+
+[functions.get-cached-feasibility]
+verify_jwt = false
+
+[functions.get-cached-document-checklist]
+verify_jwt = false
