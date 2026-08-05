@@ -203,11 +203,11 @@ async function callClaudeWithWebSearch(
   citizenship: string,
   destination: string,
   visaType: string,
-): Promise<DocItem[] | null> {
+): Promise<{ docs: DocItem[] | null; error?: string }> {
   const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY");
   if (!ANTHROPIC_API_KEY) {
     console.error("generate-document-checklist: ANTHROPIC_API_KEY not set");
-    return null;
+    return { docs: null, error: "ANTHROPIC_API_KEY not set" };
   }
 
   const prompt = `You are a relocation document specialist.
@@ -256,7 +256,7 @@ Return JSON only, no markdown fences, no preamble:
     if (!response.ok) {
       const errText = await response.text();
       console.error("generate-document-checklist: Anthropic error", response.status, errText);
-      return null;
+      return { docs: null, error: `Anthropic HTTP ${response.status}: ${errText.slice(0, 800)}` };
     }
 
     const data = await response.json();
@@ -265,10 +265,17 @@ Return JSON only, no markdown fences, no preamble:
     console.log(
       `generate-document-checklist: Claude response: ${blockCount} blocks [${blockTypes.join(", ")}], ${text.length} chars extracted, stop_reason=${data?.stop_reason ?? "n/a"}`,
     );
-    return parseDocuments(text);
+    const parsed = parseDocuments(text);
+    if (!parsed) {
+      return {
+        docs: null,
+        error: `parseDocuments failed (blocks=${blockCount} types=[${blockTypes.join(",")}] chars=${text.length} stop=${data?.stop_reason ?? "n/a"} preview=${text.slice(0, 400).replace(/\s+/g, " ")})`,
+      };
+    }
+    return { docs: parsed };
   } catch (err) {
     console.error("generate-document-checklist: Claude fetch failed", err);
-    return null;
+    return { docs: null, error: `Claude fetch failed: ${err instanceof Error ? err.message : String(err)}` };
   }
 }
 
@@ -357,6 +364,7 @@ Deno.serve(async (req) => {
     let documents: DocItem[] | null = null;
     let source: "cache" | "fresh" | "fallback" = "fallback";
     let generated_at = new Date().toISOString();
+    let generation_error: string | undefined;
 
     // Cache lookup
     const { data: cached } = await supabase
@@ -377,9 +385,9 @@ Deno.serve(async (req) => {
       generated_at = cached.generated_at;
       console.log(`generate-document-checklist: cache hit ${citizenship_country}→${destination_country}/${visa_type}`);
     } else {
-      const fresh = await callClaudeWithWebSearch(citizenship_country, destination_country, visa_type);
-      if (fresh && fresh.length > 0) {
-        documents = fresh;
+      const result = await callClaudeWithWebSearch(citizenship_country, destination_country, visa_type);
+      if (result.docs && result.docs.length > 0) {
+        documents = result.docs;
         source = "fresh";
         generated_at = new Date().toISOString();
 
@@ -388,7 +396,7 @@ Deno.serve(async (req) => {
             citizenship_country,
             destination_country,
             visa_type,
-            documents: fresh,
+            documents: result.docs,
             generated_at,
             model: MODEL,
             prompt_version: PROMPT_VERSION,
@@ -396,7 +404,9 @@ Deno.serve(async (req) => {
           { onConflict: "citizenship_country,destination_country,visa_type,prompt_version" },
         );
         if (upsertErr) console.error("generate-document-checklist: cache upsert failed", upsertErr);
-        console.log(`generate-document-checklist: fresh list (${fresh.length} docs) for ${citizenship_country}→${destination_country}`);
+        console.log(`generate-document-checklist: fresh list (${result.docs.length} docs) for ${citizenship_country}→${destination_country}`);
+      } else {
+        generation_error = result.error ?? "unknown generation failure";
       }
     }
 
@@ -404,7 +414,7 @@ Deno.serve(async (req) => {
       documents = FALLBACK_DOCS;
       source = "fallback";
       generated_at = new Date().toISOString();
-      console.error("generate-document-checklist: using fallback list");
+      console.error("generate-document-checklist: using fallback list", generation_error ?? "");
     }
 
     const finalDocs = overlayFamilyDocs(documents, family_status);
@@ -422,6 +432,7 @@ Deno.serve(async (req) => {
       documents: finalDocs,
       source,
       generated_at,
+      ...(generation_error ? { generation_error } : {}),
     });
   } catch (err) {
     console.error("generate-document-checklist: unexpected error", err);
