@@ -37,6 +37,9 @@ import MoveAsHub from "./pages/tools/MoveAsHub.tsx";
 import MoveAsPersona from "./pages/tools/MoveAsPersona.tsx";
 import DocumentsNeededHub from "./pages/tools/DocumentsNeededHub.tsx";
 import DocumentsNeeded from "./pages/tools/DocumentsNeeded.tsx";
+import CountryCompareHub from "./pages/tools/CountryCompareHub.tsx";
+import CountryCompare from "./pages/tools/CountryCompare.tsx";
+import InvitationLetter from "./pages/tools/InvitationLetter.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import { usePageTracking } from "./hooks/usePageTracking.ts";
 
@@ -99,6 +102,11 @@ function AppRoutes() {
         <Route path="/tools/where-should-i-move/:personaSlug" element={<MoveAsPersona />} />
         <Route path="/tools/documents-needed" element={<DocumentsNeededHub />} />
         <Route path="/tools/documents-needed/:citizenshipSlug/:destinationSlug" element={<DocumentsNeeded />} />
+        <Route path="/tools/country-compare" element={<CountryCompareHub />} />
+        <Route path="/tools/country-compare/:countryASlug/:countryBSlug" element={<CountryCompare />} />
+        <Route path="/tools/country-compare/:citizenshipSlug/:countryASlug/:countryBSlug" element={<CountryCompare />} />
+        <Route path="/tools/invitation-letter" element={<InvitationLetter />} />
+        <Route path="/tools/invitation-letter/:variant" element={<InvitationLetter />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

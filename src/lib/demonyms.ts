@@ -11,6 +11,7 @@ const DEMONYMS: Record<string, string> = {
   Brazil: "Brazilian",
   Nigeria: "Nigerian",
   Philippines: "Filipino",
+  Germany: "German",
 };
 
 /** Acronyms / labels that start with a vowel letter but a consonant sound (/juː/, etc.). */

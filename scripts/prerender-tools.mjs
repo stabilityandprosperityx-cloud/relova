@@ -456,4 +456,113 @@ for (const pair of DOC_LAUNCH_PAIRS) {
   });
 }
 
+// ─── Country Compare ───
+let compareSnapshots = [];
+try {
+  const viteNodeBin = join(__dirname, "..", "node_modules", ".bin", "vite-node");
+  const raw = execFileSync(
+    viteNodeBin,
+    [join(__dirname, "dump-country-compare.ts")],
+    { encoding: "utf8", cwd: join(__dirname, "..") },
+  );
+  compareSnapshots = JSON.parse(raw.trim());
+} catch (err) {
+  console.error("prerender-tools: failed to dump country compare", err);
+  process.exit(1);
+}
+
+writePage({
+  outPath: join(distDir, "tools", "country-compare", "index.html"),
+  title: "Country Compare — Relova",
+  description:
+    "Compare two countries side by side — cost, safety, healthcare, visas — and optionally through the lens of your passport.",
+  bodyHtml: `
+    <main style="max-width:36rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+      <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">Compare countries for your move</h1>
+      <p style="color:#666;margin-top:0.75rem">Side-by-side cost, safety, healthcare, and visa pathways — with optional passport-specific feasibility.</p>
+      <ul style="margin-top:1.5rem;padding-left:1.25rem;line-height:1.8">
+        ${compareSnapshots
+          .slice(0, 8)
+          .map(
+            (p) =>
+              `<li><a href="${escapeHtml(p.path)}">${escapeHtml(p.title)}</a></li>`,
+          )
+          .join("\n        ")}
+      </ul>
+    </main>
+  `,
+});
+
+for (const snap of compareSnapshots) {
+  const rowsHtml = snap.rows
+    .map((r) => {
+      const aMark = r.winner === "a" ? " ★" : "";
+      const bMark = r.winner === "b" ? " ★" : "";
+      return `<tr>
+        <td style="padding:0.4rem 0.5rem;color:#666;font-size:0.85rem">${escapeHtml(r.label)}</td>
+        <td style="padding:0.4rem 0.5rem">${escapeHtml(r.a)}${aMark}</td>
+        <td style="padding:0.4rem 0.5rem">${escapeHtml(r.b)}${bMark}</td>
+      </tr>`;
+    })
+    .join("");
+  const segments = snap.path.replace(/^\//, "").split("/");
+  writePage({
+    outPath: join(distDir, ...segments, "index.html"),
+    title: `${snap.title} — Relova`,
+    description: snap.citizenship
+      ? `Compare ${snap.countryA} and ${snap.countryB} for ${snap.citizenship} citizens — cost, safety, healthcare, and visas.`
+      : `Compare ${snap.countryA} and ${snap.countryB} side by side — cost, safety, healthcare, and visa pathways.`,
+    bodyHtml: `
+    <main style="max-width:44rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+      <p><a href="/tools/country-compare">← Compare different countries</a></p>
+      <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2;margin-top:1.5rem">${escapeHtml(snap.countryA)} vs ${escapeHtml(snap.countryB)}</h1>
+      ${snap.citizenship ? `<p style="color:#555;margin-top:0.35rem">for ${escapeHtml(snap.citizenship)} citizens</p>` : ""}
+      <table style="width:100%;margin-top:1.5rem;border-collapse:collapse;font-size:0.9rem">
+        <thead>
+          <tr style="border-bottom:1px solid #ddd">
+            <th style="text-align:left;padding:0.5rem"></th>
+            <th style="text-align:left;padding:0.5rem">${escapeHtml(snap.flagA)} ${escapeHtml(snap.countryA)}</th>
+            <th style="text-align:left;padding:0.5rem">${escapeHtml(snap.flagB)} ${escapeHtml(snap.countryB)}</th>
+          </tr>
+        </thead>
+        <tbody>${rowsHtml}</tbody>
+      </table>
+      <p style="margin-top:1.5rem;font-size:0.75rem;color:#888">Not legal advice. Based on general and cached research — verify with official sources before making decisions.</p>
+      <p style="margin-top:2rem"><a href="/tools/country-compare">Want a personalized plan? Start free →</a></p>
+    </main>
+  `,
+  });
+}
+
+// ─── Invitation Letter Generator ───
+writePage({
+  outPath: join(distDir, "tools", "invitation-letter", "index.html"),
+  title: "Visa Invitation Letter Generator — Relova",
+  description:
+    "Free visa invitation letter generator — create a downloadable draft for tourist or family visits. Your information stays in your browser.",
+  bodyHtml: `
+    <main style="max-width:40rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+      <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">Visa Invitation Letter Generator</h1>
+      <p style="color:#666;margin-top:0.75rem">Fill in host and visitor details for a live draft letter you can print or save as PDF. Nothing is sent to our servers.</p>
+      <p style="margin-top:1.5rem"><a href="/tools/invitation-letter/schengen">Schengen invitation letter generator →</a></p>
+      <p style="margin-top:1.5rem;font-size:0.75rem;color:#888">Not legal advice. An invitation letter supports but does not replace a visa application.</p>
+    </main>
+  `,
+});
+
+writePage({
+  outPath: join(distDir, "tools", "invitation-letter", "schengen", "index.html"),
+  title: "Schengen Visa Invitation Letter Generator — Relova",
+  description:
+    "Free Schengen visa invitation letter generator — fill in host and visitor details for a downloadable draft letter. Nothing is sent to our servers.",
+  bodyHtml: `
+    <main style="max-width:40rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+      <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">Schengen Visa Invitation Letter Generator</h1>
+      <p style="color:#666;margin-top:0.75rem">Generate a draft invitation letter commonly used to support Schengen short-stay visa applications. Your information stays in your browser.</p>
+      <p style="margin-top:1.5rem"><a href="/tools/invitation-letter">← Generic invitation letter generator</a></p>
+      <p style="margin-top:1.5rem;font-size:0.75rem;color:#888">Not legal advice. An invitation letter supports but does not replace a visa application — requirements vary by consulate.</p>
+    </main>
+  `,
+});
+
 console.log("prerender-tools: done");

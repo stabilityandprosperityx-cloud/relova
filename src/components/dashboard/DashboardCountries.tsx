@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Search, ArrowRight, Clock, X, BarChart2 } from "lucide-react";
 import { countryDatabase, type CountryProfile } from "@/lib/countryMatching";
+import { TAX_RATES } from "@/lib/countryTaxRates";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { UserProfile, DashboardTab } from "@/pages/Dashboard";
@@ -765,37 +766,6 @@ const COUNTRY_RESOURCES: Record<string, {
       { name: "italki tutors", url: "https://www.italki.com" },
     ],
   },
-};
-
-const TAX_RATES: Record<string, { rate: number; regime?: string }> = {
-  UAE: { rate: 0, regime: "Zero tax" },
-  Georgia: { rate: 0.01, regime: "Small Business 1%" },
-  Bulgaria: { rate: 0.1, regime: "10% flat" },
-  Romania: { rate: 0.1, regime: "10% flat" },
-  Hungary: { rate: 0.15, regime: "15% flat" },
-  Montenegro: { rate: 0.15, regime: "15% flat" },
-  Serbia: { rate: 0.1, regime: "10% flat" },
-  Portugal: { rate: 0.2, regime: "IFICI/NHR 2.0" },
-  Estonia: { rate: 0.2, regime: "20% (0% retained)" },
-  Malaysia: { rate: 0, regime: "Foreign income exempt" },
-  Panama: { rate: 0, regime: "Territorial" },
-  Singapore: { rate: 0, regime: "Foreign income exempt" },
-  Bahrain: { rate: 0, regime: "Zero tax" },
-  Spain: { rate: 0.24, regime: "Beckham Law 24%" },
-  Thailand: { rate: 0, regime: "LTR Visa 0%" },
-  Malta: { rate: 0.15, regime: "Non-Dom 15%" },
-  Cyprus: { rate: 0, regime: "Non-Dom dividends 0%" },
-  Uruguay: { rate: 0, regime: "10yr foreign exempt" },
-  Mauritius: { rate: 0.2, regime: "20% flat" },
-  Armenia: { rate: 0.2, regime: "20% flat" },
-  Netherlands: { rate: 0.347, regime: "30% Ruling" },
-  Sweden: { rate: 0.32, regime: "Expert Tax" },
-  Denmark: { rate: 0.27, regime: "Researcher Scheme" },
-  Germany: { rate: 0.47 },
-  France: { rate: 0.55 },
-  Austria: { rate: 0.55 },
-  Italy: { rate: 0.07, regime: "Flat Tax 7%" },
-  Greece: { rate: 0.07, regime: "Non-Dom 7%" },
 };
 
 function money(n: number) {

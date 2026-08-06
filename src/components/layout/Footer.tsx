@@ -25,6 +25,8 @@ const FOOTER_COLS = [
       { label: "Visa Eligibility Check", href: "/tools/can-i-move" },
       { label: "Where Should I Move?", href: "/tools/where-should-i-move" },
       { label: "Document Checklist", href: "/tools/documents-needed" },
+      { label: "Country Compare", href: "/tools/country-compare" },
+      { label: "Invitation Letter", href: "/tools/invitation-letter" },
       { label: "Relocation Blog", href: "/blog" },
       { label: "Help Center", href: "/help" },
     ],

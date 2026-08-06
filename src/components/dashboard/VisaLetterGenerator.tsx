@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Download, Sparkles, RefreshCw } from "lucide-react";
 import type { UserProfile } from "@/pages/Dashboard";
 import { supabase } from "@/integrations/supabase/client";
+import { printPlainLetter } from "@/lib/printToPdf";
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
 
@@ -238,55 +239,7 @@ REQUIREMENTS:
       day: "numeric", month: "long", year: "numeric"
     });
     const letterWithDate = generatedLetter.replace("[DATE]", today);
-
-    const html = `<!DOCTYPE html>
-<html>
-  <head>
-    <title>Visa Cover Letter</title>
-    <style>
-      @page {
-        size: A4;
-        margin: 2.5cm;
-        @top-center { content: none; }
-        @bottom-center { content: none; }
-        @top-left { content: none; }
-        @bottom-left { content: none; }
-        @top-right { content: none; }
-        @bottom-right { content: none; }
-      }
-      html, body {
-        font-family: "Times New Roman", Times, serif;
-        font-size: 12pt;
-        line-height: 1.8;
-        color: #000;
-        background: #fff;
-        margin: 0;
-        padding: 0;
-      }
-      .letter {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-      }
-      strong { font-weight: bold; }
-      em { font-style: italic; }
-    </style>
-  </head>
-  <body>
-    <div class="letter">${letterWithDate.replace(/\n/g, "<br>")}</div>
-    <script>
-      window.onload = function() {
-        setTimeout(function() { window.print(); }, 300);
-      };
-    <\/script>
-  </body>
-</html>`;
-
-    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const w = window.open(url, "_blank");
-    if (w) {
-      w.onafterprint = () => { URL.revokeObjectURL(url); w.close(); };
-    }
+    printPlainLetter("Visa Cover Letter", letterWithDate);
   };
 
   // ─── FORM STATE ───
