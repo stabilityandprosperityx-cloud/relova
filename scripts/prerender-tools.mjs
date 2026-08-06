@@ -516,7 +516,7 @@ for (const snap of compareSnapshots) {
     <main style="max-width:44rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
       <p><a href="/tools/country-compare">← Compare different countries</a></p>
       <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2;margin-top:1.5rem">${escapeHtml(snap.countryA)} vs ${escapeHtml(snap.countryB)}</h1>
-      ${snap.citizenship ? `<p style="color:#555;margin-top:0.35rem">for ${escapeHtml(snap.citizenship)} citizens</p>` : ""}
+      ${snap.demonym ? `<p style="color:#555;margin-top:0.35rem">for ${escapeHtml(snap.demonym)} citizens</p>` : ""}
       <table style="width:100%;margin-top:1.5rem;border-collapse:collapse;font-size:0.9rem">
         <thead>
           <tr style="border-bottom:1px solid #ddd">

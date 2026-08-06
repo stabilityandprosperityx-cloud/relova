@@ -19,12 +19,14 @@ const out = COMPARE_LAUNCH_PAIRS.map((pair) => {
     b: row.render(b),
     winner: row.winner(a, b),
   }));
-  const title = pair.citizenship
-    ? `${pair.countryA} vs ${pair.countryB} for ${citizenshipDemonym(pair.citizenship)} citizens`
+  const demonym = pair.citizenship ? citizenshipDemonym(pair.citizenship) : null;
+  const title = demonym
+    ? `${pair.countryA} vs ${pair.countryB} for ${demonym} citizens`
     : `${pair.countryA} vs ${pair.countryB}`;
   return {
     path: countryComparePath(pair.countryA, pair.countryB, pair.citizenship),
     citizenship: pair.citizenship ?? null,
+    demonym,
     countryA: pair.countryA,
     countryB: pair.countryB,
     flagA: a.flag,
