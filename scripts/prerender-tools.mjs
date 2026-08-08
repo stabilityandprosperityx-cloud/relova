@@ -545,7 +545,12 @@ writePage({
       <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">Visa Invitation Letter Generator</h1>
       <p style="color:#666;margin-top:0.75rem">Fill in host and visitor details for a live draft letter you can print or save as PDF. Nothing is sent to our servers.</p>
       <p style="margin-top:1.5rem"><a href="/tools/invitation-letter/schengen">Schengen invitation letter generator →</a></p>
-      <p style="margin-top:1.5rem;font-size:0.75rem;color:#888">Not legal advice. An invitation letter supports but does not replace a visa application.</p>
+      <p style="margin-top:1.5rem;font-size:0.75rem;color:#888">Not legal advice — verify exact requirements with the destination country's consulate before your guest applies.</p>
+      <ul style="margin-top:0.75rem;padding-left:1.25rem;font-size:0.75rem;color:#888;line-height:1.5">
+        <li>Private/family/tourist visit letters only — not business invitations.</li>
+        <li>Germany and the Netherlands may require a separate Verpflichtungserklärung; this letter does not replace that.</li>
+        <li>Some consulates require notarization or a certified signature.</li>
+      </ul>
     </main>
   `,
 });
@@ -560,7 +565,12 @@ writePage({
       <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">Schengen Visa Invitation Letter Generator</h1>
       <p style="color:#666;margin-top:0.75rem">Generate a draft invitation letter commonly used to support Schengen short-stay visa applications. Your information stays in your browser.</p>
       <p style="margin-top:1.5rem"><a href="/tools/invitation-letter">← Generic invitation letter generator</a></p>
-      <p style="margin-top:1.5rem;font-size:0.75rem;color:#888">Not legal advice. An invitation letter supports but does not replace a visa application — requirements vary by consulate.</p>
+      <p style="margin-top:1.5rem;font-size:0.75rem;color:#888">Not legal advice — verify exact requirements with the destination country's consulate before your guest applies.</p>
+      <ul style="margin-top:0.75rem;padding-left:1.25rem;font-size:0.75rem;color:#888;line-height:1.5">
+        <li>Private/family/tourist visit letters only — not business invitations.</li>
+        <li>Germany and the Netherlands may require a separate Verpflichtungserklärung; this letter does not replace that.</li>
+        <li>Some consulates require notarization or a certified signature.</li>
+      </ul>
     </main>
   `,
 });

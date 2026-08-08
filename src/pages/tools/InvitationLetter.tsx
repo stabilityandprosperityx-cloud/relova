@@ -574,6 +574,10 @@ function InvitationLetterPage({ variant }: { variant: "generic" | "schengen" }) 
                         : "To the Visa Officer, Embassy of…"
                     }
                   />
+                  <p className="text-[11px] text-muted-foreground mt-1.5">
+                    Recommended — naming the specific embassy or consulate where the application will
+                    be submitted strengthens the letter.
+                  </p>
                 </div>
                 <div>
                   <FieldLabel>Signature name</FieldLabel>
@@ -608,11 +612,28 @@ function InvitationLetterPage({ variant }: { variant: "generic" | "schengen" }) 
             </div>
           </div>
 
-          <p className="text-[11px] text-muted-foreground/70 mt-10 mb-8 leading-relaxed max-w-3xl">
-            Not legal advice. An invitation letter supports but does not replace a visa application —
-            requirements vary by consulate; verify with official sources and attach host ID/residence
-            proof as required.
-          </p>
+          <div className="text-[11px] text-muted-foreground/70 mt-10 mb-8 leading-relaxed max-w-3xl space-y-2">
+            <p>
+              Not legal advice — verify exact requirements with the destination country&apos;s
+              consulate before your guest applies.
+            </p>
+            <ul className="list-disc pl-4 space-y-1.5">
+              <li>
+                This generates a private/family/tourist visit invitation letter only — not a
+                business invitation (which needs employer details, job info, and payslips instead).
+              </li>
+              <li>
+                Some countries — notably Germany and the Netherlands — may require a separate formal
+                sponsorship declaration (e.g. Verpflichtungserklärung) completed in person at a local
+                immigration office, especially if you&apos;re financially sponsoring your guest&apos;s
+                trip. This letter does not replace that.
+              </li>
+              <li>
+                Some consulates require the letter to be notarized or have a certified signature —
+                check your specific destination&apos;s requirements before submitting.
+              </li>
+            </ul>
+          </div>
 
           <div className="surface-card p-6 sm:p-8 border-primary/20 max-w-3xl space-y-4">
             <p className="font-serif text-lg font-semibold text-foreground">
