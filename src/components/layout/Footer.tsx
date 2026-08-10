@@ -27,6 +27,7 @@ const FOOTER_COLS = [
       { label: "Document Checklist", href: "/tools/documents-needed" },
       { label: "Country Compare", href: "/tools/country-compare" },
       { label: "Invitation Letter", href: "/tools/invitation-letter" },
+      { label: "Tax Residency Tracker", href: "/tools/tax-residency-tracker" },
       { label: "Relocation Blog", href: "/blog" },
       { label: "Help Center", href: "/help" },
     ],

@@ -575,4 +575,20 @@ writePage({
   `,
 });
 
+// ─── Tax Residency Day Tracker ───
+writePage({
+  outPath: join(distDir, "tools", "tax-residency-tracker", "index.html"),
+  title: "183-Day Tax Residency Tracker — Relova",
+  description:
+    "Free tax residency day tracker. Log stays by country and see how close you are to common 183-day thresholds. Awareness only — not a tax determination. Your data stays in your browser.",
+  bodyHtml: `
+    <main style="max-width:40rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+      <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">Track days toward tax residency (183-day rule)</h1>
+      <p style="color:#666;margin-top:0.75rem">Log stays by country and see how your day counts stack up against common tax-residency awareness thresholds. Your trip history stays in your browser.</p>
+      <p style="margin-top:1rem;padding:0.75rem 1rem;background:#fff8e6;border:1px solid #f0e0a0;border-radius:8px;font-size:0.9rem;color:#444">This tool is about <strong>tax residency</strong> day counts — not the Schengen 90/180 short-stay visa rule (entry permission).</p>
+      <p style="margin-top:1.5rem;font-size:0.75rem;color:#888">Not tax advice. Day counts alone do not determine residency — domicile, center-of-vital-interests, and treaty rules may also apply. Verify with a tax professional.</p>
+    </main>
+  `,
+});
+
 console.log("prerender-tools: done");

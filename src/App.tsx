@@ -40,6 +40,7 @@ import DocumentsNeeded from "./pages/tools/DocumentsNeeded.tsx";
 import CountryCompareHub from "./pages/tools/CountryCompareHub.tsx";
 import CountryCompare from "./pages/tools/CountryCompare.tsx";
 import InvitationLetter from "./pages/tools/InvitationLetter.tsx";
+import TaxResidencyTracker from "./pages/tools/TaxResidencyTracker.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import { usePageTracking } from "./hooks/usePageTracking.ts";
 
@@ -107,6 +108,7 @@ function AppRoutes() {
         <Route path="/tools/country-compare/:citizenshipSlug/:countryASlug/:countryBSlug" element={<CountryCompare />} />
         <Route path="/tools/invitation-letter" element={<InvitationLetter />} />
         <Route path="/tools/invitation-letter/:variant" element={<InvitationLetter />} />
+        <Route path="/tools/tax-residency-tracker" element={<TaxResidencyTracker />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

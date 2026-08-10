@@ -405,10 +405,17 @@ export default function CountryCompare() {
             </div>
           )}
 
-          <p className="text-[11px] text-muted-foreground/70 mb-8 leading-relaxed">
+          <p className="text-[11px] text-muted-foreground/70 mb-4 leading-relaxed">
             Not legal advice. Based on general and cached research — verify with official sources before
             making decisions. “Stronger” highlights are relative field comparisons, not a recommendation
             for your personal situation.
+          </p>
+
+          <p className="text-[13px] text-muted-foreground mb-8">
+            Tracking days toward tax residency?{" "}
+            <Link to="/tools/tax-residency-tracker" className="text-primary hover:underline">
+              Free 183-day tax residency tracker →
+            </Link>
           </p>
 
           <div className="surface-card p-6 sm:p-8 border-primary/20">
