@@ -177,9 +177,16 @@ export default function DocumentsNeeded() {
             Typical pathway: <span className="text-foreground font-medium">{formatVisaTypeLabel(visaType)}</span>
           </p>
           {status === "cached" && generatedAt && (
-            <p className="text-[13px] text-foreground/80 font-medium mb-8">
-              Last verified: {formatVerifiedDate(generatedAt)}
-            </p>
+            <div className="mb-8 space-y-1.5">
+              <p className="text-[13px] text-foreground/80 font-medium">
+                Last verified: {formatVerifiedDate(generatedAt)}
+              </p>
+              <p className="text-[12px] text-muted-foreground">
+                <Link to="/data-sources" className="text-primary hover:underline">
+                  See our data sources →
+                </Link>
+              </p>
+            </div>
           )}
           {status !== "cached" && <div className="mb-8" />}
 

@@ -17,6 +17,13 @@ type FeasibilityStatus = "common" | "uncommon" | "uncached" | "loading" | "error
 interface FeasibilityResult {
   status: FeasibilityStatus;
   note?: string;
+  generatedAt?: string;
+}
+
+function formatVerifiedDate(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
 
 export default function CanIMove() {
@@ -54,6 +61,7 @@ export default function CanIMove() {
           setResult({
             status,
             note: typeof data.note === "string" ? data.note : undefined,
+            generatedAt: typeof data.generated_at === "string" ? data.generated_at : undefined,
           });
         } else {
           setResult({ status: "uncached" });
@@ -172,6 +180,27 @@ export default function CanIMove() {
               </>
             )}
           </div>
+
+          {(result.status === "common" || result.status === "uncommon") && result.generatedAt && (
+            <div className="mb-6 space-y-1.5">
+              <p className="text-[13px] text-foreground/80 font-medium">
+                Last verified: {formatVerifiedDate(result.generatedAt)}
+              </p>
+              <p className="text-[12px] text-muted-foreground">
+                <Link to="/data-sources" className="text-primary hover:underline">
+                  See our data sources →
+                </Link>
+              </p>
+            </div>
+          )}
+
+          {result.status === "uncached" && (
+            <p className="text-[12px] text-muted-foreground mb-6">
+              <Link to="/data-sources" className="text-primary hover:underline">
+                See our data sources →
+              </Link>
+            </p>
+          )}
 
           <p className="text-[11px] text-muted-foreground/70 mb-8 leading-relaxed">
             Not legal advice. Based on general and cached research — verify with official sources before

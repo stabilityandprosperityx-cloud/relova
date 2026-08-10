@@ -41,6 +41,7 @@ import CountryCompareHub from "./pages/tools/CountryCompareHub.tsx";
 import CountryCompare from "./pages/tools/CountryCompare.tsx";
 import InvitationLetter from "./pages/tools/InvitationLetter.tsx";
 import TaxResidencyTracker from "./pages/tools/TaxResidencyTracker.tsx";
+import DataSources from "./pages/DataSources.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import { usePageTracking } from "./hooks/usePageTracking.ts";
 
@@ -96,6 +97,7 @@ function AppRoutes() {
         <Route path="/mission" element={<Mission />} />
         <Route path="/cookie-policy" element={<CookiePolicy />} />
         <Route path="/data-security" element={<DataSecurity />} />
+        <Route path="/data-sources" element={<DataSources />} />
         <Route path="/compliance" element={<Compliance />} />
         <Route path="/tools/can-i-move" element={<CanIMoveHub />} />
         <Route path="/tools/can-i-move/:citizenshipSlug/:destinationSlug" element={<CanIMove />} />
