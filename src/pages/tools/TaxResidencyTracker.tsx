@@ -391,7 +391,7 @@ export default function TaxResidencyTracker() {
           <p className="text-[11px] text-muted-foreground mb-4">
             {viewMode === "calendar"
               ? `Primary view: days present in calendar year ${year}. Some countries use any 12-month period instead — use the rolling toggle for awareness.`
-              : "Rolling view: days in the last 365 days ending today. Use alongside calendar year — country codes differ on which framing they use."}
+              : "Rolling 12 months counts days in the 12 months up to today — future trips won't count until they happen. Use alongside calendar year; country codes differ on which framing they use."}
           </p>
 
           {/* Summary table */}
@@ -408,7 +408,9 @@ export default function TaxResidencyTracker() {
                 >
                   <span>Country</span>
                   <span>Calendar {year}</span>
-                  <span>Rolling 12 mo</span>
+                  <span title="Counts days in the 12 months up to today — future trips won't count until they happen.">
+                    Rolling 12 mo
+                  </span>
                   <span>Status</span>
                 </div>
                 {summary.map((row) => {
