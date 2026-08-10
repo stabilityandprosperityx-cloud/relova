@@ -591,4 +591,40 @@ writePage({
   `,
 });
 
+// ─── Data & Sources (methodology / coverage transparency) ───
+// Keep numbers in sync with src/pages/DataSources.tsx COVERAGE snapshot.
+writePage({
+  outPath: join(distDir, "data-sources", "index.html"),
+  title: "Data & Sources — Relova",
+  description:
+    "How Relova builds document checklists and country notes: real coverage numbers, AI-researched vs static reference tiers, cache freshness, and how to report errors.",
+  bodyHtml: `
+    <main style="max-width:40rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+      <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">Data &amp; Sources</h1>
+      <p style="color:#666;margin-top:0.75rem">Every document requirement and country note in our tools links to how it was generated and verified. Here&apos;s exactly what&apos;s behind the numbers.</p>
+      <p style="color:#888;font-size:0.85rem;margin-top:0.5rem">Coverage figures as of August 10, 2026. These grow as we research more pairs — they are not a permanent claim.</p>
+
+      <h2 style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Current coverage</h2>
+      <ul style="margin-top:0.75rem;padding-left:1.25rem;line-height:1.7;color:#444">
+        <li><strong>24</strong> citizenship → destination document checklists generated</li>
+        <li><strong>500</strong> document requirements catalogued — <strong>496 (99.2%)</strong> with a named official or consular source</li>
+        <li><strong>8</strong> citizenships analyzed for realistic relocation destinations — <strong>151</strong> destination matches</li>
+        <li><strong>106</strong> countries in our static reference database (lifestyle / cost / safety baseline — not AI checklist research)</li>
+      </ul>
+
+      <h2 style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">How data is generated</h2>
+      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Document checklists and citizenship-specific notes are AI-researched against official/consular sources and cached for about 30 days. Static country reference fields (and a 28-country tax-rate table) are a compiled editorial baseline — a lower-confidence tier than source-cited checklist items.</p>
+
+      <h2 style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">What we don&apos;t have yet</h2>
+      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Most citizenship / destination pairs haven&apos;t been researched yet. Uncached pairs in <a href="/tools/can-i-move">Can I Move</a> and <a href="/tools/documents-needed">Documents Needed</a> say so clearly rather than guessing.</p>
+
+      <h2 style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Freshness policy</h2>
+      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Caches are valid for roughly 30 days. As of August 10, 2026, all current document (v2) and citizenship candidate rows were generated August 4–6, 2026 — 0 stale rows.</p>
+
+      <h2 style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Found something wrong?</h2>
+      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Email <a href="mailto:support@relova.ai?subject=Data%20source%20correction">support@relova.ai</a> with the specific item. We look into corrections without publishing a fixed response SLA.</p>
+    </main>
+  `,
+});
+
 console.log("prerender-tools: done");
