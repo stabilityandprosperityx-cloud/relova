@@ -394,6 +394,17 @@ function formatVerifiedDate(iso) {
   return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
 
+function formatVerifiedDateUtc(iso) {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return String(iso || "");
+  return d.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+}
+
 writePage({
   outPath: join(distDir, "tools", "documents-needed", "index.html"),
   title: "What documents do I need to move abroad? — Relova",
@@ -592,37 +603,88 @@ writePage({
 });
 
 // ─── Data & Sources (methodology / coverage transparency) ───
-// Keep numbers in sync with src/pages/DataSources.tsx COVERAGE snapshot.
+// Keep coverage numbers in sync with src/pages/DataSources.tsx COVERAGE snapshot.
+// Checklist table rows come from DOC_LAUNCH_PAIRS + document-checklist-snapshots.json.
+const checklistTableRows = DOC_LAUNCH_PAIRS.map((p) => {
+  const snap = docSnapByKey.get(`${p.citizenship}|${p.destination}|${p.visa_type}`);
+  const verified = snap?.generated_at
+    ? formatVerifiedDateUtc(snap.generated_at)
+    : "No snapshot date";
+  const href = `/tools/documents-needed/${slugify(p.citizenship)}/${slugify(p.destination)}`;
+  return `<tr>
+        <td style="padding:0.5rem 0.75rem;border-top:1px solid #e8e4dc">${escapeHtml(p.citizenship)}</td>
+        <td style="padding:0.5rem 0.75rem;border-top:1px solid #e8e4dc">${escapeHtml(p.destination)}</td>
+        <td style="padding:0.5rem 0.75rem;border-top:1px solid #e8e4dc">${escapeHtml(String(p.visa_type).replace(/_/g, " "))}</td>
+        <td style="padding:0.5rem 0.75rem;border-top:1px solid #e8e4dc;white-space:nowrap">${escapeHtml(verified)}</td>
+        <td style="padding:0.5rem 0.75rem;border-top:1px solid #e8e4dc"><a href="${href}">View checklist</a></td>
+      </tr>`;
+}).join("\n      ");
+
 writePage({
   outPath: join(distDir, "data-sources", "index.html"),
   title: "Data & Sources — Relova",
   description:
-    "How Relova builds document checklists and country notes: real coverage numbers, AI-researched vs static reference tiers, cache freshness, and how to report errors.",
+    "How Relova builds document checklists: methodology, coverage, last-verified dates for each published pair, and terms for citing source-cited (Tier 1) data.",
   bodyHtml: `
-    <main style="max-width:40rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+    <main style="max-width:52rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
       <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">Data &amp; Sources</h1>
-      <p style="color:#666;margin-top:0.75rem">Every document requirement and country note in our tools links to how it was generated and verified. Here&apos;s exactly what&apos;s behind the numbers.</p>
-      <p style="color:#888;font-size:0.85rem;margin-top:0.5rem">Coverage figures as of August 10, 2026. These grow as we research more pairs — they are not a permanent claim.</p>
+      <p style="color:#666;margin-top:0.75rem">Relova publishes two kinds of information: AI-researched document checklists with named official or consular sources, and static editorial baselines used for comparison. This page states which is which, how the checklist cache is kept, and which checklists you may cite.</p>
 
-      <h2 style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Current coverage</h2>
+      <h2 id="cite" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Citing this page</h2>
+      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Source-cited document checklists (Tier 1) linked below are free to cite with attribution to Relova (relova.ai). Include the last-verified date shown for that pair. The static country database and tax-rate overlay (Tier 2) are editorial baselines without per-field sources — they are not offered as a citable dataset.</p>
+      <p style="color:#555;margin-top:0.5rem;line-height:1.6">For data citation or press inquiries, email <a href="mailto:support@relova.ai?subject=Data%20citation">support@relova.ai</a> with subject &quot;Data citation&quot;.</p>
+
+      <h2 id="methodology" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">How data is generated</h2>
+      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Three layers sit behind our tools. Only the first is source-cited research. The other two are compiled editorial files and should not be read as official figures.</p>
+      <h3 style="font-size:1rem;margin-top:1.25rem">1. Document checklists — AI-researched, source-cited (Tier 1)</h3>
+      <p style="color:#888;font-size:0.85rem;margin-top:0.35rem">Last verified (published pair pages): August 5, 2026. Cache-coverage snapshot as of August 10, 2026: generated August 4–6, 2026.</p>
+      <p style="color:#555;margin-top:0.5rem;line-height:1.6">An AI research pipeline searches the live web, prioritizes official government and consular sources, and stores results in a cache. Cached entries are treated as valid for about 30 days. 496 of 500 document items (99.2%) include a named official or consular source. Citizenship-specific destination notes in Can I Move use a related AI cache (8 citizenships, 151 destination matches as of August 10, 2026). Those notes are not the same as the source-cited checklist items in the table below.</p>
+      <h3 style="font-size:1rem;margin-top:1.25rem">2. Country reference database — static, editorial (Tier 2)</h3>
+      <p style="color:#888;font-size:0.85rem;margin-top:0.35rem">No per-field verification date.</p>
+      <p style="color:#555;margin-top:0.5rem;line-height:1.6">A compiled country file covering 106 countries (cost level, safety score, healthcare quality, climate, and similar fields). Not government-sourced, not citizenship-specific, and not produced by the checklist research pipeline.</p>
+      <h3 style="font-size:1rem;margin-top:1.25rem">3. Tax-rate overlay — static, editorial (Tier 2)</h3>
+      <p style="color:#888;font-size:0.85rem;margin-top:0.35rem">No per-field verification date.</p>
+      <p style="color:#555;margin-top:0.5rem;line-height:1.6">A separate overlay covering 28 countries, used only in comparison tools. Compiled editorial baseline — not government-sourced, and not listed as figures on this page. Not offered as a citable dataset.</p>
+
+      <h2 id="coverage" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Current coverage</h2>
+      <p style="color:#888;font-size:0.85rem;margin-top:0.5rem">Snapshot from our live caches and static reference files, as of August 10, 2026. These grow as we research more pairs — they are not a permanent claim.</p>
       <ul style="margin-top:0.75rem;padding-left:1.25rem;line-height:1.7;color:#444">
         <li><strong>24</strong> citizenship → destination document checklists generated</li>
         <li><strong>500</strong> document requirements catalogued — <strong>496 (99.2%)</strong> with a named official or consular source</li>
         <li><strong>8</strong> citizenships analyzed for realistic relocation destinations — <strong>151</strong> destination matches</li>
         <li><strong>106</strong> countries in our static reference database (lifestyle / cost / safety baseline — not AI checklist research)</li>
       </ul>
+      <p style="color:#888;font-size:0.8rem;margin-top:0.75rem;line-height:1.6">Of 500 cached document items, 496 carry a non-empty named source field; 4 do not. We do not treat those 4 as sourced evidence.</p>
 
-      <h2 style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">How data is generated</h2>
-      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Document checklists and citizenship-specific notes are AI-researched against official/consular sources and cached for about 30 days. Static country reference fields (and a 28-country tax-rate table) are a compiled editorial baseline — a lower-confidence tier than source-cited checklist items.</p>
+      <h2 id="checklists" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Published document checklists</h2>
+      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Last-verified dates below are the cache timestamps from the document-checklist snapshot used to prerender each pair page — not a live database query. The table lists every checklist with a public Documents Needed URL (${DOC_LAUNCH_PAIRS.length} pairs). Coverage figures above count 24 cached checklists as of August 10, 2026; one cached row is not published as a standalone page, so it is not listed here.</p>
+      <div style="overflow-x:auto;margin-top:1rem;border:1px solid #e8e4dc;border-radius:0.75rem">
+      <table style="width:100%;border-collapse:collapse;font-size:0.85rem;min-width:40rem">
+        <thead>
+          <tr style="background:#f6f3ee;text-align:left;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;color:#666">
+            <th style="padding:0.6rem 0.75rem">Citizenship</th>
+            <th style="padding:0.6rem 0.75rem">Destination</th>
+            <th style="padding:0.6rem 0.75rem">Visa pathway</th>
+            <th style="padding:0.6rem 0.75rem">Last verified</th>
+            <th style="padding:0.6rem 0.75rem">Checklist</th>
+          </tr>
+        </thead>
+        <tbody>
+      ${checklistTableRows}
+        </tbody>
+      </table>
+      </div>
 
       <h2 style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">What we don&apos;t have yet</h2>
       <p style="color:#555;margin-top:0.75rem;line-height:1.6">Most citizenship / destination pairs haven&apos;t been researched yet. Uncached pairs in <a href="/tools/can-i-move">Can I Move</a> and <a href="/tools/documents-needed">Documents Needed</a> say so clearly rather than guessing.</p>
 
-      <h2 style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Freshness policy</h2>
-      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Caches are valid for roughly 30 days. As of August 10, 2026, all current document (v2) and citizenship candidate rows were generated August 4–6, 2026 — 0 stale rows.</p>
+      <h2 id="freshness" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Freshness policy</h2>
+      <p style="color:#888;font-size:0.85rem;margin-top:0.35rem">Applies to AI caches only. As of August 10, 2026.</p>
+      <p style="color:#555;margin-top:0.5rem;line-height:1.6">Caches are valid for roughly 30 days. As of August 10, 2026, all current document (v2) and citizenship candidate rows were generated August 4–6, 2026 — 0 stale rows. The static country database and tax-rate overlay are not on this refresh cycle. They have no per-field verification date.</p>
 
-      <h2 style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Found something wrong?</h2>
-      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Email <a href="mailto:support@relova.ai?subject=Data%20source%20correction">support@relova.ai</a> with the specific item. We look into corrections without publishing a fixed response SLA.</p>
+      <h2 id="contact" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Contact</h2>
+      <p style="color:#555;margin-top:0.75rem;line-height:1.6">If a document requirement looks outdated or wrong, email <a href="mailto:support@relova.ai?subject=Data%20source%20correction">support@relova.ai</a> with the specific item. We look into corrections without publishing a fixed response SLA.</p>
+      <p style="color:#555;margin-top:0.5rem;line-height:1.6">For data citation or press inquiries, email <a href="mailto:support@relova.ai?subject=Data%20citation">support@relova.ai</a> with subject &quot;Data citation&quot;.</p>
     </main>
   `,
 });
