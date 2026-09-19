@@ -14,7 +14,7 @@ export const countryData: Record<string, CountryData> = {
   portugal: {
     name: "Portugal", flag: "🇵🇹", code: "PT",
     tagline: "Europe's top destination for digital nomads and retirees",
-    highlights: ["D7 Visa", "NHR tax regime", "€1,500–2,000/mo (Lisbon €1,750+, Porto €1,300–1,600)"],
+    highlights: ["D7 Visa", "IFICI (NHR 2.0) tax regime", "€1,500–2,000/mo (Lisbon €1,750+, Porto €1,300–1,600)"],
     visaOptions: [
       { name: "D7 Passive Income Visa", duration: "2 years (renewable)", requirements: "Proof of €760/mo passive income" },
       { name: "Digital Nomad Visa", duration: "1 year", requirements: "€3,040/mo income, remote employment" },
@@ -23,7 +23,7 @@ export const countryData: Record<string, CountryData> = {
     ],
     taxInfo: [
       { label: "Income Tax", value: "14.5% – 48% (progressive)" },
-      { label: "NHR Regime", value: "20% flat rate for 10 years (qualifying professions)" },
+      { label: "IFICI (NHR 2.0)", value: "20% flat rate for 10 years — replaced classic NHR (closed to new applicants since Jan 2024); limited to qualifying roles (R&D, higher education, startups, strategic-investment companies)" },
       { label: "Corporate Tax", value: "21%" },
       { label: "VAT", value: "23%" },
     ],
