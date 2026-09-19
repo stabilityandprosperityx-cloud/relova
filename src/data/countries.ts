@@ -23,7 +23,7 @@ export const countryData: Record<string, CountryData> = {
     ],
     taxInfo: [
       { label: "Income Tax", value: "14.5% – 48% (progressive)" },
-      { label: "IFICI (NHR 2.0)", value: "20% flat rate for 10 years — replaced classic NHR (closed to new applicants since Jan 2024); limited to qualifying roles (R&D, higher education, startups, strategic-investment companies)" },
+      { label: "IFICI (NHR 2.0)", value: "20% flat rate for 10 years — replaced classic NHR (closed to new applicants since Jan 2024); limited to qualifying roles (R&D, higher education, startups, strategic-investment companies); does not cover foreign pension income, unlike the old NHR" },
       { label: "Corporate Tax", value: "21%" },
       { label: "VAT", value: "23%" },
     ],
