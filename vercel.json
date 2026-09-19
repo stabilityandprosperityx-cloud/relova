@@ -32,9 +32,28 @@
     }
   ],
   "rewrites": [
-    {
-      "source": "/((?!api/|.*\\.[a-zA-Z0-9]+$).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/dashboard", "destination": "/index.html" },
+    { "source": "/dashboard/:path*", "destination": "/index.html" },
+    { "source": "/countries", "destination": "/index.html" },
+    { "source": "/countries/:path*", "destination": "/index.html" },
+    { "source": "/chat", "destination": "/index.html" },
+    { "source": "/pricing", "destination": "/index.html" },
+    { "source": "/terms", "destination": "/index.html" },
+    { "source": "/privacy", "destination": "/index.html" },
+    { "source": "/refund", "destination": "/index.html" },
+    { "source": "/guides/move-to-portugal", "destination": "/index.html" },
+    { "source": "/compare/portugal-vs-spain", "destination": "/index.html" },
+    { "source": "/best/best-countries-2026", "destination": "/index.html" },
+    { "source": "/help", "destination": "/index.html" },
+    { "source": "/contact", "destination": "/index.html" },
+    { "source": "/about", "destination": "/index.html" },
+    { "source": "/mission", "destination": "/index.html" },
+    { "source": "/cookie-policy", "destination": "/index.html" },
+    { "source": "/data-security", "destination": "/index.html" },
+    { "source": "/data-sources", "destination": "/index.html" },
+    { "source": "/compliance", "destination": "/index.html" },
+    { "source": "/tools", "destination": "/index.html" },
+    { "source": "/tools/:path*", "destination": "/index.html" }
   ]
 }
