@@ -7,7 +7,7 @@ export default function BestCountries2026() {
     <>
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href="https://blog.relova.ai/blog/best-countries-2026" />
+        <link rel="canonical" href="https://blog.relova.ai/blog/best-countries-expats-2026-comparison" />
       </Helmet>
       <ArticleLayout
       category="Best of"

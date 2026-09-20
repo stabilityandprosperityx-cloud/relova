@@ -7,7 +7,7 @@ export default function PortugalVsSpain() {
     <>
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href="https://blog.relova.ai/blog/portugal-vs-spain" />
+        <link rel="canonical" href="https://blog.relova.ai/blog/portugal-vs-spain-vs-georgia-relocation-2026" />
       </Helmet>
       <ArticleLayout
       category="Compare"

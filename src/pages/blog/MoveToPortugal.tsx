@@ -8,7 +8,10 @@ export default function MoveToPortugal() {
     <>
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href="https://blog.relova.ai/blog/move-to-portugal" />
+        {/* No matching blog.relova.ai post exists for this legacy standalone page (was
+            never published there). relova.ai/countries/portugal is the closest real,
+            live, indexed equivalent, so canonical there instead of a 404. */}
+        <link rel="canonical" href="https://relova.ai/countries/portugal" />
       </Helmet>
       <ArticleLayout
       category="Guide"
