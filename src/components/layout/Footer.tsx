@@ -29,7 +29,11 @@ const FOOTER_COLS = [
       { label: "Invitation Letter", href: "/tools/invitation-letter" },
       { label: "Tax Residency Tracker", href: "/tools/tax-residency-tracker" },
       { label: "Data & Sources", href: "/data-sources" },
-      { label: "Relocation Blog", href: "/blog" },
+      // The site's real blog (410 articles) lives on the blog.relova.ai
+      // subdomain — this used to point at /blog, a stale internal stub with
+      // only 3 legacy articles, silently starving the real blog of the
+      // footer's site-wide internal-link equity.
+      { label: "Relocation Blog", href: "https://blog.relova.ai" },
       { label: "Help Center", href: "/help" },
     ],
   },
@@ -133,12 +137,23 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      to={link.href}
-                      className="text-[13px] text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.href.startsWith("http") ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-[13px] text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.href}
+                        className="text-[13px] text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
