@@ -38,6 +38,15 @@ export default function Help() {
         title="Help Center — Relova"
         description="FAQs about Relova: how relocation planning works, saving plans, accuracy, and how we differ from general chatbots. Not legal advice."
         canonical="https://relova.ai/help"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((faq) => ({
+            "@type": "Question",
+            name: faq.q,
+            acceptedAnswer: { "@type": "Answer", text: faq.a },
+          })),
+        }}
       />
       <Navbar />
       <main className="pt-14">
