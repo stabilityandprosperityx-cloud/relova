@@ -5,13 +5,20 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { countryData } from "@/data/countries";
+import SEO from "@/components/SEO";
 
 export default function CountryPage() {
   const { slug } = useParams();
   const country = countryData[slug || "portugal"] || countryData.portugal;
+  const canonicalSlug = slug && countryData[slug] ? slug : "portugal";
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title={`${country.name} Relocation Guide 2026 — Visas, Taxes & Cost of Living | Relova`}
+        description={`${country.tagline}.${country.highlights[0] ? ` ${country.highlights[0]}.` : ""} Compare visa options, tax rates, and real cost-of-living data for ${country.name} on Relova.`}
+        canonical={`https://relova.ai/countries/${canonicalSlug}`}
+      />
       <Navbar />
       <main className="pt-24 pb-16">
         <div className="container max-w-4xl">
@@ -20,7 +27,7 @@ export default function CountryPage() {
             animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Link to="/dashboard" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8">
+            <Link to="/countries" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8">
               <ArrowLeft size={14} /> All countries
             </Link>
             <div className="flex items-center gap-4 mb-2">
