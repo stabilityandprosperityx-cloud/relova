@@ -254,7 +254,7 @@ export default function TaxResidencyTracker() {
         <title>183-Day Tax Residency Tracker — Relova</title>
         <meta
           name="description"
-          content="Free tax residency day tracker. Log stays by country and see how close you are to common 183-day thresholds. Awareness only — not a tax determination. Your data stays in your browser."
+          content="Free tax residency day tracker. Log stays by country and see how close you are to common 183-day thresholds — awareness only, not a tax determination."
         />
         <meta property="og:title" content="183-Day Tax Residency Tracker — Relova" />
         <meta
