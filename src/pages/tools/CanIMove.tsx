@@ -10,6 +10,7 @@ import { countryDatabase } from "@/lib/countryMatching";
 import { canIMoveTitle } from "@/lib/demonyms";
 import { hasDocumentsNeededPage, documentsNeededPath } from "@/lib/documentsNeededPairs";
 import { unslugify } from "@/lib/toolSlugs";
+import { countrySlugByName } from "@/data/countries";
 import { ArrowLeft } from "lucide-react";
 
 type FeasibilityStatus = "common" | "uncommon" | "uncached" | "loading" | "error";
@@ -36,6 +37,7 @@ export default function CanIMove() {
   const destinationProfile = destination
     ? countryDatabase.find((c) => c.name === destination)
     : undefined;
+  const destinationSlugForGuide = destination ? countrySlugByName(destination) : undefined;
 
   useEffect(() => {
     if (!citizenship || !destination) return;
@@ -207,16 +209,26 @@ export default function CanIMove() {
             making decisions.
           </p>
 
-          {hasDocumentsNeededPage(citizenship, destination) && (
-            <p className="text-[13px] text-muted-foreground mb-8">
-              Also:{" "}
-              <Link
-                to={documentsNeededPath(citizenship, destination)}
-                className="text-primary hover:underline"
-              >
-                What documents do I need to move to {destination} as a {citizenship} citizen? →
-              </Link>
-            </p>
+          {(hasDocumentsNeededPage(citizenship, destination) || destinationSlugForGuide) && (
+            <div className="text-[13px] text-muted-foreground mb-8 space-y-1.5">
+              {hasDocumentsNeededPage(citizenship, destination) && (
+                <p>
+                  <Link
+                    to={documentsNeededPath(citizenship, destination)}
+                    className="text-primary hover:underline"
+                  >
+                    What documents do I need to move to {destination} as a {citizenship} citizen? →
+                  </Link>
+                </p>
+              )}
+              {destinationSlugForGuide && (
+                <p>
+                  <Link to={`/countries/${destinationSlugForGuide}`} className="text-primary hover:underline">
+                    Full {destination} relocation guide — visas, taxes, cost of living →
+                  </Link>
+                </p>
+              )}
+            </div>
           )}
 
           <div className="surface-card p-6 sm:p-8 border-primary/20">

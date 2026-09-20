@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import AuthModal from "@/components/auth/AuthModal";
 import { supabase } from "@/integrations/supabase/client";
 import { countryDatabase } from "@/lib/countryMatching";
+import { countrySlugByName } from "@/data/countries";
 import { COMPARE_ROWS } from "@/lib/countryCompareRows";
 import { citizenshipDemonym } from "@/lib/demonyms";
 import { determineVisaType } from "@/lib/determineVisaType";
@@ -201,6 +202,8 @@ export default function CountryCompare() {
   const docsB = useDocCount(citizenship, valid ? nameB : null);
 
   const [authOpen, setAuthOpen] = useState(false);
+  const slugA = nameA ? countrySlugByName(nameA) : undefined;
+  const slugB = nameB ? countrySlugByName(nameB) : undefined;
 
   if (!valid || !profileA || !profileB || !nameA || !nameB) {
     return (
@@ -345,6 +348,22 @@ export default function CountryCompare() {
               );
             })}
           </div>
+
+          {/* Full guide cross-links */}
+          {(slugA || slugB) && (
+            <div className="text-[13px] text-muted-foreground mb-6 flex flex-wrap gap-x-6 gap-y-1">
+              {slugA && (
+                <Link to={`/countries/${slugA}`} className="text-primary hover:underline">
+                  Full {nameA} relocation guide →
+                </Link>
+              )}
+              {slugB && (
+                <Link to={`/countries/${slugB}`} className="text-primary hover:underline">
+                  Full {nameB} relocation guide →
+                </Link>
+              )}
+            </div>
+          )}
 
           {/* Document checklist row */}
           {citizenship && (

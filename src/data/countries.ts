@@ -2350,3 +2350,14 @@ export const countryData: Record<string, CountryData> = {
     ],
   },
 };
+
+// Name -> slug lookup, e.g. for cross-linking a country-specific tool page (comparison,
+// can-i-move, etc.) back to that country's full /countries/<slug> guide when one exists.
+// countryData names are unique, so the first match is the only match.
+const NAME_TO_SLUG: Record<string, string> = Object.fromEntries(
+  Object.entries(countryData).map(([slug, c]) => [c.name, slug])
+);
+
+export function countrySlugByName(name: string): string | undefined {
+  return NAME_TO_SLUG[name];
+}

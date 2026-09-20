@@ -11,6 +11,7 @@ import { canIMoveTitle } from "@/lib/demonyms";
 import { hasCanIMoveCrosslink, canIMovePath } from "@/lib/documentsNeededPairs";
 import { DocumentsPopularLinks } from "@/components/tools/DocumentsPopularLinks";
 import { unslugify } from "@/lib/toolSlugs";
+import { countrySlugByName } from "@/data/countries";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
 interface DocItem {
@@ -68,6 +69,7 @@ export default function DocumentsNeeded() {
   const { citizenshipSlug, destinationSlug } = useParams();
   const citizenship = unslugify(citizenshipSlug || "");
   const destination = unslugify(destinationSlug || "");
+  const destinationGuideSlug = destination ? countrySlugByName(destination) : undefined;
   const visaType = destination ? determineVisaType(destination) : "";
 
   const [status, setStatus] = useState<ChecklistStatus>("loading");
@@ -250,13 +252,24 @@ export default function DocumentsNeeded() {
             </div>
           )}
 
-          {hasCanIMoveCrosslink(citizenship, destination) && (
-            <p className="text-[13px] text-muted-foreground mb-8">
-              Also:{" "}
-              <Link to={canIMovePath(citizenship, destination)} className="text-primary hover:underline">
-                {canIMoveTitle(destination, citizenship)} →
-              </Link>
-            </p>
+          {(hasCanIMoveCrosslink(citizenship, destination) || destinationGuideSlug) && (
+            <div className="text-[13px] text-muted-foreground mb-8 space-y-1.5">
+              {hasCanIMoveCrosslink(citizenship, destination) && (
+                <p>
+                  Also:{" "}
+                  <Link to={canIMovePath(citizenship, destination)} className="text-primary hover:underline">
+                    {canIMoveTitle(destination, citizenship)} →
+                  </Link>
+                </p>
+              )}
+              {destinationGuideSlug && (
+                <p>
+                  <Link to={`/countries/${destinationGuideSlug}`} className="text-primary hover:underline">
+                    Full {destination} relocation guide — visas, taxes, cost of living →
+                  </Link>
+                </p>
+              )}
+            </div>
           )}
 
           <p className="text-[11px] text-muted-foreground/70 mb-8 leading-relaxed">
