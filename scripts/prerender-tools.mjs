@@ -223,6 +223,14 @@ function escapeHtml(s) {
 
 function writePage({ outPath, title, description, bodyHtml }) {
   mkdirSync(dirname(outPath), { recursive: true });
+  // Derive canonical from the route path (outPath relative to dist/, minus
+  // the trailing index.html) — every writePage caller gets a canonical tag
+  // for free, which the previous version of this script never emitted.
+  const routePath = outPath
+    .replace(distDir, "")
+    .replace(/index\.html$/, "")
+    .replace(/\/+$/, "");
+  const canonical = `https://relova.ai${routePath || "/"}`;
   const html = `<!doctype html>
 <html lang="en">
   <head>
@@ -231,6 +239,7 @@ function writePage({ outPath, title, description, bodyHtml }) {
     <link rel="icon" href="/favicon.png?v=3" type="image/png" />
     <title>${escapeHtml(title)}</title>
     <meta name="description" content="${escapeHtml(description)}" />
+    <link rel="canonical" href="${escapeHtml(canonical)}" />
     <meta property="og:title" content="${escapeHtml(title)}" />
     <meta property="og:description" content="${escapeHtml(description)}" />
     <meta property="og:type" content="website" />

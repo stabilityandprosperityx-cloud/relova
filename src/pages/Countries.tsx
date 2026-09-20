@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, FileText, DollarSign, Home, Briefcase, Search, X } from "lucide-react";
@@ -26,7 +26,21 @@ const quickStats = [
 ];
 
 export default function Countries() {
-  const [query, setQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState(() => searchParams.get("q") ?? "");
+
+  // Keep the URL in sync so /countries?q=... is shareable and matches the
+  // WebSite SearchAction declared in index.html's JSON-LD.
+  useEffect(() => {
+    const next = new URLSearchParams(searchParams);
+    if (query.trim()) {
+      next.set("q", query);
+    } else {
+      next.delete("q");
+    }
+    setSearchParams(next, { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   const filteredOrder = useMemo(() => {
     const q = query.trim().toLowerCase();

@@ -7,6 +7,8 @@ export type SEOProps = {
   description: string;
   ogImage?: string;
   canonical?: string;
+  /** One or more JSON-LD objects (e.g. BreadcrumbList) to emit as <script type="application/ld+json">. */
+  jsonLd?: object | object[];
 };
 
 function resolveOgImage(ogImage?: string) {
@@ -16,8 +18,9 @@ function resolveOgImage(ogImage?: string) {
   return `${SITE_ORIGIN}${p}`;
 }
 
-export default function SEO({ title, description, ogImage, canonical }: SEOProps) {
+export default function SEO({ title, description, ogImage, canonical, jsonLd }: SEOProps) {
   const image = resolveOgImage(ogImage);
+  const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   return (
     <Helmet>
       <title>{title}</title>
@@ -31,6 +34,11 @@ export default function SEO({ title, description, ogImage, canonical }: SEOProps
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+      {jsonLdList.map((obj, i) => (
+        <script key={i} type="application/ld+json">
+          {JSON.stringify(obj)}
+        </script>
+      ))}
     </Helmet>
   );
 }

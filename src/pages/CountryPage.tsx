@@ -18,6 +18,14 @@ export default function CountryPage() {
         title={`${country.name} Relocation Guide 2026 — Visas, Taxes & Cost of Living | Relova`}
         description={`${country.tagline}.${country.highlights[0] ? ` ${country.highlights[0]}.` : ""} Compare visa options, tax rates, and real cost-of-living data for ${country.name} on Relova.`}
         canonical={`https://relova.ai/countries/${canonicalSlug}`}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Countries", item: "https://relova.ai/countries" },
+            { "@type": "ListItem", position: 2, name: country.name, item: `https://relova.ai/countries/${canonicalSlug}` },
+          ],
+        }}
       />
       <Navbar />
       <main className="pt-24 pb-16">

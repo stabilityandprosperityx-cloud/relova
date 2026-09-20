@@ -41,8 +41,12 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
-function writePage({ outPath, title, description, canonical, bodyHtml }) {
+function writePage({ outPath, title, description, canonical, bodyHtml, jsonLd }) {
   mkdirSync(dirname(outPath), { recursive: true });
+  const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  const jsonLdScripts = jsonLdList
+    .map((obj) => `<script type="application/ld+json">${JSON.stringify(obj)}</script>`)
+    .join("\n    ");
   const html = `<!doctype html>
 <html lang="en">
   <head>
@@ -58,6 +62,7 @@ function writePage({ outPath, title, description, canonical, bodyHtml }) {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(title)}" />
     <meta name="twitter:description" content="${escapeHtml(description)}" />
+    ${jsonLdScripts}
     ${links.join("\n    ")}
   </head>
   <body>
@@ -92,6 +97,11 @@ writePage({
     .map((c) => c.name)
     .join(", ")}, and more.`,
   canonical: "https://relova.ai/countries",
+  jsonLd: {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [{ "@type": "ListItem", position: 1, name: "Countries", item: "https://relova.ai/countries" }],
+  },
   bodyHtml: `
     <main style="max-width:56rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
       <h1 style="font-family:Georgia,serif;font-size:1.9rem;line-height:1.2">Compare relocation destinations</h1>
@@ -131,6 +141,14 @@ for (const c of countries) {
     title,
     description,
     canonical: `https://relova.ai/countries/${c.slug}`,
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Countries", item: "https://relova.ai/countries" },
+        { "@type": "ListItem", position: 2, name: c.name, item: `https://relova.ai/countries/${c.slug}` },
+      ],
+    },
     bodyHtml: `
     <main style="max-width:40rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
       <p><a href="/countries">← All countries</a></p>
