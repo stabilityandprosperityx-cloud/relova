@@ -9,6 +9,8 @@ export type SEOProps = {
   canonical?: string;
   /** One or more JSON-LD objects (e.g. BreadcrumbList) to emit as <script type="application/ld+json">. */
   jsonLd?: object | object[];
+  /** Set on pages that shouldn't be indexed (404s, invalid dynamic-route params, etc). */
+  noindex?: boolean;
 };
 
 function resolveOgImage(ogImage?: string) {
@@ -22,13 +24,14 @@ function resolveOgImage(ogImage?: string) {
   return `${SITE_ORIGIN}${p}`;
 }
 
-export default function SEO({ title, description, ogImage, canonical, jsonLd }: SEOProps) {
+export default function SEO({ title, description, ogImage, canonical, jsonLd, noindex }: SEOProps) {
   const image = resolveOgImage(ogImage);
   const jsonLdList = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
   return (
     <Helmet>
       <title>{title}</title>
       {canonical ? <link rel="canonical" href={canonical} /> : null}
+      {noindex ? <meta name="robots" content="noindex, follow" /> : null}
       <meta name="description" content={description} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

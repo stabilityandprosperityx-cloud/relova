@@ -7,11 +7,21 @@ import { motion } from "framer-motion";
 import { countryData } from "@/data/countries";
 import { salaryCountrySlug } from "@/data/salaryCountries";
 import SEO from "@/components/SEO";
+import NotFound from "@/pages/NotFound";
 
 export default function CountryPage() {
   const { slug } = useParams();
-  const country = countryData[slug || "portugal"] || countryData.portugal;
+
+  // A mistyped or dead /countries/<slug> URL used to silently render
+  // Portugal's content (with canonical also pointing at Portugal) instead of
+  // a real 404 — confusing for users and a soft-404 for crawlers. Any slug
+  // not in the dataset now gets an actual (noindexed) 404 page.
+  if (slug && !countryData[slug]) {
+    return <NotFound />;
+  }
+
   const canonicalSlug = slug && countryData[slug] ? slug : "portugal";
+  const country = countryData[canonicalSlug];
   const salarySlug = salaryCountrySlug(canonicalSlug);
 
   return (

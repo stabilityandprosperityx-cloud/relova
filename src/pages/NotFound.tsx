@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import SEO from "@/components/SEO";
 
 const NotFound = () => {
   const location = useLocation();
@@ -10,6 +11,14 @@ const NotFound = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">
+      {/* This is a client-rendered SPA, so we can't send a real HTTP 404 —
+          but we can at least tell crawlers not to index the page, so a
+          mistyped or dead URL doesn't get indexed as if it were real content. */}
+      <SEO
+        title="Page Not Found | Relova"
+        description="The page you're looking for doesn't exist or may have moved."
+        noindex
+      />
       <div className="text-center">
         <h1 className="mb-4 text-4xl font-bold">404</h1>
         <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
