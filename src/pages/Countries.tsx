@@ -1,8 +1,10 @@
+import { useMemo, useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, FileText, DollarSign, Home, Briefcase } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ArrowRight, FileText, DollarSign, Home, Briefcase, Search, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { countryData } from "@/data/countries";
 import SEO from "@/components/SEO";
@@ -24,6 +26,22 @@ const quickStats = [
 ];
 
 export default function Countries() {
+  const [query, setQuery] = useState("");
+
+  const filteredOrder = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return countryOrder;
+    return countryOrder.filter((slug) => {
+      const country = countryData[slug];
+      if (!country) return false;
+      return (
+        country.name.toLowerCase().includes(q) ||
+        country.tagline.toLowerCase().includes(q) ||
+        country.highlights.some((h) => h.toLowerCase().includes(q))
+      );
+    });
+  }, [query]);
+
   return (
     <div className="min-h-screen bg-background">
       <SEO
@@ -93,8 +111,37 @@ export default function Countries() {
             ))}
           </motion.div>
 
+          <div className="relative max-w-md mb-8">
+            <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search countries — e.g. Portugal, digital nomad, Golden Visa..."
+              className="pl-10 pr-9 h-11"
+            />
+            {query && (
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                aria-label="Clear search"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              >
+                <X size={16} />
+              </button>
+            )}
+          </div>
+
+          {query && (
+            <p className="text-sm text-muted-foreground mb-4">
+              {filteredOrder.length === 0
+                ? `No destinations match "${query}"`
+                : `${filteredOrder.length} destination${filteredOrder.length === 1 ? "" : "s"} match "${query}"`}
+            </p>
+          )}
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {countryOrder.map((slug, i) => {
+            {filteredOrder.map((slug, i) => {
               const country = countryData[slug];
               if (!country) return null;
               return (
