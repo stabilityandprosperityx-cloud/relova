@@ -8,7 +8,13 @@ import { countryData } from "@/data/countries";
 import SEO from "@/components/SEO";
 import countriesHero from "@/assets/redesign/countries-hero.jpg";
 
-const countryOrder = ["portugal", "spain", "uae", "usa", "canada", "germany", "australia", "thailand", "mexico", "estonia", "indonesia", "singapore", "argentina"];
+// Curated front-of-list order for the most-searched destinations; every other
+// country in countryData is appended automatically so new entries always show up.
+const featuredOrder = ["portugal", "spain", "uae", "usa", "canada", "germany", "australia", "thailand", "mexico", "uk", "france", "italy", "switzerland", "netherlands", "singapore"];
+const countryOrder = [
+  ...featuredOrder,
+  ...Object.keys(countryData).filter((slug) => !featuredOrder.includes(slug)),
+];
 
 const quickStats = [
   { icon: FileText, label: "Visa Pathways", value: "120+" },
@@ -61,7 +67,7 @@ export default function Countries() {
                 }}
               >
                 <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#8b5cf6", display: "inline-block" }} />
-                70+ destinations · Real visa paths
+                60+ destinations · Real visa paths
               </div>
               <p
                 className="text-lg md:text-xl max-w-[520px] font-medium"
