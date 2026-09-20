@@ -243,6 +243,11 @@ function writePage({ outPath, title, description, bodyHtml }) {
     <meta property="og:title" content="${escapeHtml(title)}" />
     <meta property="og:description" content="${escapeHtml(description)}" />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://relova.ai/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeHtml(title)}" />
+    <meta name="twitter:description" content="${escapeHtml(description)}" />
+    <meta name="twitter:image" content="https://relova.ai/og-image.jpg" />
     ${links.join("\n    ")}
   </head>
   <body>

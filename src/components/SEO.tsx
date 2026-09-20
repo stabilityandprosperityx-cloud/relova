@@ -12,7 +12,11 @@ export type SEOProps = {
 };
 
 function resolveOgImage(ogImage?: string) {
-  const path = (ogImage?.trim() || "/favicon.png").trim();
+  // Falls back to the real 1200x630 branded OG image, not the 128x128
+  // favicon — a page using <SEO> without an explicit ogImage previously
+  // got the favicon as its social-share preview image, which is both the
+  // wrong aspect ratio and effectively invisible at OG preview sizes.
+  const path = (ogImage?.trim() || "/og-image.jpg").trim();
   if (/^https?:\/\//i.test(path)) return path;
   const p = path.startsWith("/") ? path : `/${path}`;
   return `${SITE_ORIGIN}${p}`;
