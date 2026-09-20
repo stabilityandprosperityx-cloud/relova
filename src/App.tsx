@@ -1,49 +1,58 @@
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
-import Index from "./pages/Index.tsx";
-import Dashboard from "./pages/Dashboard.tsx";
-import DashboardOverviewPage from "./pages/dashboard/DashboardOverviewPage.tsx";
-import DashboardAdvisorPage from "./pages/dashboard/DashboardAdvisorPage.tsx";
-import DashboardPlanPage from "./pages/dashboard/DashboardPlanPage.tsx";
-import DashboardChecklistPage from "./pages/dashboard/DashboardChecklistPage.tsx";
-import DashboardDocumentsPage from "./pages/dashboard/DashboardDocumentsPage.tsx";
-import DashboardCountriesPage from "./pages/dashboard/DashboardCountriesPage.tsx";
-import Countries from "./pages/Countries.tsx";
-import Chat from "./pages/Chat.tsx";
-import CountryPage from "./pages/CountryPage.tsx";
-import Pricing from "./pages/Pricing.tsx";
-import NotFound from "./pages/NotFound.tsx";
-import Terms from "./pages/Terms.tsx";
-import Privacy from "./pages/Privacy.tsx";
-import Refund from "./pages/Refund.tsx";
-import MoveToPortugal from "./pages/blog/MoveToPortugal.tsx";
-import PortugalVsSpain from "./pages/blog/PortugalVsSpain.tsx";
-import BestCountries2026 from "./pages/blog/BestCountries2026.tsx";
-import Help from "./pages/Help.tsx";
-import Contact from "./pages/Contact.tsx";
-import About from "./pages/About.tsx";
-import Mission from "./pages/Mission.tsx";
-import CookiePolicy from "./pages/CookiePolicy.tsx";
-import DataSecurity from "./pages/DataSecurity.tsx";
-import Compliance from "./pages/Compliance.tsx";
-import CanIMoveHub from "./pages/tools/CanIMoveHub.tsx";
-import CanIMove from "./pages/tools/CanIMove.tsx";
-import MoveAsHub from "./pages/tools/MoveAsHub.tsx";
-import MoveAsPersona from "./pages/tools/MoveAsPersona.tsx";
-import DocumentsNeededHub from "./pages/tools/DocumentsNeededHub.tsx";
-import DocumentsNeeded from "./pages/tools/DocumentsNeeded.tsx";
-import CountryCompareHub from "./pages/tools/CountryCompareHub.tsx";
-import CountryCompare from "./pages/tools/CountryCompare.tsx";
-import InvitationLetter from "./pages/tools/InvitationLetter.tsx";
-import TaxResidencyTracker from "./pages/tools/TaxResidencyTracker.tsx";
-import DataSources from "./pages/DataSources.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import { usePageTracking } from "./hooks/usePageTracking.ts";
+
+// Every route below is code-split with React.lazy: previously all ~40 routes
+// (dashboard, chat, every tool, every legal page) were bundled into one ~1.5MB
+// JS file loaded on every single page view, including the 63 prerendered
+// /countries/<slug> pages and every /tools/* page that only need their own
+// route's code. Splitting per-route cuts the JS each page view has to
+// download/parse/execute, which is what Core Web Vitals (TBT, INP) and
+// mobile load time actually measure — the static prerendered HTML already
+// covers first paint, so this only affects hydration weight, not SEO content.
+const Index = lazy(() => import("./pages/Index.tsx"));
+const Dashboard = lazy(() => import("./pages/Dashboard.tsx"));
+const DashboardOverviewPage = lazy(() => import("./pages/dashboard/DashboardOverviewPage.tsx"));
+const DashboardAdvisorPage = lazy(() => import("./pages/dashboard/DashboardAdvisorPage.tsx"));
+const DashboardPlanPage = lazy(() => import("./pages/dashboard/DashboardPlanPage.tsx"));
+const DashboardChecklistPage = lazy(() => import("./pages/dashboard/DashboardChecklistPage.tsx"));
+const DashboardDocumentsPage = lazy(() => import("./pages/dashboard/DashboardDocumentsPage.tsx"));
+const DashboardCountriesPage = lazy(() => import("./pages/dashboard/DashboardCountriesPage.tsx"));
+const Countries = lazy(() => import("./pages/Countries.tsx"));
+const Chat = lazy(() => import("./pages/Chat.tsx"));
+const CountryPage = lazy(() => import("./pages/CountryPage.tsx"));
+const Pricing = lazy(() => import("./pages/Pricing.tsx"));
+const NotFound = lazy(() => import("./pages/NotFound.tsx"));
+const Terms = lazy(() => import("./pages/Terms.tsx"));
+const Privacy = lazy(() => import("./pages/Privacy.tsx"));
+const Refund = lazy(() => import("./pages/Refund.tsx"));
+const MoveToPortugal = lazy(() => import("./pages/blog/MoveToPortugal.tsx"));
+const PortugalVsSpain = lazy(() => import("./pages/blog/PortugalVsSpain.tsx"));
+const BestCountries2026 = lazy(() => import("./pages/blog/BestCountries2026.tsx"));
+const Help = lazy(() => import("./pages/Help.tsx"));
+const Contact = lazy(() => import("./pages/Contact.tsx"));
+const About = lazy(() => import("./pages/About.tsx"));
+const Mission = lazy(() => import("./pages/Mission.tsx"));
+const CookiePolicy = lazy(() => import("./pages/CookiePolicy.tsx"));
+const DataSecurity = lazy(() => import("./pages/DataSecurity.tsx"));
+const Compliance = lazy(() => import("./pages/Compliance.tsx"));
+const CanIMoveHub = lazy(() => import("./pages/tools/CanIMoveHub.tsx"));
+const CanIMove = lazy(() => import("./pages/tools/CanIMove.tsx"));
+const MoveAsHub = lazy(() => import("./pages/tools/MoveAsHub.tsx"));
+const MoveAsPersona = lazy(() => import("./pages/tools/MoveAsPersona.tsx"));
+const DocumentsNeededHub = lazy(() => import("./pages/tools/DocumentsNeededHub.tsx"));
+const DocumentsNeeded = lazy(() => import("./pages/tools/DocumentsNeeded.tsx"));
+const CountryCompareHub = lazy(() => import("./pages/tools/CountryCompareHub.tsx"));
+const CountryCompare = lazy(() => import("./pages/tools/CountryCompare.tsx"));
+const InvitationLetter = lazy(() => import("./pages/tools/InvitationLetter.tsx"));
+const TaxResidencyTracker = lazy(() => import("./pages/tools/TaxResidencyTracker.tsx"));
+const DataSources = lazy(() => import("./pages/DataSources.tsx"));
 
 const queryClient = new QueryClient();
 
@@ -69,6 +78,7 @@ function AppRoutes() {
   return (
     <>
       <ScrollToTop />
+      <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/dashboard" element={<Dashboard />}>
@@ -113,6 +123,7 @@ function AppRoutes() {
         <Route path="/tools/tax-residency-tracker" element={<TaxResidencyTracker />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </Suspense>
     </>
   );
 }
