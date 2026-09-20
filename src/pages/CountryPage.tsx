@@ -5,12 +5,14 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { countryData } from "@/data/countries";
+import { salaryCountrySlug } from "@/data/salaryCountries";
 import SEO from "@/components/SEO";
 
 export default function CountryPage() {
   const { slug } = useParams();
   const country = countryData[slug || "portugal"] || countryData.portugal;
   const canonicalSlug = slug && countryData[slug] ? slug : "portugal";
+  const salarySlug = salaryCountrySlug(canonicalSlug);
 
   return (
     <div className="min-h-screen bg-background">
@@ -94,6 +96,19 @@ export default function CountryPage() {
                 </div>
               ))}
             </div>
+            {salarySlug && (
+              <p className="text-sm text-muted-foreground mt-5">
+                Curious what you&apos;d actually earn in {country.name}?{" "}
+                <a
+                  href={`https://salary.relova.ai/${salarySlug}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary font-medium hover:underline"
+                >
+                  See real, crowdsourced {country.name} salaries →
+                </a>
+              </p>
+            )}
           </motion.section>
 
           {/* Checklist */}
