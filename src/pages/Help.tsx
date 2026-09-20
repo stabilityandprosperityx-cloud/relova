@@ -36,7 +36,7 @@ export default function Help() {
     <div className="min-h-screen bg-background">
       <SEO
         title="Help Center — Relova"
-        description="FAQs about Relova: how our relocation planning works, saving plans, accuracy, and how we differ from general chatbots. Not legal advice—always verify with a professional."
+        description="FAQs about Relova: how relocation planning works, saving plans, accuracy, and how we differ from general chatbots. Not legal advice."
         canonical="https://relova.ai/help"
       />
       <Navbar />
