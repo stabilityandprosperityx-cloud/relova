@@ -15,18 +15,23 @@
     <link rel="shortcut icon" href="/favicon.png?v=3" type="image/png" />
     <title>Relova — Know where to move. Know how to do it.</title>
     <script>history.scrollRestoration="manual";window.scrollTo(0,0);</script>
-    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <!-- Only pricing/checkout flows actually call into Paddle, but this
+         previously blocked HTML parsing on every single page load
+         (country guides, blog links, everything) while it fetched from
+         cdn.paddle.com. defer lets the page render before it's needed. -->
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js" defer></script>
     <meta name="description" content="Turn international relocation into a clear, step-by-step plan. Visas, documents, housing — tailored to your passport, budget, and goals." />
     <meta name="author" content="Relova" />
     <meta property="og:site_name" content="Relova" />
     <meta property="og:title" content="Relova — Your next chapter, planned with clarity." />
     <meta property="og:description" content="Expert relocation planning — finds your country, builds your personalized plan, and guides every step." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:url" content="https://relova.ai/" />
+    <meta property="og:image" content="https://relova.ai/og-image.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@RelovaAI" />
-    <meta name="twitter:image" content="/og-image.jpg" />
+    <meta name="twitter:image" content="https://relova.ai/og-image.jpg" />
     <meta name="facebook-domain-verification" content="fnjpm6psc8scwgxhf9vuum0bwg2401" />
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Organization","name":"Relova","url":"https://relova.ai","logo":"https://relova.ai/favicon.png","sameAs":["https://twitter.com/RelovaAI"]}
