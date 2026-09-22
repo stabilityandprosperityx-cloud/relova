@@ -307,6 +307,105 @@ const LAUNCH_PAIRS = [
     status: "common",
     note: "Employer-sponsored work visas remain the top route; roughly 725,000 Filipinos already live in Saudi Arabia, mostly as overseas workers.",
   },
+  // ─── Second expansion batch (16) — same 8 citizenships, more researched
+  // destinations. Two marked "uncommon" where the route is real but
+  // smaller/growing rather than an established, high-volume corridor. ───
+  {
+    citizenship: "Russia",
+    destination: "Montenegro",
+    status: "common",
+    note: "Popular since 2022 for an EU-adjacent lifestyle; business/company-registration and real-estate residency routes are common, though not visa-free like Georgia or Armenia.",
+  },
+  {
+    citizenship: "Russia",
+    destination: "Indonesia",
+    status: "common",
+    note: "Long-stay options (B211A remote-worker, Second Home visa) are widely used by Russians relocating to Bali; large informal community, though not a path to citizenship.",
+  },
+  {
+    citizenship: "United States",
+    destination: "Italy",
+    status: "common",
+    note: "Elective Residency Visa is standard for Americans with passive income; many also qualify for citizenship by descent (jure sanguinis) if they have Italian ancestry.",
+  },
+  {
+    citizenship: "United States",
+    destination: "Colombia",
+    status: "common",
+    note: "Digital Nomad (Visa V) and Rentista routes are increasingly used by Americans, especially in Medellin; simpler and cheaper than most Latin American alternatives.",
+  },
+  {
+    citizenship: "United Kingdom",
+    destination: "UAE",
+    status: "common",
+    note: "Golden Visa and standard employment visas are common; large existing British expat community drawn by no income tax and an English-language business environment.",
+  },
+  {
+    citizenship: "United Kingdom",
+    destination: "New Zealand",
+    status: "common",
+    note: "Skilled Migrant Category plus ancestry/working-holiday routes are common; Commonwealth ties and a shared language ease the process, similar to the Australia route.",
+  },
+  {
+    citizenship: "India",
+    destination: "Germany",
+    status: "common",
+    note: "EU Blue Card is a major and growing route — India is consistently one of the top non-EU nationalities receiving Blue Cards, driven by IT and engineering demand.",
+  },
+  {
+    citizenship: "India",
+    destination: "Singapore",
+    status: "common",
+    note: "Employment Pass and S Pass are standard; Indians are one of the largest expat communities in Singapore, especially in tech and finance.",
+  },
+  {
+    citizenship: "China",
+    destination: "Thailand",
+    status: "common",
+    note: "Elite Visa and Long-Term Resident routes are popular with Chinese retirees and investors; large existing Chinese community, especially in Chiang Mai and Phuket.",
+  },
+  {
+    citizenship: "China",
+    destination: "New Zealand",
+    status: "common",
+    note: "Skilled Migrant and investor visas are established routes; long-standing Chinese-New Zealand community, particularly in Auckland.",
+  },
+  {
+    citizenship: "Brazil",
+    destination: "Canada",
+    status: "common",
+    note: "Express Entry and study-to-work pathways are increasingly used by Brazilians; growing community, though the English/French requirement is the main hurdle.",
+  },
+  {
+    citizenship: "Brazil",
+    destination: "United Kingdom",
+    status: "uncommon",
+    note: "No special UK mobility agreement for Brazilians, unlike the Portugal/Spain routes; Skilled Worker visa and (for eligible ages) Youth Mobility are used but this is a smaller, harder path.",
+  },
+  {
+    citizenship: "Nigeria",
+    destination: "Ireland",
+    status: "uncommon",
+    note: "Skilled Worker and student-to-stay-back visas are used and growing, but this route is smaller and less established than Nigeria's UK or Canada corridors.",
+  },
+  {
+    citizenship: "Nigeria",
+    destination: "Germany",
+    status: "uncommon",
+    note: "Skilled Worker visa and Ausbildung (vocational training) programs are increasingly popular, but this corridor is newer and smaller than the UK/Canada routes.",
+  },
+  {
+    citizenship: "Philippines",
+    destination: "Australia",
+    status: "common",
+    note: "Skilled Independent and Employer Sponsored visas are common; large, well-established Filipino-Australian community.",
+  },
+  {
+    citizenship: "Philippines",
+    destination: "Japan",
+    status: "common",
+    note: "Technical Intern Training Program and entertainer/caregiver visas are long-standing routes; large historic Filipino community in Japan.",
+  },
 ];
 
 /** Keep in sync with src/lib/demonyms.ts */

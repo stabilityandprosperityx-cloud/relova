@@ -1,191 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
+<url>
     <loc>https://relova.ai/tools</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/can-i-move</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/where-should-i-move</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/where-should-i-move/digital-nomad</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/where-should-i-move/retiree</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/where-should-i-move/family</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/where-should-i-move/safety-first</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/where-should-i-move/budget</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/where-should-i-move/fresh-start</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/russia/portugal</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/russia/armenia</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/russia/cyprus</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/russia/czech-republic</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/russia/montenegro</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/russia/georgia</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/russia/turkey</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/russia/uae</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/russia/thailand</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/united-states/portugal</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/united-states/mexico</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/united-kingdom/spain</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/india/uae</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/brazil/portugal</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/china/japan</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/india/germany</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/brazil/spain</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/china/singapore</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/nigeria/united-kingdom</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/nigeria/canada</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/philippines/uae</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/philippines/canada</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/documents-needed/germany/portugal</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/country-compare</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/invitation-letter</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/invitation-letter/schengen</loc>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/tools/tax-residency-tracker</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
+<url>
     <loc>https://relova.ai/data-sources</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -412,6 +412,86 @@
   </url>
   <url>
     <loc>https://relova.ai/tools/can-i-move/philippines/saudi-arabia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/russia/montenegro</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/russia/indonesia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/united-states/italy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/united-states/colombia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/united-kingdom/uae</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/united-kingdom/new-zealand</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/india/germany</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/india/singapore</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/china/thailand</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/china/new-zealand</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/brazil/canada</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/brazil/united-kingdom</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/nigeria/ireland</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/nigeria/germany</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/philippines/australia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/can-i-move/philippines/japan</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
