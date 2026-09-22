@@ -130,11 +130,67 @@ function matchingBraceEnd(s: string): number {
   return -1;
 }
 
+/**
+ * Escape raw control characters (newline/tab/CR) found *inside* JSON string
+ * literals, tracking quote/escape state so structural whitespace outside
+ * strings is left untouched. Guards against a real failure mode: Claude's
+ * response can be split across multiple `text` content blocks (see
+ * extractTextFromClaudeContent's `.join("\n")`), and if that split lands
+ * inside a long `description` field, the inserted literal newline breaks
+ * JSON.parse even though the surrounding text looks well-formed.
+ */
+function escapeControlCharsInStrings(s: string): string {
+  let out = "";
+  let inString = false;
+  let escape = false;
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (inString) {
+      if (escape) {
+        out += c;
+        escape = false;
+        continue;
+      }
+      if (c === "\\") {
+        out += c;
+        escape = true;
+        continue;
+      }
+      if (c === '"') {
+        inString = false;
+        out += c;
+        continue;
+      }
+      if (c === "\n") {
+        out += "\\n";
+        continue;
+      }
+      if (c === "\r") {
+        continue; // drop bare CR -- any real line break is already escaped above
+      }
+      if (c === "\t") {
+        out += "\\t";
+        continue;
+      }
+      out += c;
+      continue;
+    }
+    if (c === '"') {
+      inString = true;
+      out += c;
+      continue;
+    }
+    out += c;
+  }
+  return out;
+}
+
 function sanitizeJsonish(s: string): string {
-  return s
+  const withStraightQuotes = s
     .replace(/[\u201C\u201D]/g, '"')
     .replace(/[\u2018\u2019]/g, "'")
     .replace(/,\s*([}\]])/g, "$1");
+  return escapeControlCharsInStrings(withStraightQuotes);
 }
 
 /** Prefer fenced JSON, else first {...} object that contains "documents". */
