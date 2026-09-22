@@ -770,6 +770,34 @@ const docSnapByKey = new Map(
   docSnapshots.map((s) => [`${s.citizenship}|${s.destination}|${s.visa_type}`, s]),
 );
 
+// Real coverage stats computed from the actual snapshot file, not hand-updated
+// numbers — these were previously hardcoded (24 checklists, 500 items, "as of
+// August 10, 2026") and had drifted stale as pairs were added over several
+// sessions without anyone updating this page to match.
+let totalDocItems = 0;
+let sourcedDocItems = 0;
+let latestGeneratedAt = null;
+for (const snap of docSnapshots) {
+  for (const doc of snap.documents || []) {
+    totalDocItems++;
+    if (doc.source && String(doc.source).trim() !== "") sourcedDocItems++;
+  }
+  const genAt = snap.generated_at ? new Date(snap.generated_at) : null;
+  if (genAt && !Number.isNaN(genAt.getTime()) && (!latestGeneratedAt || genAt > latestGeneratedAt)) {
+    latestGeneratedAt = genAt;
+  }
+}
+const sourcedPct = totalDocItems > 0 ? ((sourcedDocItems / totalDocItems) * 100).toFixed(1) : "0.0";
+const latestGeneratedAtLabel = latestGeneratedAt
+  ? latestGeneratedAt.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" })
+  : "an earlier research pass";
+const STALE_CACHE_MS = 30 * 24 * 60 * 60 * 1000;
+const buildTime = Date.now();
+const staleDocRows = docSnapshots.filter((s) => {
+  const genAt = s.generated_at ? new Date(s.generated_at).getTime() : NaN;
+  return !Number.isNaN(genAt) && buildTime - genAt > STALE_CACHE_MS;
+}).length;
+
 function formatVerifiedDate(iso) {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return String(iso || "");
@@ -1039,8 +1067,8 @@ writePage({
       <h2 id="methodology" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">How data is generated</h2>
       <p style="color:#555;margin-top:0.75rem;line-height:1.6">Three layers sit behind our tools. Only the first is source-cited research. The other two are compiled editorial files and should not be read as official figures.</p>
       <h3 style="font-size:1rem;margin-top:1.25rem">1. Document checklists — AI-researched, source-cited (Tier 1)</h3>
-      <p style="color:#888;font-size:0.85rem;margin-top:0.35rem">Last verified (published pair pages): August 5, 2026. Cache-coverage snapshot as of August 10, 2026: generated August 4–6, 2026.</p>
-      <p style="color:#555;margin-top:0.5rem;line-height:1.6">An AI research pipeline searches the live web, prioritizes official government and consular sources, and stores results in a cache. Cached entries are treated as valid for about 30 days. 496 of 500 document items (99.2%) include a named official or consular source. Citizenship-specific destination notes in Can I Move use a related AI cache (8 citizenships, 151 destination matches as of August 10, 2026). Those notes are not the same as the source-cited checklist items in the table below.</p>
+      <p style="color:#888;font-size:0.85rem;margin-top:0.35rem">Cache-coverage snapshot: computed at build time from the live checklist cache, most recently generated ${latestGeneratedAtLabel}.</p>
+      <p style="color:#555;margin-top:0.5rem;line-height:1.6">An AI research pipeline searches the live web, prioritizes official government and consular sources, and stores results in a cache. Cached entries are treated as valid for about 30 days. ${sourcedDocItems} of ${totalDocItems} document items (${sourcedPct}%) include a named official or consular source. Citizenship-specific destination notes in Can I Move use a related AI cache (8 citizenships, roughly 15-20 destination matches per citizenship from the most recent research pass). Those notes are not the same as the source-cited checklist items in the table below.</p>
       <h3 style="font-size:1rem;margin-top:1.25rem">2. Country reference database — static, editorial (Tier 2)</h3>
       <p style="color:#888;font-size:0.85rem;margin-top:0.35rem">No per-field verification date.</p>
       <p style="color:#555;margin-top:0.5rem;line-height:1.6">A compiled country file covering 106 countries (cost level, safety score, healthcare quality, climate, and similar fields). Not government-sourced, not citizenship-specific, and not produced by the checklist research pipeline.</p>
@@ -1049,19 +1077,19 @@ writePage({
       <p style="color:#555;margin-top:0.5rem;line-height:1.6">A separate overlay covering 28 countries, used only in comparison tools. Compiled editorial baseline — not government-sourced, and not listed as figures on this page. Not offered as a citable dataset.</p>
 
       <h2 id="coverage" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Current coverage</h2>
-      <p style="color:#888;font-size:0.85rem;margin-top:0.5rem">Snapshot from our live caches and static reference files, as of August 10, 2026. These grow as we research more pairs — they are not a permanent claim.</p>
+      <p style="color:#888;font-size:0.85rem;margin-top:0.5rem">Snapshot from our live caches and static reference files, computed at build time from the checklist cache (most recently generated ${latestGeneratedAtLabel}). These grow as we research more pairs — they are not a permanent claim.</p>
       <ul style="margin-top:0.75rem;padding-left:1.25rem;line-height:1.7;color:#444">
-        <li><strong>24</strong> citizenship → destination document checklists generated</li>
-        <li><strong>500</strong> document requirements catalogued — <strong>496 (99.2%)</strong> with a named official or consular source</li>
-        <li><strong>8</strong> citizenships analyzed for realistic relocation destinations — <strong>151</strong> destination matches</li>
+        <li><strong>${docSnapshots.length}</strong> citizenship → destination document checklists generated</li>
+        <li><strong>${totalDocItems}</strong> document requirements catalogued — <strong>${sourcedDocItems} (${sourcedPct}%)</strong> with a named official or consular source</li>
+        <li><strong>8</strong> citizenships analyzed for realistic relocation destinations, roughly 15-20 destination matches per citizenship</li>
         <li><strong>${LAUNCH_PAIRS.length}</strong> cached Can I Move citizenship → destination checks published</li>
         <li><strong>${compareSnapshots.length}</strong> cached Country Compare pages published</li>
         <li><strong>106</strong> countries in our static reference database (lifestyle / cost / safety baseline — not AI checklist research)</li>
       </ul>
-      <p style="color:#888;font-size:0.8rem;margin-top:0.75rem;line-height:1.6">Of 500 cached document items, 496 carry a non-empty named source field; 4 do not. We do not treat those 4 as sourced evidence.</p>
+      <p style="color:#888;font-size:0.8rem;margin-top:0.75rem;line-height:1.6">Of ${totalDocItems} cached document items, ${sourcedDocItems} carry a non-empty named source field; ${totalDocItems - sourcedDocItems} do not. We do not treat those as sourced evidence.</p>
 
       <h2 id="checklists" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Published document checklists</h2>
-      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Last-verified dates below are the cache timestamps from the document-checklist snapshot used to prerender each pair page — not a live database query. The table lists every checklist with a public Documents Needed URL (${DOC_LAUNCH_PAIRS.length} pairs). Coverage figures above count 24 cached checklists as of August 10, 2026; one cached row is not published as a standalone page, so it is not listed here.</p>
+      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Last-verified dates below are the cache timestamps from the document-checklist snapshot used to prerender each pair page — not a live database query. The table lists every checklist with a public Documents Needed URL (${DOC_LAUNCH_PAIRS.length} pairs). Coverage figures above count ${docSnapshots.length} cached checklists as of the most recent build; any cached row without a published standalone page is not listed here.</p>
       <div style="overflow-x:auto;margin-top:1rem;border:1px solid #e8e4dc;border-radius:0.75rem">
       <table style="width:100%;border-collapse:collapse;font-size:0.85rem;min-width:40rem">
         <thead>
@@ -1118,8 +1146,8 @@ writePage({
       <p style="color:#555;margin-top:0.75rem;line-height:1.6">Most citizenship / destination pairs haven&apos;t been researched yet. Uncached pairs in <a href="/tools/can-i-move">Can I Move</a> and <a href="/tools/documents-needed">Documents Needed</a> say so clearly rather than guessing.</p>
 
       <h2 id="freshness" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Freshness policy</h2>
-      <p style="color:#888;font-size:0.85rem;margin-top:0.35rem">Applies to AI caches only. As of August 10, 2026.</p>
-      <p style="color:#555;margin-top:0.5rem;line-height:1.6">Caches are valid for roughly 30 days. As of August 10, 2026, all current document (v2) and citizenship candidate rows were generated August 4–6, 2026 — 0 stale rows. The static country database and tax-rate overlay are not on this refresh cycle. They have no per-field verification date.</p>
+      <p style="color:#888;font-size:0.85rem;margin-top:0.35rem">Applies to AI caches only. Computed at build time.</p>
+      <p style="color:#555;margin-top:0.5rem;line-height:1.6">Caches are valid for roughly 30 days. Of the ${docSnapshots.length} document checklist rows, ${staleDocRows} were generated more than 30 days before this build and are due for a refresh. The static country database and tax-rate overlay are not on this refresh cycle. They have no per-field verification date.</p>
 
       <h2 id="contact" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Contact</h2>
       <p style="color:#555;margin-top:0.75rem;line-height:1.6">If a document requirement looks outdated or wrong, email <a href="mailto:support@relova.ai?subject=Data%20source%20correction">support@relova.ai</a> with the specific item. We look into corrections without publishing a fixed response SLA.</p>
