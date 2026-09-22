@@ -29,7 +29,7 @@ function extractHeadAssets(html) {
 const { links, scripts } = extractHeadAssets(indexHtml);
 
 const LAUNCH_PAIRS = [
-  // Russia (7)
+  // Russia (10)
   {
     citizenship: "Russia",
     destination: "Georgia",
@@ -72,7 +72,25 @@ const LAUNCH_PAIRS = [
     status: "common",
     note: "Popular visa-free/long-stay and retirement destination; among top tourist-turned-resident countries for Russians.",
   },
-  // United States (2)
+  {
+    citizenship: "Russia",
+    destination: "Serbia",
+    status: "common",
+    note: "No visa-free EU-style deal, but self-employment/LLC, property, and family routes are common; large informal Russian community since 2022.",
+  },
+  {
+    citizenship: "Russia",
+    destination: "Kazakhstan",
+    status: "common",
+    note: "Visa-free entry and long stays via CIS agreements; no passport barrier, common short-term base, though formal residence needs separate registration.",
+  },
+  {
+    citizenship: "Russia",
+    destination: "Israel",
+    status: "common",
+    note: "Law of Return grants automatic citizenship to those with Jewish ancestry — among the fastest, most complete relocation routes for eligible Russians.",
+  },
+  // United States (6)
   {
     citizenship: "United States",
     destination: "Mexico",
@@ -85,7 +103,31 @@ const LAUNCH_PAIRS = [
     status: "common",
     note: "D7 passive-income and D8 digital nomad visas widely used by Americans, though NHR tax break closed to new arrivals in 2025.",
   },
-  // United Kingdom (2)
+  {
+    citizenship: "United States",
+    destination: "Canada",
+    status: "common",
+    note: "USMCA/TN visa and standard Express Entry both used; large existing American community, no language barrier — among the most straightforward moves available.",
+  },
+  {
+    citizenship: "United States",
+    destination: "Spain",
+    status: "common",
+    note: "Non-Lucrative Visa (no local work) and Digital Nomad Visa (remote income) are both established, realistic routes for Americans.",
+  },
+  {
+    citizenship: "United States",
+    destination: "Costa Rica",
+    status: "common",
+    note: "Rentista and Pensionado visas are common for Americans with passive income or a pension; long-standing expat community, no minimum-stay requirement for Rentista.",
+  },
+  {
+    citizenship: "United States",
+    destination: "Panama",
+    status: "common",
+    note: "Friendly Nations Visa remains open to US citizens via economic/professional ties or real estate investment — among the fastest residency routes in Latin America.",
+  },
+  // United Kingdom (5)
   {
     citizenship: "United Kingdom",
     destination: "Ireland",
@@ -98,7 +140,25 @@ const LAUNCH_PAIRS = [
     status: "common",
     note: "Non-Lucrative and Digital Nomad Visas are standard routes; over 400,000 British residents already there.",
   },
-  // India (2)
+  {
+    citizenship: "United Kingdom",
+    destination: "Portugal",
+    status: "common",
+    note: "D7 and D8 digital nomad visas widely used by Britons post-Brexit; large existing British community, though EU freedom of movement no longer applies.",
+  },
+  {
+    citizenship: "United Kingdom",
+    destination: "Australia",
+    status: "common",
+    note: "Skilled visas plus the 2-year Working Holiday and family/ancestry routes are common; large British-Australian community and cultural ties ease the process.",
+  },
+  {
+    citizenship: "United Kingdom",
+    destination: "Canada",
+    status: "common",
+    note: "Express Entry and the Youth Mobility (IEC) working holiday scheme are standard; Commonwealth ties and a shared language simplify recognition.",
+  },
+  // India (5)
   {
     citizenship: "India",
     destination: "United States",
@@ -111,7 +171,25 @@ const LAUNCH_PAIRS = [
     status: "common",
     note: "10-year Golden Visa and sponsor-free work visas; Indians are largest expat community (~35% of population).",
   },
-  // China (2)
+  {
+    citizenship: "India",
+    destination: "Canada",
+    status: "common",
+    note: "Express Entry and Provincial Nominee Programs are the dominant routes; India is consistently the top source country for Canadian PR and study permits.",
+  },
+  {
+    citizenship: "India",
+    destination: "United Kingdom",
+    status: "common",
+    note: "Skilled Worker and Global Talent visas widely used; Indians are the largest single nationality receiving UK work visas.",
+  },
+  {
+    citizenship: "India",
+    destination: "Australia",
+    status: "common",
+    note: "Skilled Independent (189) and Skilled Nominated (190) visas are common; India is the top source country for Australia's skilled migration intake.",
+  },
+  // China (5)
   {
     citizenship: "China",
     destination: "Singapore",
@@ -124,7 +202,25 @@ const LAUNCH_PAIRS = [
     status: "common",
     note: "Visa-free short-stay entry was re-established for Japan in 2025; large existing Chinese community supports work/study/spouse visa routes.",
   },
-  // Brazil (2)
+  {
+    citizenship: "China",
+    destination: "United States",
+    status: "common",
+    note: "H-1B, EB-5 investor, and F-1 student-to-work pathways all used; large existing Chinese-American community across major cities.",
+  },
+  {
+    citizenship: "China",
+    destination: "Canada",
+    status: "common",
+    note: "Express Entry, investor programs, and international-student pathways are common; large existing Chinese-Canadian community, particularly in Vancouver and Toronto.",
+  },
+  {
+    citizenship: "China",
+    destination: "Australia",
+    status: "common",
+    note: "Skilled Independent and investor visas widely used; large existing Chinese-Australian community concentrated in Sydney and Melbourne.",
+  },
+  // Brazil (5)
   {
     citizenship: "Brazil",
     destination: "Portugal",
@@ -137,7 +233,25 @@ const LAUNCH_PAIRS = [
     status: "common",
     note: "Ibero-American nationals get citizenship after just 2 years' legal residence vs 10 for others.",
   },
-  // Nigeria (2)
+  {
+    citizenship: "Brazil",
+    destination: "United States",
+    status: "common",
+    note: "H-1B, EB-5 investor, and family-sponsored routes all used; large existing Brazilian community, especially in Florida and Massachusetts.",
+  },
+  {
+    citizenship: "Brazil",
+    destination: "Italy",
+    status: "common",
+    note: "Citizenship by descent (jure sanguinis) is the standout route — many Brazilians of Italian ancestry qualify for an Italian/EU passport directly, bypassing standard visas.",
+  },
+  {
+    citizenship: "Brazil",
+    destination: "Japan",
+    status: "common",
+    note: "Descendant (dekasegi) visa for those of Japanese ancestry is a long-established route, backed by a large Brazilian-Japanese community with generations of precedent.",
+  },
+  // Nigeria (5)
   {
     citizenship: "Nigeria",
     destination: "United Kingdom",
@@ -150,7 +264,25 @@ const LAUNCH_PAIRS = [
     status: "common",
     note: "Nigeria ranks among top 3 nationalities for Express Entry PR and a leading source country for study permits; strong track record.",
   },
-  // Philippines (2)
+  {
+    citizenship: "Nigeria",
+    destination: "United States",
+    status: "common",
+    note: "Diversity Visa lottery, family sponsorship, and skilled work visas all used; large, well-established Nigerian-American community.",
+  },
+  {
+    citizenship: "Nigeria",
+    destination: "Australia",
+    status: "common",
+    note: "Skilled-visa demand from Nigeria has grown sharply; the points-based system rewards in-demand occupations like healthcare and IT.",
+  },
+  {
+    citizenship: "Nigeria",
+    destination: "Ghana",
+    status: "common",
+    note: "ECOWAS free movement protocol lets Nigerians enter and reside without a visa — among the simplest cross-border moves available to Nigerian citizens.",
+  },
+  // Philippines (4)
   {
     citizenship: "Philippines",
     destination: "UAE",
@@ -162,6 +294,18 @@ const LAUNCH_PAIRS = [
     destination: "Canada",
     status: "common",
     note: "Nearly 1 million Filipino-Canadians; Express Entry, caregiver pilots (Home Child Care/Home Support Worker), and PNPs are common PR routes.",
+  },
+  {
+    citizenship: "Philippines",
+    destination: "United States",
+    status: "common",
+    note: "Family-sponsored and employment-based green cards are dominant; one of the largest and most established Filipino diaspora communities in the world.",
+  },
+  {
+    citizenship: "Philippines",
+    destination: "Saudi Arabia",
+    status: "common",
+    note: "Employer-sponsored work visas remain the top route; roughly 725,000 Filipinos already live in Saudi Arabia, mostly as overseas workers.",
   },
 ];
 

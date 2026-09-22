@@ -16,10 +16,13 @@ import {
   COMPARE_LAUNCH_PAIRS,
   countryComparePath,
   shortCitizenshipLabel,
+  groupGenericByCountryA,
 } from "@/lib/countryComparePairs";
 import { CITIZENSHIP_NAMES, DESTINATION_NAMES } from "@/lib/toolSlugs";
 
-const POPULAR = COMPARE_LAUNCH_PAIRS;
+const CITIZENSHIP_PAIRS = COMPARE_LAUNCH_PAIRS.filter((p) => p.citizenship);
+const GENERIC_GROUPS = groupGenericByCountryA(COMPARE_LAUNCH_PAIRS);
+const GENERIC_COUNT = COMPARE_LAUNCH_PAIRS.length - CITIZENSHIP_PAIRS.length;
 
 export default function CountryCompareHub() {
   const navigate = useNavigate();
@@ -132,22 +135,45 @@ export default function CountryCompareHub() {
             </Button>
           </div>
 
-          <p className="text-[12px] text-muted-foreground text-center mt-8 leading-relaxed">
-            {POPULAR.length} cached comparisons:{" "}
-            {POPULAR.map((pair, i) => (
-              <span key={`${pair.citizenship ?? "g"}-${pair.countryA}-${pair.countryB}`}>
-                {i > 0 && ", "}
+        </div>
+
+        <div className="max-w-3xl mx-auto mt-14">
+          <h2 className="text-[13px] font-medium text-muted-foreground mb-3">
+            Popular passport-specific comparisons ({CITIZENSHIP_PAIRS.length})
+          </h2>
+          <div className="flex flex-wrap gap-x-1 gap-y-1.5 text-[13px] mb-10">
+            {CITIZENSHIP_PAIRS.map((pair, i) => (
+              <span key={`${pair.citizenship}-${pair.countryA}-${pair.countryB}`}>
+                {i > 0 && <span className="text-muted-foreground/40 mr-1">·</span>}
                 <Link
                   to={countryComparePath(pair.countryA, pair.countryB, pair.citizenship)}
                   className="text-primary hover:underline"
                 >
-                  {pair.citizenship
-                    ? `${shortCitizenshipLabel(pair.citizenship)}: ${pair.countryA} vs ${pair.countryB}`
-                    : `${pair.countryA} vs ${pair.countryB}`}
+                  {shortCitizenshipLabel(pair.citizenship!)}: {pair.countryA} vs {pair.countryB}
                 </Link>
               </span>
             ))}
-          </p>
+          </div>
+
+          <h2 className="text-[13px] font-medium text-muted-foreground mb-3">
+            All country comparisons ({GENERIC_COUNT})
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {GENERIC_GROUPS.map((g) => (
+              <div key={g.countryA} className="text-[13px]">
+                <span className="font-medium text-foreground">{g.countryA}</span>{" "}
+                <span className="text-muted-foreground">vs</span>{" "}
+                {g.destinations.map((d, i) => (
+                  <span key={d}>
+                    {i > 0 && <span className="text-muted-foreground/40">, </span>}
+                    <Link to={countryComparePath(g.countryA, d)} className="text-primary hover:underline">
+                      {d}
+                    </Link>
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </main>
       <Footer />

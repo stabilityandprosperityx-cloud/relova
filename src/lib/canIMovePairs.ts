@@ -6,10 +6,11 @@ export interface CanIMovePair {
 }
 
 /**
- * Launch / prerender pairs for Can I Move — 21 total. Keep in sync with
- * LAUNCH_PAIRS in scripts/prerender-tools.mjs (that copy also carries the
- * per-pair verdict/note text used on the static prerendered page; this one
- * is just the identity list, used for hub-page and data-sources linking).
+ * Launch / prerender pairs for Can I Move — 45 total (was 21). Keep in sync
+ * with LAUNCH_PAIRS in scripts/prerender-tools.mjs (that copy also carries
+ * the per-pair verdict/note text used on the static prerendered page; this
+ * one is just the identity list, used for hub-page and data-sources
+ * linking).
  */
 export const CAN_I_MOVE_LAUNCH_PAIRS: CanIMovePair[] = [
   { citizenship: "Russia", destination: "Georgia" },
@@ -19,20 +20,44 @@ export const CAN_I_MOVE_LAUNCH_PAIRS: CanIMovePair[] = [
   { citizenship: "Russia", destination: "Cyprus" },
   { citizenship: "Russia", destination: "Portugal" },
   { citizenship: "Russia", destination: "Thailand" },
+  { citizenship: "Russia", destination: "Serbia" },
+  { citizenship: "Russia", destination: "Kazakhstan" },
+  { citizenship: "Russia", destination: "Israel" },
   { citizenship: "United States", destination: "Mexico" },
   { citizenship: "United States", destination: "Portugal" },
+  { citizenship: "United States", destination: "Canada" },
+  { citizenship: "United States", destination: "Spain" },
+  { citizenship: "United States", destination: "Costa Rica" },
+  { citizenship: "United States", destination: "Panama" },
   { citizenship: "United Kingdom", destination: "Ireland" },
   { citizenship: "United Kingdom", destination: "Spain" },
+  { citizenship: "United Kingdom", destination: "Portugal" },
+  { citizenship: "United Kingdom", destination: "Australia" },
+  { citizenship: "United Kingdom", destination: "Canada" },
   { citizenship: "India", destination: "United States" },
   { citizenship: "India", destination: "UAE" },
+  { citizenship: "India", destination: "Canada" },
+  { citizenship: "India", destination: "United Kingdom" },
+  { citizenship: "India", destination: "Australia" },
   { citizenship: "China", destination: "Singapore" },
   { citizenship: "China", destination: "Japan" },
+  { citizenship: "China", destination: "United States" },
+  { citizenship: "China", destination: "Canada" },
+  { citizenship: "China", destination: "Australia" },
   { citizenship: "Brazil", destination: "Portugal" },
   { citizenship: "Brazil", destination: "Spain" },
+  { citizenship: "Brazil", destination: "United States" },
+  { citizenship: "Brazil", destination: "Italy" },
+  { citizenship: "Brazil", destination: "Japan" },
   { citizenship: "Nigeria", destination: "United Kingdom" },
   { citizenship: "Nigeria", destination: "Canada" },
+  { citizenship: "Nigeria", destination: "United States" },
+  { citizenship: "Nigeria", destination: "Australia" },
+  { citizenship: "Nigeria", destination: "Ghana" },
   { citizenship: "Philippines", destination: "UAE" },
   { citizenship: "Philippines", destination: "Canada" },
+  { citizenship: "Philippines", destination: "United States" },
+  { citizenship: "Philippines", destination: "Saudi Arabia" },
 ];
 
 export function canIMovePath(citizenship: string, destination: string): string {
