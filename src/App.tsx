@@ -42,6 +42,7 @@ const Mission = lazy(() => import("./pages/Mission.tsx"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy.tsx"));
 const DataSecurity = lazy(() => import("./pages/DataSecurity.tsx"));
 const Compliance = lazy(() => import("./pages/Compliance.tsx"));
+const ToolsHub = lazy(() => import("./pages/tools/ToolsHub.tsx"));
 const CanIMoveHub = lazy(() => import("./pages/tools/CanIMoveHub.tsx"));
 const CanIMove = lazy(() => import("./pages/tools/CanIMove.tsx"));
 const MoveAsHub = lazy(() => import("./pages/tools/MoveAsHub.tsx"));
@@ -109,6 +110,7 @@ function AppRoutes() {
         <Route path="/data-security" element={<DataSecurity />} />
         <Route path="/data-sources" element={<DataSources />} />
         <Route path="/compliance" element={<Compliance />} />
+        <Route path="/tools" element={<ToolsHub />} />
         <Route path="/tools/can-i-move" element={<CanIMoveHub />} />
         <Route path="/tools/can-i-move/:citizenshipSlug/:destinationSlug" element={<CanIMove />} />
         <Route path="/tools/where-should-i-move" element={<MoveAsHub />} />

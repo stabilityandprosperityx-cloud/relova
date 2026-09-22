@@ -12,14 +12,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CITIZENSHIP_NAMES, DESTINATION_NAMES, slugify } from "@/lib/toolSlugs";
+import {
+  CAN_I_MOVE_LAUNCH_PAIRS,
+  canIMovePath,
+  groupByCitizenship,
+  shortCitizenshipLabel,
+} from "@/lib/canIMovePairs";
 
-const POPULAR_PAIRS = [
-  { citizenship: "Russia", destination: "Georgia" },
-  { citizenship: "India", destination: "UAE" },
-  { citizenship: "United States", destination: "Portugal" },
-  { citizenship: "United Kingdom", destination: "Spain" },
-  { citizenship: "Russia", destination: "Portugal" },
-];
+const GROUPED_PAIRS = groupByCitizenship(CAN_I_MOVE_LAUNCH_PAIRS);
 
 export default function CanIMoveHub() {
   const navigate = useNavigate();
@@ -91,20 +91,33 @@ export default function CanIMoveHub() {
             </Button>
           </div>
 
-          <p className="text-[12px] text-muted-foreground text-center mt-8 leading-relaxed">
-            Popular:{" "}
-            {POPULAR_PAIRS.map((pair, i) => (
-              <span key={`${pair.citizenship}-${pair.destination}`}>
-                {i > 0 && ", "}
-                <Link
-                  to={`/tools/can-i-move/${slugify(pair.citizenship)}/${slugify(pair.destination)}`}
-                  className="text-primary hover:underline"
-                >
-                  {pair.citizenship === "United States" ? "US" : pair.citizenship} → {pair.destination}
-                </Link>
-              </span>
-            ))}
-          </p>
+          <div className="mt-12">
+            <h2 className="text-[13px] font-medium text-muted-foreground text-center mb-5">
+              {CAN_I_MOVE_LAUNCH_PAIRS.length} cached checks, by citizenship
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {GROUPED_PAIRS.map((group) => (
+                <div key={group.citizenship} className="surface-card p-4">
+                  <p className="text-[12px] font-semibold text-foreground mb-2">
+                    {shortCitizenshipLabel(group.citizenship)} passport
+                  </p>
+                  <p className="text-[13px] leading-relaxed">
+                    {group.destinations.map((destination, i) => (
+                      <span key={destination}>
+                        {i > 0 && " · "}
+                        <Link
+                          to={canIMovePath(group.citizenship, destination)}
+                          className="text-primary hover:underline"
+                        >
+                          {destination}
+                        </Link>
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </main>
       <Footer />

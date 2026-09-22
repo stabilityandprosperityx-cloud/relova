@@ -260,6 +260,46 @@ function writePage({ outPath, title, description, bodyHtml }) {
   console.log("prerender-tools: wrote", outPath.replace(distDir, "dist"));
 }
 
+// Group all launch pairs by citizenship for the hub's full link list — was
+// 3 hardcoded links out of 21 actual prerendered pages, leaving 18 of them
+// with no internal link path at all (sitemap-only discovery).
+function groupPairsByCitizenship(pairs) {
+  const order = [];
+  const map = new Map();
+  for (const p of pairs) {
+    if (!map.has(p.citizenship)) {
+      map.set(p.citizenship, []);
+      order.push(p.citizenship);
+    }
+    map.get(p.citizenship).push(p.destination);
+  }
+  return order.map((citizenship) => ({ citizenship, destinations: map.get(citizenship) }));
+}
+
+// ─── Tools hub (/tools) — was entirely missing: no route, no prerendered
+// shell, not in the sitemap. src/pages/tools/ToolsHub.tsx is the live
+// React page; this static shell is what crawlers see before hydration. ───
+writePage({
+  outPath: join(distDir, "tools", "index.html"),
+  title: "Free Relocation Tools — Relova",
+  description:
+    "Free tools for planning a move abroad: passport feasibility checks, document checklists, country comparisons, and more — no account needed.",
+  bodyHtml: `
+    <main style="max-width:40rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+      <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">Free relocation tools</h1>
+      <p style="color:#666;margin-top:0.75rem">No account needed. See also <a href="/data-sources">how the data behind these tools is generated</a>.</p>
+      <ul style="margin-top:1.5rem;padding-left:1.25rem;line-height:2">
+        <li><a href="/tools/can-i-move">Can I Move? — passport feasibility check</a></li>
+        <li><a href="/tools/where-should-i-move">Where Should I Move? — profile-based country shortlist</a></li>
+        <li><a href="/tools/documents-needed">Documents Needed — relocation document checklist</a></li>
+        <li><a href="/tools/country-compare">Country Compare — side-by-side country comparison</a></li>
+        <li><a href="/tools/invitation-letter">Invitation Letter Generator</a></li>
+        <li><a href="/tools/tax-residency-tracker">Tax Residency Tracker — 183-day rule</a></li>
+      </ul>
+    </main>
+  `,
+});
+
 // Hub
 writePage({
   outPath: join(distDir, "tools", "can-i-move", "index.html"),
@@ -267,10 +307,17 @@ writePage({
   description:
     "Free passport check: see whether relocating to a destination is often feasible for your citizenship — then get a personalized plan.",
   bodyHtml: `
-    <main style="max-width:32rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
+    <main style="max-width:36rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
       <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">Can I move to another country with my passport?</h1>
       <p style="color:#666;margin-top:0.75rem">Pick your citizenship and where you want to go for a quick, honest signal — then build a full plan if it looks promising.</p>
-      <p style="margin-top:1.5rem"><a href="/tools/can-i-move/russia/georgia">Russia → Georgia</a> · <a href="/tools/can-i-move/india/uae">India → UAE</a> · <a href="/tools/can-i-move/united-states/portugal">US → Portugal</a></p>
+      ${groupPairsByCitizenship(LAUNCH_PAIRS)
+        .map(
+          (g) =>
+            `<p style="margin-top:1.25rem"><strong>${escapeHtml(g.citizenship)}:</strong> ${g.destinations
+              .map((d) => `<a href="/tools/can-i-move/${slugify(g.citizenship)}/${slugify(d)}">${escapeHtml(d)}</a>`)
+              .join(" · ")}</p>`,
+        )
+        .join("\n      ")}
     </main>
   `,
 });
@@ -507,7 +554,6 @@ writePage({
       <p style="color:#666;margin-top:0.75rem">Side-by-side cost, safety, healthcare, and visa pathways — with optional passport-specific feasibility.</p>
       <ul style="margin-top:1.5rem;padding-left:1.25rem;line-height:1.8">
         ${compareSnapshots
-          .slice(0, 8)
           .map(
             (p) =>
               `<li><a href="${escapeHtml(p.path)}">${escapeHtml(p.title)}</a></li>`,

@@ -19,7 +19,7 @@ import {
 } from "@/lib/countryComparePairs";
 import { CITIZENSHIP_NAMES, DESTINATION_NAMES } from "@/lib/toolSlugs";
 
-const POPULAR = COMPARE_LAUNCH_PAIRS.slice(0, 8);
+const POPULAR = COMPARE_LAUNCH_PAIRS;
 
 export default function CountryCompareHub() {
   const navigate = useNavigate();
@@ -133,7 +133,7 @@ export default function CountryCompareHub() {
           </div>
 
           <p className="text-[12px] text-muted-foreground text-center mt-8 leading-relaxed">
-            Popular:{" "}
+            {POPULAR.length} cached comparisons:{" "}
             {POPULAR.map((pair, i) => (
               <span key={`${pair.citizenship ?? "g"}-${pair.countryA}-${pair.countryB}`}>
                 {i > 0 && ", "}

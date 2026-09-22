@@ -22,6 +22,7 @@ const FOOTER_COLS = [
     title: "Resources",
     links: [
       { label: "Country Guides", href: "/countries" },
+      { label: "All Tools", href: "/tools" },
       { label: "Visa Eligibility Check", href: "/tools/can-i-move" },
       { label: "Where Should I Move?", href: "/tools/where-should-i-move" },
       { label: "Document Checklist", href: "/tools/documents-needed" },

@@ -7,6 +7,9 @@ import {
   DOCUMENTS_LAUNCH_PAIRS,
   documentsNeededPath,
 } from "@/lib/documentsNeededPairs";
+import { CAN_I_MOVE_LAUNCH_PAIRS, canIMovePath } from "@/lib/canIMovePairs";
+import { COMPARE_LAUNCH_PAIRS, countryComparePath, shortCitizenshipLabel } from "@/lib/countryComparePairs";
+import { MOVE_AS_PERSONAS } from "@/lib/moveAsPersonas";
 
 /**
  * Coverage snapshot from live DB queries (prompt_version v2 + citizenship cache).
@@ -107,7 +110,7 @@ export default function DataSources() {
     <div className="min-h-screen bg-background">
       <SEO
         title="Data & Sources — Relova"
-        description="How Relova builds document checklists: methodology, coverage, last-verified dates for each published pair, and terms for citing source-cited (Tier 1) data."
+        description="How Relova's tools and data are built: coverage for every tool, methodology, last-verified dates, and terms for citing source-cited (Tier 1) data."
         canonical="https://relova.ai/data-sources"
       />
       <Navbar />
@@ -117,10 +120,11 @@ export default function DataSources() {
             Data &amp; Sources
           </h1>
           <p className="text-[15px] text-muted-foreground leading-relaxed mb-8">
-            Relova publishes two kinds of information: AI-researched document checklists
-            with named official or consular sources, and static editorial baselines used
-            for comparison. This page states which is which, how the checklist cache is
-            kept, and which checklists you may cite.
+            Relova runs six free tools (see the full list below) on top of two kinds of
+            information: AI-researched document checklists and passport checks with named
+            official or consular sources, and static editorial baselines used for
+            comparison. This page states which tool uses which, how the checklist cache is
+            kept, and which data you may cite.
           </p>
 
           <aside
@@ -148,6 +152,89 @@ export default function DataSources() {
               with subject &quot;Data citation&quot;.
             </p>
           </aside>
+
+          {/* Tools overview */}
+          <section id="tools" className="mb-16 scroll-mt-20">
+            <h2 className="font-serif text-xl font-semibold text-foreground mb-2">
+              Tools and their coverage
+            </h2>
+            <p className="text-[14px] text-muted-foreground leading-relaxed mb-6">
+              Relova publishes six free tools. Each is listed below with what it covers today —
+              see{" "}
+              <Link to="/tools" className="text-primary hover:underline">
+                all tools
+              </Link>{" "}
+              for the live pages.
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-xl border border-border px-5 py-4">
+                <p className="text-[13px] font-semibold text-foreground mb-1">
+                  <Link to="/tools/can-i-move" className="hover:text-primary">
+                    Can I Move?
+                  </Link>
+                </p>
+                <p className="text-[13px] text-muted-foreground leading-relaxed">
+                  {CAN_I_MOVE_LAUNCH_PAIRS.length} cached citizenship → destination checks (Tier 1
+                  AI-researched, see methodology below).
+                </p>
+              </div>
+              <div className="rounded-xl border border-border px-5 py-4">
+                <p className="text-[13px] font-semibold text-foreground mb-1">
+                  <Link to="/tools/where-should-i-move" className="hover:text-primary">
+                    Where Should I Move?
+                  </Link>
+                </p>
+                <p className="text-[13px] text-muted-foreground leading-relaxed">
+                  {MOVE_AS_PERSONAS.length} persona-based shortlists, built from the Tier 2 static
+                  country database.
+                </p>
+              </div>
+              <div className="rounded-xl border border-border px-5 py-4">
+                <p className="text-[13px] font-semibold text-foreground mb-1">
+                  <Link to="/tools/documents-needed" className="hover:text-primary">
+                    Documents Needed
+                  </Link>
+                </p>
+                <p className="text-[13px] text-muted-foreground leading-relaxed">
+                  {DOCUMENTS_LAUNCH_PAIRS.length} cached checklists — the Tier 1 dataset detailed in
+                  full below.
+                </p>
+              </div>
+              <div className="rounded-xl border border-border px-5 py-4">
+                <p className="text-[13px] font-semibold text-foreground mb-1">
+                  <Link to="/tools/country-compare" className="hover:text-primary">
+                    Country Compare
+                  </Link>
+                </p>
+                <p className="text-[13px] text-muted-foreground leading-relaxed">
+                  {COMPARE_LAUNCH_PAIRS.length} cached comparisons, built from the Tier 2 static
+                  country database and tax-rate overlay.
+                </p>
+              </div>
+              <div className="rounded-xl border border-border px-5 py-4">
+                <p className="text-[13px] font-semibold text-foreground mb-1">
+                  <Link to="/tools/invitation-letter" className="hover:text-primary">
+                    Invitation Letter Generator
+                  </Link>
+                </p>
+                <p className="text-[13px] text-muted-foreground leading-relaxed">
+                  Template-based, generated entirely in your browser — no research pipeline behind
+                  it.
+                </p>
+              </div>
+              <div className="rounded-xl border border-border px-5 py-4">
+                <p className="text-[13px] font-semibold text-foreground mb-1">
+                  <Link to="/tools/tax-residency-tracker" className="hover:text-primary">
+                    Tax Residency Tracker
+                  </Link>
+                </p>
+                <p className="text-[13px] text-muted-foreground leading-relaxed">
+                  Day-counting logic against common 183-day thresholds. Your entries stay in your
+                  browser — nothing is sent to us.
+                </p>
+              </div>
+            </div>
+          </section>
 
           {/* How data is generated */}
           <section id="methodology" className="mb-16 scroll-mt-20">
@@ -302,6 +389,91 @@ export default function DataSources() {
                           className="text-primary hover:underline whitespace-nowrap"
                         >
                           View checklist
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* Can I Move pairs */}
+          <section id="can-i-move-pairs" className="mb-16 scroll-mt-20">
+            <h2 className="font-serif text-xl font-semibold text-foreground mb-2">
+              Cached Can I Move checks
+            </h2>
+            <p className="text-[13px] text-muted-foreground mb-6 leading-relaxed">
+              Every citizenship → destination pair with a published Can I Move page (
+              {CAN_I_MOVE_LAUNCH_PAIRS.length} pairs) — part of the same Tier 1 AI-researched cache
+              described above, not the document checklist table.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-border">
+              <table className="w-full text-left text-[13px] min-w-[480px]">
+                <thead className="bg-muted/40 text-[11px] uppercase tracking-wider text-muted-foreground">
+                  <tr>
+                    <th className="px-3 py-2.5 font-medium">Citizenship</th>
+                    <th className="px-3 py-2.5 font-medium">Destination</th>
+                    <th className="px-3 py-2.5 font-medium">Check</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {CAN_I_MOVE_LAUNCH_PAIRS.map((pair) => (
+                    <tr key={`${pair.citizenship}|${pair.destination}`} className="border-t border-border">
+                      <td className="px-3 py-2.5 text-foreground">{pair.citizenship}</td>
+                      <td className="px-3 py-2.5 text-foreground">{pair.destination}</td>
+                      <td className="px-3 py-2.5">
+                        <Link
+                          to={canIMovePath(pair.citizenship, pair.destination)}
+                          className="text-primary hover:underline whitespace-nowrap"
+                        >
+                          View check
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* Country Compare pairs */}
+          <section id="country-compare-pairs" className="mb-16 scroll-mt-20">
+            <h2 className="font-serif text-xl font-semibold text-foreground mb-2">
+              Cached Country Compare pages
+            </h2>
+            <p className="text-[13px] text-muted-foreground mb-6 leading-relaxed">
+              Every country pair with a published Country Compare page ({COMPARE_LAUNCH_PAIRS.length}{" "}
+              pairs). These draw on the Tier 2 static country database and tax-rate overlay, not the
+              AI-researched checklist cache.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-border">
+              <table className="w-full text-left text-[13px] min-w-[520px]">
+                <thead className="bg-muted/40 text-[11px] uppercase tracking-wider text-muted-foreground">
+                  <tr>
+                    <th className="px-3 py-2.5 font-medium">Citizenship lens</th>
+                    <th className="px-3 py-2.5 font-medium">Countries</th>
+                    <th className="px-3 py-2.5 font-medium">Compare</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARE_LAUNCH_PAIRS.map((pair) => (
+                    <tr
+                      key={`${pair.citizenship ?? "generic"}|${pair.countryA}|${pair.countryB}`}
+                      className="border-t border-border"
+                    >
+                      <td className="px-3 py-2.5 text-muted-foreground">
+                        {pair.citizenship ? shortCitizenshipLabel(pair.citizenship) : "Any"}
+                      </td>
+                      <td className="px-3 py-2.5 text-foreground">
+                        {pair.countryA} vs {pair.countryB}
+                      </td>
+                      <td className="px-3 py-2.5">
+                        <Link
+                          to={countryComparePath(pair.countryA, pair.countryB, pair.citizenship)}
+                          className="text-primary hover:underline whitespace-nowrap"
+                        >
+                          View comparison
                         </Link>
                       </td>
                     </tr>
