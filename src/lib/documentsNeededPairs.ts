@@ -1,5 +1,9 @@
 import { determineVisaType } from "./determineVisaType";
 import { slugify } from "./toolSlugs";
+import {
+  DOCUMENTS_LAUNCH_PAIRS as RAW_DOCUMENTS_LAUNCH_PAIRS,
+  CAN_I_MOVE_CROSSLINK_PAIRS as RAW_CAN_I_MOVE_CROSSLINK_PAIRS,
+} from "./documentsNeededPairsData.mjs";
 
 export interface DocumentsLaunchPair {
   citizenship: string;
@@ -7,71 +11,18 @@ export interface DocumentsLaunchPair {
   visa_type: string;
 }
 
-/** Launch pairs for /tools/documents-needed (warm + prerender). */
-export const DOCUMENTS_LAUNCH_PAIRS: DocumentsLaunchPair[] = [
-  { citizenship: "Russia", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
-  { citizenship: "Russia", destination: "Armenia", visa_type: "Visa_Free" },
-  { citizenship: "Russia", destination: "Cyprus", visa_type: "Digital_Nomad" },
-  { citizenship: "Russia", destination: "Czech Republic", visa_type: "Long_Term_Residence" },
-  { citizenship: "Russia", destination: "Montenegro", visa_type: "Temporary_Residence" },
-  { citizenship: "Russia", destination: "Georgia", visa_type: "Visa_Free" },
-  { citizenship: "Russia", destination: "Turkey", visa_type: "Residence_Permit" },
-  { citizenship: "Russia", destination: "UAE", visa_type: "Freelance_Permit" },
-  { citizenship: "Russia", destination: "Thailand", visa_type: "DTV" },
-  { citizenship: "United States", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
-  { citizenship: "United States", destination: "Mexico", visa_type: "Temporary_Resident" },
-  { citizenship: "United Kingdom", destination: "Spain", visa_type: "Digital_Nomad" },
-  { citizenship: "India", destination: "UAE", visa_type: "Freelance_Permit" },
-  { citizenship: "India", destination: "Germany", visa_type: "Freelance_Visa" },
-  { citizenship: "Brazil", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
-  { citizenship: "Brazil", destination: "Spain", visa_type: "Digital_Nomad" },
-  { citizenship: "China", destination: "Japan", visa_type: "Digital_Nomad" },
-  { citizenship: "China", destination: "Singapore", visa_type: "Employment_Pass" },
-  { citizenship: "Nigeria", destination: "United Kingdom", visa_type: "Temporary_Residence" },
-  { citizenship: "Nigeria", destination: "Canada", visa_type: "Express_Entry" },
-  { citizenship: "Philippines", destination: "UAE", visa_type: "Freelance_Permit" },
-  { citizenship: "Philippines", destination: "Canada", visa_type: "Express_Entry" },
-  { citizenship: "Germany", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
-  { citizenship: "United States", destination: "Canada", visa_type: "Express_Entry" },
-  { citizenship: "United Kingdom", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
-  { citizenship: "India", destination: "Canada", visa_type: "Express_Entry" },
-  { citizenship: "Philippines", destination: "Australia", visa_type: "Skilled_Nominated" },
-  { citizenship: "Russia", destination: "Serbia", visa_type: "Temporary_Residence" },
-  { citizenship: "United States", destination: "Spain", visa_type: "Digital_Nomad" },
-  { citizenship: "Brazil", destination: "Canada", visa_type: "Express_Entry" },
-  { citizenship: "Nigeria", destination: "Australia", visa_type: "Skilled_Nominated" },
-];
+/**
+ * Launch pairs for /tools/documents-needed (warm + prerender). The actual
+ * data lives in documentsNeededPairsData.mjs — a plain-JS file so
+ * scripts/prerender-tools.mjs and scripts/warm-document-checklist.mjs can
+ * import the exact same list without a build step. Edit that file, not
+ * this one, to add/remove a pair.
+ */
+export const DOCUMENTS_LAUNCH_PAIRS: DocumentsLaunchPair[] = RAW_DOCUMENTS_LAUNCH_PAIRS;
 
 /** can-i-move pairs that also have a documents-needed launch page. */
-export const CAN_I_MOVE_CROSSLINK_PAIRS = [
-  ["Russia", "Portugal"],
-  ["Russia", "Armenia"],
-  ["Russia", "Cyprus"],
-  ["Russia", "Georgia"],
-  ["Russia", "Turkey"],
-  ["Russia", "UAE"],
-  ["Russia", "Thailand"],
-  ["United States", "Portugal"],
-  ["United States", "Mexico"],
-  ["United Kingdom", "Spain"],
-  ["India", "UAE"],
-  ["Brazil", "Portugal"],
-  ["China", "Japan"],
-  ["Nigeria", "United Kingdom"],
-  ["Nigeria", "Canada"],
-  ["Philippines", "UAE"],
-  ["Philippines", "Canada"],
-  ["Brazil", "Spain"],
-  ["China", "Singapore"],
-  ["United States", "Canada"],
-  ["United Kingdom", "Portugal"],
-  ["India", "Canada"],
-  ["Philippines", "Australia"],
-  ["Russia", "Serbia"],
-  ["United States", "Spain"],
-  ["Brazil", "Canada"],
-  ["Nigeria", "Australia"],
-] as const;
+export const CAN_I_MOVE_CROSSLINK_PAIRS: readonly (readonly [string, string])[] =
+  RAW_CAN_I_MOVE_CROSSLINK_PAIRS as readonly (readonly [string, string])[];
 
 /** Short label for Popular links. */
 export function shortCitizenshipLabel(citizenship: string): string {

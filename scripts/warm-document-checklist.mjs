@@ -10,6 +10,7 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import { DOCUMENTS_LAUNCH_PAIRS } from "../src/lib/documentsNeededPairsData.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -89,39 +90,9 @@ function determineVisaType(country) {
   return visaMap[country] || "Temporary_Residence";
 }
 
-const PAIRS = [
-  { citizenship: "Russia", destination: "Portugal", visa_type: determineVisaType("Portugal") },
-  { citizenship: "Russia", destination: "Armenia", visa_type: determineVisaType("Armenia") },
-  { citizenship: "Russia", destination: "Cyprus", visa_type: determineVisaType("Cyprus") },
-  { citizenship: "Russia", destination: "Czech Republic", visa_type: determineVisaType("Czech Republic") },
-  { citizenship: "Russia", destination: "Montenegro", visa_type: determineVisaType("Montenegro") },
-  { citizenship: "Russia", destination: "Georgia", visa_type: determineVisaType("Georgia") },
-  { citizenship: "Russia", destination: "Turkey", visa_type: determineVisaType("Turkey") },
-  { citizenship: "Russia", destination: "UAE", visa_type: determineVisaType("UAE") },
-  { citizenship: "Russia", destination: "Thailand", visa_type: determineVisaType("Thailand") },
-  { citizenship: "United States", destination: "Portugal", visa_type: determineVisaType("Portugal") },
-  { citizenship: "United States", destination: "Mexico", visa_type: determineVisaType("Mexico") },
-  { citizenship: "United Kingdom", destination: "Spain", visa_type: determineVisaType("Spain") },
-  { citizenship: "India", destination: "UAE", visa_type: determineVisaType("UAE") },
-  { citizenship: "India", destination: "Germany", visa_type: determineVisaType("Germany") },
-  { citizenship: "Brazil", destination: "Portugal", visa_type: determineVisaType("Portugal") },
-  { citizenship: "Brazil", destination: "Spain", visa_type: determineVisaType("Spain") },
-  { citizenship: "China", destination: "Japan", visa_type: determineVisaType("Japan") },
-  { citizenship: "China", destination: "Singapore", visa_type: determineVisaType("Singapore") },
-  { citizenship: "Nigeria", destination: "United Kingdom", visa_type: determineVisaType("United Kingdom") },
-  { citizenship: "Nigeria", destination: "Canada", visa_type: determineVisaType("Canada") },
-  { citizenship: "Philippines", destination: "UAE", visa_type: determineVisaType("UAE") },
-  { citizenship: "Philippines", destination: "Canada", visa_type: determineVisaType("Canada") },
-  { citizenship: "Germany", destination: "Portugal", visa_type: determineVisaType("Portugal") },
-  { citizenship: "United States", destination: "Canada", visa_type: determineVisaType("Canada") },
-  { citizenship: "United Kingdom", destination: "Portugal", visa_type: determineVisaType("Portugal") },
-  { citizenship: "India", destination: "Canada", visa_type: determineVisaType("Canada") },
-  { citizenship: "Philippines", destination: "Australia", visa_type: determineVisaType("Australia") },
-  { citizenship: "Russia", destination: "Serbia", visa_type: determineVisaType("Serbia") },
-  { citizenship: "United States", destination: "Spain", visa_type: determineVisaType("Spain") },
-  { citizenship: "Brazil", destination: "Canada", visa_type: determineVisaType("Canada") },
-  { citizenship: "Nigeria", destination: "Australia", visa_type: determineVisaType("Australia") },
-];
+// Pair list now lives in one place: src/lib/documentsNeededPairsData.mjs
+// (imported above). Edit that file to add/remove a pair, not here.
+const PAIRS = DOCUMENTS_LAUNCH_PAIRS;
 
 /** Pairs requested in the diversification batch (may overlap existing). */
 const DIVERSIFY_BATCH = [

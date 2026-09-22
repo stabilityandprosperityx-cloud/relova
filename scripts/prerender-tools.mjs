@@ -7,6 +7,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { execFileSync } from "child_process";
+import { DOCUMENTS_LAUNCH_PAIRS } from "../src/lib/documentsNeededPairsData.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, "..", "dist");
@@ -653,39 +654,9 @@ for (const persona of personaSnapshots) {
 }
 
 // ─── Documents needed pages ───
-const DOC_LAUNCH_PAIRS = [
-  { citizenship: "Russia", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
-  { citizenship: "Russia", destination: "Armenia", visa_type: "Visa_Free" },
-  { citizenship: "Russia", destination: "Cyprus", visa_type: "Digital_Nomad" },
-  { citizenship: "Russia", destination: "Czech Republic", visa_type: "Long_Term_Residence" },
-  { citizenship: "Russia", destination: "Montenegro", visa_type: "Temporary_Residence" },
-  { citizenship: "Russia", destination: "Georgia", visa_type: "Visa_Free" },
-  { citizenship: "Russia", destination: "Turkey", visa_type: "Residence_Permit" },
-  { citizenship: "Russia", destination: "UAE", visa_type: "Freelance_Permit" },
-  { citizenship: "Russia", destination: "Thailand", visa_type: "DTV" },
-  { citizenship: "United States", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
-  { citizenship: "United States", destination: "Mexico", visa_type: "Temporary_Resident" },
-  { citizenship: "United Kingdom", destination: "Spain", visa_type: "Digital_Nomad" },
-  { citizenship: "India", destination: "UAE", visa_type: "Freelance_Permit" },
-  { citizenship: "India", destination: "Germany", visa_type: "Freelance_Visa" },
-  { citizenship: "Brazil", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
-  { citizenship: "Brazil", destination: "Spain", visa_type: "Digital_Nomad" },
-  { citizenship: "China", destination: "Japan", visa_type: "Digital_Nomad" },
-  { citizenship: "China", destination: "Singapore", visa_type: "Employment_Pass" },
-  { citizenship: "Nigeria", destination: "United Kingdom", visa_type: "Temporary_Residence" },
-  { citizenship: "Nigeria", destination: "Canada", visa_type: "Express_Entry" },
-  { citizenship: "Philippines", destination: "UAE", visa_type: "Freelance_Permit" },
-  { citizenship: "Philippines", destination: "Canada", visa_type: "Express_Entry" },
-  { citizenship: "Germany", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
-  { citizenship: "United States", destination: "Canada", visa_type: "Express_Entry" },
-  { citizenship: "United Kingdom", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
-  { citizenship: "India", destination: "Canada", visa_type: "Express_Entry" },
-  { citizenship: "Philippines", destination: "Australia", visa_type: "Skilled_Nominated" },
-  { citizenship: "Russia", destination: "Serbia", visa_type: "Temporary_Residence" },
-  { citizenship: "United States", destination: "Spain", visa_type: "Digital_Nomad" },
-  { citizenship: "Brazil", destination: "Canada", visa_type: "Express_Entry" },
-  { citizenship: "Nigeria", destination: "Australia", visa_type: "Skilled_Nominated" },
-];
+// Pair list now lives in one place: src/lib/documentsNeededPairsData.mjs
+// (imported above). Edit that file to add/remove a pair, not here.
+const DOC_LAUNCH_PAIRS = DOCUMENTS_LAUNCH_PAIRS;
 
 let docSnapshots = [];
 const docSnapPath = join(__dirname, "document-checklist-snapshots.json");
