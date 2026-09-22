@@ -5483,5 +5483,1437 @@
       }
     ],
     "source": "fresh"
+  },
+  {
+    "citizenship": "Russia",
+    "destination": "Kazakhstan",
+    "visa_type": "Temporary_Residence",
+    "cSlug": "russia",
+    "dSlug": "kazakhstan",
+    "generated_at": "2026-09-22T09:59:34.014Z",
+    "documents": [
+      {
+        "name": "Russian international (foreign-travel) passport",
+        "description": "Valid Russian zagranpasport used for entry into Kazakhstan; it must be the same passport used for the last border crossing and for the RVP application, and validity must exceed 180 calendar days on the day of application. Copy plus original for verification is submitted. Note: MVD has been moving toward accepting only the international passport (not the internal Russian passport) for residence procedures — verify current practice with the migration service.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.gov.kz/situations/572/1261?lang=ru"
+      },
+      {
+        "name": "Russian police clearance certificate (справка о наличии/отсутствии судимости)",
+        "description": "Certificate from the Russian MVD confirming criminal record status in the country of citizenship. Must be on an official MVD paper form with a wet stamp/signature — purely electronic e-signature versions are commonly rejected. Validity is limited (not older than 180 calendar days). Required for the permanent-residence (RPP/VNZh) stage and often requested as supporting evidence; verify with the local migration police whether it is needed for your specific RVP ground.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://egov.kz/cms/ru/services/e_004"
+      },
+      {
+        "name": "Apostille on Russian-issued civil documents",
+        "description": "Apostille for foreign-issued documents (e.g. criminal-record certificate, civil status certificates) used in Kazakhstan; a notarised copy with the original apostille is attached to the file. Note: under the CIS Minsk/Chisinau conventions some Russian documents are accepted without apostille — confirm with the receiving migration office before paying for legalisation.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://egov.kz/cms/ru/services/009pass_mvd"
+      },
+      {
+        "name": "Notarised Kazakh/Russian translation of foreign documents",
+        "description": "Documents issued abroad must be translated into Kazakh or Russian by a translator whose signature is notarised; packages without proper translation are not accepted at intake.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "Ministry of Internal Affairs of the Republic of Kazakhstan (Migration Service)"
+      },
+      {
+        "name": "Ground-of-stay document (employment contract, study enrolment, business or family document)",
+        "description": "Evidence of the purpose that the RVP is issued for: a labour contract registered in the ЕСУТД unified labour-contract system, a contract/enrolment confirmation from a Kazakh educational institution, IP/TOO registration for business, or marriage/birth certificates for family reunification. The RVP is strictly tied to this ground and lapses if the ground ends.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.kz/situations/572/1261?lang=ru"
+      },
+      {
+        "name": "Birth certificates of accompanying children under 16",
+        "description": "Copy and original (for verification) of the birth certificate or other identity document of each child under 16 included in the application together with the parent.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "https://adilet.zan.kz/rus/docs/V1500012880"
+      },
+      {
+        "name": "Arrival notification by the receiving party (уведомление о прибытии)",
+        "description": "The host — a Kazakh citizen/permanent resident property owner or the employing legal entity — must file notification of the foreigner's arrival within 3 working days of entry, regardless of citizenship or purpose. Russians may stay visa-free up to 90 days in any 180-day period before an RVP is needed.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.kz/situations/572/1261?lang=ru"
+      },
+      {
+        "name": "IIN (individual identification number) certificate",
+        "description": "Kazakh taxpayer/individual identification number obtained at a TSON (Government for Citizens service centre). It must be issued against the same passport used for the RVP application and the latest entry, and is needed for banking, contracts and the RVP file itself.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://egov.kz"
+      },
+      {
+        "name": "Host's petition / employer petition for issuance of RVP (ходатайство)",
+        "description": "Written petition from the receiving party requesting the temporary residence permit; for employment it is filed by the employer and states the employer's BIN and RKA plus the address registration code (RKA) and IIN of the owner of the housing where the applicant will live.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.kz/situations/572/1261?lang=ru"
+      },
+      {
+        "name": "Notarised consent of the housing owner(s) to registration/residence",
+        "description": "Notarised consent to the foreigner living and being registered at the address, given by every co-owner of the dwelling; required when the host/employer is not the owner of the accommodation provided.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.kz/situations/572/1261?lang=ru"
+      },
+      {
+        "name": "Proof of accommodation (title deed or lease agreement)",
+        "description": "Ownership document or signed tenancy agreement for the Kazakh address where the applicant will reside; used to establish the registration address of the RVP.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://egov.kz/cms/ru/services/for_foreigners/00203002_mvd"
+      },
+      {
+        "name": "RVP application form (заявление-анкета о выдаче разрешения на временное проживание)",
+        "description": "The statutory application questionnaire for a temporary residence permit, in the form annexed to the MVD Rules on issuing temporary and permanent residence permits; filed at the TSON of the host's registration or online via egov.kz with an EDS.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://egov.kz/cms/ru/services/for_foreigners/00203002_mvd"
+      },
+      {
+        "name": "Fingerprint (dactyloscopic) registration certificate",
+        "description": "Since 1 January 2024 foreigners obtaining a temporary residence permit are subject to mandatory fingerprint registration; the resulting certificate of dactyloscopic registration is part of the file.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://egov.kz/cms/ru/services/for_foreigners/00203002_mvd"
+      },
+      {
+        "name": "Medical insurance policy valid in Kazakhstan",
+        "description": "Health insurance covering the applicant for the period of temporary residence, listed among the RVP documents for employment-based applications.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.gov.kz/situations/572/1261?lang=ru"
+      },
+      {
+        "name": "State duty payment receipt for the RVP",
+        "description": "Receipt confirming payment of the state fee for issuance of the temporary residence permit (a fraction of the MRP index; amounts change annually — verify the current rate on egov.kz before paying).",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "https://egov.kz/cms/ru/services/for_foreigners/00203002_mvd"
+      },
+      {
+        "name": "Receipt of document acceptance (расписка о приеме документов)",
+        "description": "Official receipt issued by the migration officer confirming that the complete RVP package was accepted; keep it to track the case and prove lawful status while the decision is pending.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://adilet.zan.kz/rus/docs/V1500012880"
+      },
+      {
+        "name": "RVP certificate with QR code",
+        "description": "The temporary residence permit itself, issued as a migration-service certificate carrying a QR code; it evidences lawful residence beyond the 90/180-day visa-free limit and is checked by police, banks and employers.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://egov.kz/cms/ru/services/for_foreigners/00203002_mvd"
+      },
+      {
+        "name": "Bank solvency certificate from a Kazakh resident bank (1320 MRP)",
+        "description": "Certificate from a Kazakhstan-resident bank confirming funds of at least 1320 MRP on the account for the period the application is considered; required for the permanent residence permit (RPP) stage that follows RVP, per MVD Order No. 531 of 30 June 2023. Each family member aged 16+ must prove the amount separately, and the certificate must be under 180 days old.",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": "https://egov.kz/cms/ru/articles/financial_solvency"
+      },
+      {
+        "name": "Application for permanent residence permit (RPP) with medical certificate",
+        "description": "Next-stage application (заявление-анкета на разрешение на постоянное проживание) filed at the migration police or via egov.kz with an EDS, accompanied by a medical examination certificate; Kazakh practice requires a minimum period of prior lawful residence on the RVP before applying — verify the exact qualifying period and current medical-screening list with the migration police, as rules have changed recently.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.gov.kz/situations/149/420?lang=ru"
+      },
+      {
+        "name": "Kazakh residence card (вид на жительство) for foreign nationals",
+        "description": "Plastic residence card issued after the permanent residence permit is granted, valid up to 10 years and renewable; it enables buying residential property, a Kazakh driving licence, vehicle registration and registering as an individual entrepreneur — rights that the RVP alone does not give.",
+        "phase": "after",
+        "required": false,
+        "category": "identity",
+        "source": "Ministry of Internal Affairs of the Republic of Kazakhstan (Migration Service)"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "United States",
+    "destination": "Costa Rica",
+    "visa_type": "Rentista",
+    "cSlug": "united-states",
+    "dSlug": "costa-rica",
+    "generated_at": "2026-09-22T10:00:49.053Z",
+    "documents": [
+      {
+        "name": "Valid U.S. passport",
+        "description": "Original U.S. passport valid throughout the process. Because Rentista files are resolved in up to 90 days by law but commonly take 6-14 months in practice, ensure validity well beyond filing so it does not expire mid-process.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://migracion.go.cr/regularizacion/"
+      },
+      {
+        "name": "Certified photocopy of all used passport pages",
+        "description": "Full photocopy of every page of the passport containing stamps or data, certified/authenticated by a Costa Rican notary (notario público). This is a separate document from the original passport and from the biometric photos.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Dirección General de Migración y Extranjería (DGME), Costa Rica"
+      },
+      {
+        "name": "Two passport-size photographs of the applicant",
+        "description": "Two recent passport-format photos of the applicant submitted with the DGME file. Some consulates and gestores request four; verify the exact number with the office receiving your file, as practice varies.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://migracion.go.cr/regularizacion/"
+      },
+      {
+        "name": "U.S. birth certificate with federal apostille",
+        "description": "State-issued long-form birth certificate, apostilled under the Hague Convention. DGME requires it legalized/apostilled; the apostille is commonly expected to have been issued within the last six months, so order it close to filing.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://migracion.go.cr/regularizacion/"
+      },
+      {
+        "name": "FBI Identity History Summary (criminal record) with apostille",
+        "description": "Federal-level U.S. police clearance covering places of residence for the last several years, apostilled by the U.S. Department of State. Typically treated as valid only ~6 months from issuance.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "FBI Identity History Summary Checks / U.S. Department of State Office of Authentications"
+      },
+      {
+        "name": "Apostilled marriage certificate",
+        "description": "Only if a spouse is being included as a dependent on the Rentista file (the US$2,500/month threshold covers the applicant plus dependents). Must be apostilled and translated.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://migracion.go.cr/regularizacion/"
+      },
+      {
+        "name": "Proof of guaranteed passive income of US$2,500/month for 24 months",
+        "description": "Bank or financial-institution certification letter confirming stable, permanent, guaranteed monthly income of at least US$2,500 for a minimum of two years, legalized/apostilled if issued abroad. Salary or employment income from a foreign employer is not accepted for Rentista; income must be passive (investments, dividends, rents, annuities, trust distributions).",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://migracion.go.cr/regularizacion/"
+      },
+      {
+        "name": "Costa Rican bank certification of US$60,000 deposit (alternative route)",
+        "description": "Alternative to the foreign income letter: certification from a Costa Rican bank confirming a US$60,000 deposit structured to disburse US$2,500 per month over 24 months. Bank acceptance criteria differ by institution; verify current structuring rules directly with the bank and DGME.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "Dirección General de Migración y Extranjería (DGME), Costa Rica"
+      },
+      {
+        "name": "Costa Rican CPA (contador público autorizado) income certification",
+        "description": "Certification from an accountant registered in Costa Rica attesting to the source and sufficiency of the income. Frequently requested to support or replace a foreign bank letter; confirm whether your reviewing officer requires it, as this is discretionary practice rather than a fixed statutory item.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "Dirección General de Migración y Extranjería (DGME), Costa Rica"
+      },
+      {
+        "name": "Official Spanish translation of all foreign-language documents",
+        "description": "Every document not issued in Spanish must be accompanied by an official translation into Spanish, or a translation by a notary public certified in the language. Apply this to the birth certificate, FBI record, marriage certificate and income letters.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://migracion.go.cr/regularizacion/"
+      },
+      {
+        "name": "Written application for legal residence (solicitud de permanencia legal)",
+        "description": "Signed petition stating the applicant's personal particulars, the category requested (rentista), current domicile and an address or means for legal notifications. Must be signed in the presence of a public official or authenticated by a Costa Rican attorney.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://migracion.go.cr/regularizacion/"
+      },
+      {
+        "name": "Completed DGME application/filiation form",
+        "description": "The official immigration data form for the residency file, completed and signed. Available from DGME; filing may be done at DGME in Costa Rica or at a Costa Rican consulate in the U.S.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://migracion.go.cr/"
+      },
+      {
+        "name": "US$50 application fee deposit receipt",
+        "description": "Proof of payment of US$50 (or colón equivalent at the BCCR reference rate) in favor of the Government for the temporary residence application under Article 255 of the Immigration Law. Depositor name must match the applicant.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://migracion.go.cr/regularizacion/"
+      },
+      {
+        "name": "Migration rights deposit receipt (¢1,000 at Banco de Costa Rica)",
+        "description": "Separate deposit slip for migration service rights paid at Banco de Costa Rica, showing the applicant's full name. Distinct from the US$50 application fee; confirm the current amount before paying.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "Banco de Costa Rica / Dirección General de Migración y Extranjería (DGME)"
+      },
+      {
+        "name": "U.S. consular registration confirmation (STEP enrollment)",
+        "description": "Registration of the applicant with the U.S. Embassy in San José via the Smart Traveler Enrollment Program; sometimes requested as consular-registration evidence in the residency file. Not a statutory DGME requirement in all cases — verify with your consulate or DGME.",
+        "phase": "before",
+        "required": false,
+        "category": "other",
+        "source": "https://step.state.gov"
+      },
+      {
+        "name": "Fingerprint registration at the Ministerio de Seguridad Pública",
+        "description": "In-person fingerprinting (huellas dactilares) at the Archivo Criminal / Ministry of Public Security in Costa Rica, by appointment, with the appointment form presented on site. The resulting record is filed with DGME.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "Ministerio de Seguridad Pública de Costa Rica – Archivo Criminal"
+      },
+      {
+        "name": "Certification of Costa Rican domicile",
+        "description": "Document issued by the local Delegation of the Ministry of Public Security for the applicant's place of residence certifying the domicile, or an equivalent proof of address matching the residency file and the CCSS/EBAIS clinic assignment.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://migracion.go.cr/regularizacion/"
+      },
+      {
+        "name": "Costa Rican bank account opening file",
+        "description": "Account-opening documentation (passport, proof of address, source-of-funds evidence). Pre-approval accounts are typically limited in functionality; full access, including SINPE transfers, generally follows DIMEX issuance. Required where the US$60,000 deposit route is used.",
+        "phase": "during",
+        "required": false,
+        "category": "financial",
+        "source": "Dirección General de Migración y Extranjería (DGME), Costa Rica"
+      },
+      {
+        "name": "Proof of CCSS affiliation (comprobante de afiliación)",
+        "description": "Enrollment in the Caja Costarricense de Seguro Social after approval, with the affiliation receipt and assigned EBAIS clinic. Contributions are calculated on declared income; this proof is an express requirement for DIMEX issuance and renewal.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://migracion.go.cr/dimex/"
+      },
+      {
+        "name": "DIMEX residency card issuance at Banco de Costa Rica",
+        "description": "After the approval resolution and CCSS enrollment, book a BCR appointment, pay the card fees stated in the resolution, and have the photo taken; BCR issues the DIMEX. Renewal must be initiated before expiry, with proof of continued US$2,500/month income or extension of the bank guarantee plus CCSS payments up to date; a US$3 per-month surcharge applies for late renewal, and a DIMEX expired over three months forces a brand-new category application.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "https://migracion.go.cr/dimex/"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "United Kingdom",
+    "destination": "Australia",
+    "visa_type": "Skilled_Nominated",
+    "cSlug": "united-kingdom",
+    "dSlug": "australia",
+    "generated_at": "2026-09-22T10:02:44.470Z",
+    "documents": [
+      {
+        "name": "Biographical page of current United Kingdom passport",
+        "description": "Colour scan of the photo/biodata page of the valid UK passport for the primary applicant and every family member included in the application. The Home Affairs checklist requires the biographical (photo) pages of the current passport or travel document of each visa applicant. Keep it separate from any certified paper photocopies a bank or landlord may later ask for.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "Suitable skills assessment for the nominated occupation",
+        "description": "A positive, valid skills assessment issued by the Australian assessing authority for your nominated ANZSCO occupation (e.g. Engineers Australia, ACS, VETASSESS, AHPRA-linked bodies). Must be valid at the time of invitation. UK qualifications are assessed by the same authorities as other overseas qualifications.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Department of Home Affairs – Skills assessment and assessing authorities"
+      },
+      {
+        "name": "SkillSelect Expression of Interest and Invitation to Apply (ITA) letter",
+        "description": "The EOI reference/ID and the formal Invitation to Apply issued by the Department of Home Affairs after state nomination. The subclass 190 application can only be lodged after invitation, and must be lodged within the period stated in the ITA (commonly 60 days).",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "State or territory nomination approval notification",
+        "description": "Written approval of nomination from the nominating state/territory government (e.g. NSW Government, Live in Melbourne/Victoria, Migration SA, ACT). Nomination is what triggers the invitation and adds 5 points. Supporting evidence demanded by each state differs, so verify with the specific state's skilled migration portal.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Nominating state/territory skilled migration authority (e.g. NSW Government, Live in Melbourne, Migration SA, ACT Migration)"
+      },
+      {
+        "name": "Evidence of Competent English",
+        "description": "UK passport holders can normally satisfy Competent English by virtue of being a UK passport-holding citizen, so no test may be needed for the primary applicant. If you are claiming extra points for Proficient or Superior English, an IELTS/PTE/TOEFL iBT/OET/Cambridge result dated within 3 years before invitation is required. Non-UK dependants aged 18+ must separately show Functional English.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "ACRO Police Certificate (UK police clearance)",
+        "description": "Issued by the ACRO Criminal Records Office and used for the Australian character requirement by anyone aged 16+ who has lived in the UK 12 months or more cumulatively in the last 10 years. DBS certificates are not accepted for Australian visa purposes. Additional police certificates are needed for any other country lived in for 12+ months in the last 10 years.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.acro.police.uk/s/acro-services/police-certificates"
+      },
+      {
+        "name": "Immigration health examination results (HAP ID / eMedical)",
+        "description": "Medical and radiological examination completed by a Home Affairs panel physician against your HAP ID; in the UK this is normally done through the appointed panel clinic network. Results are uploaded directly by the clinic via eMedical rather than by the applicant.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "Department of Home Affairs – Arranging a health examination (eMedical)"
+      },
+      {
+        "name": "Skilled employment evidence (employer reference letters plus payslips/P60s)",
+        "description": "For every period of skilled employment claimed for points in the 10 years before invitation: reference letters on company letterhead stating role, dates, hours and duties, supported by payslips, contracts, and UK P60/HMRC records or bank statements showing salary. Employment references must meet the Department's stated content requirements.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "Qualification award certificates and academic transcripts",
+        "description": "Degree/diploma certificates and full transcripts for every qualification used for points or for the skills assessment, including UK university awards and any Australian study claim. Provide the same documents that were submitted to the assessing authority.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "UK birth certificate (long form) for each applicant",
+        "description": "Used to evidence age (under 45 at invitation), identity and parentage for the main applicant and any children included. Provide change-of-name evidence such as a deed poll or marriage certificate if any name on your documents differs from your passport.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "Partner and dependent relationship evidence",
+        "description": "Only if family members are included: marriage certificate or de facto relationship evidence (joint tenancy, joint bank statements, joint bills), and for dependent children aged 18–23 evidence of financial dependency. Family unit members must be declared even if they are not migrating with you.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "Visa grant notification letter and VEVO record",
+        "description": "The PDF grant notice issued in ImmiAccount showing visa subclass 190, grant date, visa conditions and the initial travel facility expiry (normally 5 years). Australia issues no visa label, so this letter plus the online VEVO check is your proof of permanent residence for employers, Medicare, banks and landlords.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Department of Home Affairs – VEVO (Visa Entitlement Verification Online)"
+      },
+      {
+        "name": "HMRC form P85 (leaving the UK tax notification)",
+        "description": "Submitted to HM Revenue & Customs to report that you have left the UK to live abroad, to claim any UK tax refund and set your UK tax residence position. Not an Australian visa requirement, but important to avoid dual UK/Australian tax complications; also request your National Insurance record/state pension forecast before you go.",
+        "phase": "during",
+        "required": false,
+        "category": "financial",
+        "source": "HM Revenue & Customs (GOV.UK)"
+      },
+      {
+        "name": "UK photocard driving licence (original, undamaged)",
+        "description": "Bring the physical UK licence: it lets you drive on your overseas licence for a limited transition period after arrival and is the document surrendered/presented when converting to a state licence. Damaged licences may be refused without confirmation from DVLA/DVA. UK licences are English-language, so no NAATI translation is needed.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "Relevant state/territory road authority (e.g. Service NSW, VicRoads, Service SA)"
+      },
+      {
+        "name": "Proof of Australian residential address",
+        "description": "A signed residential tenancy agreement, utility connection account or bank statement showing your Australian address in the nominating state. Required as residency evidence for Medicare enrolment, driver licence issue and bank identity checks; some authorities require it to be dated within the last 3 months.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.servicesaustralia.gov.au/documents-to-enrol-medicare-if-youre-permanent-resident"
+      },
+      {
+        "name": "Tax File Number (TFN) application and TFN notice",
+        "description": "Apply to the Australian Taxation Office for a TFN after arrival using your passport and visa details. Without a TFN your employer withholds tax at the top rate and your superannuation fund withholds extra tax on contributions. Keep the ATO notice of your TFN to give to your employer, super fund and bank.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "Australian Taxation Office (ATO)"
+      },
+      {
+        "name": "Medicare enrolment application with supporting documents",
+        "description": "As a permanent resident you may enrol in Medicare, online through myGov or by the Medicare enrolment form, providing identity documents (passport/visa grant evidence) and proof that you live in Australia. Services Australia states documents do not need to be certified, and each person being enrolled needs their own documents.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.servicesaustralia.gov.au/enrolling-medicare-if-youre-australian-permanent-resident"
+      },
+      {
+        "name": "Australian state or territory driver licence (conversion of UK licence)",
+        "description": "Apply within the transition period set by your state to exchange the UK licence for a local one; UK licences are generally recognised for exchange without a driving test, but evidence-of-identity and residency rules and deadlines differ by state, so verify with the state road authority.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "Relevant state/territory road authority (e.g. Service NSW, VicRoads, Service SA)"
+      },
+      {
+        "name": "Evidence of living and working in the nominating state for two years",
+        "description": "Keep tenancy agreements, employment contracts, payslips, utility accounts and school enrolments showing residence in the nominating state/territory. Subclass 190 nominees commit to living and working in that state for at least two years from grant (or from arrival if moving from overseas), and states may ask for post-arrival confirmation.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.act.gov.au/migration/skilled-migrants/190-nomination-criteria"
+      },
+      {
+        "name": "Resident Return visa (subclass 155) application",
+        "description": "The subclass 190 permanent visa's travel facility expires about 5 years after grant; to keep re-entering Australia as a permanent resident after that you must be granted a Resident Return visa, evidenced by residence in Australia (generally 2 of the previous 5 years) or substantial ties. Alternatively apply for Australian citizenship once the residence requirement is met.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "Department of Home Affairs – Resident Return visa (subclass 155/157)"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "India",
+    "destination": "Australia",
+    "visa_type": "Skilled_Nominated",
+    "cSlug": "india",
+    "dSlug": "australia",
+    "generated_at": "2026-09-22T10:04:01.029Z",
+    "documents": [
+      {
+        "name": "Indian passport (biographical page) for each applicant",
+        "description": "Valid Indian passport; the Department requires the biographical/photo page of the current passport or travel document for each visa applicant, uploaded in ImmiAccount. Keep the original for travel and identity checks.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "Positive skills assessment for nominated ANZSCO occupation",
+        "description": "Outcome letter from the relevant Australian assessing authority (e.g. ACS for ICT, Engineers Australia, VETASSESS, CA ANZ) for the nominated occupation. Must be suitable and valid at time of invitation; the assessment must match the ANZSCO code used in the EOI and visa application.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "English language test result (Competent English or higher)",
+        "description": "Evidence that at time of invitation you had at least Competent English, from a test taken in the three years immediately before invitation (e.g. IELTS, PTE Academic, TOEFL iBT). Indian applicants cannot rely on passport nationality for this — a test is required unless an exemption applies.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "Functional English evidence for adult dependants",
+        "description": "Separate evidence of Functional English for each dependent applicant aged 18 or over at the time the application is lodged (test result or accepted alternative). If not provided, a second Visa Application Charge may apply instead.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "State/territory nomination approval and SkillSelect invitation letter",
+        "description": "Nomination decision from the nominating state or territory (e.g. NSW, Victoria, South Australia) plus the SkillSelect invitation and EOI summary with EOI reference number. The visa must be lodged within 60 days of the invitation.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/visas/working-in-australia/skillselect"
+      },
+      {
+        "name": "Indian Police Clearance Certificate (PCC) from Passport Seva / Indian mission",
+        "description": "National-level PCC for Australian migration purposes obtained via the Passport Seva Online Portal and a PSK/POPSK/RPO in India, or from the Indian High Commission/Consulate if you are already overseas. Local police-station certificates are generally not accepted; obtain one for each applicant aged 16+. Also needed for any other country lived in 12+ months in the last 10 years.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.passportindia.gov.in/psp/ApplyPCC"
+      },
+      {
+        "name": "Australian Federal Police (AFP) National Police Check",
+        "description": "Required if you (or any applicant aged 16+) have spent 12 months or more cumulatively in Australia in the last 10 years — common for Indian applicants transitioning from a student or 485 visa. Obtained directly from the AFP using the immigration purpose code.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.afp.gov.au/national-police-checks"
+      },
+      {
+        "name": "Immigration health examination results (eMedical, panel physician)",
+        "description": "Health examinations for the main applicant and every included family member, completed with a Home Affairs-approved panel physician / clinic in India (or Australia) and referenced by HAP ID through My Health Declarations or ImmiAccount. Usually includes medical exam, chest X-ray and, where applicable, blood tests.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/help-support/meeting-our-requirements/health"
+      },
+      {
+        "name": "Indian birth certificate (or acceptable alternative age/identity evidence)",
+        "description": "Birth certificate showing both parents' names for each applicant to establish age (age points are assessed at invitation). If no birth certificate exists, a Non-Availability Certificate plus alternative evidence such as school leaving certificate, 10th standard certificate or family register may be accepted — verify acceptable substitutes with Home Affairs.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "Marriage certificate / relationship evidence for included partner",
+        "description": "Indian marriage certificate registered under the Hindu Marriage Act or Special Marriage Act, or evidence of a de facto relationship (joint bank accounts, joint lease, shared correspondence), to include a spouse or partner as a secondary applicant or to claim partner points.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "Skilled employment evidence for claimed points",
+        "description": "Distinct supporting set for each claimed employment period in the 10 years before invitation: employer reference letters on letterhead stating role, duties, dates and hours; plus corroborating payslips, Form 16 / Indian Income Tax Returns, EPF statements and salary bank statements.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "Academic qualification certificates and transcripts",
+        "description": "Degree/diploma certificates and consolidated mark sheets from Indian universities for qualification points, plus any Australian study evidence if claiming the Australian study requirement. Certified copies required; these are separate from the skills assessment outcome letter.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/skilled-nominated-190"
+      },
+      {
+        "name": "NAATI-certified English translations of non-English documents",
+        "description": "Certified English translations for any document in Hindi or another Indian language (e.g. birth, marriage, or state-issued records). Translations done in Australia must be by a NAATI-certified translator; translations done in India must show the translator's full name, address and qualifications.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/help-support/translation-services"
+      },
+      {
+        "name": "Form 80 – Personal particulars for character assessment",
+        "description": "Detailed personal-history form frequently requested by case officers for Indian-national skilled applicants, covering all addresses, employment and international travel for the past 10 years. Lodge only if requested or to pre-empt a request.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/form-listing/forms/80.pdf"
+      },
+      {
+        "name": "Visa grant notice (VEVO record) for subclass 190",
+        "description": "The electronic grant letter stating your visa subclass, grant date, initial 5-year travel facility and any conditions. There is no visa label in the passport — carry a printed copy and know your VEVO details for airline check-in and border clearance.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/visas/already-have-a-visa/check-visa-details-and-conditions"
+      },
+      {
+        "name": "Incoming Passenger Card declaration",
+        "description": "Completed on arrival (paper card or digital equivalent) declaring food, plant and animal items — relevant for Indian arrivals carrying spices, dry foods, Ayurvedic preparations or seeds, which are strictly controlled by biosecurity.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.abf.gov.au/entering-and-leaving-australia/crossing-the-border/passenger-cards"
+      },
+      {
+        "name": "Tax File Number (TFN) registration",
+        "description": "Apply online with the ATO once in Australia using your passport and visa details; without a TFN your employer withholds tax at the top rate. Distinct from an ABN, which is only needed if you work as a sole trader.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.ato.gov.au/individuals-and-families/tax-file-number"
+      },
+      {
+        "name": "Medicare enrolment as a permanent resident",
+        "description": "Enrol via myGov or the Medicare enrolment form with Services Australia, providing your passport and permanent-resident visa evidence for each person enrolled; documents do not need to be certified. Enrolment is not automatic on visa grant.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.servicesaustralia.gov.au/enrolling-medicare-if-youre-australian-permanent-resident"
+      },
+      {
+        "name": "Driver licence conversion from Indian licence",
+        "description": "Convert your Indian driving licence to a state licence (e.g. Service NSW, VicRoads, Service SA) within the permitted period after becoming a permanent resident; you will generally need the original Indian licence plus an official English translation, proof of identity and proof of residential address. Rules, test exemptions and deadlines differ by state — verify with your state road authority.",
+        "phase": "after",
+        "required": false,
+        "category": "identity",
+        "source": "State/Territory road transport authority (e.g. Service NSW, VicRoads, Service SA)"
+      },
+      {
+        "name": "Evidence of living and working in the nominating state (2 years)",
+        "description": "Keep leases, utility bills, employment contracts and payslips showing residence in the nominating state/territory. Subclass 190 holders give a moral commitment to live and work in that state for about two years; states may ask for outcome reporting, and this evidence also supports later nomination-related requests.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "Nominating State/Territory skilled migration authority (e.g. NSW Government, Live in Melbourne, Migration SA)"
+      },
+      {
+        "name": "Resident Return Visa (subclass 155/157) when travel facility expires",
+        "description": "Your subclass 190 travel facility lasts 5 years from grant. To re-enter Australia as a PR after that, apply for an RRV via ImmiAccount — the 5-year subclass 155 generally requires 2 years (730 days) lawful residence in Australia in the preceding 5 years. Important for Indians travelling frequently to India.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/resident-return-visa-155-157"
+      },
+      {
+        "name": "Australian citizenship application (residence evidence pack)",
+        "description": "After meeting the general residence requirement (generally 4 years lawful residence including the last 12 months as a permanent resident), apply for citizenship by conferral with identity documents, PR grant evidence and residence history. Note India does not permit dual citizenship — you must surrender your Indian passport and obtain a Surrender Certificate, then an OCI card if desired.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://immi.homeaffairs.gov.au/citizenship/become-a-citizen/permanent-resident"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Brazil",
+    "destination": "Italy",
+    "visa_type": "Digital_Nomad",
+    "cSlug": "brazil",
+    "dSlug": "italy",
+    "generated_at": "2026-09-22T10:05:20.904Z",
+    "documents": [
+      {
+        "name": "Brazilian passport valid beyond intended stay",
+        "description": "Original Brazilian passport; consular checklists generally require validity of at least 3 months beyond visa expiry (some Italian posts ask for ~15 months validity and 2 blank pages for national/type D visas). Verify the exact validity rule with the Italian consulate covering your Brazilian state.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://consportoalegre.esteri.it/pt/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/visti/nomade-digital-trabalhador-remoto/"
+      },
+      {
+        "name": "Completed national (type D) visa application form for digital nomad/remote worker",
+        "description": "Signed long-stay national visa form for the 'nomade digitale / lavoratore da remoto' category, obtained from the Italian consular office with jurisdiction over your residence in Brazil (Brasília Embassy, São Paulo, Rio de Janeiro, Curitiba, Porto Alegre, Belo Horizonte or Recife).",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://vistoperitalia.esteri.it/"
+      },
+      {
+        "name": "Biometric passport photos of the applicant",
+        "description": "Two recent passport-format photographs on white background, submitted with the paper application; fingerprints/biometrics are also collected in person at the consulate appointment. This is distinct from photocopies of passport pages.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Consolato Generale d'Italia (Brazil consular network)"
+      },
+      {
+        "name": "Proof of highly qualified status: higher education diploma or long professional experience",
+        "description": "Either a Brazilian higher-education diploma from a 3+ year course, or documented professional experience (generally 5 years, reduced to 3 years within the last 7 for certain ICT managers/specialists). Brazilian diplomas normally need Hague Apostille, sworn Italian translation and may require a Dichiarazione di Valore or comparability statement; confirm with your consulate.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://consportoalegre.esteri.it/pt/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/visti/nomade-digital-trabalhador-remoto/"
+      },
+      {
+        "name": "Evidence of at least 6 months of prior remote work in the same field",
+        "description": "Documentation of a minimum of six months' previous activity in the work to be carried out remotely: for self-employed digital nomads, tax returns, client invoices or professional/industry association membership; for remote employees, tax returns, payslips or an employer letter.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://consportoalegre.esteri.it/pt/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/visti/nomade-digital-trabalhador-remoto/"
+      },
+      {
+        "name": "Remote employment contract or client service contracts with a non-Italian entity",
+        "description": "Signed employment/collaboration contract (or binding job offer) with a company outside Italy for employees, or client contracts/service agreements for freelancers, showing the work is performed remotely with technological tools. Employee contracts must show pay at least equal to the relevant Italian collective-bargaining/ISTAT average salary level.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://consportoalegre.esteri.it/pt/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/visti/nomade-digital-trabalhador-remoto/"
+      },
+      {
+        "name": "Proof of minimum annual income from legitimate sources",
+        "description": "Brazilian tax return (Declaração de Imposto de Renda), bank statements, invoices or payslips proving annual income of at least three times the Italian minimum level for exemption from healthcare cost-sharing (commonly cited as roughly €25,500–€28,000; the figure is recalculated and published by consulates). Income cannot be proven via bank guarantee or insurance policy.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://consportoalegre.esteri.it/pt/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/visti/nomade-digital-trabalhador-remoto/"
+      },
+      {
+        "name": "Health insurance policy valid in Italy for the whole stay",
+        "description": "Private policy covering medical treatment and hospitalisation valid on Italian national territory for the full period of stay (at least one year), with coverage of no less than €30,000. Inadequate medical coverage is the main cause of refusals.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://consportoalegre.esteri.it/pt/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/visti/nomade-digital-trabalhador-remoto/"
+      },
+      {
+        "name": "Proof of accommodation in Italy",
+        "description": "Adequate documentation of housing arrangements — registered Italian rental contract, notarised property purchase deed, or a dichiarazione di ospitalità (host declaration) with the host's ID.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://consportoalegre.esteri.it/pt/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/visti/nomade-digital-trabalhador-remoto/"
+      },
+      {
+        "name": "Employer/client declaration on absence of immigration-law convictions",
+        "description": "Letter signed by the foreign employer or client stating it has no convictions in the last five years for offences related to irregular immigration or illegal employment of foreign workers, accompanied by copies of the signatory's ID.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://consportoalegre.esteri.it/pt/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/visti/nomade-digital-trabalhador-remoto/"
+      },
+      {
+        "name": "Brazilian Federal Police criminal record certificate (Certidão de Antecedentes Criminais) with Apostille and sworn Italian translation",
+        "description": "Federal-level certificate from the Polícia Federal (not state-level), issued within its validity period, apostilled and translated into Italian by a sworn translator. Not listed uniformly as an automatic requirement for this visa class in every consular checklist — verify with the official source, as requirements may vary by consulate.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.gov.br/pf/pt-br/assuntos/antecedentes-criminais"
+      },
+      {
+        "name": "Proof of payment of the consular visa fee",
+        "description": "Receipt for the €116 national visa fee, charged in Brazilian reais according to the quarterly exchange-rate table published by the competent Italian consulate in Brazil (rates are updated on 1 January, 1 April, 1 July and 1 October).",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "Consolato Generale d'Italia (Brazil) – consular fee table"
+      },
+      {
+        "name": "Sworn Italian translations and Hague Apostilles of Brazilian public documents",
+        "description": "Brazilian-issued public documents (diploma, birth/marriage certificates, criminal record, official declarations) generally require the Hague Apostille via a Brazilian notary/cartório and a sworn translation into Italian; exact scope depends on the consulate handling your file.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.cnj.jus.br/poder-judiciario/relacoes-internacionais/apostila-da-haia/"
+      },
+      {
+        "name": "Passport page photocopies for the residence permit file",
+        "description": "Photocopies of all passport pages containing personal data, the photo page, the type D visa and all entry stamps — required inside the kit postale. This is separate from presenting the original passport at the post office counter.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.portaleimmigrazione.it/"
+      },
+      {
+        "name": "Permesso di soggiorno application via kit postale (within 8 working days of entry)",
+        "description": "Modello 209 forms (modulo 1 and modulo 2) from a Poste Italiane Sportello Amico, filed with the Questura of the province of residence within 8 working days of arrival in Italy; the permit is issued under the 'nomade digitale/lavoratore da remoto' category for up to one year.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.portaleimmigrazione.it/"
+      },
+      {
+        "name": "Payment receipts for the electronic permit and permit contribution",
+        "description": "Postal bollettino of €30.46 for the electronic permit card, the statutory contribution based on permit duration, and a €16 marca da bollo, all enclosed in the kit postale envelope.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.poste.it/guida-rilascio-e-rinnovo-permesso-di-soggiorno"
+      },
+      {
+        "name": "Consulate-stamped (vidimati) copies of the visa dossier",
+        "description": "The same documents submitted to the Italian consulate in Brazil, bearing the consulate's stamps (vidimazione), must be shown to the Questura/Ufficio Immigrazione when the visa is converted into a residence permit.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Questura – Ufficio Immigrazione (Polizia di Stato)"
+      },
+      {
+        "name": "Codice fiscale (Italian tax code)",
+        "description": "Italian tax identification number, needed for the residence permit file, bank account opening, rental contracts and health registration; issued by the Agenzia delle Entrate or attributed during the immigration procedure.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.agenziaentrate.gov.it/"
+      },
+      {
+        "name": "Kit postale submission receipt and Questura appointment letter",
+        "description": "The post office issues a receipt proving the application was filed (allowing you to stay and move within Italy when attached to your passport) plus a summons letter with the date, time and place of your Questura appointment for fingerprinting.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.poste.it/guida-rilascio-e-rinnovo-permesso-di-soggiorno"
+      },
+      {
+        "name": "Iscrizione anagrafica (residence registration) at the Comune",
+        "description": "Registration in the register of resident population at the Comune of habitual residence, normally requested shortly after filing the kit postale, using the receipt, passport and housing title; it produces the certificato di residenza used for renewals and for the Italian ID card.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "Comune of residence – Ufficio Anagrafe (Ministero dell'Interno)"
+      },
+      {
+        "name": "Health coverage registration (SSN enrolment or renewed private policy)",
+        "description": "After obtaining the permit, register with the local ASL for the Servizio Sanitario Nazionale where eligible, or keep a valid private policy; coverage must remain continuous for the whole permit period and be renewed each year.",
+        "phase": "after",
+        "required": true,
+        "category": "other",
+        "source": "https://www.salute.gov.it/"
+      },
+      {
+        "name": "Renewal dossier for the digital nomad residence permit",
+        "description": "Filed in Italy before expiry, proving the entry conditions still hold: ongoing highly qualified remote work, income at the required level, renewed health insurance and suitable accommodation; relevant changes of contract, activity or address must be documented. Absence from Italy for more than six continuous months can block renewal.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.portaleimmigrazione.it/"
+      },
+      {
+        "name": "Italian tax residence filing (dichiarazione dei redditi)",
+        "description": "Once you exceed 183 days in Italy you become tax resident and must declare income to the Agenzia delle Entrate; the Brazil–Italy double taxation treaty applies. Consult an Italian accountant on whether a Partita IVA is required for your freelance activity.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "https://www.agenziaentrate.gov.it/"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "China",
+    "destination": "United States",
+    "visa_type": "Work_Visa",
+    "cSlug": "china",
+    "dSlug": "united-states",
+    "generated_at": "2026-09-22T10:07:00.994Z",
+    "documents": [
+      {
+        "name": "Valid People's Republic of China passport",
+        "description": "Original PRC passport with at least six months of validity beyond the intended date of entry into the United States, with blank visa pages. Chinese nationals must apply at the U.S. Embassy Beijing or a U.S. Consulate General in China (Guangzhou, Shanghai, Shenyang, Wuhan) or in their country of residence.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://china.usembassy-china.org.cn/visas/"
+      },
+      {
+        "name": "DS-160 online nonimmigrant visa application confirmation page",
+        "description": "Completed online Form DS-160 for the H/L/O petition-based work visa category; the printed confirmation page with barcode must be brought to the consular interview.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Digital biometric photograph uploaded to DS-160 (plus one printed 5x5 cm print)",
+        "description": "Color photo meeting U.S. Department of State photograph requirements (plain white/off-white background, full-face view, neutral expression, taken within the last 6 months). This is the applicant's own biometric photo, not a passport copy. <cite index=\"12-1,12-7,12-8\">The photo is uploaded during the DS-160; if the upload fails you must bring one printed photo in the required format</cite>.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Form I-797 Notice of Action (USCIS approval notice) with petition receipt number",
+        "description": "Original or copy of the USCIS approval notice for the employer's Form I-129 petition. <cite index=\"10-10,10-11\">The receipt number printed on the approved Form I-129 or Form I-797 is required to schedule the visa interview</cite>. Do not book an interview or travel before the petition is approved.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Photocopy of the employer's filed Form I-129 petition package",
+        "description": "Copy of the Petition for a Nonimmigrant Worker (Form I-129) with the H-1B classification supplement / L-1 supplement as filed by the U.S. employer, provided to the employee by the sponsor. <cite index=\"10-2\">L visa applicants included in a blanket petition must instead bring Form I-129S to the interview</cite>.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.uscis.gov/i-129"
+      },
+      {
+        "name": "Certified Labor Condition Application (Form ETA-9035)",
+        "description": "Copy of the DOL-certified LCA underlying the H-1B petition, showing worksite, occupation and wage level. Applies to H-1B/H-1B3 petitions; not applicable to L-1 or O-1 cases.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "U.S. Department of Labor, Office of Foreign Labor Certification"
+      },
+      {
+        "name": "Employer support / employment verification letter",
+        "description": "Letter on company letterhead from the U.S. petitioning employer confirming job title, duties, salary, employment start date, worksite address and petition validity period. <cite index=\"10-8\">Consular officers may request additional documents to establish that you are qualified</cite>.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Original academic credentials with certified English translations",
+        "description": "Original or certified Chinese degree certificate(s), diplomas, transcripts (e.g., CHSI/CDGDC verification reports), professional licences and CV evidencing the specialty-occupation qualification. <cite index=\"20-6\">Documents not in English must be accompanied by a certified English translation</cite>.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "MRV visa application fee receipt and interview appointment confirmation",
+        "description": "Proof of payment of the non-refundable machine-readable visa application fee and the printed interview appointment letter from the official appointment service. <cite index=\"6-3\">ustraveldocs.com is the only website authorized by the U.S. Consulate General to provide visa information and application services</cite>; <cite index=\"8-2\">visa application fees are non-refundable and non-transferable</cite>.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.ustraveldocs.com"
+      },
+      {
+        "name": "Visa issuance (reciprocity) fee receipt",
+        "description": "<cite index=\"10-13,10-14\">After approval, applicants of certain nationalities may have to pay a visa issuance fee based on reciprocity</cite>. Verify the current China reciprocity schedule for your specific classification (H-1B, L-1, O-1) on travel.state.gov, as amounts and applicability change.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Hukou (household registration booklet, 户口簿)",
+        "description": "Chinese household registration booklet, frequently requested at China-based posts to confirm identity, residence and family relationships. <cite index=\"7-4,7-5\">Posts in China list the household registration book (hukou) among originals to be brought to interviews where applicable</cite>. Verify with the specific consular post, as requirements vary.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "https://china.usembassy-china.org.cn/visas/nonimmigrant-visas/"
+      },
+      {
+        "name": "Chinese resident identity card (shenfenzheng, 身份证)",
+        "description": "PRC national ID card, a separate identity item from the passport and the hukou; <cite index=\"7-6\">posts in China accept the passport or shenfenzheng as an identification document</cite>. Bring the original plus a photocopy.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "https://china.usembassy-china.org.cn/visas/nonimmigrant-visas/"
+      },
+      {
+        "name": "Social media identifiers disclosed on DS-160 with accounts set to public",
+        "description": "Five-year social media handle history must be declared in the DS-160. <cite index=\"8-3\">Applicants for H-1B, H-3 and H-4 (and other listed) visas are instructed to set the privacy settings on all social media accounts to \"public\" or \"open\" to facilitate identity and admissibility vetting</cite>.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://china.usembassy-china.org.cn/visas/"
+      },
+      {
+        "name": "Notarized marriage certificate and children's birth certificates for H-4/L-2 dependents",
+        "description": "Chinese marriage certificate and birth certificates (notarized, with certified English translation) proving the relationship for dependent visa applicants. <cite index=\"4-1,4-2\">Each dependent needs a valid passport, pays the visa fee, submits passport-style photographs and shows evidence of the relationship, plus copies of the principal's passport, visa, I-94 and I-797 if applying separately</cite>.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Hand-carried entry packet at the U.S. port of entry",
+        "description": "Passport with the issued work visa foil plus the original I-797 approval notice and employer letter carried in hand luggage (not checked baggage) for CBP inspection. <cite index=\"2-6\">CBP officers may request documents establishing your qualification as an H-1B worker</cite>; <cite index=\"3-20\">CBP may also review electronic devices and social media</cite>.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "U.S. Customs and Border Protection"
+      },
+      {
+        "name": "Electronic Form I-94 arrival/departure record printout",
+        "description": "Retrieve and print the electronic I-94 from the CBP website after admission and verify the class of admission (e.g., H1B) and the \"admit until\" date. <cite index=\"3-18\">Obtain your electronic I-94 and review the expiration date for accuracy</cite>.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://i94.cbp.dhs.gov"
+      },
+      {
+        "name": "Form I-9 Employment Eligibility Verification (completed with employer)",
+        "description": "Completed with the U.S. employer on/around the first day of work, presenting the passport with visa and the I-94. <cite index=\"28-1\">Workers authorized to work for a specific employer do not need an EAD; they can use the I-94 record and the nonimmigrant visa showing the employer's name</cite>.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "U.S. Citizenship and Immigration Services (Form I-9)"
+      },
+      {
+        "name": "Social Security number application (Form SS-5) at an SSA field office",
+        "description": "In-person application with the passport, work visa and I-94. <cite index=\"33-1\">SSA presumes permission to work if you present a DHS-issued Form I-94 reflecting a classification permitting work</cite>. Apply about 10 days after arrival so DHS records can be verified.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.ssa.gov/pubs/EN-05-10096.pdf"
+      },
+      {
+        "name": "State driver's license or state-issued ID card",
+        "description": "Obtained from the state DMV using the passport, visa, I-94 and Social Security card; validity is normally limited to the authorized period of stay. Documentary requirements differ by state — verify with the relevant state DMV.",
+        "phase": "after",
+        "required": false,
+        "category": "identity",
+        "source": "U.S. state Department of Motor Vehicles (state-specific)"
+      },
+      {
+        "name": "Extension-of-stay Form I-797 approval notice (employer-filed I-129 extension)",
+        "description": "Before the I-94 expiry the employer files a new Form I-129 to extend status; retain each resulting I-797 approval notice as the record of continuous lawful status and work authorization. <cite index=\"16-2\">Form I-129 is also used to request an extension of stay in these classifications</cite>.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.uscis.gov/i-129"
+      },
+      {
+        "name": "Form I-765 Employment Authorization Document for an H-4 spouse",
+        "description": "Only certain H-4 spouses may work: <cite index=\"36-17\">H-4 spouses qualify for an EAD if the H-1B principal has an approved I-140 or has received H-1B extensions beyond the six-year limit</cite>. Does not apply to L-2 spouses, who are work-authorized incident to status.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "U.S. Citizenship and Immigration Services (Form I-765)"
+      },
+      {
+        "name": "Employment-based immigrant petition file (Form I-140 / DS-260 or I-485)",
+        "description": "For long-term residence stability, the employer-sponsored green card route. <cite index=\"6-1\">For consular processing, the DS-260 immigrant visa application, Affidavit of Support where applicable and supporting documents go to the National Visa Center before interview scheduling</cite>. Chinese nationals face per-country waiting times in EB categories.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://china.usembassy-china.org.cn/visas/immigrant-visas/employment-based-immigration/"
+      },
+      {
+        "name": "EVUS enrollment — not applicable to work visas (clarification item)",
+        "description": "<cite index=\"7-15\">EVUS enrollment is required only for PRC passport holders travelling on 10-year B1/B2, B1 or B2 visas, updated every two years</cite>. H-1B/L-1/O-1 holders do not enrol in EVUS, but must do so separately if they also hold a 10-year B1/B2 visa and travel on it.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "https://china.usembassy-china.org.cn/visas/nonimmigrant-visas/"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Nigeria",
+    "destination": "United States",
+    "visa_type": "Work_Visa",
+    "cSlug": "nigeria",
+    "dSlug": "united-states",
+    "generated_at": "2026-09-22T10:08:47.788Z",
+    "documents": [
+      {
+        "name": "Nigerian international passport (machine-readable, valid 6+ months beyond intended stay)",
+        "description": "Original Nigerian passport with at least two blank visa pages; validity must extend at least six months beyond the intended period of stay in the U.S. Required to pay the MRV fee, schedule the interview at Abuja or Lagos, and receive the visa foil.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://ustraveldocs.com/ng/ng-niv-appointmentschedule.asp"
+      },
+      {
+        "name": "USCIS Form I-797 Notice of Action (approved I-129 petition) with receipt number",
+        "description": "Employer-obtained approval notice for the H-1B/H-2/L/O petition. The receipt number as printed on Form I-129 or I-797 is needed to complete the DS-160 and to book the consular interview; carry a copy (or original supplied by employer) to the interview.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "DOL-certified Labor Condition Application (Form ETA-9035) copy",
+        "description": "For H-1B specialty occupation cases, the DOL-certified LCA is filed by the employer with Form I-129; the employer must also give the worker a copy. Useful evidence of wage and worksite terms at the interview and for later compliance.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations"
+      },
+      {
+        "name": "DS-160 confirmation page with matching AA00 barcode",
+        "description": "Printed confirmation page of the completed online nonimmigrant visa application. Since April 22, 2025, applicants in Abuja and Lagos must present a DS-160 whose confirmation/barcode number matches the one used to book the appointment.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://ng.usembassy.gov/new-requirements-for-visa-interviews-april-11-2025/"
+      },
+      {
+        "name": "MRV visa application fee receipt (petition-based category)",
+        "description": "Proof of payment of the petition-based nonimmigrant visa fee (currently US$205, payable in Naira through the designated bank/online channel in Nigeria). The receipt number is needed to schedule the interview; fees are non-refundable — verify the current amount on the official Nigeria visa services site.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://ustraveldocs.com/ng/ng-niv-appointmentschedule.asp"
+      },
+      {
+        "name": "Digital visa photograph (plus one printed 2x2 inch print as backup)",
+        "description": "A recent colour photo meeting State Department photo specifications, uploaded during the DS-160. If the upload fails, one printed photo in the required format must be brought to the interview. Distinct from passport photocopies — this is a fresh biometric-standard photo of the applicant.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Proof of the $100,000 H-1B proclamation payment or DHS exception (employer-held)",
+        "description": "For new H-1B petitions filed at or after 12:01 a.m. EDT on Sept 21, 2025 for a beneficiary outside the U.S. without a valid H-1B visa, the petitioner must file pay.gov proof of the $100,000 payment or evidence of a DHS exception. Applies to most Nigeria-based first-time H-1B applicants; the measure is subject to litigation and possible expiry — verify current status with USCIS before travel.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://www.uscis.gov/newsroom/alerts/presidential-proclamation-on-restriction-on-entry-of-certain-nonimmigrant-workers"
+      },
+      {
+        "name": "Academic credentials: degree certificate, academic transcript and NYSC discharge certificate",
+        "description": "Originals of the Nigerian (or foreign) bachelor's/higher degree, official transcripts, and the NYSC discharge/exemption certificate where applicable, to evidence the specialty-occupation qualification claimed in the petition.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations"
+      },
+      {
+        "name": "U.S. credential evaluation report for the Nigerian degree",
+        "description": "Independent evaluation showing the Nigerian qualification is equivalent to a U.S. bachelor's degree or higher (or an experience-equivalency evaluation where a degree is substituted by qualifying work experience). Normally submitted by the employer with Form I-129; keep a copy for the interview.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.uscis.gov/i-129"
+      },
+      {
+        "name": "Employer support letter and applicant CV/résumé",
+        "description": "Letter from the U.S. petitioner confirming job title, duties, salary, worksite and start date, plus the applicant's résumé covering education and work history, which consular officers in Abuja/Lagos may request to establish qualification.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Social media identifiers and public account settings confirmation",
+        "description": "H-1B, H-3 and H-4 applicants (among others) are instructed by the U.S. Mission in Nigeria to set all social media accounts to 'public' before the interview, and all handles/usernames for the past five years must be declared on the DS-160.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://ng.usembassy.gov/visas/"
+      },
+      {
+        "name": "Dependent civil documents for H-4 spouse and children (NPC marriage and birth certificates)",
+        "description": "Original Nigerian marriage certificate for the spouse and original birth certificates for unmarried children under 21, issued by the National Population Commission/registry, for accompanying H-4 applicants. Court-affidavit declarations of age are generally not accepted in place of a registered certificate — confirm with the post.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "https://ng.usembassy.gov/visas/"
+      },
+      {
+        "name": "U.S. state professional licence or registration (regulated occupations)",
+        "description": "For licensed roles (e.g. medicine, nursing, pharmacy, engineering), the applicable U.S. state licence, or the exam/credentialing evidence such as NCLEX/CGFNS or USMLE-ECFMG results, must be in place as required by the petition. Requirements vary by state — verify with the relevant state licensing board.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "U.S. state professional licensing board (varies by state)"
+      },
+      {
+        "name": "Passport bearing the issued visa foil plus original I-797 for CBP inspection",
+        "description": "At the U.S. port of entry the traveller presents the visa-stamped passport together with the original/copy of the I-797 approval notice; admission and status are granted by CBP, not by the visa itself.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.cbp.gov/travel/international-visitors"
+      },
+      {
+        "name": "Form I-94 electronic arrival/departure record printout",
+        "description": "After admission, retrieve and print the electronic I-94 from the CBP portal. It shows the class of admission and 'admit until' date and is the controlling evidence of lawful status for employment, SSN, DMV and banking purposes.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://i94.cbp.dhs.gov"
+      },
+      {
+        "name": "Form I-9 employment eligibility verification with the U.S. employer",
+        "description": "Completed on or before the first day of work, using the Nigerian passport with the nonimmigrant visa plus the Form I-94 admission record as List A documentation.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.uscis.gov/i-9"
+      },
+      {
+        "name": "Social Security Number application (Form SS-5) and SSN card",
+        "description": "Apply in person at a Social Security office (or via the SSN-at-entry option if elected on the visa application) with passport, visa, I-94 and I-797. Allow time for DHS record verification after arrival before applying.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "U.S. Social Security Administration (SSA)"
+      },
+      {
+        "name": "State driver's licence or REAL ID-compliant state identification card",
+        "description": "Issued by the state DMV on presentation of passport, visa, I-94, I-797 and SSN (or SSA denial letter) plus two proofs of state residency. Validity is usually limited to the authorised stay; document lists differ by state — verify with the state DMV.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "State Department of Motor Vehicles / DHS REAL ID programme"
+      },
+      {
+        "name": "Form I-765 employment authorisation application for an eligible H-4 spouse",
+        "description": "Only H-4 spouses of H-1B workers who have an approved I-140 or AC21-based extension beyond the sixth year may apply for an EAD; the card must be approved before the spouse may work.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.uscis.gov/i-765"
+      },
+      {
+        "name": "Form I-129 extension/amendment filing and annual U.S. tax records",
+        "description": "Employer-filed extension or amendment (change of employer, worksite or material job change) to maintain status, together with the worker's W-2 and Form 1040 filings — and Form W-7 ITIN applications for dependents ineligible for an SSN. These records are commonly requested at future visa renewals in Abuja or Lagos.",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.uscis.gov/i-129"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Philippines",
+    "destination": "Saudi Arabia",
+    "visa_type": "Work_Visa",
+    "cSlug": "philippines",
+    "dSlug": "saudi-arabia",
+    "generated_at": "2026-09-22T10:10:41.180Z",
+    "documents": [
+      {
+        "name": "Philippine e-Passport with at least 6 months validity",
+        "description": "Original machine-readable/e-Passport issued by the DFA, valid for at least six months beyond the intended date of entry into Saudi Arabia. Name spelling must match the employment contract, visa authorization and all attested civil/educational documents, as mismatches are a common cause of DMW and Saudi consular rejection.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.jeddahpcg.dfa.gov.ph/visa-requirements"
+      },
+      {
+        "name": "Saudi employment (work) visa stamped by the Royal Saudi Embassy in Manila",
+        "description": "The physical visa sticker placed in the Philippine passport after the Saudi employer obtains the visa authorization / block visa number from the Saudi Ministry of Foreign Affairs (Enjaz/MOFA number). The employer/sponsor initiates this; the applicant or the licensed agency submits the passport for stamping. The visa must generally be used within its stated validity window (commonly 90 days from issuance) — verify the exact validity printed on your own visa.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Royal Embassy of Saudi Arabia in Manila / Saudi Ministry of Foreign Affairs (visa.mofa.gov.sa)"
+      },
+      {
+        "name": "Employment contract verified by DMW and the Migrant Workers Office (MWO/POLO) in Saudi Arabia",
+        "description": "The Saudi employer's job offer/contract must be verified by the Migrant Workers Office at the Philippine Embassy in Riyadh, PCG Jeddah, or MWO Al Khobar, then registered with the Department of Migrant Workers. It must state salary (meeting DMW-set minimums for the job category), free accommodation, transportation, medical/health insurance, working hours and leave. Insist on an English version — do not sign an Arabic-only contract.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Department of Migrant Workers (DMW), Philippines"
+      },
+      {
+        "name": "Overseas Employment Certificate (OEC) / DMW exit clearance",
+        "description": "Mandatory Philippine exit clearance proving legal deployment; without it, Bureau of Immigration will not allow departure for employment. New hires receive it through the DMW-accredited agency's contract processing; returning (Balik-Manggagawa) workers process it via the BM Online system. It also gives travel-tax and terminal-fee exemption at Philippine airports.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "DMW Balik-Manggagawa Online (BM Online), Department of Migrant Workers"
+      },
+      {
+        "name": "Wafid (GAMCA) medical fitness certificate from a Gulf-approved medical centre",
+        "description": "Pre-employment medical issued only by a Wafid/GAMCA-accredited clinic in the Philippines (auto-assigned by the Wafid portal), covering chest X-ray for TB, HIV, hepatitis B and C, syphilis, drug screening and a physical exam. Booking requires the passport, the sponsor/visa reference and the appointment slip. A 'Fit' result is required before the Saudi visa is stamped and the report is normally valid about 90 days.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "Wafid – Gulf Health Council (GAMCA) medical appointment portal"
+      },
+      {
+        "name": "Pre-Departure Orientation Seminar (PDOS) certificate",
+        "description": "Certificate of completion of the OWWA/DMW-run PDOS (a country-specific session for Saudi Arabia covering labour law, the Iqama system, culture and worker rights). Household service workers additionally undergo the comprehensive pre-departure education programme. The certificate is presented during OEC issuance.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "Overseas Workers Welfare Administration (OWWA)"
+      },
+      {
+        "name": "OWWA membership certificate / official receipt",
+        "description": "Proof of paid OWWA membership (typically USD 25 per contract) giving the OFW insurance, welfare, repatriation and scholarship benefits while in Saudi Arabia. Membership must be active at departure and renewed with each new or re-processed contract.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "Overseas Workers Welfare Administration (OWWA)"
+      },
+      {
+        "name": "Printed colour photographs, 4x6 cm with white background (2 copies)",
+        "description": "Physical photo prints submitted with the Saudi work visa application at the Saudi Embassy in Manila — separate from the digital biometrics (ten-finger prints and facial scan) captured later in Saudi Arabia. Number and exact specification can vary; confirm with the Royal Embassy of Saudi Arabia in Manila or its authorised visa centre before printing.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.jeddahpcg.dfa.gov.ph/visa-requirements"
+      },
+      {
+        "name": "Attested diploma and transcript of records (CHED CAV + DFA Apostille/authentication + Saudi Embassy legalisation)",
+        "description": "For professional and skilled roles, Philippine educational credentials must be verified by CHED (Certification, Authentication and Verification) or TESDA for technical-vocational certificates, then apostilled/authenticated by the DFA and legalised by the Royal Embassy of Saudi Arabia in Manila. Some Saudi ministries or employers also require a certified Arabic translation — confirm the exact format demanded by your employer.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "Department of Foreign Affairs (Philippines) – Apostille/Authentication Division; Commission on Higher Education (CHED)"
+      },
+      {
+        "name": "PRC professional licence and Saudi Commission for Health Specialties (SCFHS) classification",
+        "description": "Required only for regulated professions — e.g. nurses, medical technologists, pharmacists, physicians and some engineers. Healthcare workers must obtain SCFHS DataFlow primary source verification and professional classification/registration before the work permit and practice licence can be issued; engineers may need Saudi Council of Engineers registration.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "Saudi Commission for Health Specialties (SCFHS); Professional Regulation Commission (PRC), Philippines"
+      },
+      {
+        "name": "NBI clearance (police clearance) for travel abroad, authenticated",
+        "description": "Criminal-record clearance issued by the National Bureau of Investigation with the 'For Travel Abroad – Saudi Arabia' purpose. Often requested by Saudi employers and for certain professions or for later family-visa and licensing steps; not uniformly demanded for every work-visa category — verify with the hiring employer and the Saudi Embassy in Manila.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "National Bureau of Investigation (NBI), Philippines"
+      },
+      {
+        "name": "Release letter / No Objection Certificate from a previous Saudi sponsor",
+        "description": "Applies only to applicants who previously worked in the Kingdom: the Saudi Embassy requires a release letter from the former employer, and the applicant should confirm through MWO/Jawazat that no absconding (huroob) report, labour case or re-entry ban is recorded against them.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.jeddahpcg.dfa.gov.ph/visa-requirements"
+      },
+      {
+        "name": "Post-arrival medical examination report from a Saudi MOH-approved centre",
+        "description": "A second, in-Kingdom medical screening (physical exam, blood tests for HIV/hepatitis B and C/syphilis, chest X-ray) that must be completed shortly after arrival — commonly cited as within 14 to 30 days, depending on region and employer instructions. Results are transmitted electronically to the Ministry of Health and Jawazat and are a precondition for Iqama issuance.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "Saudi Ministry of Health / General Directorate of Passports (Jawazat)"
+      },
+      {
+        "name": "Jawazat biometric enrolment record and Absher/Nafath account",
+        "description": "Digital capture of ten fingerprints and a facial photograph at a Ministry of Interior biometric centre or Jawazat office, followed by activation of a personal Absher account (and Nafath digital identity) linked to a Saudi mobile number. These underpin access to all e-government services, exit/re-entry permits and Iqama functions.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://my.gov.sa/en/services/116997"
+      },
+      {
+        "name": "Iqama (residence permit card)",
+        "description": "The employer/sponsor applies via Muqeem/Absher Business and pays the issuance fee; the Iqama is the worker's legal identity and work authorisation in the Kingdom and is normally issued within 90 days of arrival. It is required to open a bank account, get a SIM line, sign a lease, enrol children in school and access healthcare. Carry it at all times and keep a photocopy separately.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "Ministry of Interior (Absher) / Muqeem portal, Saudi Arabia"
+      },
+      {
+        "name": "CCHI-compliant health insurance card",
+        "description": "Mandatory employer-provided medical insurance meeting Council of Cooperative Health Insurance minimum standards; the policy must be active and registered before the Iqama can be issued or renewed. Verify that the card covers the worker (and dependants if sponsored) and note the network hospitals.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "Council of Cooperative Health Insurance (CCHI), Saudi Arabia"
+      },
+      {
+        "name": "OFW registration with the Migrant Workers Office / Philippine Embassy in Saudi Arabia",
+        "description": "Voluntary but strongly advised on-site registration of the worker's contract, employer details and contact information with MWO Riyadh, MWO Al Khobar or MWO Jeddah (at PCG Jeddah). It speeds up welfare assistance, legal aid and repatriation, and is useful evidence in labour disputes; the 24/7 OFW assistance hotline can be reached from inside the Kingdom.",
+        "phase": "during",
+        "required": false,
+        "category": "other",
+        "source": "https://riyadhpe.dfa.gov.ph"
+      },
+      {
+        "name": "Iqama renewal record and Qiwa-authenticated employment contract",
+        "description": "The Iqama is typically valid one year and must be renewed by the sponsor before expiry (late renewal triggers fines starting around SAR 500, and can lead to travel bans). Renewal requires an active Qiwa-registered digital employment contract, valid health insurance and up-to-date biometrics; workers should verify their own status in Absher rather than rely solely on the employer.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "Ministry of Human Resources and Social Development (MHRSD) / Qiwa, Saudi Arabia"
+      },
+      {
+        "name": "Exit/Re-entry visa (or Final Exit visa)",
+        "description": "Iqama holders cannot leave Saudi Arabia without an exit/re-entry permit issued through Absher/Muqeem, or a final exit visa when the contract ends. Under the Labour Reform Initiative workers can in many cases request it themselves via Absher; when going home for vacation, the returning worker must also secure a Balik-Manggagawa OEC from DMW before flying back out of the Philippines.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "Absher (Saudi Ministry of Interior) / Muqeem portal"
+      },
+      {
+        "name": "Philippine passport renewal or extension processed in-Kingdom",
+        "description": "Renew the Philippine e-Passport at the Philippine Embassy in Riyadh, PCG Jeddah, or the accredited ePassport Renewal Centres in Riyadh and Al Khobar well before expiry, since Iqama renewal, exit/re-entry visas and salary/banking records are tied to the passport number. The same offices issue Embassy endorsement letters needed for NBI fingerprinting and police clearance from abroad.",
+        "phase": "after",
+        "required": false,
+        "category": "identity",
+        "source": "https://riyadhpe.dfa.gov.ph"
+      }
+    ],
+    "source": "fresh"
   }
 ]
