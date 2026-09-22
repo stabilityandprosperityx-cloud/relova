@@ -32,6 +32,10 @@ export const DOCUMENTS_LAUNCH_PAIRS: DocumentsLaunchPair[] = [
   { citizenship: "Philippines", destination: "UAE", visa_type: "Freelance_Permit" },
   { citizenship: "Philippines", destination: "Canada", visa_type: "Express_Entry" },
   { citizenship: "Germany", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
+  { citizenship: "United States", destination: "Canada", visa_type: "Express_Entry" },
+  { citizenship: "United Kingdom", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
+  { citizenship: "India", destination: "Canada", visa_type: "Express_Entry" },
+  { citizenship: "Philippines", destination: "Australia", visa_type: "Skilled_Nominated" },
 ];
 
 /** can-i-move pairs that also have a documents-needed launch page. */
@@ -55,6 +59,10 @@ export const CAN_I_MOVE_CROSSLINK_PAIRS = [
   ["Philippines", "Canada"],
   ["Brazil", "Spain"],
   ["China", "Singapore"],
+  ["United States", "Canada"],
+  ["United Kingdom", "Portugal"],
+  ["India", "Canada"],
+  ["Philippines", "Australia"],
 ] as const;
 
 /** Short label for Popular links. */

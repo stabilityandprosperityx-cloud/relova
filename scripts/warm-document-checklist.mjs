@@ -113,6 +113,10 @@ const PAIRS = [
   { citizenship: "Philippines", destination: "UAE", visa_type: determineVisaType("UAE") },
   { citizenship: "Philippines", destination: "Canada", visa_type: determineVisaType("Canada") },
   { citizenship: "Germany", destination: "Portugal", visa_type: determineVisaType("Portugal") },
+  { citizenship: "United States", destination: "Canada", visa_type: determineVisaType("Canada") },
+  { citizenship: "United Kingdom", destination: "Portugal", visa_type: determineVisaType("Portugal") },
+  { citizenship: "India", destination: "Canada", visa_type: determineVisaType("Canada") },
+  { citizenship: "Philippines", destination: "Australia", visa_type: determineVisaType("Australia") },
 ];
 
 /** Pairs requested in the diversification batch (may overlap existing). */
