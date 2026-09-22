@@ -824,11 +824,32 @@ const checklistTableRows = DOC_LAUNCH_PAIRS.map((p) => {
       </tr>`;
 }).join("\n      ");
 
+// Can I Move and Country Compare tables reuse LAUNCH_PAIRS and
+// compareSnapshots, both already built earlier in this script — no need to
+// duplicate either pair list here.
+const canIMoveTableRows = LAUNCH_PAIRS.map((p) => {
+  const href = `/tools/can-i-move/${slugify(p.citizenship)}/${slugify(p.destination)}`;
+  return `<tr>
+        <td style="padding:0.5rem 0.75rem;border-top:1px solid #e8e4dc">${escapeHtml(p.citizenship)}</td>
+        <td style="padding:0.5rem 0.75rem;border-top:1px solid #e8e4dc">${escapeHtml(p.destination)}</td>
+        <td style="padding:0.5rem 0.75rem;border-top:1px solid #e8e4dc">${escapeHtml(verdictLabel(p.status))}</td>
+        <td style="padding:0.5rem 0.75rem;border-top:1px solid #e8e4dc"><a href="${href}">View check</a></td>
+      </tr>`;
+}).join("\n      ");
+
+const compareTableRows = compareSnapshots.map((s) => {
+  return `<tr>
+        <td style="padding:0.5rem 0.75rem;border-top:1px solid #e8e4dc">${escapeHtml(s.demonym ?? "Any")}</td>
+        <td style="padding:0.5rem 0.75rem;border-top:1px solid #e8e4dc">${escapeHtml(s.countryA)} vs ${escapeHtml(s.countryB)}</td>
+        <td style="padding:0.5rem 0.75rem;border-top:1px solid #e8e4dc"><a href="${escapeHtml(s.path)}">Compare</a></td>
+      </tr>`;
+}).join("\n      ");
+
 writePage({
   outPath: join(distDir, "data-sources", "index.html"),
   title: "Data & Sources — Relova",
   description:
-    "How Relova builds document checklists: methodology, coverage, last-verified dates for each published pair, and terms for citing source-cited (Tier 1) data.",
+    "How Relova's tools and data are built: coverage for every tool, methodology, last-verified dates, and terms for citing source-cited (Tier 1) data.",
   bodyHtml: `
     <main style="max-width:52rem;margin:4rem auto;padding:1.5rem;font-family:system-ui,sans-serif">
       <h1 style="font-family:Georgia,serif;font-size:1.75rem;line-height:1.2">Data &amp; Sources</h1>
@@ -856,6 +877,8 @@ writePage({
         <li><strong>24</strong> citizenship → destination document checklists generated</li>
         <li><strong>500</strong> document requirements catalogued — <strong>496 (99.2%)</strong> with a named official or consular source</li>
         <li><strong>8</strong> citizenships analyzed for realistic relocation destinations — <strong>151</strong> destination matches</li>
+        <li><strong>${LAUNCH_PAIRS.length}</strong> cached Can I Move citizenship → destination checks published</li>
+        <li><strong>${compareSnapshots.length}</strong> cached Country Compare pages published</li>
         <li><strong>106</strong> countries in our static reference database (lifestyle / cost / safety baseline — not AI checklist research)</li>
       </ul>
       <p style="color:#888;font-size:0.8rem;margin-top:0.75rem;line-height:1.6">Of 500 cached document items, 496 carry a non-empty named source field; 4 do not. We do not treat those 4 as sourced evidence.</p>
@@ -875,6 +898,41 @@ writePage({
         </thead>
         <tbody>
       ${checklistTableRows}
+        </tbody>
+      </table>
+      </div>
+
+      <h2 id="can-i-move-pairs" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Cached Can I Move checks</h2>
+      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Every citizenship → destination pair with a published Can I Move page (${LAUNCH_PAIRS.length} pairs). Verdicts summarize the cached citizenship-candidate research described above; check each destination page for the underlying note.</p>
+      <div style="overflow-x:auto;margin-top:1rem;border:1px solid #e8e4dc;border-radius:0.75rem">
+      <table style="width:100%;border-collapse:collapse;font-size:0.85rem;min-width:30rem">
+        <thead>
+          <tr style="background:#f6f3ee;text-align:left;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;color:#666">
+            <th style="padding:0.6rem 0.75rem">Citizenship</th>
+            <th style="padding:0.6rem 0.75rem">Destination</th>
+            <th style="padding:0.6rem 0.75rem">Verdict</th>
+            <th style="padding:0.6rem 0.75rem">Check</th>
+          </tr>
+        </thead>
+        <tbody>
+      ${canIMoveTableRows}
+        </tbody>
+      </table>
+      </div>
+
+      <h2 id="country-compare-pairs" style="font-family:Georgia,serif;font-size:1.25rem;margin-top:2rem">Cached Country Compare pages</h2>
+      <p style="color:#555;margin-top:0.75rem;line-height:1.6">Every country pair with a published Country Compare page (${compareSnapshots.length} pairs). Table data on each page is computed live from the static reference database above, not separately researched per pair.</p>
+      <div style="overflow-x:auto;margin-top:1rem;border:1px solid #e8e4dc;border-radius:0.75rem">
+      <table style="width:100%;border-collapse:collapse;font-size:0.85rem;min-width:30rem">
+        <thead>
+          <tr style="background:#f6f3ee;text-align:left;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;color:#666">
+            <th style="padding:0.6rem 0.75rem">Citizenship lens</th>
+            <th style="padding:0.6rem 0.75rem">Countries</th>
+            <th style="padding:0.6rem 0.75rem">Compare</th>
+          </tr>
+        </thead>
+        <tbody>
+      ${compareTableRows}
         </tbody>
       </table>
       </div>
