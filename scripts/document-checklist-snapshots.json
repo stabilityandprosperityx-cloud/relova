@@ -6915,5 +6915,1405 @@
       }
     ],
     "source": "fresh"
+  },
+  {
+    "citizenship": "Russia",
+    "destination": "Israel",
+    "visa_type": "Work_Visa",
+    "cSlug": "russia",
+    "dSlug": "israel",
+    "generated_at": "2026-09-22T11:19:30.807Z",
+    "documents": [
+      {
+        "name": "Russian international passport (загранпаспорт)",
+        "description": "Valid Russian travel passport, normally required to be valid at least 6 months beyond the intended stay and with blank pages for the visa sticker. The B/1 visa is physically affixed to this passport at the Israeli Embassy in Moscow; internal Russian passports are not accepted. Verify exact validity margin with the mission, as it may vary.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://embassies.gov.il/russia/en/services/foreign-citizens/application-work-visa-israel"
+      },
+      {
+        "name": "PIBA approval letter for the B/1 work visa",
+        "description": "Original approval/permit letter issued in Israel by the Population and Immigration Authority on behalf of the Israeli employer. The consulate will not issue the B/1 visa without it; it is obtained by the employer in Israel, not by the Russian applicant.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.il/en/service/working_permit_for_foreign_workers"
+      },
+      {
+        "name": "Completed and signed B/1 work visa application form",
+        "description": "The mission's official long-stay/work visa application form, completed and signed by the applicant and submitted in the country of residence (Embassy of Israel in Moscow for Russian residents), by prior appointment. Applicant must be over 18 with no first-degree relatives in Israel for this specific service track.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://embassies.gov.il/russia/en/services/foreign-citizens/application-work-visa-israel"
+      },
+      {
+        "name": "Recent colour passport-format photographs of the applicant",
+        "description": "Printed photographs on white background meeting the mission's size and recency rules, submitted with the paper application form. These are separate from the biometric fingerprint capture done in person at the embassy. Confirm quantity and dimensions with the Moscow embassy before the appointment.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Embassy of Israel in Moscow (Consular Section)"
+      },
+      {
+        "name": "Signed employment contract with the Israeli employer",
+        "description": "Contract naming the sponsoring Israeli employer, the position, duration and salary. For the 'foreign expert' track the salary must meet the statutory expert wage threshold (double the Israeli average wage for stays over three months). The B/1 status is tied to this one employer and role.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.il/en/service/working_permit_for_foreign_workers"
+      },
+      {
+        "name": "Diplomas, professional certificates and CV evidencing expertise",
+        "description": "Russian-issued diplomas, qualification certificates and a résumé proving the education, experience and expertise on which the expert permit was granted. Documents not in Hebrew or English must be translated into Hebrew and notarised; apostille is commonly required for Russian public documents.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.il/en/service/working_permit_for_foreign_workers"
+      },
+      {
+        "name": "Russian police clearance certificate (справка о несудимости) with apostille",
+        "description": "Non-criminal record certificate issued by the Russian MVD, legalised with an apostille; both the apostilled original and a photocopy are usually requested. Frequently required by the consul for work visa applicants, though it is formally listed as an 'additional document the Consul may require'.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://embassies.gov.il/russia/en/services/foreign-citizens/application-work-visa-israel"
+      },
+      {
+        "name": "Medical fitness certificate signed by a physician",
+        "description": "A 'fit for employment' medical certificate; in practice Russian applicants are usually asked for test results covering tuberculosis, HIV and hepatitis. Listed as a document the Consul may require, so confirm the exact panel of tests and certificate format with the Moscow embassy.",
+        "phase": "before",
+        "required": false,
+        "category": "other",
+        "source": "https://embassies.gov.il/russia/en/services/foreign-citizens/application-work-visa-israel"
+      },
+      {
+        "name": "Private medical insurance policy arranged by the employer",
+        "description": "Proof of health insurance valid in Israel for the whole employment period. Under Israeli foreign workers legislation the employer must provide medical insurance (and suitable housing) for the foreign expert; the policy certificate is presented with the visa file and again on arrival.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "Population and Immigration Authority (PIBA), Israel"
+      },
+      {
+        "name": "Proof of visa fee payment",
+        "description": "Receipt for the statutory work visa/permit fee. For the B/1 track the fee is paid in Israel by the sponsoring employer when the application is filed at a Ministry of Interior population bureau; keep a copy for the consular appointment.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://embassies.gov.il/russia/en/services/foreign-citizens/application-work-visa-israel"
+      },
+      {
+        "name": "Prepaid, trackable return envelope for the passport",
+        "description": "Pre-addressed courier envelope with tracking number used by the mission to return the passport with the affixed B/1 visa. Practice differs between Israeli missions — verify with the Embassy in Moscow whether courier return or in-person collection applies.",
+        "phase": "before",
+        "required": false,
+        "category": "other",
+        "source": "Israeli Ministry of Foreign Affairs — consular services"
+      },
+      {
+        "name": "Single-entry B/1 entry visa and border-control entry permit slip",
+        "description": "The consular B/1 sticker issued for a short initial validity (about 30 days, single entry) is shown at Ben Gurion passport control, where a printed entry permit slip is issued instead of a passport stamp. Keep the slip — it evidences lawful entry when you file at the Ministry of Interior.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "Population and Immigration Authority (PIBA), Israel"
+      },
+      {
+        "name": "Application to the Ministry of Interior for the extended multi-entry B/1 permit",
+        "description": "Filed at a PIBA population bureau very shortly after arrival (commonly within days, and in any event before the entry visa expires) to upgrade the 30-day entry visa to a multi-entry B/1 work visa valid up to one year. Submitted with the passport, the PIBA permit and the employer's letter.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Population and Immigration Authority (PIBA), Israel"
+      },
+      {
+        "name": "Employer housing confirmation or residential lease agreement",
+        "description": "Document showing suitable accommodation in Israel, which the employer is obliged to arrange for foreign workers. Needed as address proof for the Ministry of Interior file, bank account opening and utility contracts.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "Population and Immigration Authority (PIBA), Israel"
+      },
+      {
+        "name": "Israeli bank account opening file (passport, B/1 visa page, employer letter)",
+        "description": "Israeli banks require the foreign passport, the valid multi-entry B/1 visa, an employer confirmation letter and a local address before opening a non-resident/foreign-worker account for salary payments. Requirements differ between banks and branches.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "Bank of Israel"
+      },
+      {
+        "name": "Israel Tax Authority employee declaration (Form 101) and tax file registration",
+        "description": "Annual employee tax declaration completed with the Israeli employer so payroll withholding and any credit points are applied correctly; long stays may also create Israeli tax-residency and reporting duties.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "Israel Tax Authority"
+      },
+      {
+        "name": "National Insurance Institute (Bituach Leumi) registration of the foreign worker",
+        "description": "The Israeli employer registers and pays national insurance contributions for the B/1 worker; keep the registration confirmation and monthly payslips as proof of lawful employment. Scope of coverage for foreign workers is narrower than for residents — verify entitlements with Bituach Leumi.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "National Insurance Institute of Israel (Bituach Leumi)"
+      },
+      {
+        "name": "Annual B/1 visa and work permit renewal file",
+        "description": "Each extension requires a fresh employer application to PIBA plus renewal of the visa in the passport; total stay in B/1 expert status is normally capped at 63 months (with a shorter renewal cycle for some 'professional in a specific field' categories). Includes the employer's accountant certification appendix.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.il/en/service/working_permit_for_foreign_workers"
+      },
+      {
+        "name": "New employer's work permit application when changing jobs",
+        "description": "The B/1 permit is tied to one employer; a change of employer requires the incoming Israeli company to file a complete new work permit application with PIBA before work begins. Working outside the permit exposes both worker and employer to penalties and removal.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "Population and Immigration Authority (PIBA), Israel"
+      },
+      {
+        "name": "Apostilled Russian civil status documents for accompanying family",
+        "description": "Marriage certificate and children's birth certificates issued in Russia, apostilled and translated into Hebrew with notarisation, to obtain derivative permits for a spouse and minor children during the worker's relocation period.",
+        "phase": "after",
+        "required": false,
+        "category": "identity",
+        "source": "Population and Immigration Authority (PIBA), Israel"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "United States",
+    "destination": "Panama",
+    "visa_type": "Friendly_Nations",
+    "cSlug": "united-states",
+    "dSlug": "panama",
+    "generated_at": "2026-09-22T11:20:41.789Z",
+    "documents": [
+      {
+        "name": "Valid U.S. passport (original, with at least 3 months validity remaining)",
+        "description": "Original U.S. passport presented at Panamanian immigration on entry and at the National Immigration Service (SNM) when the residency file is filed. Panama requires U.S. nationals to hold a passport valid for a minimum of three months on entry, plus proof of onward travel and economic solvency for tourist entry.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.embassyofpanama.org/visas-1"
+      },
+      {
+        "name": "FBI Identity History Summary (federal criminal record check)",
+        "description": "Police/criminal record certificate from the country of citizenship or of residence for the last 2 years, required for each applicant over 18. U.S. applicants typically use the FBI Identity History Summary; it is generally accepted only if recently issued (commonly within 3–6 months) — confirm the acceptable issuance window with SNM or your Panamanian attorney, as practice varies.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.fbi.gov/how-we-can-help-you/more-fbi-services-and-information/identity-history-summary-checks"
+      },
+      {
+        "name": "Apostille (Hague Convention) on the FBI criminal record",
+        "description": "The U.S. criminal record must be apostilled before use in Panama. For FBI-issued documents the apostille is issued by the U.S. Department of State Office of Authentications; documents issued by a U.S. state (e.g., state police record, vital records) are apostilled by that state's Secretary of State.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/records-and-authentications/authenticate-your-document/apostille-requirements.html"
+      },
+      {
+        "name": "Apostilled U.S. civil status documents for dependents (marriage certificate / children's birth certificates)",
+        "description": "Only if a spouse, dependent children (generally under 25 if studying) or dependent parents are included in the application. Certified copies must be apostilled by the issuing state's Secretary of State and later translated into Spanish.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/records-and-authentications/authenticate-your-document/apostille-requirements.html"
+      },
+      {
+        "name": "Evidence of the qualifying economic tie to Panama (one of three pathways)",
+        "description": "Since the 2021 reform, the applicant must document one of three grounds: (a) employment with a Panamanian company, (b) titled Panamanian real estate worth at least US$200,000, or (c) a three-year fixed-term bank deposit of at least US$200,000 in a Panamanian bank. Gather the underlying proof (offer letter, purchase contract, source-of-funds evidence) before travelling; deposit/investment thresholds are set by executive decree and should be verified with SNM before filing.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      },
+      {
+        "name": "Bank due-diligence pack for opening a Panamanian bank account",
+        "description": "Panamanian banks typically require two bank reference letters, a professional reference letter, recent U.S. bank statements and U.S. tax returns to open a local account. Exact items vary by bank — verify directly with the chosen institution.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "Superintendencia de Bancos de Panamá"
+      },
+      {
+        "name": "Passport-size (carné) photographs of the applicant",
+        "description": "Carné-size photos with the applicant's name written on the back are required for the immigration file and, separately, four photos for the MITRADEL work permit application. These are physical printed photos, distinct from the biometric photo and fingerprints taken at SNM.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.mitradel.gob.pa/migracion-laboral2/permiso-de-trabajo-paises-amigos/"
+      },
+      {
+        "name": "Notarized Power of Attorney and residency application form (Poder y Solicitud)",
+        "description": "Panamanian law requires the residency file to be submitted by a licensed Panamanian attorney; the applicant signs a Power of Attorney before a Panamanian notary, which must state the name and nationality of the applicant's parents. Signed in Panama during the setup trip.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      },
+      {
+        "name": "Notarized copy of the complete passport (Panamanian notary)",
+        "description": "A full photocopy of every page of the U.S. passport, authenticated by a Panamanian Public Notary and attached to the file. This is a separate item from presenting the original passport at SNM.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      },
+      {
+        "name": "Certificate of good health from a Panamanian physician",
+        "description": "Medical certificate for each member of the family group, issued by a doctor licensed in Panama within the three months before the file is presented. Cannot be obtained abroad.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      },
+      {
+        "name": "Sworn declaration of personal background (Declaración Jurada de Antecedentes Personales)",
+        "description": "Standard SNM form completed and sworn by the applicant, separate from the foreign criminal record certificate.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      },
+      {
+        "name": "Certified check for US$250 payable to the Tesoro Nacional",
+        "description": "Immigration category fee, paid by certified or cashier's check drawn on a Panamanian bank, for each applicant in the family group.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      },
+      {
+        "name": "Certified check for US$800 payable to the Servicio Nacional de Migración (repatriation deposit)",
+        "description": "Repatriation deposit paid by certified or cashier's check from a Panamanian bank, applicable to each applicant aged 12 or over; certain categories are exempt. Non-refundable once SNM issues a resolution.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      },
+      {
+        "name": "Official Spanish translations of all foreign-issued documents",
+        "description": "All English-language documents (FBI record, marriage/birth certificates, employment or investment evidence) must be translated into Spanish by a translator licensed as a public translator in the Republic of Panama.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      },
+      {
+        "name": "Carné de Trámite (temporary processing card)",
+        "description": "Issued by SNM after the complete file is accepted (reportedly within about 5 business days); it evidences the pending application and legalises the applicant's stay while the case is reviewed. Fingerprints and a biometric photo are captured at SNM at this stage.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      },
+      {
+        "name": "Provisional residence card (2-year Permiso de Residente Provisional)",
+        "description": "Issued on approval and valid two years; the holder must collect it in person at SNM. Processing commonly runs about 2–6 months depending on the file.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      },
+      {
+        "name": "MITRADEL work permit (Países Específicos / Países Amigos category)",
+        "description": "Required to work for pay in Panama; residency alone does not authorise employment. The application requires a notarised copy of the SNM card (approved or in process), four carné photos, registration in the National Migrant Labour Registry and a notarised power of attorney. Granted provisionally for three years, renewable, with 9 social-security contributions or a tax return and paz y salvo needed for renewal.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.mitradel.gob.pa/migracion-laboral2/permiso-de-trabajo-paises-amigos/"
+      },
+      {
+        "name": "Proof that the qualifying economic tie has been maintained",
+        "description": "For the permanent residency conversion after two years, the applicant must show the original basis remains in force — e.g., the fixed-term deposit still active, the property still titled, or continued genuine employment (updated employment letter, CSS record, tax filings).",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      },
+      {
+        "name": "Permanent residency application file (PPP-PE) after two years",
+        "description": "Filed at the end of the provisional period through a Panamanian attorney. It reuses the same documents as the initial application, updated, plus submission of the provisional residence card; the foreign criminal record certificate and the government certified checks are generally not required again — confirm current requirements with SNM before filing.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      },
+      {
+        "name": "Cédula E (carné de residente permanente) from the Tribunal Electoral",
+        "description": "The Panamanian biometric ID card for permanent residents, issued by the Dirección Nacional de Cedulación of the Tribunal Electoral only after SNM has approved permanent residency. Requires the SNM 'nota de cédula' authorisation letter, the permanent resident card and the original passport; it is renewed every 10 years.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.tribunal-electoral.gob.pa/tramite-de-certificacion-de-cedula-o-carne-de-residente-permanente/"
+      },
+      {
+        "name": "Proof of Panamanian domicile (lease, title deed or utility bill)",
+        "description": "Commonly requested by SNM, banks, MITRADEL and the Tribunal Electoral to evidence a local address. Accepted formats vary by institution — verify with the receiving authority.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "Servicio Nacional de Migración de Panamá (migracion.gob.pa)"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "United Kingdom",
+    "destination": "Ireland",
+    "visa_type": "Critical_Skills",
+    "cSlug": "united-kingdom",
+    "dSlug": "ireland",
+    "generated_at": "2026-09-22T11:37:13.615Z",
+    "documents": [
+      {
+        "name": "Valid UK passport (British citizen)",
+        "description": "Your British passport is the core document for this route: it evidences Common Travel Area rights, so no Irish visa or residence permission is needed, and Irish employers will accept it as your right-to-work proof. Carriers (air/sea) normally require photo ID showing nationality even though there are no CTA passport controls.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.gov.ie/en/department-of-foreign-affairs/publications/brexit-frequently-raised-topics/"
+      },
+      {
+        "name": "Critical Skills Employment Permit application (NOT required for UK citizens)",
+        "description": "Do not file a CSEP: under the Common Travel Area, British citizens may work in Ireland, including self-employment, without any employment permit, and the employment permit regime applies only to non-EEA/non-UK nationals. If your employer's HR insists on a permit reference, refer them to the DETE permit-exemption guidance. Only relevant if you also hold a non-UK, non-EEA nationality and are relying on it.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://enterprise.gov.ie/en/what-we-do/workplace-and-skills/employment-permits/permit-types/critical-skills-employment-permit/"
+      },
+      {
+        "name": "Signed Irish contract of employment / written job offer",
+        "description": "A contract from the Irish employer stating job title, start date, gross annual salary and employer name/Revenue-registered details. No salary threshold or occupation-list condition applies to you as a British citizen, but the contract is used downstream as evidence of your reason for needing a PPS number and for tenancy and bank applications.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.citizensinformation.ie/en/government-in-ireland/ireland-and-the-uk/common-travel-area-between-ireland-and-the-uk/"
+      },
+      {
+        "name": "Original UK photocard driving licence (plus NI paper counterpart if issued in Northern Ireland)",
+        "description": "Bring the physical original, not a copy: the NDLS will only process an exchange if the original licence is surrendered, and a DVLA 'letter of entitlement' instead of the card slows processing. Keep it valid and unexpired until the exchange is completed.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.ndls.ie/licensed-driver/exchange-my-foreign-driving-licence.html"
+      },
+      {
+        "name": "Degree/qualification certificates and UK professional registration evidence",
+        "description": "Original or certified copies of degree parchments, transcripts and current UK professional body registration (e.g. GMC, NMC, engineering, teaching). UK and Irish governments operate mutual recognition commitments for professional qualifications, but regulated professions must still register with the relevant Irish regulator before practising — verify the exact evidence with your specific Irish regulator as it varies by profession.",
+        "phase": "before",
+        "required": false,
+        "category": "other",
+        "source": "https://gov.uk/government/publications/common-travel-area-guidance/common-travel-area-guidance"
+      },
+      {
+        "name": "HMRC form P85 (leaving the UK – tax position)",
+        "description": "Submitted to HMRC when you stop having UK employment income, to set your UK tax residence position and claim any refund for the year of departure. Not an Irish immigration requirement, but essential to avoid double taxation confusion in your first Irish tax year.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "HM Revenue & Customs (HMRC), gov.uk"
+      },
+      {
+        "name": "Irish visa or preclearance application pack for non-EEA family members",
+        "description": "Your CTA rights do not extend to relatives: a non-EEA spouse, partner or child cannot rely on your British citizenship and must apply for the appropriate Irish visa/preclearance (including marriage or civil partnership certificate, birth certificates, and proof of your Irish employment and finances) before travelling. Confirm the exact pack with Immigration Service Delivery, as requirements differ by family relationship.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "Immigration Service Delivery (ISD), Department of Justice, Ireland"
+      },
+      {
+        "name": "Basic MyGovID account",
+        "description": "The digital identity account you must create (email plus verified mobile number and an identity document) before you can use MyWelfare to apply for a PPS number. A 'basic' account is the minimum; a 'verified' account is needed later for services such as online driving licence exchange.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://services.mywelfare.ie/en/topics/identity-services/personal-public-service-pps-number/"
+      },
+      {
+        "name": "PPS Number application on MyWelfare with passport as proof of identity",
+        "description": "Apply through MyWelfare, uploading a scan of your UK passport as the identity document; you must attend an in-person appointment to complete the application and receive the number. A PPS number is the gateway to payroll, healthcare and licence exchange — no IRP card exists for you because you hold no Irish immigration permission.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.gov.ie/en/department-of-social-protection/services/get-a-personal-public-service-pps-number/"
+      },
+      {
+        "name": "Proof of Irish address dated within the last 3 months (for PPS number)",
+        "description": "A document showing your name and Irish address, no more than three months old — e.g. a utility bill, official letter, or, if staying with friends/relatives, the bill holder's original household bill plus a signed note confirming you live there. Short-term hotel/short-let bookings are generally not accepted; this is a distinct item from the tenancy agreement itself.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.citizensinformation.ie/en/social-welfare/irish-social-welfare-system/personal-public-service-number/"
+      },
+      {
+        "name": "Evidence of why you need a PPS number (employment start letter)",
+        "description": "Separate from the contract's role as a legal document, the Department of Social Protection requires proof of the transaction triggering the application — typically a letter from the Irish employer confirming your name, role and start date, or the signed contract itself.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.gov.ie/en/department-of-social-protection/services/get-a-personal-public-service-pps-number/"
+      },
+      {
+        "name": "Residential tenancy agreement (registered with the RTB)",
+        "description": "The signed lease in your own name, which the landlord must register with the Residential Tenancies Board. Retain it as a legal record of tenancy rights and as the underlying document that generates later address proofs (bills, bank statements).",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "Residential Tenancies Board (RTB), Ireland"
+      },
+      {
+        "name": "Revenue myAccount registration and 'Add a Job' declaration",
+        "description": "Register with Irish Revenue online using your PPS number and register your new employment so Revenue issues a Revenue Payroll Notification to your employer; without this you are taxed at emergency rates. Also the route to claiming tax credits in your first year of Irish residence.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "Office of the Revenue Commissioners, Ireland"
+      },
+      {
+        "name": "Irish bank account opening pack (photo ID plus Irish address verification)",
+        "description": "Irish banks apply anti-money-laundering rules: expect to provide your UK passport as photo ID plus a separate recent document verifying your Irish residential address, and often your PPS number and employment confirmation. Accepted address documents differ between banks — verify with the individual institution.",
+        "phase": "during",
+        "required": true,
+        "category": "financial",
+        "source": "Central Bank of Ireland"
+      },
+      {
+        "name": "Public Services Card (SAFE 2 registration)",
+        "description": "Issued by the Department of Social Protection after a face-to-face SAFE identity registration. It is not compulsory for all purposes, but it is required for a verified MyGovID and for the online driving licence exchange and many welfare services.",
+        "phase": "after",
+        "required": false,
+        "category": "identity",
+        "source": "Department of Social Protection, Ireland"
+      },
+      {
+        "name": "Irish driving licence exchange application (form D401)",
+        "description": "Because Ireland and the UK maintain a bilateral exchange agreement, you can swap a full UK licence for an Irish one without any test. Submit the completed D401, surrender the original UK licence, and present photo ID, evidence of your PPS number, proof of address and, where relevant to your age or licence category, an NDLS medical report dated within one month.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.ndls.ie/licensed-driver/exchange-my-foreign-driving-licence.html"
+      },
+      {
+        "name": "Medical card or GP visit card application with proof of ordinary residence",
+        "description": "British citizens who are ordinarily resident in Ireland can access the full range of public health services, but the HSE assesses entitlement: supply evidence of residence and, for a means-tested medical card, income documents. Keep payslips, lease and utility bills as the residence evidence pack.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "Health Service Executive (HSE), Ireland"
+      },
+      {
+        "name": "Transfer of Residence relief claim for importing a vehicle (VRT exemption)",
+        "description": "If you ship your UK car to Ireland, a Transfer of Residence claim to Revenue can exempt it from Vehicle Registration Tax, supported by proof of prior UK residence, vehicle ownership and use for the required period, plus proof of your new Irish residence. Strict timing and ownership conditions apply — confirm current rules with Revenue before shipping.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "Office of the Revenue Commissioners, Ireland"
+      },
+      {
+        "name": "Electoral register application as a British citizen resident in Ireland",
+        "description": "British citizens resident in Ireland may register to vote in Dáil (general) and local elections, using the relevant registration form/online application for your local authority; entitlement does not extend to presidential elections or referendums. Confirm the current form reference with your local authority.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "Department of Housing, Local Government and Heritage (checktheregister.ie), Ireland"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "India",
+    "destination": "United States",
+    "visa_type": "Work_Visa",
+    "cSlug": "india",
+    "dSlug": "united-states",
+    "generated_at": "2026-09-22T11:38:50.176Z",
+    "documents": [
+      {
+        "name": "Indian passport valid at least six months beyond intended U.S. stay",
+        "description": "Original machine-readable Indian passport presented at the U.S. Embassy/Consulate (New Delhi, Mumbai, Chennai, Hyderabad, Kolkata) and retained for visa stamping after a successful interview. Also bring all previous/expired Indian passports to establish travel and prior U.S. visa history.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://in.usembassy.gov/visas/"
+      },
+      {
+        "name": "Form I-797 Notice of Action (approved I-129 H-1B petition)",
+        "description": "Employer-obtained USCIS approval notice for the Form I-129 petition. You must know/carry the petition receipt number as it appears on the I-129 or I-797; the consulate verifies the petition in the Petition Information Management Service before issuing the visa.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "DS-160 confirmation page with barcode",
+        "description": "Printed confirmation page of the completed online Nonimmigrant Visa Application (DS-160), submitted through CEAC and presented at both the Visa Application Centre and the consular interview. The DS-160 requires disclosure of your social media identifiers from the past five years.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://ceac.state.gov/genniv/"
+      },
+      {
+        "name": "MRV visa application fee payment receipt",
+        "description": "Proof of payment of the non-refundable, non-transferable machine-readable visa (MRV) fee, paid in India via the designated bank/online channels before scheduling appointments. Keep the receipt number — it is required to book the VAC and interview slots.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "U.S. Visa Information Service – India (ustraveldocs.com/in)"
+      },
+      {
+        "name": "VAC biometrics appointment letter and consular interview appointment letter",
+        "description": "Two distinct printed confirmations: one for fingerprint/photo capture at the Visa Application Centre and one for the in-person interview at the U.S. Embassy/Consulate. Most H-1B applicants, including renewals, must now attend an in-person interview; Dropbox (interview waiver) eligibility for H-1B has been narrowed — verify current eligibility on the official India visa services site before booking.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "U.S. Visa Information Service – India (ustraveldocs.com/in)"
+      },
+      {
+        "name": "U.S. visa photograph meeting Department of State specifications",
+        "description": "One recent 2x2 inch (51x51 mm) colour photograph on a white background, uploaded with the DS-160 and carried in print in case the upload fails. This is separate from the live biometric photograph captured at the Visa Application Centre.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/photos.html"
+      },
+      {
+        "name": "Employer support letter stating job title, duties, worksite and salary",
+        "description": "Letter on U.S. employer letterhead describing the specialty occupation, duties, work location(s), employment start date and offered wage. For Indian IT/consulting applicants placed at third-party client sites, also carry the end-client letter, statement of work or master services agreement, which consular officers in India frequently request.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Certified Labor Condition Application (Form ETA-9035/9035E)",
+        "description": "Copy of the LCA certified by the U.S. Department of Labor and filed by the employer with the I-129 petition, showing the prevailing wage and place(s) of employment.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "U.S. Department of Labor – Office of Foreign Labor Certification"
+      },
+      {
+        "name": "Original Indian degree certificates, consolidated marksheets and transcripts",
+        "description": "Originals plus photocopies of your bachelor's/master's degree certificate, all semester marksheets and transcripts from the Indian university, proving the specialty-occupation degree requirement. If your qualification is a 3-year Indian bachelor's degree or a diploma-plus-experience combination, also carry the credential evaluation report relied on in the petition.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "USCIS Policy Manual, Volume 2, Part H (H-1B Specialty Occupations)"
+      },
+      {
+        "name": "Proof of the $100,000 H-1B supplemental payment or exemption evidence",
+        "description": "Applies only to new H-1B petitions filed on or after 21 September 2025 for beneficiaries outside the U.S. without a valid H-1B visa (i.e. consular processing in India). Payment or an approved exemption is made by the petitioning employer. This fee is in active litigation and its status has changed repeatedly — verify current applicability on the USCIS H-1B FAQ before travel.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://www.uscis.gov/newsroom/alerts/h-1b-faq"
+      },
+      {
+        "name": "Marriage certificate and children's birth certificates for H-4 dependents",
+        "description": "Required only if a spouse and/or unmarried children under 21 apply for H-4 visas: original Indian marriage registration certificate and municipal birth certificates as proof of relationship, plus a copy of the principal's passport, H-1B visa and I-797 if dependents apply separately.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Passport with H-1B visa foil presented at the U.S. port of entry",
+        "description": "At the CBP primary inspection you must present the passport bearing the H-1B visa foil; CBP grants admission and applies the admission stamp. Carry the original I-797 and employer letter in hand baggage, not checked luggage, in case of secondary inspection.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.cbp.gov/travel/international-visitors"
+      },
+      {
+        "name": "Electronic Form I-94 arrival/departure record printout",
+        "description": "Retrieve and print the electronic I-94 from the CBP website after each entry. It shows your class of admission (H-1B) and 'admit until' date, which governs your lawful status and is needed for SSN, driver's licence, banking and I-9 purposes. Check it for errors immediately after arrival.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://i94.cbp.dhs.gov"
+      },
+      {
+        "name": "Form SS-5 Social Security number application filed in person",
+        "description": "Filed at a local SSA field office with your unexpired passport, I-94 record and H-1B I-797 approval notice. Wait roughly 10 days after arrival so DHS entry data reaches SSA. The card will be annotated 'Valid for work only with DHS authorization'. H-4 spouses are not eligible unless they hold an EAD.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.ssa.gov/ssnumber/ss5doc.htm"
+      },
+      {
+        "name": "Form I-9 Employment Eligibility Verification completed with the employer",
+        "description": "Completed on or before your first day of work. As an H-1B worker you normally present a List A document: the foreign passport with the H-1B visa together with the Form I-94 showing H-1B admission and the employer's name.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.uscis.gov/i-9"
+      },
+      {
+        "name": "State driver's licence or state ID application file",
+        "description": "Applied for at the state DMV, typically requiring passport with H-1B visa, printed I-94, I-797 approval notice, Social Security card and two proofs of state residence (lease, utility bill). Licence validity is usually limited to your authorised stay; document lists and REAL ID rules differ by state — verify with your state DMV.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "State Department of Motor Vehicles (requirements vary by state); see https://www.usa.gov/motor-vehicle-services"
+      },
+      {
+        "name": "Form AR-11 change of address notification to USCIS",
+        "description": "Nonimmigrants must report a change of address to USCIS within 10 days of moving, filed online or on paper Form AR-11. Separate from any USPS mail forwarding.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.uscis.gov/ar-11"
+      },
+      {
+        "name": "Form I-765 H-4 EAD application for the spouse",
+        "description": "Available only to H-4 spouses whose H-1B principal has an approved Form I-140 or has been granted H-1B time beyond the six-year limit under AC21. The physical EAD card is then required before the spouse can obtain an SSN and work.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.uscis.gov/i-765"
+      },
+      {
+        "name": "H-1B extension packet (new I-129 filing and resulting I-797 with I-94)",
+        "description": "Filed by the employer before the current I-94 expiry, usually in three-year increments to the six-year maximum. Keep the receipt notice: it supports continued employment for up to 240 days while pending. Avoid international travel while an extension or change of status is pending, as departure can convert the case to consular processing.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.uscis.gov/i-129"
+      },
+      {
+        "name": "PERM labor certification and Form I-140 immigrant petition file",
+        "description": "Green-card track documents most Indian H-1B holders begin early because of the multi-decade EB-2/EB-3 India priority-date backlog. An approved I-140 also unlocks H-1B extensions beyond six years and H-4 EAD eligibility; retain the approved PERM, I-140 receipt and approval notices permanently.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://www.uscis.gov/i-140"
+      },
+      {
+        "name": "U.S. federal and state income tax returns (Form 1040 / 1040-NR with W-2)",
+        "description": "Filed annually; H-1B holders are generally resident aliens for tax purposes once they meet the substantial presence test. Indian nationals should keep records of any India-source income and consult the India–U.S. double taxation avoidance agreement. Filed returns are routinely requested for visa renewals, mortgages and future immigration filings.",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.irs.gov/individuals/international-taxpayers/substantial-presence-test"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "China",
+    "destination": "Canada",
+    "visa_type": "Express_Entry",
+    "cSlug": "china",
+    "dSlug": "canada",
+    "generated_at": "2026-09-22T11:40:16.115Z",
+    "documents": [
+      {
+        "name": "Valid People's Republic of China passport (biographical data pages)",
+        "description": "Ordinary PRC passport valid well beyond the intended landing date; scans of the bio-data page and all pages with stamps/visas are uploaded to the e-APR. Renew before submitting if it expires soon, since the permanent resident visa counterfoil is affixed to this passport and its expiry limits COPR validity.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/apply-permanent-residence.html"
+      },
+      {
+        "name": "Digital photograph meeting IRCC photo specifications",
+        "description": "A recent digital photo of the principal applicant and each accompanying family member, uploaded only if it appears on your personalized IRCC document checklist. This is distinct from the biometric photo captured at a VAC and from the 50x70 mm printed photos used for some paper forms.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "IRCC (Immigration, Refugees and Citizenship Canada)"
+      },
+      {
+        "name": "Biometrics enrolment (fingerprints and photo) at a Canada Visa Application Centre in China",
+        "description": "PRC citizens aged 14–79 must give biometrics after the Biometric Instruction Letter is issued, in person at a Canada VAC (e.g. Beijing, Shanghai, Guangzhou, Chengdu, Shenyang, Chongqing, Wuhan, Jinan, Nanjing, Hangzhou, Kunming). Fee applies. This is separate from any fingerprinting done for a police certificate. Verify current VAC locations and fees with the official source.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/campaigns/biometrics.html"
+      },
+      {
+        "name": "Notary Certificate of No Criminal Convictions (公证书) plus its notarized translation",
+        "description": "IRCC specifically names two items for China: the Notary Certificate of No Criminal Convictions issued by a Chinese notary public office, and a notarized translation of that certificate. The plain police-station 无犯罪记录证明 alone is not accepted — the notary office keeps that original and issues the notarial booklet. Apply at the notary public office or police station nearest the address on your hukou; a family member may act as your representative with a signed notarized authorization letter.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/police-certificates/how/china.html"
+      },
+      {
+        "name": "Police certificates from every other country of residence (6+ months since age 18)",
+        "description": "Separate from the Chinese notarial certificate: a police clearance from each other country where you lived 6 months or more, in the last 10 years, since turning 18 — e.g. Hong Kong SAR (Certificate of No Criminal Conviction, sent directly by the Hong Kong Police Force to the Canadian consulate), Macao SAR, or countries of study/work abroad. Start early; these are among the slowest documents to obtain.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/police-certificates.html"
+      },
+      {
+        "name": "Hukou (household registration) booklet copy / Certificate of Residence Cancellation",
+        "description": "Copies of the hukou booklet pages are commonly needed to apply for the no-criminal-record certificate at the correct jurisdiction, and are sometimes requested as supporting identity evidence. If your hukou registration has been cancelled (e.g. after emigrating), a Certificate of Residence Cancellation from the local police station may be required. Requirements vary by city — verify with the local public security bureau or notary office.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/police-certificates/how/china.html"
+      },
+      {
+        "name": "Educational Credential Assessment (ECA) report for Chinese degrees",
+        "description": "Report from an IRCC-designated organization (WES, ICAS, CES, IQAS, ICES, or a professional body) assessing your Chinese diploma/degree against Canadian standards. For Chinese credentials the assessing body normally requires verification through CHESICC/CSSD (学信网 / 学位网) reports sent directly by the verification centre.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/education-assessed.html"
+      },
+      {
+        "name": "Approved language test results (IELTS General Training / CELPIP-General, or TEF/TCF Canada)",
+        "description": "Results must be less than two years old on the day the e-APR is submitted and must match what was declared in the Express Entry profile. Test centres for IELTS/TEF operate in mainland China; CELPIP availability in China is limited — verify test-centre options with the official test provider.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/language-requirements.html"
+      },
+      {
+        "name": "Employment reference letters from each employer claimed",
+        "description": "Letters on company letterhead from Chinese (and any foreign) employers stating job title, NOC-matching duties, dates of employment, hours per week, annual salary and benefits, signed with contact details and company stamp (公章). Support with labour contracts, social insurance (社保) records or tax records where the letter is weak.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/apply-permanent-residence.html"
+      },
+      {
+        "name": "Proof of funds — official bank letters on institution letterhead",
+        "description": "Required for Federal Skilled Worker and Federal Skilled Trades applicants (CEC applicants and those with a valid job offer plus work authorization are exempt but must upload a letter explaining the exemption). Letters from every bank where you hold accounts, on letterhead, showing institution contact details, your account numbers, dates opened, current and 6-month average balances, and outstanding debts. Funds must be unencumbered and legally accessible on arrival — note that China's annual USD 50,000 foreign-exchange conversion quota should be planned for.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/documents/proof-funds.html"
+      },
+      {
+        "name": "Certified translations into English or French with translator affidavit",
+        "description": "Every Chinese-language document (hukou, marriage certificate, notarial certificates, reference letters, bank letters) must be accompanied by a translation from a certified translator, or by a non-certified translator's translation plus a sworn affidavit. IRCC expects the original scan, the translation and the affidavit combined into a single file per document.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "IRCC (Immigration, Refugees and Citizenship Canada)"
+      },
+      {
+        "name": "Civil status documents — marriage certificate (结婚证), divorce certificate, or children's birth certificates (出生医学证明)",
+        "description": "Notarial civil-status certificates from a Chinese notary public office are generally expected rather than the plain booklet: marriage certificate if married, divorce certificate and separation agreement if divorced, death certificate if widowed, and birth certificates naming both parents for each dependent child included in the application.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "IRCC (Immigration, Refugees and Citizenship Canada)"
+      },
+      {
+        "name": "Immigration Medical Examination by an IRCC panel physician in China",
+        "description": "Must be done by an IRCC-designated panel physician (available in Beijing, Shanghai, Guangzhou, Chengdu and other cities) — not by any hospital of your choice. Upfront medicals are no longer required before submitting the e-APR; you may upload a placeholder and wait for IRCC's medical instruction letter. Keep the eMedical / IME reference number, as the medical validity date caps your landing deadline.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/medical-exams/requirements-permanent-residents.html"
+      },
+      {
+        "name": "Permanent resident visa counterfoil in the PRC passport",
+        "description": "Because China is a visa-required country, an approved applicant residing outside Canada must send the passport to the responsible visa office/VAC to have the PR visa counterfoil affixed. You cannot board a flight to land as a PR without it. Verify the passport-submission procedure with the Canadian visa office responsible for China.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "IRCC (Immigration, Refugees and Citizenship Canada)"
+      },
+      {
+        "name": "Confirmation of Permanent Residence (COPR / e-COPR)",
+        "description": "The document confirming approval that must be presented to the CBSA officer at your first port of entry to complete landing. It is not a travel document on its own — it is used together with the passport and PR visa counterfoil. After landing, the printed and signed e-COPR proves PR status until the PR card arrives.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/permanent-residents/status.html"
+      },
+      {
+        "name": "Form BSF186 Personal Effects Accounting Document (plus BSF186A for goods to follow)",
+        "description": "As a 'settler' under tariff item 9807.00.00 you must personally declare household and personal goods at your first CBSA port of entry, whether they accompany you or arrive later. Goods arriving later must be listed on the BSF186A 'goods to follow' list and stamped at landing, or duty and tax may be charged. Bring two copies of each completed list.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.cbsa-asfc.gc.ca/publications/forms-formulaires/bsf186-eng.html"
+      },
+      {
+        "name": "Currency declaration for CAD 10,000 or more (Form E677 / CBSA declaration)",
+        "description": "Cash, bank drafts, or other monetary instruments totalling CAD 10,000 or more carried into Canada must be reported to CBSA on arrival. Relevant for Chinese applicants transferring settlement funds, alongside the PRC foreign-exchange rules on outbound transfers.",
+        "phase": "during",
+        "required": false,
+        "category": "financial",
+        "source": "Canada Border Services Agency (CBSA)"
+      },
+      {
+        "name": "Canadian mailing address declared to the border officer",
+        "description": "At landing you must give a valid Canadian residential/mailing address so the first PR card can be produced and mailed; IRCC will not mail PR cards outside Canada. If you don't have one at landing, you have 180 days to provide it through your IRCC/PR Portal account.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/publications-manuals/operational-bulletins-manuals/permanent-residence/card/program-administration.html"
+      },
+      {
+        "name": "Social Insurance Number (SIN) from Service Canada",
+        "description": "Apply in person at a Service Canada centre (or online) with your COPR/e-COPR and passport; the SIN is issued free of charge and is required before an employer can put you on payroll or before you can access most benefits.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.canada.ca/en/employment-social-development/services/sin.html"
+      },
+      {
+        "name": "Permanent Resident (PR) card",
+        "description": "Your first PR card is produced automatically once you confirm your Canadian address and submit a photo through the PR Portal — no separate application for the first card. It is the proof of status required to board a commercial carrier back to Canada after travel abroad; renewals use form IMM 5444.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants/pr-card.html"
+      },
+      {
+        "name": "Provincial/territorial health insurance card registration",
+        "description": "Register with the provincial health plan (e.g. OHIP in Ontario, MSP in British Columbia, RAMQ in Quebec) as soon as you arrive, using your COPR/e-COPR or PR card, passport and proof of residential address. Some provinces impose a waiting period of up to three months, so private interim coverage may be advisable. Requirements vary by province — verify with the provincial health ministry.",
+        "phase": "after",
+        "required": true,
+        "category": "other",
+        "source": "Provincial/territorial ministries of health (e.g. Ontario Ministry of Health, BC Health Insurance BC)"
+      },
+      {
+        "name": "Driver's licence exchange with certified translation of the Chinese licence",
+        "description": "PRC driving licences are not covered by a full reciprocal exchange agreement in most provinces, so you will usually need a certified translation (or IDP) and may have to take knowledge and road tests. A notarized driving-record/experience letter from the Chinese traffic authority can be used to claim experience credit for insurance. Verify rules with the provincial licensing authority.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "Provincial licensing authorities (e.g. ServiceOntario/DriveTest, ICBC, SAAQ)"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Brazil",
+    "destination": "United States",
+    "visa_type": "Work_Visa",
+    "cSlug": "brazil",
+    "dSlug": "united-states",
+    "generated_at": "2026-09-22T11:41:25.329Z",
+    "documents": [
+      {
+        "name": "Brazilian passport valid at least 6 months beyond intended U.S. stay",
+        "description": "Machine-readable Brazilian passport (Polícia Federal). Per the U.S. Department of State, the passport must be valid for at least six months beyond your period of stay in the United States unless exempt by country-specific agreement; each person needs a separate visa application even if included in one passport.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Form DS-160 confirmation page with barcode",
+        "description": "Online Nonimmigrant Visa Application completed at ceac.state.gov; you must print the confirmation page and bring it to the interview. Data entered on the appointment site (usvisa-info.com for Brazil) must exactly match the DS-160 (passport number, date of birth, visa class, names).",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://ais.usvisa-info.com/en-br/niv"
+      },
+      {
+        "name": "Digital visa photograph meeting State Department specifications",
+        "description": "Photo uploaded during the DS-160. If the upload fails, you must bring one printed photo in the required format to the interview — this is separate from photocopies of your passport.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Form I-797 Notice of Action (approved H-1B petition) with petition receipt number",
+        "description": "Issued by USCIS to your U.S. employer after approval of Form I-129. You need the petition receipt number as it appears on the I-129/I-797 to schedule the interview and complete the DS-160; keep a copy of the I-129 available while filling in the form.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.uscis.gov/i-9-central/form-i-9-resources/handbook-for-employers-m-274/70-evidence-of-employment-authorization-for-certain-categories/75-h-1b-specialty-occupations"
+      },
+      {
+        "name": "Printed résumé/CV in English",
+        "description": "Brazil-specific requirement: the U.S. Mission in Brazil states that H-1B applicants must present a printed copy of their résumé in English at the visa interview.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "https://br.usembassy.gov/visas/"
+      },
+      {
+        "name": "Public social media accounts for consular vetting",
+        "description": "Not a paper document but a mandatory pre-interview step: U.S. Mission Brazil instructs H-1B and H-4 applicants to set the privacy of all social media accounts to 'public'/'open' to facilitate identity and admissibility vetting. Usernames are declared on the DS-160.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://br.usembassy.gov/visas/"
+      },
+      {
+        "name": "Diplomas and credential evaluation for U.S. degree equivalency",
+        "description": "Brazilian diplomas/transcripts (diploma de graduação, histórico escolar), typically with an evaluation of U.S. equivalency, to prove the specialty-occupation degree requirement. Consular officers may request these; verify exact format with the consulate as requirements may vary by post.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Employer support/offer letter stating job title, duties and salary",
+        "description": "Letter from the petitioning U.S. employer confirming the position, worksite and annual wage, used at the interview to document the employer–employee relationship. Consular officers in Brazil frequently ask for this; additional documents may be requested to establish qualification.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Proof of MRV visa application fee payment (and reciprocity fee if applicable)",
+        "description": "Receipt for the nonimmigrant visa application fee paid through the Brazil appointment service. Fees are non-refundable and non-transferable; payment methods and any reciprocity fee are specified by the Embassy/Consulate where you apply.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://br.usembassy.gov/visas/"
+      },
+      {
+        "name": "Proof of $100,000 H-1B payment or exception (petition-stage, employer-held)",
+        "description": "Where applicable under the September 2025 entry-restriction proclamation, the employer must file pay.gov proof of payment or an approved exception. Status is unsettled: a federal court vacated the implementing guidance in June 2026 and appellate courts declined to revive collection, while a further proclamation extended the policy — verify current status on USCIS.gov before filing or travel.",
+        "phase": "before",
+        "required": false,
+        "category": "financial",
+        "source": "https://www.uscis.gov/newsroom/alerts/h-1b-faq"
+      },
+      {
+        "name": "Legal Rights and Protections pamphlet (Portuguese/English)",
+        "description": "The Department of State requires H-1B applicants to read the 'Rights and Protections for Temporary Workers' pamphlet, available in Brazilian Portuguese, before applying; a copy is normally given or acknowledged at the interview.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "H-4 dependent DS-160s and civil documents for spouse/children",
+        "description": "Each accompanying family member files a separate DS-160 and applies for an H-4 visa; bring the Brazilian marriage certificate (certidão de casamento) and children's birth certificates (certidão de nascimento) as proof of relationship. H-4 applicants for H-1B dependents are also subject to the social-media public-setting instruction.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://br.usembassy.gov/visas/"
+      },
+      {
+        "name": "H-1B visa foil in passport (post-interview collection)",
+        "description": "If approved, the visa is printed in your passport and returned via the designated delivery method; a representative collecting it must present a copy of your photo ID and a signed authorization letter. Check the visa page for spelling errors before travelling.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://br.usembassy.gov/official-visas/"
+      },
+      {
+        "name": "Form I-94 Arrival/Departure Record (electronic printout)",
+        "description": "Created by CBP at admission and retrieved/printed from i94.cbp.dhs.gov. It shows your H-1B class of admission and authorized stay and is the core evidence of lawful status for employment, SSN and licensing purposes.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://i94.cbp.dhs.gov"
+      },
+      {
+        "name": "Form I-9 Employment Eligibility Verification completed with employer",
+        "description": "Completed with your employer when you begin work. For H-1B workers the usual List A combination is the foreign (Brazilian) passport together with the Form I-94 endorsed for H-1B status with that employer; USCIS notes the Form I-797 itself is not a Section 2 document.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.uscis.gov/i-9-central/completing-form-i-9/temporary-nonimmigrant-workers"
+      },
+      {
+        "name": "Form SS-5 application for a Social Security number and card",
+        "description": "Filed in person at an SSA office; no online first-time application exists for work-visa holders. SSA requires original documents (no photocopies) — unexpired passport plus the I-94 or admission stamp showing a work-authorized class of admission; applying about 10 days after arrival lets DHS records update.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.ssa.gov/ssnumber/ss5doc.htm"
+      },
+      {
+        "name": "State driver's license or state ID application file",
+        "description": "Applied for at the state DMV using passport, visa, I-94, SSN card and proof of residential address; some states also require the I-797. Rules and minimum remaining status validity differ by state — verify with the specific state DMV, as requirements vary.",
+        "phase": "after",
+        "required": false,
+        "category": "identity",
+        "source": "U.S. state Department of Motor Vehicles (state-specific)"
+      },
+      {
+        "name": "Payroll records: U.S. pay statements and IRS Forms W-2 / 1040 returns",
+        "description": "Retain pay stubs for the current year and federal tax filings for every year of H-1B employment. These are used to prove maintenance of status for extensions, for H-4 EAD filings, and are commonly requested at visa renewal interviews in Brazil.",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": "https://www.irs.gov"
+      },
+      {
+        "name": "H-1B extension package: new Form I-129 and resulting I-797/I-94",
+        "description": "USCIS approves H-1B for up to three years and can extend for up to three more. A timely-filed extension authorizes continued work for up to 240 days past I-94 expiry; the approval notice carries a new I-94 that the employer must give you and record in Form I-9 Supplement B.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://www.uscis.gov/i-9-central/form-i-9-resources/handbook-for-employers-m-274/70-evidence-of-employment-authorization-for-certain-categories/75-h-1b-specialty-occupations"
+      },
+      {
+        "name": "Brazilian consular registration and CPF maintenance",
+        "description": "Registration (matrícula consular) at the Brazilian Consulate covering your U.S. state, plus keeping your CPF and Brazilian passport current for renewals, notarial acts and civil-registry filings (e.g. registering a child born in the U.S.). Procedures differ by consular district.",
+        "phase": "after",
+        "required": false,
+        "category": "other",
+        "source": "Ministério das Relações Exteriores / Consulado-Geral do Brasil (Itamaraty)"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Nigeria",
+    "destination": "Ghana",
+    "visa_type": "Temporary_Residence",
+    "cSlug": "nigeria",
+    "dSlug": "ghana",
+    "generated_at": "2026-09-22T11:43:11.570Z",
+    "documents": [
+      {
+        "name": "Nigerian international (ECOWAS) passport",
+        "description": "Machine-readable Nigerian e-passport used to enter Ghana visa-free as an ECOWAS national and later attached to the residence permit application; carriers and border officers commonly expect at least 6 months' remaining validity and 2 blank pages — verify current validity rule with the Ghana Immigration Service or the Ghana High Commission in Abuja before travel.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://immigration.gov.ng/"
+      },
+      {
+        "name": "ECOWAS Travel Certificate",
+        "description": "Alternative regional travel document issued by the Nigeria Immigration Service, valid 2 years and renewable, accepted for movement within ECOWAS states including Ghana. Only needed if you will not travel on the Nigerian passport; the passport is the safer option because GIS permit files are built around passport bio-data pages.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "https://immigration.gov.ng/ecowas-travel-certificate/"
+      },
+      {
+        "name": "Original yellow fever vaccination certificate (ICVP / yellow card)",
+        "description": "Original WHO International Certificate of Vaccination against yellow fever, demanded at Kotoka International Airport and at the Aflao/Elubo land borders for travellers arriving from Nigeria; photocopies are generally refused and QR-coded cards may be scanned for authenticity. Confirm current port-health rules with Ghana Health Service.",
+        "phase": "before",
+        "required": true,
+        "category": "other",
+        "source": "Ghana Health Service – Port Health Unit"
+      },
+      {
+        "name": "Nigeria Police Force character/criminal record certificate",
+        "description": "Police report from the home country (Nigeria Police Force Criminal Investigation Department) listed by GIS among work-and-residence permit documents. GIS guidance indicates a police report is required for work permit applications but not for a stand-alone residence permit — confirm with the GIS permits office which applies to your permit class.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://gis.gov.gh/service/work-and-residence-permit-missionaries-ngos-immigrant-quota-gipc-shareholders/"
+      },
+      {
+        "name": "Two recent passport-sized photographs of the applicant",
+        "description": "Two current colour passport-size prints taken within the last 6 months, submitted physically with the GIS residence permit application form. Distinct from the separate biometric capture (fingerprints, portrait, iris) done later at an NIA/FIMS centre.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://gis.gov.gh/service/work-and-residence-permit-missionaries-ngos-immigrant-quota-gipc-shareholders/"
+      },
+      {
+        "name": "Sponsor, employer or institution support letter",
+        "description": "Letter addressed to the Comptroller-General of Immigration from the Ghana-registered employer, host company, NGO/mission, or from the Ghanaian school (with admission letter and fee receipts for student residence), applying for the residence permit on your behalf and stating the permissible purpose of residence.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://gis.gov.gh/service/residence-permit-student/"
+      },
+      {
+        "name": "Educational and professional certificates plus CV",
+        "description": "Originals and copies of degrees, trade/professional certificates and a current curriculum vitae, required where residence is tied to employment or a profession; ECOWAS nationals are not subject to the GIPC immigrant quota system but still file qualification evidence.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://gis.gov.gh/service/work-and-residence-permit-companies/"
+      },
+      {
+        "name": "Nigerian birth certificate (NPC) or sworn declaration of age",
+        "description": "Needed for each accompanying child on a dependant residence permit, and for student applicants where GIS requests proof of age; obtain from the National Population Commission before departure.",
+        "phase": "before",
+        "required": false,
+        "category": "identity",
+        "source": "https://gis.gov.gh/service/residence-permit-dependant/"
+      },
+      {
+        "name": "Nigerian marriage certificate",
+        "description": "Required only for a spousal dependant residence permit. GIS guidance states spouses become eligible for the dependants permit after more than 4 years of marriage — confirm the current threshold with GIS before relying on this route.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://gis.gov.gh/service/"
+      },
+      {
+        "name": "Bank statement / proof of maintenance funds",
+        "description": "Recent Nigerian (or Ghanaian) bank statement evidencing means of support for yourself and any dependants; also requested at the border as evidence of sufficient funds for the stay, and listed by GIS for dependant residence permits alongside an indenture where property is relied on.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://gis.gov.gh/service/residence-permit-dependant/"
+      },
+      {
+        "name": "ECOWAS visa-free entry stamp in passport",
+        "description": "Immigration endorsement received at the Ghanaian port of entry admitting a Nigerian national for up to 90 days without a visa; this stamp is the lawful basis on which the in-country residence permit application must be filed before the 90 days expire.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://gis.gov.gh/faq-2/"
+      },
+      {
+        "name": "Completed GIS residence permit application form",
+        "description": "The prescribed Ghana Immigration Service application form for your permit class (employment, self-employment, student, dependant, religious, retirement), signed and lodged with government fees at the appropriate immigration office. All residence permit applications must be made inside Ghana.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "https://gis.gov.gh/faq-2/"
+      },
+      {
+        "name": "Photocopy of passport bio-data and entry-stamp pages",
+        "description": "Photocopies of the passport bio-data page plus the current entry/permit pages, filed with the application; GIS normally retains the physical passport while the permit is processed, and typically asks for two copies of every document.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://gis.gov.gh/service/work-and-residence-permit-companies/"
+      },
+      {
+        "name": "Medical report from the Ghana Immigration Service Clinic, Accra",
+        "description": "Mandatory in-country medical screening report issued by the GIS Clinic (not a Nigerian hospital report); requires the applicant's physical presence and is a prerequisite for residence authorisation.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://gis.gov.gh/service/work-and-residence-permit-missionaries-ngos-immigrant-quota-gipc-shareholders/"
+      },
+      {
+        "name": "Non-Citizen Ghana Card (NIA / FIMS registration)",
+        "description": "Biometric non-citizen national ID issued by the National Identification Authority through the Foreigner Identification Management System to foreigners cumulatively resident 90+ days or holding a residence permit; registration involves a bank-purchased scratch card, an interview and capture of fingerprints, portrait and iris. Needed for permit renewal, banking and SIM registration.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://nia.gov.gh/service/foreigner-identification-management-systems/"
+      },
+      {
+        "name": "Ghana work permit (separate from the residence permit)",
+        "description": "Distinct GIS authorisation naming employer and role; ECOWAS citizens are visa-exempt but still need a work permit to work or run a business in Ghana, and a residence permit alone does not confer work rights. Applications must be accompanied by the Ghanaian employer's registration documents and tax clearance.",
+        "phase": "during",
+        "required": false,
+        "category": "legal",
+        "source": "https://gis.gov.gh/service/work-and-residence-permit-companies/"
+      },
+      {
+        "name": "Ghanaian tenancy agreement or property indenture",
+        "description": "Signed lease/tenancy agreement (or indenture and site plan if you own property) evidencing your residential address in Ghana; used to support the residence file, Ghana Card registration and bank account opening.",
+        "phase": "during",
+        "required": true,
+        "category": "other",
+        "source": "https://gis.gov.gh/service/indefinite-residence-status-generally/"
+      },
+      {
+        "name": "Residence permit endorsement / permit card",
+        "description": "The issued permit (endorsed in the passport or issued as a card) stating the authorised purpose and duration; it may be granted for up to four years in the first instance though one year is common in practice, allows multiple entries without a visa while valid, and must be renewed before expiry.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://gis.gov.gh/faq-2/"
+      },
+      {
+        "name": "Ghana Revenue Authority TIN and tax clearance certificate",
+        "description": "Taxpayer Identification Number (now linked to the Ghana Card/Non-Citizen Card) and, where self-employed or a company owner, personal and company tax clearance certificates — these are requested at permit renewal and for indefinite residence status.",
+        "phase": "after",
+        "required": true,
+        "category": "financial",
+        "source": "Ghana Revenue Authority"
+      },
+      {
+        "name": "Renewal / indefinite residence application pack",
+        "description": "For long-term stability: renewal filing before permit expiry, and later an indefinite residence application supported by attestation letters from two qualifying Ghanaians, a current police report obtained in Ghana, a copy of the non-citizen ID card, a GIS Clinic medical report and evidence of ties such as property or business.",
+        "phase": "after",
+        "required": false,
+        "category": "legal",
+        "source": "https://gis.gov.gh/service/indefinite-residence-status-generally/"
+      }
+    ],
+    "source": "fresh"
+  },
+  {
+    "citizenship": "Philippines",
+    "destination": "United States",
+    "visa_type": "Work_Visa",
+    "cSlug": "philippines",
+    "dSlug": "united-states",
+    "generated_at": "2026-09-22T11:44:37.331Z",
+    "documents": [
+      {
+        "name": "Philippine passport (machine-readable, valid at least 6 months beyond intended U.S. stay)",
+        "description": "Original DFA-issued Philippine passport used for the DS-160, the visa interview, and visa foil placement. \nThe passport must be valid for travel to the United States\n; some travelers benefit from the 6-month validity extension agreement, but verify with the U.S. Embassy Manila before booking.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://ph.usembassy.gov/visas/"
+      },
+      {
+        "name": "Form I-797 Notice of Action (approved Form I-129 petition)",
+        "description": "Employer-obtained approval notice proving the nonimmigrant worker petition was approved. \nEach temporary worker visa requires the prospective employer to first file a petition with USCIS, and an approved petition is required to apply for a work visa.\n \nThe petition receipt number as printed on the Form I-129 or Form I-797 is needed for the visa application.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Form I-129S (L blanket petition beneficiaries only)",
+        "description": "Separate from the I-797: \nL visa applicants included in an L blanket petition must bring Form I-129S to the interview.\n Not applicable to H-1B, H-2, O, or P applicants.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "DS-160 confirmation page with barcode",
+        "description": "Printed confirmation page of the completed online Nonimmigrant Visa Electronic Application, submitted before scheduling appointments in the Philippines. This is the application record itself, not the appointment letter.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "U.S. Department of State – Consular Electronic Application Center (ceac.state.gov/genniv)"
+      },
+      {
+        "name": "MRV visa application fee receipt",
+        "description": "Proof of payment of the nonimmigrant visa application fee, paid through the payment channels designated for Philippine applicants before an appointment can be booked. Fee amounts change; confirm the current amount on the U.S. Visa Information Service site for the Philippines.",
+        "phase": "before",
+        "required": true,
+        "category": "financial",
+        "source": "https://ph.usembassy.gov/important-visa-information/"
+      },
+      {
+        "name": "VAC appointment letter and U.S. Embassy Manila interview appointment letter",
+        "description": "Two separate printed confirmations. \nApplicants scheduling or rescheduling must secure TWO appointments: an initial appointment at the Visa Application Center (VAC) and the visa interview at the Embassy.\n \nFailure to schedule the VAC appointment before the Embassy appointment results in cancellation of the visa interview.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/Supplements/Supplements_by_Post/MNL-Manila.html"
+      },
+      {
+        "name": "Digital visa photograph (and one printed backup print)",
+        "description": "A compliant colour photo uploaded with the DS-160. \nIf the photo upload fails, the applicant must bring one printed photo in the format explained in the Photograph Requirements.\n Distinct from the fingerprint/biometric capture done at the VAC or interview.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/photos.html"
+      },
+      {
+        "name": "Employer job offer letter / signed employment contract with salary and worksite details",
+        "description": "Employer-issued letter confirming the position, wage, duration and U.S. worksite, used at the consular interview and later for DMW contract verification. \nAdditional documents may be requested to establish that you are qualified.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Certified Labor Condition Application (ETA-9035) copy — H-1B applicants",
+        "description": "The DOL-certified LCA filed with the H-1B petition; typically supplied by the employer as part of the petition packet and commonly carried with the petition copy. Not applicable to H-2A/H-2B (which use temporary labor certification) or to O/P categories.",
+        "phase": "before",
+        "required": false,
+        "category": "legal",
+        "source": "U.S. Department of Labor – Office of Foreign Labor Certification"
+      },
+      {
+        "name": "Academic credentials: diploma, PSA-authenticated transcript of records, and PRC professional licence",
+        "description": "Original Philippine educational and licensing documents supporting a specialty occupation claim. \nH-1B applicants must have at least a bachelor's degree or equivalent experience in the specialty occupation.\n Nursing, teaching and allied-health applicants should also carry CGFNS/VisaScreen or board certificates where applicable.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "DMW Overseas Employment Certificate (OEC) or OFW Travel Pass",
+        "description": "Philippine-side exit clearance issued by the Department of Migrant Workers. \nThe OEC, now transitioning to the OFW Travel Pass, is the official travel exit clearance for OFWs and certifies that employment is registered with the DMW; it is presented only on exit from the Philippines.\n \nOECs issued through the E-Registration portal are valid for 60 days from issuance.\n Processing route differs for agency hires vs. direct hires — confirm with DMW.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://dmw.gov.ph/online-services"
+      },
+      {
+        "name": "PEOS and PDOS certificates for first-time overseas workers",
+        "description": "Two distinct seminar certificates required in DMW processing. \nThe Pre-Employment Orientation Seminar (PEOS) is usually taken online before processing and, for direct hires, the DMW FAQ states the PEOS certificate is part of Phase 2 requirements.\n \nPDOS is a half-day seminar mandatory for first-time overseas workers.\n Note: emigrants leaving permanently attend PDOS with the Commission on Filipinos Overseas instead — verify which applies to your case.",
+        "phase": "before",
+        "required": true,
+        "category": "legal",
+        "source": "https://dmw.gov.ph/online-services"
+      },
+      {
+        "name": "PSA-issued birth certificate and marriage certificate (originals on security paper)",
+        "description": "Needed for DMW registration, for dependant H-4/L-2 visa applications, and later for U.S. benefit and school enrolment purposes. Distinct from photocopies of the passport biographical page.",
+        "phase": "before",
+        "required": true,
+        "category": "identity",
+        "source": "Philippine Statistics Authority (PSA)"
+      },
+      {
+        "name": "Complete copy of the filed I-129 petition packet for port-of-entry inspection",
+        "description": "A carry-on copy of the petition and supporting documents (kept separate from the original I-797) to present to CBP officers if questioned on arrival. \nWhen admitted, you may get an admission stamp or Form I-94, Arrival/Departure Record.",
+        "phase": "during",
+        "required": false,
+        "category": "legal",
+        "source": "https://travel.state.gov/content/travel/en/us-visas/employment/temporary-worker-visas.html"
+      },
+      {
+        "name": "Electronic Form I-94 arrival/departure record printout",
+        "description": "Retrieved from the CBP I-94 website after each admission; it confirms your class of admission and authorized period of stay, and must be checked for errors immediately after entry.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "U.S. Customs and Border Protection – i94.cbp.dhs.gov"
+      },
+      {
+        "name": "Social Security card application (Form SS-5) filed at an SSA field office",
+        "description": "For a foreign worker, SSA needs to see the I-94 or admission stamp in the unexpired foreign passport showing a class of admission permitting work.\n \nOriginal documents proving age, identity and work-authorized status must be presented, and all evidence of status must be unexpired.\n Wait roughly 10 days after entry so DHS records can be verified.",
+        "phase": "during",
+        "required": true,
+        "category": "identity",
+        "source": "https://www.ssa.gov/ssnumber/ss5doc.htm"
+      },
+      {
+        "name": "Form I-9 Employment Eligibility Verification documents for the U.S. employer",
+        "description": "Completed with the employer on or before the first day of work, using the unexpired Philippine passport with the visa foil plus the I-94 (List A combination). This is an employer compliance record, separate from the SSN application.",
+        "phase": "during",
+        "required": true,
+        "category": "legal",
+        "source": "USCIS – Form I-9, Employment Eligibility Verification"
+      },
+      {
+        "name": "State driver's license or state-issued non-driver ID",
+        "description": "Primary day-to-day U.S. identification for banking, housing and domestic travel; applications require passport, visa, I-94 and usually the SSN or proof of SSN ineligibility. \nMany states require that you or your dependent have an SSN or have already applied for one before applying for a driver's license.\n Requirements vary by state DMV — verify locally.",
+        "phase": "after",
+        "required": true,
+        "category": "identity",
+        "source": "U.S. state Department of Motor Vehicles (varies by state)"
+      },
+      {
+        "name": "Form AR-11 change of address notification to USCIS",
+        "description": "Nonimmigrants must report each change of U.S. residential address to USCIS within 10 days of moving. File online through a USCIS account or by paper Form AR-11; this is separate from any USPS mail-forwarding request.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "USCIS – Form AR-11, Alien's Change of Address Card"
+      },
+      {
+        "name": "Form W-7 ITIN application for non-working dependants",
+        "description": "Foreign-born family members who are not eligible to work or will not be working can be issued ITINs by the IRS so they can be included as dependants on the annual tax return.\n Filed with the U.S. tax return; not a substitute for an SSN.",
+        "phase": "after",
+        "required": false,
+        "category": "financial",
+        "source": "Internal Revenue Service – Form W-7"
+      },
+      {
+        "name": "Extension-of-stay or change-of-employer petition evidence (Form I-129 / I-797 receipt)",
+        "description": "To maintain lawful status beyond the I-94 expiry or when switching employers. \nWhen entering while a new petition is pending, the visa holder must present a dated filing receipt or other evidence that a new petition was filed timely; after approval, the new Form I-797 must be presented in addition to the visa.",
+        "phase": "after",
+        "required": true,
+        "category": "legal",
+        "source": "https://fam.state.gov/fam/09FAM/09FAM040210.html"
+      }
+    ],
+    "source": "fresh"
   }
 ]
