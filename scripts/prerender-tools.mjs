@@ -407,6 +407,105 @@ const LAUNCH_PAIRS = [
     status: "common",
     note: "Technical Intern Training Program and entertainer/caregiver visas are long-standing routes; large historic Filipino community in Japan.",
   },
+  // ─── Third expansion batch (16) — same 8 citizenships, more researched
+  // destinations. Three marked "uncommon" where the route is real but
+  // smaller/newer rather than an established, high-volume corridor. ───
+  {
+    citizenship: "Russia",
+    destination: "Azerbaijan",
+    status: "common",
+    note: "Visa-free entry for short stays and straightforward work-permit sponsorship; growing relocation hub since 2022 alongside Georgia and Armenia.",
+  },
+  {
+    citizenship: "Russia",
+    destination: "Vietnam",
+    status: "common",
+    note: "Extended e-visa and long-stay options are widely used; growing informal Russian community in Da Nang and Nha Trang, though no path to residency.",
+  },
+  {
+    citizenship: "United States",
+    destination: "Germany",
+    status: "common",
+    note: "Freelance (Freiberufler) visa and EU Blue Card for skilled roles are both realistic for Americans; established route, though bureaucracy and German-language paperwork are real hurdles.",
+  },
+  {
+    citizenship: "United States",
+    destination: "Thailand",
+    status: "common",
+    note: "Destination Thailand Visa (DTV) for remote workers and the long-standing retirement visa (50+) are both widely used by Americans; large existing expat community.",
+  },
+  {
+    citizenship: "United Kingdom",
+    destination: "Thailand",
+    status: "common",
+    note: "DTV and retirement visa routes are common; Thailand is a long-standing top destination for British retirees and remote workers.",
+  },
+  {
+    citizenship: "United Kingdom",
+    destination: "South Africa",
+    status: "common",
+    note: "Critical Skills and general work visas plus a large, long-established British-South African community and shared-language ease the process.",
+  },
+  {
+    citizenship: "India",
+    destination: "Ireland",
+    status: "common",
+    note: "Critical Skills Employment Permit is a growing route driven by tech and pharma demand; Ireland is now among the top non-EU work-visa destinations for Indians.",
+  },
+  {
+    citizenship: "India",
+    destination: "New Zealand",
+    status: "common",
+    note: "Skilled Migrant Category and Accredited Employer Work Visa are established routes; steady, long-standing Indian community, particularly in Auckland.",
+  },
+  {
+    citizenship: "China",
+    destination: "Malaysia",
+    status: "common",
+    note: "Malaysia My Second Home (MM2H) and Employment Pass routes are popular with Chinese investors and professionals; large existing Chinese-Malaysian community eases integration.",
+  },
+  {
+    citizenship: "China",
+    destination: "United Kingdom",
+    status: "common",
+    note: "Skilled Worker and student-to-graduate routes are common; China is consistently one of the top source countries for UK study and work visas.",
+  },
+  {
+    citizenship: "Brazil",
+    destination: "Argentina",
+    status: "common",
+    note: "Mercosur residency agreement lets Brazilians obtain residence with minimal paperwork; one of the simplest cross-border moves available to Brazilian citizens.",
+  },
+  {
+    citizenship: "Brazil",
+    destination: "Germany",
+    status: "uncommon",
+    note: "EU Blue Card and Freiberufler routes are used but this corridor is smaller and newer than Brazil's Portugal or Spain routes, with a real language barrier.",
+  },
+  {
+    citizenship: "Nigeria",
+    destination: "South Africa",
+    status: "uncommon",
+    note: "Critical Skills and general work visas exist and there is a historic Nigerian community, but tightened permit rules and periodic xenophobic tension make this a harder, smaller route than Nigeria's UK or Canada corridors.",
+  },
+  {
+    citizenship: "Nigeria",
+    destination: "UAE",
+    status: "common",
+    note: "Employer-sponsored work visas and a growing trade/business community make UAE an increasingly common route for Nigerians, especially in commerce and logistics.",
+  },
+  {
+    citizenship: "Philippines",
+    destination: "United Kingdom",
+    status: "common",
+    note: "Health and Care Worker visa route has driven a sharp rise in Filipino NHS and care-sector recruitment in recent years; well-established pipeline.",
+  },
+  {
+    citizenship: "Philippines",
+    destination: "South Korea",
+    status: "uncommon",
+    note: "E-9 non-professional employment visa (EPS) route exists and is growing, but this corridor remains smaller than the Philippines' UAE, US, or Canada routes.",
+  },
 ];
 
 /** Keep in sync with src/lib/demonyms.ts */

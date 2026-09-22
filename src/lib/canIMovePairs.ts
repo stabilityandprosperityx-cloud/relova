@@ -6,7 +6,7 @@ export interface CanIMovePair {
 }
 
 /**
- * Launch / prerender pairs for Can I Move — 61 total (was 21). Keep in sync
+ * Launch / prerender pairs for Can I Move — 77 total (was 21). Keep in sync
  * with LAUNCH_PAIRS in scripts/prerender-tools.mjs (that copy also carries
  * the per-pair verdict/note text used on the static prerendered page; this
  * one is just the identity list, used for hub-page and data-sources
@@ -74,6 +74,22 @@ export const CAN_I_MOVE_LAUNCH_PAIRS: CanIMovePair[] = [
   { citizenship: "Nigeria", destination: "Germany" },
   { citizenship: "Philippines", destination: "Australia" },
   { citizenship: "Philippines", destination: "Japan" },
+  { citizenship: "Russia", destination: "Azerbaijan" },
+  { citizenship: "Russia", destination: "Vietnam" },
+  { citizenship: "United States", destination: "Germany" },
+  { citizenship: "United States", destination: "Thailand" },
+  { citizenship: "United Kingdom", destination: "Thailand" },
+  { citizenship: "United Kingdom", destination: "South Africa" },
+  { citizenship: "India", destination: "Ireland" },
+  { citizenship: "India", destination: "New Zealand" },
+  { citizenship: "China", destination: "Malaysia" },
+  { citizenship: "China", destination: "United Kingdom" },
+  { citizenship: "Brazil", destination: "Argentina" },
+  { citizenship: "Brazil", destination: "Germany" },
+  { citizenship: "Nigeria", destination: "South Africa" },
+  { citizenship: "Nigeria", destination: "UAE" },
+  { citizenship: "Philippines", destination: "United Kingdom" },
+  { citizenship: "Philippines", destination: "South Korea" },
 ];
 
 export function canIMovePath(citizenship: string, destination: string): string {
