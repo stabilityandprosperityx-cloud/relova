@@ -185,6 +185,26 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://relova.ai/tools/documents-needed/russia/serbia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/documents-needed/united-states/spain</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/documents-needed/brazil/canada</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://relova.ai/tools/documents-needed/nigeria/australia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 <url>
     <loc>https://relova.ai/tools/country-compare</loc>
     <changefreq>weekly</changefreq>

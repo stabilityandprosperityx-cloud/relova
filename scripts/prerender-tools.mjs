@@ -681,6 +681,10 @@ const DOC_LAUNCH_PAIRS = [
   { citizenship: "United Kingdom", destination: "Portugal", visa_type: "D8_Digital_Nomad" },
   { citizenship: "India", destination: "Canada", visa_type: "Express_Entry" },
   { citizenship: "Philippines", destination: "Australia", visa_type: "Skilled_Nominated" },
+  { citizenship: "Russia", destination: "Serbia", visa_type: "Temporary_Residence" },
+  { citizenship: "United States", destination: "Spain", visa_type: "Digital_Nomad" },
+  { citizenship: "Brazil", destination: "Canada", visa_type: "Express_Entry" },
+  { citizenship: "Nigeria", destination: "Australia", visa_type: "Skilled_Nominated" },
 ];
 
 let docSnapshots = [];
