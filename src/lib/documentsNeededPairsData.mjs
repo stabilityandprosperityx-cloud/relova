@@ -52,6 +52,14 @@ export const DOCUMENTS_LAUNCH_PAIRS = [
   { citizenship: "China", destination: "United States", visa_type: "Work_Visa" },
   { citizenship: "Nigeria", destination: "United States", visa_type: "Work_Visa" },
   { citizenship: "Philippines", destination: "Saudi Arabia", visa_type: "Work_Visa" },
+  { citizenship: "Russia", destination: "Israel", visa_type: "Work_Visa" },
+  { citizenship: "United States", destination: "Panama", visa_type: "Friendly_Nations" },
+  { citizenship: "United Kingdom", destination: "Ireland", visa_type: "Critical_Skills" },
+  { citizenship: "India", destination: "United States", visa_type: "Work_Visa" },
+  { citizenship: "China", destination: "Canada", visa_type: "Express_Entry" },
+  { citizenship: "Brazil", destination: "United States", visa_type: "Work_Visa" },
+  { citizenship: "Nigeria", destination: "Ghana", visa_type: "Temporary_Residence" },
+  { citizenship: "Philippines", destination: "United States", visa_type: "Work_Visa" },
 ];
 
 /** can-i-move pairs that also have a documents-needed launch page. @type {[string, string][]} */
@@ -91,4 +99,12 @@ export const CAN_I_MOVE_CROSSLINK_PAIRS = [
   ["China", "United States"],
   ["Nigeria", "United States"],
   ["Philippines", "Saudi Arabia"],
+  ["Russia", "Israel"],
+  ["United States", "Panama"],
+  ["United Kingdom", "Ireland"],
+  ["India", "United States"],
+  ["China", "Canada"],
+  ["Brazil", "United States"],
+  ["Nigeria", "Ghana"],
+  ["Philippines", "United States"],
 ];
