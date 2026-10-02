@@ -53,7 +53,7 @@ export default function CountryCompareHub() {
         />
       </Helmet>
       <Navbar />
-      <main className="pt-28 pb-20 px-5">
+      <main className="tool-premium-page pt-28 pb-20 px-5">
         <div className="max-w-lg mx-auto">
           <h1 className="font-serif text-[1.75rem] sm:text-[2.2rem] font-semibold text-foreground tracking-tight leading-[1.15] text-center mb-3">
             Compare countries for your move

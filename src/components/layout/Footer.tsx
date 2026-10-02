@@ -87,68 +87,30 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border/40 bg-background">
-      <div className="container max-w-6xl px-5 md:px-8 py-14">
-
-        <div className="grid grid-cols-2 md:grid-cols-[1.55fr_.8fr_.8fr_1.15fr_.85fr] gap-10 mb-12">
-
-          {/* Logo + description + socials */}
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-3">
-              <img src="/assets/favicon.png" alt="" className="w-7 h-7 object-contain" />
-              <span className="text-[14px] font-medium tracking-[0.14em] bg-gradient-to-r from-[#f3e5c4] via-[#cfae69] to-[#f0d9a4] bg-clip-text text-transparent">RELOVA</span>
-            </div>
-            <p className="text-[13px] text-muted-foreground leading-relaxed max-w-[200px] mb-5">
-              Relova is your all-in-one relocation partner. Trusted by thousands of people and families to plan, move, and thrive in a new country.
-            </p>
-            <div className="flex items-center gap-3 flex-wrap">
+    <footer className="relova-premium-footer">
+      <div className="relova-footer-shell">
+        <section className="relova-footer-visual">
+          <img src="/assets/cta-cityview.jpg" alt="A family beginning a new chapter" />
+          <div><span>YOUR NEXT CHAPTER</span><h2>A new life deserves<br/>a clear first step.</h2><a href="/chat">Build my relocation plan</a></div>
+        </section>
+        <div className="relova-footer-grid">
+          <div className="relova-footer-brand">
+            <a href="/" className="relova-footer-logo"><img src="/assets/favicon.png?v=6" alt=""/><b>RELOVA</b></a>
+            <p>Relova is your all-in-one relocation partner. Trusted by thousands of people and families to plan, move, and thrive in a new country.</p>
+            <div className="relova-footer-socials">
               {SOCIALS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="text-muted-foreground/50 hover:text-foreground transition-colors"
-                >
-                  {s.icon}
-                </a>
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>{s.icon}</a>
               ))}
             </div>
           </div>
-
-          {/* Link columns */}
           {FOOTER_COLS.map((col) => (
             <div key={col.title}>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground/60 mb-4">
-                {col.title}
-              </p>
-              <ul className="space-y-2.5">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      target={link.href.startsWith("http") ? "_blank" : undefined}
-                      rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                      className="text-[13px] text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <h3>{col.title}</h3>
+              {col.links.map((link) => <a key={link.label} href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel={link.href.startsWith("http") ? "noreferrer" : undefined}>{link.label}</a>)}
             </div>
           ))}
-
         </div>
-
-        {/* Bottom bar */}
-        <div className="border-t border-border/30 pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <p className="text-[11px] text-muted-foreground/40">
-            © 2026 Relova, Inc. All rights reserved.
-          </p>
-        </div>
-
+        <div className="relova-footer-bottom">© 2026 Relova, Inc. All rights reserved.</div>
       </div>
     </footer>
   );

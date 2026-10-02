@@ -263,7 +263,7 @@ export default function TaxResidencyTracker() {
         />
       </Helmet>
       <Navbar />
-      <main className="pt-28 pb-20 px-5">
+      <main className="tool-premium-page pt-28 pb-20 px-5">
         <div className="max-w-3xl mx-auto">
           <h1 className="font-serif text-[1.75rem] sm:text-[2.2rem] font-semibold text-foreground tracking-tight leading-[1.15] mb-3">
             Track days toward tax residency (183-day rule)

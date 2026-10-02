@@ -33,7 +33,7 @@ function updateFavicons(directory) {
     } else if (entry.name.endsWith(".html")) {
       const source = readFileSync(path, "utf8");
       const updated = source
-        .replaceAll("assets/favicon.svg", "assets/favicon.png?v=5")
+        .replaceAll("assets/favicon.svg", "assets/favicon.png?v=6")
         .replace(/type="image\/svg\+xml"(?=[^>]*favicon\.png)/g, 'type="image/png"');
       if (updated !== source) writeFileSync(path, updated, "utf8");
     }
