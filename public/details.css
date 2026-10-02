@@ -343,7 +343,7 @@ body{background:#fff9f4;background-image:radial-gradient(circle at 9% 16%,#f5d6c
 @media(max-width:690px){.tour-narrative{width:auto;height:238px;padding:29px 24px}.tour-narrative h3{margin:18px 0 22px}.tour-preview{inset:238px 0 0}.tour-stage{min-height:625px}}
 
 /* Standalone pricing page */
-.pricing-page{background:linear-gradient(180deg,#211429 0 520px,#f8f2ed 520px 100%)}
+.pricing-page{overflow:hidden;background:linear-gradient(180deg,#211429 0 520px,#f8f2ed 520px 100%)}
 .pricing-hero{position:relative;min-height:520px;overflow:hidden;color:#fff;background:radial-gradient(circle at 74% 32%,#7b54df52 0,transparent 30%),linear-gradient(118deg,#211429 0%,#30203a 58%,#49335a 100%)}
 .pricing-hero:after{content:"";position:absolute;inset:auto -8% -45% 38%;height:520px;border:1px solid #c6aeff42;border-radius:50%;box-shadow:0 0 0 80px #9b74ef0b,0 0 0 170px #cdbaff0b;transform:rotate(-12deg)}
 .pricing-orbit{position:absolute;right:9%;top:88px;width:260px;height:260px;border:1px solid #d9c9ff35;border-radius:50%;box-shadow:inset 0 0 80px #a47aff16,0 0 70px #8b63e628}
