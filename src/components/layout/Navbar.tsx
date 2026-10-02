@@ -30,14 +30,14 @@ export default function Navbar() {
         </nav>
         <div className="relova-header-actions">
           {user ? <><button type="button" className="relova-header-login" onClick={signOut}><LogOut size={14}/> Log out</button><Link className="relova-header-cta" to="/dashboard">Dashboard</Link></>
-            : <><Link className="relova-header-login" to="/login">Log in</Link><Link className="relova-header-cta" to="/chat">Get started</Link></>}
+            : <><Link className="relova-header-login" to="/login">Log in</Link><Link className="relova-header-cta" to="/signup">Get started</Link></>}
         </div>
         <button type="button" className="relova-header-toggle" onClick={() => setOpen((value) => !value)} aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>{open ? <X size={22}/> : <Menu size={22}/>}</button>
       </div>
       {open && <div className="relova-header-mobile">
         {navLinks.map((link) => <a key={link.href} href={link.href} onClick={() => setOpen(false)} aria-current={isActive(link.href) ? "page" : undefined}>{link.label}</a>)}
         <div>{user ? <><Link to="/dashboard" onClick={() => setOpen(false)}>Dashboard</Link><button type="button" onClick={() => { signOut(); setOpen(false); }}>Log out</button></>
-          : <><Link to="/login" onClick={() => setOpen(false)}>Log in</Link><Link className="relova-header-cta" to="/chat" onClick={() => setOpen(false)}>Get started</Link></>}</div>
+          : <><Link to="/login" onClick={() => setOpen(false)}>Log in</Link><Link className="relova-header-cta" to="/signup" onClick={() => setOpen(false)}>Get started</Link></>}</div>
       </div>}
     </header>
   );

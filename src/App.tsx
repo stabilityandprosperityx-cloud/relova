@@ -25,6 +25,7 @@ const DashboardDocumentsPage = lazy(() => import("./pages/dashboard/DashboardDoc
 const DashboardCountriesPage = lazy(() => import("./pages/dashboard/DashboardCountriesPage.tsx"));
 const Countries = lazy(() => import("./pages/Countries.tsx"));
 const Chat = lazy(() => import("./pages/Chat.tsx"));
+const AuthPage = lazy(() => import("./pages/AuthPage.tsx"));
 const CountryPage = lazy(() => import("./pages/CountryPage.tsx"));
 const Pricing = lazy(() => import("./pages/Pricing.tsx"));
 const Checkout = lazy(() => import("./pages/Checkout.tsx"));
@@ -104,7 +105,8 @@ function AppRoutes() {
         <Route path="/countries" element={<Countries />} />
         <Route path="/countries/:slug" element={<CountryPage />} />
         <Route path="/chat" element={<Chat />} />
-        <Route path="/login" element={<Chat />} />
+        <Route path="/login" element={<AuthPage mode="login" />} />
+        <Route path="/signup" element={<AuthPage mode="signup" />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/terms" element={<Terms />} />

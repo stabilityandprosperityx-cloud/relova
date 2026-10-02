@@ -34,7 +34,11 @@ function updateFavicons(directory) {
       const source = readFileSync(path, "utf8");
       const updated = source
         .replaceAll("assets/favicon.svg", "assets/favicon.png?v=6")
-        .replace(/type="image\/svg\+xml"(?=[^>]*favicon\.png)/g, 'type="image/png"');
+        .replace(/type="image\/svg\+xml"(?=[^>]*favicon\.png)/g, 'type="image/png"')
+        // Authentication belongs on dedicated auth routes. Keep the demo/chat
+        // route for product exploration, but never use it as the header signup.
+        .replaceAll('href="https://relova.ai/chat">Get started', 'href="https://relova.ai/signup">Get started')
+        .replaceAll('href="https://relova.ai/chat">Get Started', 'href="https://relova.ai/signup">Get Started');
       if (updated !== source) writeFileSync(path, updated, "utf8");
     }
   }

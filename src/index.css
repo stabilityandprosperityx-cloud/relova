@@ -455,3 +455,64 @@
 .relova-premium-footer{background:#211625;color:#fff;padding:26px 0 0}.relova-footer-shell{max-width:1320px;margin:auto;padding:0 28px}.relova-footer-visual{height:390px;position:relative;overflow:hidden;border:1px solid rgba(232,216,237,.18);border-radius:28px}.relova-footer-visual>img{width:100%;height:100%;object-fit:cover}.relova-footer-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(29,18,35,.87),rgba(29,18,35,.2) 65%,rgba(29,18,35,.03))}.relova-footer-visual>div{position:absolute;z-index:1;left:7%;top:50%;transform:translateY(-50%)}.relova-footer-visual span{font-size:10px;letter-spacing:.22em;font-weight:700;color:#cfb5ef}.relova-footer-visual h2{font-size:clamp(38px,4vw,62px);line-height:1.02;letter-spacing:-.045em;font-weight:500;margin:17px 0 28px}.relova-footer-visual a{display:inline-flex;padding:14px 24px;border-radius:11px;background:linear-gradient(120deg,#7138ee,#8a5af4);font-size:13px;font-weight:700;box-shadow:inset 0 1px rgba(255,255,255,.32),0 12px 30px rgba(72,34,168,.32)}.relova-footer-grid{display:grid;grid-template-columns:1.7fr .7fr .8fr 1.15fr .75fr;gap:55px;padding:72px 0 76px}.relova-footer-brand p{font-size:13px;line-height:1.75;color:#c3b7c7;max-width:260px;margin:22px 0}.relova-footer-logo{display:flex;align-items:center;gap:12px}.relova-footer-logo img{width:31px;height:31px;object-fit:contain}.relova-footer-logo b{font-size:13px;font-weight:500;letter-spacing:.15em;background:linear-gradient(100deg,#f6e8c7,#cba663,#f0d99f);background-clip:text;color:transparent}.relova-footer-socials{display:flex;gap:15px;color:#9d8fa2}.relova-footer-socials a:hover{color:#e9dff0}.relova-footer-grid h3{font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#cdb8d2;margin-bottom:20px}.relova-footer-grid>div:not(:first-child){display:flex;flex-direction:column;align-items:flex-start}.relova-footer-grid>div:not(:first-child)>a{font-size:12px;line-height:1.4;color:#bfb3c3;margin-bottom:12px;transition:.2s}.relova-footer-grid>div:not(:first-child)>a:hover{color:#fff;transform:translateX(3px)}.relova-footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding:23px 0 30px;color:#8f8294;font-size:10px}.dark .relova-premium-footer{background:#17101b}
 @media(max-width:900px){.relova-footer-grid{grid-template-columns:1.4fr 1fr 1fr;gap:44px}.relova-footer-brand{grid-row:span 2}.relova-footer-visual{height:340px}}
 @media(max-width:600px){.relova-footer-shell{padding:0 16px}.relova-footer-visual{height:390px}.relova-footer-visual>div{left:26px;right:20px}.relova-footer-grid{grid-template-columns:1fr 1fr;padding:55px 8px}.relova-footer-brand{grid-column:1/-1;grid-row:auto}.relova-footer-grid>div:nth-child(4){grid-column:1/-1}.relova-footer-visual h2{font-size:38px}}
+/* Premium authentication entry */
+.relova-auth-page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 76% 24%, rgba(151, 112, 255, 0.2), transparent 31%),
+    linear-gradient(135deg, #201426 0%, #30203a 48%, #17101d 100%);
+  color: #fffaf5;
+}
+
+.relova-auth-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, rgba(15, 8, 19, 0.08), rgba(255, 236, 211, 0.06));
+}
+
+.relova-auth-brand {
+  position: absolute;
+  z-index: 2;
+  top: 34px;
+  left: clamp(24px, 6vw, 92px);
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  text-decoration: none;
+}
+
+.relova-auth-brand img { width: 32px; height: 32px; object-fit: contain; }
+.relova-auth-brand span {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: .24em;
+  background: linear-gradient(90deg, #f6e4bd, #c8a66a 55%, #fff1d3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.relova-auth-story {
+  position: absolute;
+  z-index: 2;
+  left: clamp(28px, 9vw, 150px);
+  top: 50%;
+  max-width: 480px;
+  transform: translateY(-50%);
+}
+.relova-auth-story span { color: #d1b77e; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; }
+.relova-auth-story h1 { margin: 18px 0; font-size: clamp(54px, 6vw, 94px); font-weight: 400; letter-spacing: -.06em; line-height: .94; }
+.relova-auth-story p { max-width: 430px; color: rgba(255,250,245,.67); font-size: 18px; line-height: 1.7; }
+.relova-auth-orbit { position: absolute; border: 1px solid rgba(215,184,127,.15); border-radius: 50%; }
+.relova-auth-orbit-one { width: 720px; height: 720px; right: -210px; top: -260px; }
+.relova-auth-orbit-two { width: 500px; height: 500px; left: -250px; bottom: -260px; }
+
+@media (max-width: 860px) {
+  .relova-auth-story { left: 24px; right: 24px; top: 23%; text-align: center; max-width: none; }
+  .relova-auth-story h1 { font-size: 48px; }
+  .relova-auth-story p { margin-inline: auto; font-size: 15px; }
+}

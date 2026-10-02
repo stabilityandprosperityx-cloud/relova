@@ -43,6 +43,8 @@
     { "source": "/chat/", "destination": "/app.html" },
     { "source": "/login", "destination": "/app.html" },
     { "source": "/login/", "destination": "/app.html" },
+    { "source": "/signup", "destination": "/app.html" },
+    { "source": "/signup/", "destination": "/app.html" },
     { "source": "/pricing", "destination": "/app.html" },
     { "source": "/pricing/", "destination": "/app.html" },
     { "source": "/checkout", "destination": "/app.html" },

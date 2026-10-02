@@ -16,6 +16,7 @@ interface AuthModalProps {
   onOpenChange: (open: boolean) => void;
   title?: string;
   subtitle?: string;
+  initialMode?: "choice" | "email-signup" | "email-login";
 }
 
 export default function AuthModal({
@@ -23,9 +24,10 @@ export default function AuthModal({
   onOpenChange,
   title = "Continue your relocation plan",
   subtitle = "Create an account to keep going and get personalized answers",
+  initialMode = "choice",
 }: AuthModalProps) {
   const navigate = useNavigate();
-  const [mode, setMode] = useState<"choice" | "email-signup" | "email-login">("choice");
+  const [mode, setMode] = useState<"choice" | "email-signup" | "email-login">(initialMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -78,7 +80,7 @@ export default function AuthModal({
   };
 
   const resetModal = () => {
-    setMode("choice");
+    setMode(initialMode);
     setEmail("");
     setPassword("");
   };
