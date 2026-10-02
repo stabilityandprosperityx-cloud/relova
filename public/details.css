@@ -54,7 +54,7 @@
 .price-card.featured:before{background:linear-gradient(90deg,#78478b,#dfaad4)}
 .price-card:hover{transform:translateY(-4px)}
 .concierge{background:linear-gradient(120deg,#2b1c32 0%,#4a3051 67%,#765372 100%);position:relative;overflow:hidden}
-.concierge:after{content:'✳';position:absolute;right:-35px;bottom:-120px;color:#ffffff0e;font-size:360px;line-height:1;pointer-events:none}
+.concierge:after{display:none}
 .directory-card{grid-template-columns:125px 1fr;align-items:center;gap:22px;padding:14px;transition:transform .25s,box-shadow .25s}
 .directory-card:hover{transform:translateY(-3px);box-shadow:0 17px 30px #29172c17}
 .directory-visual{width:125px;height:125px;display:grid;place-items:center;background:#eee3ed;font-size:49px;overflow:hidden}

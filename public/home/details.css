@@ -54,7 +54,7 @@
 .price-card.featured:before{background:linear-gradient(90deg,#78478b,#dfaad4)}
 .price-card:hover{transform:translateY(-4px)}
 .concierge{background:linear-gradient(120deg,#2b1c32 0%,#4a3051 67%,#765372 100%);position:relative;overflow:hidden}
-.concierge:after{content:'✳';position:absolute;right:-35px;bottom:-120px;color:#ffffff0e;font-size:360px;line-height:1;pointer-events:none}
+.concierge:after{display:none}
 .directory-card{grid-template-columns:125px 1fr;align-items:center;gap:22px;padding:14px;transition:transform .25s,box-shadow .25s}
 .directory-card:hover{transform:translateY(-3px);box-shadow:0 17px 30px #29172c17}
 .directory-visual{width:125px;height:125px;display:grid;place-items:center;background:#eee3ed;font-size:49px;overflow:hidden}
@@ -358,12 +358,9 @@ body{background:#fff9f4;background-image:radial-gradient(circle at 9% 16%,#f5d6c
 @media(max-width:690px){.pricing-page{background:linear-gradient(180deg,#211429 0 510px,#f8f2ed 510px)}.pricing-hero,.pricing-hero-inner{min-height:510px}.pricing-hero-inner{padding-top:95px;padding-bottom:52px}.pricing-hero h1{font-size:52px}.pricing-hero p{font-size:16px}.pricing-orbit{right:-100px;top:90px;opacity:.55}.pricing-proof{grid-template-columns:1fr;gap:8px;border-bottom:0;padding-bottom:0}.pricing-page-section{margin-top:-22px}.pricing-page-section .container{padding:22px 16px;border-radius:20px}.pricing-controlbar{padding:12px 5px 30px}.pricing-controlbar h2{font-size:38px}.pricing-page-section .price-card{min-height:auto;padding:27px 24px}.pricing-page-section .price-card>p{min-height:0}.pricing-page-section .concierge{margin-top:38px}}
 
 /* Final mobile composition. Keep this block last in the cascade. */
-.hero-auth-mobile{display:none}
 @media(max-width:690px){
   .hero{min-height:980px!important}.hero-inner{min-height:930px!important;padding-bottom:430px!important}
-  .hero-actions{position:relative;z-index:3}.hero-auth-mobile{position:relative;z-index:3;display:flex;gap:10px;margin-top:13px}
-  .hero-auth-mobile a{display:flex;min-height:44px;flex:1;align-items:center;justify-content:center;border:1px solid #ffffff47;border-radius:11px;background:#20132757;color:#fff;font-size:12px;font-weight:650;backdrop-filter:blur(12px)}
-  .hero-auth-mobile a:last-child{border-color:#ae8bff9e;background:linear-gradient(120deg,#6732df,#8657ef);box-shadow:inset 0 1px #ffffff47,0 10px 24px #411d9b3d}
+  .hero-actions{position:relative;z-index:3}
   .match-card{bottom:70px!important}
   .feature:last-child{min-height:410px!important;padding:30px 24px 128px!important}
   .feature:last-child .feature-art{left:24px!important;right:24px!important;bottom:26px!important;height:78px!important}.feature:last-child .mini-cost b{font-size:39px;line-height:1}
