@@ -774,6 +774,16 @@ function money(n: number) {
     : `$${Math.round(n)}`;
 }
 
+const countryImage = (name: string) => {
+  const aliases: Record<string, string> = {
+    "United States": "usa-new-york", "United Arab Emirates": "uae-city",
+    "United Kingdom": "united-kingdom", "South Korea": "south-korea",
+    "South Africa": "south-africa", "New Zealand": "new-zealand",
+    "Czech Republic": "czech-republic",
+  };
+  return `/assets/${aliases[name] || name.toLowerCase().replace(/\s+/g, "-")}.jpg`;
+};
+
 export default function DashboardCountries({
   profile,
   onNavigate,
@@ -822,7 +832,7 @@ export default function DashboardCountries({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 relova-countries-premium">
       <div>
         <h1 className="text-xl md:text-2xl font-semibold tracking-tight">Countries</h1>
         <p className="text-muted-foreground text-sm mt-1">
@@ -844,10 +854,11 @@ export default function DashboardCountries({
                   setSelectedCountry(current);
                 }
               }}
-              className="rounded-xl border border-primary/20 bg-primary/[0.04] p-4 cursor-pointer hover:bg-primary/[0.07] transition-colors"
+              className="relova-destination-feature rounded-xl border border-primary/20 bg-primary/[0.04] p-4 cursor-pointer hover:bg-primary/[0.07] transition-colors"
               onClick={() => setSelectedCountry(current)}
             >
-              <p className="text-[11px] uppercase tracking-widest text-primary/70 font-medium mb-2">
+              <img src={countryImage(current.name)} alt="" onError={(e) => { e.currentTarget.src = "/assets/country-preview.jpg"; }} />
+              <div className="relova-destination-copy"><p className="text-[11px] uppercase tracking-widest text-primary/70 font-medium mb-2">
                 Your destination
               </p>
               <div className="flex items-center gap-3">
@@ -859,7 +870,7 @@ export default function DashboardCountries({
                   </p>
                 </div>
                 <ArrowRight size={16} className="text-primary shrink-0" />
-              </div>
+              </div></div>
             </div>
           );
         })()}
@@ -950,7 +961,7 @@ export default function DashboardCountries({
                 backdropFilter: "blur(20px)",
                 WebkitBackdropFilter: "blur(20px)",
               }}
-              className={`rounded-xl p-4 cursor-pointer transition-all hover:brightness-[1.04]
+              className={`relova-country-card rounded-xl cursor-pointer transition-all hover:brightness-[1.04]
                 bg-white/10 dark:bg-white/[0.06]
                 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]
                 border
@@ -960,7 +971,8 @@ export default function DashboardCountries({
                 }
               `}
             >
-              <div className="flex items-start gap-3">
+              <div className="relova-country-photo"><img src={countryImage(country.name)} alt={`${country.name} destination`} loading="lazy" onError={(e) => { e.currentTarget.src = "/assets/country-preview.jpg"; }} /><span>{country.flag}</span></div>
+              <div className="relova-country-card-body"><div className="flex items-start gap-3">
                 <span className="text-2xl">{country.flag}</span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
@@ -999,7 +1011,7 @@ export default function DashboardCountries({
                 >
                   {compareList.includes(country.name) ? "✓ Added" : "+ Compare"}
                 </button>
-              </div>
+              </div></div>
             </motion.div>
           );
         })}

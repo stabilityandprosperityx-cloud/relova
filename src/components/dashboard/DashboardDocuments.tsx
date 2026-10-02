@@ -531,7 +531,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
   }
 
   return (
-    <div className="space-y-8 relative">
+    <div className="space-y-8 relative relova-documents-premium">
       {isLocked && showPaywall && <LockedOverlay onClose={() => { setShowPaywall(false); onBack?.(); }} profile={profile} />}
       <input
         ref={fileInputRef}

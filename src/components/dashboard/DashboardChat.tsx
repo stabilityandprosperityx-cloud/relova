@@ -240,8 +240,8 @@ INSTRUCTIONS:
   return (
     <div className="relova-agent-card flex flex-col h-[calc(100vh-8rem)] md:h-[calc(100vh-8rem)] overflow-hidden">
       <header className="relova-agent-header">
-        <div className="relova-agent-avatar"><RelovaLogo size={27} pulse={false} /></div>
-        <div><strong>Relova Advisor</strong><span><i /> Online · knows your plan</span></div>
+        <div className="relova-agent-avatar relova-advisor-portrait"><img src="/assets/relova-ai-advisor.webp" alt="Relova AI Advisor" /></div>
+        <div><strong>Relova Advisor <em>AI</em></strong><span><i /> Online · knows your plan</span></div>
         <b>LIVE WORKSPACE</b>
       </header>
 

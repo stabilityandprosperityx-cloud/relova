@@ -205,15 +205,18 @@ export default function DashboardPlan({ profile, onNavigate, relocationCase }: P
   const { progressPct, doneCount, totalCount } = relocationCase;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 relova-plan-premium">
 
       {/* ─── HERO ─── */}
       <motion.section
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="rounded-xl border border-primary/20 bg-primary/[0.04] p-5 md:p-7"
+        className="relova-plan-hero rounded-xl border border-primary/20 bg-primary/[0.04] p-5 md:p-7"
       >
+        <img className="relova-plan-hero-image" src={`/assets/${profile.target_country.toLowerCase().replace(/\s+/g, "-")}.jpg`} alt="" onError={(e) => { e.currentTarget.src = "/assets/country-preview.jpg"; }} />
+        <div className="relova-plan-hero-shade" />
+        <div className="relova-plan-hero-content">
         <p className="text-[11px] uppercase tracking-widest text-primary/80 font-medium mb-4">Your relocation plan</p>
         <div className="flex items-start gap-4 mb-5">
           {countryData && <span className="text-3xl md:text-4xl mt-0.5">{countryData.flag}</span>}
@@ -245,10 +248,11 @@ export default function DashboardPlan({ profile, onNavigate, relocationCase }: P
             <span className="text-base md:text-lg font-bold truncate block">{pathType}</span>
           </div>
         </div>
+        </div>
       </motion.section>
 
       {/* ─── PROGRESS BAR ─── */}
-      <section className="surface-card p-5 md:p-6">
+      <section className="surface-card p-5 md:p-6 relova-journey-card">
         <div className="flex items-center justify-between mb-1">
           <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Your journey</p>
           <span className="text-[12px] text-muted-foreground">{doneCount} / {totalCount} completed</span>
@@ -294,7 +298,7 @@ export default function DashboardPlan({ profile, onNavigate, relocationCase }: P
       </section>
 
       {/* ─── CHECKLIST BY PHASES (Pro+) ─── */}
-      <section className="space-y-4">
+      <section className="space-y-4 relova-roadmap">
         <h2 className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Step-by-step checklist</h2>
 
         {grouped.length === 0 ? (
