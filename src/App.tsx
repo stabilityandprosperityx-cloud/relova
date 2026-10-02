@@ -16,7 +16,6 @@ import { usePageTracking } from "./hooks/usePageTracking.ts";
 // download/parse/execute, which is what Core Web Vitals (TBT, INP) and
 // mobile load time actually measure — the static prerendered HTML already
 // covers first paint, so this only affects hydration weight, not SEO content.
-const Index = lazy(() => import("./pages/Index.tsx"));
 const Dashboard = lazy(() => import("./pages/Dashboard.tsx"));
 const DashboardOverviewPage = lazy(() => import("./pages/dashboard/DashboardOverviewPage.tsx"));
 const DashboardAdvisorPage = lazy(() => import("./pages/dashboard/DashboardAdvisorPage.tsx"));
@@ -74,6 +73,17 @@ function BlogSlugRedirect() {
   return null;
 }
 
+// The marketing homepage is served as the approved static redesign. If a
+// legacy client-side navigation ever reaches the SPA root, force a document
+// request so the browser receives that redesigned page instead of the old
+// React homepage.
+function MarketingHomeRedirect() {
+  useEffect(() => {
+    window.location.replace("/");
+  }, []);
+  return null;
+}
+
 function AppRoutes() {
   usePageTracking();
   return (
@@ -81,7 +91,7 @@ function AppRoutes() {
       <ScrollToTop />
       <Suspense fallback={null}>
       <Routes>
-        <Route path="/" element={<Index />} />
+        <Route path="/" element={<MarketingHomeRedirect />} />
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<DashboardOverviewPage />} />
           <Route path="advisor" element={<DashboardAdvisorPage />} />

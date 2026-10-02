@@ -42,13 +42,13 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
             <RelovaLogo size={22} pulse={false} />
             <span className="text-[15px] font-semibold tracking-tight text-foreground">relova</span>
           </div>
-          <Link
-            to="/"
+          <a
+            href="/"
             className="flex items-center gap-1.5 mt-3 text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-colors"
           >
             <ArrowLeft size={12} />
             Back to site
-          </Link>
+          </a>
         </div>
 
         <nav className="flex-1 px-3 space-y-0.5">
@@ -97,13 +97,13 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
 
         <div className="px-3 pb-4 space-y-2">
           {userPlan !== "full" && userPlan !== "concierge" && (
-            <Link
-              to="/pricing"
+            <a
+              href="/pricing/"
               className="block w-full text-center px-3 py-2 rounded-lg text-[11px] font-medium text-white transition-all hover:opacity-90"
               style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)", border: "none" }}
             >
               Upgrade plan ↑
-            </Link>
+            </a>
           )}
           <button
             onClick={signOut}
@@ -164,14 +164,14 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
             </SheetHeader>
             <div className="mt-6 flex flex-col gap-0">
               {userPlan !== "full" && userPlan !== "concierge" && (
-                <Link
-                  to="/pricing"
+                <a
+                  href="/pricing/"
                   onClick={() => setMobileSheetOpen(false)}
                   className="rounded-lg px-3 py-3 text-center text-[14px] font-medium text-white transition-all hover:opacity-90"
                   style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)", border: "none" }}
                 >
                   Upgrade plan
-                </Link>
+                </a>
               )}
               {onEditProfile && (
                 <button
@@ -185,13 +185,13 @@ export default function DashboardSidebar({ activeTab, onTabChange, userEmail, us
                   Edit profile
                 </button>
               )}
-              <Link
-                to="/"
+              <a
+                href="/"
                 onClick={() => setMobileSheetOpen(false)}
                 className="rounded-lg px-3 py-3 text-[14px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
               >
                 ← Back to site
-              </Link>
+              </a>
               <button
                 type="button"
                 onClick={() => {

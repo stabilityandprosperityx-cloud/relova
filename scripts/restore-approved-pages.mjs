@@ -5,7 +5,7 @@
  * Restore only the approved hub after dynamic routes have been generated.
  * Countries are already copied verbatim from public/ and are not prerendered.
  */
-import { copyFileSync, existsSync, mkdirSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -21,3 +21,24 @@ for (const route of ["tools"]) {
   copyFileSync(source, target);
   console.log(`restore-approved-pages: restored /${route}/`);
 }
+
+// Keep the favicon consistent across the static redesign and React-rendered
+// utility pages without having to duplicate the same markup edit in every
+// country file.
+function updateFavicons(directory) {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) {
+      updateFavicons(path);
+    } else if (entry.name.endsWith(".html")) {
+      const source = readFileSync(path, "utf8");
+      const updated = source
+        .replaceAll("assets/favicon.svg", "assets/favicon.png")
+        .replace(/type="image\/svg\+xml"(?=[^>]*favicon\.png)/g, 'type="image/png"');
+      if (updated !== source) writeFileSync(path, updated, "utf8");
+    }
+  }
+}
+
+updateFavicons(join(root, "dist"));
+console.log("restore-approved-pages: applied the new favicon across all pages");

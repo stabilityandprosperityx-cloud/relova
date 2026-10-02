@@ -55,17 +55,17 @@ export default function Navbar() {
         <div className="container max-w-6xl px-5 md:px-8 flex h-[60px] items-center justify-between">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 text-foreground shrink-0">
+          <a href="/" className="flex items-center gap-2 text-foreground shrink-0">
             <RelovaLogo size={20} pulse={false} className="text-foreground" />
             <span className="text-[14px] font-bold tracking-[-0.03em] uppercase">Relova</span>
-          </Link>
+          </a>
 
           {/* Center nav */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.href}
-                to={link.href}
+                href={link.href}
                 className={`relative px-3.5 py-1.5 text-[13px] rounded-lg transition-colors ${
                   isActive(link.href)
                     ? "text-foreground bg-secondary"
@@ -73,7 +73,7 @@ export default function Navbar() {
                 }`}
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
           </div>
 
@@ -141,9 +141,9 @@ export default function Navbar() {
         {open && (
           <div className="md:hidden border-t border-border/30 bg-background/95 backdrop-blur-2xl px-5 py-4 space-y-1">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.href}
-                to={link.href}
+                href={link.href}
                 onClick={() => setOpen(false)}
                 className={`block py-2 text-[14px] transition-colors ${
                   isActive(link.href)
@@ -152,7 +152,7 @@ export default function Navbar() {
                 }`}
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
             <div className="pt-3 border-t border-border/30 mt-3 space-y-3">
               <button
