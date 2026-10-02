@@ -719,7 +719,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
             >
               <Collapsible open={isOpen} onOpenChange={(open) => setOpenCategories(prev => ({ ...prev, [cat.key]: open }))}>
                 <CollapsibleTrigger asChild>
-                  <button className="w-full flex items-center gap-3 surface-card hover:bg-muted p-4 md:p-5 transition-colors text-left group">
+                  <button className="relova-glass-category w-full flex items-center gap-3 surface-card hover:bg-muted p-4 md:p-5 transition-colors text-left group">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <h2 className="text-[14px] font-semibold">{cat.label}</h2>
@@ -744,7 +744,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
                       return (
                         <div
                           key={doc.id}
-                          className={`surface-card p-4 md:px-5 md:py-4 group/card transition-colors ${statusCfg.cardClass} ${hasUpload && !statusCfg.cardClass ? "hover:bg-muted cursor-pointer" : hasUpload ? "cursor-pointer" : ""}`}
+                          className={`relova-glass-document surface-card p-4 md:px-5 md:py-4 group/card transition-colors ${statusCfg.cardClass} ${hasUpload && !statusCfg.cardClass ? "hover:bg-muted cursor-pointer" : hasUpload ? "cursor-pointer" : ""}`}
                           onClick={hasUpload ? () => setPreviewDoc({
                             doc: doc.uploadedDoc!,
                             verificationNote: doc.verificationNote,

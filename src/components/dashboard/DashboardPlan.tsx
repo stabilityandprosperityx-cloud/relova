@@ -321,7 +321,7 @@ export default function DashboardPlan({ profile, onNavigate, relocationCase }: P
                 open={openPhases[group.key] ?? false}
                 onOpenChange={(open) => setOpenPhases(prev => ({ ...prev, [group.key]: open }))}
               >
-                <div className="rounded-xl bg-card/40 overflow-hidden border border-border/30">
+                <div className="relova-glass-phase rounded-xl bg-card/40 overflow-hidden border border-border/30">
                   <CollapsibleTrigger className="w-full group">
                     <div className="flex items-center gap-4 px-5 py-4 transition-colors group-hover:bg-card/60">
                       <div className={`h-8 w-8 rounded-full flex items-center justify-center text-xs font-semibold shrink-0 transition-colors ${
@@ -357,7 +357,7 @@ export default function DashboardPlan({ profile, onNavigate, relocationCase }: P
                           initial={{ opacity: 0, y: 4 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.2 }}
-                          className={`flex items-start gap-3 rounded-lg px-3.5 py-3 transition-colors ${
+                          className={`relova-glass-step flex items-start gap-3 rounded-lg px-3.5 py-3 transition-colors ${
                             step.status === "done" ? "bg-primary/[0.04]" : "hover:bg-card/40"
                           }`}
                         >
