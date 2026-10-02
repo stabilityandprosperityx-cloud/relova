@@ -45,6 +45,8 @@
     { "source": "/login/", "destination": "/app.html" },
     { "source": "/pricing", "destination": "/app.html" },
     { "source": "/pricing/", "destination": "/app.html" },
+    { "source": "/checkout", "destination": "/app.html" },
+    { "source": "/checkout/", "destination": "/app.html" },
     { "source": "/terms", "destination": "/app.html" },
     { "source": "/terms/", "destination": "/app.html" },
     { "source": "/privacy", "destination": "/app.html" },
