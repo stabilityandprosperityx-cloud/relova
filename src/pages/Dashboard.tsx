@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useNavigate, Outlet, useLocation } from "react-router-dom";
+import { lazy, Suspense, useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 import OnboardingModal from "@/components/dashboard/OnboardingModal";
@@ -10,6 +10,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useRelocationCase } from "@/hooks/useRelocationCase";
 import { Helmet } from "react-helmet-async";
 import type { RelocationCase } from "@/hooks/useRelocationCase";
+
+const DashboardOverview = lazy(() => import("@/components/dashboard/DashboardOverview"));
+const DashboardChat = lazy(() => import("@/components/dashboard/DashboardChat"));
+const DashboardPlan = lazy(() => import("@/components/dashboard/DashboardPlan"));
+const DashboardDocuments = lazy(() => import("@/components/dashboard/DashboardDocuments"));
+const DashboardCountries = lazy(() => import("@/components/dashboard/DashboardCountries"));
 
 
 export type DashboardTab = "overview" | "plan" | "chat" | "documents" | "countries";
@@ -69,9 +75,19 @@ export default function Dashboard() {
   const [profileLoading, setProfileLoading] = useState(true);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [showEditProfile, setShowEditProfile] = useState(false);
+  const [visitedTabs, setVisitedTabs] = useState<Set<DashboardTab>>(() => new Set(["overview"]));
   const relocationCase = useRelocationCase(profileLoading ? null : profile);
 
   const activeTab = routeToTab[location.pathname] || "overview";
+
+  useEffect(() => {
+    setVisitedTabs((current) => {
+      if (current.has(activeTab)) return current;
+      const next = new Set(current);
+      next.add(activeTab);
+      return next;
+    });
+  }, [activeTab]);
 
   const handleTabChange = (tab: DashboardTab) => {
     navigate(tabToRoute[tab]);
@@ -139,7 +155,13 @@ export default function Dashboard() {
               </div>
             </div>
           ) : (
-                <Outlet context={{ profile, setProfile, onEditProfile: () => setShowEditProfile(true), onNavigate: handleTabChange, relocationCase }} />
+            <div className="relova-dashboard-tabs">
+              {visitedTabs.has("overview") && <section className={activeTab === "overview" ? "relova-dashboard-tab active" : "relova-dashboard-tab"} aria-hidden={activeTab !== "overview"}><Suspense fallback={<DashboardTabFallback />}><DashboardOverview profile={profile} onNavigate={handleTabChange} onEditProfile={() => setShowEditProfile(true)} relocationCase={relocationCase} /></Suspense></section>}
+              {visitedTabs.has("chat") && <section className={activeTab === "chat" ? "relova-dashboard-tab active" : "relova-dashboard-tab"} aria-hidden={activeTab !== "chat"}><Suspense fallback={<DashboardTabFallback />}><div className="relova-dashboard-section relova-dashboard-advisor"><DashboardChat profile={profile} relocationCase={relocationCase} onNavigate={handleTabChange} /></div></Suspense></section>}
+              {visitedTabs.has("plan") && <section className={activeTab === "plan" ? "relova-dashboard-tab active" : "relova-dashboard-tab"} aria-hidden={activeTab !== "plan"}><Suspense fallback={<DashboardTabFallback />}><div className="relova-dashboard-section"><DashboardPlan profile={profile} onBack={() => handleTabChange("overview")} onNavigate={handleTabChange} relocationCase={relocationCase} /></div></Suspense></section>}
+              {visitedTabs.has("documents") && <section className={activeTab === "documents" ? "relova-dashboard-tab active" : "relova-dashboard-tab"} aria-hidden={activeTab !== "documents"}><Suspense fallback={<DashboardTabFallback />}><div className="relova-dashboard-section"><DashboardDocuments profile={profile} onBack={() => handleTabChange("overview")} onNavigate={handleTabChange} relocationCase={relocationCase} /></div></Suspense></section>}
+              {visitedTabs.has("countries") && <section className={activeTab === "countries" ? "relova-dashboard-tab active" : "relova-dashboard-tab"} aria-hidden={activeTab !== "countries"}><Suspense fallback={<DashboardTabFallback />}><div className="relova-dashboard-section"><DashboardCountries profile={profile} onNavigate={handleTabChange} /></div></Suspense></section>}
+            </div>
           )}
         </div>
       </main>
@@ -158,4 +180,8 @@ export default function Dashboard() {
       <FeedbackWidget />
     </div>
   );
+}
+
+function DashboardTabFallback() {
+  return <div className="relova-dashboard-tab-loading"><span /><span /><span /></div>;
 }

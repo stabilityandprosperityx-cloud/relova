@@ -594,3 +594,14 @@
   .relova-onboarding-card { border-radius:22px!important; }
   .relova-onboarding-step { margin-block:12px!important; }
 }
+
+/* App-like dashboard navigation: visited sections stay mounted so their UI
+   state and fetched data survive tab changes. */
+.relova-dashboard-tab { display:none; }
+.relova-dashboard-tab.active { display:block; animation:relovaTabIn .24s ease-out both; }
+.relova-dashboard-tab-loading { min-height:340px;display:flex;align-items:center;justify-content:center;gap:7px; }
+.relova-dashboard-tab-loading span { width:7px;height:7px;border-radius:50%;background:#7a50df;animation:relovaTabPulse .8s ease-in-out infinite alternate; }
+.relova-dashboard-tab-loading span:nth-child(2){animation-delay:.14s}.relova-dashboard-tab-loading span:nth-child(3){animation-delay:.28s}
+@keyframes relovaTabIn { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:none} }
+@keyframes relovaTabPulse { from{opacity:.28;transform:scale(.8)} to{opacity:1;transform:scale(1.12)} }
+@media(prefers-reduced-motion:reduce){.relova-dashboard-tab.active{animation:none}.relova-dashboard-tab-loading span{animation:none}}
