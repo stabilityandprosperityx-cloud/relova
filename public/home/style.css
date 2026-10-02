@@ -954,3 +954,80 @@ h2.display em {
     gap: 10px;
   }
 }
+
+/* Mobile polish: keep the editorial desktop composition, but make every
+   public page comfortable on real 360-430px devices. */
+@media (max-width: 690px) {
+  html, body { max-width: 100%; overflow-x: clip; }
+  button, .btn, a.btn, input, select, summary { touch-action: manipulation; }
+  input, select, textarea { font-size: 16px; }
+  .site-header { position: sticky; top: 0; z-index: 100; }
+  .main-nav { max-height: calc(100dvh - 66px); overflow-y: auto; box-shadow: 0 24px 55px rgba(20,10,25,.28); }
+  .main-nav a { width: 100%; min-height: 44px; display: flex; align-items: center; }
+  .menu-toggle { min-width: 44px; min-height: 44px; }
+
+  .hero { min-height: 790px; }
+  .hero-inner { min-height: 740px; padding-top: 64px; padding-bottom: 260px; }
+  .hero h1 { max-width: 8.2ch; line-height: .96; }
+  .hero-actions { gap: 10px; }
+  .hero-actions .btn { min-height: 48px; justify-content: center; }
+  .match-card { bottom: 76px; width: min(310px, 100%); }
+  .hero-foot { min-height: 58px; }
+
+  .section { padding: 56px 0; }
+  .section h2, .page-hero h1 { overflow-wrap: anywhere; }
+  .section-header { margin-bottom: 30px; }
+  .tour-tabs { margin-inline: -17px; padding: 0 17px; gap: 22px; scrollbar-width: none; }
+  .tour-tabs::-webkit-scrollbar { display: none; }
+  .tour-tabs button { min-height: 44px; padding-bottom: 10px; }
+  .tour-stage { min-height: 0; border-radius: 18px; overflow: hidden; }
+  .tour-narrative { padding: 27px 24px; }
+  .tour-narrative h3 { font-size: 28px; }
+  .tour-app { padding: 12px; overflow: hidden; }
+  .app-content { padding: 18px 14px; }
+  .app-content h4 { font-size: 17px; }
+  .check-row { font-size: 12px; gap: 10px; }
+
+  .tile, .feature, .price-card, .form-panel { padding: 22px; }
+  .tile, .feature { min-height: auto; }
+  .steps { border-radius: 18px; overflow: hidden; }
+  .step { padding: 24px; }
+  .comparison { min-width: 620px; }
+  .comparison-wrap, .table-wrap { width: 100%; overflow-x: auto; border-radius: 16px; -webkit-overflow-scrolling: touch; }
+  .comparison td, .comparison th { padding: 13px 12px; font-size: 12px; }
+
+  .price-card ul { min-height: 0; line-height: 1.65; }
+  .price-card .price { font-size: 38px; flex-wrap: wrap; gap: 7px; }
+  .concierge > div { padding: 28px 23px; }
+  .concierge h3 { font-size: 34px; }
+
+  .page-hero { padding: 56px 0; }
+  .page-hero h1 { font-size: clamp(42px, 13vw, 58px); line-height: .98; }
+  .page-hero p { font-size: 15px; }
+  .directory { padding: 38px 0 72px; }
+  .directory-card { grid-template-columns: 74px minmax(0,1fr); gap: 14px; border-radius: 18px; }
+  .directory-card h2 { font-size: 21px; overflow-wrap: anywhere; }
+  .directory-card small { line-height: 1.55; }
+  .country-photo { height: 200px; }
+  .country-card .body { padding: 20px; }
+  .text-page { padding: 50px 0 80px; }
+
+  .site-footer { padding-top: 52px; }
+  .footer-grid { gap: 32px 20px; }
+  .footer-grid a { min-height: 32px; margin: 4px 0; display: flex; align-items: center; }
+  .footer-bottom { margin-top: 38px; padding-bottom: max(22px, env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 420px) {
+  .container { width: calc(100% - 28px); }
+  .hero { min-height: 760px; }
+  .hero-inner { min-height: 710px; padding-bottom: 250px; }
+  .hero-actions .btn { width: 100%; }
+  .match-card { width: 100%; }
+  .steps { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-brand { grid-column: auto; }
+  .directory-card { grid-template-columns: 62px minmax(0,1fr); padding: 15px; }
+  .directory-card .flag { font-size: 30px; }
+  .form-panel { padding: 20px 16px; }
+}
