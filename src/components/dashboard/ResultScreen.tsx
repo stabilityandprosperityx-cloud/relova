@@ -89,13 +89,13 @@ export default function ResultScreen({ profile, onContinue, onSeeOtherMatches }:
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background"
+      className="relova-onboarding fixed inset-0 z-50 flex items-center justify-center"
     >
       <motion.div
         initial={{ opacity: 0, y: 20, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ delay: 0.15, duration: 0.6, ease: "easeOut" }}
-        className="w-full max-w-md mx-4 rounded-2xl border border-border bg-card p-8 shadow-xl"
+        className="relova-onboarding-card relova-onboarding-result w-full max-w-lg mx-4 p-8 sm:p-10"
       >
         {/* Header */}
         <motion.p

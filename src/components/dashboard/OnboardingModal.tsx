@@ -15,20 +15,20 @@ import {
 import { generateAndSaveUserPlan } from "@/lib/generateUserPlan";
 import { determineVisaType } from "@/lib/determineVisaType";
 import type { UserProfile } from "@/pages/Dashboard";
-import { ArrowRight, MapPin, Compass } from "lucide-react";
+import { ArrowRight, MapPin, Compass, ShieldCheck, WalletCards, Sparkles, Bird, UsersRound, RotateCcw, TrendingUp, Leaf } from "lucide-react";
 import LoadingTransition from "./LoadingTransition";
 import { generateEventId, trackPixelEvent } from "@/lib/metaPixel";
 
 
 const goals = [
-  { id: "safety", label: "🛡️ Safety" },
-  { id: "money", label: "💰 Money" },
-  { id: "better_life", label: "✨ Better Life" },
-  { id: "freedom", label: "🕊️ Freedom" },
-  { id: "family", label: "👨‍👩‍👧 Family" },
-  { id: "reset", label: "🔄 Reset" },
-  { id: "growth", label: "📈 Growth" },
-  { id: "environment", label: "🌿 Environment" },
+  { id: "safety", label: "Safety", icon: ShieldCheck },
+  { id: "money", label: "Financial comfort", icon: WalletCards },
+  { id: "better_life", label: "Better life", icon: Sparkles },
+  { id: "freedom", label: "Freedom", icon: Bird },
+  { id: "family", label: "Family", icon: UsersRound },
+  { id: "reset", label: "Fresh start", icon: RotateCcw },
+  { id: "growth", label: "Growth", icon: TrendingUp },
+  { id: "environment", label: "Environment", icon: Leaf },
 ];
 
 const constraintOptions = [
@@ -341,15 +341,17 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   // Mode selection screen
   if (mode === null) {
     return (
-      <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-4 px-4">
-        <div className="w-full max-w-lg rounded-2xl border border-border bg-card p-6 sm:p-8 my-4">
+      <div className="relova-onboarding fixed inset-0 z-50 flex items-start justify-center overflow-y-auto py-4 px-4">
+        <div className="relova-onboarding-card relova-onboarding-choice w-full max-w-2xl my-auto">
+          <div className="relova-onboarding-mark"><img src="/assets/relova-mark.png" alt="" /></div>
+          <span className="relova-onboarding-kicker">Your relocation profile</span>
           <h2 className="text-xl font-bold text-center mb-2">Let's find your path</h2>
           <p className="text-[13px] text-muted-foreground text-center mb-8">Choose how you'd like to start</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <button
               onClick={() => { setMode("know"); setStep(0); trackPixelEvent("StartQuestionnaire", generateEventId()); }}
-              className="rounded-xl border border-border bg-muted/50 p-6 text-left hover:bg-muted hover:border-primary/30 transition-all group"
+              className="relova-onboarding-route group"
             >
               <MapPin size={24} className="text-primary mb-3" />
               <div className="text-[15px] font-semibold mb-1">I know where I want to move</div>
@@ -357,7 +359,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
             </button>
             <button
               onClick={() => { setMode("help"); setStep(0); trackPixelEvent("StartQuestionnaire", generateEventId()); }}
-              className="rounded-xl border border-border bg-muted/50 p-6 text-left hover:bg-muted hover:border-primary/30 transition-all group"
+              className="relova-onboarding-route group"
             >
               <Compass size={24} className="text-primary mb-3" />
               <div className="text-[15px] font-semibold mb-1">Help me choose the best country</div>
@@ -372,8 +374,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   // Layer 1 loading — before matches are revealed
   if (findingDestinations) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm px-4">
-        <div className="surface-card w-full max-w-sm p-10 sm:p-12 text-center">
+      <div className="relova-onboarding fixed inset-0 z-50 flex items-center justify-center px-4">
+        <div className="relova-onboarding-card w-full max-w-md p-10 sm:p-12 text-center">
           <div className="mx-auto h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-5">
             <Compass size={22} className="text-primary animate-pulse" />
           </div>
@@ -397,8 +399,8 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   // Country matching results (Mode B)
   if (showMatches) {
     return (
-      <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-4 px-4">
-        <div className="w-full max-w-2xl rounded-2xl border border-border bg-card p-4 sm:p-8 my-4">
+      <div className="relova-onboarding fixed inset-0 z-50 flex items-start justify-center overflow-y-auto py-4 px-4">
+        <div className="relova-onboarding-card relova-onboarding-results w-full max-w-3xl p-4 sm:p-9 my-4">
           <h2 className="text-xl font-bold text-center mb-2">Your best matches</h2>
           {aiEnhancing && (
             <p className="text-[11px] text-primary/60 text-center mb-4 animate-pulse">
@@ -424,7 +426,7 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
 
           <div className="space-y-3">
             {matches.map((match, i) => (
-              <div key={match.country.name} className={`rounded-xl border p-3 sm:p-5 transition-all ${
+              <div key={match.country.name} className={`relova-match-card rounded-xl border p-3 sm:p-5 transition-all ${
                 i === 0 ? "border-primary/30 bg-primary/5" : "border-border bg-muted/50"
               }`}>
                 <div className="flex items-start justify-between gap-4">
@@ -494,12 +496,15 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-4 px-4">
-      <div className="w-full max-w-md rounded-2xl border border-border bg-card p-6 sm:p-8 my-4">
+    <div className="relova-onboarding fixed inset-0 z-50 flex items-start justify-center overflow-y-auto py-4 px-4">
+      <div className="relova-onboarding-card relova-onboarding-step w-full max-w-lg p-6 sm:p-9 my-auto">
+        <div className="relova-onboarding-step-head">
+          <span>Relova setup</span><b>{String(step + 1).padStart(2, "0")} / {String(totalSteps).padStart(2, "0")}</b>
+        </div>
         {/* Progress bar */}
         <div className="flex justify-center gap-2 mb-8">
           {Array.from({ length: totalSteps }).map((_, s) => (
-            <div key={s} className={`h-1.5 w-8 rounded-full transition-colors ${s <= step ? "bg-primary" : "bg-muted"}`} />
+            <div key={s} className={`relova-onboarding-progress transition-colors ${s <= step ? "active" : ""}`} />
           ))}
         </div>
 
@@ -609,7 +614,9 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
             <h2 className="text-lg font-semibold text-center">What matters most?</h2>
             <p className="text-[12px] text-muted-foreground text-center">Select all that apply</p>
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-2 sm:gap-3 pt-2">
-              {goals.map(g => (
+              {goals.map(g => {
+                const GoalIcon = g.icon;
+                return (
                 <button key={g.id}
                   onClick={() => setSelectedGoals(prev => prev.includes(g.id) ? prev.filter(x => x !== g.id) : [...prev, g.id])}
                   className={`rounded-xl border p-4 text-[13px] font-medium text-center transition-all active:scale-[0.97] ${
@@ -617,9 +624,10 @@ export default function OnboardingModal({ userId, onComplete }: Props) {
                       ? "border-primary bg-primary/10 text-primary"
                       : "border-border bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted"
                   }`}>
-                  {g.label}
+                  <GoalIcon size={19} strokeWidth={1.5} />
+                  <span>{g.label}</span>
                 </button>
-              ))}
+              )})}
             </div>
             <Button className="w-full h-11 text-white border-0 hover:opacity-90 transition-opacity mt-2"
               style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)" }}

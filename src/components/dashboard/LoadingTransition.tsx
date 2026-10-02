@@ -44,9 +44,9 @@ export default function LoadingTransition({ onFinished }: Props) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background"
+      className="relova-onboarding fixed inset-0 z-50 flex items-center justify-center"
     >
-      <div className="flex flex-col items-center gap-8 max-w-sm mx-4">
+      <div className="relova-onboarding-card flex flex-col items-center gap-8 max-w-md w-full mx-4 p-10">
         {/* Logo */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}

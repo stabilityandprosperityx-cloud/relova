@@ -516,3 +516,81 @@
   .relova-auth-story h1 { font-size: 48px; }
   .relova-auth-story p { margin-inline: auto; font-size: 15px; }
 }
+
+/* Premium auth card */
+.relova-auth-dialog {
+  border: 1px solid rgba(197, 165, 112, .38) !important;
+  border-radius: 30px !important;
+  background: linear-gradient(145deg, rgba(255,252,248,.985), rgba(246,237,245,.985)) !important;
+  box-shadow: 0 38px 110px rgba(11,5,15,.58), inset 0 1px 0 #fff !important;
+  color: #24172b;
+}
+.relova-auth-dialog-glow { position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 82% 8%,rgba(127,81,242,.16),transparent 34%),radial-gradient(circle at 2% 100%,rgba(212,174,112,.12),transparent 30%); }
+.relova-auth-dialog-inner { position:relative; z-index:1; padding:48px 46px 42px; }
+.relova-auth-dialog .absolute.right-4 { top:22px; right:22px; width:34px; height:34px; display:grid; place-items:center; border:1px solid rgba(48,32,57,.12); border-radius:50%; color:#4e4155; }
+.relova-auth-kicker { display:block; margin:0 0 12px; color:#9d7a42; font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; }
+.relova-auth-title { margin:0; font-family:Fraunces,serif; font-size:30px; font-weight:600; line-height:1.12; letter-spacing:-.03em; }
+.relova-auth-subtitle { max-width:340px; margin:12px auto 28px; color:#786d7c; font-size:14px; line-height:1.55; }
+.relova-auth-input { height:58px!important; padding:0 18px!important; border:1px solid rgba(50,34,59,.16)!important; border-radius:15px!important; background:rgba(255,255,255,.72)!important; color:#24172b!important; font-size:14px!important; box-shadow:inset 0 1px 0 rgba(255,255,255,.85)!important; }
+.relova-auth-input:focus { border-color:#7750e8!important; box-shadow:0 0 0 4px rgba(119,80,232,.11)!important; }
+.relova-auth-primary { height:58px!important; margin-top:4px; border:1px solid rgba(255,255,255,.22)!important; border-radius:15px!important; background:linear-gradient(115deg,#5524cf,#7042ea 54%,#865cf4)!important; color:#fff!important; font-size:14px!important; font-weight:700!important; box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 16px 35px rgba(92,45,206,.27)!important; transition:transform .2s,box-shadow .2s!important; }
+.relova-auth-primary:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 20px 42px rgba(92,45,206,.35)!important; }
+.relova-auth-secondary { height:54px!important; border:1px solid rgba(50,34,59,.14)!important; border-radius:14px!important; background:rgba(255,255,255,.66)!important; color:#2b1d32!important; font-size:13px!important; box-shadow:0 8px 24px rgba(52,35,59,.05)!important; }
+.relova-auth-google { height:56px!important;border:1px solid rgba(50,34,59,.15)!important;border-radius:15px!important;background:#fff!important;color:#2a1d31!important;font-size:13px!important;font-weight:600!important;box-shadow:0 9px 25px rgba(52,35,59,.07)!important;transition:transform .2s,box-shadow .2s!important; }
+.relova-auth-google:hover { transform:translateY(-1px);box-shadow:0 13px 30px rgba(52,35,59,.11)!important; }
+.relova-auth-divider { display:flex;align-items:center;gap:12px;margin:15px 0;color:#9b909e;font-size:10px;letter-spacing:.08em;text-transform:uppercase; }
+.relova-auth-divider::before,.relova-auth-divider::after { content:"";height:1px;flex:1;background:rgba(55,38,64,.12); }
+
+/* Premium onboarding system */
+.relova-onboarding {
+  background:
+    radial-gradient(circle at 84% 12%,rgba(128,80,238,.23),transparent 29%),
+    radial-gradient(circle at 12% 92%,rgba(210,171,106,.12),transparent 25%),
+    linear-gradient(135deg,#17101d 0%,#2a1b34 52%,#1a111f 100%);
+  color:#2a1c31;
+  font-family:Inter,sans-serif;
+}
+.relova-onboarding::before,.relova-onboarding::after { content:""; position:fixed; pointer-events:none; border:1px solid rgba(229,202,151,.11); border-radius:50%; }
+.relova-onboarding::before { width:720px;height:720px;right:-320px;top:-350px; }
+.relova-onboarding::after { width:480px;height:480px;left:-280px;bottom:-250px; }
+.relova-onboarding-card {
+  position:relative; z-index:1; overflow:hidden;
+  border:1px solid rgba(210,183,136,.4)!important;
+  border-radius:28px!important;
+  background:linear-gradient(145deg,rgba(255,252,247,.99),rgba(246,237,245,.99))!important;
+  box-shadow:0 36px 100px rgba(8,4,11,.5),inset 0 1px 0 #fff!important;
+}
+.relova-onboarding-card::before { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 92% 0,rgba(118,71,228,.12),transparent 30%); }
+.relova-onboarding-card > * { position:relative; z-index:1; }
+.relova-onboarding-mark { width:46px;height:46px;margin:0 auto 18px;display:grid;place-items:center;border:1px solid rgba(185,146,82,.25);border-radius:50%;background:#25182d;box-shadow:0 12px 30px rgba(39,23,47,.2); }
+.relova-onboarding-mark img { width:30px;height:30px;object-fit:contain; }
+.relova-onboarding-kicker { display:block;margin-bottom:9px;text-align:center;color:#9a7741;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase; }
+.relova-onboarding-choice { padding:44px!important; }
+.relova-onboarding-choice h2,.relova-onboarding-step h2,.relova-onboarding-results h2 { font-family:Fraunces,serif;font-size:27px!important;font-weight:600!important;letter-spacing:-.03em;color:#291b30; }
+.relova-onboarding-route { min-height:190px;padding:26px;border:1px solid rgba(56,38,65,.13);border-radius:20px;background:rgba(255,255,255,.58);text-align:left;box-shadow:0 12px 30px rgba(45,29,52,.06);transition:transform .25s,border-color .25s,box-shadow .25s; }
+.relova-onboarding-route:hover { transform:translateY(-4px);border-color:rgba(114,69,226,.38);box-shadow:0 20px 42px rgba(65,40,78,.13); }
+.relova-onboarding-route svg { color:#7c4ee5!important;filter:drop-shadow(0 6px 10px rgba(122,76,226,.2)); }
+.relova-onboarding-step-head { display:flex;align-items:center;justify-content:space-between;margin-bottom:21px;color:#977641;font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase; }
+.relova-onboarding-progress { width:38px;height:3px;border-radius:999px;background:rgba(65,43,73,.11); }
+.relova-onboarding-progress.active { background:linear-gradient(90deg,#6133dc,#986ff4);box-shadow:0 0 12px rgba(113,69,224,.25); }
+.relova-onboarding-step input[type="text"] { height:54px!important;padding:0 17px!important;border:1px solid rgba(57,39,66,.14)!important;border-radius:14px!important;background:rgba(255,255,255,.72)!important;color:#2b1d32!important;box-shadow:inset 0 1px #fff!important; }
+.relova-onboarding-step input[type="text"]:focus { border-color:#7950e7!important;box-shadow:0 0 0 4px rgba(121,80,231,.1)!important; }
+.relova-onboarding-step button[class*="rounded-xl"],.relova-onboarding-step div.max-h-\[40vh\] button { border-radius:15px!important;border-color:rgba(58,39,66,.12)!important;background:rgba(255,255,255,.55)!important;color:#5d5062!important;box-shadow:0 7px 18px rgba(45,29,52,.035); }
+.relova-onboarding-step button[class*="border-primary"] { border-color:rgba(116,71,226,.6)!important;background:linear-gradient(135deg,rgba(112,65,224,.12),rgba(150,107,242,.08))!important;color:#6436d7!important;box-shadow:0 10px 26px rgba(104,60,213,.11); }
+.relova-onboarding-step .grid button { min-height:82px;display:flex;align-items:center;justify-content:center;gap:9px;flex-direction:column; }
+.relova-onboarding-step input[type="range"] { height:5px;accent-color:#7447e3; }
+.relova-onboarding-step .bg-primary,.relova-onboarding-card button.bg-primary { background:linear-gradient(115deg,#5524cf,#7042ea 55%,#895ff4)!important;box-shadow:0 14px 32px rgba(92,45,205,.24)!important; }
+.relova-match-card { background:rgba(255,255,255,.64)!important;border-color:rgba(57,39,66,.12)!important;box-shadow:0 12px 30px rgba(45,29,52,.055); }
+.relova-match-card:first-child { background:linear-gradient(135deg,rgba(111,65,222,.1),rgba(255,255,255,.75))!important;border-color:rgba(112,65,224,.38)!important; }
+.relova-onboarding-result { text-align:left; }
+.relova-onboarding-result .bg-muted\/50,.relova-onboarding-result .bg-muted\/30 { background:rgba(255,255,255,.58)!important;border-color:rgba(55,37,64,.11)!important; }
+
+@media(max-width:640px){
+  .relova-auth-dialog { width:calc(100% - 24px)!important;border-radius:23px!important; }
+  .relova-auth-dialog-inner { padding:42px 23px 30px; }
+  .relova-auth-title { font-size:26px; }
+  .relova-onboarding-choice { padding:32px 22px!important; }
+  .relova-onboarding-route { min-height:145px;padding:21px; }
+  .relova-onboarding-card { border-radius:22px!important; }
+  .relova-onboarding-step { margin-block:12px!important; }
+}
