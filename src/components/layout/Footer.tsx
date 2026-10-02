@@ -1,6 +1,3 @@
-import { ArrowRight } from "lucide-react";
-import { useState } from "react";
-
 const FOOTER_COLS = [
   {
     title: "Product",
@@ -89,25 +86,17 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-
   return (
     <footer className="border-t border-border/40 bg-background">
       <div className="container max-w-6xl px-5 md:px-8 py-14">
 
-        {/* Main grid: logo col + 4 link cols + newsletter col */}
-        <div className="grid grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr_1.3fr] gap-8 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-[1.55fr_.8fr_.8fr_1.15fr_.85fr] gap-10 mb-12">
 
           {/* Logo + description + socials */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-3">
-              <div
-                className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0"
-                style={{ background: "hsl(var(--primary))" }}
-              >
-                <span className="text-[10px] font-bold text-white">R</span>
-              </div>
-              <span className="text-[15px] font-bold tracking-[-0.02em] text-foreground">RELOVA</span>
+              <img src="/assets/favicon.png" alt="" className="w-7 h-7 object-contain" />
+              <span className="text-[14px] font-medium tracking-[0.14em] bg-gradient-to-r from-[#f3e5c4] via-[#cfae69] to-[#f0d9a4] bg-clip-text text-transparent">RELOVA</span>
             </div>
             <p className="text-[13px] text-muted-foreground leading-relaxed max-w-[200px] mb-5">
               Relova is your all-in-one relocation partner. Trusted by thousands of people and families to plan, move, and thrive in a new country.
@@ -150,32 +139,6 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-
-          {/* Newsletter */}
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground/60 mb-4">
-              Stay in the know
-            </p>
-            <p className="text-[13px] text-muted-foreground leading-relaxed mb-4">
-              Get tips, guides, and updates to your inbox.
-            </p>
-            <div className="flex items-center gap-0 rounded-xl border border-border bg-card overflow-hidden focus-within:border-primary/40 transition-colors">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 h-10 px-3 text-[13px] bg-transparent outline-none text-foreground placeholder:text-muted-foreground/50 min-w-0"
-              />
-              <button
-                className="h-10 w-10 flex items-center justify-center flex-shrink-0 transition-colors hover:opacity-80"
-                style={{ background: "hsl(var(--primary))" }}
-                aria-label="Subscribe"
-              >
-                <ArrowRight size={14} className="text-white" strokeWidth={2.5} />
-              </button>
-            </div>
-          </div>
 
         </div>
 
