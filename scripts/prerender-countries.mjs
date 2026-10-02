@@ -16,10 +16,13 @@ import { execFileSync } from "child_process";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, "..", "dist");
-const indexPath = join(distDir, "index.html");
+// The root index.html is the standalone redesigned marketing homepage.
+// Prerendered SPA routes must boot from app.html, which contains the React
+// bundle used by Countries, CountryPage, tools, pricing, and the dashboard.
+const indexPath = join(distDir, "app.html");
 
 if (!existsSync(indexPath)) {
-  console.error("prerender-countries: dist/index.html missing — run vite build first");
+  console.error("prerender-countries: dist/app.html missing — run vite build first");
   process.exit(1);
 }
 
