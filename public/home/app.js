@@ -1,3 +1,7 @@
+const mobileNav=document.querySelector('.main-nav');
+if(mobileNav&&!mobileNav.querySelector('.mobile-auth-links')){const auth=document.createElement('div');auth.className='mobile-auth-links';auth.innerHTML='<a href="/login">Log in</a><a href="/signup">Get started</a>';mobileNav.appendChild(auth)}
+const heroActions=document.querySelector('.hero-actions');
+if(heroActions&&!document.querySelector('.hero-auth-mobile')){const auth=document.createElement('div');auth.className='hero-auth-mobile';auth.innerHTML='<a href="/login">Log in</a><a href="/signup">Get started</a>';heroActions.insertAdjacentElement('afterend',auth)}
 document.querySelector('.menu-toggle')?.addEventListener('click',e=>{const n=document.querySelector('.main-nav');const open=n.classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',String(open));e.currentTarget.textContent=open?'×':'☰'});
 document.querySelector('.search-input')?.addEventListener('input',e=>{const q=e.target.value.toLowerCase().trim();document.querySelectorAll('.directory-card').forEach(c=>c.classList.toggle('hidden',!c.dataset.search.includes(q)))});
 const tabs=document.querySelectorAll('.tour-tabs button');

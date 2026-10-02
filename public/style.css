@@ -954,6 +954,8 @@ h2.display em {
     gap: 10px;
   }
 }
+@media (max-width:690px){.mobile-auth-links{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;margin-top:12px;padding-top:16px;border-top:1px solid #ffffff26}.mobile-auth-links a{justify-content:center;border:1px solid #ffffff3d;border-radius:11px;color:#fff}.mobile-auth-links a:last-child{border-color:#8c61f3;background:linear-gradient(120deg,#6030d8,#8455ef);font-weight:700}}
+@media (min-width:691px){.mobile-auth-links{display:none}}
 /* Mobile polish: keep the editorial desktop composition, but make every
    public page comfortable on real 360-430px devices. */
 @media (max-width: 690px) {
