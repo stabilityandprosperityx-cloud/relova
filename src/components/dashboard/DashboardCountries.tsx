@@ -776,6 +776,9 @@ function money(n: number) {
 
 const countryImage = (name: string) => {
   const aliases: Record<string, string> = {
+    "Portugal": "portugal-city", "Spain": "spain-city", "Germany": "germany-berlin",
+    "Canada": "canada-vancouver", "Australia": "australia-harbour",
+    "Thailand": "thailand-temples", "Mexico": "mexico-coast", "UAE": "uae-city",
     "United States": "usa-new-york", "United Arab Emirates": "uae-city",
     "United Kingdom": "united-kingdom", "South Korea": "south-korea",
     "South Africa": "south-africa", "New Zealand": "new-zealand",

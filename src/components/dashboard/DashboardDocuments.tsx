@@ -350,6 +350,8 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
   const readyCount = requiredDocs.filter(d => d.uploadedDoc || d.isPrepared).length;
   const totalCount = requiredDocs.length;
   const progressPct = totalCount > 0 ? Math.round((readyCount / totalCount) * 100) : 0;
+  const reviewCount = requiredDocs.filter(d => d.uploadedDoc && d.verificationStatus && d.verificationStatus !== "ok").length;
+  const missingCount = Math.max(0, totalCount - readyCount);
 
   // ── AI Verification (runs in background after upload) ──────────────────────
   const runAiVerification = useCallback(async (docId: string, file: File) => {
@@ -560,7 +562,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="surface-card p-5 md:p-7"
+          className="surface-card p-5 md:p-7 relova-doc-vault-hero"
         >
           <div className="flex items-center justify-between mb-1">
             <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Your documents</p>
@@ -575,6 +577,23 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
               </button>
               <span className="text-[12px] text-muted-foreground">{readyCount} / {totalCount} ready</span>
             </div>
+          </div>
+
+          <div className="relova-doc-vault-intro">
+            <div>
+              <span>SECURE RELOCATION VAULT</span>
+              <h1>Everything ready<br />before it’s requested.</h1>
+              <p>Your personalized document set for {profile?.target_country || "your destination"}, organized by application stage.</p>
+            </div>
+            <div className="relova-doc-progress-orb" style={{ "--vault-progress": `${progressPct * 3.6}deg` } as React.CSSProperties}>
+              <div><strong>{progressPct}%</strong><small>readiness</small></div>
+            </div>
+          </div>
+
+          <div className="relova-doc-stats">
+            <div><CheckCircle2 size={17} /><span><strong>{readyCount}</strong><small>Ready</small></span></div>
+            <div><Clock size={17} /><span><strong>{reviewCount}</strong><small>Review</small></span></div>
+            <div><AlertCircle size={17} /><span><strong>{missingCount}</strong><small>Missing</small></span></div>
           </div>
 
           {/* Journey Line */}
@@ -620,7 +639,7 @@ export default function DashboardDocuments({ profile, onBack, onNavigate, reloca
 
           <div className="flex items-start gap-3 mt-5">
             <div className="flex-1">
-              <h1 className="text-xl md:text-2xl font-bold tracking-tight">Document checklist</h1>
+              <h2 className="text-xl md:text-2xl font-bold tracking-tight">Document checklist</h2>
               <p className="text-[13px] text-muted-foreground mt-1">
                 Personalized for your {profile?.visa_type?.replace(/_/g, " ") || "relocation"} path
               </p>
