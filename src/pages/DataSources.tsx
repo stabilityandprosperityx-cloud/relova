@@ -114,10 +114,17 @@ export default function DataSources() {
         canonical="https://relova.ai/data-sources"
       />
       <Navbar />
-      <main className="pt-14">
-        <div className="container max-w-[840px] py-20 px-6">
+      <main className="pt-14 data-premium-page">
+        <section className="data-premium-hero">
+          <div><span>TRANSPARENCY AT RELOVA</span><h1>Data you can<br/><em>look into.</em></h1>
+          <p>See how Relova combines source-backed research with carefully maintained editorial baselines — and where every answer comes from.</p>
+          <a href="#tools">Explore our methodology</a></div>
+          <img src="/assets/footer-data.jpg" alt="Relova research and data studio" />
+        </section>
+        <div className="container max-w-[960px] py-20 px-6 data-premium-content">
+          <div className="data-premium-heading"><span>OUR METHODOLOGY</span>
           <h1 className="font-serif text-[2rem] sm:text-[2.35rem] font-semibold tracking-tight text-foreground mb-3">
-            Data &amp; Sources
+            Built for transparency.
           </h1>
           <p className="text-[15px] text-muted-foreground leading-relaxed mb-8">
             Relova runs six free tools (see the full list below) on top of two kinds of
@@ -125,7 +132,7 @@ export default function DataSources() {
             official or consular sources, and static editorial baselines used for
             comparison. This page states which tool uses which, how the checklist cache is
             kept, and which data you may cite.
-          </p>
+          </p></div>
 
           <aside
             id="cite"

@@ -1,86 +1,32 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const faqs = [
-  {
-    q: "Is the information accurate and up to date?",
-    a: "Relova's Relocation Expert draws on current visa rules, tax laws, and residency requirements. For final legal decisions, always verify with a licensed professional.",
-  },
-  {
-    q: "What if my country isn't listed?",
-    a: "Relova supports any country in the world — not just the ones shown. Just ask.",
-  },
-  {
-    q: "How is this different from ChatGPT?",
-    a: "Relova is purpose-built for relocation. It understands visa categories, tax structures, citizenship timelines — and asks the right questions to give you a personalized plan, not generic information.",
-  },
-  {
-    q: "Can I save my relocation plan?",
-    a: "Yes — create a free account to save your conversation and continue where you left off.",
-  },
-  {
-    q: "Is this legal advice?",
-    a: "No. Relova provides structured guidance and information. Always consult a qualified immigration lawyer for your final decisions.",
-  },
+  { q: "Is the information accurate and up to date?", a: "Relova's Relocation Expert draws on current visa rules, tax laws, and residency requirements. For final legal decisions, always verify with a licensed professional." },
+  { q: "What if my country isn't listed?", a: "Relova supports any country in the world — not just the ones shown. Just ask." },
+  { q: "How is this different from ChatGPT?", a: "Relova is purpose-built for relocation. It understands visa categories, tax structures, citizenship timelines — and asks the right questions to give you a personalized plan, not generic information." },
+  { q: "Can I save my relocation plan?", a: "Yes — create a free account to save your conversation and continue where you left off." },
+  { q: "Is this legal advice?", a: "No. Relova provides structured guidance and information. Always consult a qualified immigration lawyer for your final decisions." },
 ];
 
 export default function Help() {
-  return (
-    <div className="min-h-screen bg-background">
-      <SEO
-        title="Help Center — Relova"
-        description="FAQs about Relova: how relocation planning works, saving plans, accuracy, and how we differ from general chatbots. Not legal advice."
-        canonical="https://relova.ai/help"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqs.map((faq) => ({
-            "@type": "Question",
-            name: faq.q,
-            acceptedAnswer: { "@type": "Answer", text: faq.a },
-          })),
-        }}
-      />
-      <Navbar />
-      <main className="pt-14">
-        <div className="container max-w-[720px] py-20 px-6">
-          <h1 className="text-3xl font-bold mb-2">Help Center</h1>
-          <p className="text-muted-foreground mb-10">
-            Find answers to common questions or reach out to our team.
-          </p>
-
-          <h2 className="text-lg font-semibold mb-4">Frequently Asked Questions</h2>
-          <Accordion type="single" collapsible className="mb-12">
-            {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`item-${i}`} className="border-border/30">
-                <AccordionTrigger className="text-[15px] text-left hover:no-underline">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-[14px] leading-relaxed">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-
-          <h2 className="text-lg font-semibold mb-3">Still need help?</h2>
-          <p className="text-muted-foreground text-[14px] leading-relaxed">
-            Email us at{" "}
-            <a href="mailto:support@relova.ai" className="text-sky-400 hover:underline">
-              support@relova.ai
-            </a>{" "}
-            — we typically respond within 24 hours.
-          </p>
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
+  return <div className="min-h-screen bg-[#fbf6f1]">
+    <SEO title="Help Center — Relova" description="Answers and support for your Relova journey." canonical="https://relova.ai/help" jsonLd={{ "@context":"https://schema.org", "@type":"FAQPage", mainEntity:faqs.map(f=>({"@type":"Question",name:f.q,acceptedAnswer:{"@type":"Answer",text:f.a}})) }} />
+    <Navbar />
+    <main className="pt-14 help-premium-page">
+      <section className="help-premium-hero">
+        <div><span>RELOVA SUPPORT</span><h1>Answers that move<br/><em>you forward.</em></h1><p>Clear guidance when you need it, with a real path to human support.</p><div className="help-quick-links"><a href="#questions">Browse questions</a><a href="mailto:support@relova.ai">Talk to our team</a></div></div>
+        <figure><img src="/assets/footer-help.jpg" alt="Relova member speaking with an advisor online"/><figcaption><i/> Support is online · typical reply within 24 hours</figcaption></figure>
+      </section>
+      <section className="help-premium-content" id="questions">
+        <div className="help-premium-intro"><span>FREQUENTLY ASKED</span><h2>Good questions deserve clear answers.</h2><p>Everything you need to understand how Relova works and how your information is used.</p></div>
+        <Accordion type="single" collapsible className="help-premium-accordion">
+          {faqs.map((faq,i)=><AccordionItem key={faq.q} value={`item-${i}`}><AccordionTrigger><b>{String(i+1).padStart(2,"0")}</b>{faq.q}</AccordionTrigger><AccordionContent>{faq.a}</AccordionContent></AccordionItem>)}
+        </Accordion>
+      </section>
+      <section className="help-contact-card"><div><span>PERSONAL SUPPORT</span><h2>Still need help?</h2><p>Tell us where you are stuck. Our team usually replies within one business day.</p></div><a href="mailto:support@relova.ai">support@relova.ai</a></section>
+    </main><Footer />
+  </div>;
 }
