@@ -32,7 +32,7 @@
     }
   ],
   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
+    { "source": "/", "destination": "/home/index.html" },
     { "source": "/dashboard", "destination": "/index.html" },
     { "source": "/dashboard/:path*", "destination": "/index.html" },
     { "source": "/countries", "destination": "/index.html" },
