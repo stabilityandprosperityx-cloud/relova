@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      (function() {
+        const saved = localStorage.getItem('relova-theme');
+        if (saved === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.png?v=3" type="image/png" />
+    <link rel="shortcut icon" href="/favicon.png?v=3" type="image/png" />
+    <title>Relova — Know where to move. Know how to do it.</title>
+    <script>history.scrollRestoration="manual";window.scrollTo(0,0);</script>
+    <!-- Only pricing/checkout flows actually call into Paddle, but this
+         previously blocked HTML parsing on every single page load
+         (country guides, blog links, everything) while it fetched from
+         cdn.paddle.com. defer lets the page render before it's needed. -->
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js" defer></script>
+    <meta name="description" content="Turn international relocation into a clear, step-by-step plan. Visas, documents, housing — tailored to your passport, budget, and goals." />
+    <meta name="author" content="Relova" />
+    <meta property="og:site_name" content="Relova" />
+    <meta property="og:title" content="Relova — Your next chapter, planned with clarity." />
+    <meta property="og:description" content="Expert relocation planning — finds your country, builds your personalized plan, and guides every step." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://relova.ai/" />
+    <meta property="og:image" content="https://relova.ai/og-image.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@RelovaAI" />
+    <meta name="twitter:image" content="https://relova.ai/og-image.jpg" />
+    <meta name="facebook-domain-verification" content="fnjpm6psc8scwgxhf9vuum0bwg2401" />
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Organization","name":"Relova","url":"https://relova.ai","logo":"https://relova.ai/favicon.png","sameAs":["https://twitter.com/RelovaAI"]}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"Relova","url":"https://relova.ai","potentialAction":{"@type":"SearchAction","target":"https://relova.ai/countries?q={search_term_string}","query-input":"required name=search_term_string"}}
+    </script>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1377613737161212');
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel -->
+  </head>
+
+  <body>
+    <!-- Meta Pixel noscript fallback (must be in body, not head) -->
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1377613737161212&ev=PageView&noscript=1"
+    /></noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
