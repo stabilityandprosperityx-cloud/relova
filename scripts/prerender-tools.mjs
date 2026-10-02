@@ -11,10 +11,13 @@ import { DOCUMENTS_LAUNCH_PAIRS } from "../src/lib/documentsNeededPairsData.mjs"
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, "..", "dist");
-const indexPath = join(distDir, "index.html");
+// The root index.html is the standalone redesigned marketing homepage.
+// All prerendered tools/data routes belong to the React application and must
+// therefore reuse the assets emitted for app.html.
+const indexPath = join(distDir, "app.html");
 
 if (!existsSync(indexPath)) {
-  console.error("prerender-tools: dist/index.html missing — run vite build first");
+  console.error("prerender-tools: dist/app.html missing — run vite build first");
   process.exit(1);
 }
 
