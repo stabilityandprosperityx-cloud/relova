@@ -37,6 +37,17 @@ document.querySelectorAll('.billing-toggle button').forEach(button=>button.addEv
   const note=document.querySelector('.lifetime-note');
   if(note)note.hidden=mode!=='lifetime';
 }));
+document.querySelectorAll('.price-cta').forEach(cta=>cta.addEventListener('click',event=>{
+  event.preventDefault();
+  const plan=(cta.closest('.price-card')?.querySelector('h3')?.textContent||'').trim().toLowerCase();
+  if(plan==='free'){location.href='/chat';return;}
+  const lifetime=document.querySelector('.billing-toggle button.active')?.dataset.billing==='lifetime';
+  location.href=`/checkout?plan=${plan}${lifetime?'_lifetime':''}`;
+}));
+document.querySelector('.concierge .btn')?.addEventListener('click',event=>{
+  event.preventDefault();
+  location.href='/checkout?plan=concierge';
+});
 if(matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches){
   document.querySelectorAll('.feature,.tile,.price-card,.tool-card,.directory-card,.country-card').forEach(card=>{
     let frame=0;

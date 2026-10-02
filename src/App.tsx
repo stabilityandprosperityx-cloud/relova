@@ -27,6 +27,7 @@ const Countries = lazy(() => import("./pages/Countries.tsx"));
 const Chat = lazy(() => import("./pages/Chat.tsx"));
 const CountryPage = lazy(() => import("./pages/CountryPage.tsx"));
 const Pricing = lazy(() => import("./pages/Pricing.tsx"));
+const Checkout = lazy(() => import("./pages/Checkout.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const Terms = lazy(() => import("./pages/Terms.tsx"));
 const Privacy = lazy(() => import("./pages/Privacy.tsx"));
@@ -105,6 +106,7 @@ function AppRoutes() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/login" element={<Chat />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/refund" element={<Refund />} />
