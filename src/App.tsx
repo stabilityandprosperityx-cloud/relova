@@ -93,6 +93,7 @@ function AppRoutes() {
         <Route path="/countries" element={<Countries />} />
         <Route path="/countries/:slug" element={<CountryPage />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/login" element={<Chat />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />
