@@ -9,7 +9,7 @@ export default function DashboardCountriesPage() {
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      <DashboardCountries profile={profile} onNavigate={onNavigate} />
+      <div className="relova-dashboard-section"><DashboardCountries profile={profile} onNavigate={onNavigate} /></div>
     </>
   );
 }

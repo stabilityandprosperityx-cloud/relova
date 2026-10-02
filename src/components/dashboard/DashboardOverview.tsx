@@ -1,12 +1,7 @@
-import { useState } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, AlertTriangle, Clock, Lightbulb, MapPin, Shield, Zap } from "lucide-react";
 import { motion } from "framer-motion";
-import type { UserProfile, DashboardTab } from "@/pages/Dashboard";
-import { countryDatabase } from "@/lib/countryMatching";
-import { CostCalculator } from "@/components/dashboard/CostCalculator";
-import LockedOverlayPro from "./LockedOverlayPro";
+import { CalendarDays, Check, FileText, FolderLock, Sparkles, Route, ShieldCheck } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import type { DashboardTab, UserProfile } from "@/pages/Dashboard";
 import type { RelocationCase } from "@/hooks/useRelocationCase";
 
 interface Props {
@@ -16,281 +11,77 @@ interface Props {
   relocationCase: RelocationCase;
 }
 
-const goalLabels: Record<string, string> = {
-  safety: "Safety", money: "Income", better_life: "Quality of life",
-  freedom: "Freedom", family: "Family", reset: "Fresh start",
-  growth: "Growth", environment: "Climate",
+const countryImages: Record<string, string> = {
+  Portugal: "/assets/portugal-street.jpg",
+  Spain: "/assets/spain-city.jpg",
+  Canada: "/assets/canada-vancouver.jpg",
+  Germany: "/assets/germany-berlin.jpg",
+  "United States": "/assets/usa-new-york.jpg",
+  Australia: "/assets/australia-harbour.jpg",
+  "United Arab Emirates": "/assets/uae-city.jpg",
 };
 
-function getRiskLevel(country: ReturnType<typeof countryDatabase.find>): { label: string; color: string } {
-  if (!country) return { label: "Unknown", color: "text-muted-foreground" };
-  if (country.visaEase === "easy" && country.crimeLevel === "low") return { label: "Low", color: "text-green-400" };
-  if (country.visaEase === "hard" || country.crimeLevel === "high") return { label: "High", color: "text-red-400" };
-  return { label: "Medium", color: "text-amber-400" };
-}
-
-function getPathType(profile: UserProfile): string {
-  if (!profile.goal) return "General relocation";
-  const first = profile.goal.split(",")[0];
-  return goalLabels[first] || "General relocation";
+function formatMoveDate(value: string | null | undefined) {
+  if (!value) return "Date not set";
+  return new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(new Date(value));
 }
 
 export default function DashboardOverview({ profile, onNavigate, onEditProfile, relocationCase }: Props) {
-  const [showProPaywall, setShowProPaywall] = useState(false);
+  if (relocationCase.loading) return <div className="space-y-5"><Skeleton className="h-80 rounded-[28px]"/><div className="grid gap-5 md:grid-cols-3"><Skeleton className="h-48"/><Skeleton className="h-48"/><Skeleton className="h-48"/></div></div>;
+  if (!profile) return <section className="relova-workspace-empty"><Sparkles/><h2>Let’s create your relocation workspace.</h2><p>Complete your profile to receive a personal plan, documents and country guidance.</p><button onClick={onEditProfile}>Set up my profile</button></section>;
 
-  if (relocationCase.loading) {
-    return (
-      <div className="space-y-6">
-        <Skeleton className="h-10 w-64" />
-        <Skeleton className="h-48" />
-        <Skeleton className="h-32" />
-      </div>
-    );
-  }
-
-  if (!profile) {
-    return (
-      <div className="flex flex-col items-center pt-8 md:pt-12 px-5">
-        <div className="surface-card p-6 md:p-8 text-center max-w-md w-full">
-          <h2 className="text-lg font-semibold mb-2">Set up your relocation profile</h2>
-          <p className="text-sm text-muted-foreground mb-6">Tell us about your situation and we'll create a personalized plan.</p>
-        </div>
-      </div>
-    );
-  }
-
-  const countryData = countryDatabase.find(c => c.name === profile.target_country);
-  const risk = getRiskLevel(countryData);
-  const pathType = getPathType(profile);
-  const stabilityMonths = countryData?.stabilityMonths || "6-12";
-
-  const doneCount = relocationCase.doneCount;
-  const totalSteps = relocationCase.totalCount;
-  const progressPct = relocationCase.progressPct;
-
-  const recommended = profile.recommended_country;
-  const hasBetterOption = recommended && recommended !== profile.target_country;
-  const altData = hasBetterOption ? countryDatabase.find(c => c.name === recommended) : null;
-
-  const risks = countryData?.risks || ["Research visa requirements carefully"];
+  const country = profile.target_country || profile.recommended_country || "your destination";
+  const image = countryImages[country] || "/assets/passage.jpg";
+  const progress = relocationCase.progressPct;
+  const done = relocationCase.doneCount;
+  const total = relocationCase.totalCount || 7;
+  const nextTitle = relocationCase.nextStep?.title || "Review your relocation plan";
+  const documentState = profile.documents_status === "ready" ? "Vault ready" : profile.documents_status === "generating" ? "Preparing vault" : "Documents to review";
 
   return (
-    <div className="space-y-6 md:space-y-8">
-
-      {/* ─── 1. PROGRESS BLOCK — Journey Line ─── */}
-      <section className="surface-card p-5 md:p-6">
-        <div className="mb-1">
-          <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">
-            {profile.target_country} · Phase {relocationCase.currentPhaseIndex + 1} of {relocationCase.totalPhases} · {relocationCase.progressPct}% complete
-          </p>
+    <div className="relova-workspace-overview">
+      <section className="relova-journey-hero">
+        <img src={image} alt={`${country} relocation destination`} />
+        <div className="relova-journey-shade" />
+        <div className="relova-journey-copy">
+          <span>Your relocation workspace</span>
+          <h1>Your move to<br/>{country}</h1>
+          <button className="relova-move-date" onClick={onEditProfile}><CalendarDays size={14}/>{formatMoveDate(profile.move_date)}</button>
         </div>
-
-        {/* Journey Line */}
-        <div className="relative my-5 h-[12px] flex items-center">
-          {/* Track */}
-          <div className="absolute left-[6px] right-[6px] h-[2px] rounded-full bg-white/[0.06]">
-            <motion.div
-              className="absolute inset-y-0 left-0 rounded-full"
-              style={{ background: "linear-gradient(90deg, hsl(var(--primary)), hsl(190 80% 60%))" }}
-              initial={{ width: 0 }}
-              animate={{ width: `${progressPct}%` }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-            />
-            <div
-              className="absolute inset-y-0 left-0 rounded-full opacity-60"
-              style={{
-                background: "linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.6) 50%, transparent 100%)",
-                backgroundSize: "200% 100%",
-                animation: "energyFlow 3s ease-in-out infinite",
-                width: `${progressPct}%`,
-              }}
-            />
-          </div>
-          {/* Start dot */}
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
-            <div className="w-[8px] h-[8px] rounded-full bg-primary shadow-[0_0_6px_1px_hsl(var(--primary)/0.3)]" />
-          </div>
-          {/* Current position */}
-          {progressPct > 0 && progressPct < 100 && (
-            <motion.div
-              className="absolute top-1/2 -translate-y-1/2 z-10"
-              initial={{ left: "6px" }}
-              animate={{ left: `calc(6px + (100% - 12px) * ${progressPct / 100})` }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              style={{ marginLeft: "-6px" }}
-            >
-              <div className="relative">
-                <div className="w-[12px] h-[12px] rounded-full bg-primary shadow-[0_0_12px_3px_hsl(var(--primary)/0.4)]" />
-                <div className="absolute inset-0 w-[12px] h-[12px] rounded-full bg-primary/40 animate-ping" style={{ animationDuration: "2.5s" }} />
-              </div>
-            </motion.div>
-          )}
-          {/* End dot */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
-            <div className={`w-[8px] h-[8px] rounded-full ${progressPct >= 100 ? "bg-primary shadow-[0_0_6px_1px_hsl(var(--primary)/0.3)]" : "bg-white/[0.08] border border-white/[0.12]"}`} />
-          </div>
-        </div>
-        <div className="flex justify-between">
-          <span className="text-[10px] text-muted-foreground/50 font-medium">Start</span>
-          <span className="text-[10px] text-muted-foreground/50 font-medium">Stable life</span>
-        </div>
-
-        <p className="text-[10px] text-muted-foreground/40 text-center mb-4">From uncertainty → stability</p>
-
-        {relocationCase.nextStep && (
-          <div className="mt-4 rounded-xl bg-primary/[0.06] border border-primary/20 p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="text-[10px] uppercase tracking-widest text-primary/70 font-medium">Your next action</span>
-              <span className="ml-auto text-[11px] text-muted-foreground/50">
-                Phase {relocationCase.currentPhaseIndex + 1} of {relocationCase.totalPhases} · {relocationCase.currentPhase}
-              </span>
-            </div>
-            <p className="text-[14px] font-semibold mb-1">{relocationCase.nextStep.title}</p>
-            {relocationCase.nextStep.description && (
-              <p className="text-[12px] text-muted-foreground mb-3">{relocationCase.nextStep.description}</p>
-            )}
-            <div className="flex items-center gap-2 flex-wrap">
-              <Button
-                size="sm"
-                className="text-[12px] h-8"
-                style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)", boxShadow: "0 0 20px rgba(139,92,246,0.3)", border: "none" }}
-                onClick={async () => { await relocationCase.markStepDone(relocationCase.nextStep!.id); }}
-              >
-                ✓ Mark as done
-              </Button>
-              <Button size="sm" variant="ghost" className="text-[12px] h-8 text-primary" onClick={() => onNavigate("chat")}>
-                Ask advisor →
-              </Button>
-              {relocationCase.nextStep.estimatedDays > 0 && (
-                <span className="text-[11px] text-muted-foreground/50 ml-auto">~{relocationCase.nextStep.estimatedDays} days</span>
-              )}
-            </div>
-          </div>
-        )}
-        {relocationCase.daysUntilMove !== null && (
-          <p className="text-[11px] text-center text-muted-foreground/40 mt-3">
-            {relocationCase.daysUntilMove} days until your move date
-          </p>
-        )}
-      </section>
-
-      {/* ─── 2. MAIN BLOCK — Your Relocation Path ─── */}
-      <section className="rounded-xl border border-primary/20 bg-primary/[0.04] p-5 md:p-7">
-        <p className="text-[11px] uppercase tracking-widest text-primary/80 font-medium mb-4">Your relocation path</p>
-
-        <div className="flex items-start gap-4 mb-5">
-          {countryData && <span className="text-3xl md:text-4xl mt-0.5">{countryData.flag}</span>}
-          <div className="flex-1 min-w-0">
-            <h1 className="text-xl md:text-2xl font-bold tracking-tight">{profile.target_country}</h1>
-            <p className="text-[13px] text-muted-foreground mt-0.5">Your best path based on your profile</p>
-          </div>
-          <Button variant="ghost" size="sm" className="text-[11px] text-muted-foreground hover:text-foreground shrink-0" onClick={onEditProfile}>
-            Edit
-          </Button>
-        </div>
-
-        {/* Key metrics row */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className="rounded-lg bg-white/[0.04] p-3">
-            <div className="flex items-center gap-1.5 mb-1">
-              <Clock size={12} className="text-primary/70" />
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Stability</span>
-            </div>
-            <span className="text-base md:text-lg font-bold">{stabilityMonths} mo</span>
-          </div>
-          <div className="rounded-lg bg-white/[0.04] p-3">
-            <div className="flex items-center gap-1.5 mb-1">
-              <Shield size={12} className="text-primary/70" />
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Risk</span>
-            </div>
-            <span className={`text-base md:text-lg font-bold ${risk.color}`}>{risk.label}</span>
-          </div>
-          <div className="rounded-lg bg-white/[0.04] p-3">
-            <div className="flex items-center gap-1.5 mb-1">
-              <Zap size={12} className="text-primary/70" />
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground">Path</span>
-            </div>
-            <span className="text-base md:text-lg font-bold truncate block">{pathType}</span>
-          </div>
+        <div className="relova-readiness-ring" style={{ "--progress": `${progress * 3.6}deg` } as React.CSSProperties}>
+          <div><strong>{progress}%</strong><span>readiness</span></div>
         </div>
       </section>
 
-      {/* ─── Bottom row: Risks + Stability comparison ─── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
+      <motion.section className="relova-next-action" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
+        <div className="relova-action-icon"><FileText size={27}/><i/></div>
+        <div className="relova-action-copy"><span>Your next best action</span><h2>{nextTitle}</h2>{relocationCase.nextStep?.description && <p>{relocationCase.nextStep.description}</p>}</div>
+        <div className="relova-action-buttons">
+          {relocationCase.nextStep && <button className="relova-primary-action" onClick={() => relocationCase.markStepDone(relocationCase.nextStep!.id)}><Check size={16}/> Mark as done</button>}
+          <button className="relova-secondary-action" onClick={() => onNavigate("chat")}>Ask my advisor</button>
+        </div>
+      </motion.section>
 
-        {/* ─── 4. RISKS & CONSIDERATIONS ─── */}
-        <section className="surface-card p-5 md:p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <AlertTriangle size={14} className="text-amber-400" />
-            <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Risks & considerations</p>
-          </div>
-          <div className="space-y-3">
-            {risks.slice(0, 3).map((r, i) => (
-              <div key={i} className="flex items-start gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400/60 mt-1.5 shrink-0" />
-                <p className="text-[13px] text-muted-foreground leading-relaxed">{r}</p>
-              </div>
-            ))}
-          </div>
-          {hasBetterOption && (
-            <div className="mt-4 rounded-lg bg-primary/[0.06] border border-primary/10 p-3 flex items-start gap-2.5">
-              <Lightbulb size={14} className="text-primary mt-0.5 shrink-0" />
-              <p className="text-[12px] text-primary/90">
-                Better option available: <strong>{recommended}</strong> — faster path, lower risk
-              </p>
-            </div>
-          )}
-        </section>
-
-        {/* ─── 5. TIME TO STABILITY ─── */}
-        <section className="surface-card p-5 md:p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Clock size={14} className="text-primary" />
-            <p className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Time to stability</p>
-          </div>
-
-          <div className="mb-1">
-            <span className="text-3xl md:text-4xl font-bold tracking-tight">{stabilityMonths}</span>
-            <span className="text-base text-muted-foreground ml-1.5">months</span>
-          </div>
-          <p className="text-[12px] text-muted-foreground/70 mb-4">
-            Estimated time to stable life in {profile.target_country}
-          </p>
-
-          {hasBetterOption && altData && (
-            <div className="space-y-2 rounded-lg bg-white/[0.03] border border-white/[0.05] p-3">
-              <div className="flex justify-between items-center text-[12px]">
-                <span className="text-muted-foreground flex items-center gap-1.5">
-                  <MapPin size={11} /> {profile.target_country}
-                </span>
-                <span className="font-medium">{stabilityMonths} mo</span>
-              </div>
-              <div className="flex justify-between items-center text-[12px]">
-                <span className="text-primary flex items-center gap-1.5">
-                  <MapPin size={11} /> {recommended}
-                </span>
-                <span className="font-medium text-primary">{altData.stabilityMonths} mo</span>
-              </div>
-            </div>
-          )}
-
-          <Button
-            variant="ghost"
-            size="sm"
-            className="mt-4 text-[12px] text-primary hover:text-primary p-0 h-auto"
-            onClick={() => onNavigate("chat")}
-          >
-            Ask your advisor <ArrowRight size={12} className="ml-1" />
-          </Button>
-        </section>
+      <div className="relova-workspace-grid">
+        <button className="relova-workspace-card" onClick={() => onNavigate("plan")}>
+          <div className="relova-card-icon"><Route size={22}/></div><span>Relocation plan</span><h3>Next steps</h3><p>{done} of {total} complete</p>
+          <div className="relova-card-progress"><i style={{ width: `${progress}%` }}/></div><small>{relocationCase.currentPhase}</small>
+        </button>
+        <button className="relova-workspace-card" onClick={() => onNavigate("documents")}>
+          <div className="relova-card-icon"><FolderLock size={22}/></div><span>Secure vault</span><h3>Documents</h3><p>{documentState}</p>
+          <div className="relova-document-lines"><i/><i/><i/></div><small>Organized for your visa path</small>
+        </button>
+        <button className="relova-workspace-card" onClick={() => onNavigate("countries")}>
+          <div className="relova-card-icon"><ShieldCheck size={22}/></div><span>Relova insight</span><h3>Relocation readiness</h3><p>{progress < 35 ? "Building your foundation" : progress < 75 ? "Making confident progress" : "Nearly ready to move"}</p>
+          <div className="relova-card-progress premium"><i style={{ width: `${Math.max(progress, 8)}%` }}/></div><small>{relocationCase.daysUntilMove !== null ? `${relocationCase.daysUntilMove} days until your move` : "Set your move date"}</small>
+        </button>
       </div>
-      <CostCalculator country={(profile.target_country || "").trim().toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())} familyStatus={((profile.family_status || "single").toLowerCase() as "single" | "couple" | "family")} monthlyIncome={Number(profile.monthly_budget || 0)} citizenship={profile.citizenship || undefined} />
-      {showProPaywall && (
-        <LockedOverlayPro
-          onClose={() => setShowProPaywall(false)}
-          profile={profile}
-        />
-      )}
+
+      <section className="relova-advisor-strip">
+        <div className="relova-advisor-orb"><img src="/assets/relova-mark.png" alt=""/></div>
+        <div><span>Relova Advisor</span><h3>Your plan is already part of the conversation.</h3><p>Ask a question and receive guidance based on your destination, progress and documents.</p></div>
+        <button onClick={() => onNavigate("chat")}>Open Advisor</button>
+      </section>
     </div>
   );
 }

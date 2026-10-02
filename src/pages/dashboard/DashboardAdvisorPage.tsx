@@ -9,7 +9,7 @@ export default function DashboardAdvisorPage() {
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      <DashboardChat profile={profile} relocationCase={relocationCase} onNavigate={onNavigate} />
+      <div className="relova-dashboard-section relova-dashboard-advisor"><DashboardChat profile={profile} relocationCase={relocationCase} onNavigate={onNavigate} /></div>
     </>
   );
 }

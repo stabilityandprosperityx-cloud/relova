@@ -9,12 +9,12 @@ export default function DashboardPlanPage() {
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      <DashboardPlan
+      <div className="relova-dashboard-section"><DashboardPlan
         profile={profile}
         onBack={() => onNavigate("overview")}
         onNavigate={onNavigate}
         relocationCase={relocationCase}
-      />
+      /></div>
     </>
   );
 }

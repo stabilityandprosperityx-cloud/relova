@@ -9,7 +9,7 @@ export default function DashboardDocumentsPage() {
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      <DashboardDocuments profile={profile} onBack={() => onNavigate("overview")} onNavigate={onNavigate} relocationCase={relocationCase} />
+      <div className="relova-dashboard-section"><DashboardDocuments profile={profile} onBack={() => onNavigate("overview")} onNavigate={onNavigate} relocationCase={relocationCase} /></div>
     </>
   );
 }
