@@ -345,3 +345,68 @@
 .shadow-apple-sm {
   box-shadow: 0 1px 2px rgba(109,79,224,0.04);
 }
+
+/* Premium Relova Advisor workspace shared by /chat and the dashboard. */
+.relova-agent-page {
+  background:
+    radial-gradient(circle at 82% 12%, rgba(128, 83, 255, .15), transparent 30rem),
+    radial-gradient(circle at 8% 82%, rgba(222, 174, 190, .18), transparent 28rem),
+    #f8f1eb;
+}
+.relova-agent-stage::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .34;
+  background-image: linear-gradient(rgba(79, 52, 92, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(79, 52, 92, .035) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.relova-agent-card {
+  position: relative;
+  background: rgba(255, 252, 250, .9);
+  border: 1px solid rgba(79, 52, 92, .14);
+  border-radius: 28px;
+  box-shadow: 0 30px 90px rgba(48, 29, 57, .15), inset 0 1px rgba(255,255,255,.85);
+  backdrop-filter: blur(22px);
+}
+.relova-agent-header {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(79, 52, 92, .12);
+  background: linear-gradient(110deg, rgba(255,255,255,.86), rgba(247,239,249,.78));
+}
+.relova-agent-avatar {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid rgba(91, 60, 110, .12);
+  box-shadow: 0 8px 24px rgba(57, 31, 72, .12);
+}
+.relova-agent-header > div:nth-child(2) { display:flex; flex-direction:column; gap:3px; }
+.relova-agent-header strong { color:#281a30; font-size:15px; }
+.relova-agent-header span { color:#897d8d; font-size:11px; }
+.relova-agent-header span i { display:inline-block; width:7px; height:7px; margin-right:5px; border-radius:50%; background:#57bd7c; box-shadow:0 0 0 4px rgba(87,189,124,.12); }
+.relova-agent-header > b { margin-left:auto; color:#fff; background:#35233f; border-radius:999px; padding:8px 12px; font-size:9px; letter-spacing:.16em; }
+.relova-agent-scroll { scrollbar-width:thin; scrollbar-color:rgba(97,63,116,.22) transparent; }
+.relova-agent-message { box-shadow:0 10px 30px rgba(55,35,64,.07); }
+.relova-agent-message-assistant { background:linear-gradient(145deg,#fff,#f4edf7) !important; border-color:rgba(85,55,102,.1) !important; color:#2a2030; }
+.relova-agent-message-user { background:linear-gradient(135deg,#532bd8,#7847ed) !important; box-shadow:0 12px 30px rgba(93,52,218,.22); }
+.relova-agent-composer { margin-top:0 !important; background:rgba(255,252,250,.88) !important; border-color:rgba(79,52,92,.12) !important; }
+.relova-agent-composer input { background:white !important; border:1px solid rgba(82,53,98,.16) !important; box-shadow:0 8px 26px rgba(55,35,64,.06); }
+.dark .relova-agent-page { background:#130d18; }
+.dark .relova-agent-card { background:rgba(29,20,35,.94); border-color:rgba(255,255,255,.09); }
+.dark .relova-agent-header,.dark .relova-agent-composer { background:rgba(34,24,41,.94) !important; }
+.dark .relova-agent-header strong { color:#fff; }
+.dark .relova-agent-message-assistant { background:linear-gradient(145deg,#2b2032,#211827) !important; color:#f7f1f8; }
+@media (max-width: 640px) {
+  .relova-agent-card { border-radius:20px; }
+  .relova-agent-header { min-height:70px; padding:12px 16px; }
+  .relova-agent-header > b { display:none; }
+}

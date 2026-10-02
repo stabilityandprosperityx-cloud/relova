@@ -11,6 +11,7 @@ import AuthModal from "@/components/auth/AuthModal";
 import { useAuth } from "@/contexts/AuthContext";
 import SEO from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
+import RelovaLogo from "@/components/RelovaLogo";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -210,16 +211,23 @@ family status: ${userProfile.family_status || "single"}`;
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col relova-agent-page">
       <SEO
         title="Relocation Expert Chat — Relova"
         description="Ask Relova's Relocation Expert about visas, documents, taxes, and where to move — personalized answers built for international moves, not generic travel tips."
         canonical="https://relova.ai/chat"
       />
       <Navbar />
-      <div className="flex-1 flex flex-col pt-16">
-        <div className="flex-1 overflow-y-auto">
-          <div className="container max-w-3xl py-8">
+      <div className="flex-1 flex flex-col pt-16 relova-agent-stage">
+        <div className="container max-w-5xl flex-1 flex flex-col py-5 md:py-8 min-h-0">
+          <section className="relova-agent-card flex-1 flex flex-col min-h-0 overflow-hidden">
+            <header className="relova-agent-header">
+              <div className="relova-agent-avatar"><RelovaLogo size={28} pulse={false} /></div>
+              <div><strong>Relova Advisor</strong><span><i /> Online · relocation context ready</span></div>
+              <b>LIVE ADVISOR</b>
+            </header>
+        <div className="flex-1 overflow-y-auto relova-agent-scroll">
+          <div className="px-5 md:px-9 py-7">
             {messages.length === 0 ? (
               <motion.div
                 className="flex flex-col items-center justify-center min-h-[60vh] text-center"
@@ -267,10 +275,10 @@ family status: ${userProfile.family_status || "single"}`;
                           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                         >
                           <div
-                            className={`max-w-[85%] rounded-xl px-5 py-4 text-sm leading-relaxed ${
+                            className={`relova-agent-message max-w-[85%] rounded-xl px-5 py-4 text-sm leading-relaxed ${
                               msg.role === "user"
-                                ? "bg-primary text-primary-foreground"
-                                : "bg-card border border-border"
+                                ? "relova-agent-message-user bg-primary text-primary-foreground"
+                                : "relova-agent-message-assistant bg-card border border-border"
                             }`}
                           >
                             {msg.role === "assistant" ? (
@@ -318,8 +326,8 @@ family status: ${userProfile.family_status || "single"}`;
           </div>
         </div>
 
-        <div className="border-t border-border bg-background/80 backdrop-blur-xl">
-          <div className="container max-w-3xl py-4">
+        <div className="relova-agent-composer border-t border-border bg-background/80 backdrop-blur-xl">
+          <div className="px-5 md:px-9 py-4">
             {isLimited ? (
               <div className="text-center py-2">
                 {anonLimitReached ? (
@@ -355,6 +363,8 @@ family status: ${userProfile.family_status || "single"}`;
             </p>
           </div>
         </div>
+          </section>
+      </div>
       </div>
 
       <AuthModal

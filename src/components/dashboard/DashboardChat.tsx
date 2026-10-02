@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import type { UserProfile, UserPlan } from "@/pages/Dashboard";
 import ChatActionButtons from "./ChatActionButtons";
 import type { RelocationCase } from "@/hooks/useRelocationCase";
+import RelovaLogo from "@/components/RelovaLogo";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -237,10 +238,14 @@ INSTRUCTIONS:
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-8rem)] md:h-[calc(100vh-8rem)]">
-      <h1 className="text-xl md:text-2xl font-bold tracking-tight mb-4">Your Relocation Advisor</h1>
+    <div className="relova-agent-card flex flex-col h-[calc(100vh-8rem)] md:h-[calc(100vh-8rem)] overflow-hidden">
+      <header className="relova-agent-header">
+        <div className="relova-agent-avatar"><RelovaLogo size={27} pulse={false} /></div>
+        <div><strong>Relova Advisor</strong><span><i /> Online · knows your plan</span></div>
+        <b>LIVE WORKSPACE</b>
+      </header>
 
-      <div className="flex-1 overflow-y-auto space-y-4 pr-1">
+      <div className="relova-agent-scroll flex-1 overflow-y-auto space-y-4 px-4 md:px-7 py-6">
         <AnimatePresence mode="popLayout">
           {messages.map((msg, i) => {
             const prevMsg = messages[i - 1];
@@ -253,10 +258,10 @@ INSTRUCTIONS:
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className={`max-w-[90%] md:max-w-[85%] rounded-xl px-4 py-3 text-[13px] leading-relaxed ${
+              <div className={`relova-agent-message max-w-[90%] md:max-w-[85%] rounded-xl px-4 py-3 text-[13px] leading-relaxed ${
                 msg.role === "user"
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-white/[0.04] border border-white/[0.06]"
+                  ? "relova-agent-message-user bg-primary text-primary-foreground"
+                  : "relova-agent-message-assistant bg-white/[0.04] border border-white/[0.06]"
               }`}>
                 {msg.role === "assistant" ? (
                   <>
@@ -313,7 +318,7 @@ INSTRUCTIONS:
           </div>
         </div>
       ) : (
-        <div className="pt-4 border-t border-white/[0.06] mt-4 pb-2">
+        <div className="relova-agent-composer px-4 md:px-7 pt-4 border-t border-white/[0.06] pb-3">
           <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="flex items-center gap-2">
             <input
               value={input}
